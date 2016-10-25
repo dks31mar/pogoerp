@@ -79,7 +79,7 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 	public void deleteRecord(int id) {
 		UserEmployee emp = userEmpdao.getUserId(id);
 		System.out.println("Id"+emp);
-		//emp.setActive(false);
+		emp.setActive(false);
 		
 	}
 

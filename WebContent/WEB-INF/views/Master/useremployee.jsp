@@ -118,8 +118,8 @@
     <td>${user.loginname}</td>
     <td>${user.designation}</td>
   
-    <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+    <td><a href="#"  title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
+    <td><a href="deleteuserRecord?userempid=${user.userempid}" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>
   
   </c:forEach>
@@ -131,7 +131,7 @@
         
 
    
-    <TD valign="top">
+   
       
  
 
