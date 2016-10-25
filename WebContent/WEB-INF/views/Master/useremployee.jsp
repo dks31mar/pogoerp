@@ -87,12 +87,10 @@
 				style="background-color: #3C8DBD; left: 20px">
 				<span class="glyphicon glyphicon-user"></span> Staff Details
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<td><label><a href="javascript:addLocation()"
-					class="btn btn-primary btn-md"> Add Employee </a> </label></td>
-					<td class="glyphicon glyphicon-search"><input type="text"  placeholder="Search by Employee"></td>
-				</tr>
+				<label style="margin-left: 200px;"><a href="javascript:addLocation()"
+					class="btn btn-primary"> Add Employee </a> </label>
+					<label style="margin-left: 475px;"><input type="text" placeholder="Search by Employee"/></label>
+				
 				
 			</div>
 		</div>
