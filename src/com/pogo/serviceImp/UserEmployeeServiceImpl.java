@@ -44,6 +44,7 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 		
 		emp.setPassword(userDTO.getPassword());
 		emp.setRepassword(userDTO.getRepassword());
+		emp.setActive(true);
 		
 		userEmpdao.addUser(emp);
 		
