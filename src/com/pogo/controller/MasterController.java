@@ -70,4 +70,7 @@ public class MasterController
 		userEmployeeservice.deleteRecord(id);
 		return "redirect:useremployee.html";
 		}
+	
+	
+	
 }
