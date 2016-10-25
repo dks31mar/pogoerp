@@ -29,6 +29,24 @@
 			<definition name="savepro" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
 			</definition>
+			<definition name="getuseremp" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/useremployee.jsp" />
+			</definition>
+			
+			
+			<definition name="AcknowledgeInvoice" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/AckInvoice.jsp" />
+			</definition>
+			
+			
+			<definition name="posummary" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PoSummary.jsp" />
+			</definition>
+			
+			
+			<definition name="viewpo" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/ViewPo.jsp" />
+			</definition>
 			
 			<!-- <definition name="AddPrinicpalPO" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/test.jsp" />
