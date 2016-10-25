@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin:0px;
+	padding:0px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	
+}
+.toplogo{ padding:5px; border-top:3px solid #cc0000;}
+.blueback{background:url(../image/topheaderback.jpg); width:100%; height:53px; font-size:11px; color:#d1edff; padding-top:10px;}
+.blueback a{ color:#d1edff; text-decoration:none;font-size:11px;} 
+.blueback a:hover{text-decoration:underline; color:#fff;}
+.checktext{font-size:11px;color:#d1edff;} 
+.textbox{ width:142px; height:23px; border:1px solid #095e93; font-size:12px;color:#686767; padding:0px 0px 5px 5px;}
+.loginbutn{ background:url(../image/newloginbtn.png); width:55px; height:25px; color:#fff; border:none; font-size:11px;}
+.loginbutn:hover{ border:1px solid #0971ae;}
+.newsview{color:#888888; margin-left:auto; margin-right:auto; width:80%; margin-top:30px;}
+.newsview td{ padding:10px;}
+.newsview div{ width:216px; padding:10px; border:1px solid #cccccc; box-shadow:0px 0px 3px #bbbbbb;
+-moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.rederror{padding:2px 2px 0px 3px; width:280px; border-radius:10px; margin-top:5px; height:20px;  background:#be0101; border:1px solid #ac0101; color:#fff; margin-left:600px; position absolute;}
+.newsview div:hover{box-shadow:0px 0px 25px #bbbbbb; }
+.newsview p{ padding-top:5px;font-size:13px;}
+.newsview strong{ color:#336699; font-size:15px;}
+.newsview a{ color:#3399cc; float:right; text-decoration:none;font-size:12px; padding:0px;}
+.newsview a:hover{ text-decoration:underline;}
+.followus{ width:240px; font-size:14px; color:#005b83; font-weight:bold;}
+	.followus td{ padding:5px;}
+	.facebook .fb
+	{ 
+		display:none; 
+		position:absolute; 
+		background:url(../image/hover%20copy.png); 
+		width:72px; 
+		height:29px; 
+		margin-top:-80px; 
+		margin-left:-15px; 
+		padding-top:5px; 
+		color:#fff; 
+		font-size:12px;
+	}
+	
+	.facebook:hover .fb{ display:block;}
+	.twitter .tw
+	{ 
+		display:none; 
+		position:absolute; 
+		background:url(../image/hover%20copy.png); 
+		width:72px; 
+		height:29px; 
+		margin-top:-80px; 
+		margin-left:-15px; 
+		padding-top:5px; 
+		color:#fff; 
+		font-size:12px;
+	}
+	.twitter:hover .tw{ display:block;}
+	.linkedin .in
+	{ 
+		display:none; 
+		position:absolute; 
+		background:url(../image/hover%20copy.png); 
+		width:72px; 
+		height:29px; 
+		margin-top:-80px; 
+		margin-left:-15px; 
+		padding-top:5px; 
+		color:#fff; 
+		font-size:12px;
+	}
+	.linkedin:hover .in{ display:block;}
+	.blogger .blog
+	{ 
+		display:none; 
+		position:absolute; 
+		background:url(../image/hover%20copy.png); 
+		width:72px; 
+		height:29px; 
+		margin-top:-80px; 
+		margin-left:-15px; 
+		padding-top:5px; 
+		color:#fff; 
+		font-size:12px;
+	}
+	.blogger:hover .blog{ display:block;}
+	.google .g_plus
+	{ 
+		display:none; 
+		position:absolute; 
+		background:url(../image/hover%20copy.png); 
+		width:72px; 
+		height:29px; 
+		margin-top:-80px; 
+		margin-left:-15px; 
+		padding-top:5px; 
+		color:#fff; 
+		font-size:12px;
+	}
+	.google:hover .g_plus{ display:block;}
+	
+.fsl{background:url(../image/footerborder.jpg) center top no-repeat; padding-top:10px; color:#333333; margin-top:20px;}
+.fsl a{color:#000; text-decoration:none;} 
+.fsl a:hover{text-decoration:underline;} 
