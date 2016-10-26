@@ -25,10 +25,11 @@ public class CommonServiceImp implements CommonService{
 		commondao.getPoReFNo(request,porefId);
 		
 	}
+	/************************************************** use by shweta ***************************************************/
 	@Override
 	public List<PorefSupplierDetail> viewList(){
 		
 			return commondao.viewList();
 	}
-
+	/************************************************** use by shweta ***************************************************/
 }
