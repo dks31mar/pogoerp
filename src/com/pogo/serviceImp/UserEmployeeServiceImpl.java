@@ -44,6 +44,7 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 		
 		emp.setPassword(userDTO.getPassword());
 		emp.setRepassword(userDTO.getRepassword());
+		emp.setActive(true);
 		
 		userEmpdao.addUser(emp);
 		
@@ -79,7 +80,7 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 	public void deleteRecord(int id) {
 		UserEmployee emp = userEmpdao.getUserId(id);
 		System.out.println("Id"+emp);
-		//emp.setActive(false);
+		emp.setActive(false);
 		
 	}
 

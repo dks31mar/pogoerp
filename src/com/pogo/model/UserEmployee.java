@@ -50,8 +50,8 @@ public class UserEmployee
 	private String phone;
 	@Column(name="mobile")
 	private String usermobile;
-	//@Column(name="active")
-	//private boolean active;
+	@Column(name="active")
+	private boolean active;
 	
 	
 	
@@ -162,6 +162,12 @@ public class UserEmployee
 	}
 	public void setUsermobile(String usermobile) {
 		this.usermobile = usermobile;
+	}
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 	

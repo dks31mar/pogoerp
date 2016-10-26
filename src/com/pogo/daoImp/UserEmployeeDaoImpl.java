@@ -32,7 +32,8 @@ public class UserEmployeeDaoImpl implements UserEmployeeDao
 	@Override
 	public UserEmployee getUserId(int id) {
 		
-		return  (UserEmployee) sessionf.getCurrentSession().createCriteria(UserEmployee.class).add(Restrictions.eq("userempid",id)).list();
+		return  (UserEmployee) sessionf.getCurrentSession().createCriteria(UserEmployee.class)
+				.add(Restrictions.eq("userempid",id)).list();
 	}
 
 }
