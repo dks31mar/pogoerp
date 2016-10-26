@@ -30,6 +30,7 @@
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
 			</definition>
 			<definition name="getuseremp" extends="baseLayout" >
+			<put-attribute name="title" value="Emp" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/useremployee.jsp" />
 			</definition>
 			
@@ -46,6 +47,54 @@
 			
 			<definition name="viewpo" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/ViewPo.jsp" />
+			</definition>
+			
+			<definition name="AppUser" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/appUser.jsp" />
+			</definition>
+			<definition name="branches" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/branch.jsp" />
+			</definition>
+			
+			<definition name="email" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/email.jsp" />
+			</definition>
+			
+			
+			<definition name="sms" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/sms.jsp" />
+			</definition>
+			
+			<definition name="employee" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/employee.jsp" />
+			</definition>
+			<definition name="import" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/Import.jsp" />
+			</definition>
+			
+			<definition name="Profile" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/profile.jsp" />
+			</definition>
+			
+			<definition name="region" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/reagion.jsp" />
+			</definition>
+			<definition name="newbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/newbranch.jsp" />
+			</definition>
+			<definition name="eastbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/eastbranch.jsp" />
+			</definition>
+			
+			<definition name="northbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/northbranch.jsp" />
+			</definition>
+			
+			<definition name="southbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/southbranch.jsp" />
+			</definition>
+			<definition name="westbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/westbranch.jsp" />
 			</definition>
 			
 			<!-- <definition name="AddPrinicpalPO" extends="baseLayout" >

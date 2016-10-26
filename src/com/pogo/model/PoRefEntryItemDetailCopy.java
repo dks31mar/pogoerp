@@ -19,13 +19,15 @@ import javax.persistence.Table;
 public class PoRefEntryItemDetailCopy implements Serializable{
 
 	
-	
+	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="porefentryitemdetailid",columnDefinition="bigInt(20)" )
-	private int porefentryitemdetailid;
+	private Integer porefentryitemdetailid;
+	
+
 	@Column(name="porefno",columnDefinition="varchar(50)")
 	private String porefno;
-	@Id
+	
 	@Column(name="particular",columnDefinition="varchar(50)")
 	private String particular;
 	@Column(name="tpinjpy",columnDefinition="varchar(50)")
@@ -51,14 +53,11 @@ public class PoRefEntryItemDetailCopy implements Serializable{
 	@Column(name="productdescription",columnDefinition="varchar(50)")
 	private String productdescription;
 	
-	
-	
-	
-	
-	public int getPorefentryitemdetailid() {
+
+	public Integer getPorefentryitemdetailid() {
 		return porefentryitemdetailid;
 	}
-	public void setPorefentryitemdetailid(int porefentryitemdetailid) {
+	public void setPorefentryitemdetailid(Integer porefentryitemdetailid) {
 		this.porefentryitemdetailid = porefentryitemdetailid;
 	}
 	public String getPorefno() {

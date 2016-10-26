@@ -73,9 +73,9 @@ public void getProductDetail(@RequestParam("pro") String pro, HttpServletRespons
 
 
 @RequestMapping(value = "/savepodetails", method = RequestMethod.POST)
-public ModelAndView savePoDetails(@ModelAttribute("productadd") PoRefEntryItemDetailBean porefitem, HttpServletResponse res,BindingResult result) {
+public ModelAndView savePoDetails(@ModelAttribute("productadd") PoRefEntryItemDetailCopyBean porefitem, HttpServletResponse res,BindingResult result) {
 
-	PoRefEntryItemDetail poRefEntry = prepareModel(porefitem);
+	PoRefEntryItemDetailCopy poRefEntry = prepareModel(porefitem);
 	//PoRefEntryItemDetailCopy poRefEntrycopy = prepareModelCopy(porefitem);
 	prinicipalposervice.addPoProduct(poRefEntry);
 	Map<String, Object> model = new HashMap<String, Object>();
@@ -92,7 +92,7 @@ public ModelAndView proList() {
 	return new ModelAndView("savepro", model);
 }
 @RequestMapping(value = "/deleteproduct", method = RequestMethod.GET)
-public ModelAndView deleteProduct(@ModelAttribute("productadd")  PoRefEntryItemDetailBean porefitem,
+public ModelAndView deleteProduct(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean porefitem,
 		BindingResult result) {
 	prinicipalposervice.deleteProduct(prepareModel(porefitem));
 	Map<String, Object> model = new HashMap<String, Object>();
@@ -101,11 +101,11 @@ public ModelAndView deleteProduct(@ModelAttribute("productadd")  PoRefEntryItemD
 	return new ModelAndView("savepro", model);
 }
 @RequestMapping(value = "/editproduct", method = RequestMethod.GET)
-public ModelAndView editProduct(@ModelAttribute("productadd")  PoRefEntryItemDetailBean poref,
+public ModelAndView editProduct(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean poref,
 		BindingResult result) {
 	Map<String, Object> model = new HashMap<String, Object>();
-	List<PoRefEntryItemDetail> productEdit =prinicipalposervice.getProductEdit(poref.getPorefentryitemdetailid());
-	PoRefEntryItemDetailBean proedit=prepareProductBean( productEdit);
+	List<PoRefEntryItemDetailCopy> productEdit =prinicipalposervice.getProductEdit(poref.getPorefentryitemdetailid());
+	PoRefEntryItemDetailCopyBean proedit=prepareProductBean( productEdit);
 	model.put("product", proedit);
 	model.put("prolist",  prepareListofBean(prinicipalposervice.proList()));
 	return new ModelAndView("savepro", model);
@@ -128,10 +128,10 @@ public ModelAndView viewProduct(@ModelAttribute("productadd")  PoRefEntryItemDet
 
 
 
-private PoRefEntryItemDetailBean prepareProductBean(List<PoRefEntryItemDetail> productEdit) {
-	PoRefEntryItemDetailBean poref =new PoRefEntryItemDetailBean();
+private PoRefEntryItemDetailCopyBean prepareProductBean(List<PoRefEntryItemDetailCopy> productEdit) {
+	PoRefEntryItemDetailCopyBean poref =new PoRefEntryItemDetailCopyBean();
 	
-	for(PoRefEntryItemDetail productEdit1:productEdit){
+	for(PoRefEntryItemDetailCopy productEdit1:productEdit){
 	poref.setProductdescription(productEdit1.getProductdescription());
 	poref.setTpinjpy(productEdit1.getTpinjpy());
 	poref.setQty(productEdit1.getQty());
@@ -160,8 +160,8 @@ private PoRefEntryItemDetailCopyBean prepareProductBeanCopy(List<PoRefEntryItemD
 }
 
 
-private PoRefEntryItemDetail prepareModel(PoRefEntryItemDetailBean porefitem) {
-	PoRefEntryItemDetail poref=new PoRefEntryItemDetail();
+private PoRefEntryItemDetailCopy prepareModel(PoRefEntryItemDetailCopyBean porefitem) {
+	PoRefEntryItemDetailCopy poref=new PoRefEntryItemDetailCopy();
 	
 	System.out.println(porefitem.getPorefentryitemdetailid());
 	poref.setParticular(porefitem.getParticular());
@@ -192,13 +192,13 @@ private PoRefEntryItemDetailCopy prepareModelCopy(PoRefEntryItemDetailCopyBean p
 	
 	return poref;
 }
-private List<PoRefEntryItemDetailBean> prepareListofBean(List<PoRefEntryItemDetail> prodel){
-	List<PoRefEntryItemDetailBean> beans = null;
+private List<PoRefEntryItemDetailCopyBean> prepareListofBean(List<PoRefEntryItemDetailCopy> prodel){
+	List<PoRefEntryItemDetailCopyBean> beans = null;
 	if(prodel != null && !prodel.isEmpty()){
-		beans = new ArrayList<PoRefEntryItemDetailBean>();
-		PoRefEntryItemDetailBean bean = null;
-		for(PoRefEntryItemDetail pro : prodel){
-			bean = new PoRefEntryItemDetailBean();
+		beans = new ArrayList<PoRefEntryItemDetailCopyBean>();
+		PoRefEntryItemDetailCopyBean bean = null;
+		for(PoRefEntryItemDetailCopy pro : prodel){
+			bean = new PoRefEntryItemDetailCopyBean();
 			bean.setParticular(pro.getParticular());
 			bean.setProductdescription(pro.getProductdescription());
 			bean.setTpinjpy(pro.getTpinjpy());
