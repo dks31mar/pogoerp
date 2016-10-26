@@ -35,8 +35,16 @@
 			</definition>
 			
 			
-			<definition name="AcknowledgeInvoice" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/AckInvoice.jsp" />
+			<definition name="supplierinvoiceview" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Invoice.jsp" />
+			</definition>
+			
+			<definition name="acknowledgementView" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Ack.jsp" />
+			</definition>
+			
+			<definition name="supplierackView" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Acksupplier.jsp" />
 			</definition>
 			
 			
