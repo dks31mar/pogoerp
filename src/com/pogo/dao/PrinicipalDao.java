@@ -3,6 +3,7 @@ package com.pogo.dao;
 import java.util.List;
 
 import com.pogo.model.PoRefEntryItemDetail;
+import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.ProductMaster;
 
 public interface PrinicipalDao {
@@ -11,13 +12,13 @@ public interface PrinicipalDao {
 
 	List<ProductMaster> getproductDetail(ProductMaster pm);
 
-	void addPoDetails(PoRefEntryItemDetail poRefEntry);
+	void addPoDetails(PoRefEntryItemDetailCopy poRefEntry);
 
-	List<PoRefEntryItemDetail> proList();
+	List<PoRefEntryItemDetailCopy> proList();
 
-	void deleteProduct(PoRefEntryItemDetail prepareModel);
+	void deleteProduct(PoRefEntryItemDetailCopy prepareModel);
 
-	public List<PoRefEntryItemDetail> getProductEdit(int particular);
+	public List<PoRefEntryItemDetailCopy> getProductEdit(int particular);
 
 	void savePo();
 
