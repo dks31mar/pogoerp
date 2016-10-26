@@ -174,7 +174,7 @@ public class CommonController {
 	@RequestMapping(value="/supplierack",method = RequestMethod.GET)
 	public ModelAndView getacknowledsupplierpo( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
 		System.out.println("in get edit method");
-
+		
 	return new ModelAndView("supplierackView");
 	}
 
