@@ -1,5 +1,7 @@
 package com.pogo.serviceImp;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +25,10 @@ public class CommonServiceImp implements CommonService{
 		commondao.getPoReFNo(request,porefId);
 		
 	}
+	@Override
+	public List<PorefSupplierDetail> viewList(){
+		
+			return commondao.viewList();
+	}
+
 }
