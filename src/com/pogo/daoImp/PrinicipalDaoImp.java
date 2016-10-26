@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pogo.dao.PrinicipalDao;
 import com.pogo.model.PoRefEntryItemDetail;
+import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.ProductMaster;
 @Repository("prinicipaldao")
 @SuppressWarnings("unchecked")
@@ -46,7 +47,7 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	}
 
 	@Override
-	public void addPoDetails(PoRefEntryItemDetail poRefEntry) {
+	public void addPoDetails(PoRefEntryItemDetailCopy poRefEntry) {
 		sessionFactory.getCurrentSession().flush();
 		if(poRefEntry.getPorefentryitemdetailid()==null){
 		sessionFactory.getCurrentSession().save(poRefEntry);
@@ -59,14 +60,14 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 
 	
 	@Override
-	public List<PoRefEntryItemDetail> proList() {
+	public List<PoRefEntryItemDetailCopy> proList() {
 		sessionFactory.getCurrentSession().flush();
-		return (List<PoRefEntryItemDetail>) sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).list();
+		return (List<PoRefEntryItemDetailCopy>) sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetailCopy.class).list();
 	}
 
 	@Override
-	public void deleteProduct(PoRefEntryItemDetail prepareModel) {
-		sessionFactory.getCurrentSession().createQuery("DELETE FROM PoRefEntryItemDetail WHERE porefentryitemdetailid = "+prepareModel.getPorefentryitemdetailid()).executeUpdate();
+	public void deleteProduct(PoRefEntryItemDetailCopy prepareModel) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM PoRefEntryItemDetailCopy WHERE porefentryitemdetailid = "+prepareModel.getPorefentryitemdetailid()).executeUpdate();
 		sessionFactory.getCurrentSession().flush();
 		
 	}
@@ -80,9 +81,9 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	}*/
 	
 	@Override
-	public List<PoRefEntryItemDetail> getProductEdit(int particular) {
+	public List<PoRefEntryItemDetailCopy> getProductEdit(int particular) {
 		sessionFactory.getCurrentSession().flush();
-	List<PoRefEntryItemDetail> list=sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefentryitemdetailid", particular)).list();
+	List<PoRefEntryItemDetailCopy> list=sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetailCopy.class).add(Restrictions.eq("porefentryitemdetailid", particular)).list();
 	System.out.println(""+list.iterator().next().getParticular());	
 	//sessionFactory.getCurrentSession().get(PoRefEntryItemDetail.class, particular);
 		
@@ -91,7 +92,7 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 
 	@Override
 	public void savePo() {
-		sessionFactory.getCurrentSession().createSQLQuery("insert into pogodb.abcd Select * from pogodb.porefentryitemdetail").executeUpdate();
+		sessionFactory.getCurrentSession().createSQLQuery("insert into pogodb.porefentryitemdetail Select * from pogodb.porefentryitemdetailcopy").executeUpdate();
 		
 	}
 	
