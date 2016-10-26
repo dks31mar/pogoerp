@@ -96,13 +96,15 @@
 				<put-attribute name="body" value="/WEB-INF/views/test.jsp" />
 			</definition>
 	 -->
-	 <!-- use by shweta -->
+	<!-- ************************************************** use by shweta *************************************************** -->
 	       <definition name="view" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/viewPo.jsp" />
 			</definition>
+			
 			<definition name="edit" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/EditPo.jsp" />
 			</definition>
+		   
 		   <definition name="supplierinvoiceview" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Invoice.jsp" />
 			</definition>
@@ -115,5 +117,5 @@
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Acksupplier.jsp" />
 			</definition>	
 	 
-	 <!-- use by shweta -->
-       </tiles-definitions>
+	<!-- ************************************************** use by shweta *************************************************** -->
+	      </tiles-definitions>
