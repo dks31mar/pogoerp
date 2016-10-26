@@ -1,7 +1,6 @@
 package com.pogo.controller;
 
 import java.text.ParseException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,14 +73,6 @@ public class MasterController
 		return "redirect:useremployee.html";
 		}
 	
-	@RequestMapping(value="/region",method = RequestMethod.GET)
-	public ModelAndView getRegion(Zones porefitem,HttpServletRequest request){
 	
-		List<Zones> getbranch=new ArrayList<Zones>();
-		getbranch=regionService.getBranches();
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("branchList",  getbranch);
-		return new ModelAndView("region",model);
-}
 	
 }
