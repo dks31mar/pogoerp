@@ -27,6 +27,7 @@ public class CommonController {
 	return new ModelAndView("AddPrinicpalPO");
 			
 }
+	//create by sat
 	@RequestMapping(value="/appuser",method = RequestMethod.GET)
 	public ModelAndView getUser(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
@@ -120,4 +121,5 @@ public class CommonController {
 	
 	return new ModelAndView("addemployee");
 }
+	
 }

@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+
+<link href="/pogoerpdemo/Resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="/pogoerpdemo/Resources/bootstrap-3.3.6/js/jquery.min.js"></script>
+<script src="/pogoerpdemo/Resources/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/pogoerpdemo/Resources/font-awesome-4.6.3/css/font-awesome.min.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <style>
@@ -106,14 +108,36 @@ h1 span {
 
 
 
-<link href="/pogoerpdemo/Resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="/pogoerpdemo/Resources/bootstrap-3.3.6/js/jquery.min.js"></script>
-<script src="/pogoerpdemo/Resources/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="/pogoerpdemo/Resources/font-awesome-4.6.3/css/font-awesome.min.css">
 
 
 
 
+
+<h2>Modal Example</h2>
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">×</span>
+   <form>
+  Region Name:<input type="text" name="firstname"><br>
+  
+  Phone No:<input type="text" name="phone"><br>
+   
+  Fax No:<input type="text" name="fax"><br>
+
+  EmailId:<input type="text" name="fax"><br>
+
+  
+  Region Head Name:<input type="text" name="headname"><br>
+
+  Region Address:<input type="text" name="headname"><br>
+</form>
 
 
 
