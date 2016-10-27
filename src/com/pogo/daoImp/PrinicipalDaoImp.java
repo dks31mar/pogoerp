@@ -2,6 +2,10 @@ package com.pogo.daoImp;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.ProjectionList;
@@ -94,6 +98,20 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	public void savePo() {
 		sessionFactory.getCurrentSession().createSQLQuery("insert into pogodb.porefentryitemdetail Select * from pogodb.porefentryitemdetailcopy").executeUpdate();
 		
+	}
+
+	@Override
+	public void getTotal(HttpServletRequest res) {
+	Integer total=(Integer)	sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetailCopy.class).setProjection(Projections.sum("totaljpy")).uniqueResult();
+	
+	System.out.println("&&&&&&&&&&&&&&&&            &&&&&&                        "+total);
+	
+	}
+
+	@Override
+	public Object getGrantTotal(HttpServletRequest res) {
+		// TODO Auto-generated method stub
+		return (Integer)sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetailCopy.class).setProjection(Projections.sum("totaljpy")).uniqueResult();
 	}
 	
 	

@@ -22,13 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
-import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.ProductMasterBean;
-import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
-import com.pogo.model.PorefSupplierDetail;
 import com.pogo.service.PrinicipalPoService;
 
 
@@ -78,15 +74,17 @@ public void getProductDetail(@RequestParam("pro") String pro, HttpServletRespons
 	}
 
 
-@RequestMapping(value = "/savepodetails", method = RequestMethod.GET,consumes="application/json",headers = "content-type=application/x-www-form-urlencoded")
+@RequestMapping(value = "/savepodetails", method = RequestMethod.POST,consumes="application/json",headers = "content-type=application/x-www-form-urlencoded")
 
-public ModelAndView savePoDetails(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean porefitem, HttpServletResponse res,BindingResult result) {
-
+public ModelAndView savePoDetails(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean porefitem, HttpServletRequest res,BindingResult result) {
+	String val=res.getParameter("dataTodata");
+	System.out.println("^^^^^^^^^^^^^^^^^^^^^     DATE              ^&^^^^^^^^^^^^^^^^^^^       "+val);
 	PoRefEntryItemDetailCopy poRefEntry = prepareModel(porefitem);
 	//PoRefEntryItemDetailCopy poRefEntrycopy = prepareModelCopy(porefitem);
-	//prinicipalposervice.addPoProduct(poRefEntry);
+	prinicipalposervice.addPoProduct(poRefEntry);
 	Map<String, Object> model = new HashMap<String, Object>();
-	model.put("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	model.put("prolist",  prepareListofBean(prinicipalposervice.proList(res)));
+	model.put("total", prinicipalposervice.getGrantTotal(res));
 	return new ModelAndView("savepro", model);
 
 }
@@ -130,28 +128,28 @@ private String toJson(PoRefEntryItemDetailCopy poRefEntry) {
 
 @RequestMapping(value="/prolist", method = RequestMethod.GET)
 public ModelAndView proList(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean porefitem,
-		BindingResult result) {
+		BindingResult result,HttpServletRequest res) {
 	Map<String, Object> model = new HashMap<String, Object>();
-	model.put("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	model.put("prolist",  prepareListofBean(prinicipalposervice.proList(res)));
 	return new ModelAndView("savepro", model);
 }
 @RequestMapping(value = "/deleteproduct", method = RequestMethod.GET)
 public ModelAndView deleteProduct(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean porefitem,
-		BindingResult result) {
+		BindingResult result,HttpServletRequest res) {
 	prinicipalposervice.deleteProduct(prepareModel(porefitem));
 	Map<String, Object> model = new HashMap<String, Object>();
 	model.put("product", null);
-	model.put("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	model.put("prolist",  prepareListofBean(prinicipalposervice.proList(res)));
 	return new ModelAndView("savepro", model);
 }
 @RequestMapping(value = "/editproduct", method = RequestMethod.GET)
 public ModelAndView editProduct(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean poref,
-		BindingResult result) {
+		BindingResult result,HttpServletRequest res) {
 	Map<String, Object> model = new HashMap<String, Object>();
 	List<PoRefEntryItemDetailCopy> productEdit =prinicipalposervice.getProductEdit(poref.getPorefentryitemdetailid());
 	PoRefEntryItemDetailCopyBean proedit=prepareProductBean( productEdit);
 	model.put("product", proedit);
-	model.put("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	model.put("prolist",  prepareListofBean(prinicipalposervice.proList(res)));
 	return new ModelAndView("savepro", model);
 }
 
@@ -160,7 +158,7 @@ public ModelAndView editProduct(@ModelAttribute("productadd")  PoRefEntryItemDet
 public ModelAndView viewProduct(@ModelAttribute("productadd")  PoRefEntryItemDetailCopy poref,
 		BindingResult result) {
 	Map<String, Object> model = new HashMap<String, Object>();
-	prinicipalposervice.viewPo();
+	//prinicipalposervice.viewPo();
 	
 	
 	//PoRefEntryItemDetailBean proedit=prepareProductBean( productEdit);

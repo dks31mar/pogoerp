@@ -2,9 +2,8 @@ package com.pogo.service;
 
 import java.util.List;
 
-import com.pogo.bean.PoRefEntryItemDetailBean;
+import javax.servlet.http.HttpServletRequest;
 import com.pogo.bean.ProductMasterBean;
-import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 
 public interface PrinicipalPoService {
@@ -15,13 +14,15 @@ public interface PrinicipalPoService {
 
 	void addPoProduct(PoRefEntryItemDetailCopy poRefEntry);
 
-	List<PoRefEntryItemDetailCopy> proList();
+	List<PoRefEntryItemDetailCopy> proList(HttpServletRequest res);
 
 	void deleteProduct(PoRefEntryItemDetailCopy prepareModel);
 
 	public List<PoRefEntryItemDetailCopy> getProductEdit(int particular);
 
 	void viewPo();
+
+	Object getGrantTotal(HttpServletRequest res);
 	
 	
 }
