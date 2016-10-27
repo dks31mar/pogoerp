@@ -15,9 +15,8 @@
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 	
 	<script>
 	/* jQuery(document).ready(function() {
@@ -38,7 +37,7 @@
 							title : 'Add Employee',
 							content : '<form:form id="formID" action="saveuserEmp" method="POST" commandName="userbean"><span style="color: black;"> <strong>Login Name<span style="color:red;">*</span>:</strong></span>&nbsp;&nbsp;<input type="text" class="validate[required] text-input"  style="border-radius:5px;"   name="loginname" placeholder="Username"  maxlength="20" autofocus="autofocus"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<strong>Joining Date<span style="color:red;">*</span>:</strong></span>&nbsp;<input type="text" class="validate[required] text-input"  style="border-radius:2px;" name="dateofjoining" placeholder="Date"  maxlength="20"><br><br>'
 									+'<span style="color: black;"> <strong>FirstName<span style="color:red;">*</span>:&nbsp;</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="validate[required] text-input"  style="border-radius:5px;"   name="firstname" placeholder="Firstname"  maxlength="20"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Designation<span style="color:red;">*</span>:</strong></span>&nbsp;&nbsp;<input type="text" class="validate[required] text-input"  style="border-radius:5px;"   name="designation" placeholder="eg.Manager"  maxlength="20"><br><br>'
-									+'<span style="color: black;"> <strong>LastName<span style="color:red;">*</span>:&nbsp;</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="validate[required] text-input"  style="border-radius:5px;"   name="lastname" placeholder="Lastname"  maxlength="20"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>DOB<span style="color:red;">*</span>:</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" onclick="date(this);" id="datepicker123"  class="validate[required] text-input"  style="border-radius:5px;"   name="dob" placeholder="DD-MM-YY"  maxlength="20"><br><br>'
+									+'<span style="color: black;"> <strong>LastName<span style="color:red;">*</span>:&nbsp;</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="validate[required] text-input"  style="border-radius:5px;"   name="lastname" placeholder="Lastname"  maxlength="20"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>DOB<span style="color:red;">*</span>:</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  id="datepicker123"  class="validate[required] text-input"  style="border-radius:5px;"   name="dob" placeholder="DD-MM-YY"  maxlength="20"><br><br>'
 									+'<span style="color: black;"> <strong>Division<span style="color:red;">*</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>&nbsp;<select><option>---Select Division---</option><option value="Delhi">Delhi</option><option value="Delhi">Noida</option> class="validate[required] text-input"  style="border-radius:5px;"   name="division"   maxlength="20"</select><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Email<span style="color:red;">*</span>:</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="validate[required] text-input"  style="border-radius:5px;"   name="eamil" placeholder="MailId"  maxlength="30"><br><br>'
 									+'<span style="color: black;"> <strong>Region<span style="color:red;">*</span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></span>&nbsp;<select><option>----Select Region----</option><option value="Delhi NCR">Delhi NCR</option><option value="Noida">Noida</option>  style="border-radius:5px;"   name="region"   maxlength="20" </select><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Password<span style="color:red;">*</span>:</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="validate[required] text-input"  style="border-radius:5px;"   name="password" placeholder="Password"  maxlength="20"><br><br>'
 									
@@ -53,13 +52,9 @@
 	
 </script>
 <script>
-	$(function() {
-		
-	    $( "#datepicker12" ).datepicker();
-	  } );
 	function date()
 	{
-		alert("hello");
+		//alert("hello");
 		$( "#datepicker123" ).datepicker();	
 	}
 	
@@ -75,9 +70,10 @@
 				
 			
 	}
-	function searchEmp(employee) {
-		alert("hi");
-		alert(employee);
+	
+	function searchEmp(loginname) {
+		//alert("hi");
+		alert(loginname);
 		$("#searchedRecord").empty();
 		$("#body").show();
 		$
@@ -86,17 +82,17 @@
 					type : "POST",
 					url : 'searchEmployee',
 					data : {
-						'emp' : emp,
+						'loginname' : loginname,
 					},
 					success : function(data) {
-
 						var obj = JSON.parse(data);
-						alert(obj)
-						var content = '<table class="table table-bordered" style="margin-top: 5px; border-radius: 5px;" id="invoice-amount"><thead><tr>'
+						
+						var content = '<table class="responstable" style="margin-top: 5px; border-radius: 5px;"><thead><tr>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">SN</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Employee Name</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Designation</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Edit</label></th>'
+							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Delete</label></th>'
 							
 						if (obj.length == 0) 
 						{
@@ -110,21 +106,19 @@
 									function(key, value) {
 										content += '<tr height="30">';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-												+ value.sku
+												+ value.userempid
 												+ '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-												+ value.productName + '</td>';
+												+ value.loginname + '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-												+ value.supplier
+												+ value.designation
 												+ '</td>';
-										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-												+ value.onhand + '</td>';
-
-										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-											+ value.comitted + '</td>';
-											
-										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-											+ value.available + '</td></tr>';
+												content += '<td style="font-size: 13px; color:black;" class="corg_th"><a href="#"  title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
+													
+													+ '</td>';		
+										content += '<td style="font-size: 13px; color:black;" class="corg_th"><a title="Delete" href="#" onclick="deletUser(${user.userempid})"><span class="glyphicon glyphicon-trash"></span></a>'
+											+ '</td></tr>';		
+										
 
 												
 									});
@@ -166,10 +160,8 @@
 		</div>
 		
 <div id="pop" style="display: none;"></div>
-
+<div id="searchedRecord"></div>
 <div id="body">
-
-
 <table class="responstable">
   
   <tbody><tr>

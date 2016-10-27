@@ -22,19 +22,20 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.UserEmployee;
-<<<<<<< HEAD
 
-=======
+
+
 import com.pogo.model.Zones;
 import com.pogo.service.RegionService;
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 import com.pogo.service.UserEmployeeService;
 @Controller
 public class MasterController 
 {
 	@Autowired
 	private UserEmployeeService userEmployeeservice;
-
+	@Autowired
+   private RegionService regionService;
 	
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
 	
