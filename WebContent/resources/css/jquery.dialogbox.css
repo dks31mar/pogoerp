@@ -39,11 +39,11 @@
 .dialog-box-title h3{
 	font-size: 14px;
 	font-weight: bold;
-	margin: 0;
+	margin: 10px;
 	float: left;
 }
 .dialog-box-close{
-	font-size: 26px;
+	font-size: 20px;
 	margin-left: 20px;
 	font-weight: normal;
 	float: right;

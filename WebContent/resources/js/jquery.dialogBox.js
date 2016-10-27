@@ -83,7 +83,7 @@
  				if(!hasClose){
 					dialogHTML[0] = '<section id="' + id + '" class="dialog-box"><div class="dialog-box-container"><div class="dialog-box-title"><h3>'+ title + '</h3></div><div class="dialog-box-content"></div>';
  				}else{					
- 					dialogHTML[0] = '<section id="' + id + '" class="dialog-box"><div class="dialog-box-container"><div class="dialog-box-title"><h3>'+ title + '</h3><span class="dialog-box-close">×</span></div><div class="dialog-box-content"></div>';
+ 					dialogHTML[0] = '<section id="' + id + '" class="dialog-box"><div class="dialog-box-container"><div class="dialog-box-title"><h3>'+ title + '</h3><span class="dialog-box-close">x</span></div><div class="dialog-box-content"></div>';
  				}
  			}
 

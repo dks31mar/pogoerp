@@ -11,22 +11,25 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.UserEmployeeBean;
-
+import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.UserEmployee;
 import com.pogo.service.UserEmployeeService;
 @Controller
 public class MasterController 
 {
 	@Autowired
-	UserEmployeeService userEmployeeservice;
+	private UserEmployeeService userEmployeeservice;
 	
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
 	
@@ -60,15 +63,22 @@ public class MasterController
 		
 		model.addAttribute("id", id);
 		
-		return "updatecity";
+		return "editUserdetails";
 	}
-	@RequestMapping(value="deleteuserRecord" ,method=RequestMethod.GET)
-	public String deleteData(@RequestParam int id) 
-	{
-		userEmployeeservice.deleteRecord(id);
-		return "redirect:useremployee.html";
-		}
 	
-	
+	@RequestMapping(value = "deleteuser", method = RequestMethod.POST)
+	public String deleteuserEmpData(@RequestParam("userempid") int id) {
+		userEmployeeservice.deleteuserEmp(id);
+		return "getuseremp";
+	}
+	//search
+	@RequestMapping(value = "searchEmployee", method = RequestMethod.POST)
+	public @ResponseBody String filterEmpployee(@RequestParam String loginname)
+			throws JsonProcessingException {
+		List<UserEmployeeBean> userbean = userEmployeeservice.getUser(loginname);
+		//System.out.println(userbean);
+		ObjectMapper map = new ObjectMapper();
+		return map.writeValueAsString(userbean);
+	}
 	
 }
