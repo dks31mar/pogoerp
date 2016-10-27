@@ -22,7 +22,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.UserEmployee;
+<<<<<<< HEAD
 
+=======
+import com.pogo.model.Zones;
+import com.pogo.service.RegionService;
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 import com.pogo.service.UserEmployeeService;
 @Controller
 public class MasterController 
@@ -83,7 +88,15 @@ public class MasterController
 		return map.writeValueAsString(userbean);
 	}
 
-		
+	@RequestMapping(value="/region",method = RequestMethod.GET)
+	public ModelAndView getRegion(Zones porefitem,HttpServletRequest request){
+	
+		List<Zones> getbranch=new ArrayList<Zones>();
+		getbranch=regionService.getBranches();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("branchList",  getbranch);
+		return new ModelAndView("region",model);
+}
 
 	
 

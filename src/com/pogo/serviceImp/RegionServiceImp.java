@@ -26,6 +26,7 @@ public class RegionServiceImp implements RegionService{
 		List<Zones> getbranch =regionDao.getBranches();
 		for(Zones s:getbranch)
 			System.out.println(s.getZonesname());
+		
 			
 	
 		return getbranch;

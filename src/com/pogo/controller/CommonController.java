@@ -34,6 +34,7 @@ public class CommonController {
 	return new ModelAndView("AddPrinicpalPO");
 			
 }
+	//create by sat
 	@RequestMapping(value="/appuser",method = RequestMethod.GET)
 	public ModelAndView getUser(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
@@ -128,6 +129,7 @@ public class CommonController {
 	return new ModelAndView("addemployee");
 }
 	
+
 	/**************************************************** use by shweta *****************************************************/
 	@RequestMapping(value="/getviewpo",method = RequestMethod.GET)
 	public ModelAndView getView( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
@@ -185,4 +187,5 @@ public class CommonController {
 	return new ModelAndView("supplierinvoiceview");
 	}
 	/************************************************** use by shweta ***************************************************/
+
 }
