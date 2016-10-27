@@ -9,7 +9,8 @@ import com.pogo.model.PorefSupplierDetail;
 public interface CommonService {
 
 	void getPoRefNo(HttpServletRequest request);
+	/************************************************** use by shweta ***************************************************/
 	List<PorefSupplierDetail> viewList();
-
+	/************************************************** use by shweta ***************************************************/
 
 }

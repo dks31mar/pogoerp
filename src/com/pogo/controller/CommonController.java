@@ -127,13 +127,15 @@ public class CommonController {
 	
 	return new ModelAndView("addemployee");
 }
+	
+	/**************************************************** use by shweta *****************************************************/
 	@RequestMapping(value="/getviewpo",method = RequestMethod.GET)
 	public ModelAndView getView( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
 		System.out.println("in get view method");
-Map<String, Object> model = new HashMap<String, Object>();
+	Map<String, Object> model = new HashMap<String, Object>();
 		model.put("viewlist",  prepareViewListofBean(commonservice.viewList()));
 	return new ModelAndView("view",model);
-}
+	}
 	@SuppressWarnings("unused")
 	private List<PorefSupplierDetailBean> prepareViewListofBean(List<PorefSupplierDetail> prodel){
 		List<PorefSupplierDetailBean> beans = null;
@@ -160,7 +162,7 @@ Map<String, Object> model = new HashMap<String, Object>();
 
 	return new ModelAndView("edit");
 	}
-	
+
 	@RequestMapping(value="/acknowledgement",method = RequestMethod.GET)
 	public ModelAndView getacknowledgement( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
 		System.out.println("in get acknowledgement method");
@@ -168,18 +170,19 @@ Map<String, Object> model = new HashMap<String, Object>();
 		model.put("acklist",  prepareViewListofBean(commonservice.viewList()));
 	return new ModelAndView("acknowledgementView", model);
 	}
-	
+
 	@RequestMapping(value="/supplierack",method = RequestMethod.GET)
 	public ModelAndView getacknowledsupplierpo( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
 		System.out.println("in get edit method");
-
+		
 	return new ModelAndView("supplierackView");
 	}
-	
+
 	@RequestMapping(value="/supplierinvoice",method = RequestMethod.GET)
 	public ModelAndView getsupplierinvoice( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
 		System.out.println("in get edit method");
 
 	return new ModelAndView("supplierinvoiceview");
 	}
+	/************************************************** use by shweta ***************************************************/
 }
