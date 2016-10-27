@@ -41,7 +41,6 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 		emp.setGender(userDTO.getGender());
 		emp.setPhone(userDTO.getPhone());
 		emp.setUsermobile(userDTO.getUsermobile());
-		
 		emp.setPassword(userDTO.getPassword());
 		emp.setRepassword(userDTO.getRepassword());
 		emp.setActive(true);
@@ -78,7 +77,6 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 
 	@Override
 	public void deleteuserEmp(int id) {
-		
 		System.out.println("before getting id \n"+id);
 		UserEmployee user = userEmpdao.getUserById(id);
 		System.out.println("after getting id from db  \n"+user.getUserempid());
@@ -104,11 +102,9 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 		return listbean;
 	}
 
-	@Override
-	public void deleteRecord(int id) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
+	
 
 	
 	

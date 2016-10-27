@@ -189,9 +189,6 @@
     <td>${user.designation}</td>
   
     <td><a href="#"  title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <%--<td><onClick="deletUser('+${user.userempid}+')"><span class="glyphicon glyphicon-trash"></span></td>--%>
-    
-
 <%-- <td><a href="delete-user?id=${user.userempid}" title="Delete" onclick="deletUsert()"><span class="glyphicon glyphicon-trash"></span></a></td> --%>
      <td><a href="#" onclick="deletUser(${user.userempid})" ><span class="glyphicon glyphicon-trash"></span></a></td> 
   </tr>

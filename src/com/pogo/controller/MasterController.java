@@ -22,18 +22,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.UserEmployee;
-import com.pogo.service.RegionService;
+
 import com.pogo.service.UserEmployeeService;
 @Controller
 public class MasterController 
 {
 	@Autowired
-
 	private UserEmployeeService userEmployeeservice;
-
-	
-	@Autowired
-	private RegionService regionService;
 
 	
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
@@ -71,12 +66,7 @@ public class MasterController
 		return "editUserdetails";
 	}
 
-	@RequestMapping(value="deleteuserRecord" ,method=RequestMethod.GET)
-	public String deleteData(@RequestParam int id) 
-	{
-		userEmployeeservice.deleteRecord(id);
-		return "redirect:useremployee.html";
-		}
+	
 	
 	@RequestMapping(value = "deleteuser", method = RequestMethod.POST)
 	public String deleteuserEmpData(@RequestParam("userempid") int id) {

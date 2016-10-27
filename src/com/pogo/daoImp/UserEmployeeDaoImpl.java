@@ -1,12 +1,7 @@
 package com.pogo.daoImp;
 
-import java.util.Iterator;
+
 import java.util.List;
-
-import javax.persistence.Query;
-
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +25,8 @@ public class UserEmployeeDaoImpl implements UserEmployeeDao
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<UserEmployee> getuserData() {
-
-		return (List<UserEmployee>)sessionf.getCurrentSession().createCriteria(UserEmployee.class).add(Restrictions.eq("active", true))
+		return (List<UserEmployee>)sessionf.getCurrentSession().createCriteria(UserEmployee.class)
+				.add(Restrictions.eq("active", true))
 				.list();
 	}
 
@@ -54,7 +49,6 @@ public class UserEmployeeDaoImpl implements UserEmployeeDao
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<UserEmployee> searchUser(String loginname) {
-		
 		return sessionf.getCurrentSession().createCriteria(UserEmployee.class)
 				.add(Restrictions.like("loginname", loginname+"%"))
 				.add(Restrictions.eq("active", true)).list();
