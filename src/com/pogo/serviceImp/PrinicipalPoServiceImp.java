@@ -14,6 +14,7 @@ import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.dao.PrinicipalDao;
 import com.pogo.model.PoRefEntryItemDetail;
+import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.ProductMaster;
 import com.pogo.service.PrinicipalPoService;
 
@@ -57,25 +58,25 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 	}
 
 	@Override
-	public void addPoProduct(PoRefEntryItemDetail poRefEntry) {
+	public void addPoProduct(PoRefEntryItemDetailCopy poRefEntry) {
 		prinicipaldao.addPoDetails(poRefEntry);
 		
 	}
 
 	@Override
-	public List<PoRefEntryItemDetail> proList() {
+	public List<PoRefEntryItemDetailCopy> proList() {
 		
 		return prinicipaldao.proList();
 	}
 
 	@Override
-	public void deleteProduct(PoRefEntryItemDetail prepareModel) {
+	public void deleteProduct(PoRefEntryItemDetailCopy prepareModel) {
 		prinicipaldao.deleteProduct(prepareModel);
 	}
 
 	@Override
-	public List<PoRefEntryItemDetail> getProductEdit(int particular) {
-		List<PoRefEntryItemDetail> lsit=prinicipaldao.getProductEdit(particular);
+	public List<PoRefEntryItemDetailCopy> getProductEdit(int particular) {
+		List<PoRefEntryItemDetailCopy> lsit=prinicipaldao.getProductEdit(particular);
 		
 		return lsit;
 	}

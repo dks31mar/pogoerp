@@ -3,13 +3,11 @@
 <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
-<script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 <link rel="stylesheet" type="text/css" href="resources/css/displaytag.css" />
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
  
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
 <link rel="stylesheet" type="text/css" href="resources/css/messagebox.css" />
 	
 <link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
@@ -38,8 +36,8 @@ java.util.Date date = new java.util.Date();
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="ason"  type="radio" name="potype"> As On
 					 <input id="period" type="radio" name="potype" />Period
 					 
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "hide1">From:<input type="text" id="datepicker1" value="<%=dateFormat.format(date) %>" ReadOnly></span> 
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "hide2">To: <input type="text" id="datepicker2" value="<%=dateFormat.format(date) %>" ReadOnly></span> 
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "hide1">From:<input type="text" style="color: black;" id="datepicker1" value="<%=dateFormat.format(date) %>" ReadOnly></span> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "hide2">To: <input type="text" style = "color:black" id="datepicker2" value="<%=dateFormat.format(date) %>" ReadOnly></span> 
 						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Search" />
 						</div>
 			</div>
@@ -51,7 +49,7 @@ java.util.Date date = new java.util.Date();
 					<h3></h3>
 				</i> <input type="hidden" name="profile" value="0" />
 			</div>
-		</div>
+		   </div>
 		
 					
 		 <form:form method="POST" action="savepodetails" commandName="command"> 
@@ -94,7 +92,9 @@ java.util.Date date = new java.util.Date();
 					</table>
         </form:form> 
 			
-   
+   <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
 		<script>
 		

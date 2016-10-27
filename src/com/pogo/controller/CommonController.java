@@ -1,5 +1,10 @@
 package com.pogo.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.pogo.bean.PoRefEntryItemDetailBean;
+import com.pogo.bean.PorefSupplierDetailBean;
+import com.pogo.model.PorefSupplierDetail;
 import com.pogo.service.CommonService;
 
 @Controller
@@ -120,4 +127,62 @@ public class CommonController {
 	
 	return new ModelAndView("addemployee");
 }
+	
+	/**************************************************** use by shweta *****************************************************/
+	@RequestMapping(value="/getviewpo",method = RequestMethod.GET)
+	public ModelAndView getView( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
+		System.out.println("in get view method");
+	Map<String, Object> model = new HashMap<String, Object>();
+		model.put("viewlist",  prepareViewListofBean(commonservice.viewList()));
+	return new ModelAndView("view",model);
+	}
+	@SuppressWarnings("unused")
+	private List<PorefSupplierDetailBean> prepareViewListofBean(List<PorefSupplierDetail> prodel){
+		List<PorefSupplierDetailBean> beans = null;
+		if(prodel != null && !prodel.isEmpty()){
+			beans = new ArrayList<PorefSupplierDetailBean>();
+			PorefSupplierDetailBean bean = null;
+			for(PorefSupplierDetail pro : prodel){
+				bean = new PorefSupplierDetailBean();
+				//System.out.println(bean);
+				bean.setPorefno(pro.getPorefno());
+				System.out.println(bean.getPorefno());
+				bean.setPorefdate(pro.getPorefdate());
+				System.out.println(bean.getPorefdate());
+				bean.setPrincipalname(pro.getPrincipalname());
+				bean.setAddress(pro.getAddress());
+				beans.add(bean);
+			}
+		}
+		return beans;
+	}
+	@RequestMapping(value="/editpo",method = RequestMethod.GET)
+	public ModelAndView getedit( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
+		System.out.println("in get edit method");
+
+	return new ModelAndView("edit");
+	}
+
+	@RequestMapping(value="/acknowledgement",method = RequestMethod.GET)
+	public ModelAndView getacknowledgement( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
+		System.out.println("in get acknowledgement method");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("acklist",  prepareViewListofBean(commonservice.viewList()));
+	return new ModelAndView("acknowledgementView", model);
+	}
+
+	@RequestMapping(value="/supplierack",method = RequestMethod.GET)
+	public ModelAndView getacknowledsupplierpo( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
+		System.out.println("in get edit method");
+		
+	return new ModelAndView("supplierackView");
+	}
+
+	@RequestMapping(value="/supplierinvoice",method = RequestMethod.GET)
+	public ModelAndView getsupplierinvoice( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
+		System.out.println("in get edit method");
+
+	return new ModelAndView("supplierinvoiceview");
+	}
+	/************************************************** use by shweta ***************************************************/
 }

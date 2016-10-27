@@ -35,9 +35,7 @@
 			</definition>
 			
 			
-			<definition name="AcknowledgeInvoice" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/AckInvoice.jsp" />
-			</definition>
+			
 			
 			
 			<definition name="posummary" extends="baseLayout" >
@@ -45,12 +43,79 @@
 			</definition>
 			
 			
-			<definition name="viewpo" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/ViewPo.jsp" />
+			
+			<definition name="AppUser" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/appUser.jsp" />
+			</definition>
+			<definition name="branches" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/branch.jsp" />
+			</definition>
+			
+			<definition name="email" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/email.jsp" />
+			</definition>
+			
+			
+			<definition name="sms" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/sms.jsp" />
+			</definition>
+			
+			<definition name="employee" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/employee.jsp" />
+			</definition>
+			<definition name="import" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/Import.jsp" />
+			</definition>
+			
+			<definition name="Profile" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/profile.jsp" />
+			</definition>
+			
+			<definition name="region" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/reagion.jsp" />
+			</definition>
+			<definition name="newbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/newbranch.jsp" />
+			</definition>
+			<definition name="eastbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/eastbranch.jsp" />
+			</definition>
+			
+			<definition name="northbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/northbranch.jsp" />
+			</definition>
+			
+			<definition name="southbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/southbranch.jsp" />
+			</definition>
+			<definition name="westbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/westbranch.jsp" />
 			</definition>
 			
 			<!-- <definition name="AddPrinicpalPO" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/test.jsp" />
 			</definition>
 	 -->
-       </tiles-definitions>
+	<!-- ************************************************** use by shweta *************************************************** -->
+	       <definition name="view" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/viewPo.jsp" />
+			</definition>
+			
+			<definition name="edit" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/EditPo.jsp" />
+			</definition>
+		   
+		   <definition name="supplierinvoiceview" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Invoice.jsp" />
+			</definition>
+			
+			<definition name="acknowledgementView" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Ack.jsp" />
+			</definition>
+			
+			<definition name="supplierackView" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Acksupplier.jsp" />
+			</definition>	
+	 
+	<!-- ************************************************** use by shweta *************************************************** -->
+	      </tiles-definitions>

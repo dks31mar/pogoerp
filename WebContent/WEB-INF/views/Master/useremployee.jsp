@@ -77,6 +77,7 @@
 	}
 	function searchEmp(employee) {
 		alert("hi");
+		alert(employee);
 		$("#searchedRecord").empty();
 		$("#body").show();
 		$
@@ -90,6 +91,7 @@
 					success : function(data) {
 
 						var obj = JSON.parse(data);
+						alert(obj)
 						var content = '<table class="table table-bordered" style="margin-top: 5px; border-radius: 5px;" id="invoice-amount"><thead><tr>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">SN</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Employee Name</label></th>'

@@ -5,6 +5,7 @@ import java.util.List;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.model.PoRefEntryItemDetail;
+import com.pogo.model.PoRefEntryItemDetailCopy;
 
 public interface PrinicipalPoService {
 
@@ -12,13 +13,13 @@ public interface PrinicipalPoService {
 
 	String getproductDetail(ProductMasterBean productmasetr);
 
-	void addPoProduct(PoRefEntryItemDetail poRefEntry);
+	void addPoProduct(PoRefEntryItemDetailCopy poRefEntry);
 
-	List<PoRefEntryItemDetail> proList();
+	List<PoRefEntryItemDetailCopy> proList();
 
-	void deleteProduct(PoRefEntryItemDetail prepareModel);
+	void deleteProduct(PoRefEntryItemDetailCopy prepareModel);
 
-	public List<PoRefEntryItemDetail> getProductEdit(int particular);
+	public List<PoRefEntryItemDetailCopy> getProductEdit(int particular);
 
 	void viewPo();
 	

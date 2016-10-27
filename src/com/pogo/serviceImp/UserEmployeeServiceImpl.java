@@ -104,6 +104,12 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 		return listbean;
 	}
 
+	@Override
+	public void deleteRecord(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 

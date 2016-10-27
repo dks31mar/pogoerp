@@ -48,4 +48,13 @@ public class CommonDaoImp implements CommonDao{
 	session.setAttribute("CBW", CBW);
 	
 	}
+	/************************************************** use by shweta ***************************************************/
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PorefSupplierDetail> viewList(){
+		sessionFactory.getCurrentSession().flush();
+		return (List<PorefSupplierDetail>) sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class).list();
+	}
+	/************************************************** use by shweta ***************************************************/
 }
+

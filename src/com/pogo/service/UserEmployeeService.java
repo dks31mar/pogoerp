@@ -20,6 +20,8 @@ public interface UserEmployeeService
 
 	List<UserEmployeeBean> getUser(String loginname);
 
+	void deleteRecord(int id);
+
 	
 
 }
