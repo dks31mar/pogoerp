@@ -18,7 +18,7 @@ import com.pogo.service.UserEmployeeService;
 public class UserEmployeeServiceImpl implements UserEmployeeService
 {
 	@Autowired
-	UserEmployeeDao userEmpdao;
+	private UserEmployeeDao userEmpdao;
 
 	@Override
 	public void adduserEmp(UserEmployeeBean userDTO) throws ParseException 
@@ -77,11 +77,40 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 	}
 
 	@Override
-	public void deleteRecord(int id) {
-		UserEmployee emp = userEmpdao.getUserId(id);
-		System.out.println("Id"+emp);
-		emp.setActive(false);
+	public void deleteuserEmp(int id) {
+		
+		System.out.println("before getting id \n"+id);
+		UserEmployee user = userEmpdao.getUserById(id);
+		System.out.println("after getting id from db  \n"+user.getUserempid());
+		user.setActive(false);
+		userEmpdao.updateUser(user);
+	}
+
+	@Override
+	public List<UserEmployeeBean> getUser(String loginname) 
+	{
+		List<UserEmployee> list = userEmpdao.searchUser(loginname);
+		List<UserEmployeeBean> listbean = new ArrayList<UserEmployeeBean>();
+		for (UserEmployee data : list) {
+			UserEmployeeBean userData = new UserEmployeeBean();
+			userData.setUserempid(data.getUserempid());
+			userData.setLoginname(data.getLoginname());
+			userData.setDesignation(data.getDesignation());
+			
+			listbean.add(userData);
 		
 	}
+
+		return listbean;
+	}
+
+	@Override
+	public void deleteRecord(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
 
 }

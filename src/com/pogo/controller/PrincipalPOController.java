@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,11 +20,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
+import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
+import com.pogo.model.PorefSupplierDetail;
 import com.pogo.service.PrinicipalPoService;
 
 
@@ -72,21 +78,59 @@ public void getProductDetail(@RequestParam("pro") String pro, HttpServletRespons
 	}
 
 
-@RequestMapping(value = "/savepodetails", method = RequestMethod.POST)
-public ModelAndView savePoDetails(@ModelAttribute("productadd") PoRefEntryItemDetailCopyBean porefitem, HttpServletResponse res,BindingResult result) {
+@RequestMapping(value = "/savepodetails", method = RequestMethod.GET,consumes="application/json",headers = "content-type=application/x-www-form-urlencoded")
+
+public ModelAndView savePoDetails(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean porefitem, HttpServletResponse res,BindingResult result) {
 
 	PoRefEntryItemDetailCopy poRefEntry = prepareModel(porefitem);
 	//PoRefEntryItemDetailCopy poRefEntrycopy = prepareModelCopy(porefitem);
-	prinicipalposervice.addPoProduct(poRefEntry);
+	//prinicipalposervice.addPoProduct(poRefEntry);
 	Map<String, Object> model = new HashMap<String, Object>();
 	model.put("prolist",  prepareListofBean(prinicipalposervice.proList()));
 	return new ModelAndView("savepro", model);
 
 }
 
+@RequestMapping(value="savedatadb",method=RequestMethod.POST)
+@ResponseBody
+public String addProductUsingAjax(@RequestBody String json,Model model) throws IOException{
+System.out.println(json);
+	ObjectMapper mapper=new ObjectMapper();
+	PoRefEntryItemDetailCopyBean poref=mapper.readValue(json, PoRefEntryItemDetailCopyBean.class);
+	PoRefEntryItemDetailCopyBean poref1=new PoRefEntryItemDetailCopyBean();
+	poref1.setParticular(poref.getParticular());
+	poref1.setProductdescription(poref.getProductdescription());
+	poref1.setTpinjpy(poref.getTpinjpy());
+	poref1.setQty(poref.getQty());
+	poref1.setTotaljpy(poref.getTotaljpy());
+	poref1.setCustomerporefe(poref.getCustomerporefe());
+	poref1.setPorefentryitemdetailid(poref.getPorefentryitemdetailid());
+	
+	//poref.setPorefentryitemdetailid(null);
+	
+	
+	PoRefEntryItemDetailCopy poRefEntry = prepareModel(poref1);
+	prinicipalposervice.addPoProduct(poRefEntry);
+	//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+return toJson(poRefEntry);
+}
+
+private String toJson(PoRefEntryItemDetailCopy poRefEntry) {
+	ObjectMapper mapper = new ObjectMapper();
+    try {
+        String value = mapper.writeValueAsString(poRefEntry);
+        // return "["+value+"]";
+        return value;
+    } catch (JsonProcessingException e) {
+        e.printStackTrace();
+        return null;
+    }
+}
+
 
 @RequestMapping(value="/prolist", method = RequestMethod.GET)
-public ModelAndView proList() {
+public ModelAndView proList(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean porefitem,
+		BindingResult result) {
 	Map<String, Object> model = new HashMap<String, Object>();
 	model.put("prolist",  prepareListofBean(prinicipalposervice.proList()));
 	return new ModelAndView("savepro", model);
@@ -231,4 +275,5 @@ private List<PoRefEntryItemDetailCopyBean> prepareListofBeanCopy(List<PoRefEntry
 	}
 	return beans;
 }
+
 }

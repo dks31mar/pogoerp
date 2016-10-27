@@ -26,16 +26,16 @@ public class PorefSupplierDetail implements Serializable{
     private String specification; 
 
  	@Column(name="",columnDefinition="int(11)")
-	private int profileid; 
+	private Integer profileid; 
 
  	@Column(name="",columnDefinition="int(11)")
-    private int roe; 
+    private Integer roe; 
 
  	@Column(name="",columnDefinition="varchar(1000)")
     private String address; 
 
  	@Column(name="",columnDefinition="int(11)")
-    private int total;
+    private Integer total;
 
 	public String getPorefsupplierdetailid() {
 		return porefsupplierdetailid;
@@ -77,19 +77,19 @@ public class PorefSupplierDetail implements Serializable{
 		this.specification = specification;
 	}
 
-	public int getProfileid() {
+	public Integer getProfileid() {
 		return profileid;
 	}
 
-	public void setProfileid(int profileid) {
+	public void setProfileid(Integer profileid) {
 		this.profileid = profileid;
 	}
 
-	public int getRoe() {
+	public Integer getRoe() {
 		return roe;
 	}
 
-	public void setRoe(int roe) {
+	public void setRoe(Integer roe) {
 		this.roe = roe;
 	}
 
@@ -101,11 +101,11 @@ public class PorefSupplierDetail implements Serializable{
 		this.address = address;
 	}
 
-	public int getTotal() {
+	public Integer getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(Integer total) {
 		this.total = total;
 	}
  	

@@ -11,6 +11,10 @@ public interface UserEmployeeDao
 
 	List<UserEmployee> getuserData();
 
-	UserEmployee getUserId(int id);
+	UserEmployee getUserById(int id);
+
+	void updateUser(UserEmployee user);
+
+	List<UserEmployee> searchUser(String loginname);
 
 }
