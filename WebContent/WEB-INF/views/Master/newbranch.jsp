@@ -1,175 +1,28 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
- <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<link href="/SpringApp6/css/style.css" rel="stylesheet" type="text/css" />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-<link href="/pogoerpdemo/Resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="resources/css/displaytag.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="resources/css/messagebox.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/view.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ 
+    <script src="<c:url value="/resources/js/jquery.1.10.2.min.js" />"></script>
 
-<link href="/pogoerp/WebContent/resources/css/branches.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css"
-	href="${js_url}/css/jquery.dialogbox.css">
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> -->
-
-<script type="text/javascript">
 <!-- call region -->
+<link rel="stylesheet" type="text/css"
+	href="resources/css/table.css">
 <link rel="stylesheet" type="text/css"
 	href="resources/css/branches.css">
 <script src="resources/js/branches.js" type="text/javascript"></script>
 
 
-<script src="/pogoerpdemo/Resources/bootstrap-3.3.6/js/jquery.min.js"></script>
-<script src="/pogoerpdemo/Resources/bootstrap-3.3.6/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/SpringApp6/js/tsds_new.js"></script>
-<script type="text/javascript" src="/SpringApp6/js/datetimepicker.js"></script>
-<script src="${js_url}/plugins/jQuery/jquery-1.9.1.min.js"
-	type="text/javascript" charset="utf-8"></script>
-<script src="${js_url}/js/jquery.dialogBox.js" type="text/javascript"
-	charset="utf-8"></script>
-<link rel="stylesheet" href="/pogoerpdemo/Resources/font-awesome-4.6.3/css/font-awesome.min.css">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
-
-	<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
- <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-    <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+	
 <title>Insert title here</title>
-<style>
-      /*
 
-RESPONSTABLE 2.0 by jordyvanraaij
-  Designed mobile first!
-
-If you like this solution, you might also want to check out the 1.0 version:
-  https://gist.github.com/jordyvanraaij/9069194
-
-*/
-.responstable {
-  margin: 1em 0;
-  width: 100%;
-  overflow: hidden;
-  background: #FFF;
-  color: #024457;
-  border-radius: 10px;
-  border: 1px solid #167F92;
-}
-.responstable tr {
-  border: 1px solid #D9E4E6;
-}
-.responstable tr:nth-child(odd) {
-  background-color: #EAF3F3;
-}
-.responstable th {
-  display: none;
-  border: 1px solid #FFF;
-  background-color: #167F92;
-  color: #FFF;
-  padding: 1em;
-}
-.responstable th:first-child {
-  display: table-cell;
-  text-align: center;
-}
-.responstable th:nth-child(2) {
-  display: table-cell;
-}
-.responstable th:nth-child(2) span {
-  display: none;
-}
-.responstable th:nth-child(2):after {
-  content: attr(data-th);
-}
-@media (min-width: 480px) {
-  .responstable th:nth-child(2) span {
-    display: block;
-  }
-  .responstable th:nth-child(2):after {
-    display: none;
-  }
-}
-.responstable td {
-  display: block;
-  word-wrap: break-word;
-  max-width: 7em;
-}
-.responstable td:first-child {
-  display: table-cell;
-  text-align: center;
-  border-right: 1px solid #D9E4E6;
-}
-@media (min-width: 480px) {
-  .responstable td {
-    border: 1px solid #D9E4E6;
-  }
-}
-.responstable th, .responstable td {
-  text-align: left;
-  margin: .5em 1em;
-}
-@media (min-width: 480px) {
-  .responstable th, .responstable td {
-    display: table-cell;
-    padding: 1em;
-  }
-}
-
-body {
-  padding: 0 2em;
-  font-family: Arial, sans-serif;
-  color: #024457;
-  background: #f2f2f2;
-}
-
-h1 {
-  font-family: Verdana;
-  font-weight: normal;
-  color: #024457;
-}
-h1 span {
-  color: #167F92;
-}
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 80%; /* Full width */
-    height: 800%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
-}
-
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-    </style>
-    
    
 
 </head>
