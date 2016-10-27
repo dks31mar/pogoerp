@@ -31,8 +31,6 @@ public class MasterController
 	@Autowired
 
 	private UserEmployeeService userEmployeeservice;
-
-	
 	@Autowired
 	private RegionService regionService;
 
