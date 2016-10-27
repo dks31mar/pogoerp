@@ -40,7 +40,7 @@ System.out.println();
 
 		<div class="row">
 
-			<div class="page-heading col-sm-11"
+			<div class="page-heading col-sm-11" id="createpo"
 				style="background-color: #3C8DBC; left: 10px">
 				<span class="glyphicon glyphicon-copy"></span> Create PO
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="normal" type="radio"
@@ -123,7 +123,7 @@ System.out.println();
 					<!-- <input type="text" name="currency" class="biginput"
 						id="autocomplete"><br> <br> -->
 					
-				<form:form method="POST" action="savepodetails" commandName="productadd">
+				<form:form method="POST" action="" commandName="productadd" id="getformdata12">
 					<table style="width: 100%; bottom: 15px; position: relative;" border="0" id="quotprodtable">
 					<tr bgcolor="#3C8DBC">
 					<td style="display: none;"><form:label path="porefentryitemdetailid">id</form:label> </td>
@@ -154,7 +154,7 @@ System.out.println();
 					<c:if test="${!empty prolist}">
 					<c:forEach items="${prolist}" var="product" varStatus="loop">
 					
-					<tr>
+					<tr id="getlst">
 					
 					<td><c:out value="${loop.index+1}"></c:out></td>
 					<td><c:out value="${product.particular}"></c:out></td>
@@ -171,7 +171,7 @@ System.out.println();
 					
 					
 					<tr id="mainForm">
-					<td style="display: none;"><form:input path="porefentryitemdetailid" type="hidden" value="${product.porefentryitemdetailid}"></form:input> </td>
+					<td style="display: none;"><form:input path="porefentryitemdetailid" type="hidden" value="${product.porefentryitemdetailid}" id="getid1"></form:input> </td>
 					<td style="right: 5px; position: relative;">&nbsp; 
 					<form:input path="" type='text' style='width: 60px' name='posrno' id='sr'
 								value="${loop.index+1}" class='form-control'/></td>
@@ -210,7 +210,7 @@ System.out.println();
 							<td>
 								<input type="hidden" style="text-align:center;" name="unitcost" id="unitcostx" value="" class="form-control"  readonly="true"></td>
 							<td>
-							<td align="center">&nbsp; <input type="submit" value='+'
+							<td align="center">&nbsp; <input type="button" value='+'
 							 id='saveproduct123' class='btn btn-success pull-right' data-toggle='tooltip'
 								title='Add More Product'/>
 					</tr>
@@ -261,7 +261,7 @@ System.out.println();
 								style="background-color: #3C8DBC;">Back</button>
 						</td>
 						<td>
-							<button type="button" value="update" onclick="updatebutton();"
+							<button type="button" value="update"
 								class="btn btn-success pull-center" id="addmore"
 								style="background-color: #3C8DBC;">Add More</button>
 						</td>
@@ -410,12 +410,62 @@ $('#autocomplete').autocomplete({
 			type: "POST",
 			
 			success: function(result){
-			alert("ddd");		    
+				$('#editpo').show();
+				$('#update').show();
+				$('#back').show();
+				$('#pdf').show();
+				$('#print').show();
+				$('#addmore').show();
+				$('#createpo').hide();
+				$('#savedata445').hide();
+				$('#mainForm').hide();
+				
 			}});
-		
 	});
 });
-
+ 
+ $('#addmore').click(function (){
+	 $('#mainForm').show();
+ });
+ 
+ $(document).ready(function(){
+		$('#saveproduct123').click(function(){
+			var idd=$('#getid1').val();
+			var  dis	= $('#description').val();
+			var  partno	=$('#autocomplete').val();
+			var	 tpn	=$('#tpinjpy').val();
+			var	 qty	=$('#qty').val();
+			var	 totjpy	=$('#totaljpy').val();
+			var	 custpo	=$('#customerporefe').val();
+			var jsonObj={'porefentryitemdetailid':'',
+					'porefno':partno, 'particular':partno, 
+				 	  	'tpinjpy':tpn,
+				 	  'qty':qty,
+				 	  'totaljpy':totjpy,
+				 	  'customerporefe':custpo,
+				 	  'productdescription':dis
+			} ;
+		$.ajax({
+				url: "savedatadb",
+				type: "POST",
+				
+				  data :JSON.stringify(jsonObj),
+				  cache:false,
+			        beforeSend: function(xhr) {  
+			            xhr.setRequestHeader("Accept", "application/json");  
+			            xhr.setRequestHeader("Content-Type", "application/json");  
+			        },
+				     success: function(resposeJsonObject){
+				    	 $('#getformdata12').load("prolist");
+				    	 $('#getformdata12')[0].reset();
+				    	 //$('#').show();
+			     
+			    }});
+		});
+	});
+ 
+ 
+ 
 </script>
 
 
