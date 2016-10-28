@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +40,7 @@ public class MasterController
 	
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
 	
-	public ModelAndView getUserEmp(UserEmployee userEmployee,
+	public ModelAndView getUserEmp(@ModelAttribute("userbean") UserEmployee userEmployee,
 			HttpServletRequest request)
 	{
 	List<UserEmployeeBean> list=new ArrayList<UserEmployeeBean>();
@@ -50,12 +51,14 @@ public class MasterController
 		return new ModelAndView("getuseremp",model);
 }
 	//for add employee
-	@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST) 
-	public String saveDetails(Model model,
-			@ModelAttribute("userbean") UserEmployeeBean userDTO) throws ParseException
-	{
+	@RequestMapping(value = "/saveuserEmp", method = {RequestMethod.POST,RequestMethod.GET}) 
+	public ModelAndView saveDetails(Model model,
+			@ModelAttribute("userbean") UserEmployeeBean userDTO,BindingResult result) throws ParseException
+	   {
 		userEmployeeservice.adduserEmp(userDTO);
-		return "redirect:getuseremp";
+		Map<String, Object> record = new HashMap<String, Object>();
+		record.put("userlist",  userEmployeeservice.getUserDetails());
+		return new ModelAndView("getuseremp",record) ;
 
 	}
 	

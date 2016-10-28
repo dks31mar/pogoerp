@@ -1,5 +1,6 @@
 package com.pogo.model;
 
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Table(name="userEmployee")
 public class UserEmployee 
 {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="userempid")
