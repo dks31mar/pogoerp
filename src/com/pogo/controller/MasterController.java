@@ -46,7 +46,7 @@ public class MasterController
 	private CompanyInfoService companyservice;
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
 	
-	public ModelAndView getUserEmp(UserEmployee userEmployee,
+	public ModelAndView getUserEmp(@ModelAttribute("userbean") UserEmployee userEmployee,
 			HttpServletRequest request)
 	{
 	List<UserEmployeeBean> list=new ArrayList<UserEmployeeBean>();
@@ -57,12 +57,14 @@ public class MasterController
 		return new ModelAndView("getuseremp",model);
 }
 	//for add employee
-	@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST) 
-	public String saveDetails(Model model,
-			@ModelAttribute("userbean") UserEmployeeBean userDTO) throws ParseException
-	{
+	@RequestMapping(value = "/saveuserEmp", method = {RequestMethod.POST,RequestMethod.GET}) 
+	public ModelAndView saveDetails(Model model,
+			@ModelAttribute("userbean") UserEmployeeBean userDTO,BindingResult result) throws ParseException
+	   {
 		userEmployeeservice.adduserEmp(userDTO);
-		return "redirect:getuseremp";
+		Map<String, Object> record = new HashMap<String, Object>();
+		record.put("userlist",  userEmployeeservice.getUserDetails());
+		return new ModelAndView("getuseremp",record) ;
 
 	}
 	

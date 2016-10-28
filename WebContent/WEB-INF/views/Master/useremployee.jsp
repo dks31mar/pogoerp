@@ -203,12 +203,11 @@ $( function() {
 				<c:forEach items="${userlist}" var="user" varStatus="loop">
 
 					<tr>
-						<!--  <td>${loop.index+1}</td>-->
 						<td>${user.userempid}</td>
 						<td>${user.loginname}</td>
 						<td>${user.designation}</td>
 
-						<td><a href="#openModal" title="Edit" id="edit"><span
+						<td><a href="saveuserEmp?userempid=${user.userempid}" title="Edit" id="edit"><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
 						<%-- <td><a href="delete-user?id=${user.userempid}" title="Delete" onclick="deletUsert()"><span class="glyphicon glyphicon-trash"></span></a></td> --%>
 						<td><a href="#" onclick="deletUser(${user.userempid})"><span
@@ -240,45 +239,46 @@ $( function() {
 <div id="openModal" class="modalDialog">
 
 	<div>
-		<a href="#close" title="Close" class="close">X</a> 
-		<span style="text-align: center;" id="addemp"><h2>Add Employee</h2></span>
-		<span style="text-align: center;" id="editemp"><h2>Edit Employee</h2></span>
-		<form:form id="formID" action="saveuserEmp" method="POST"
+	<form:form id="formID" action="saveuserEmp" method="POST"
 			commandName="userbean"  >
+		<a href="#close" title="Close" class="close">X</a>
+		<td style="display: none;"><form:input path="userempid" type="hidden" 
+		value="${user.userempid}" id=""></form:input> </td> 
+		<span style="text-align: center;" id="addemp"><h3>Add Employee</h3></span>
+		<span style="text-align: center;" id="editemp"><h3>Edit Employee</h3></span>
+		
 			<table class="flat-table">
 				<tr>
 					<td><span style="color: black;"> <strong>Login
 								Name<span style="color: red;">*</span>:
 						</strong></span></td>
-					<td><input type="text" class="validate[required] text-input"
-						style="border-radius: 5px;" name="loginname"
-						placeholder="Username" maxlength="20" autofocus="autofocus"></td>
+					<td><form:input path="loginname" type="text" class="validate[required] text-input"
+						style="border-radius: 5px;" value="${user.loginname}" name="loginname"
+						placeholder="Username" maxlength="20" autofocus="autofocus"></form:input></td>
 					<td><span style="color: black;">
 							<strong>Joining Date<span
 								style="color: red;">*</span>:
 						</strong>
 					</span></td>
-					<td><input type="text" class="validate[required] text-input"
-						style="border-radius: 2px;" name="dateofjoining"
-						placeholder="Date" maxlength="20" id="datepickerjoin"></td>
-
+					<td><form:input path="dateofjoining" type="text" class="validate[required] text-input"
+						style="border-radius: 2px;" name="dateofjoining" value="${user.dateofjoining}" readonly="readonly"
+						placeholder="Date" maxlength="20" id="datepickerjoin"></form:input></td>
 				</tr>
-
 				<tr>
 					<td><span style="color: black;"> <strong>FirstName<span
 								style="color: red;">*</span>:
 						</strong></span></td>
 
-					<td><input type="text" class="validate[required] text-input"
-						style="border-radius: 5px;" name="firstname"
-						placeholder="Firstname" maxlength="20"></td>
+					<td><form:input path="firstname" type="text" class="validate[required] text-input"
+						style="border-radius: 5px;" name="firstname" value="${user.firstname}"
+						placeholder="Firstname" maxlength="20"></form:input></td>
 
 					<td><span style="color: black;"><strong>Designation<span
 								style="color: red;">*</span>:
 						</strong></span></td>
-					<td><input type="text" class="validate[required] text-input"
-						style="border-radius: 5px;" name="designation"
-						placeholder="eg.Manager" maxlength="20"></td>
+					<td><form:input path="designation" type="text" class="validate[required] text-input"
+						style="border-radius: 5px;" name="designation" value="${user.designation}"
+						placeholder="eg.Manager" maxlength="20"></form:input></td>
 
 				</tr>
 				<tr>
@@ -286,155 +286,131 @@ $( function() {
 								style="color: red;">*</span>:
 						</strong></span></td>
 
-					<td><input type="text" class="validate[required] text-input"
-						style="border-radius: 5px;" name="lastname" placeholder="Lastname"
-						maxlength="20"></td>
+					<td><form:input path="lastname" type="text" class="validate[required] text-input"
+						style="border-radius: 5px;" name="lastname" value="${user.lastname}" placeholder="Lastname"
+						maxlength="20"></form:input></td>
 
 				<td><span style="color: black;"><strong>DOB<span
 					style="color: red;">*</span>:
 			</strong></span></td>
+				<td><form:input path="dob"  type="text" id="datepickerDob" class="validate[required] text-input"
+				style="border-radius: 5px;" readonly="readonly" name="dob" value="${user.dob}" placeholder="DD-MM-YY"
+				maxlength="20"></form:input></td>
 				
-				<td><input
-				type="text" id="datepickerDob" class="validate[required] text-input"
-				style="border-radius: 5px;" name="dob" placeholder="DD-MM-YY"
-				maxlength="20"></td>
 				</tr>
 			
 			<tr>
 			<td><span style="color: black;"> <strong>Division<span
 					style="color: red;">*</span>:
 			</strong></span></td>
-			
-			<td><select><option>---Select Division---</option>
-				<option value="Delhi">Delhi</option>
-				<option value="Delhi">Noida</option>
-			</select></td>
+			<td><form:select path="division"><option value="none">-----Select Division------</option>
+				<form:option value="Delhi">Delhi</form:option>
+				<form:option value="Delhi">Noida</form:option>
+			</form:select></td>
 			
 			<td><span style="color: black;"><strong>Email<span
 					style="color: red;">*</span>:
 			</strong></span></td>
 			
-			<td><input
+			<td><form:input path="eamil"
 				type="text" class="validate[required] text-input"
-				style="border-radius: 5px;" name="eamil" placeholder="MailId"
-				maxlength="30"></td>
+				style="border-radius: 5px;" name="eamil" value="${user.eamil}" placeholder="MailId"
+				maxlength="30"></form:input></td>
 			
 			</tr>
-			
-			
 			<tr>
 			
 			<td><span style="color: black;"> <strong>Region<span
 					style="color: red;">*</span>:
 			</strong></span></td>
-			
-			<td><select><option>----Select Region----</option>
-				<option value="Delhi NCR">Delhi NCR</option>
-				<option value="Noida">Noida</option>
-			</select></td>
+			<td><form:select path="region"><option>------Select Region------</option>
+				<form:option value="Delhi NCR">Delhi NCR</form:option>
+				<form:option value="Noida">Noida</form:option>
+			</form:select></td>
 			
 			<td><span style="color: black;"><strong>Password<span
 					style="color: red;">*</span>:
 			</strong></span></td>
 			
-			<td><input type="text"
-				class="validate[required] text-input" style="border-radius: 5px;"
-				name="password" placeholder="Password" maxlength="20"></td>
-			
-			
+			<td><form:input path="password" type="password"
+				class="validate[required] text-input" value="${user.password}" style="border-radius: 5px;"
+				name="password" placeholder="Password" maxlength="20"></form:input></td>
 			</tr>
-			
-			
 			<tr>
 			
 			<td><span style="color: black;"> <strong>Branch<span
 					style="color: red;">*</span>:
 			</strong></span></td>
 			
-			<td><select><option>----Select Branch----</option>
-				<option value="Delhi NCR">Delhi NCR</option>
-				<option value="Noida">Noida</option> 
-			</select></td>
+			<td><form:select path="branch" name="branch"><option>------Select Branch------</option>
+				<form:option value="Delhi NCR">Delhi NCR</form:option>
+				<form:option value="Noida">Noida</form:option> 
+			</form:select></td>
 			
 			<td><span style="color: black;"><strong>Re-Password<span
 					style="color: red;">*</span>:
 			</strong></span></td>
 			
-			<td><input type="text" class="validate[required] text-input"
-				style="border-radius: 5px;" name="repassword"
-				placeholder="Re-Password" maxlength="20"></td>
-			
+			<td><form:input path="repassword" type="password" class="validate[required] text-input"
+				style="border-radius: 5px;" name="repassword" value="${user.repassword}"
+				placeholder="Re-Password" maxlength="20"></form:input></td>
 			
 			</tr>
-			
-			
-						<tr>
+			<tr>
 			
 			<td><span style="color: black;"> <strong>Mobile<span
 					style="color: red;">*</span>:
 			</strong></span></td>
 			
-			<td><input type="text" class="validate[required] text-input"
-				style="border-radius: 5px;" name="usermobile"
-				placeholder="9934012451" maxlength="20"></td>
+			<td><form:input  path="usermobile" type="text" class="validate[required] text-input"
+				style="border-radius: 5px;" name="usermobile" value="${user.usermobile}"
+				placeholder="9934012451" maxlength="20"></form:input></td>
 			
 			<td><span style="color: black;"><strong>Phone<span
 					style="color: red;">*</span>:
 			</strong></span></td>
 			
-			<td><input
+			<td><form:input path="phone"  value="${user.phone}"
 				type="text" class="validate[required] text-input"
 				style="border-radius: 5px;" name="phone" placeholder="121-12456"
-				maxlength="20"></td>
-			
-			
+				maxlength="20"></form:input></td>
 			</tr>
-			
-			
 			<tr>
 			
 			<td><span style="color: black;"> <strong>Gender<span
 					style="color: red;">*</span>:
 			</strong></span></td>
 			
-			<td><select name="gender"><option>---Select
-					Gender---</option>
-				<option value="Male">Male</option>
-				<option value="Female">Female</option> 
-			</select></td>
+			<td><form:select path="gender" name="gender"><option>------Select
+					Gender------</option>
+				<form:option value="Male">Male</form:option>
+				<form:option value="Female">Female</form:option> 
+			</form:select></td>
 			
 			<td><span style="color: black;">&nbsp<strong>Address<span
 					style="color: red;">*</span>:
 			</strong></span></td>
 			
 			<td><textarea
-				name="address" cols="20" rows="2"
-				border-radius:5px;" placeholder="Address"></textarea></td>
-			
-			
+				name="address" cols="18" rows="2" value="${user.address}"
+				style="border-radius:5px;" placeholder="Address"></textarea></td>
 			</tr>
-			
-
 			</table>
 			<button style="margin-left: 300px; margin-top: 6px;" type="submit"
 				class="btn btn-primary">Save</button>
 		</form:form>
 	</div>
-
-
 </div>
-<<script type="text/javascript">
-<!--
+<script type="text/javascript">
 
-//-->
 
 var d= $('#chg').text();
-alert(d);
 $('#edit12').click(function(){
 	$('#addemp').show();
 	$('#editemp').hide();
 });
 $('#edit').click(function(){
+	$('#openModal').show();
 	$('#addemp').hide();
 	$('#editemp').show();
 });

@@ -24,17 +24,16 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 	public void adduserEmp(UserEmployeeBean userDTO) throws ParseException 
 	{
 		
-		SimpleDateFormat dateformat = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat dateformat = new SimpleDateFormat("dd/mm/yyyy");
 		UserEmployee emp=new UserEmployee();
 		emp.setLoginname(userDTO.getLoginname());
 		emp.setFirstname(userDTO.getFirstname());
 		emp.setLastname(userDTO.getLastname());
 		emp.setDivision(userDTO.getDivision());
 		emp.setRegion(userDTO.getRegion());
-		emp.setDateofjoining(dateformat.parse(userDTO.getDateofjoining()));
+		//emp.setDateofjoining(dateformat.parse(userDTO.getDateofjoining()));
 		emp.setAddress(userDTO.getAddress());
-		//emp.setDob(userDTO.getDob());
-		emp.setDob(dateformat.parse(userDTO.getDob()));
+		//emp.setDob(dateformat.parse(userDTO.getDob()));
 		emp.setEamil(userDTO.getEamil());
 		emp.setBranch(userDTO.getBranch());
 		emp.setDesignation(userDTO.getDesignation());
