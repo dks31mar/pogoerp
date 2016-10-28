@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pogo.bean.CompanyInfoBean;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.model.PorefSupplierDetail;
@@ -79,7 +80,7 @@ public class CommonController {
 	return new ModelAndView("employee");
 }
 	@RequestMapping(value="/profile",method = RequestMethod.GET)
-	public ModelAndView getProfile(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+	public ModelAndView getProfile(@ModelAttribute("command") CompanyInfoBean companyInfo,HttpServletRequest request,BindingResult result){
 	
 		//commonservice.getPoRefNo(request);
 	

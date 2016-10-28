@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,12 +21,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pogo.bean.CompanyInfoBean;
+import com.pogo.bean.PoRefEntryItemDetailCopyBean;
 import com.pogo.bean.UserEmployeeBean;
+import com.pogo.model.CompanyInfo;
+import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.UserEmployee;
 
 
 
 import com.pogo.model.Zones;
+import com.pogo.service.CompanyInfoService;
 import com.pogo.service.RegionService;
 
 import com.pogo.service.UserEmployeeService;
@@ -35,8 +41,9 @@ public class MasterController
 	@Autowired
 	private UserEmployeeService userEmployeeservice;
 	@Autowired
-   private RegionService regionService;
-	
+	private RegionService regionService;
+	@Autowired
+	private CompanyInfoService companyservice;
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
 	
 	public ModelAndView getUserEmp(UserEmployee userEmployee,
@@ -98,6 +105,42 @@ public class MasterController
 		model.put("branchList",  getbranch);
 		return new ModelAndView("region",model);
 }
+	@RequestMapping(value="/savecompanyinfo",method = RequestMethod.POST)
+	public ModelAndView getCompanyInfo(@ModelAttribute("command") CompanyInfoBean companyInfo,HttpServletRequest request,BindingResult result){
+	
+		CompanyInfo company = prepareModel(companyInfo);
+		//PoRefEntryItemDetailCopy poRefEntrycopy = prepareModelCopy(porefitem);
+		companyservice.addCompany(company);
+		return new ModelAndView("Profile");
+}
+	private CompanyInfo prepareModel(CompanyInfoBean companyinfo) {
+		CompanyInfo comp=new CompanyInfo();
+		
+		//System.out.println(porefitem.getPorefentryitemdetailid());
+			comp.setCompanyinfoid (companyinfo.getCompanyinfoid());
+			comp.setCompanyinfoname(companyinfo.getCompanyinfoname());
+	    
+			comp.setCompanyinfocontactperson(companyinfo.getCompanyinfocontactperson());
+			comp.setCompanyinfocontactno(companyinfo.getCompanyinfocontactno());
+	    
+			comp.setCompanyinfophone(companyinfo.getCompanyinfophone());
+			comp.setCompanyinfofax(companyinfo.getCompanyinfofax());
+			comp.setCompanyinfoemail(companyinfo.getCompanyinfoemail());
+	    
+			comp.setCompanyinfovattin(companyinfo.getCompanyinfovattin());
+			comp.setCompanyinfocstno(companyinfo.getCompanyinfocstno());
+			comp.setCompanyinfopan(companyinfo.getCompanyinfopan());
+			comp.setCompanyinfoservicetaxno(companyinfo.getCompanyinfoservicetaxno());
+	    
+	    
+			comp.setCompanyinfoweb(companyinfo.getCompanyinfoweb());
+			comp.setCompanyinfotermsandconditions(companyinfo.getCompanyinfotermsandconditions());
+			comp.setCompanyinfoaddress(companyinfo.getCompanyinfoaddress());
+			comp.setCompanylogo(companyinfo.getCompanylogo());
+		//poref.setPorefentrycopy(porefitem);;
+		
+		return comp;
+	}
 
 	
 

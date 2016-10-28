@@ -2,7 +2,7 @@ package com.pogo.bean;
 
 public class CompanyInfoBean {
 
-	private String companyinfoid ;
+	private Integer companyinfoid ;
     private String companyinfoname;
     
     private String companyinfocontactperson;
@@ -22,10 +22,10 @@ public class CompanyInfoBean {
     private String companyinfotermsandconditions;
     private String companyinfoaddress;
     private String companylogo;
-	public String getCompanyinfoid() {
+	public Integer getCompanyinfoid() {
 		return companyinfoid;
 	}
-	public void setCompanyinfoid(String companyinfoid) {
+	public void setCompanyinfoid(Integer companyinfoid) {
 		this.companyinfoid = companyinfoid;
 	}
 	public String getCompanyinfoname() {
