@@ -24,11 +24,12 @@
 String hh=(String)session.getAttribute("jsonp");
 String norml=(String)session.getAttribute("normal");
 String cb=(String)session.getAttribute("CBW");
+/* Integer total=(Integer)session.getAttribute("total"); */
 java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("MM/dd/yyyy");
 java.util.Date date = new java.util.Date();
 System.out.println();
 %>
-
+<form:form method="POST" action="savepodetails" commandName="productadd">
 		<div class="row" style="margin-top: 15px">
 			<br>
 			<div align="center">
@@ -74,11 +75,9 @@ System.out.println();
 					Date:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-2">
-					<span> <input type="text" class="form-control" name="date"
-						id="datepicker" value="<%=dateFormat.format(date) %>" ReadOnly>
-						<img src='' style=""
-						onmouseover="displayCalendar(document.getElementById('date'),'dd/mm/yyyy',this,0); return false;"
-						border='0' id='imgdate'>
+					<span> <input path="" type="text" class="form-control" name="dateTodate"
+						id="datepicker" value="<%=dateFormat.format(date) %>" ReadOnly></input>
+						
 					</span>
 
 				</div>
@@ -123,7 +122,7 @@ System.out.println();
 					<!-- <input type="text" name="currency" class="biginput"
 						id="autocomplete"><br> <br> -->
 					
-				<form:form method="POST" action="" commandName="productadd" id="getformdata12">
+				
 					<table style="width: 100%; bottom: 15px; position: relative;" border="0" id="quotprodtable">
 					<tr bgcolor="#3C8DBC">
 					<td style="display: none;"><form:label path="porefentryitemdetailid">id</form:label> </td>
@@ -156,13 +155,13 @@ System.out.println();
 					
 					<tr id="getlst">
 					
-					<td><c:out value="${loop.index+1}"></c:out></td>
-					<td><c:out value="${product.particular}"></c:out></td>
-					<td><c:out value="${product.productdescription}"></c:out></td>
-					<td><c:out value="${product.tpinjpy}"></c:out></td>
-					<td><c:out value="${product.qty}"></c:out></td>
-					<td><c:out value="${product.totaljpy}"></c:out></td>
-					<td><c:out value="${product.customerporefe}"></c:out></td>
+					<td class="col-sm-1 form-level" style=" width: 10px;text-align: center;"><lable><c:out value="${loop.index+1}"></c:out></lable></td>
+					<td class="col-sm-3 form-level" style="width: 230px;text-align: center;"><lable><c:out value="${product.particular}"></c:out></lable></td>
+					<td class="col-sm-1 form-level" style="width: 230px;text-align: center;"><lable><c:out value="${product.productdescription}"></c:out></lable></td>
+					<td class="col-sm-1 form-level" style="text-align: center;"><lable><c:out value="${product.tpinjpy}"></c:out></lable></td>
+					<td  style="text-align: center;"><lable><c:out value="${product.qty}"></c:out></lable></td>
+					<td  style="text-align: center;"><lable><c:out value="${product.totaljpy}"></c:out></lable></td>
+					<td  style="text-align: center;"><lable><c:out value="${product.customerporefe}"></c:out></lable></td>
 					<td align="left"><a class="glyphicon glyphicon-pencil" href="editproduct?porefentryitemdetailid=${product.porefentryitemdetailid}"></a> | <a class="glyphicon glyphicon-remove" href="deleteproduct?porefentryitemdetailid=${product.porefentryitemdetailid}"></a></td>
 					</tr>
 			
@@ -177,7 +176,7 @@ System.out.println();
 								value="${loop.index+1}" class='form-control'/></td>
 							<td style="left: 2px; position: relative; width: 150px">&nbsp;
 								<form:input path="particular" type='text' value="${product.particular}" name='particulee1'
-								style='overflow: auto; border-radius: 3px; width: 143px;'
+								style='overflow: auto; border-radius: 3px; width: 223px;'
 								id='autocomplete' class='form-control'
 								/>
 							</td>
@@ -210,7 +209,7 @@ System.out.println();
 							<td>
 								<input type="hidden" style="text-align:center;" name="unitcost" id="unitcostx" value="" class="form-control"  readonly="true"></td>
 							<td>
-							<td align="center">&nbsp; <input type="button" value='+'
+							<td align="center">&nbsp; <input type="submit" value='+'
 							 id='saveproduct123' class='btn btn-success pull-right' data-toggle='tooltip'
 								title='Add More Product'/>
 					</tr>
@@ -219,20 +218,20 @@ System.out.println();
 </form:form>
 				</div>
 				<div class="row form-group" style="top: 10px; position: relative;"
-					onclick="closeDiv();">
+					onclick="">
 					<div class="col-sm-10 form-level" align="right">
 						Total:<font color="#FF0000"></font>
 					</div>
 					<div align="right">
 						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
-							value="" style="width: 15%;" readonly="true">
+							value="${total}" style="width: 15%;" readonly="true">
 					</div>
 				</div>
 
 				<hr align="left" size="1" width="100%"
 					style="background-color: #000000" />
 
-				<div align="center" onclick="closeDiv();">
+				<div align="center">
 
 
 
@@ -250,7 +249,7 @@ System.out.println();
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;</td>
 						<td>
-							<button type="button" value="update" onclick="updatebutton();"
+							<button type="button" value="update" onclick=""
 								class="btn btn-success pull-center" id="pdf"
 								style="background-color: #3C8DBC;">PDF</button>
 						</td>
@@ -292,6 +291,7 @@ System.out.println();
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
+<script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
 <script>
 
 
@@ -420,7 +420,7 @@ $('#autocomplete').autocomplete({
 	 $('#mainForm').show();
  });
  
- $(document).ready(function(){
+ /* $(document).ready(function(){
 		$('#saveproduct123').click(function(){
 			var idd=$('#getid1').val();
 			var  dis	= $('#description').val();
@@ -448,16 +448,30 @@ $('#autocomplete').autocomplete({
 			            xhr.setRequestHeader("Content-Type", "application/json");  
 			        },
 				     success: function(resposeJsonObject){
-				    	 $('#getformdata12').load("prolist");
-				    	 $('#getformdata12')[0].reset();
-				    	 //$('#').show();
+				    	 
 			     
 			    }});
 		});
+	}); */
+ 
+	$(document).ready(function(){
+		
+	
+	var doc = new jsPDF();
+	var specialElementHandlers = {
+	    '#editor': function (element, renderer) {
+	        return true;
+	    }
+	};
+
+	$('#pdf').click(function () {
+	    doc.fromHTML($('#quotprodtable').html(), 15, 15, {
+	        'width': 170,
+	            'elementHandlers': specialElementHandlers
+	    });
+	    doc.save('sample-file.pdf');
 	});
- 
- 
- 
+});
 </script>
 
 

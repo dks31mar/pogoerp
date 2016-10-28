@@ -2,6 +2,9 @@ package com.pogo.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.ProductMaster;
@@ -21,6 +24,10 @@ public interface PrinicipalDao {
 	public List<PoRefEntryItemDetailCopy> getProductEdit(int particular);
 
 	void savePo();
+
+	void getTotal(HttpServletRequest res);
+
+	Object getGrantTotal(HttpServletRequest res);
 
 
 }

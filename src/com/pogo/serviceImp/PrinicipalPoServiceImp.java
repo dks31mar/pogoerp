@@ -3,6 +3,9 @@ package com.pogo.serviceImp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -64,9 +67,11 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 	}
 
 	@Override
-	public List<PoRefEntryItemDetailCopy> proList() {
+	public List<PoRefEntryItemDetailCopy> proList(HttpServletRequest res) {
+		List<PoRefEntryItemDetailCopy> list=prinicipaldao.proList();
 		
-		return prinicipaldao.proList();
+		//prinicipaldao.getTotal(res);
+		return list;
 	}
 
 	@Override
@@ -84,6 +89,12 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 	@Override
 	public void viewPo() {
 		prinicipaldao.savePo();
+	}
+
+	@Override
+	public Object getGrantTotal(HttpServletRequest res) {
+		
+		return prinicipaldao.getGrantTotal(res);
 	}
 
 
