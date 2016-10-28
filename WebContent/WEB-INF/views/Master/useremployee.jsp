@@ -57,7 +57,7 @@
 	border-radius: 10px;
 	background: #fff;
 	background: -moz-linear-gradient(#fff, #999);
-	background: -webkit-linear-gradient(#fff, #999);
+	/* background: -webkit-linear-gradient(#fff, #999); */
 	background: -o-linear-gradient(#fff, #999);
 }
 </style>
@@ -174,12 +174,11 @@ $( function() {
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px">
-		<span class="glyphicon glyphicon-user"></span> Staff Details
+		<span class="glyphicon glyphicon-user"></span> Employee Details
 		 <label
 			style="margin-left: 250px;"><a href="#openModal"
-			class="btn btn-primary" id="edit12"> Add Employee </a> </label> <label
-			style="margin-left: 405px;"><i
-			class="glyphicon glyphicon-search"></i><input type="text"
+			class="btn btn-primary" id="edit12"> Add New Employee </a> </label> <label
+			style="margin-left: 405px;"></i><input type="text"
 			placeholder="Search by Employee" oninput="searchEmp(this.value)"
 			style="color: black;"></label>
 	</div>
