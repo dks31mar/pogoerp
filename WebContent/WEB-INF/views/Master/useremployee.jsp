@@ -177,10 +177,11 @@ $( function() {
 		<span class="glyphicon glyphicon-user"></span> Employee Details
 		 <label
 			style="margin-left: 250px;"><a href="#openModal"
-			class="btn btn-primary" id="edit12"> Add New Employee </a> </label> <label
-			style="margin-left: 405px;"></i><input type="text"
+			class="btn btn-primary" id="edit12"> Add New Employee </a> </label> 
+			<label style="margin-left: 390px;">
+			<input type="text"
 			placeholder="Search by Employee" oninput="searchEmp(this.value)"
-			style="color: black;"></label>
+			style="color: black;"><i class="glyphicon glyphicon-search"></i></label>
 	</div>
 
 </div>
