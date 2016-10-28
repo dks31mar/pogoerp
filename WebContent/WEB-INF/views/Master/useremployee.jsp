@@ -10,6 +10,9 @@
 
 <link rel="stylesheet" type="text/css"
 	href="resources/css/jquery.dialogbox.css" />
+	
+	<link rel="stylesheet" type="text/css"
+	href="resources/css/tableview.css" />
 <script src="resources/plugins/jQuery/jquery-1.9.1.min.js"
 	type="text/javascript"></script>
 <script src="resources/js/jquery.dialogBox.js" type="text/javascript"></script>
@@ -47,7 +50,7 @@
 }
 
 .modalDialog>div {
-	width: 730px;
+	width: 725px;
 	position: relative;
 	margin: 5% auto;
 	padding: 5px 20px 13px 20px;
@@ -143,6 +146,18 @@
 
 	}	
 $('#openModal').hide();
+$('#addemp').hide();
+$('#editemp').hide();
+
+$( function() {
+    $( "#datepickerDob" ).datepicker();
+  } );
+
+$( function() {
+    $( "#datepickerjoin" ).datepicker();
+  } );
+  
+ 
 
 	</script>
 </head>
@@ -162,7 +177,7 @@ $('#openModal').hide();
 		<span class="glyphicon glyphicon-user"></span> Staff Details
 		 <label
 			style="margin-left: 250px;"><a href="#openModal"
-			class="btn btn-primary"> Add Employee </a> </label> <label
+			class="btn btn-primary" id="edit12"> Add Employee </a> </label> <label
 			style="margin-left: 405px;"><i
 			class="glyphicon glyphicon-search"></i><input type="text"
 			placeholder="Search by Employee" oninput="searchEmp(this.value)"
@@ -193,7 +208,7 @@ $('#openModal').hide();
 						<td>${user.loginname}</td>
 						<td>${user.designation}</td>
 
-						<td><a href="#" title="Edit"><span
+						<td><a href="#openModal" title="Edit" id="edit"><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
 						<%-- <td><a href="delete-user?id=${user.userempid}" title="Delete" onclick="deletUsert()"><span class="glyphicon glyphicon-trash"></span></a></td> --%>
 						<td><a href="#" onclick="deletUser(${user.userempid})"><span
@@ -225,12 +240,12 @@ $('#openModal').hide();
 <div id="openModal" class="modalDialog">
 
 	<div>
-		<a href="#close" title="Close" class="close">X</a> <span
-			style="text-align: center;"><h2>Add Employee</h2></span><br>
-
+		<a href="#close" title="Close" class="close">X</a> 
+		<span style="text-align: center;" id="addemp"><h2>Add Employee</h2></span>
+		<span style="text-align: center;" id="editemp"><h2>Edit Employee</h2></span>
 		<form:form id="formID" action="saveuserEmp" method="POST"
-			commandName="userbean">
-			<table>
+			commandName="userbean"  >
+			<table class="flat-table">
 				<tr>
 					<td><span style="color: black;"> <strong>Login
 								Name<span style="color: red;">*</span>:
@@ -245,7 +260,7 @@ $('#openModal').hide();
 					</span></td>
 					<td><input type="text" class="validate[required] text-input"
 						style="border-radius: 2px;" name="dateofjoining"
-						placeholder="Date" maxlength="20"></td>
+						placeholder="Date" maxlength="20" id="datepickerjoin"></td>
 
 				</tr>
 
@@ -280,7 +295,7 @@ $('#openModal').hide();
 			</strong></span></td>
 				
 				<td><input
-				type="text" id="datepicker123" class="validate[required] text-input"
+				type="text" id="datepickerDob" class="validate[required] text-input"
 				style="border-radius: 5px;" name="dob" placeholder="DD-MM-YY"
 				maxlength="20"></td>
 				</tr>
@@ -401,13 +416,29 @@ $('#openModal').hide();
 			
 
 			</table>
-			<button style="margin-left: 282px; margin-top: -5px;" type="submit"
+			<button style="margin-left: 300px; margin-top: 6px;" type="submit"
 				class="btn btn-primary">Save</button>
 		</form:form>
 	</div>
 
 
 </div>
+<<script type="text/javascript">
+<!--
 
+//-->
+
+var d= $('#chg').text();
+alert(d);
+$('#edit12').click(function(){
+	$('#addemp').show();
+	$('#editemp').hide();
+});
+$('#edit').click(function(){
+	$('#addemp').hide();
+	$('#editemp').show();
+});
+
+</script>
 
 
