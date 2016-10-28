@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<style>
 
+<title>Company Info</title>
+<style>
 .responstable {
 	margin: 1em 0;
 	width: 100%;
@@ -132,8 +128,8 @@ h1 span {
 	color: #167F92;
 }
 </style>
-</head>
-<body>
+
+
 
 
 
@@ -146,15 +142,13 @@ h1 span {
 	<link rel="stylesheet"
 		href="/pogoerpdemo/Resources/font-awesome-4.6.3/css/font-awesome.min.css">
 
-		
-	</script>
-</HEAD>
 
-<BODY LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"
-	BGCOLOR="#FFFFFF" onClick="calcHeight2()";>
+	
+
 
 	<div id="aboutorg">
-		<div style="background-color: #167F92; text-align: center;">
+		<div
+			style="background-color: #167F92; text-align: center; width: 1236px;">
 
 			<header id="">
 			<h2>
@@ -165,135 +159,143 @@ h1 span {
 						<div style="text-align: right;">Terms and Conditions
 					</h4></span></a> </header>
 		</div>
-		<form:form action="" >
-		<table class="responstable">
-			<tr>
-				<td><div class="row form-group">
-						<div class="col-sm-3 form-level">
-							Name<font color="#FF0000">*</font>
+		<form:form action="savecompanyinfo" method="post">
+			<table class="responstable" style="width: 1239px;">
+				<tr>
+					<td><div class="row form-group">
+							<div class="col-sm-3 form-level" style="text-align: left;">
+								Name<font color="#FF0000">*</font>
+							</div>
+							<div class="col-sm-8">
+								<form:input path="companyinfoname" type="text"
+									class="form-control" />
+							</div></td>
+					<td></div>
+						<div class="col-sm-4 form-level">
+							Contact Person<font color="#FF0000">*</font>
+						</div>
+						<div class="col-sm-8	">
+							<form:input path="companyinfocontactperson" type="text"
+								class="form-control" />
+						</div></td>
+				</tr>
+				<tr>
+					<td>
+
+						<div class="col-sm-3 form-level" style="text-align: left;">
+							Contact No<font color="#FF0000">*</font>
 						</div>
 						<div class="col-sm-8">
-							<form:input path="companyinfoname" type="text" class="form-control" style="margin-left: 8px; width: 268px;" />
-						</div></td>
-				<td></div>
-					<div class="col-sm-4 form-level">
-						Contact Person<font color="#FF0000">*</font>
-					</div>
-					<div class="col-sm-8	">
-						<form:input path="companyinfocontactperson" type="text" class="form-control" />
-					</div></td>
-			</tr>
-			<tr>
-				<td>
-					</div>
-					<div class="col-sm-4 form-level"
-						style="text-align: left; margin-left: 0px;">
-						Contact No<font color="#FF0000">*</font>
-					</div>
-					<div class="col-sm-8">
-						<form:input path="companyinfocontactno" type="text" class="form-control"
-							style="margin-left: -32px; width: 268px;"/>
+							<form:input path="companyinfocontactno" type="text"
+								class="form-control" />
 
-					</div>
-				</td>
-				<td></div>
-
-					<div class="col-sm-4 form-level" style="text-align: left;">
-						Telephone No<font color="#FF0000">*</font>
-					</div>
-					<div class="col-sm-8">
-						<form:input path="companyinfophone" type="text" class="form-control"/>
-
-					</div></td>
-
-			</tr>
-			</tr>
-
-			<tr>
-
-				<td><div class="row form-group">
-
-						<div class="col-sm-3 form-level">
-							Fax No <font color="#FF0000">*</font>
 						</div>
-						<div class="col-sm-8">
-							<form:input path="companyinfofax" type="text" class="form-control"  style="margin-left: 8px; width: 272px;" />
-						</div></td>
-				<td><div class="col-sm-4 form-level">
-						Email<font color="#FF0000">*</font>
-					</div>
-					<div class="col-sm-8">
-						<form:input path="companyinfoemail" type="text" class="form-control" /></td>
-			</tr>
-			
-			
-			<tr>
-
-				<td><div class="row form-group">
-
-						<div class="col-sm-3 form-level">
-							VAT TIN <font color="#FF0000">*</font>
-						</div>
-						<div class="col-sm-8">
-							<form:input path="companyinfovattin" type="text" class="form-control"  style="margin-left: 8px; width: 272px;" />
-						</div></td>
-				<td><div class="col-sm-4 form-level">
-						CST NO<font color="#FF0000">*</font>
-					</div>
-					<div class="col-sm-8">
-						<form:input path="companyinfocstno" type="text" class="form-control" /></td>
-			</tr>
-			
-			
-			<tr>
-
-				<td><div class="row form-group">
-
-						<div class="col-sm-2 form-level">
-							PAN<font color="#FF0000">*</font>
-						</div>
-						<div class="col-sm-8">
-							<form:input path="companyinfopan" type="text" class="form-control" style="margin-left: 45px; width: 270px;" />
-						</div></td>
-				<td><div class="col-sm-4 form-level">
-						Service Tax Registration No<font color="#FF0000">*</font>
-					</div>
-					<div class="col-sm-8">
-						<form:input path="companyinfoservicetaxno" type="text" class="form-control" /></td>
-			</tr>
-			
-			
-			</tr>
-
-			<td><div class="row form-group" style="margin-left: -28px;">
-					<div class="col-sm-4 form-level">
-						Web Address<font color="#FF0000">*</font>
-					</div>
-					<div class="col-sm-8">
-						<form:input path="companyinfoweb" type="text" class="form-control" style="margin-left: -20px; width: 268px;" />
-
-					</div></td>
-			<td><div class="col-sm-4 form-level">
-					HO Address <font color="#FF0000">*</font>
-				</div>
-				<div class="col-sm-8">
-					<textarea class="form-control"></textarea>
-					<div class="row form-group"></div>
-					<div class="row form-group">
-					</div>
-					</div>
 					</td>
-					
-		</TABLE>
-		</form:form>
-		<div class="row form-group">
-			<div class="col-sm-2 form-level"></div>
-			<div class="col-sm-4"></div>
-			<div class="col-sm-2 form-level"></div>
-			<div class="col-sm-4">
-				<input type="button" value="Update"
-					class="btn btn-success pull-right" />
+					<td>
+
+						<div class="col-sm-4 form-level" style="text-align: left;">
+							Telephone No<font color="#FF0000">*</font>
+						</div>
+						<div class="col-sm-8">
+							<form:input path="companyinfophone" type="text"
+								class="form-control" />
+
+						</div></td>
+
+				</tr>
+				
+
+				<tr>
+
+					<td>
+						<div class="row form-group">
+
+							<div class="col-sm-3 form-level" style="text-align: left;">
+								Fax No <font color="#FF0000">*</font>
+							</div>
+							<div class="col-sm-8">
+								<form:input path="companyinfofax" type="text"
+									class="form-control" />
+							</div>
+					</td>
+					<td><div class="col-sm-4 form-level">
+							Email<font color="#FF0000">*</font>
+						</div>
+						<div class="col-sm-8">
+							<form:input path="companyinfoemail" type="text"
+								class="form-control" /></td>
+				</tr>
+
+
+				<tr>
+
+					<td><div class="row form-group">
+
+							<div class="col-sm-3 form-level" style="text-align: left;">
+								VAT TIN <font color="#FF0000">*</font>
+							</div>
+							<div class="col-sm-8">
+								<form:input path="companyinfovattin" type="text"
+									class="form-control" />
+							</div></td>
+					<td><div class="col-sm-4 form-level">
+							CST NO<font color="#FF0000">*</font>
+						</div>
+						<div class="col-sm-8">
+							<form:input path="companyinfocstno" type="text"
+								class="form-control" /></td>
+				</tr>
+
+
+				<tr>
+
+					<td><div class="row form-group">
+
+							<div class="col-sm-3 form-level" style="text-align: left;">
+								PAN<font color="#FF0000">*</font>
+							</div>
+							<div class="col-sm-8">
+								<form:input path="companyinfopan" type="text"
+									class="form-control" />
+							</div></td>
+					<td><div class="col-sm-4 form-level">
+							Service Tax Registration No<font color="#FF0000">*</font>
+						</div>
+						<div class="col-sm-8">
+							<form:input path="companyinfoservicetaxno" type="text"
+								class="form-control" /></td>
+				</tr>
+
+
+				</tr>
+
+				<td><div class="row form-group">
+						<div class="col-sm-3 form-level" style="text-align: left;">
+							Web Address<font color="#FF0000">*</font>
+						</div>
+						<div class="col-sm-8">
+							<form:input path="companyinfoweb" type="text"
+								class="form-control" />
+
+						</div></td>
+				<td><div class="col-sm-4 form-level">
+						HO Address <font color="#FF0000">*</font>
+					</div>
+					<div class="col-sm-8">
+						<textarea class="form-control"></textarea>
+						<div class="row form-group"></div>
+						<div class="row form-group"></div>
+					</div></td>
+
+			</TABLE>
+
+			<div class="row form-group">
+				<div class="col-sm-2 form-level"></div>
+				<div class="col-sm-4"></div>
+				<div class="col-sm-2 form-level"></div>
+				<div class="col-sm-4" style="margin-left: 928px;">
+					<input type="submit" value="Update"
+						class="btn btn-success pull-right" />
+				</div>
 			</div>
-		</div>
-</body>
-</html>
+		</form:form>

@@ -1,26 +1,54 @@
-package com.pogo.bean;
+package com.pogo.model;
 
-public class CompanyInfoBean {
+import javax.persistence.Column;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="companyinfo")
+public class CompanyInfo {
+
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="companyinfoid",columnDefinition="bigint(20)")
 	private Integer companyinfoid ;
-    private String companyinfoname;
-    
-    private String companyinfocontactperson;
+	@Column(name="companyinfoname",columnDefinition="VARCHAR(100)")
+	private String companyinfoname;
+	
+	@Column(name="companyinfocontactperson",columnDefinition="VARCHAR(25)")
+	private String companyinfocontactperson ;
+	@Column(name="companyinfocontactno",columnDefinition="VARCHAR(20)")
     private String companyinfocontactno;
-    
-    private String companyinfophone;
-    private String companyinfofax;
-    private String companyinfoemail;
-    
-    private String companyinfovattin;
+	
+	@Column(name="companyinfophone",columnDefinition="VARCHAR(25)")
+	private String companyinfophone;
+	@Column(name="companyinfofax",columnDefinition="VARCHAR(25)")
+	private String companyinfofax;
+	@Column(name="companyinfoemail",columnDefinition="VARCHAR(50)")
+	private String companyinfoemail;
+	
+	@Column(name="companyinfovattin",columnDefinition="VARCHAR(50)")
+	private String companyinfovattin;
+	@Column(name="companyinfocstno",columnDefinition="VARCHAR(50)")
     private String companyinfocstno;
+	@Column(name="companyinfopan",columnDefinition="VARCHAR(50)")
     private String companyinfopan;
+	@Column(name="companyinfoservicetaxno",columnDefinition="VARCHAR(50)")
     private String companyinfoservicetaxno;
-    
-    
+	
+	
+	@Column(name="companyinfoweb",columnDefinition="VARCHAR(100)")
     private String companyinfoweb;
+	@Column(name="companyinfotermsandconditions",columnDefinition="TEXT")
     private String companyinfotermsandconditions;
+	@Column(name="companyinfoaddress",columnDefinition="VARCHAR(1000)")
     private String companyinfoaddress;
+	@Column(name="companylogo",columnDefinition="VARCHAR(150)")
     private String companylogo;
 	public Integer getCompanyinfoid() {
 		return companyinfoid;
@@ -113,9 +141,4 @@ public class CompanyInfoBean {
 		this.companyinfocontactno = companyinfocontactno;
 	}
 	
-	
-	
-	
-    
-    
 }
