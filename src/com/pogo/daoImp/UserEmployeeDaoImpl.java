@@ -53,4 +53,12 @@ public class UserEmployeeDaoImpl implements UserEmployeeDao
 				.add(Restrictions.like("loginname", loginname+"%"))
 				.add(Restrictions.eq("active", true)).list();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UserEmployee> getuserEmpId(int userId) {
+		
+		return (List<UserEmployee>) sessionf.getCurrentSession().createCriteria(UserEmployee.class)
+				.add(Restrictions.eq("active", true)).add(Restrictions.eq("userempid", userId)).list();
+	}
 }

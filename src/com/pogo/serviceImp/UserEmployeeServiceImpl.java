@@ -43,17 +43,27 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 		emp.setPassword(userDTO.getPassword());
 		emp.setRepassword(userDTO.getRepassword());
 		emp.setActive(true);
-		
 		userEmpdao.addUser(emp);
 		
 	}
 
 	@Override
-	public UserEmployeeBean getUserById(int  userId) 
+	public List<UserEmployee> getUserById(int userId) 
 	{
-		UserEmployeeBean userDTO = new UserEmployeeBean();
-			
-		return null;
+		List<UserEmployee> emp=userEmpdao.getuserEmpId(userId);
+		List<UserEmployeeBean> lists=new ArrayList<UserEmployeeBean>();
+		for(UserEmployee data: emp)
+		{
+			UserEmployeeBean userDTO = new UserEmployeeBean();
+			userDTO.setUserempid(data.getUserempid());
+			userDTO.setLoginname(data.getLoginname());
+			userDTO.setFirstname(data.getFirstname());
+			userDTO.setLastname(data.getLastname());
+			userDTO.setDesignation(data.getDesignation());
+			lists.add(userDTO);
+		}
+		
+		return emp;
 	}
 
 	@Override
@@ -76,9 +86,9 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 
 	@Override
 	public void deleteuserEmp(int id) {
-		System.out.println("before getting id \n"+id);
+		//System.out.println("before getting id \n"+id);
 		UserEmployee user = userEmpdao.getUserById(id);
-		System.out.println("after getting id from db  \n"+user.getUserempid());
+		//System.out.println("after getting id from db  \n"+user.getUserempid());
 		user.setActive(false);
 		userEmpdao.updateUser(user);
 	}

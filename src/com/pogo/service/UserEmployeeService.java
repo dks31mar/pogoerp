@@ -12,7 +12,7 @@ public interface UserEmployeeService
 
 	void adduserEmp(UserEmployeeBean userDTO)throws ParseException;
 
-	UserEmployeeBean getUserById(int userId);
+	List<UserEmployee> getUserById(int userId);
 
     List<UserEmployeeBean> getUserDetails();
 

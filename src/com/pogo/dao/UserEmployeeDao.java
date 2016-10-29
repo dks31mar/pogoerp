@@ -17,4 +17,6 @@ public interface UserEmployeeDao
 
 	List<UserEmployee> searchUser(String loginname);
 
+	List<UserEmployee> getuserEmpId(int userId);
+
 }

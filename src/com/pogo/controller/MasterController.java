@@ -1,5 +1,8 @@
 package com.pogo.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.ProcessBuilder.Redirect;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,26 +63,27 @@ public class MasterController
 	//for add employee
 	@RequestMapping(value = "/saveuserEmp", method = {RequestMethod.POST,RequestMethod.GET}) 
 	public ModelAndView saveDetails(Model model,
-			@ModelAttribute("userbean") UserEmployeeBean userDTO,BindingResult result) throws ParseException
+			@ModelAttribute("userbean") UserEmployeeBean userDTO) throws ParseException
 	   {
 		userEmployeeservice.adduserEmp(userDTO);
-		Map<String, Object> record = new HashMap<String, Object>();
-		record.put("userlist",  userEmployeeservice.getUserDetails());
-		return new ModelAndView("getuseremp",record) ;
+		return new ModelAndView("getuseremp") ;
 
 	}
 	
 	// for Edit data fetch
 	@RequestMapping(value = "/editUserdetails", method = RequestMethod.GET)
-	public String editCity(@RequestParam("id") Integer id, Model model,
-			HttpServletRequest request) {
-		model.addAttribute("cityDTO", new UserEmployeeBean());
-		UserEmployeeBean cityDTO = userEmployeeservice.getUserById(id);
-		//model.addAttribute("cityName", cityDTO.getCityName());
+	public void editCity(@RequestParam("userempid") Integer id, @ModelAttribute("userbean")UserEmployeeBean userDTO , BindingResult result,
+			HttpServletResponse res) {
+		List<UserEmployee> emp = userEmployeeservice.getUserById(id);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(emp);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		
-		model.addAttribute("id", id);
-		
-		return "editUserdetails";
+		//return "getuseremp";
 	}
 
 	
@@ -93,7 +98,6 @@ public class MasterController
 	public @ResponseBody String filterEmpployee(@RequestParam String loginname)
 			throws JsonProcessingException {
 		List<UserEmployeeBean> userbean = userEmployeeservice.getUser(loginname);
-		//System.out.println(userbean);
 		ObjectMapper map = new ObjectMapper();
 		return map.writeValueAsString(userbean);
 	}

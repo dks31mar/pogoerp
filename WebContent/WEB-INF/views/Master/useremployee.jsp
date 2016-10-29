@@ -28,6 +28,7 @@
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 
 <style>
+
 .modalDialog {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
@@ -60,6 +61,9 @@
 	/* background: -webkit-linear-gradient(#fff, #999); */
 	background: -o-linear-gradient(#fff, #999);
 }
+
+}
+
 </style>
 
 <script>
@@ -98,7 +102,7 @@
 					success : function(data) {
 						var obj = JSON.parse(data);
 						
-						var content = '<table class="responstable" style="margin-top: 5px; border-radius: 5px;"><thead><tr>'
+						var content = '<table class="responstable" style="margin-top: 5px;margin-left: 22px; border-radius: 5px;"><thead><tr>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">SN</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Employee Name</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Designation</label></th>'
@@ -124,10 +128,10 @@
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.designation
 												+ '</td>';
-												content += '<td style="font-size: 13px; color:black;" class="corg_th"><a href="#"  title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
+												content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="#"  title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
 													
 													+ '</td>';		
-										content += '<td style="font-size: 13px; color:black;" class="corg_th"><a title="Delete" href="#" onclick="deletUser(${user.userempid})"><span class="glyphicon glyphicon-trash"></span></a>'
+										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser(${user.userempid})"><span class="glyphicon glyphicon-trash"></span></a>'
 											+ '</td></tr>';		
 										
 
@@ -173,30 +177,33 @@ $( function() {
 <div class="row">
 
 	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; left: 20px">
+		style="background-color: #3C8DBD; left: 20px;  height: 64px;">
 		<span class="glyphicon glyphicon-user"></span> Employee Details
 		 <label
-			style="margin-left: 250px;"><a href="#openModal"
-			class="btn btn-primary" id="edit12"> Add New Employee </a> </label> <label
-			style="margin-left: 405px;"></i><input type="text"
-			placeholder="Search by Employee" oninput="searchEmp(this.value)"
-			style="color: black;"></label>
-	</div>
+			style="margin-left: 250px;margin-top: 8px;"><a href="#openModal"
+			class="btn btn-primary" id="edit12"> Add New Employee </a>
+     </label>
+			 <div class="input-group" style="margin-left: 590px; width: 230px; top: -38px;
+			 width: 230px;"><input type="text"  
+			placeholder="Search Employee name" class="form-control" oninput="searchEmp(this.value)"><span class="input-group-addon">
+        <i class="fa fa-search"></i>
+    </span></div> 
+			
 
 </div>
 
 <div id="pop" style="display: none;"></div>
 <div id="searchedRecord"></div>
 <div id="body">
-	<table class="responstable">
+	<table class="responstable" style="margin-left: 22px; ">
 
 		<tbody>
 			<tr>
 				<th>S.N.</th>
 				<th data-th="Driver details"><span>Employees Name</span></th>
 				<th>Designation</th>
-				<th>Edit</th>
-				<th>Delete</th>
+				<th style="width: 60px;">Edit</th>
+				<th style="width: 60px;"> Delete</th>
 			</tr>
 			<c:if test="${!empty userlist}">
 				<c:forEach items="${userlist}" var="user" varStatus="loop">
@@ -206,11 +213,10 @@ $( function() {
 						<td>${user.loginname}</td>
 						<td>${user.designation}</td>
 
-						<td><a href="saveuserEmp?userempid=${user.userempid}" title="Edit" id="edit"><span
+						<td><a href="#"onclick="getDataList(${user.userempid})" title="Edit"align="center" id="edit"><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
-						<%-- <td><a href="delete-user?id=${user.userempid}" title="Delete" onclick="deletUsert()"><span class="glyphicon glyphicon-trash"></span></a></td> --%>
-						<td><a href="#" onclick="deletUser(${user.userempid})"><span
-								class="glyphicon glyphicon-trash"></span></a></td>
+						<td style="margin"><a href="#"  onclick="deletUser(${user.userempid})"><span
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
 					</tr>
 
 				</c:forEach>
@@ -408,11 +414,21 @@ $('#edit12').click(function(){
 	$('#addemp').show();
 	$('#editemp').hide();
 });
-$('#edit').click(function(){
+
+function getDataList(id){
 	$('#openModal').show();
 	$('#addemp').hide();
 	$('#editemp').show();
-});
+	$.ajax({
+		url: "editUserdetails?userempid="+id,
+		type: "get",
+		success: function(respose){
+		    	 
+	     alert(respose);
+	    }});
+	
+}
+
 
 </script>
 
