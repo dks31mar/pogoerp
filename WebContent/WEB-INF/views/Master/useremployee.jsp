@@ -179,7 +179,7 @@ $( function() {
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px;  height: 64px;">
 		<span class="glyphicon glyphicon-user"></span> Employee Details
-		 <label
+		 <label>
 			style="margin-left: 250px;margin-top: 8px;"><a href="#openModal"
 			class="btn btn-primary" id="edit12"> Add New Employee </a>
      </label>
@@ -189,6 +189,15 @@ $( function() {
         <i class="fa fa-search"></i>
     </span></div> 
 			
+=======
+			style="margin-left: 250px;"><a href="#openModal"
+			class="btn btn-primary" id="edit12"> Add New Employee </a> </label> 
+			<label style="margin-left: 390px;">
+			<input type="text"
+			placeholder="Search by Employee" oninput="searchEmp(this.value)"
+			style="color: black;"><i class="glyphicon glyphicon-search"></i></label>
+	</div>
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
 </div>
 
