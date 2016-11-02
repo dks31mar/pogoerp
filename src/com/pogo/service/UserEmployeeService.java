@@ -20,6 +20,10 @@ public interface UserEmployeeService
 
 	List<UserEmployeeBean> getUser(String loginname);
 
+	public UserEmployeeBean getEmployee(int empid);
+
+	void updateEmployee(UserEmployeeBean userEmployeeBean)throws ParseException;
+
 	
 
 	

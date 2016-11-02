@@ -10,7 +10,6 @@
 
 <link rel="stylesheet" type="text/css"
 	href="resources/css/jquery.dialogbox.css" />
-	
 	<link rel="stylesheet" type="text/css"
 	href="resources/css/tableview.css" />
 <script src="resources/plugins/jQuery/jquery-1.9.1.min.js"
@@ -19,14 +18,14 @@
 
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link
+<!-- <link
 	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/ui-darkness/jquery-ui.css"
 	rel="stylesheet">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-
+ -->
 <style>
 
 .modalDialog {
@@ -67,28 +66,31 @@
 </style>
 
 <script>
-	function date()
+	function fordelete()
 	{
-		//alert("hello");
-		$( "#datepicker123" ).datepicker();	
+		alert("Are You Sure For Delete");
+		
 	}
 	
 	
 	function deletUser(id){
-			$.ajax({
+		var x=confirm("Are you sure you want to delete?")
+		if (x)
+      
+		$.ajax({
 					url: "deleteuser?userempid="+id,
 					type: "POST",
 					
 					success: function(result){
 						window.location.reload();		    
 					}});
-				
-			
+	else
+		 return false;
 	}
 	
 	function searchEmp(loginname) {
 		//alert("hi");
-		alert(loginname);
+		//alert(loginname);
 		$("#searchedRecord").empty();
 		$("#body").show();
 		$
@@ -128,7 +130,7 @@
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.designation
 												+ '</td>';
-												content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="#"  title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
+												content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id=${user.userempid}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
 													
 													+ '</td>';		
 										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser(${user.userempid})"><span class="glyphicon glyphicon-trash"></span></a>'
@@ -161,7 +163,14 @@ $( function() {
     $( "#datepickerjoin" ).datepicker();
   } );
   
- 
+function ConfirmDelete()
+{
+  var x = confirm("Are you sure you want to delete?");
+  if (x)
+      return true;
+  else
+    return false;
+}
 
 	</script>
 </head>
@@ -174,30 +183,27 @@ $( function() {
 	</div>
 </div>
 
+
 <div class="row">
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px;  height: 64px;">
 		<span class="glyphicon glyphicon-user"></span> Employee Details
-		 <label>
-			style="margin-left: 250px;margin-top: 8px;"><a href="#openModal"
-			class="btn btn-primary" id="edit12"> Add New Employee </a>
+		 <label
+			 style="margin-left: 250px;margin-top: 8px;"><a href="addUser"
+			class="btn btn-primary"> Add New Employee </a>
+     </label>
+     <label
+			 style="margin-left: 507px;margin-top: 8px;"><a href="#"
+			class="btn btn-primary" >Export</a>
      </label>
 			 <div class="input-group" style="margin-left: 590px; width: 230px; top: -38px;
 			 width: 230px;"><input type="text"  
-			placeholder="Search Employee name" class="form-control" oninput="searchEmp(this.value)"><span class="input-group-addon">
+			placeholder="Search Employee name"  class="form-control" oninput="searchEmp(this.value)" ><span class="input-group-addon">
         <i class="fa fa-search"></i>
     </span></div> 
 			
-=======
-			style="margin-left: 250px;"><a href="#openModal"
-			class="btn btn-primary" id="edit12"> Add New Employee </a> </label> 
-			<label style="margin-left: 390px;">
-			<input type="text"
-			placeholder="Search by Employee" oninput="searchEmp(this.value)"
-			style="color: black;"><i class="glyphicon glyphicon-search"></i></label>
-	</div>
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+</div>
 
 </div>
 
@@ -222,8 +228,12 @@ $( function() {
 						<td>${user.loginname}</td>
 						<td>${user.designation}</td>
 
-						<td><a href="#"onclick="getDataList(${user.userempid})" title="Edit"align="center" id="edit"><span
+						<%-- <td><a href="#"onclick="getDataList(${user.userempid})" title="Edit"align="center" id="edit"><span
+								class="glyphicon glyphicon-pencil"></span></a></td> --%>
+								<td><a href="editUser?id=${user.userempid}" title="Edit" align="center" ><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
+								<%-- <td><a href="#openModal1 editEmp?id=${user.userempid}" title="Edit" align="center" ><span
+								class="glyphicon glyphicon-pencil"></span></a></td> --%>
 						<td style="margin"><a href="#"  onclick="deletUser(${user.userempid})"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
 					</tr>
@@ -250,16 +260,16 @@ $( function() {
 	<div class="col-sm-7"></div>
 </div>
 
-<div id="openModal" class="modalDialog">
+ <%-- <div id="openModal" class="modalDialog">
 
 	<div>
 	<form:form id="formID" action="saveuserEmp" method="POST"
-			commandName="userbean"  >
+			commandName="userbean">
 		<a href="#close" title="Close" class="close">X</a>
-		<td style="display: none;"><form:input path="userempid" type="hidden" 
+		 <td style="display: none;"><form:input path="userempid" type="hidden" 
 		value="${user.userempid}" id=""></form:input> </td> 
 		<span style="text-align: center;" id="addemp"><h3>Add Employee</h3></span>
-		<span style="text-align: center;" id="editemp"><h3>Edit Employee</h3></span>
+		<!-- <span style="text-align: center;" id="editemp"><h3>Edit Employee</h3></span> -->
 		
 			<table class="flat-table">
 				<tr>
@@ -414,7 +424,8 @@ $( function() {
 				class="btn btn-primary">Save</button>
 		</form:form>
 	</div>
-</div>
+</div>  --%>
+
 <script type="text/javascript">
 
 
@@ -432,8 +443,10 @@ function getDataList(id){
 		url: "editUserdetails?userempid="+id,
 		type: "get",
 		success: function(respose){
-		    	 
-	     alert(respose);
+			alert(respose);
+			
+	     
+			
 	    }});
 	
 }

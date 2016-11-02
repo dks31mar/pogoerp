@@ -19,4 +19,12 @@ public interface UserEmployeeDao
 
 	List<UserEmployee> getuserEmpId(int userId);
 
+	void updateEmp(UserEmployee emp);
+
+	UserEmployee getEmployee(int empid);
+
+	UserEmployee get(Integer userempid);
+
+	
+
 }

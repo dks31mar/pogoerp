@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ibm.icu.impl.USerializedSet;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.dao.UserEmployeeDao;
@@ -31,9 +32,9 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 		emp.setLastname(userDTO.getLastname());
 		emp.setDivision(userDTO.getDivision());
 		emp.setRegion(userDTO.getRegion());
-		//emp.setDateofjoining(dateformat.parse(userDTO.getDateofjoining()));
+		emp.setDateofjoining(dateformat.parse(userDTO.getDateofjoining()));
 		emp.setAddress(userDTO.getAddress());
-		//emp.setDob(dateformat.parse(userDTO.getDob()));
+		emp.setDob(dateformat.parse(userDTO.getDob()));
 		emp.setEamil(userDTO.getEamil());
 		emp.setBranch(userDTO.getBranch());
 		emp.setDesignation(userDTO.getDesignation());
@@ -42,6 +43,10 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 		emp.setUsermobile(userDTO.getUsermobile());
 		emp.setPassword(userDTO.getPassword());
 		emp.setRepassword(userDTO.getRepassword());
+		emp.setDepartment(userDTO.getDepartment());
+		emp.setEmpCode(userDTO.getEmpCode());
+		emp.setMiddlename(userDTO.getMiddlename());
+		emp.setSubcompany(userDTO.getSubcompany());
 		emp.setActive(true);
 		userEmpdao.addUser(emp);
 		
@@ -109,6 +114,68 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 	}
 
 		return listbean;
+	}
+
+	@Override
+	public UserEmployeeBean getEmployee(int empid) {
+		SimpleDateFormat dateformat = new SimpleDateFormat("dd/mm/yyyy");
+		UserEmployee empedit = userEmpdao.getEmployee(empid);
+		UserEmployeeBean empbean = new UserEmployeeBean();
+		empbean.setUserempid(empedit.getUserempid());
+		empbean.setLoginname(empedit.getLoginname());
+		empbean.setDesignation(empedit.getDesignation());
+		empbean.setFirstname(empedit.getFirstname());
+		empbean.setLastname(empedit.getLastname());
+		empbean.setDivision(empedit.getDivision());
+		empbean.setRegion(empedit.getRegion());
+		empbean.setDateofjoining(dateformat.format(empedit.getDateofjoining()));
+		empbean.setDob(dateformat.format(empedit.getDob()));
+	    empbean.setAddress(empedit.getAddress());
+		empbean.setEamil(empedit.getEamil());
+		empbean.setGender(empedit.getGender());
+		empbean.setUsermobile(empedit.getUsermobile());
+		empbean.setPhone(empedit.getPhone());
+		empbean.setBranch(empedit.getBranch());
+		empbean.setPassword(empedit.getPassword());
+		empbean.setRepassword(empedit.getRepassword());
+		empbean.setMiddlename(empedit.getMiddlename());
+		empbean.setDepartment(empedit.getDepartment());
+		empbean.setEmpCode(empedit.getEmpCode());
+		empbean.setSubcompany(empedit.getSubcompany());
+		return empbean;
+		
+	}
+@Transactional
+	@Override
+	public void updateEmployee(UserEmployeeBean userEmployeeBean) throws ParseException {
+		SimpleDateFormat dateformat = new SimpleDateFormat("dd/mm/yyyy");
+		UserEmployee emp=new UserEmployee();
+		System.out.println(userEmployeeBean.getUserempid());
+		emp.setUserempid(userEmployeeBean.getUserempid());
+		emp.setLoginname(userEmployeeBean.getLoginname());
+		emp.setFirstname(userEmployeeBean.getFirstname());
+		emp.setLastname(userEmployeeBean.getLastname());
+		emp.setDivision(userEmployeeBean.getDivision());
+		emp.setRegion(userEmployeeBean.getRegion());
+		emp.setDateofjoining(dateformat.parse(userEmployeeBean.getDateofjoining()));
+		emp.setAddress(userEmployeeBean.getAddress());
+		emp.setDob(dateformat.parse(userEmployeeBean.getDob()));
+		emp.setEamil(userEmployeeBean.getEamil());
+		emp.setBranch(userEmployeeBean.getBranch());
+		emp.setDesignation(userEmployeeBean.getDesignation());
+		emp.setGender(userEmployeeBean.getGender());
+		emp.setPhone(userEmployeeBean.getPhone());
+		emp.setUsermobile(userEmployeeBean.getUsermobile());
+		emp.setPassword(userEmployeeBean.getPassword());
+		emp.setRepassword(userEmployeeBean.getRepassword());
+		emp.setDepartment(userEmployeeBean.getDepartment());
+		emp.setMiddlename(userEmployeeBean.getMiddlename());
+		emp.setEmpCode(userEmployeeBean.getEmpCode());
+		emp.setSubcompany(userEmployeeBean.getSubcompany());
+		emp.setActive(true);
+		userEmpdao.updateEmp(emp);
+		//userEmpdao.updateUser(emp);
+		
 	}
 
 	

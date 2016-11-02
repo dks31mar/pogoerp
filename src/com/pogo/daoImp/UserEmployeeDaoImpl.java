@@ -61,4 +61,25 @@ public class UserEmployeeDaoImpl implements UserEmployeeDao
 		return (List<UserEmployee>) sessionf.getCurrentSession().createCriteria(UserEmployee.class)
 				.add(Restrictions.eq("active", true)).add(Restrictions.eq("userempid", userId)).list();
 	}
+
+	@Override
+	public void updateEmp(UserEmployee emp) {
+		sessionf.getCurrentSession().update(emp);
+		sessionf.getCurrentSession().flush();
+		
+	}
+
+	@Override
+	public UserEmployee getEmployee(int empid) {
+		return (UserEmployee) sessionf.getCurrentSession().get(
+				UserEmployee.class, empid);
+	}
+
+	@Override
+	public UserEmployee get(Integer userempid) {
+		
+		return (UserEmployee) sessionf.getCurrentSession().createCriteria(UserEmployee.class).add(Restrictions.eq("userempid", userempid));
+	}
+
+	
 }

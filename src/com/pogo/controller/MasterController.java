@@ -60,17 +60,45 @@ public class MasterController
 	
 		return new ModelAndView("getuseremp",model);
 }
+	//for add jsp
+	@RequestMapping(value="/addUser",method = RequestMethod.GET)
+	public String addEmployee(Model model)
+	{
+	
+		return "addUser";
+}
+	
+	// for edit jsp
+@RequestMapping(value="/editUser",method = RequestMethod.GET)
+	public String editEmployee(@RequestParam int id, Model model)
+	{
+	model.addAttribute("employee", userEmployeeservice.getEmployee(id));
+	
+		return "editUser";
+}
+  /* @RequestMapping(value="/getuseremp",method = RequestMethod.GET)
+	
+	public ModelAndView getUserEmp1()	
+	{
+	List<UserEmployeeBean> list=new ArrayList<UserEmployeeBean>();
+	list=userEmployeeservice.getUserDetails();
+	Map<String, Object> model= new HashMap<String,Object>();
+	model.put("userlist", list);
+	
+		return new ModelAndView("getuseremp",model);
+}*/
 	//for add employee
-	@RequestMapping(value = "/saveuserEmp", method = {RequestMethod.POST,RequestMethod.GET}) 
-	public ModelAndView saveDetails(Model model,
+	@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST) 
+	public String saveDetails(Model model,
 			@ModelAttribute("userbean") UserEmployeeBean userDTO) throws ParseException
 	   {
 		userEmployeeservice.adduserEmp(userDTO);
-		return new ModelAndView("getuseremp") ;
+		return "redirect:getuseremp";
+		//return new ModelAndView("getuseremp") ;
 
 	}
 	
-	// for Edit data fetch
+	/*// for Edit data fetch
 	@RequestMapping(value = "/editUserdetails", method = RequestMethod.GET)
 	public void editCity(@RequestParam("userempid") Integer id, @ModelAttribute("userbean")UserEmployeeBean userDTO , BindingResult result,
 			HttpServletResponse res) {
@@ -84,9 +112,21 @@ public class MasterController
 		}
 		
 		//return "getuseremp";
-	}
+	}*/
+	/*@RequestMapping(value = "/editEmp", method = RequestMethod.GET)
+	public String editEmployee(@RequestParam int id, Model model) {
+		model.addAttribute("employee", userEmployeeservice.getEmployee(id));
+		System.out.println("employee");
+		return "getuseremp";
+	}*/
 
+	@RequestMapping(value = "/update-employee", method = RequestMethod.POST)
+	public String updateEmployee(
+			@ModelAttribute("employeebean") UserEmployeeBean userEmployeeBean)throws ParseException  {
+		userEmployeeservice.updateEmployee(userEmployeeBean);
+		return "redirect:/getuseremp";
 	
+	}
 	
 	@RequestMapping(value = "deleteuser", method = RequestMethod.POST)
 	public String deleteuserEmpData(@RequestParam("userempid") int id) {

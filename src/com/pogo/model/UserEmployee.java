@@ -20,8 +20,12 @@ public class UserEmployee
 	private Integer userempid;
 	@Column(name="loginname")
 	private String loginname;
+	@Column(name="empCode")
+	private String empCode;
 	@Column(name="firstname")
 	private String firstname;
+	@Column(name="middlename")
+	private String middlename;
 	@Column(name="lastname")
 	private String lastname;
 	@Column(name="division")
@@ -34,7 +38,10 @@ public class UserEmployee
 	private Date dateofjoining;
 	@Column(name="designation")
 	private String designation;
-	
+	@Column(name="department")
+	private String department;
+	@Column(name="subcompany")
+	private String subcompany;
 	@Column(name="password")
 	private String password;
 	@Column(name="repassword")
@@ -133,8 +140,31 @@ public class UserEmployee
 	public void setEamil(String eamil) {
 		this.eamil = eamil;
 	}
-	
-	
+		
+	public String getEmpCode() {
+		return empCode;
+	}
+	public void setEmpCode(String empCode) {
+		this.empCode = empCode;
+	}
+	public String getMiddlename() {
+		return middlename;
+	}
+	public void setMiddlename(String middlename) {
+		this.middlename = middlename;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public String getSubcompany() {
+		return subcompany;
+	}
+	public void setSubcompany(String subcompany) {
+		this.subcompany = subcompany;
+	}
 	public Date getDob() {
 		return dob;
 	}
