@@ -1,0 +1,252 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
+    
+    
+    <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+
+<link href="resources/css/table.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css"
+	href="resources/css/jquery.dialogbox.css" />
+	<link rel="stylesheet" type="text/css"
+	href="resources/css/tableview.css" />
+<script src="resources/plugins/jQuery/jquery-1.9.1.min.js"
+	type="text/javascript"></script>
+<script src="resources/js/jquery.dialogBox.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
+    rel="stylesheet" type="text/css" />
+
+<style>
+
+.modalDialog {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 99999;
+	opacity: 0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modalDialog:target {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.modalDialog>div {
+	width: 725px;
+	position: relative;
+	margin: 5% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	/* background: -webkit-linear-gradient(#fff, #999); */
+	background: -o-linear-gradient(#fff, #999);
+}
+
+}
+
+</style>
+
+
+<div class="row" style="margin-top: 15px">
+	<br>
+	<div align="center">
+		<i>
+			<h3></h3>
+		</i> <input type="hidden" name="profile" value="0" />
+	</div>
+</div>
+
+
+<div class="row">
+
+	<div class="page-heading col-sm-11"
+		style="background-color: #3C8DBD; left: 20px;  height: 34px;">
+		<span class="fa fa-money"></span> Currency Master Details
+		 <label
+			 style="margin-left: 250px;margin-top: 8px;">
+			 <button href="#"
+			class="btn btn-primary" id="getpopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add New Currency </button>
+     </label>
+      
+			
+</div>
+<div>
+
+</div>
+</div>
+<div id="pop" style="display: none;"></div>
+<div id="searchedRecord"></div>
+<div id="body">
+	<table class="responstable" style="margin-left: 22px; ">
+
+		<tbody>
+			<tr>
+				<th>S.No.</th>
+				<th data-th="Driver details"><span>Currency Name</span></th>
+				<th>Currency Symbol</th>
+				<th>Type</th>
+				<th style="width: 60px;">Edit</th>
+				<th style="width: 60px;"> Delete</th>
+			</tr>
+			
+			<c:if test="${!empty currencylist}">
+				<c:forEach items="${currencylist}" var="cur" varStatus="loop">
+			
+			<tr>
+						
+								<td>${loop.index+1}</td>
+								<td>${cur.currencysymbol}</td>
+								<td>${cur.currencyname}</td>
+								<td>${cur.currencytype}</td>
+							
+						
+								<td><a href="editUser?id=${user.userempid}" title="Edit" align="center" >
+								<span class="glyphicon glyphicon-pencil"></span></a></td>
+								
+						<td style="margin"><a href="#"  onclick="deletUser(${user.userempid})"><span
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
+					</tr>
+</c:forEach>
+</c:if>
+				
+
+
+		</tbody>
+	</table>
+</div>
+<div class="row form-group">
+	<div class="col-sm-7"></div>
+</div>
+
+
+<div id="openModal" class="modalDialog">
+
+	<div>
+	<form id="formID" action="saveuserEmp" method="POST"
+			commandName="userbean">
+		<a href="#close" title="Close" class="close">X</a>
+		 <td style="display: none;"><input path="userempid" type="hidden" 
+		value="${user.userempid}" id=""></input> </td> 
+		<span style="text-align: center;" id="addemp"><h3>Add Currency</h3></span>
+		<!-- <span style="text-align: center;" id="editemp"><h3>Edit Employee</h3></span> -->
+		
+			<table class="flat-table">
+				<tr>
+					<td><span style="color: black;"> <strong>Currency Name<span style="color: red;">*</span>:
+						</strong></span></td>
+					<td><input path="loginname" type="text" class="validate[required] text-input" id="currencyname"
+						style="border-radius: 5px;" value="" name="loginname"
+						maxlength="20" autofocus="autofocus"></input></td>
+					<td><span style="color: black;">
+							<strong>Currency Type<span
+								style="color: red;">*</span>:
+						</strong>
+					</span></td>
+					<td><input path="dateofjoining" type="text" id="currencytype" class="validate[required] text-input"
+						style="border-radius: 2px;" name="dateofjoining" value="" 
+						 maxlength="20" id="datepickerjoin"></input></td>
+				</tr>
+				<tr>
+					<td><span style="color: black;"> <strong>Currency Symbol<span
+								style="color: red;">*</span>:
+						</strong></span></td>
+
+					<td><input path="firstname" type="text" class="validate[required] text-input" id="currencysymbol"
+						style="border-radius: 5px;" name="firstname" value=""
+						 maxlength="20"></input></td>
+
+					<td><span style="color: black;"><strong>Currency Rate<span
+								style="color: red;">*</span>:
+						</strong></span></td>
+					<td><input path="designation" type="text" class="validate[required] text-input" id="currencyrate"
+						style="border-radius: 5px;" name="designation" value=""
+						 maxlength="20"></input></td>
+
+				</tr>
+				
+			</table>
+			<button style="margin-left: 300px; margin-top: 6px;" type="button"
+				class="btn btn-primary" id="savecurrencyForm">Save</button>
+		</form>
+	</div>
+</div>
+<!-- <script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
+<script>
+
+
+
+/* 
+    $(function () {
+        $("#openModal").dialog({
+            modal: true,
+            autoOpen: false,
+            title: "jQuery Dialog",
+            width: 300,
+            height: 150
+        });
+        $("#getpopup").click(function () {
+            $('#openModal').dialog('open');
+        });
+    });
+     */
+    
+    
+    
+    
+$('#savecurrencyForm').click(function (){
+	var currencyname=$('#currencyname').val();
+	var currencytype=$('#currencytype').val();
+	var currencysymbol=$('#currencysymbol').val();
+	var currencyrate=$('#currencyrate').val();
+	
+	
+	alert(currencyname+'     <<<<<<>>>>>>   ' +currencytype+'               <<<<<<>>>>>>>       '+currencysymbol);
+	
+	var jsonObj={'currencysymbol':currencysymbol,
+			'currencyname':currencyname, 'currencytype':currencytype
+	} ;
+$.ajax({
+		url: "savecurrency",
+		type: "POST",
+		
+		  data :JSON.stringify(jsonObj),
+		  cache:false,
+	        beforeSend: function(xhr) {  
+	            xhr.setRequestHeader("Accept", "application/json");  
+	            xhr.setRequestHeader("Content-Type", "application/json");  
+	        },
+		     success: function(resposeJsonObject){
+		    	 $('#openModal').hide();
+		    	 window.location.currency;
+	     alert("saVE");
+	    }});
+	
+	
+});
+$(document).ready(
+	    function(){
+$("#getpopup").click(function(){
+	
+	 $("#openModal").modal('show');
+	
+});
+	    });
+</script>
