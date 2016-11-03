@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.pogo.bean.CompanyInfoBean;
 import com.pogo.bean.CurrencyBean;
 
@@ -33,6 +34,9 @@ import com.pogo.bean.UnitBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
 import com.pogo.bean.PorefSupplierDetailBean;
+
+
+import com.pogo.bean.RegionBean;
 
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.CompanyInfo;
@@ -230,6 +234,7 @@ public class MasterController
 }
 
 	
+
 	
 	@RequestMapping(value="savecurrency",method=RequestMethod.POST)
 	@ResponseBody
@@ -428,4 +433,12 @@ public class MasterController
 	}
 	/************************************************** use by shweta ***************************************************/
 
+
+	@RequestMapping(value = "/saveEdit", method = RequestMethod.POST) 
+	public String saveEdit(Model model,
+			@ModelAttribute("userbean")RegionBean reg) throws ParseException
+	{
+		regionService.saveEdit(reg);
+		return "redirect:getuseremp";
+	}
 }
