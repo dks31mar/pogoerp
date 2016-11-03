@@ -5,7 +5,7 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
        <tiles-definitions>
        		<definition name="baseLayout" template="/WEB-INF/tiles/baseLayout.jsp">
-       			<!-- <put-attribute name="title" value="Template" /> -->
+       			<put-attribute name="title" value="Template" />
 				<put-attribute name="header" value="/WEB-INF/tiles/Homeheader.jsp" />
 				<put-attribute name="body" value="/WEB-INF/tiles/body.jsp" />
 				<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
@@ -106,25 +106,36 @@
 			</definition>
 	 -->
 	<!-- ************************************************** use by shweta *************************************************** -->
-	       <definition name="view" extends="baseLayout" >
+	       <definition name="viewpo" extends="baseLayout" >
+	       <put-attribute name="title" value="view"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/viewPo.jsp" />
 			</definition>
 			
 			<definition name="edit" extends="baseLayout" >
+			 <put-attribute name="title" value="editpo"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/EditPo.jsp" />
 			</definition>
 		   
 		   <definition name="supplierinvoiceview" extends="baseLayout" >
+		   <put-attribute name="title" value="supplierinvoice"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Invoice.jsp" />
 			</definition>
 			
 			<definition name="acknowledgementView" extends="baseLayout" >
+			<put-attribute name="title" value="acknowledgement"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Ack.jsp" />
 			</definition>
 			
 			<definition name="supplierackView" extends="baseLayout" >
+			<put-attribute name="title" value="supplierack"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Acksupplier.jsp" />
 			</definition>	
+			
+			 <!-- Master masters pages -->
+			<definition name="getcustomerlevel" extends="baseLayout" >
+			 <put-attribute name="title" value="customerLevels"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/customerLevelsjsp.jsp" />
+			</definition>
 	 
 	<!-- ************************************************** use by shweta *************************************************** -->
 	      
