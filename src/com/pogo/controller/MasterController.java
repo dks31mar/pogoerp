@@ -2,7 +2,6 @@ package com.pogo.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.ProcessBuilder.Redirect;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,13 +33,16 @@ import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.CompanyInfo;
 import com.pogo.model.Currency;
+import com.pogo.model.CustomerLevels;
 import com.pogo.model.PoRefEntryItemDetailCopy;
+import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.UserEmployee;
 
 
 
 import com.pogo.model.Zones;
 import com.pogo.service.CompanyInfoService;
+import com.pogo.service.MasterMastersService;
 import com.pogo.service.MasterProductService;
 import com.pogo.service.RegionService;
 
@@ -58,6 +60,8 @@ public class MasterController
 	@Autowired
 	private MasterProductService masterProductService;
 	
+	@Autowired
+	private MasterMastersService masterMastersService;
 	
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
 	public ModelAndView getUserEmp(@ModelAttribute("userbean") UserEmployee userEmployee,
@@ -255,9 +259,29 @@ public class MasterController
 	/************************************************** use by shweta ***************************************************/
 	@RequestMapping(value="/customerLevels",method = RequestMethod.GET)
 	public ModelAndView getcustomerLevels( @ModelAttribute("command") CustomerLevelsBean customerlevel,HttpServletRequest request,BindingResult result ){
-		System.out.println("in get edit method");
-
-	return new ModelAndView("getcustomerlevel");
+		System.out.println("in customerlevels  method");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("customerLevelsList",  prepareCustomerLevelsListofBean(masterMastersService.customerLevelsList()));
+		System.out.println("***************************************** inside customer list ****************************");
+	return new ModelAndView("getcustomerlevel",model);
+	}
+	
+	
+	@SuppressWarnings("unused")
+	private List<CustomerLevelsBean> prepareCustomerLevelsListofBean(List<CustomerLevels> prodel){
+		List<CustomerLevelsBean> beans = null;
+		if(prodel != null && !prodel.isEmpty()){
+			beans = new ArrayList<CustomerLevelsBean>();
+			CustomerLevelsBean bean = null;
+			for(CustomerLevels pro : prodel){
+				bean = new CustomerLevelsBean();
+				//System.out.println(bean);
+				bean.setStatus(pro.getStatus());
+				bean.setLevel(pro.getLevel());
+				beans.add(bean);
+			}
+		}
+		return beans;
 	}
 	/************************************************** use by shweta ***************************************************/
 }

@@ -31,25 +31,7 @@
 			
   
  
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">6</a></li>
-      <li><a href="#">7</a></li>
-      <li><a href="#">8</a></li>
-      <li><a href="#">9</a></li>
-      <li><a href="#">10</a></li>
-     
-      
-    </ul>
-
-			 
-			 
+    
 			 
 			 
 			 
@@ -73,30 +55,30 @@
 							<form:label path="">S.No.</form:label></font></td>
 							
 							<td style="width: 150px" align="center">&nbsp;<font size="2" >
-							<form:label path="">Status</form:label></font></td>	
+							<form:label path="status">Status</form:label></font></td>	
 								
 							<td align="center" style="width: 150px">&nbsp;<font size="2" >
-							<form:label path="">Level</form:label></font></td>	
+							<form:label path="level">Level</form:label></font></td>	
 								
 							
 								
 						</tr>	
 					
 					
-					<%-- <c:if test="${!empty viewlist}">
-					<c:forEach items="${viewlist}" var="view" varStatus="loop">
+				 <c:if test="${!empty customerLevelsList}">
+					<c:forEach items="${customerLevelsList}" var="view" varStatus="loop">
 					
 					<tr>
 					
 					<td><c:out value="${loop.index+1}"></c:out></td>
-					<td><a href = "editpo"><c:out value="${view.porefno}"></c:out></a></td>
-					<td><c:out value="${view.porefdate}"></c:out></td>
-					<td><c:out value="${view.principalname}"></c:out></td>
-					<td><c:out value="${view.address}"></c:out></td>
+					
+					<td><c:out value="${view.status}"></c:out></td>
+					<td><c:out value="${view.level}"></c:out></td>
+					
 					</tr>
 					
 			
 					</c:forEach>
-					</c:if> --%>
+					</c:if> 
 					</table>
         </form:form> 
