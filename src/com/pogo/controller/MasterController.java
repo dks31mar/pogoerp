@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,9 +27,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CompanyInfoBean;
+import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.CompanyInfo;
+import com.pogo.model.Currency;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.UserEmployee;
 
@@ -36,6 +39,7 @@ import com.pogo.model.UserEmployee;
 
 import com.pogo.model.Zones;
 import com.pogo.service.CompanyInfoService;
+import com.pogo.service.MasterProductService;
 import com.pogo.service.RegionService;
 
 import com.pogo.service.UserEmployeeService;
@@ -48,8 +52,12 @@ public class MasterController
 	private RegionService regionService;
 	@Autowired
 	private CompanyInfoService companyservice;
-	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
 	
+	@Autowired
+	private MasterProductService masterProductService;
+	
+	
+	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
 	public ModelAndView getUserEmp(@ModelAttribute("userbean") UserEmployee userEmployee,
 			HttpServletRequest request)
 	{
@@ -188,7 +196,58 @@ public class MasterController
 		return comp;
 	}
 
+	/*
+	 * Master product
+	 * 
+	 * currency by dks
+	 * */
 	
+	
+	@RequestMapping(value="/currency",method = RequestMethod.GET)
+	public ModelAndView getCurrency(@ModelAttribute("currencyBean") CurrencyBean currencyBean,
+			HttpServletRequest request){
+		List<CurrencyBean> list=new ArrayList<CurrencyBean>();
+		list=masterProductService.getCurrencyDetails();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("currencylist", list);
+		
+			
+		
+		return new ModelAndView("currency",model);
+}
 
+	
+	
+	@RequestMapping(value="savecurrency",method=RequestMethod.POST)
+	@ResponseBody
+	public String addCurrency(@RequestBody String json,Model model) throws IOException{
+	System.out.println(json);
+		ObjectMapper mapper=new ObjectMapper();
+		CurrencyBean poref=mapper.readValue(json, CurrencyBean.class);
+		CurrencyBean poref1=new CurrencyBean();
+		poref1.setCurrencyname(poref.getCurrencyname());
+		poref1.setCurrencysymbol(poref.getCurrencysymbol());
+		poref1.setCurrencytype(poref.getCurrencytype());
+		
+		//poref.setPorefentryitemdetailid(null);
+		
+		
+		
+		masterProductService.addCurrency(poref1);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	return toJson(poref1);
+	}
+
+	private String toJson(CurrencyBean poRefEntry) {
+		ObjectMapper mapper = new ObjectMapper();
+	    try {
+	        String value = mapper.writeValueAsString(poRefEntry);
+	        // return "["+value+"]";
+	        return value;
+	    } catch (JsonProcessingException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
 	
 }

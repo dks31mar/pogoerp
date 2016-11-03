@@ -127,4 +127,11 @@
 			</definition>	
 	 
 	<!-- ************************************************** use by shweta *************************************************** -->
+	      
+	      
+	      <!-- Master product pages -->
+	      <definition name="currency" extends="baseLayout" >
+	      <put-attribute name="title" value="Add Currency"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/product/currency.jsp" />
+			</definition>
 	      </tiles-definitions>
