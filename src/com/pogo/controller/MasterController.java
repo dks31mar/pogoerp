@@ -28,7 +28,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CompanyInfoBean;
 import com.pogo.bean.CurrencyBean;
+import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
+import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.CompanyInfo;
 import com.pogo.model.Currency;
@@ -250,4 +252,12 @@ public class MasterController
 	    }
 	}
 	
+	/************************************************** use by shweta ***************************************************/
+	@RequestMapping(value="/customerLevels",method = RequestMethod.GET)
+	public ModelAndView getcustomerLevels( @ModelAttribute("command") CustomerLevelsBean customerlevel,HttpServletRequest request,BindingResult result ){
+		System.out.println("in get edit method");
+
+	return new ModelAndView("getcustomerlevel");
+	}
+	/************************************************** use by shweta ***************************************************/
 }

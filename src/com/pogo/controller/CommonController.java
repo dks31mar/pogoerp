@@ -137,7 +137,7 @@ public class CommonController {
 		System.out.println("in get view method");
 	Map<String, Object> model = new HashMap<String, Object>();
 		model.put("viewlist",  prepareViewListofBean(commonservice.viewList()));
-	return new ModelAndView("view",model);
+	return new ModelAndView("viewpo",model);
 	}
 	@SuppressWarnings("unused")
 	private List<PorefSupplierDetailBean> prepareViewListofBean(List<PorefSupplierDetail> prodel){
