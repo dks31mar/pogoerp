@@ -83,10 +83,50 @@
       
 			
 </div>
-<div>
+<div id="formid" class="col-md-11" style=" left: 20px;  height: 34px;">
+<div class="row">
+  <div class="col-md-4"><span style="color: black;"> <strong>Currency Name<span style="color: red;">*</span>:
+						</strong></span></div>
+  <div class="col-md-4"><span style="color: black;">
+							<strong>Currency Type<span
+								style="color: red;">*</span>:
+						</strong>
+					</span></div>
+  <div class="col-md-4"><span style="color: black;"> <strong>Currency Symbol<span
+								style="color: red;">*</span>:
+						</strong></span></div>
+</div>
+
+<div class="row">
+<input type="hidden" id="hiddenid"/>
+  <div class="col-md-4"><input path="loginname" type="text" class="validate[required] text-input" id="currencyname"
+						style="border-radius: 5px;" value="" name="loginname"
+						maxlength="20" autofocus="autofocus"></input></div>
+  <div class="col-md-4"><select class="selectpicker" data-style="btn-success" name="" id="currencytypeid" style="border-radius: 5px;">
+      <option value="pc">pc</option>
+      <option value="sc">sc</option>
+      
+  </select></div>
+  <div class="col-md-4"><input path="firstname" type="text" class="validate[required] text-input" id="currencysymbol"
+						style="border-radius: 5px;" name="firstname" value=""
+						 maxlength="20"></input></div>
+</div>
+
+
+
+<div class="row">
+<div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
+				class="btn btn-primary" id="savecurrencyForm">Save</button></div>
+				
+				<div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
+				class="btn btn-primary" id="EditcurrencyForm">Edit</button></div>
+</div>
+
 
 </div>
 </div>
+
+<br>
 <div id="pop" style="display: none;"></div>
 <div id="searchedRecord"></div>
 <div id="body">
@@ -108,15 +148,16 @@
 			<tr>
 						
 								<td>${loop.index+1}</td>
-								<td>${cur.currencysymbol}</td>
 								<td>${cur.currencyname}</td>
+								<td>${cur.currencysymbol}</td>
+								
 								<td>${cur.currencytype}</td>
 							
 						
-								<td><a href="editUser?id=${user.userempid}" title="Edit" align="center" >
+								<td><a href="#" onclick="editCur(${cur.currencyid})" title="Edit" align="center" >
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
-						<td style="margin"><a href="#"  onclick="deletUser(${user.userempid})"><span
+						<td style="margin"><a href="deletecurrency?id=${cur.currencyid}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
 					</tr>
 </c:forEach>
@@ -132,57 +173,7 @@
 </div>
 
 
-<div id="openModal" class="modalDialog">
 
-	<div>
-	<form id="formID" action="saveuserEmp" method="POST"
-			commandName="userbean">
-		<a href="#close" title="Close" class="close">X</a>
-		 <td style="display: none;"><input path="userempid" type="hidden" 
-		value="${user.userempid}" id=""></input> </td> 
-		<span style="text-align: center;" id="addemp"><h3>Add Currency</h3></span>
-		<!-- <span style="text-align: center;" id="editemp"><h3>Edit Employee</h3></span> -->
-		
-			<table class="flat-table">
-				<tr>
-					<td><span style="color: black;"> <strong>Currency Name<span style="color: red;">*</span>:
-						</strong></span></td>
-					<td><input path="loginname" type="text" class="validate[required] text-input" id="currencyname"
-						style="border-radius: 5px;" value="" name="loginname"
-						maxlength="20" autofocus="autofocus"></input></td>
-					<td><span style="color: black;">
-							<strong>Currency Type<span
-								style="color: red;">*</span>:
-						</strong>
-					</span></td>
-					<td><input path="dateofjoining" type="text" id="currencytype" class="validate[required] text-input"
-						style="border-radius: 2px;" name="dateofjoining" value="" 
-						 maxlength="20" id="datepickerjoin"></input></td>
-				</tr>
-				<tr>
-					<td><span style="color: black;"> <strong>Currency Symbol<span
-								style="color: red;">*</span>:
-						</strong></span></td>
-
-					<td><input path="firstname" type="text" class="validate[required] text-input" id="currencysymbol"
-						style="border-radius: 5px;" name="firstname" value=""
-						 maxlength="20"></input></td>
-
-					<td><span style="color: black;"><strong>Currency Rate<span
-								style="color: red;">*</span>:
-						</strong></span></td>
-					<td><input path="designation" type="text" class="validate[required] text-input" id="currencyrate"
-						style="border-radius: 5px;" name="designation" value=""
-						 maxlength="20"></input></td>
-
-				</tr>
-				
-			</table>
-			<button style="margin-left: 300px; margin-top: 6px;" type="button"
-				class="btn btn-primary" id="savecurrencyForm">Save</button>
-		</form>
-	</div>
-</div>
 <!-- <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
@@ -213,13 +204,9 @@
     
 $('#savecurrencyForm').click(function (){
 	var currencyname=$('#currencyname').val();
-	var currencytype=$('#currencytype').val();
+	var currencytype=$('#currencytypeid :selected').text();
 	var currencysymbol=$('#currencysymbol').val();
 	var currencyrate=$('#currencyrate').val();
-	
-	
-	alert(currencyname+'     <<<<<<>>>>>>   ' +currencytype+'               <<<<<<>>>>>>>       '+currencysymbol);
-	
 	var jsonObj={'currencysymbol':currencysymbol,
 			'currencyname':currencyname, 'currencytype':currencytype
 	} ;
@@ -235,8 +222,9 @@ $.ajax({
 	        },
 		     success: function(resposeJsonObject){
 		    	 $('#openModal').hide();
-		    	 window.location.currency;
-	     alert("saVE");
+		    	 //window.location.currency;
+		    	 window.location.reload();
+	     
 	    }});
 	
 	
@@ -245,8 +233,97 @@ $(document).ready(
 	    function(){
 $("#getpopup").click(function(){
 	
-	 $("#openModal").modal('show');
+	 $("#formid").toggle('show');
+	 $('#EditcurrencyForm').hide();
+	 $("#savecurrencyForm").show();
+	 $("#currencyname").val('');
+	 $("#currencytypeid").val('');
+	 $("#currencysymbol").val('');
+	 $("#hiddenid").val('');
 	
 });
 	    });
+$("#formid").hide();
+
+
+/* $('#deleteCurrency').click(function(id){
+	$.ajax({
+		url: "deletecurrency?id="+id,
+		type: "POST",
+		
+		  data :JSON.stringify(jsonObj),
+		  cache:false,
+	        beforeSend: function(xhr) {  
+	            xhr.setRequestHeader("Accept", "application/json");  
+	            xhr.setRequestHeader("Content-Type", "application/json");  
+	        },
+		     success: function(resposeJsonObject){
+		    	 
+		    	 window.location.reload();
+	  
+	    }});
+}); */
+
+
+
+ function editCur(id){
+	$("#formid").show('show');
+	$('#EditcurrencyForm').show();
+$.ajax({
+	url: "getcurrency?id="+id,
+	type: "POST",
+	
+	     success: function(respose){
+	    	 
+	    	 var data=JSON.parse(respose)
+	    	 var name=data.name;
+	    	 var symbol=data.sysmbol;
+	    	 var type=data.type;
+	    	 var id=data.id;
+	    	 alert("DDDDDDDDDDDDDDDD                   "+id);
+	    	 $("#currencyname").val(name);
+	    	 $("#currencytypeid").val(type);
+	    	 $("#currencysymbol").val(symbol);
+	    	 $("#hiddenid").val(id);
+	    	 $("#savecurrencyForm").hide();
+    }});
+} 
+
+
+
+
+$('#EditcurrencyForm').click(function (){
+	var id=$("#hiddenid").val();
+	var currencyname=$('#currencyname').val();
+	var currencytype=$('#currencytypeid :selected').text();
+	var currencysymbol=$('#currencysymbol').val();
+	
+	var d1w=$("#hiddenid").val();
+	alert(d1w);
+	
+	alert(currencyname+'     <<<<<<>>>>>>   ' +currencytype+'               <<<<<<>>>>>>>       '+currencysymbol);
+	
+	var jsonObj={'currencysymbol':currencysymbol,
+			'currencyname':currencyname, 'currencytype':currencytype,'currencyid':id
+	} ;
+$.ajax({
+		url: "editcurrency",
+		type: "POST",
+		
+		  data :JSON.stringify(jsonObj),
+		  cache:false,
+	        beforeSend: function(xhr) {  
+	            xhr.setRequestHeader("Accept", "application/json");  
+	            xhr.setRequestHeader("Content-Type", "application/json");  
+	        },
+		     success: function(resposeJsonObject){
+		    	 $('#openModal').hide();
+		    	 //window.location.currency;
+		    	 window.location.reload();
+	     alert("edit");
+	    }});
+	
+	
+});
+
 </script>

@@ -2,7 +2,6 @@ package com.pogo.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.ProcessBuilder.Redirect;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,11 +27,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CompanyInfoBean;
 import com.pogo.bean.CurrencyBean;
-import com.pogo.bean.PoRefEntryItemDetailCopyBean;
+import com.pogo.bean.UnitBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.CompanyInfo;
-import com.pogo.model.Currency;
-import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.UserEmployee;
 
 
@@ -106,8 +103,8 @@ public class MasterController
 
 	}
 	
-	/*// for Edit data fetch
-	@RequestMapping(value = "/editUserdetails", method = RequestMethod.GET)
+// for Edit data fetch
+	/*@RequestMapping(value = "/editUserdetails", method = RequestMethod.GET)
 	public void editCity(@RequestParam("userempid") Integer id, @ModelAttribute("userbean")UserEmployeeBean userDTO , BindingResult result,
 			HttpServletResponse res) {
 		List<UserEmployee> emp = userEmployeeservice.getUserById(id);
@@ -250,4 +247,138 @@ public class MasterController
 	    }
 	}
 	
+	@RequestMapping(value = "deletecurrency", method = RequestMethod.GET)
+	public ModelAndView deleteuserCurrencyData(@RequestParam("id") int id) {
+		masterProductService.deleteCurrency(id);
+		List<CurrencyBean> list=new ArrayList<CurrencyBean>();
+		list=masterProductService.getCurrencyDetails();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("currencylist", list);
+		
+			
+		
+		return new ModelAndView("currency",model);
+	}
+	
+	
+	@RequestMapping(value = "getcurrency", method = RequestMethod.POST)
+	public void getCurrency(@RequestParam("id") String id,HttpServletResponse res )throws ParseException  {
+		String curList=masterProductService.getCurrency(id);
+		System.out.println(curList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(curList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
+	@RequestMapping(value="editcurrency",method=RequestMethod.POST)
+	@ResponseBody
+	public String editCurrency(@RequestBody String json,Model model) throws IOException{
+	System.out.println("Deeoak              *****************************************************");
+		ObjectMapper mapper=new ObjectMapper();
+		CurrencyBean poref=mapper.readValue(json, CurrencyBean.class);
+		CurrencyBean poref1=new CurrencyBean();
+		poref1.setCurrencyid(poref.getCurrencyid());
+		poref1.setCurrencyname(poref.getCurrencyname());
+		poref1.setCurrencysymbol(poref.getCurrencysymbol());
+		poref1.setCurrencytype(poref.getCurrencytype());
+		
+		//poref.setPorefentryitemdetailid(null);
+		
+		
+		
+		masterProductService.editCurrency(poref1);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	return toJson1(poref1);
+	}
+
+	private String toJson1(CurrencyBean poRefEntry) {
+		ObjectMapper mapper = new ObjectMapper();
+	    try {
+	        String value = mapper.writeValueAsString(poRefEntry);
+	        // return "["+value+"]";
+	        return value;
+	    } catch (JsonProcessingException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	
+	@RequestMapping(value="/unit",method = RequestMethod.GET)
+	public ModelAndView getUnits(@ModelAttribute("unitBean") UnitBean currencyBean,
+			HttpServletRequest request){
+		List<UnitBean> list=new ArrayList<UnitBean>();
+		list=masterProductService.getUnitsDetails();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("unitlist", list);
+		return new ModelAndView("getunit",model);
+}
+	
+	
+	@RequestMapping(value="addunit",method=RequestMethod.POST)
+	@ResponseBody
+	public void addUnit(@RequestBody String json,Model model) throws IOException{
+	System.out.println("Deeoak              ***************************************************** \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		UnitBean poref=mapper.readValue(json, UnitBean.class);
+		UnitBean poref1=new UnitBean();
+		//poref1.setCurrencyid(poref.getCurrencyid());
+		poref1.setUnittype(poref.getUnittype());
+		
+		//poref.setPorefentryitemdetailid(null);
+		
+		
+		
+		masterProductService.addUnit(poref1);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	//return toJson1(poref1);
+	}
+	
+	@RequestMapping(value = "deleteunit", method = RequestMethod.GET)
+	public ModelAndView deleteUnitData(@RequestParam("id") int id) {
+		masterProductService.deleteUnit(id);
+		List<UnitBean> list=new ArrayList<UnitBean>();
+		list=masterProductService.getUnitsDetails();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("unitlist", list);
+		return new ModelAndView("getunit",model);
+	}
+	
+	
+	
+	@RequestMapping(value = "getunit", method = RequestMethod.POST)
+	public void getUnit(@RequestParam("id") String id,HttpServletResponse res )throws ParseException  {
+		String curList=masterProductService.getUnitById(id);
+		System.out.println(curList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(curList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
+	
+	
+	@RequestMapping(value="editunit",method=RequestMethod.POST)
+	@ResponseBody
+	public void editUnit(@RequestBody String json,Model model) throws IOException{
+	System.out.println("Deeoak              *****************************************************");
+		ObjectMapper mapper=new ObjectMapper();
+		UnitBean poref=mapper.readValue(json, UnitBean.class);
+		UnitBean poref1=new UnitBean();
+		poref1.setUnittypeid(poref.getUnittypeid());
+		poref1.setUnittype(poref.getUnittype());
+		
+		masterProductService.editUnit(poref1);
+		
+	}
 }
