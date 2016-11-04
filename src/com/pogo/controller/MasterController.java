@@ -505,13 +505,7 @@ public class MasterController
 		poref1.setProductheadid(poref.getProductheadid());
 		poref1.setProductsubheadname(poref.getProductsubheadname());
 		
-		//poref.setPorefentryitemdetailid(null);
-		
-		
-		
 		masterProductService.addProductSubHead(poref1);
-		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
-	//return toJson1(poref1);
 	}
 	
 	
