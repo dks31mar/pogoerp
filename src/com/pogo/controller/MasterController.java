@@ -44,19 +44,6 @@ import com.pogo.model.CompanyInfo;
 
 import com.pogo.model.CustomerLevels;
 
-import com.pogo.model.Currency;
-import com.pogo.model.PoRefEntryItemDetailCopy;
-import com.pogo.model.PorefSupplierDetail;
-
-
-
-
-import com.pogo.model.Currency;
-import com.pogo.model.CustomerLevels;
-import com.pogo.model.PoRefEntryItemDetailCopy;
-import com.pogo.model.PorefSupplierDetail;
-
-
 import com.pogo.model.UserEmployee;
 
 
