@@ -532,7 +532,7 @@ public class MasterController
 
 	
 	
-	@SuppressWarnings("unused")
+	
 	private List<CustomerLevelsBean> prepareCustomerLevelsListofBean(List<CustomerLevels> prodel){
 		List<CustomerLevelsBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
