@@ -25,23 +25,36 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.pogo.bean.CompanyInfoBean;
 import com.pogo.bean.CurrencyBean;
 
 import com.pogo.bean.UnitBean;
 
 import com.pogo.bean.CustomerLevelsBean;
-import com.pogo.bean.PoRefEntryItemDetailCopyBean;
-import com.pogo.bean.PorefSupplierDetailBean;
+import com.pogo.bean.ProductHeadBean;
+import com.pogo.bean.ProductSubHeadBean;
+
 
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.CompanyInfo;
+
+import com.pogo.model.CustomerLevels;
+
+import com.pogo.model.Currency;
+import com.pogo.model.PoRefEntryItemDetailCopy;
+import com.pogo.model.PorefSupplierDetail;
+
+
+
+
 import com.pogo.model.UserEmployee;
 
 
 
 import com.pogo.model.Zones;
 import com.pogo.service.CompanyInfoService;
+
 import com.pogo.service.MasterProductService;
 import com.pogo.service.RegionService;
 
@@ -58,6 +71,7 @@ public class MasterController
 	
 	@Autowired
 	private MasterProductService masterProductService;
+	
 	
 	
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
@@ -220,6 +234,7 @@ public class MasterController
 }
 
 	
+
 	
 	@RequestMapping(value="savecurrency",method=RequestMethod.POST)
 	@ResponseBody
@@ -388,14 +403,142 @@ public class MasterController
 		masterProductService.editUnit(poref1);
 		
 	}
+	
+	
+	@RequestMapping(value="/producthead",method = RequestMethod.GET)
+	public ModelAndView getProductHead(@ModelAttribute("producthead") ProductHeadBean productHeadBean,
+			HttpServletRequest request){
+		List<ProductHeadBean> list=new ArrayList<ProductHeadBean>();
+		list=masterProductService.getProductHeadDetails();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("productlist", list);
+		return new ModelAndView("productheadpage",model);
+}
 
+	
+	@RequestMapping(value="addproduct",method=RequestMethod.POST)
+	@ResponseBody
+	public void addProducthead(@RequestBody String json,Model model) throws IOException{
+	System.out.println("Deeoak              ***************************************************** \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ProductHeadBean poref=mapper.readValue(json, ProductHeadBean.class);
+		ProductHeadBean poref1=new ProductHeadBean();
+		//poref1.setCurrencyid(poref.getCurrencyid());
+		poref1.setProductheadname(poref.getProductheadname());
+		
+		//poref.setPorefentryitemdetailid(null);
+		
+		
+		
+		masterProductService.addProductHead(poref1);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	//return toJson1(poref1);
+	}
+	
+	
+	
+	@RequestMapping(value = "deleteproducthead", method = RequestMethod.GET)
+	public ModelAndView deleteProductHeadData(@RequestParam("id") int id) {
+		masterProductService.deleteProductHead(id);
+		List<ProductHeadBean> list=new ArrayList<ProductHeadBean>();
+		list=masterProductService.getProductHeadDetails();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("productlist", list);
+		return new ModelAndView("productheadpage",model);
+	}
+	
+	
+	@RequestMapping(value="editproducthead",method=RequestMethod.POST)
+	@ResponseBody
+	public void editProducthead(@RequestBody String json,Model model) throws IOException{
+	System.out.println("Deeoak              *****************************************************");
+	ObjectMapper mapper=new ObjectMapper();
+	ProductHeadBean poref=mapper.readValue(json, ProductHeadBean.class);
+	ProductHeadBean poref1=new ProductHeadBean();
+	//poref1.setCurrencyid(poref.getCurrencyid());
+	poref1.setProductheadname(poref.getProductheadname());
+	poref1.setProductheadid(poref.getProductheadid());	
+		masterProductService.editProductHead(poref1);
+		
+	}
+	
+	
+	
+	@RequestMapping(value = "getproducthead", method = RequestMethod.POST)
+	public void getProductheadByID(@RequestParam("id") String id,HttpServletResponse res )throws ParseException  {
+		String curList=masterProductService.getProductHeadById(id);
+		System.out.println(curList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(curList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	
+
+	@RequestMapping(value="/productsubhead",method = RequestMethod.GET)
+	public ModelAndView ProductSubHead(@ModelAttribute("producthead") ProductHeadBean productHeadBean,
+			HttpServletRequest request){
+		List<ProductHeadBean> list=new ArrayList<ProductHeadBean>();
+		list=masterProductService.getProductHeadDetails();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("productlist", list);
+		
+		
+		return new ModelAndView("productsubheadpage",model);
+}
+
+	
+	@RequestMapping(value="addproductSub",method=RequestMethod.POST)
+	@ResponseBody
+	public void addProductSubhead(@RequestBody String json,Model model) throws IOException{
+	System.out.println("Deeoak              ***************************************************** \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ProductSubHeadBean poref=mapper.readValue(json, ProductSubHeadBean.class);
+		ProductSubHeadBean poref1=new ProductSubHeadBean();
+		//poref1.setCurrencyid(poref.getCurrencyid());
+		poref1.setProductheadid(poref.getProductheadid());
+		poref1.setProductsubheadname(poref.getProductsubheadname());
+		
+		//poref.setPorefentryitemdetailid(null);
+		
+		
+		
+		masterProductService.addProductSubHead(poref1);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	//return toJson1(poref1);
+	}
+	
+	
+	
 	/************************************************** use by shweta ***************************************************/
-	@RequestMapping(value="/customerLevels",method = RequestMethod.GET)
-	public ModelAndView getcustomerLevels( @ModelAttribute("command") CustomerLevelsBean customerlevel,HttpServletRequest request,BindingResult result ){
-		System.out.println("in get edit method");
-
-	return new ModelAndView("getcustomerlevel");
+	
+	
+	
+	@SuppressWarnings("unused")
+	private List<CustomerLevelsBean> prepareCustomerLevelsListofBean(List<CustomerLevels> prodel){
+		List<CustomerLevelsBean> beans = null;
+		if(prodel != null && !prodel.isEmpty()){
+			beans = new ArrayList<CustomerLevelsBean>();
+			CustomerLevelsBean bean = null;
+			for(CustomerLevels pro : prodel){
+				bean = new CustomerLevelsBean();
+				//System.out.println(bean);
+				bean.setStatus(pro.getStatus());
+				bean.setLevel(pro.getLevel());
+				beans.add(bean);
+			}
+		}
+		return beans;
 	}
 	/************************************************** use by shweta ***************************************************/
 
+	
+	
+	
+
+	
 }

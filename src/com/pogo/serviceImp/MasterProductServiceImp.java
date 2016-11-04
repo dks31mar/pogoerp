@@ -12,10 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
 import com.pogo.bean.CurrencyBean;
+import com.pogo.bean.ProductHeadBean;
+import com.pogo.bean.ProductSubHeadBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.dao.MasterProductDao;
 import com.pogo.model.Currency;
+import com.pogo.model.ProductHead;
+import com.pogo.model.ProductSubHead;
 import com.pogo.model.Unit;
 import com.pogo.model.UserEmployee;
 import com.pogo.service.MasterProductService;
@@ -157,6 +161,78 @@ public class MasterProductServiceImp implements MasterProductService{
 		cur.setUnittype(poref1.getUnittype());
 		
 		masterProductDao.editUnit(cur);
+	}
+
+	@Override
+	public List<ProductHeadBean> getProductHeadDetails() {
+		List<ProductHead> getdetails =masterProductDao.getProductHeadData();
+		List<ProductHeadBean> lists=new ArrayList<ProductHeadBean>();
+		for(ProductHead list: getdetails)
+		{
+			ProductHeadBean data=new ProductHeadBean();
+			data.setProductheadid(list.getProductheadid());
+			data.setProductheadname(list.getProductheadname());
+			
+			lists.add(data);
+		}
+			
+		
+		return lists;
+	}
+
+	@Override
+	public void addProductHead(ProductHeadBean poref1) {
+		ProductHead cur=new ProductHead();
+		cur.setProductheadname(poref1.getProductheadname());
+		
+		masterProductDao.addProductHead(cur);
+		
+	}
+
+	@Override
+	public void deleteProductHead(int id) {
+		masterProductDao.deleteProductHead(id);
+		
+	}
+
+	@Override
+	@Transactional
+	public void editProductHead(ProductHeadBean poref1) {
+		ProductHead cur=new ProductHead();
+		cur.setProductheadname(poref1.getProductheadname());
+		cur.setProductheadid(poref1.getProductheadid());
+		
+		masterProductDao.editProductHead(cur);
+	}
+
+	@Override
+	public String getProductHeadById(String id) {
+		List<ProductHead> emp=masterProductDao.getProductHeadById(id);
+		Map<String, Object> dd=new HashMap<>();
+ 		for(ProductHead data: emp)
+		{
+			
+			dd.put("id", data.getProductheadid());
+			dd.put("productname", data.getProductheadname());
+			
+		}
+ 		Gson gson=new Gson();
+ 		
+ 	String currencyString=	gson.toJson(dd);
+		
+		return currencyString;
+
+	}
+
+	@Override
+	public void addProductSubHead(ProductSubHeadBean poref1) {
+		
+		ProductSubHead cur=new ProductSubHead();
+		cur.setProductheadid(poref1.getProductheadid());
+		cur.setProductsubheadname(poref1.getProductsubheadname());
+		
+		masterProductDao.addProductSubHead(cur);
+		
 	}
 
 	
