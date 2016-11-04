@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.pogo.dao.MasterProductDao;
 import com.pogo.model.Currency;
+import com.pogo.model.ProductHead;
+import com.pogo.model.ProductSubHead;
 import com.pogo.model.Unit;
 
 @SuppressWarnings("unchecked")
@@ -85,6 +87,45 @@ int f=Integer.parseInt(id);
 		sessionFactory.getCurrentSession().update(cur);
 		sessionFactory.getCurrentSession().flush();
 		
+	}
+
+	@Override
+	public List<ProductHead> getProductHeadData() {
+		return (List<ProductHead>)sessionFactory.getCurrentSession().createCriteria(ProductHead.class).list();
+	}
+
+	@Override
+	public void addProductHead(ProductHead cur) {
+		sessionFactory.getCurrentSession().save(cur);
+		
+	}
+
+	@Override
+	public void deleteProductHead(int id) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM ProductHead WHERE productheadid = "+id).executeUpdate();
+		
+	}
+
+	@Override
+	public void editProductHead(ProductHead cur) {
+		sessionFactory.getCurrentSession().flush();
+		sessionFactory.getCurrentSession().update(cur);
+		sessionFactory.getCurrentSession().flush();
+		
+	}
+
+	@Override
+	public List<ProductHead> getProductHeadById(String id) {
+		int f=Integer.parseInt(id);
+		
+		return (List<ProductHead>) sessionFactory.getCurrentSession().createCriteria(ProductHead.class)
+				.add(Restrictions.eq("productheadid", f)).list();
+	}
+
+	@Override
+	public void addProductSubHead(ProductSubHead cur) {
+		
+		sessionFactory.getCurrentSession().save(cur);
 	}
 	
 }

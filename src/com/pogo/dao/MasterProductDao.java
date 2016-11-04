@@ -3,6 +3,8 @@ package com.pogo.dao;
 import java.util.List;
 
 import com.pogo.model.Currency;
+import com.pogo.model.ProductHead;
+import com.pogo.model.ProductSubHead;
 import com.pogo.model.Unit;
 
 public interface MasterProductDao {
@@ -26,5 +28,17 @@ public interface MasterProductDao {
 	List<Unit> getUnitById(String id);
 
 	void editUnit(Unit cur);
+
+	List<ProductHead> getProductHeadData();
+
+	void addProductHead(ProductHead cur);
+
+	void deleteProductHead(int id);
+
+	void editProductHead(ProductHead cur);
+
+	List<ProductHead> getProductHeadById(String id);
+
+	void addProductSubHead(ProductSubHead cur);
 
 }
