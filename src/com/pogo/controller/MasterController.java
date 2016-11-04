@@ -36,6 +36,9 @@ import com.pogo.bean.ProductHeadBean;
 import com.pogo.bean.ProductSubHeadBean;
 
 
+
+import com.pogo.bean.RegionBean;
+
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.CompanyInfo;
 
@@ -48,12 +51,21 @@ import com.pogo.model.PorefSupplierDetail;
 
 
 
+import com.pogo.model.Currency;
+import com.pogo.model.CustomerLevels;
+import com.pogo.model.PoRefEntryItemDetailCopy;
+import com.pogo.model.PorefSupplierDetail;
+
+
 import com.pogo.model.UserEmployee;
 
 
 
 import com.pogo.model.Zones;
 import com.pogo.service.CompanyInfoService;
+
+
+import com.pogo.service.MasterMastersService;
 
 import com.pogo.service.MasterProductService;
 import com.pogo.service.RegionService;
@@ -73,6 +85,8 @@ public class MasterController
 	private MasterProductService masterProductService;
 	
 	
+	@Autowired
+	private MasterMastersService masterMastersService;
 	
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
 	public ModelAndView getUserEmp(@ModelAttribute("userbean") UserEmployee userEmployee,
@@ -403,6 +417,7 @@ public class MasterController
 		masterProductService.editUnit(poref1);
 		
 	}
+
 	
 	
 	@RequestMapping(value="/producthead",method = RequestMethod.GET)
@@ -516,6 +531,18 @@ public class MasterController
 	
 	/************************************************** use by shweta ***************************************************/
 	
+
+
+	/************************************************** use by shweta ***************************************************/
+	@RequestMapping(value="/customerLevels",method = RequestMethod.GET)
+	public ModelAndView getcustomerLevels( @ModelAttribute("command") CustomerLevelsBean customerlevel,HttpServletRequest request,BindingResult result ){
+		System.out.println("in customerlevels  method");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("customerLevelsList",  prepareCustomerLevelsListofBean(masterMastersService.customerLevelsList()));
+		System.out.println("***************************************** inside customer list ****************************");
+	return new ModelAndView("getcustomerlevel",model);
+	}
+
 	
 	
 	@SuppressWarnings("unused")
@@ -540,5 +567,14 @@ public class MasterController
 	
 	
 
-	
+
+
+	@RequestMapping(value = "/saveEdit", method = RequestMethod.POST) 
+	public String saveEdit(Model model,
+			@ModelAttribute("userbean")RegionBean reg) throws ParseException
+	{
+		regionService.saveEdit(reg);
+		return "redirect:getuseremp";
+	}
+
 }
