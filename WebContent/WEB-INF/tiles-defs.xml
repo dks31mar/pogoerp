@@ -136,6 +136,11 @@
 			 <put-attribute name="title" value="customerLevels"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/customerLevelsjsp.jsp" />
 			</definition>
+			
+			<definition name="getcountry" extends="baseLayout" >
+			 <put-attribute name="title" value="country"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/country.jsp" />
+			</definition>
 	 
 	<!-- ************************************************** use by shweta *************************************************** -->
 	      
