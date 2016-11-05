@@ -92,7 +92,7 @@
   <div class="form-group">
   <label class="col-md-10 control-label"></label>
   <div class="col-md-2" >
-    <button type="submit" class="btn btn-warning"  id="sendLevel" >Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="button" class="btn btn-warning"  id="sendLevel" >Send <span class="glyphicon glyphicon-send"></span></button>
     </div>
   </div>
 </div>
@@ -128,24 +128,35 @@
 	</table>
 <script>
 
-$('#sendLevel').click(function(){
 	
-var newds=	$('#newdesg').val();
-var selected = $("#radioDiv input[type='radio']:checked").val();
-var des=$('#dedig').val();	
-	alert(newds+           '<>><><><><><><><><><><'           +selected+'       <><><><>>><><><><><><><     '+des  );
 	
-	$.ajax({
-			url : 'show-designation',
-			type : 'GET',
-			data : {
-				'designation' : newds,
-				'level':des,
-				'position':selected
-			},
-			success : function(response) {
-			}
-});
-
+	
+$('#sendLevel').click(function (){
+	var newds=	$('#newdesg').val();
+	var selected = $("#radioDiv input[type='radio']:checked").val();
+	var des=$('#dedig').val();	
+	
+	
+	var jsonObj={
+			'designation' : newds,
+			'level':des,
+			'position':selected
+		};
+$.ajax({
+		url: "show-designation",
+		type: "POST",
+		
+		  data :JSON.stringify(jsonObj),
+		  cache:false,
+	        beforeSend: function(xhr) {  
+	            xhr.setRequestHeader("Accept", "application/json");  
+	            xhr.setRequestHeader("Content-Type", "application/json");  
+	        },
+		     success: function(resposeJsonObject){
+		    	 
+	     
+	    }
+	        
 	});
+});
 </script>

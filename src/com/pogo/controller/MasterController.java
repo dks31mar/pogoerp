@@ -39,12 +39,6 @@ import com.pogo.bean.UnitBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.ProductHeadBean;
 import com.pogo.bean.ProductSubHeadBean;
-
-
-
-import com.pogo.bean.RegionBean;
-
-
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.dao.UserEmployeeDao;
 import com.pogo.model.CompanyInfo;
@@ -79,7 +73,7 @@ public class MasterController
 	private CompanyInfoService companyservice;
 
 	@Autowired
-	UserEmployeeDao empDao;
+	private UserEmployeeDao empDao;
 
 	
 	
@@ -236,13 +230,18 @@ public ModelAndView showAllDesignation(Map model,@RequestParam int designationid
 	System.out.println(designation);
 	return new ModelAndView("getdesignation",model);
 }*/
-@RequestMapping(value = "/show-designation", method = RequestMethod.GET)
-public @ResponseBody
-String getDesignation()
-		throws JsonProcessingException {
-	ObjectMapper map = new ObjectMapper();
-	return map.writeValueAsString(map);
-}
+@RequestMapping(value="show-designation",method=RequestMethod.POST)
+@ResponseBody
+public void getData(@RequestBody String json,Model model) throws IOException{
+	
+	
+	System.out.println(json);
+	ObjectMapper mapper=new ObjectMapper();
+	//DesignationBean degbean=mapper.readValue(json, DesignationBean.class);
+	}
+
+
+
 	@RequestMapping(value="/region",method = RequestMethod.GET)
 	public ModelAndView getRegion(Zones porefitem,HttpServletRequest request){
 	
@@ -294,19 +293,13 @@ String getDesignation()
 	@RequestMapping(value="/appregis",method = RequestMethod.GET)
 	public ModelAndView MobileAppRegis(@ModelAttribute("producthead") ProductHeadBean productHeadBean,
 			HttpServletRequest request){
+
 		
 		return new ModelAndView("appregis");
 }
 	
-	@RequestMapping(value="/promaster",method = RequestMethod.GET)
-	public ModelAndView productMaster(@ModelAttribute("producthead") ProductHeadBean productHeadBean,
-			HttpServletRequest request){
-		
-		
-		return new ModelAndView("promaster");
-}
 	
-	
+
 	
 	
 	
@@ -490,17 +483,14 @@ String getDesignation()
 	/************************************************** use by shweta ***************************************************/
 
 	
-	
-	
-
-
-
-	@RequestMapping(value = "/saveEdit", method = RequestMethod.POST) 
-	public String saveEdit(Model model,
-			@ModelAttribute("userbean")RegionBean reg) throws ParseException
+	/************************************************** used by satyendra ***************************************************/
+	@RequestMapping(value="/addzone",method = RequestMethod.GET)
+	public String editZones()
 	{
-		regionService.saveEdit(reg);
-		return "redirect:getuseremp";
-	}
-
+		
+		//regionService.saveZones(id);
+	//model.addAttribute("zones", regionService.saveZones(id));
+	
+		return "userbean";
+}
 }
