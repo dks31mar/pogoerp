@@ -215,6 +215,17 @@
 		   var fax    =	$('#fax').val();
 		   var regadress    =	$('#regadress').val();
 
+		   
+		   var mobileval = new RegExp("/[0-9]{10}/");
+		   
+		   
+		   
+		   
+		   if(mobileval.test(mobileno)){
+			   alert("cannot be blank")
+			   
+		   }else{
+		   
 			var jsonObj={
 					'zonesname':reginname,
 							'zonesaddress':regadress,
@@ -239,7 +250,7 @@
 				    	 alert("save")
 			    }});
 			
-			
+		   }
 		});
 		
 </script>
