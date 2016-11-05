@@ -224,7 +224,7 @@ function ConfirmDelete()
 				<c:forEach items="${userlist}" var="user" varStatus="loop">
 
 					<tr>
-						<td>${user.userempid}</td>
+						<td>${loop.index+1}</td>
 						<td>${user.loginname}</td>
 						<td>${user.designation}</td>
 
@@ -247,12 +247,8 @@ function ConfirmDelete()
 	</table>
 
 
-
-
-
-
-
 </div>
+
 
 
 

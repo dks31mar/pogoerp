@@ -21,13 +21,16 @@ public class RegionDaoImp implements RegionDao{
 		
 	}
 
-	
+	/*
 	public void add( Zones zon) {
 		sessionFactory.getCurrentSession().save(zon);
 		
 	
 	}
 
+	@Override
+	public Zones saveZones(Zones zon) {
+		sessionFactory.getCurrentSession().saveOrUpdate(zon);
 	
-	
+}*/
 }

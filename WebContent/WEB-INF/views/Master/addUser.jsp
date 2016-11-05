@@ -5,8 +5,11 @@
 <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
-<link href="resources/css/newdatepickercontrol.css" rel="stylesheet" type="text/css" />
 
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 
 
@@ -62,11 +65,11 @@
   <input   name="loginname" placeholder="User Name" required="required"  class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Joining Date</label>  
+  <label class="col-md-2 control-label" style="margin-left: -62px;">Joining Date<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  type="text"  class="form-control" name="dateofjoining" id="datepickerjoin" >
+  <input  type="text"  class="form-control" name="dateofjoining" id="datepickerjoin"  readonly="readonly" placeholder="Select Date" >
     </div>
   </div>
 </div>
@@ -98,11 +101,11 @@
   <input name="middlename"   placeholder="Middle Name" id="firstUppermiddle" onkeyup="javascript:capitalizemiddle(this.id, this.value);" class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">DOB</label> 
+  <label class="col-md-2 control-label" style="margin-left: -62px;">DOB<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="dob"  id="datepickerDob" placeholder="Select Date"  class="form-control"  type="text">
+  <input name="dob"  id="datepickerDob" placeholder="Select Date" readonly="readonly" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -254,15 +257,12 @@
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>
-<input type="text" id="datepickerjoin12">
+
 </fieldset>
 </form:form>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="resources/js/messagebox.js"></script>
-<script type="text/javascript" src="resources/js/messagebox.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
-<script src="resources/js/jquery.dialogBox.js" type="text/javascript"></script>
+</div>
+</div>
+
  <script type="text/javascript">
 
 	  $( function() {
@@ -270,7 +270,7 @@
 		  } );
 
 		$( function() {
-		    $( "#datepickerjoin12").datepicker();
+		    $( "#datepickerjoin").datepicker();
 		  } );
 		
 		
@@ -337,4 +337,4 @@
 		      document.getElementById(firstlastupper).value = str;
 		  } 	
 </script>
-</div>
+

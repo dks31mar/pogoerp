@@ -29,6 +29,7 @@
 			<definition name="savepro" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
 			</definition>
+			<!-- Employees -->
 			<definition name="getuseremp" extends="baseLayout" >
 			<put-attribute name="title" value="Employee" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/useremployee.jsp" />
@@ -41,7 +42,11 @@
 			<put-attribute name="title" value="Add Employee" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/addUser.jsp" />
 			</definition>
-			
+			<!-- Designation -->
+			<definition name="designation" extends="baseLayout" >
+			<put-attribute name="title" value="Designation" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/designationHome.jsp" />
+			</definition>
 			
 			
 			
@@ -101,6 +106,9 @@
 			</definition>
 			<definition name="Editregion" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/editregion.jsp" />
+			</definition>
+			 <definition name="addregion" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addregion.jsp" />
 			</definition>
 
             		<!-- ************************************************** use by satyendra *************************************************** -->
@@ -892,6 +900,17 @@
 	      <definition name="getunit" extends="baseLayout" >
 	      <put-attribute name="title" value="Units"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/Master/product/units.jsp" />
+			</definition>
+			
+			
+			<definition name="appregis" extends="baseLayout" >
+	      <put-attribute name="title" value="Units"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileappregistration.jsp" />
+			</definition>
+			
+			<definition name="promaster" extends="baseLayout" >
+	      <put-attribute name="title" value="Units"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/product/productmaster.jsp" />
 			</definition>
 			
 	      </tiles-definitions>

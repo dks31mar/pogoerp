@@ -138,6 +138,14 @@ public class CommonController {
 		//commonservice.getPoRefNo(request);
 	
 	return new ModelAndView("Editregion");
+	
+	}
+	@RequestMapping(value="/getzonepage",method = RequestMethod.GET)
+	public ModelAndView getAdd(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+	
+		//commonservice.getPoRefNo(request);
+	
+	return new ModelAndView("addregion");
 }
 	
 	
