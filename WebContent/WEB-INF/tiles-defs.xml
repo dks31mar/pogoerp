@@ -107,6 +107,9 @@
 			<definition name="Editregion" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/editregion.jsp" />
 			</definition>
+			 <definition name="addregion" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addregion.jsp" />
+			</definition>
 
             		<!-- ************************************************** use by satyendra *************************************************** -->
 			<!-- <definition name="AddPrinicpalPO" extends="baseLayout" >

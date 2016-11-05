@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pogo.bean.RegionBean;
+
+import com.pogo.bean.UserEmployeeBean;
 import com.pogo.dao.RegionDao;
 import com.pogo.daoImp.RegionDaoImp;
 import com.pogo.model.Zones;
@@ -34,12 +35,7 @@ public class RegionServiceImp implements RegionService{
 		return getbranch;
 	}
 
-	@Override
-	public void saveEdit(RegionBean reg) throws ParseException {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public Zones getUserById(int userId) {
 		// TODO Auto-generated method stub
@@ -53,4 +49,16 @@ public class RegionServiceImp implements RegionService{
 	}
 
 	
+
+	/*public void saveZones( RegionBean regbean) throws ParseException 
+	   Zones zone=new Zones();
+	zone.setZonesid(regbean.getZonesid());
+	zone.setZonesname(regbean.getZonesname());
+	zone.setZonesphone(regbean.getZonesphone());
+	zone.setZonesmail(regbean.getZonesemail());
+	zone.setZonesfax(regbean.getZonesfax());
+	zone.setZonesaddress(regbean.getZonesaddress());
+	userEmpdao.addUser(zone);
+		
+}*/
 }

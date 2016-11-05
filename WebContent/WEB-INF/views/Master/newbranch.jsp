@@ -85,7 +85,7 @@
 
 <tbody>
 <body>
-<TABLE WIDTH="375" BORDER="0" CELLSPACING="1" CELLPADDING="0" ALIGN="center">
+<TABLE WIDTH="400" BORDER="0" CELLSPACING="10"   ALIGN="center">
     <FORM NAME="RegionList" METHOD="post" ACTION="RegionMain.jsp?operation=ADDNEW">
          	</tbale>
          	<center>
@@ -99,7 +99,8 @@
 
   <tr id="ftr">
     <th>S.N.</th>
-    <th data-th="Driver details"><span>Branch</span></th>
+    <th data-th="Driver details"><span>States</span></th>
+     <th>Branches</th>
     <th>Phone No</th>
     <th>Fax No</th>
     <th>Head Name</th>
@@ -110,6 +111,7 @@
   <tr id="str">
     <td>1</td>
    <td id="branch_name1"><a href="#">Bhopal</a></td>
+    <td>Branches</td>
    <td id="phone_no1" ></td>
    <td id="fax_no1" ></td>
     <td id="product_no1" '></td>
@@ -122,6 +124,7 @@
     <td>2</td>
     
     <td id="branch_name"><a href="#">Gwalear</a></td>
+     <td>Branches</td>
     <td id="phone_no"></td>
     <td id="fax_no"></td>
     <td id="product_no"></td>
@@ -133,6 +136,7 @@
   <tr>
     <td>3</td>
     <td id="branch_name"><a href="#">Delhi</a></td>
+    <td>Branches</td>
     <td  id="phone_no"></td>
     <td id="fax_no"></td>
     <td id="product_no"></td>
@@ -143,6 +147,7 @@
   
     <td>4</td>
     <td id="branch_name"><a href="#">gurgaon</a></td>
+     <td>Branches</td>
     <td id="phone_no"></td>
     <td id="fax_no"></td>
     <td id="product_no"></td>
@@ -153,16 +158,18 @@
   <tr id="str">
     <td>5</td>
     <td id="branch_name"><a href="#">Branches</a></td>
+     <td>Branches</td>
     <td id="phone_no"></td>
      <td id="fax_no"></td>
     <td id="product_no"></td>
    <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
     <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>
+</tbody>
 
-  
-</tbody></table>      
+</table>      
 </FORM>
+
  <script>
  function edit_row(no)
  {
@@ -200,12 +207,12 @@
   document.getElementById("edit_button"+no).style.display="block";
   document.getElementById("save_button"+no).style.display="none";
  }
-/*
+
  function delete_row(no)
  {
   document.getElementById("row"+no+"").outerHTML="";
  }
-
+/*
  function add_row()
  {
   var new_name=document.getElementById("new_name").value;

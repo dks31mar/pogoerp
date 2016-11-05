@@ -43,12 +43,6 @@ import com.pogo.bean.UnitBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.ProductHeadBean;
 import com.pogo.bean.ProductSubHeadBean;
-
-
-
-import com.pogo.bean.RegionBean;
-
-
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.dao.UserEmployeeDao;
 import com.pogo.model.CompanyInfo;
@@ -775,17 +769,14 @@ public void getData(@RequestBody String json,Model model) throws IOException{
 	/************************************************** use by shweta ***************************************************/
 
 	
-	
-	
-
-
-
-	@RequestMapping(value = "/saveEdit", method = RequestMethod.POST) 
-	public String saveEdit(Model model,
-			@ModelAttribute("userbean")RegionBean reg) throws ParseException
+	/************************************************** used by satyendra ***************************************************/
+	@RequestMapping(value="/addzone",method = RequestMethod.GET)
+	public String editZones()
 	{
-		regionService.saveEdit(reg);
-		return "redirect:getuseremp";
-	}
-
+		
+		//regionService.saveZones(id);
+	//model.addAttribute("zones", regionService.saveZones(id));
+	
+		return "userbean";
+}
 }
