@@ -90,7 +90,7 @@ public class MasterController
 	private CompanyInfoService companyservice;
 
 	@Autowired
-	UserEmployeeDao empDao;
+	private UserEmployeeDao empDao;
 
 	
 	@Autowired
@@ -248,13 +248,18 @@ public ModelAndView showAllDesignation(Map model,@RequestParam int designationid
 	System.out.println(designation);
 	return new ModelAndView("getdesignation",model);
 }*/
-@RequestMapping(value = "/show-designation", method = RequestMethod.GET)
-public @ResponseBody
-String getDesignation()
-		throws JsonProcessingException {
-	ObjectMapper map = new ObjectMapper();
-	return map.writeValueAsString(map);
-}
+@RequestMapping(value="show-designation",method=RequestMethod.POST)
+@ResponseBody
+public void getData(@RequestBody String json,Model model) throws IOException{
+	
+	
+	System.out.println(json);
+	ObjectMapper mapper=new ObjectMapper();
+	//DesignationBean degbean=mapper.readValue(json, DesignationBean.class);
+	}
+
+
+
 	@RequestMapping(value="/region",method = RequestMethod.GET)
 	public ModelAndView getRegion(Zones porefitem,HttpServletRequest request){
 	
@@ -315,15 +320,9 @@ String getDesignation()
 		list=masterProductService.getCurrencyDetails();
 		Map<String, Object> model= new HashMap<String,Object>();
 		model.put("currencylist", list);
-		
-			
-		
 		return new ModelAndView("currency",model);
 }
 
-	
-
-	
 	@RequestMapping(value="savecurrency",method=RequestMethod.POST)
 	@ResponseBody
 	public String addCurrency(@RequestBody String json,Model model) throws IOException{
