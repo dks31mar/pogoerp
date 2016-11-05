@@ -13,6 +13,7 @@ import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.Unit;
+import com.pogo.model.Zones;
 @Repository("masterMastersdao")
 public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	@Autowired
@@ -79,4 +80,5 @@ int f=Integer.parseInt(id);
 		sessionFactory.getCurrentSession().update(poref1);
 		//sessionFactory.getCurrentSession().flush();
 	}
+	
 }

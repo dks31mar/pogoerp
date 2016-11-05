@@ -7,6 +7,7 @@ import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.Unit;
+import com.pogo.model.Zones;
 
 public interface MasterMastersDao {
 	List<CustomerLevels> customerLevelsList();
@@ -19,5 +20,6 @@ public interface MasterMastersDao {
 	 void  deleteCountry(Integer id);
 	 List<Country> getCountryById (String id);
 	 void editCountry(Country poref1);
+	
 	 
 }

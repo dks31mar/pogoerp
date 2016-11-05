@@ -57,6 +57,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control"  type="hidden">
   <input value="${zones.zonesname}" name="zonesname"  placeholder="Region Name" id="regionname"  class="form-control"  type="text">
     </div>
   </div>
@@ -208,19 +209,24 @@
 		$('#senddata').click(function(){
 			
 		var reginname =	$('#regionname').val();
-		var selecthead =	$('#selecthead').text();
+		//var selecthead =	$('#selecthead').text();
 		var mobileno =	$('#mobileno').val();
 		var emailid =	$('#emailid').val();
 		   var fax    =	$('#fax').val();
 		   var regadress    =	$('#regadress').val();
 
-			var jsonObj={'unittype':currencyname,'unittypeid':id} ;
+			var jsonObj={
+					'zonesname':reginname,
+							'zonesaddress':regadress,
+								'zonesfax':fax,
+								'zonesphone':mobileno,
+								'zonesemail':emailid
+			} ;
+		
 		
 			
-			
-			
 			$.ajax({
-				url: "editunit",
+				url: "addzonedetails",
 				type: "POST",
 				
 				  data :JSON.stringify(jsonObj),
@@ -230,10 +236,7 @@
 			            xhr.setRequestHeader("Content-Type", "application/json");  
 			        },
 				     success: function(resposeJsonObject){
-				    	 $('#openModal').hide();
-				    	 //window.location.currency;
-				    	 window.location.reload();
-			     alert("edit");
+				    	 alert("save")
 			    }});
 			
 			

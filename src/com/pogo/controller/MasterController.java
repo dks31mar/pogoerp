@@ -44,6 +44,7 @@ import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.ProductHeadBean;
 import com.pogo.bean.ProductSubHeadBean;
 import com.pogo.bean.UserEmployeeBean;
+import com.pogo.bean.ZonesBean;
 import com.pogo.dao.UserEmployeeDao;
 import com.pogo.model.CompanyInfo;
 
@@ -70,7 +71,7 @@ import com.pogo.service.CompanyInfoService;
 import com.pogo.service.MasterMastersService;
 
 import com.pogo.service.MasterProductService;
-import com.pogo.service.RegionService;
+import com.pogo.service.MasterOrganizationService;
 
 import com.pogo.service.UserEmployeeService;
 @Controller
@@ -78,8 +79,7 @@ public class MasterController
 {
 	@Autowired
 	private UserEmployeeService userEmployeeservice;
-	@Autowired
-	private RegionService regionService;
+	
 	@Autowired
 	private CompanyInfoService companyservice;
 
@@ -254,15 +254,8 @@ public void getData(@RequestBody String json,Model model) throws IOException{
 
 
 
-	@RequestMapping(value="/region",method = RequestMethod.GET)
-	public ModelAndView getRegion(Zones porefitem,HttpServletRequest request){
 	
-		List<Zones> getbranch=new ArrayList<Zones>();
-		getbranch=regionService.getBranches();
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("branchList",  getbranch);
-		return new ModelAndView("region",model);
-}
+
 	@RequestMapping(value="/savecompanyinfo",method = RequestMethod.POST)
 	public ModelAndView getCompanyInfo(@ModelAttribute("command") CompanyInfoBean companyInfo,HttpServletRequest request,BindingResult result){
 	
@@ -769,13 +762,12 @@ public void getData(@RequestBody String json,Model model) throws IOException{
 	/************************************************** use by shweta ***************************************************/
 
 	
-	/************************************************** used by satyendra ***************************************************/
-	@RequestMapping(value="/addzone",method = RequestMethod.GET)
-	public String editZones()
+	/************************************************** used by satyendra (5/11/016)***************************************************/
+	
+	@RequestMapping(value="/regionEdit",method = RequestMethod.GET)
+	public String editZones(@RequestParam int id, Model model)
 	{
-		
-		//regionService.saveZones(id);
-	//model.addAttribute("zones", regionService.saveZones(id));
+	//model.addAttribute("zones", regionService.editZones(id));
 	
 		return "userbean";
 }
