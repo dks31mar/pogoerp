@@ -1,8 +1,6 @@
 package com.pogo.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.ProcessBuilder.Redirect;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,10 +23,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.pogo.bean.CompanyInfoBean;
+import com.pogo.bean.DesignationBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
 import com.pogo.bean.UserEmployeeBean;
+import com.pogo.dao.UserEmployeeDao;
 import com.pogo.model.CompanyInfo;
+import com.pogo.model.Designation;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.UserEmployee;
 
@@ -48,6 +50,9 @@ public class MasterController
 	private RegionService regionService;
 	@Autowired
 	private CompanyInfoService companyservice;
+	@Autowired
+	UserEmployeeDao empDao;
+	
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
 	
 	public ModelAndView getUserEmp(@ModelAttribute("userbean") UserEmployee userEmployee,
@@ -141,7 +146,69 @@ public class MasterController
 		ObjectMapper map = new ObjectMapper();
 		return map.writeValueAsString(userbean);
 	}
+	/******Designation*******/
+@RequestMapping(value="/getdesignation",method = RequestMethod.GET)
+	public ModelAndView getUserEmp(Model model)
+	{
+	List<DesignationBean> list=new ArrayList<DesignationBean>();
+	list=userEmployeeservice.getDesignation();
+	List<Designation> designation =empDao.getDesignationname();
+	Map<String, Object> mode= new HashMap<String,Object>();
+	mode.put("designationlist", list);
+	model.addAttribute("desig", designation);
+	
+		return new ModelAndView("designation",mode);
+}
+@RequestMapping(value = "/saveDesignation", method = RequestMethod.POST) 
+public String saveDetails(Model model,
+		@ModelAttribute("designationbean") DesignationBean designationBean)
+   {
+	userEmployeeservice.adddDesignation(designationBean);
+	//List<Designation> listDesignation=userEmployeeservice.getListbylevel();
+	return "redirect:getdesignation";
+}
+	
+/*@RequestMapping(value = "authority", method = RequestMethod.GET)
+public @ResponseBody
+String designationList(Model model, @RequestParam String designation)
+		throws JsonProcessingException {
+	List<String> designList = userEmployeeservice.findDataByDesignation(designation);
+	Map<String, Object> h=new HashMap<>();
+	h.put("designationid", designList);
+	String listString = "";
 
+	for (String s : designList)
+	{
+	    listString += s+">>";
+	}
+	Gson gson=new Gson();
+	String json=gson.toJson(designList);
+	return new ObjectMapper().writeValueAsString(listString);
+}*/
+/*@RequestMapping(value = "getdesignationId", method = RequestMethod.GET)
+public @ResponseBody
+String getDesignation(@RequestParam int designationid)
+		throws JsonProcessingException {
+	List<DesignationBean> desigbean = userEmployeeservice.getDesignation(designationid);
+	System.out.println(desigbean);
+	ObjectMapper map = new ObjectMapper();
+	return map.writeValueAsString(desigbean);
+}*/
+/*@RequestMapping(value = "/show-designation", method = RequestMethod.GET)
+public ModelAndView showAllDesignation(Map model,@RequestParam int designationid) {
+	List<Designation> designation =empDao.getDesignationname();
+	System.out.println(designationid);
+	model.put("desig", designation);
+	System.out.println(designation);
+	return new ModelAndView("getdesignation",model);
+}*/
+@RequestMapping(value = "/show-designation", method = RequestMethod.GET)
+public @ResponseBody
+String getDesignation()
+		throws JsonProcessingException {
+	ObjectMapper map = new ObjectMapper();
+	return map.writeValueAsString(map);
+}
 	@RequestMapping(value="/region",method = RequestMethod.GET)
 	public ModelAndView getRegion(Zones porefitem,HttpServletRequest request){
 	

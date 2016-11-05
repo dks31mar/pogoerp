@@ -29,6 +29,7 @@
 			<definition name="savepro" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
 			</definition>
+			<!-- Employees -->
 			<definition name="getuseremp" extends="baseLayout" >
 			<put-attribute name="title" value="Employee" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/useremployee.jsp" />
@@ -41,7 +42,11 @@
 			<put-attribute name="title" value="Add Employee" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/addUser.jsp" />
 			</definition>
-			
+			<!-- Designation -->
+			<definition name="designation" extends="baseLayout" >
+			<put-attribute name="title" value="Designation" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/designationHome.jsp" />
+			</definition>
 			
 			
 			

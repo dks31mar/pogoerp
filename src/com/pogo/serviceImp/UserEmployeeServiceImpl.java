@@ -10,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ibm.icu.impl.USerializedSet;
 import com.ibm.icu.text.SimpleDateFormat;
+import com.pogo.bean.DesignationBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.dao.UserEmployeeDao;
+import com.pogo.model.Designation;
 import com.pogo.model.UserEmployee;
 import com.pogo.service.UserEmployeeService;
 @Service("userEmployeeService")
@@ -150,7 +152,6 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 	public void updateEmployee(UserEmployeeBean userEmployeeBean) throws ParseException {
 		SimpleDateFormat dateformat = new SimpleDateFormat("dd/mm/yyyy");
 		UserEmployee emp=new UserEmployee();
-		System.out.println(userEmployeeBean.getUserempid());
 		emp.setUserempid(userEmployeeBean.getUserempid());
 		emp.setLoginname(userEmployeeBean.getLoginname());
 		emp.setFirstname(userEmployeeBean.getFirstname());
@@ -178,11 +179,77 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 		
 	}
 
+@Override
+public void adddDesignation(DesignationBean designationBean) {
+	Designation degn= new Designation();
+	degn.setDesignation(designationBean.getDesignation());
+	degn.setLevel(designationBean.getLevel());
+    //degn.setDesignationid(designationBean.getDesignationid());
+   // System.out.println(degn.getDesignationid());
+	List<Designation> list=userEmpdao.findlistBylevel();
 	
+	
+	
+	for(Designation u:list){
+		System.out.println("*************         "+u.getLevel());
+	}
+	//System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       \n"+list);
+	//userEmpdao.createDesign(degn);
+	
+	/*if(designationBean.getPosition()!=2)
+	{
+		//int level=degn.getLevel()+1;
+		//System.err.println(level);
+		//userEmpdao.updateDesign(degn);
+	}*/
+	
+	
+}
 
+@Override
+public List<String> findDataByDesignation(String designation) {
+	List<String> list = userEmpdao.findDesignation(designation);
+	/*List<String> listbean = new ArrayList<String>();
+	for (S data : list) {
+		DesignationBean bean=new DesignationBean();
+		bean.setDesignation(data.getDesignation());
+		System.out.println(data.getDesignation());
+		listbean.add(bean);
+		
+}*/
+ return  list;
 	
+}
 
-	
+@Override
+public List<DesignationBean> getDesignation() {
+	 List<Designation> getdetails =userEmpdao.getDesignation();
+	List<DesignationBean> lists=new ArrayList<DesignationBean>();
+	for(Designation list: getdetails)
+	{
+		DesignationBean data=new DesignationBean();
+		data.setDesignationid(list.getDesignationid());
+		data.setDesignation(list.getDesignation());
+		lists.add(data);
+	}
+	return lists;
+}
+
+@Override
+public List<DesignationBean> getDesignation(int designationid)
+{
+	List<Designation> list = userEmpdao.getDesignation(designationid);
+	List<DesignationBean> listbean = new ArrayList<DesignationBean>();
+	for (Designation data : list) {
+		DesignationBean userData = new DesignationBean();
+		userData.setDesignationid(data.getDesignationid());
+		userData.setDesignation(data.getDesignation());
+		
+		listbean.add(userData);
+}
+	return listbean;
+
+}	
 	
 
 }

@@ -1,13 +1,19 @@
 package com.pogo.daoImp;
 
 
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pogo.dao.UserEmployeeDao;
+import com.pogo.model.Designation;
 import com.pogo.model.UserEmployee;
 
 @Repository("userEmployeeDao")
@@ -79,6 +85,49 @@ public class UserEmployeeDaoImpl implements UserEmployeeDao
 	public UserEmployee get(Integer userempid) {
 		
 		return (UserEmployee) sessionf.getCurrentSession().createCriteria(UserEmployee.class).add(Restrictions.eq("userempid", userempid));
+	}
+
+	@Override
+	public void createDesign(Designation degn) {
+		sessionf.getCurrentSession().save(degn);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	
+	public List<String> findDesignation(String designation) {
+		
+	List list=	sessionf.getCurrentSession().createCriteria(Designation.class).setProjection(Projections.property("designation")).list();
+	return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Designation> getDesignation() {
+		
+		return sessionf.getCurrentSession().createCriteria(Designation.class).addOrder(Order.asc("level")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Designation> getDesignation(int designationid) {
+		
+		return sessionf.getCurrentSession().createCriteria(Designation.class).add(Restrictions.eq("designationid", designationid)).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Designation> getDesignationname() {
+		return sessionf.getCurrentSession().createCriteria(Designation.class).addOrder(Order.asc("level")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Designation> findlistBylevel() {
+		
+		return sessionf.getCurrentSession().createCriteria(Designation.class).add(Restrictions.gt("level", 4)).list();
 	}
 
 	

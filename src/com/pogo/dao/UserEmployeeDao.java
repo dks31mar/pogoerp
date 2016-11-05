@@ -2,6 +2,7 @@ package com.pogo.dao;
 
 import java.util.List;
 
+import com.pogo.model.Designation;
 import com.pogo.model.UserEmployee;
 
 public interface UserEmployeeDao 
@@ -24,6 +25,20 @@ public interface UserEmployeeDao
 	UserEmployee getEmployee(int empid);
 
 	UserEmployee get(Integer userempid);
+
+	void createDesign(Designation degn);
+
+	List<String> findDesignation(String designation);
+
+	List<Designation> getDesignation();
+
+	List<Designation> getDesignation(int designationid);
+
+	List<Designation> getDesignationname();
+
+	List<Designation> findlistBylevel();
+
+	
 
 	
 

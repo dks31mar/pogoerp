@@ -3,6 +3,7 @@ package com.pogo.service;
 import java.text.ParseException;
 import java.util.List;
 
+import com.pogo.bean.DesignationBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.UserEmployee;
 
@@ -23,6 +24,14 @@ public interface UserEmployeeService
 	public UserEmployeeBean getEmployee(int empid);
 
 	void updateEmployee(UserEmployeeBean userEmployeeBean)throws ParseException;
+
+	void adddDesignation(DesignationBean designationBean);
+
+	List<String> findDataByDesignation(String designation);
+
+	List<DesignationBean> getDesignation();
+
+	List<DesignationBean> getDesignation(int designationid);
 
 	
 

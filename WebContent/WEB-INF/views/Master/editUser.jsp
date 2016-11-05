@@ -5,8 +5,15 @@
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript" src="resources/js/messagebox.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 
 
 	
@@ -50,7 +57,7 @@
 		  }
 		
 		function pass_validation()
-		{alert("hi");
+		{
 			var firstpassword=document.forp.password1.value;  
 			var secondpassword=document.forp.confirmPassword.value;  
 			if(firstpassword==secondpassword){  
@@ -63,8 +70,11 @@
 			return false;  
 			}  
 			} 
-		</script>
+		
+	</script>
+		
 <style>
+
 
 #success_message{ display: Edited;}
 </style>
@@ -72,8 +82,8 @@
 <body>
 
 
-
-<div class="container">
+<!-- <div class="bootstrap-iso"> -->
+ <div class="container">
 
     <form:form class="well form-horizontal" action="update-employee" name="forp" method="POST" commandName="employeebean"
      id="">
@@ -99,7 +109,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="empCode"  value="${employee.empCode}" class="form-control" required="required" placeholder=""  type="text">
+  <input   name="empCode"  value="${employee.empCode}" class="form-control" required="required" placeholder="A1243"  type="text">
     </div>
   </div>
 </div>
@@ -113,11 +123,11 @@
   <input value="${employee.loginname}"  name="loginname"  class="form-control" required="required"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Joining Date</label>  
+  <label  class="col-md-2 control-label" style="margin-left: -62px;">Joining Date</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  value="${employee.dateofjoining}" name="dateofjoining" id="datepickerjoin" placeholder="Select Date"  class="form-control"  type="text">
+  <input  value="${employee.dateofjoining}" name="dateofjoining" id="datepickerjoin" readonly="readonly" placeholder="Select Date"  class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -153,7 +163,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="dob" value="${employee.dob}" id="datepickerDob" placeholder="Select Date of Birth" class="form-control"  type="text">
+  <input name="dob" value="${employee.dob}" id="datepickerDob" placeholder="Select Date of Birth" readonly="readonly" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -296,9 +306,9 @@
    <label class="col-md-2 control-label" style="margin-left: -62px;">Address<span
 					style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
+    <div class="input-group" style="width: 215px;height: 70px;" >
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <textarea class="form-control" name="address" value="${employee.address}" required="required" placeholder="Address"></textarea>
+  <input  type="text" class="form-control" style="width: 215px;height: 70px;" name="address" value="${employee.address}" required="required" placeholder="Address">
     </div>
   </div>
 </div>
