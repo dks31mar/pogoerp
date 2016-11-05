@@ -894,4 +894,15 @@
 				<put-attribute name="body" value="/WEB-INF/views/Master/product/units.jsp" />
 			</definition>
 			
+			
+			<definition name="appregis" extends="baseLayout" >
+	      <put-attribute name="title" value="Units"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileappregistration.jsp" />
+			</definition>
+			
+			<definition name="promaster" extends="baseLayout" >
+	      <put-attribute name="title" value="Units"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/product/productmaster.jsp" />
+			</definition>
+			
 	      </tiles-definitions>
