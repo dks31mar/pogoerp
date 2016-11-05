@@ -33,13 +33,14 @@ import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.UnitBean;
 
 import com.pogo.bean.CustomerLevelsBean;
+import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ProductHeadBean;
 import com.pogo.bean.ProductSubHeadBean;
 
 
 
 import com.pogo.bean.RegionBean;
-
+import com.pogo.bean.StateBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.CompanyInfo;
 
@@ -49,7 +50,7 @@ import com.pogo.model.Currency;
 
 
 import com.pogo.model.CustomerLevels;
-
+import com.pogo.model.State;
 import com.pogo.model.UserEmployee;
 
 
@@ -516,7 +517,7 @@ public class MasterController
 	
 	
 	
-	/************************************************** use by shweta ***************************************************/
+	
 	
 
 
@@ -691,7 +692,92 @@ public class MasterController
 		masterMastersService.editCountry(poref1);
 		
 	}
+	@RequestMapping(value="/state",method = RequestMethod.GET)
+	public ModelAndView getState( @ModelAttribute("command") CountryBean country,HttpServletRequest request,BindingResult result ){
+		System.out.println("inside state  method");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("stateList",  prepareStateListofBean(masterMastersService.stateList()));
+		System.out.println("***************************************** inside state list ****************************");
+	return new ModelAndView("getstate",model);
+	}
+	@SuppressWarnings("unused")
+	private List<StateBean> prepareStateListofBean(List<State> prodel){
+		List<StateBean> beans = null;
+		if(prodel != null && !prodel.isEmpty()){
+			beans = new ArrayList<StateBean>();
+			StateBean bean = null;
+			for(State pro : prodel){
+				bean = new StateBean();
+				//System.out.println(bean);
+				bean.setStateId(pro.getStateId());
+				bean.setState(pro.getState());
+				
+				beans.add(bean);
+			}
+		}
+		return beans;
+	}
+	@RequestMapping(value="addstate",method=RequestMethod.POST)
+	@ResponseBody
+	public void addState(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add state method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		StateBean poref=mapper.readValue(json, StateBean.class);
+		StateBean poref1=new StateBean();
+		poref1.setState(poref.getState());
+		masterMastersService.addState(poref1);
+	}
+	
+	@RequestMapping(value = "deletestate", method = RequestMethod.GET)
+	public ModelAndView deleteState(@RequestParam("stateId") Integer id) {
+		masterMastersService.deleteState(id);
+		Map<String, Object> model= new HashMap<String,Object>();
+		List<StateBean> list=new ArrayList<StateBean>();
+		model.put("stateList",  prepareStateListofBean(masterMastersService.stateList()));
+		return new ModelAndView("getstate",model);
 		
+		
+	}
+	
+	
+	@RequestMapping(value = "getstate", method = RequestMethod.GET)
+	public void getState(@RequestParam("stateId") String id,HttpServletResponse res )throws ParseException  {
+		String cuList=masterMastersService.getStateById(id);
+		System.out.println("inside get state method");
+		
+		System.out.println(cuList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("outside get state method");
+	}
+	
+
+	@RequestMapping(value="editstate",method=RequestMethod.POST)
+	@ResponseBody
+	public void editState(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit state method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		StateBean poref=mapper.readValue(json, StateBean.class);
+		StateBean poref1=new StateBean();
+		poref1.setStateId(poref.getStateId());
+		poref1.setState(poref.getState());
+		
+		masterMastersService.editState(poref1);
+		
+	}
+	@RequestMapping(value="/district",method = RequestMethod.GET)
+	public ModelAndView getDistrict( @ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result ){
+		System.out.println("inside district  method");
+		Map<String, Object> model = new HashMap<String, Object>();
+		//model.put("districtList",  prepareDistrictListofBean(masterMastersService.districtList()));
+		System.out.println("***************************************** inside district list ****************************");
+	return new ModelAndView("getstate",model);
+	}
 	/************************************************** use by shweta ***************************************************/
 
 	

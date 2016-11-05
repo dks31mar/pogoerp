@@ -147,6 +147,11 @@
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/country.jsp" />
 			</definition>
 			
+			<definition name="getstate" extends="baseLayout" >
+			 <put-attribute name="title" value="state"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/state.jsp" />
+			</definition>
+		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/product/producthead.jsp" />
@@ -874,7 +879,7 @@
 			<put-attribute name="body" value="/WEB-INF/views/Master/product/productsubhead.jsp" />
 			</definition>
 	 
-	<!-- ************************************************** use by shweta *************************************************** -->
+	
 	      
 	      
 	      <!-- Master product pages currency-->
