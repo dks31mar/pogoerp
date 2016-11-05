@@ -24,6 +24,7 @@ import com.pogo.service.CommonService;
 @Controller
 public class CommonController {
 
+	
 	@Autowired
 	private CommonService commonservice;
 	
@@ -35,7 +36,7 @@ public class CommonController {
 	return new ModelAndView("AddPrinicpalPO");
 			
 }
-	//create by sat
+	//create by saty
 	@RequestMapping(value="/appuser",method = RequestMethod.GET)
 	public ModelAndView getUser(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
@@ -44,6 +45,7 @@ public class CommonController {
 	return new ModelAndView("AppUser");
 			
 }
+	
 	@RequestMapping(value="/branches",method = RequestMethod.GET)
 	public ModelAndView getBranches(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
@@ -129,6 +131,15 @@ public class CommonController {
 	
 	return new ModelAndView("addemployee");
 }
+
+	@RequestMapping(value="/editregion",method = RequestMethod.GET)
+	public ModelAndView getEditregion(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+	
+		//commonservice.getPoRefNo(request);
+	
+	return new ModelAndView("Editregion");
+}
+	
 	
 
 	/**************************************************** use by shweta *****************************************************/
@@ -137,7 +148,7 @@ public class CommonController {
 		System.out.println("in get view method");
 	Map<String, Object> model = new HashMap<String, Object>();
 		model.put("viewlist",  prepareViewListofBean(commonservice.viewList()));
-	return new ModelAndView("view",model);
+	return new ModelAndView("viewpo",model);
 	}
 	@SuppressWarnings("unused")
 	private List<PorefSupplierDetailBean> prepareViewListofBean(List<PorefSupplierDetail> prodel){

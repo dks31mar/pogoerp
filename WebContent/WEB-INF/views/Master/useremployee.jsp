@@ -230,8 +230,8 @@ function ConfirmDelete()
 
 						<%-- <td><a href="#"onclick="getDataList(${user.userempid})" title="Edit"align="center" id="edit"><span
 								class="glyphicon glyphicon-pencil"></span></a></td> --%>
-								<td><a href="editUser?id=${user.userempid}" title="Edit" align="center" ><span
-								class="glyphicon glyphicon-pencil"></span></a></td>
+								<td><a href="editUser?id=${user.userempid}" title="Edit" align="center" >
+								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								<%-- <td><a href="#openModal1 editEmp?id=${user.userempid}" title="Edit" align="center" ><span
 								class="glyphicon glyphicon-pencil"></span></a></td> --%>
 						<td style="margin"><a href="#"  onclick="deletUser(${user.userempid})"><span

@@ -79,7 +79,7 @@ xhttp.send(select);
 } */
 
 function getMenuOfMenu(select) {
-	alert(select);
+	//alert(select);
 $.ajax({
     url: 'getsubmenu2?select='+select+'',
     type: "GET",
@@ -87,7 +87,7 @@ $.ajax({
     //dataType: "json",
     //contentType: "application/json; charset=utf-8",
     success: function (data) {
-    	alert(data.length);
+    	//alert(data.length);
     	var data5='';
     	var data1=data.replace('{','');
     
@@ -742,7 +742,7 @@ if(name==null){
 						<!-- /.box-body -->
 					</div>
 					<!-- /.box -->
-					<div class="row">
+					<%-- <div class="row">
 						<div class="col-md-6">
 							<!-- DIRECT CHAT -->
 							<div class="box box-warning direct-chat direct-chat-warning">
@@ -994,11 +994,11 @@ if(name==null){
 							<!--/.box -->
 						</div>
 						<!-- /.col -->
-					</div>
+					</div> --%>
 					<!-- /.row -->
 
 					<!-- TABLE: LATEST ORDERS -->
-					<div class="box box-info">
+					<!-- <div class="box box-info">
 						<div class="box-header with-border">
 							<h3 class="box-title">Latest Orders</h3>
 
@@ -1013,7 +1013,7 @@ if(name==null){
 								</button>
 							</div>
 						</div>
-						<!-- /.box-header -->
+						/.box-header
 						<div class="box-body">
 							<div class="table-responsive">
 								<table class="table no-margin">
@@ -1085,9 +1085,9 @@ if(name==null){
 									</tbody>
 								</table>
 							</div>
-							<!-- /.table-responsive -->
+							/.table-responsive
 						</div>
-						<!-- /.box-body -->
+						/.box-body
 						<div class="box-footer clearfix">
 							<a href="javascript:void(0)"
 								class="btn btn-sm btn-info btn-flat pull-left">Place New
@@ -1095,8 +1095,8 @@ if(name==null){
 								class="btn btn-sm btn-default btn-flat pull-right">View All
 								Orders</a>
 						</div>
-						<!-- /.box-footer -->
-					</div>
+						/.box-footer
+					</div> -->
 					<!-- /.box -->
 				</div>
 				<!-- /.col -->

@@ -1,160 +1,89 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="resources/css/displaytag.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="resources/css/messagebox.css" />
-<link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
-<link rel="stylesheet" type="text/css" href="resources/css/view.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- 
-    <script src="<c:url value="/resources/js/jquery.1.10.2.min.js" />"></script>
 
+ 
+ <script src="<c:url value="/resources/js/jquery.1.10.2.min.js" />"></script>
 <!-- call region -->
 <link rel="stylesheet" type="text/css"
 	href="resources/css/table.css">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/branches.css">
-<script src="resources/js/branches.js" type="text/javascript"></script>
-
-
+	href="resources/css/branch.css">
+<script src="resources/js/branch.js" type="text/javascript"></script>
+<title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-<title>Insert title here</title>
-
-   
+<title>Branches details</title>
 
 </head>
-<tbody>
+
+
 <div class="container">
-	<div class="row">
-		<h1 class="text-center">Modal Login </h1>
-        <p class="text-center"><a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Open Login Modal</a></p>
-	</div>
-</div>
-<!-- END # BOOTSNIP INFO -->
+  <h2></h2>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-<!-- BEGIN # MODAL LOGIN -->
-<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header" align="center">
-					<img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
-				</div>
-                
-                <!-- Begin # DIV Form -->
-                <div id="div-forms">
-                
-                    <!-- Begin # Login Form -->
-                    <form id="login-form">
-		                <div class="modal-body">
-				    		<div id="div-login-msg">
-                                <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                <span id="text-login-msg">Type your username and password.</span>
-                            </div>
-				    		<input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
-				    		<input id="login_password" class="form-control" type="password" placeholder="Password" required>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
-                            </div>
-        		    	</div>
-				        <div class="modal-footer">
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-                            </div>
-				    	    <div>
-                                <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
-                                <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
-                            </div>
-				        </div>
-                    </form>
-                    <!-- End # Login Form -->
-                    
-                    <!-- Begin | Lost Password Form -->
-                    <form id="lost-form" style="display:none;">
-    	    		    <div class="modal-body">
-		    				<div id="div-lost-msg">
-                                <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                <span id="text-lost-msg">Type your e-mail.</span>
-                            </div>
-		    				<input id="lost_email" class="form-control" type="text" placeholder="E-Mail (type ERROR for error effect)" required>
-            			</div>
-		    		    <div class="modal-footer">
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
-                            </div>
-                            <div>
-                                <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
-                                <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
-                            </div>
-		    		    </div>
-                    </form>
-                    <!-- End | Lost Password Form -->
-                    
-                    <!-- Begin | Register Form -->
-                    <form id="register-form" style="display:none;">
-            		    <div class="modal-body">
-		    				<div id="div-register-msg">
-                                <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                <span id="text-register-msg">Register an account.</span>
-                            </div>
-		    				<input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
-                            <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
-                            <input id="register_password" class="form-control" type="password" placeholder="Password" required>
-            			</div>
-		    		    <div class="modal-footer">
-                            <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
-                            </div>
-                            <div>
-                                <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
-                                <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
-                            </div>
-		    		    </div>
-                    </form>
-                    <!-- End | Register Form -->
-                    
-                </div>
-                <!-- End # DIV Form -->
-                
-			</div>
-		</div>
-	</div>
-<h2>Modal Example</h2>
+  <!-- Modal -->
 
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">×</span>
-   <form>
-  Region Name:<input type="text" name="firstname"><br>
-  
-  Phone No:<input type="text" name="phone"><br>
-   
-  Fax No:<input type="text" name="fax"><br>
-
-  EmailId:<input type="text" name="fax"><br>
-
-  
-  Region Head Name:<input type="text" name="headname"><br>
-
-  Region Address:<input type="text" name="headname"><br>
-</form>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Employee</h4>
+        </div>
+        <div class="modal-body">
+		<form>
+    
+<table>
+     <tr>  <td> Region Name:</td>  <td><input type="text" name="first"></td></tr>
+    
+     <tr><td> Phone No: </td><td><input type="text" name="last"> </td></tr>
+           <tr><td>Fax No: </td>
+       
+        <td><input type="text" name="first"> </td></tr>
+		<tr><td>EmailId: </td><td><input type="text" name="first"> </td>     </tr>
+        
+           
+       
+        
+        <tr>
+		<td>Region Head Name</td>
+		<td>
+            <select>
+               <option value="affiliate">Select Affiliate</option>
+               <option value="x">x</option>
+               <option value="y">y</option>
+            </select>
+         </td></tr>
+         <tr>
+         		<td>Region Address</td>
+		<td><input type="text"></td>
+		</tr>
+		
+</table>
+		</form>
+         
+        </div>
+        <div class="modal-footer">
+		 <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
   </div>
-
+  
 </div>
-</tbody>
+
+
+<tbody>
 <body>
 <TABLE WIDTH="375" BORDER="0" CELLSPACING="1" CELLPADDING="0" ALIGN="center">
     <FORM NAME="RegionList" METHOD="post" ACTION="RegionMain.jsp?operation=ADDNEW">
@@ -173,7 +102,7 @@
     <th data-th="Driver details"><span>Branch</span></th>
     <th>Phone No</th>
     <th>Fax No</th>
-    <th>Product Detail</th>
+    <th>Head Name</th>
     <th>Edit</th>
     <th>Delete</th>
   </tr>
@@ -292,7 +221,7 @@
   document.getElementById("new_age").value="";
  }
  */
- 
+ /*
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -317,7 +246,7 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
+}*/
 
 </script>
   
