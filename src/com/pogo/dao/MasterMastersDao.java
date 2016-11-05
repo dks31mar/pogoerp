@@ -2,12 +2,9 @@ package com.pogo.dao;
 
 import java.util.List;
 
-import com.pogo.bean.CountryBean;
-import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
-import com.pogo.model.Unit;
-import com.pogo.model.Zones;
+import com.pogo.model.State;
 
 public interface MasterMastersDao {
 	List<CustomerLevels> customerLevelsList();
@@ -20,6 +17,13 @@ public interface MasterMastersDao {
 	 void  deleteCountry(Integer id);
 	 List<Country> getCountryById (String id);
 	 void editCountry(Country poref1);
+
+	 List<State> stateList();
+	 void addState(State poref1);
+	 List<Country> getdata (String id);
 	
-	 
+	 void  deleteState(Integer id);
+	 List<State> getStateById (String id);
+	 void editState(State poref1);
+
 }

@@ -155,6 +155,11 @@
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/country.jsp" />
 			</definition>
 			
+			<definition name="getstate" extends="baseLayout" >
+			 <put-attribute name="title" value="state"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/state.jsp" />
+			</definition>
+		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/product/producthead.jsp" />
@@ -882,7 +887,7 @@
 			<put-attribute name="body" value="/WEB-INF/views/Master/product/productsubhead.jsp" />
 			</definition>
 	 
-	<!-- ************************************************** use by shweta *************************************************** -->
+	
 	      
 	      
 	      <!-- Master product pages currency-->
@@ -895,6 +900,17 @@
 	      <definition name="getunit" extends="baseLayout" >
 	      <put-attribute name="title" value="Units"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/Master/product/units.jsp" />
+			</definition>
+			
+			
+			<definition name="appregis" extends="baseLayout" >
+	      <put-attribute name="title" value="Units"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileappregistration.jsp" />
+			</definition>
+			
+			<definition name="promaster" extends="baseLayout" >
+	      <put-attribute name="title" value="Units"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/product/productmaster.jsp" />
 			</definition>
 			
 	      </tiles-definitions>

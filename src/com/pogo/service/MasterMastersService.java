@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
+import com.pogo.bean.StateBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.bean.ZonesBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.State;
 
 
 public interface MasterMastersService {
@@ -22,5 +24,12 @@ public interface MasterMastersService {
 	void deleteCountry(Integer id);
 	String getCountryById(String id);
 	void editCountry(CountryBean poref1);
+
+	List<State> stateList();
+	void addState(StateBean poref1);
+	void deleteState(Integer id);
+	String getStateById(String id);
+	void editState(StateBean poref1);
+
 	
 }

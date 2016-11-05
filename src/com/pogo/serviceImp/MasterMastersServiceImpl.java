@@ -12,14 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.gson.Gson;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
-import com.pogo.bean.UnitBean;
-import com.pogo.bean.ZonesBean;
-import com.pogo.dao.CommonDao;
+import com.pogo.bean.StateBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
-import com.pogo.model.Unit;
-import com.pogo.model.Zones;
+import com.pogo.model.State;
 import com.pogo.service.MasterMastersService;
 
 @Service("masterMastersService")
@@ -27,6 +24,7 @@ import com.pogo.service.MasterMastersService;
 public class MasterMastersServiceImpl implements MasterMastersService {
 	@Autowired
 	private	MasterMastersDao masterMastersdao;
+	
 
 	@Override
 	
@@ -120,4 +118,58 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	}
 
 	
+	@Override
+	public List<State> stateList(){
+		return masterMastersdao.stateList();
+	}
+	
+	@Override
+	@Transactional
+	public void addState(StateBean poref1){
+		
+		//masterMastersdao.getdata(poref1.getCountryId());
+		//List<Country> list = masterMastersdao.getdata(id);
+		
+		State state=new State();
+		state.setState(poref1.getState());
+		//state.setCountryId(list);
+		
+		
+		masterMastersdao.addState(state);
+	}
+	
+	@Override
+	@Transactional
+	public void deleteState(Integer id){
+		masterMastersdao.deleteState(id);
+	}
+	
+	@Override
+	public String getStateById(String id){
+		List<State> state=masterMastersdao.getStateById(id);
+		Map<String, Object> dd=new HashMap<>();
+ 		for(State data: state)
+		{
+			
+			dd.put("stateId",data.getStateId() );
+			dd.put("state",data.getState());
+			
+		}
+ 		Gson gson=new Gson();
+ 		
+ 	String statelist=	gson.toJson(dd);
+		
+		return statelist;
+	}
+	
+	@Override
+	@Transactional
+	public void editState(StateBean poref1){
+		State state=new State();
+		state.setStateId(poref1.getStateId());
+		state.setState(poref1.getState());
+		
+		masterMastersdao.editState(state);
+	}
+
 }

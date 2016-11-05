@@ -12,6 +12,7 @@ import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.PorefSupplierDetail;
+import com.pogo.model.State;
 import com.pogo.model.Unit;
 import com.pogo.model.Zones;
 @Repository("masterMastersdao")
@@ -81,4 +82,47 @@ int f=Integer.parseInt(id);
 		//sessionFactory.getCurrentSession().flush();
 	}
 	
+
+	
+	@SuppressWarnings("unchecked")
+	public List<State> stateList(){
+		sessionFactory.getCurrentSession().flush();
+		return (List<State>) sessionFactory.getCurrentSession().createCriteria(State.class).list();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public void addState( State poref1){
+		sessionFactory.getCurrentSession().save(poref1);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+  public List<Country> getdata (String id){
+		sessionFactory.getCurrentSession().flush();
+		return (List<Country>) sessionFactory.getCurrentSession().createCriteria(Country.class).list();
+	}
+	
+	 @SuppressWarnings("unchecked")
+		@Override
+		public  void  deleteState(Integer id){
+			System.out.println("delete state");
+			sessionFactory.getCurrentSession().flush();
+			sessionFactory.getCurrentSession().createQuery("DELETE FROM State WHERE stateId = "+id).executeUpdate();
+		} 
+	 
+	 @SuppressWarnings("unchecked")
+		@Override
+	  public List<State> getStateById (String id){
+	         int f=Integer.parseInt(id);
+			
+			return (List<State>) sessionFactory.getCurrentSession().createCriteria(State.class)
+					.add(Restrictions.eq("id", f)).list();
+		}
+	 @Override
+		public void editState(State poref1){
+			sessionFactory.getCurrentSession().flush();
+			sessionFactory.getCurrentSession().update(poref1);
+			//sessionFactory.getCurrentSession().flush();
+		}
+
 }
