@@ -311,16 +311,6 @@ public void getData(@RequestBody String json,Model model) throws IOException{
 		return new ModelAndView("appregis");
 }
 	
-	
-
-	
-	
-	
-	
-	
-	
-
-
 	/************************************************** use by shweta ***************************************************/
 
 	/************************************************** use by shweta ***************************************************/
