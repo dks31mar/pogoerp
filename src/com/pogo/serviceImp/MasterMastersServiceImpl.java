@@ -13,13 +13,10 @@ import com.google.gson.Gson;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.StateBean;
-import com.pogo.bean.UnitBean;
-import com.pogo.dao.CommonDao;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.State;
-import com.pogo.model.Unit;
 import com.pogo.service.MasterMastersService;
 
 @Service("masterMastersService")
@@ -119,6 +116,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		
 		masterMastersdao.editCountry(country);
 	}
+
 	
 	@Override
 	public List<State> stateList(){
@@ -173,4 +171,5 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		
 		masterMastersdao.editState(state);
 	}
+
 }

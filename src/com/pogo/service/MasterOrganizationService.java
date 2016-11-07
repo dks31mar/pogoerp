@@ -5,15 +5,16 @@ import java.util.List;
 
 
 import com.pogo.bean.UserEmployeeBean;
+import com.pogo.bean.ZonesBean;
 import com.pogo.model.Zones;
 
-public interface RegionService {
+public interface MasterOrganizationService {
 
 	List<Zones> getBranches();
-	Zones getUserById(int userId);
-
-    List<Zones> getUserDetails();
 	
+    public ZonesBean editZones(int id);
+
+	void addZoneDeatils(ZonesBean poref);
 
 
   
