@@ -2,7 +2,9 @@ package com.pogo.daoImp;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,8 +12,10 @@ import org.springframework.stereotype.Repository;
 import com.pogo.dao.MasterProductDao;
 import com.pogo.model.Currency;
 import com.pogo.model.ProductHead;
+import com.pogo.model.ProductMaster;
 import com.pogo.model.ProductSubHead;
 import com.pogo.model.Unit;
+import com.pogo.model.UserEmployee;
 
 @SuppressWarnings("unchecked")
 @Repository("masterProductDao")
@@ -127,5 +131,33 @@ int f=Integer.parseInt(id);
 		
 		sessionFactory.getCurrentSession().save(cur);
 	}
+
+	@Override
+	public List<ProductMaster> getProData() {
+		return (List<ProductMaster>)sessionFactory.getCurrentSession().createCriteria(ProductMaster.class).list();
+	}
+
+	@Override
+	public void deleteProductData(int id) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM ProductMaster WHERE productid = "+id).executeUpdate();
+		
+	}
+
+	@Override
+	public List<ProductMaster> searchProData(String proname) {
+		Criteria c= sessionFactory.getCurrentSession().createCriteria(ProductMaster.class);
+			Criterion pmane= Restrictions.like("productname", proname+"%");
+			Criterion pcode= Restrictions.eq("productcode",proname+"%");
+		 
+		 return c.add(Restrictions.or(pmane, pcode)).list();
+	}
+
+	@Override
+	public List<ProductSubHead> getProductSubHeadData() {
+		
+		return (List<ProductSubHead>)sessionFactory.getCurrentSession().createCriteria(ProductSubHead.class).list();
+	}
+
+	
 	
 }

@@ -17,6 +17,7 @@ import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.State;
 
 import com.pogo.model.Unit;
+import com.pogo.model.Zones;
 @Repository("masterMastersdao")
 public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	@Autowired
@@ -86,6 +87,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		//sessionFactory.getCurrentSession().flush();
 	}
 	
+
 	
 	@SuppressWarnings("unchecked")
 	public List<State> stateList(){
@@ -127,7 +129,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			sessionFactory.getCurrentSession().update(poref1);
 			//sessionFactory.getCurrentSession().flush();
 		}
-	 
+
 	 
 	 @SuppressWarnings("unchecked")
 		public List<District> districtList(){
@@ -192,4 +194,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			sessionFactory.getCurrentSession().update(poref1);
 			//sessionFactory.getCurrentSession().flush();
 		}
+
+
+
 }
