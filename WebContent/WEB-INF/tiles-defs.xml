@@ -159,6 +159,21 @@
 			 <put-attribute name="title" value="state"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/state.jsp" />
 			</definition>
+			
+			<definition name="getdistrict" extends="baseLayout" >
+			 <put-attribute name="title" value="district"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/district.jsp" />
+			</definition>
+			
+			<definition name="getlocation" extends="baseLayout" >
+			 <put-attribute name="title" value="location"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/location.jsp" />
+			</definition>
+			
+			<definition name="getexpensemaster" extends="baseLayout" >
+			 <put-attribute name="title" value="expensemaster"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/expensemaster.jsp" />
+			</definition>
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
