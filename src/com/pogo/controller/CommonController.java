@@ -46,13 +46,13 @@ public class CommonController {
 			
 }
 	
-	@RequestMapping(value="/branches",method = RequestMethod.GET)
+/*	@RequestMapping(value="/branches",method = RequestMethod.GET)
 	public ModelAndView getBranches(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
 		//commonservice.getPoRefNo(request);
 	
 	return new ModelAndView("branches");
-			}
+			} */
 	@RequestMapping(value="/Email",method = RequestMethod.GET)
 	public ModelAndView getEmail(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	

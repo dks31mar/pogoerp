@@ -8,9 +8,19 @@ public interface MasterOrganizationDao {
 
 	List<Zones> getBranches();
 
+	void addZoneDeatils(Zones zon);
+
 	Zones editZones(int empid);
 
-	void addZoneDeatils(Zones zon);
+	List<Zones> getStates();
+
+	void updateRegion(Zones zon);
+
+	Zones deleteRegion(int id);
+
+	void deleteRegion(Zones zones);
+	
+	
 	
 }
 

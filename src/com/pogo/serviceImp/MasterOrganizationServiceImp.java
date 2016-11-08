@@ -59,4 +59,43 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			regionDao.addZoneDeatils(zon);
 			
 		}
+
+
+	@Override
+	public List<Zones> getStates() {
+		List<Zones> getbranch =regionDao.getBranches();
+		for(Zones s:getbranch)
+			System.out.println(s.getZonesname());
+		
+			return getbranch;
+	
+	}
+
+
+	@Override
+	@Transactional
+	public void updateregion(ZonesBean zonesBean) {
+		Zones zon=new Zones();
+		zon.setZonesid(zonesBean.getZonesid());
+		zon.setZonesaddress(zonesBean.getZonesaddress());
+		zon.setZonesemail(zonesBean.getZonesemail());
+		zon.setZonesname(zonesBean.getZonesname());
+		zon.setZonesfax(zonesBean.getZonesfax());
+		zon.setZonesphone(zonesBean.getZonesphone());
+		regionDao.updateRegion(zon);
+	}
+
+
+	@Override
+	@Transactional
+	public void deleteRegion(int id) {
+		Zones zones =regionDao.deleteRegion(id);
+		//System.out.println("on service"+zones.getZonesaddress());
+		regionDao.deleteRegion(zones);
+		
+	}
+
+
+	
+	
 }

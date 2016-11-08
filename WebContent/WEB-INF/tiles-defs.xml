@@ -104,7 +104,7 @@
 			<definition name="westbranch" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/westbranch.jsp" />
 			</definition>
-			<definition name="Editregion" extends="baseLayout" >
+			<definition name="editregion" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/editregion.jsp" />
 			</definition>
 			 <definition name="addregion" extends="baseLayout" >

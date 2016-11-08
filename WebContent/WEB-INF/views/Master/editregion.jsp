@@ -24,16 +24,11 @@
 <style>
 
 #success_message{ display: Edited;}
-</style>
+</style>	 
 
-
-
-	 
-<div id="message" style="display: none;"></div>
-<div id="body">
 <div class="container">
 
-    <form:form class="well form-horizontal" name="forp" action="saveuserEmp" method="POST"  commandName="userbean"
+    <form:form class="well form-horizontal" name="forp" action="update-region" method="POST"  commandName="zonesBean"
     id="" >
    
 <fieldset>
@@ -42,14 +37,21 @@
 <legend>Add/Edit Region</legend>
   
 <!-- Text input-->
-
+<div class="form-group">
+  <label class="col-md-2 control-label" >Region Id</label> 
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input name="zonesid"   placeholder="Region Name"  value="${getregion.zonesid}"   class="form-control"  type="text"  type="hidden">
+    </div>
+  </div>
+  </div>
 <div class="form-group">
   <label class="col-md-2 control-label" >Region Name</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control"  type="hidden">
-  <input name="lastname"   placeholder="Region Name" id="firstlastupper" onkeyup="javascript:capitalizelast(this.id, this.value);" class="form-control"  type="text">
+  <input name="zonesname"   placeholder="Region Name"  value="${getregion.zonesname}" class="form-control"  type="text">
     </div>
   </div>
   
@@ -57,8 +59,8 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="subcompany" class="form-control selectpicker" required="required">
-  <option>---Select Region---</option> 
+  <select name=""  class="form-control selectpicker" required="required">
+  <%-- <option value="${getregion.companyid}">${getregion.companyid} --%>
       <option value="Relience">north</option>
 	  <option value="Vodafone">south</option>
   </select>
@@ -70,7 +72,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="usermobile"  class="form-control" placeholder="8285080678" type="text" required="required">
+  <input name="zonesphone"  class="form-control" value="${getregion.zonesphone}" placeholder="8285080678" type="text" required="required">
     </div>
  
 </div>
@@ -78,7 +80,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="eamil"  placeholder="E-Mail Address" class="form-control" required="required" type="email">
+  <input  name="zonesemail"  placeholder="E-Mail Address" value="${getregion.zonesemail}" class="form-control" required="required" type="email">
     </div>
   </div>
 </div>
@@ -88,11 +90,11 @@
 
 <!-- Text input-->
 <div class="form-group"> 
-  <label class="col-md-2 control-label">Fex No</label>
+  <label class="col-md-2 control-label">Fax No</label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-        <input  name="fax"  placeholder="Fax Address" class="form-control" required="required" type="fax">
+        <input  name="zonesfax"  placeholder="Fax Address" value="${getregion.zonesfax}" class="form-control" required="required" type="fax">
    
   </div>
   </div>
@@ -100,7 +102,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <textarea class="form-control" name="address"  placeholder="Address" required="required"></textarea>
+  <input type="text" class="form-control" name="zonesaddress" value="${getregion.zonesaddress}" placeholder="Address" required="required">
     </div>
   </div>
 </div>
@@ -119,7 +121,7 @@
 </fieldset>
 </form:form>
 </div>
-</div>
+
 
  <script type="text/javascript">
 
