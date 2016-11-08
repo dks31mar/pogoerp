@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.ProductHeadBean;
+import com.pogo.bean.ProductMasterBean;
 import com.pogo.bean.ProductSubHeadBean;
 import com.pogo.bean.UnitBean;
-import com.pogo.model.Currency;
 
 public interface MasterProductService {
 
@@ -41,5 +41,17 @@ public interface MasterProductService {
 	String getProductHeadById(String id);
 
 	void addProductSubHead(ProductSubHeadBean poref1);
+
+	List<ProductMasterBean> getProDetails();
+
+	void deleteProductData(int id);
+
+	List<ProductMasterBean> searchProductbynameandcode(String proname);
+
+	List<ProductSubHeadBean> getProductSubHead();
+
+	void addProduct(ProductMasterBean poref);
+
+	
 
 }

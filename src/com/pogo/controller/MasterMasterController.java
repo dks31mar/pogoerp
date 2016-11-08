@@ -27,9 +27,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.DistrictBean;
+import com.pogo.bean.ExpenseMasterBean;
+import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.District;
+import com.pogo.model.Location;
 import com.pogo.model.State;
 import com.pogo.service.MasterMastersService;
 
@@ -289,8 +293,166 @@ public class MasterMasterController {
 	public ModelAndView getDistrict( @ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside district  method");
 		Map<String, Object> model = new HashMap<String, Object>();
-		//model.put("districtList",  prepareDistrictListofBean(masterMastersService.districtList()));
+		model.put("districtList",  prepareDistrictListofBean(masterMastersService.districtList()));
 		System.out.println("***************************************** inside district list ****************************");
-	return new ModelAndView("getstate",model);
+	return new ModelAndView("getdistrict",model);
 	}
+	@SuppressWarnings("unused")
+	private List<DistrictBean> prepareDistrictListofBean(List<District> prodel){
+		List<DistrictBean> beans = null;
+		if(prodel != null && !prodel.isEmpty()){
+			beans = new ArrayList<DistrictBean>();
+			DistrictBean bean = null;
+			for(District pro : prodel){
+				bean = new DistrictBean();
+				//System.out.println(bean);
+				bean.setDistrictId(pro.getDistrictId());
+				bean.setDistrict(pro.getDistrict());
+				
+				beans.add(bean);
+			}
+		}
+		return beans;
+	}
+	@RequestMapping(value="adddistrict",method=RequestMethod.POST)
+	@ResponseBody
+	public void addDistrict(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add district method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		DistrictBean poref=mapper.readValue(json, DistrictBean.class);
+		DistrictBean poref1=new DistrictBean();
+		poref1.setDistrict(poref.getDistrict());
+		masterMastersService.addDistrict(poref1);
+	}
+	@RequestMapping(value = "deletedistrict", method = RequestMethod.GET)
+	public ModelAndView deleteDistrict(@RequestParam("districtId") Integer id) {
+		masterMastersService.deleteDistrict(id);
+		Map<String, Object> model= new HashMap<String,Object>();
+		List<DistrictBean> list=new ArrayList<DistrictBean>();
+		model.put("districtList",  prepareDistrictListofBean(masterMastersService.districtList()));
+		return new ModelAndView("getdistrict",model);
+		
+		
+	}
+	
+	
+	@RequestMapping(value = "getdistrict", method = RequestMethod.GET)
+	public void getDistrict(@RequestParam("districtId") String id,HttpServletResponse res )throws ParseException  {
+		String cuList=masterMastersService.getDistrictById(id);
+		System.out.println("inside get district method");
+		
+		System.out.println(cuList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("outside get district method");
+	}
+	
+
+	@RequestMapping(value="editdistrict",method=RequestMethod.POST)
+	@ResponseBody
+	public void editDistrict(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit district method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		DistrictBean poref=mapper.readValue(json, DistrictBean.class);
+		DistrictBean poref1=new DistrictBean();
+		poref1.setDistrictId(poref.getDistrictId());
+		poref1.setDistrict(poref.getDistrict());
+		
+		masterMastersService.editDistrict(poref1);
+		
+	}
+	@RequestMapping(value="/location",method = RequestMethod.GET)
+	public ModelAndView getLocation( @ModelAttribute("command") LocationBean location,HttpServletRequest request,BindingResult result ){
+		System.out.println("inside location  method");
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList()));
+		System.out.println("***************************************** inside location list ****************************");
+	return new ModelAndView("getlocation",model);
+	}
+	
+	@SuppressWarnings("unused")
+	private List<LocationBean> prepareLocationListofBean(List<Location> prodel){
+		List<LocationBean> beans = null;
+		if(prodel != null && !prodel.isEmpty()){
+			beans = new ArrayList<LocationBean>();
+			LocationBean bean = null;
+			for(Location pro : prodel){
+				bean = new LocationBean();
+				//System.out.println(bean);
+				bean.setLocationId(pro.getLocationId());
+				bean.setLocation(pro.getLocation());
+				
+				beans.add(bean);
+			}
+		}
+		return beans;
+	}
+	
+	@RequestMapping(value="addlocation",method=RequestMethod.POST)
+	@ResponseBody
+	public void addLocation(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add location method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		LocationBean poref=mapper.readValue(json, LocationBean.class);
+		LocationBean poref1=new LocationBean();
+		poref1.setLocation(poref.getLocation());
+		masterMastersService.addLocation(poref1);
+	}
+	@RequestMapping(value = "deletelocation", method = RequestMethod.GET)
+	public ModelAndView deleteLocation(@RequestParam("locationId") Integer id) {
+		masterMastersService.deleteLocation(id);
+		Map<String, Object> model= new HashMap<String,Object>();
+		List<LocationBean> list=new ArrayList<LocationBean>();
+		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList()));
+		return new ModelAndView("getlocation",model);
+		
+		
+	}
+	
+	
+	@RequestMapping(value = "getlocation", method = RequestMethod.GET)
+	public void getLocation(@RequestParam("locationId") String id,HttpServletResponse res )throws ParseException  {
+		String cuList=masterMastersService.getLocationById(id);
+		System.out.println("inside get location method");
+		
+		System.out.println(cuList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("outside get location method");
+	}
+	
+
+	@RequestMapping(value="editlocation",method=RequestMethod.POST)
+	@ResponseBody
+	public void editLocation(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit location method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		LocationBean poref=mapper.readValue(json, LocationBean.class);
+		LocationBean poref1=new LocationBean();
+		poref1.setLocationId(poref.getLocationId());
+		poref1.setLocation(poref.getLocation());
+		
+		masterMastersService.editLocation(poref1);
+		
+	}
+
+	@RequestMapping(value="/expensemaster",method = RequestMethod.GET)
+	public ModelAndView getexpensemaster( @ModelAttribute("command") ExpenseMasterBean expense,HttpServletRequest request,BindingResult result ){
+		System.out.println("inside expense master  method");
+		//Map<String, Object> model = new HashMap<String, Object>();
+		//model.put("countryList",  prepareCountryListofBean(masterMastersService.countryList()));
+		System.out.println("***************************************** inside country list ****************************");
+	return new ModelAndView("getexpensemaster");
+	}
+	
 }

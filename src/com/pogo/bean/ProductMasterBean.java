@@ -27,11 +27,33 @@ public class ProductMasterBean {
 
  	private String serviceable; 
 
- 	private int productcategory; 
+ 	private String productcategory; 
 
  	private String isactive;
+ 	
+ 	private float sellingprice;
 
     private String color;
+    
+    
+    
+    
+
+	public float getSellingprice() {
+		return sellingprice;
+	}
+
+	public void setSellingprice(float sellingprice) {
+		this.sellingprice = sellingprice;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 
 	public Integer getProductid() {
 		return productid;
@@ -129,11 +151,11 @@ public class ProductMasterBean {
 		this.serviceable = serviceable;
 	}
 
-	public int getProductcategory() {
+	public String getProductcategory() {
 		return productcategory;
 	}
 
-	public void setProductcategory(int productcategory) {
+	public void setProductcategory(String productcategory) {
 		this.productcategory = productcategory;
 	}
 

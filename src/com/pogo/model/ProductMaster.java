@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="productmaster")
+@Table(name="productmaster",schema="pogodb")
 public class ProductMaster implements Serializable{
 
 	
@@ -25,7 +25,7 @@ public class ProductMaster implements Serializable{
 	@Column(name="productsubheadid",columnDefinition="bigInt(20)" )
  	private Integer productsubheadid;
 	
- 	@Column(name="productname",length=50 )
+ 	@Column(name="productname",columnDefinition="varchar(55)")
 	private String productname; 
 
 
@@ -33,35 +33,49 @@ public class ProductMaster implements Serializable{
     private float unitprice; 
 
  	
- 	@Column(name="producttypeid",length= 11)
+ 	@Column(name="producttypeid",columnDefinition="varchar(11)")
     private String producttypeid; 
 
- 	@Column(name="unittypeid",length= 11) 
+ 	@Column(name="unittypeid",columnDefinition="varchar(55)") 
     private String unittypeid; 
 
- 	@Column(name="currencyid_sc",length=11 )
+ 	@Column(name="currencyid_sc",columnDefinition="varchar(55)")
     private String currencyid_sc; 
 
- 	@Column(name="costprice",length=15 ) 
+ 	@Column(name="costprice",columnDefinition="float" ) 
     private float costprice; 
 
  	@Column(name="productcode",length=50,columnDefinition="varchar(55)" )
     private String productcode; 
 
- 	@Column(name="description",length=250 )
+ 	@Column(name="description",columnDefinition="varchar(255)")
     private String description; 
 
  	@Column(name="serviceable",columnDefinition="varchar(5) default 'TRUE'" )
     private String serviceable; 
 
- 	@Column(name="productcategory",length=11 )
-    private int productcategory; 
+ 	@Column(name="productcategory",columnDefinition="varchar(55)" )
+    private String productcategory; 
 
  	@Column(name="isactive",columnDefinition="varchar(1) default 'Y'")
     private String isactive;
 
  	@Column(name="color",columnDefinition="varchar(55)")
  	private String color;
+ 	
+ 	@Column(name="sellingprice",columnDefinition="float")
+ 	private float sellingprice;
+ 	
+ 	
+ 	
+
+	public float getSellingprice() {
+		return sellingprice;
+	}
+
+	public void setSellingprice(float sellingprice) {
+		this.sellingprice = sellingprice;
+	}
 
 	public Integer getProductid() {
 		return productid;
@@ -159,11 +173,11 @@ public class ProductMaster implements Serializable{
 		this.serviceable = serviceable;
 	}
 
-	public int getProductcategory() {
+	public String getProductcategory() {
 		return productcategory;
 	}
 
-	public void setProductcategory(int productcategory) {
+	public void setProductcategory(String productcategory) {
 		this.productcategory = productcategory;
 	}
 

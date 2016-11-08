@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.pogo.model.Currency;
 import com.pogo.model.ProductHead;
+import com.pogo.model.ProductMaster;
 import com.pogo.model.ProductSubHead;
 import com.pogo.model.Unit;
 
@@ -40,5 +41,16 @@ public interface MasterProductDao {
 	List<ProductHead> getProductHeadById(String id);
 
 	void addProductSubHead(ProductSubHead cur);
+
+	List<ProductMaster> getProData();
+
+	void deleteProductData(int id);
+
+	List<ProductMaster> searchProData(String proname);
+
+	List<ProductSubHead> getProductSubHeadData();
+
+	void saveproductdetail(ProductMaster promaster);
+
 
 }

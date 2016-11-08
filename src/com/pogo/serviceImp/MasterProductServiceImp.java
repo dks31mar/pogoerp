@@ -13,12 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.gson.Gson;
 import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.ProductHeadBean;
+import com.pogo.bean.ProductMasterBean;
 import com.pogo.bean.ProductSubHeadBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.dao.MasterProductDao;
 import com.pogo.model.Currency;
 import com.pogo.model.ProductHead;
+import com.pogo.model.ProductMaster;
 import com.pogo.model.ProductSubHead;
 import com.pogo.model.Unit;
 import com.pogo.model.UserEmployee;
@@ -235,5 +237,109 @@ public class MasterProductServiceImp implements MasterProductService{
 		
 	}
 
+	@Override
+	public List<ProductMasterBean> getProDetails() {
+		List<ProductMaster> getdetails =masterProductDao.getProData();
+		List<ProductMasterBean> lists=new ArrayList<ProductMasterBean>();
+		for(ProductMaster list: getdetails)
+		{
+			ProductMasterBean data=new ProductMasterBean();
+			data.setProductid(list.getProductid());
+			data.setProductcode(list.getProductcode());
+			data.setProductname(list.getProductname());
+			data.setCostprice(list.getCostprice());
+			data.setSellingprice(list.getSellingprice());
+			
+			lists.add(data);
+		}
+			
+		
+		return lists;
+	}
+
+	@Override
+	public void deleteProductData(int id) {
+		masterProductDao.deleteProductData(id);
+		
+	}
+
+	@Override
+	public List<ProductMasterBean> searchProductbynameandcode(String proname) {
+		List<ProductMaster> getdetails =masterProductDao.searchProData(proname);
+		List<ProductMasterBean> lists=new ArrayList<ProductMasterBean>();
+		for(ProductMaster list: getdetails)
+		{
+			ProductMasterBean data=new ProductMasterBean();
+			data.setProductid(list.getProductid());
+			data.setProductcode(list.getProductcode());
+			data.setProductname(list.getProductname());
+			data.setCostprice(list.getCostprice());
+			data.setSellingprice(list.getSellingprice());
+			System.out.println(list.getProductname());
+			lists.add(data);
+		}
+			
+		return lists;
+	}
+
+	@Override
+	public List<ProductSubHeadBean> getProductSubHead() {
+		List<ProductSubHead> getdetails =masterProductDao.getProductSubHeadData();
+		List<ProductSubHeadBean> lists=new ArrayList<ProductSubHeadBean>();
+		for(ProductSubHead list: getdetails)
+		{
+			ProductSubHeadBean data=new ProductSubHeadBean();
+			data.setProductsubheadid(list.getProductsubheadid());
+			data.setProductsubheadname(list.getProductsubheadname());
+			
+			lists.add(data);
+		}
+			
+		
+		return lists;
+	}
+
+	@Override
+	public void addProduct(ProductMasterBean poref) {
+		ProductMaster promaster=new ProductMaster();
+		
+		
+		 promaster.setProductid(poref.getProductid());
+
+	 	  promaster.setProductheadid(poref.getProductheadid());
+	 	
+	 	  promaster.setProductsubheadid(poref.getProductsabheadid());
+		
+	 	  promaster.setProductname(poref.getProductname()); 
+
+		  promaster.setUnitprice(poref.getUnitprice()); 
+
+		  promaster.setProducttypeid(poref.getProducttypeid());
+
+	 	  promaster.setUnittypeid(poref.getUnittypeid()) ;
+
+	 	  promaster.setCurrencyid_sc(poref.getCurrencyid()) ;
+
+	 	  promaster.setCostprice(poref.getCostprice()) ;
+
+	 	  promaster.setProductcode(poref.getProductcode()); 
+
+	 	  promaster.setDescription(poref.getDescription()) ;
+
+	 	  promaster.setServiceable(poref.getServiceable()) ;
+
+	 	  promaster.setProductcategory(poref.getProductcategory()); 
+
+	 	  promaster.setIsactive(poref.getIsactive());
+	 	
+	 	  promaster.setSellingprice(poref.getSellingprice());
+
+	      promaster.setColor(poref.getColor());
+	      
+	      
+	      masterProductDao.saveproductdetail(promaster);
+	}
+
+	
 	
 }

@@ -26,6 +26,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.ProductHeadBean;
+import com.pogo.bean.ProductMasterBean;
 import com.pogo.bean.ProductSubHeadBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.service.MasterProductService;
@@ -327,4 +328,87 @@ public class MasterProductController {
 		
 		masterProductService.addProductSubHead(poref1);
 	}
+	
+	@RequestMapping(value="/promaster",method = RequestMethod.GET)
+	public ModelAndView MobileAppRegis(@ModelAttribute("producthead") ProductHeadBean productHeadBean,
+			HttpServletRequest request){
+		List<ProductMasterBean> list=new ArrayList<ProductMasterBean>();
+		list=masterProductService.getProDetails();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("prodetail", list);
+		
+		return new ModelAndView("promaster",model);
+}
+	
+	
+	
+	@RequestMapping(value = "deleteprodet", method = RequestMethod.GET)
+	public ModelAndView deleteProductData(@RequestParam("id") int id) {
+		masterProductService.deleteProductData(id);
+		List<ProductMasterBean> list=new ArrayList<ProductMasterBean>();
+		list=masterProductService.getProDetails();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("prodetail", list);
+		
+		return new ModelAndView("promaster",model);
+	}
+	
+	
+	
+	@RequestMapping(value = "searchproduct", method = RequestMethod.POST)
+	public @ResponseBody String filterEmpployee(@RequestParam String proname)
+			throws JsonProcessingException {
+		List<ProductMasterBean> userbean = masterProductService.searchProductbynameandcode(proname);
+		ObjectMapper map = new ObjectMapper();
+		return map.writeValueAsString(userbean);
+	}
+	
+	
+	@RequestMapping(value = "deletesearchprodet", method = RequestMethod.GET)
+	public void deleteSearchProductData(@RequestParam("id") int id,HttpServletResponse req) {
+		masterProductService.deleteProductData(id);
+		
+		try {
+			req.getWriter().print("true");
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		};
+		
+		//return new ModelAndView("promaster",model);
+	}
+	
+	
+	
+
+	@RequestMapping(value="/getaddproductpage",method = RequestMethod.GET)
+	public ModelAndView addProductPage(@ModelAttribute("currencyBean") CurrencyBean currencyBean,
+			HttpServletRequest request){
+		List<CurrencyBean> curency=new ArrayList<CurrencyBean>();
+		curency=masterProductService.getCurrencyDetails();
+		List<UnitBean> unit=new ArrayList<UnitBean>();
+		unit=masterProductService.getUnitsDetails();
+		List<ProductHeadBean> producthead=new ArrayList<ProductHeadBean>();
+		producthead=masterProductService.getProductHeadDetails();
+		List<ProductSubHeadBean> productsubhead=new ArrayList<ProductSubHeadBean>();
+		productsubhead=masterProductService.getProductSubHead();
+		Map<String, Object> model= new HashMap<String,Object>();	
+		model.put("currencylist", curency);
+		model.put("unitlist", unit);
+		model.put("productlist", producthead);
+		model.put("subproductlist", productsubhead);
+		
+		
+		return new ModelAndView("getaddproductpage",model);
+}
+	@RequestMapping(value="saveproductdet",method=RequestMethod.POST)
+	@ResponseBody
+	public void addProduct(@RequestBody String json,Model model) throws IOException{
+	System.out.println("Deeoak              ***************************************************** \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ProductMasterBean poref=mapper.readValue(json, ProductMasterBean.class);
+		
+		masterProductService.addProduct(poref);
+	}
+	
 }

@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="companyinfo")
-public class CompanyInfo {
+public class CompanyProfile {
 
 	
 	@Id
