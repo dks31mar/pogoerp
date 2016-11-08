@@ -13,12 +13,14 @@ import com.google.gson.Gson;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.DistrictBean;
+import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
 import com.pogo.service.MasterMastersService;
@@ -264,5 +266,53 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		
 		masterMastersdao.editLocation(location);
 	}
-
+	
+@Override
+	
+	public List<ExpenseMaster> expenseheadList(){
+		return masterMastersdao.expenseheadList();
+	}
+@Override
+@Transactional
+public void addExpensehead(ExpenseMasterBean poref1) {
+	ExpenseMaster expensehead=new ExpenseMaster();
+	expensehead.setExpensehead(poref1.getExpensehead());
+	expensehead.setExpensetype(poref1.getExpensetype());
+	expensehead.setExlimit(poref1.getExlimit());
+	expensehead.setUnit(poref1.getUnit());
+	
+	masterMastersdao.addExpensehead(expensehead);
+	
+}
+@Override
+@Transactional
+public void deleteExpenceserheader(int id){
+	masterMastersdao.deleteExpenceserheader(id);
+}
+/*@Override
+public String getExpenceserheaderById(String id){
+	List<ExpenseMaster> location=masterMastersdao.getExpenceserheaderById(id);
+	Map<String, Object> dd=new HashMap<>();
+	for(Location data: location)
+	{
+		
+		dd.put("locationId",data.getLocationId() );
+		dd.put("location",data.getLocation());
+		
+	}
+	Gson gson=new Gson();
+	
+String locationlist=	gson.toJson(dd);
+	
+	return locationlist;
+}
+@Override
+@Transactional
+public void editLocation(LocationBean poref1){
+	Location location=new Location();
+	location.setLocationId(poref1.getLocationId());
+	location.setLocation(poref1.getLocation());
+	
+	masterMastersdao.editLocation(location);
+}*/
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.DistrictBean;
+import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
 import com.pogo.bean.UnitBean;
@@ -12,6 +13,7 @@ import com.pogo.bean.ZonesBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
 
@@ -48,4 +50,9 @@ public interface MasterMastersService {
 	String getLocationById(String id);
 	void editLocation(LocationBean poref1);
 	
+	List<ExpenseMaster> expenseheadList();
+	void addExpensehead(ExpenseMasterBean poref1);
+	void deleteExpenceserheader(int id);
+	/*String getExpenceserheaderById(String id);
+	void editExpenseHeader(ExpenseMasterBean poref1);*/
 }
