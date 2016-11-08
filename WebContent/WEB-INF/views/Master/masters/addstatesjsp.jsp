@@ -39,7 +39,7 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Add Zones</legend>
+<legend>Add States</legend>
   
 <!-- Text input-->
 <%--
@@ -53,7 +53,7 @@
   </div>
   --%>
 <div class="form-group">
-  <label class="col-md-2 control-label" >Region Name</label> 
+  <label class="col-md-2 control-label" >States Name</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

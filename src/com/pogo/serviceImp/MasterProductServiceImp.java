@@ -299,6 +299,47 @@ public class MasterProductServiceImp implements MasterProductService{
 		return lists;
 	}
 
+	@Override
+	public void addProduct(ProductMasterBean poref) {
+		ProductMaster promaster=new ProductMaster();
+		
+		
+		 promaster.setProductid(poref.getProductid());
+
+	 	  promaster.setProductheadid(poref.getProductheadid());
+	 	
+	 	  promaster.setProductsubheadid(poref.getProductsabheadid());
+		
+	 	  promaster.setProductname(poref.getProductname()); 
+
+		  promaster.setUnitprice(poref.getUnitprice()); 
+
+		  promaster.setProducttypeid(poref.getProducttypeid());
+
+	 	  promaster.setUnittypeid(poref.getUnittypeid()) ;
+
+	 	  promaster.setCurrencyid_sc(poref.getCurrencyid()) ;
+
+	 	  promaster.setCostprice(poref.getCostprice()) ;
+
+	 	  promaster.setProductcode(poref.getProductcode()); 
+
+	 	  promaster.setDescription(poref.getDescription()) ;
+
+	 	  promaster.setServiceable(poref.getServiceable()) ;
+
+	 	  promaster.setProductcategory(poref.getProductcategory()); 
+
+	 	  promaster.setIsactive(poref.getIsactive());
+	 	
+	 	  promaster.setSellingprice(poref.getSellingprice());
+
+	      promaster.setColor(poref.getColor());
+	      
+	      
+	      masterProductDao.saveproductdetail(promaster);
+	}
+
 	
 	
 }

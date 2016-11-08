@@ -401,5 +401,14 @@ public class MasterProductController {
 		
 		return new ModelAndView("getaddproductpage",model);
 }
+	@RequestMapping(value="saveproductdet",method=RequestMethod.POST)
+	@ResponseBody
+	public void addProduct(@RequestBody String json,Model model) throws IOException{
+	System.out.println("Deeoak              ***************************************************** \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ProductMasterBean poref=mapper.readValue(json, ProductMasterBean.class);
+		
+		masterProductService.addProduct(poref);
+	}
 	
 }

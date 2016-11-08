@@ -61,7 +61,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="designation" class="form-control"   placeholder="Add New Designation"   type="text" id="newdesg">
+  <input   name="designation" class="form-control" required="required" placeholder="Add New Designation"   type="text" id="newdesg">
     </div>
   </div>
   <div class="form-group">
@@ -84,7 +84,7 @@
     <select  class="form-control selectpicker" id="dedig">
       <option value="">----Select Role---- </option>
 						<c:forEach var="list" items="${desig}">
-							<option value="${list.designationid}"> ${list.designation}</option>
+							<option value="${list.level}"> ${list.designation}</option>
 						</c:forEach>
       </select>
 
@@ -108,22 +108,33 @@
 			<tr>
 				<th><span>Level</span></th>
 				<th align="center"><span> Assign Right-Description</span></th>
-				<th><a href="editUser?id=${user.designationid}" title="Edit" style="color: white;"><span
-								class="glyphicon glyphicon-pencil"></span>Edit All</a></th>
+				<th style="width: 60px;"><span>Edit</span></th>
+				<th style="width: 60px;"><span>Delete</span></th>
 				
 			</tr>
-			
+			<c:choose>
+							<c:when test="${empty designationlist}">
+								<div style="color: red; text-align: center;">No Designation
+													Record in the List</div>
+									</c:when>
+				<c:otherwise>
 			<c:if test="${!empty designationlist}">
 			<c:forEach items="${designationlist}" var="data" varStatus="deg">
+			
 			 <tr>
 			<td>${deg.index+1}</td>
-			<td> ${data.designation} </td>
+			<td>${data.designation} </td>
+			
+			<td><a href="editDesignation?id=${data.designationid}" title="Edit" ><span
+								class="glyphicon glyphicon-pencil"></span></a></td>
+			<td><a href="deleteDesg?designationid=${data.designationid}" title="Delete"><span class="glyphicon glyphicon-trash" style="margin-left: 10px;">
+			</span></a></td>
+			</tr>	
+												
 			</c:forEach>
 			</c:if>
-			<tr>
-			
-
-
+			</c:otherwise>
+			</c:choose>
 		</tbody>
 	</table>
 <script>
@@ -153,7 +164,7 @@ $.ajax({
 	            xhr.setRequestHeader("Content-Type", "application/json");  
 	        },
 		     success: function(resposeJsonObject){
-		    	 
+		    	 window.location.reload();
 	     
 	    }
 	        

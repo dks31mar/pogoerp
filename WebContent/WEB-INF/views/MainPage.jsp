@@ -710,7 +710,7 @@ if(name==null){
 							</div>
 						</div>
 						<!-- /.box-header -->
-						<div class="box-body no-padding">
+						<div class="box-body no-padding" style="overflow: visible;overflow-x:hidden ">
 							<div class="row">
 								<div class="col-md-9 col-sm-4">
 									<div class="pad">
