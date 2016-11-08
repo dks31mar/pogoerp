@@ -15,7 +15,7 @@ public interface MasterOrganizationDao {
 
 	Zones editZones(int empid);
 
-<<<<<<< HEAD
+
 	List<Zones> getStates();
 
 	void updateRegion(Zones zon);
@@ -25,8 +25,8 @@ public interface MasterOrganizationDao {
 	void deleteRegion(Zones zones);
 	
 	
-=======
-	void addZoneDeatils(Zones zon);
+
+	
 	void addCompany(CompanyProfile company);
 	void addUser(UserEmployee emp);
 
@@ -70,7 +70,5 @@ public interface MasterOrganizationDao {
 
 	void deleteDesignation(Designation deg);
 
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
-	
 }
 

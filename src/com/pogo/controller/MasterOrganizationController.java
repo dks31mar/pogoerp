@@ -21,19 +21,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
+
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
-=======
+
 import com.fasterxml.jackson.core.JsonProcessingException;
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-<<<<<<< HEAD
+
 import com.pogo.bean.PoRefEntryItemDetailBean;
-=======
+
 import com.ibm.icu.text.Normalizer.Mode;
 import com.pogo.bean.CompanyProfileBean;
 import com.pogo.bean.DesignationBean;
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
 import com.pogo.dao.MasterOrganizationDao;
@@ -81,12 +81,10 @@ public class MasterOrganizationController {
 
 		return new ModelAndView("getuseremp");
 	}
-<<<<<<< HEAD
-	
-	@RequestMapping(value="addzonedetails",method=RequestMethod.POST)
-=======
 
-	// for add jsp
+	
+
+
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String addEmployee(Model model) {
 
@@ -204,7 +202,7 @@ public class MasterOrganizationController {
 	 * new ModelAndView("getdesignation",model); }
 	 */
 	@RequestMapping(value = "show-designation", method = RequestMethod.POST)
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 	@ResponseBody
 	public void getData(@RequestBody String json, Model model) throws IOException {
 
@@ -316,7 +314,7 @@ public class MasterOrganizationController {
 		return "mobileApp";
 		
 	}
-<<<<<<< HEAD
+
 	@RequestMapping(value="/Editregion",method = RequestMethod.GET)
 	public ModelAndView editZones(@RequestParam("id") Integer id,Zones porefitem,HttpServletRequest request,Model model)
 			{
@@ -331,7 +329,7 @@ public class MasterOrganizationController {
 	public ModelAndView getStates(Zones porefitem,HttpServletRequest request){
 	
 		List<Zones> getStates=new ArrayList<Zones>();
-		getStates=regionService.getStates();
+		//getStates=regionService.getStates();
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("branchList",  getStates);
 		return new ModelAndView("branches",model);
@@ -358,8 +356,8 @@ public ModelAndView getSouthBranch(@ModelAttribute("command") PoRefEntryItemDeta
 
 return new ModelAndView("addstates");
 }	
-=======
+
 	
 
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 }

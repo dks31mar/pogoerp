@@ -32,7 +32,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 	public void addZoneDeatils(Zones zon) {
 		sessionFactory.getCurrentSession().save(zon);
 	}
-<<<<<<< HEAD
+
 
 
 	@Override
@@ -43,7 +43,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 	@SuppressWarnings("unchecked")
 	public List<Zones> getStates() {
 		return (List<Zones>)sessionFactory.getCurrentSession().createCriteria(Zones.class).list();
-=======
+	}
 	@Override
 	public void addCompany(CompanyProfile company) {
 		
@@ -200,8 +200,6 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		
 	}
 
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
-}
 
 	@Override
 	public void updateRegion(Zones zon) {

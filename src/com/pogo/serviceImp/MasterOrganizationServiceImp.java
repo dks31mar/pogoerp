@@ -72,7 +72,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 
 
 	@Override
-<<<<<<< HEAD
+
 	public List<Zones> getStates() {
 		List<Zones> getbranch =regionDao.getBranches();
 		for(Zones s:getbranch)
@@ -105,11 +105,6 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		regionDao.deleteRegion(zones);
 		
 	}
-
-
-	
-	
-=======
 	public void addCompany(CompanyProfile company) {
 		companyProfiledao.addCompany(company);
 		
@@ -373,5 +368,4 @@ public void deleteDesignation(int id) {
 	
 }
 
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 }
