@@ -31,16 +31,12 @@
 <!-- pupup window style sheet= -->
 
 <link rel="stylesheet" href="resources/css/popupwindow.css">
-<!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
+<!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
 	href="resources/dist/css/skins/_all-skins.min.css">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-<script
-	src="http://maps.googleapis.com/maps/api/js?key=YOUR_APIKEY&sensor=false">
-</script>
+<script src="http://maps.googleapis.com/maps/api/js?key=YOUR_APIKEY&sensor=false"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -1530,10 +1526,8 @@ if(name==null){
 	<!-- Sparkline -->
 	<script src="resources/plugins/sparkline/jquery.sparkline.min.js"></script>
 	<!-- jvectormap -->
-	<script
-		src="resources/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-	<script
-		src="resources/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+	<script src="resources/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+	<script src="resources/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<!-- SlimScroll 1.3.0 -->
 	<script src="resources/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 	<!-- ChartJS 1.0.1 -->

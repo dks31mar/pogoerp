@@ -36,16 +36,16 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Add Product</legend>
+<legend>Add Item</legend>
   <div class="form-group">
-  <label class="col-md-2 control-label">Product Id</label>  
+  <label class="col-md-2 control-label">Id</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input   name="" id="productid"   readonly="readonly"  class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="">Product Code<span style="color: red;">*</span></label>
+  <label class="col-md-2 control-label" style="">Code<span style="color: red;">*</span></label>
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -54,14 +54,24 @@
   </div>
 </div>
  <div class="form-group">
-  <label class="col-md-2 control-label">Product Name<span style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label">Name<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input   name="loginname" placeholder="Product Name" required="required"  class="form-control"  type="text" id="productname">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="">Product Type<span style="color: red;">*</span></label> 
+   <label class="col-md-2 control-label" style="">Description<span style="color: red;">*</span></label>  
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+  		<textarea class="form-control" name="address"  placeholder="Product Description" required="required" id="description"></textarea>
+    </div>
+  </div>
+  
+</div>
+<div class="form-group">
+<label class="col-md-2 control-label" style="">Type<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -75,9 +85,7 @@
   </select>
     </div>
   </div>
-</div>
-<div class="form-group">
-  <label class="col-md-2 control-label" style="">Product Sub Type<span style="color: red;">*</span></label> 
+  <label class="col-md-2 control-label" style="">Sub Type<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -91,26 +99,31 @@
   </select>
     </div>
   </div>
-  <label class="col-md-2 control-label" style="">Cost Price</label>  
+  
+</div>
+
+<!-- Text input-->
+
+<div class="form-group">
+
+<label class="col-md-2 control-label" style="">Input Cost<span style="color: red;">*</span></label></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input   name="designation" placeholder="Cost Price"   class="form-control"  type="text" id="costprice">
     </div>
   </div>
-</div>
-
-<!-- Text input-->
-
-<div class="form-group">
-  <label class="col-md-2 control-label" >Selling Price</label> 
+  <label class="col-md-2 control-label" >Price To Sale<span style="color: red;">*</span></label></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input name="middlename" id="sellingprice"  placeholder="Selling Price" id="firstUppermiddle" onkeyup="javascript:capitalizemiddle(this.id, this.value);" class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="">Serviceable<span style="color: red;">*</span></label> 
+  
+</div>
+<div class="form-group">
+<label class="col-md-2 control-label" style="">Repairable<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -121,16 +134,18 @@
   </select>
     </div>
   </div>
-</div>
-<div class="form-group">
-  <label class="col-md-2 control-label" >Product Colour</label> 
+  <label class="col-md-2 control-label" >Colour<span style="color: red;">*</span></label></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input name="lastname" id="productcolor"  placeholder="Product Colour" id="firstlastupper" onkeyup="javascript:capitalizelast(this.id, this.value);" class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="">Is Active<span style="color: red;">*</span></label> 
+  
+  
+</div>
+<div class="form-group"> 
+<label class="col-md-2 control-label" style="">Active<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -141,15 +156,12 @@
   </select>
     </div>
   </div>
-  
-</div>
-<div class="form-group"> 
-  <label class="col-md-2 control-label">Currency Type</label>
+  <label class="col-md-2 control-label">Currency<span style="color: red;">*</span></label></label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
     <select name="division" class="form-control selectpicker" required="required" id="currencytype">
-   <option>---Select Division---</option> 
+   <option>---Select---</option> 
    <c:if test="${!empty currencylist}">
 	<c:forEach items="${currencylist}" var="curen" varStatus="loop">
       <option value="${curen.currencyid}">${curen.currencyname}</option>
@@ -159,12 +171,15 @@
     </select>
   </div>
 </div>
-  <label class="col-md-2 control-label">Unit Type</label>
+  
+</div>
+<div class="form-group">
+<label class="col-md-2 control-label">Unit<span style="color: red;">*</span></label></label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
     <select name="division" class="form-control selectpicker" required="required" id="unittype">
-   <option>---Select Division---</option> 
+   <option>---Select---</option> 
    
    <c:if test="${!empty unitlist}">
 	<c:forEach items="${unitlist}" var="unit" varStatus="loop">
@@ -174,23 +189,15 @@
      </c:if>
     </select>
   </div>
-</div>
-</div>
-<div class="form-group"> 
-   <label class="col-md-2 control-label" style="">Per Piece Rate <span style="color: red;">*</span></label>  
+</div> 
+   <!-- <label class="col-md-2 control-label" style="">Per Piece Rate <span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
   <input name="password"   class="form-control" id="perpiecerate" placeholder="unit price" required="required" type="text">
     </div>
-  </div>
- <label class="col-md-2 control-label" style="">description<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  		<textarea class="form-control" name="address"  placeholder="Product Description" required="required" id="description"></textarea>
-    </div>
-  </div>
+  </div> -->
+
 </div>
 
 
