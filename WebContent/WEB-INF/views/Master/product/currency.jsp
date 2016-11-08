@@ -234,7 +234,7 @@ $(document).ready(
 $("#getpopup").click(function(){
 	
 	 $("#formid").toggle('show');
-	 $('#EditcurrencyForm').hide();
+	$('#EditcurrencyForm').hide();
 	 $("#savecurrencyForm").show();
 	 $("#currencyname").val('');
 	 $("#currencytypeid").val('');

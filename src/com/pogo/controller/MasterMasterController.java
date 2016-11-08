@@ -33,6 +33,7 @@ import com.pogo.bean.StateBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
 import com.pogo.service.MasterMastersService;
@@ -449,10 +450,88 @@ public class MasterMasterController {
 	@RequestMapping(value="/expensemaster",method = RequestMethod.GET)
 	public ModelAndView getexpensemaster( @ModelAttribute("command") ExpenseMasterBean expense,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside expense master  method");
-		//Map<String, Object> model = new HashMap<String, Object>();
-		//model.put("countryList",  prepareCountryListofBean(masterMastersService.countryList()));
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("expenseheadList",  prepareExpenseListofBean(masterMastersService.expenseheadList()));
 		System.out.println("***************************************** inside country list ****************************");
-	return new ModelAndView("getexpensemaster");
+	return new ModelAndView("getexpensemaster",model);
+	}
+	@SuppressWarnings("unused")
+	private List<ExpenseMasterBean> prepareExpenseListofBean(List<ExpenseMaster> prodel){
+		List<ExpenseMasterBean> beans = null;
+		if(prodel != null && !prodel.isEmpty()){
+			beans = new ArrayList<ExpenseMasterBean>();
+			ExpenseMasterBean bean = null;
+			for(ExpenseMaster pro : prodel){
+				bean = new ExpenseMasterBean();
+				//System.out.println(bean);
+				bean.setExpensemasterId(pro.getExpensemasterId());
+				bean.setExpensehead(pro.getExpensehead());
+				bean.setExpensetype(pro.getExpensetype());
+				bean.setExlimit(pro.getExlimit());
+				bean.setUnit(pro.getUnit());
+				
+				beans.add(bean);
+			}
+		}
+		return beans;
+	}
+	@RequestMapping(value="addexpensehead",method=RequestMethod.POST)
+	@ResponseBody
+	public void addExpensehead(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add expensehead method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ExpenseMasterBean poref=mapper.readValue(json, ExpenseMasterBean.class);
+		ExpenseMasterBean poref1=new ExpenseMasterBean();
+		poref1.setExpensehead(poref.getExpensehead());
+		poref1.setExpensetype(poref.getExpensetype());
+		poref1.setExlimit(poref.getExlimit());
+		poref1.setUnit(poref.getUnit());
+		masterMastersService.addExpensehead(poref1);
+	}
+	@RequestMapping(value = "deleteexpenseheader", method = RequestMethod.GET)
+	public ModelAndView deleteexpenseheader(@RequestParam("expensemasterId") Integer id) {
+		masterMastersService.deleteExpenceserheader(id);
+		Map<String, Object> model= new HashMap<String,Object>();
+		List<ExpenseMasterBean> list=new ArrayList<ExpenseMasterBean>();
+		model.put("expenseheadList",  prepareExpenseListofBean(masterMastersService.expenseheadList()));
+		return new ModelAndView("getexpensemaster",model);
+		
+		
 	}
 	
+	
+	/*@RequestMapping(value = "getexpenseheader", method = RequestMethod.GET)
+	public void getExpenseHeader(@RequestParam("expensemasterId") String id,HttpServletResponse res )throws ParseException  {
+		String cuList=masterMastersService.getExpenceserheaderById(id);
+		System.out.println("inside get expenseheader method");
+		
+		System.out.println(cuList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("outside get expenseheader method");
+	}
+	
+
+	@RequestMapping(value="editlocation",method=RequestMethod.POST)
+	@ResponseBody
+	public void editExpenseHeader(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit expenseheader method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ExpenseMasterBean poref=mapper.readValue(json, ExpenseMasterBean.class);
+		ExpenseMasterBean poref1=new ExpenseMasterBean();
+		poref1.setExpensemasterId(poref.getExpensemasterId());
+		poref1.setExpensehead(poref.getExpensehead());
+		poref1.setExpensetype(poref.getExpensetype());
+		poref1.setExlimit(poref.getExlimit());
+		poref1.setUnit(poref.getUnit());
+		
+		masterMastersService.editExpenseHeader(poref1);
+		
+	}*/
+
 }

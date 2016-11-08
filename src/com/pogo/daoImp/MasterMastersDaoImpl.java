@@ -12,6 +12,7 @@ import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.State;
@@ -195,6 +196,21 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			//sessionFactory.getCurrentSession().flush();
 		}
 
-
-
+	 @SuppressWarnings("unchecked")
+		public List<ExpenseMaster> expenseheadList(){
+			sessionFactory.getCurrentSession().flush();
+			return (List<ExpenseMaster>) sessionFactory.getCurrentSession().createCriteria(ExpenseMaster.class).list();
+		}
+	 @SuppressWarnings("unchecked")
+		@Override
+		public void addExpensehead( ExpenseMaster poref1){
+			sessionFactory.getCurrentSession().save(poref1);
+		}
+	 @SuppressWarnings("unchecked")
+		@Override
+		public  void  deleteExpenceserheader(int id){
+			System.out.println("delete expenseheader");
+			sessionFactory.getCurrentSession().flush();
+			sessionFactory.getCurrentSession().createQuery("DELETE FROM ExpenseMaster WHERE expensemasterId = "+id).executeUpdate();
+		} 
 }
