@@ -6,11 +6,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.pogo.dao.RegionDao;
+import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 @Repository("regionDao")
-public class RegionDaoImp implements RegionDao{
+public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -21,13 +21,14 @@ public class RegionDaoImp implements RegionDao{
 		
 	}
 
-	
-	public void add( Zones zon) {
-		sessionFactory.getCurrentSession().save(zon);
-		
-	
-	}
 
-	
-	
+	@Override
+	public Zones editZones(int empid) {
+		return (Zones) sessionFactory.getCurrentSession().get(Zones.class, empid);
+}
+
+	@Override
+	public void addZoneDeatils(Zones zon) {
+		sessionFactory.getCurrentSession().save(zon);
+	}
 }

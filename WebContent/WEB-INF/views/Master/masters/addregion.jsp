@@ -33,23 +33,32 @@
 <div id="body">
 <div class="container">
 
-    <form:form class="well form-horizontal" name="forp" action="saveuserEmp" method="POST"  commandName="userbean"
+    <form:form class="well form-horizontal" name="forp" action="" method="POST"  commandName="regionEdit"
     id="" >
    
 <fieldset>
 
 <!-- Form Name -->
-<legend>Add/Edit Region</legend>
+<legend>Add Zones</legend>
   
 <!-- Text input-->
-
+<%--
+<div class="form-group">
+  <label class="col-md-2 control-label" >Region Id</label> 
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="region"  class="form-control"  type="text">
+    </div>
+  </div>
+  --%>
 <div class="form-group">
   <label class="col-md-2 control-label" >Region Name</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control"  type="hidden">
-  <input name="lastname"   placeholder="Region Name" id="firstlastupper" onkeyup="javascript:capitalizelast(this.id, this.value);" class="form-control"  type="text">
+  <input value="${zones.zonesname}" name="zonesname"  placeholder="Region Name" id="regionname"  class="form-control"  type="text">
     </div>
   </div>
   
@@ -57,10 +66,10 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="subcompany" class="form-control selectpicker" required="required">
+  <select name="subregion" class="form-control selectpicker" required="required" id="selecthead" >
   <option>---Select Region---</option> 
-      <option value="Relience">north</option>
-	  <option value="Vodafone">south</option>
+      <option value="north">north</option>
+	  <option value="south">south</option>
   </select>
     </div>
   </div>
@@ -70,7 +79,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="usermobile"  class="form-control" placeholder="8285080678" type="text" required="required">
+  <input value="${zones.zonesphone}"  class="form-control" placeholder="8285080678" type="text"  id="mobileno" required="required">
     </div>
  
 </div>
@@ -78,7 +87,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="eamil"  placeholder="E-Mail Address" class="form-control" required="required" type="email">
+  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control"  id="emailid" required="required" type="email">
     </div>
   </div>
 </div>
@@ -92,7 +101,7 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-        <input  name="fax"  placeholder="Fax Address" class="form-control" required="required" type="fax">
+        <input  value="${zones.zonesfax}"  placeholder="Fax Address" class="form-control"   id="fax" required="required" type="fax">
    
   </div>
   </div>
@@ -100,7 +109,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <textarea class="form-control" name="address"  placeholder="Address" required="required"></textarea>
+  <input type="" name="address" value="${zones.zonesaddress}" placeholder="Address" required="required" id="regadress">
     </div>
   </div>
 </div>
@@ -111,7 +120,8 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
-    <button type="submit" class="btn btn-warning" onclick="message();" >Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="button" class="btn btn-warning" id="senddata">Send <span class="glyphicon glyphicon-send"></span></button>
+    
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>
@@ -193,6 +203,55 @@
 		          str = firstChar.toUpperCase() + remainingStr;
 		      }
 		      document.getElementById(firstlastupper).value = str;
-		  } 	
+		  }
+		
+		
+		$('#senddata').click(function(){
+			
+		var reginname =	$('#regionname').val();
+		//var selecthead =	$('#selecthead').text();
+		var mobileno =	$('#mobileno').val();
+		var emailid =	$('#emailid').val();
+		   var fax    =	$('#fax').val();
+		   var regadress    =	$('#regadress').val();
+
+		   
+		   var mobileval = new RegExp("/[0-9]{10}/");
+		   
+		   
+		   
+		   
+		   if(mobileval.test(mobileno)){
+			   alert("cannot be blank")
+			   
+		   }else{
+		   
+			var jsonObj={
+					'zonesname':reginname,
+							'zonesaddress':regadress,
+								'zonesfax':fax,
+								'zonesphone':mobileno,
+								'zonesemail':emailid
+			} ;
+		
+		
+			
+			$.ajax({
+				url: "addzonedetails",
+				type: "POST",
+				
+				  data :JSON.stringify(jsonObj),
+				  cache:false,
+			        beforeSend: function(xhr) {  
+			            xhr.setRequestHeader("Accept", "application/json");  
+			            xhr.setRequestHeader("Content-Type", "application/json");  
+			        },
+				     success: function(resposeJsonObject){
+				    	 alert("save")
+			    }});
+			
+		   }
+		});
+		
 </script>
 

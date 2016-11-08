@@ -19,10 +19,10 @@
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px;  height: 34px;">
-		<span class="glyphicon glyphicon-home"></span> Country
+		<span class="glyphicon glyphicon-home"></span> State
 		 <label
 			 style="margin-left: 250px;margin-top: 8px;"><button 
-			class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Country </button>
+			class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add State </button>
      </label> 
 			
 </div>
@@ -32,8 +32,8 @@
 
 <div class="row">
 <input type="hidden" id="hiddenid"/>
-  <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addcountry"
-						style="border-radius: 5px;" value="" name="loginname" placeholder="Add Country"
+  <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addstate"
+						style="border-radius: 5px;" value="" name="loginname" placeholder="Add State"
 						maxlength="20" autofocus="autofocus"></input></div>
   
 </div>
@@ -59,28 +59,29 @@
 		<tbody>
 			<tr>
 				<th style="width: 60px;">S.N.</th>
-				<th data-th="Driver details"><span>Country</span></th>
-				 <th>State</th> 
+				<th data-th="Driver details"><span>State</span></th>
+				 <th>District</th> 
 			    <th style="width: 60px;">Edit</th>
 				<th style="width: 60px;"> Delete</th>
 			</tr>
-			<c:if test="${!empty countryList}">
-				<c:forEach items="${countryList}" var="country" varStatus="loop">
+		 <c:if test="${!empty stateList}">
+				<c:forEach items="${stateList}" var="state" varStatus="loop">
 
 					<tr>
 						<td>${loop.index+1}</td>
-						<td>${country.country}</td>
-		            <td><a href = "state">State</a></td> 
-					 <td><a href="#" onclick="editCur(${country.countryId})" title="Edit">
+						<td>${state.state}</td>
+						 
+		            <td><a href = "district">District</a></td> 
+					 <td><a href="#" onclick="editCur(${state.stateId})" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
-						<td style="margin"><a href="deletecountry?countryId=${country.countryId}"><span
+						<td style="margin"><a href="deletestate?stateId=${state.stateId}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> 
 								
 					</tr>
 
 				</c:forEach>
-			</c:if>
+			</c:if> 
 
 
 
@@ -100,7 +101,7 @@ $("#getcountrypopup").click(function(){
 	 $("#formid").toggle('show');
 	 $('#EditForm').hide();
 	 $("#saveForm").show();
-	 $("#addcountry").val('');
+	 $("#addstate").val('');
 	 
 	 $("#hiddenid").val('');
 	
@@ -109,13 +110,13 @@ $("#getcountrypopup").click(function(){
 $("#formid").hide();
 
 $('#saveForm').click(function (){
-	var addcountry=$('#addcountry').val();
+	var addstate=$('#addstate').val();
 	
 	
-	var jsonObj={'country':addcountry
+	var jsonObj={'state':addstate
 	} ;
 $.ajax({
-		url: "addcountry",
+		url: "addstate",
 		type: "POST",
 		
 		  data :JSON.stringify(jsonObj),
@@ -139,16 +140,16 @@ function editCur(id){
 	$('#EditForm').show();
 	$("#saveForm").hide(); 
 $.ajax({
-	url: "getcountry?countryId="+id,
+	url: "getstate?stateId="+id,
 	type: "GET",
 	
 	     success: function(respose){
 	    	 alert(respose);
 	    	 var data=JSON.parse(respose)
-	    	 var name=data.country;
-	    	 var id=data.countryId;
+	    	 var name=data.state;
+	    	 var id=data.stateId;
 	    	 alert("************************"+id);
-	    	 $("#addcountry").val(name);
+	    	 $("#addstate").val(name);
 	    	 $("#hiddenid").val(id);
 	    	 
     }});
@@ -160,15 +161,15 @@ $.ajax({
 
 $('#EditForm').click(function (){
 	var id=$("#hiddenid").val();
-	var addcountry=$('#addcountry').val();
+	var addstate=$('#addstate').val();
 	
 	var d1w=$("#hiddenid").val();
 	alert(d1w);
 	
 	
-	var jsonObj={'country':addcountry,'countryId':id} ;
+	var jsonObj={'state':addstate,'stateId':id} ;
 $.ajax({
-		url: "editcountry",
+		url: "editstate",
 		type: "POST",
 		
 		  data :JSON.stringify(jsonObj),
@@ -187,5 +188,3 @@ $.ajax({
 	
 });
 </script>
-
-

@@ -20,17 +20,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
-
-
-</head>
-
-<TABLE WIDTH="375" BORDER="0" CELLSPACING="1" CELLPADDING="0" ALIGN="center">
-    <FORM NAME="RegionList" METHOD="post" ACTION="RegionMain.jsp?operation=ADDNEW">
-         
+</head>    
  </CENTER>
         <div id="pop" style="display: none;"></div>
 
 <div id="body">
+<div>
+<div>
+<div class="row" style="margin-top: 15px">
+	<br>
+	<div align="center">
+		<i>
+			<h3></h3>
+		</i> <input type="hidden" name="profile" value="0" />
+	</div>
+</div>
+<div class="row">
+
+	<div class="page-heading col-sm-11"
+		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
+		<span class="glyphicon glyphicon-user"></span> Zones Details</b>
+		 <label
+			 style="margin-left: 250px;margin-top: 8px;"><a href="getzonepage"
+			class="btn btn-primary">Add Zones</a>
+			<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
+     </label>
+  		
+</div>
+
+</div>
+</div> 
         
        <table class="responstable">
   
@@ -47,7 +66,7 @@
   <tr>
     <td>${loop.index+1}</td>
     <td>${branch.zonesname}</td>
-   <td><a href="NewBranch" target="_blank">Branches</a></td>
+   <td><a href="NewBranch" target="_blank">states</a></td>
     <td><a href="editregion" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
     <td><a href="confirmDelete()" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>

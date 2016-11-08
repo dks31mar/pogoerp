@@ -15,14 +15,14 @@
 <link href="resources/css/table.css" rel="stylesheet" type="text/css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <div class="row">
+   <div class="row">
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px;  height: 34px;">
-		<span class="glyphicon glyphicon-home"></span> Country
+		<span class="glyphicon glyphicon-home"></span> District
 		 <label
 			 style="margin-left: 250px;margin-top: 8px;"><button 
-			class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Country </button>
+			class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add District </button>
      </label> 
 			
 </div>
@@ -32,8 +32,8 @@
 
 <div class="row">
 <input type="hidden" id="hiddenid"/>
-  <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addcountry"
-						style="border-radius: 5px;" value="" name="loginname" placeholder="Add Country"
+  <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="adddistrict"
+						style="border-radius: 5px;" value="" name="loginname" placeholder="Add District"
 						maxlength="20" autofocus="autofocus"></input></div>
   
 </div>
@@ -59,28 +59,28 @@
 		<tbody>
 			<tr>
 				<th style="width: 60px;">S.N.</th>
-				<th data-th="Driver details"><span>Country</span></th>
-				 <th>State</th> 
+				<th data-th="Driver details"><span> District </span></th>
+				 <th>Location</th> 
 			    <th style="width: 60px;">Edit</th>
 				<th style="width: 60px;"> Delete</th>
 			</tr>
-			<c:if test="${!empty countryList}">
-				<c:forEach items="${countryList}" var="country" varStatus="loop">
+			 <c:if test="${!empty districtList}">
+				<c:forEach items="${districtList}" var="district" varStatus="loop">
 
 					<tr>
 						<td>${loop.index+1}</td>
-						<td>${country.country}</td>
-		            <td><a href = "state">State</a></td> 
-					 <td><a href="#" onclick="editCur(${country.countryId})" title="Edit">
+						<td>${district.district}</td>
+		            <td><a href = "location">Location</a></td> 
+					 <td><a href="#" onclick="editCur(${district.districtId})" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
-						<td style="margin"><a href="deletecountry?countryId=${country.countryId}"><span
+						<td style="margin"><a href="deletedistrict?districtId=${district.districtId}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> 
 								
 					</tr>
 
 				</c:forEach>
-			</c:if>
+			</c:if> 
 
 
 
@@ -88,6 +88,7 @@
 	</table>
 
 </div>
+
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -100,7 +101,7 @@ $("#getcountrypopup").click(function(){
 	 $("#formid").toggle('show');
 	 $('#EditForm').hide();
 	 $("#saveForm").show();
-	 $("#addcountry").val('');
+	 $("#adddistrict").val('');
 	 
 	 $("#hiddenid").val('');
 	
@@ -109,13 +110,13 @@ $("#getcountrypopup").click(function(){
 $("#formid").hide();
 
 $('#saveForm').click(function (){
-	var addcountry=$('#addcountry').val();
+	var adddistrict=$('#adddistrict').val();
 	
 	
-	var jsonObj={'country':addcountry
+	var jsonObj={'district':adddistrict
 	} ;
 $.ajax({
-		url: "addcountry",
+		url: "adddistrict",
 		type: "POST",
 		
 		  data :JSON.stringify(jsonObj),
@@ -139,16 +140,16 @@ function editCur(id){
 	$('#EditForm').show();
 	$("#saveForm").hide(); 
 $.ajax({
-	url: "getcountry?countryId="+id,
+	url: "getdistrict?districtId="+id,
 	type: "GET",
 	
 	     success: function(respose){
 	    	 alert(respose);
 	    	 var data=JSON.parse(respose)
-	    	 var name=data.country;
-	    	 var id=data.countryId;
+	    	 var name=data.district;
+	    	 var id=data.districtId;
 	    	 alert("************************"+id);
-	    	 $("#addcountry").val(name);
+	    	 $("#adddistrict").val(name);
 	    	 $("#hiddenid").val(id);
 	    	 
     }});
@@ -160,15 +161,15 @@ $.ajax({
 
 $('#EditForm').click(function (){
 	var id=$("#hiddenid").val();
-	var addcountry=$('#addcountry').val();
+	var adddistrict=$('#adddistrict').val();
 	
 	var d1w=$("#hiddenid").val();
 	alert(d1w);
 	
 	
-	var jsonObj={'country':addcountry,'countryId':id} ;
+	var jsonObj={'district':adddistrict,'districtId':id} ;
 $.ajax({
-		url: "editcountry",
+		url: "editdistrict",
 		type: "POST",
 		
 		  data :JSON.stringify(jsonObj),

@@ -101,6 +101,9 @@
 			<definition name="Editregion" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/editregion.jsp" />
 			</definition>
+			 <definition name="addregion" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addregion.jsp" />
+			</definition>
 
             		<!-- ************************************************** use by satyendra *************************************************** -->
 			<!-- <definition name="AddPrinicpalPO" extends="baseLayout" >
@@ -146,6 +149,26 @@
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/country.jsp" />
 			</definition>
 			
+			<definition name="getstate" extends="baseLayout" >
+			 <put-attribute name="title" value="state"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/state.jsp" />
+			</definition>
+			
+			<definition name="getdistrict" extends="baseLayout" >
+			 <put-attribute name="title" value="district"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/district.jsp" />
+			</definition>
+			
+			<definition name="getlocation" extends="baseLayout" >
+			 <put-attribute name="title" value="location"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/location.jsp" />
+			</definition>
+			
+			<definition name="getexpensemaster" extends="baseLayout" >
+			 <put-attribute name="title" value="expensemaster"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/expensemaster.jsp" />
+			</definition>
+		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/product/producthead.jsp" />
@@ -873,7 +896,7 @@
 			<put-attribute name="body" value="/WEB-INF/views/Master/product/productsubhead.jsp" />
 			</definition>
 	 
-	<!-- ************************************************** use by shweta *************************************************** -->
+	
 	      
 	      
 	      <!-- Master product pages currency-->
@@ -886,6 +909,23 @@
 	      <definition name="getunit" extends="baseLayout" >
 	      <put-attribute name="title" value="Units"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/Master/product/units.jsp" />
+			</definition>
+			
+			
+			<definition name="appregis" extends="baseLayout" >
+	      <put-attribute name="title" value="App"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileappregistration.jsp" />
+			</definition>
+			
+			<definition name="promaster" extends="baseLayout" >
+	      <put-attribute name="title" value="Product Master"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/product/productmaster.jsp" />
+			</definition>
+			
+			
+			 <definition name="getaddproductpage" extends="baseLayout" >
+	      <put-attribute name="title" value="Add Product"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/product/addproduct.jsp" />
 			</definition>
 			
 	      </tiles-definitions>

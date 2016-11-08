@@ -19,8 +19,6 @@ public class Zones {
 	@Column(name="companyid",columnDefinition="int(11)")
 	private Integer companyid;
 	
-	
-    
 	@Column(name="zonesheadid",columnDefinition="int(11)")
 	private Integer zonesheadid;
      
