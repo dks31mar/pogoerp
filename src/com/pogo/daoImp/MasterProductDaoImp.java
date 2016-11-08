@@ -158,6 +158,12 @@ int f=Integer.parseInt(id);
 		return (List<ProductSubHead>)sessionFactory.getCurrentSession().createCriteria(ProductSubHead.class).list();
 	}
 
+	@Override
+	public void saveproductdetail(ProductMaster promaster) {
+		sessionFactory.getCurrentSession().save(promaster);
+		
+	}
+
 	
 	
 }

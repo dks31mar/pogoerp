@@ -50,5 +50,7 @@ public interface MasterProductDao {
 
 	List<ProductSubHead> getProductSubHeadData();
 
+	void saveproductdetail(ProductMaster promaster);
+
 
 }

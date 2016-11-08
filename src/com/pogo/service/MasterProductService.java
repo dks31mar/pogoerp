@@ -50,6 +50,8 @@ public interface MasterProductService {
 
 	List<ProductSubHeadBean> getProductSubHead();
 
+	void addProduct(ProductMasterBean poref);
+
 	
 
 }
