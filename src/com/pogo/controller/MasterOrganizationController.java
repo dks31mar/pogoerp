@@ -21,11 +21,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat.Value;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.pogo.bean.PoRefEntryItemDetailBean;
+
 import com.ibm.icu.text.Normalizer.Mode;
 import com.pogo.bean.CompanyProfileBean;
 import com.pogo.bean.DesignationBean;
+
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
 import com.pogo.dao.MasterOrganizationDao;
@@ -74,7 +82,9 @@ public class MasterOrganizationController {
 		return new ModelAndView("getuseremp");
 	}
 
-	// for add jsp
+	
+
+
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String addEmployee(Model model) {
 
@@ -192,6 +202,7 @@ public class MasterOrganizationController {
 	 * new ModelAndView("getdesignation",model); }
 	 */
 	@RequestMapping(value = "show-designation", method = RequestMethod.POST)
+
 	@ResponseBody
 	public void getData(@RequestBody String json, Model model) throws IOException {
 
@@ -303,6 +314,50 @@ public class MasterOrganizationController {
 		return "mobileApp";
 		
 	}
+
+	@RequestMapping(value="/Editregion",method = RequestMethod.GET)
+	public ModelAndView editZones(@RequestParam("id") Integer id,Zones porefitem,HttpServletRequest request,Model model)
+			{
+	    List<Zones> getbranch=new ArrayList<Zones>();
+	    model.addAttribute("getregion", regionService.editZones(id));
+		getbranch=regionService.getBranches();
+		Map<String, Object> mode = new HashMap<String, Object>();
+		mode.put("branchList",  getbranch);
+		return new ModelAndView("editregion",mode);
+}
+	@RequestMapping(value="/branches",method = RequestMethod.GET)
+	public ModelAndView getStates(Zones porefitem,HttpServletRequest request){
 	
+		List<Zones> getStates=new ArrayList<Zones>();
+		//getStates=regionService.getStates();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("branchList",  getStates);
+		return new ModelAndView("branches",model);
+	
+}
+	@RequestMapping(value = "/update-region", method = RequestMethod.POST)
+	public String updateregion(@ModelAttribute("zonesBean")  ZonesBean zonesBean)  {
+		regionService.updateregion(zonesBean);
+		System.out.println("i am here");
+		return "redirect:/region";
+	
+	}
+@RequestMapping(value="/deleteRegion",method=RequestMethod.GET)
+public String deleteRegionData(@RequestParam ("id")int id)
+{
+	regionService.deleteRegion(id);
+	return "redirect:/region";
+	
+}
+@RequestMapping(value="/addstates",method = RequestMethod.GET)
+public ModelAndView getSouthBranch(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+
+	//commonservice.getPoRefNo(request);
+
+return new ModelAndView("addstates");
+}	
+
+	
+
 
 }

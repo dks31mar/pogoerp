@@ -22,76 +22,38 @@
 </head>
 
 
-<div class="container">
-  <h2></h2>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-  <!-- Modal -->
-
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Employee</h4>
-        </div>
-        <div class="modal-body">
-		<form>
-    
-<table>
-     <tr>  <td> Region Name:</td>  <td><input type="text" name="first"></td></tr>
-    
-     <tr><td> Phone No: </td><td><input type="text" name="last"> </td></tr>
-           <tr><td>Fax No: </td>
-       
-        <td><input type="text" name="first"> </td></tr>
-		<tr><td>EmailId: </td><td><input type="text" name="first"> </td>     </tr>
-        
-           
-       
-        
-        <tr>
-		<td>Region Head Name</td>
-		<td>
-            <select>
-               <option value="affiliate">Select Affiliate</option>
-               <option value="x">x</option>
-               <option value="y">y</option>
-            </select>
-         </td></tr>
-         <tr>
-         		<td>Region Address</td>
-		<td><input type="text"></td>
-		</tr>
-		
-</table>
-		</form>
-         
-        </div>
-        <div class="modal-footer">
-		 <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-
 
 <tbody>
 <body>
-<TABLE WIDTH="400" BORDER="0" CELLSPACING="10"   ALIGN="center">
-    <FORM NAME="RegionList" METHOD="post" ACTION="RegionMain.jsp?operation=ADDNEW">
-         	</tbale>
-         	<center>
- </CENTER>
-        
-        
+
+    <div id="pop" style="display: none;"></div>
+
+<div id="body">
+<div>
+<div>
+<div class="row" style="margin-top: 15px">
+	<br>
+	<div align="center">
+		<i>
+			<h3></h3>
+		</i> <input type="hidden" name="profile" value="0" />
+	</div>
+</div>
+<div class="row">
+
+	<div class="page-heading col-sm-11"
+		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
+		<span class="glyphicon glyphicon-user"></span> States Details</b>
+		 <label
+			 style="margin-left: 250px;margin-top: 8px;"><a href="getzonepage"
+			class="btn btn-primary">Add States</a>
+			<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
+     </label>
+  		
+</div>
+
+</div>
+</div>      
        <table class="responstable">
   
   <tbody align='center'>
@@ -111,7 +73,7 @@
   <tr id="str">
     <td>1</td>
    <td id="branch_name1"><a href="#">Bhopal</a></td>
-    <td>Branches</td>
+   <td><a href="NewBranch" target="_blank">Branches</a></td>
    <td id="phone_no1" ></td>
    <td id="fax_no1" ></td>
     <td id="product_no1" '></td>
