@@ -267,24 +267,22 @@
 							'color':productcolor 
 							}; 
 			
-			
-			
-		 $.ajax({
-				url: "saveproductdet",
-				type: "POST",
+						 $.ajax({
+								url: "saveproductdet",
+								type: "POST",
 				
-				  data :JSON.stringify(jsonObj),
-				  cache:false,
-			        beforeSend: function(xhr) {  
-			            xhr.setRequestHeader("Accept", "application/json");  
-			            xhr.setRequestHeader("Content-Type", "application/json");  
-			        },
-				     success: function(resposeJsonObject){
-				    	 $('#openModal').hide();
-				    	 //window.location.currency;
-				    	 window.location.reload();
-			     
-			    }});
-		});	
+								  data :JSON.stringify(jsonObj),
+								  cache:false,
+							        beforeSend: function(xhr) {  
+							            xhr.setRequestHeader("Accept", "application/json");  
+							            xhr.setRequestHeader("Content-Type", "application/json");  
+							        },
+								     success: function(resposeJsonObject){
+								    	 $('#openModal').hide();
+								    	 //window.location.currency;
+								    	 window.location.reload();
+							     
+							    }});
+						});	
 </script>
 
