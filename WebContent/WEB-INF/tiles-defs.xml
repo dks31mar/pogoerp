@@ -29,19 +29,7 @@
 			<definition name="savepro" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
 			</definition>
-			<!-- Employees -->
-			<definition name="getuseremp" extends="baseLayout" >
-			<put-attribute name="title" value="Employee" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/useremployee.jsp" />
-			</definition>
-			<definition name="editUser" extends="baseLayout" >
-			<put-attribute name="title" value="Edit Employee" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/editUser.jsp" />
-			</definition>
-			<definition name="addUser" extends="baseLayout" >
-			<put-attribute name="title" value="Add Employee" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/addUser.jsp" />
-			</definition>
+			
 			
 			
 			<definition name="posummary" extends="baseLayout" >
@@ -71,11 +59,6 @@
 			</definition>
 			<definition name="import" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/Import.jsp" />
-			</definition>
-			
-			<definition name="Profile" extends="baseLayout" >
-				<put-attribute name="title" value="Company Info"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/Master/profile.jsp" />
 			</definition>
 			
 			<definition name="region" extends="baseLayout" >

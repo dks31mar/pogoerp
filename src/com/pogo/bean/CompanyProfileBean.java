@@ -1,6 +1,6 @@
 package com.pogo.bean;
 
-public class CompanyInfoBean {
+public class CompanyProfileBean {
 
 	private Integer companyinfoid ;
     private String companyinfoname;
