@@ -2,8 +2,6 @@ package com.pogo.controller;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,45 +29,16 @@ import com.pogo.bean.CompanyInfoBean;
 
 import com.pogo.bean.DesignationBean;
 
-import com.pogo.bean.CountryBean;
-import com.pogo.bean.CurrencyBean;
-
-import com.pogo.bean.UnitBean;
-
-import com.pogo.bean.CustomerLevelsBean;
-import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ProductHeadBean;
-import com.pogo.bean.ProductSubHeadBean;
-
-
-
-
-
-import com.pogo.bean.StateBean;
-
-
 import com.pogo.bean.UserEmployeeBean;
-import com.pogo.bean.ZonesBean;
 import com.pogo.dao.UserEmployeeDao;
 import com.pogo.model.CompanyInfo;
 
 import com.pogo.model.Designation;
-import com.pogo.model.Country;
-import com.pogo.model.CustomerLevels;
-
-import com.pogo.model.State;
-
-
-
-
-import com.pogo.model.Zones;
 import com.pogo.service.CompanyInfoService;
 
 
 import com.pogo.service.MasterMastersService;
-
-import com.pogo.service.MasterProductService;
-import com.pogo.service.MasterOrganizationService;
 
 import com.pogo.service.UserEmployeeService;
 @Controller
