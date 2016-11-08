@@ -28,12 +28,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.google.gson.Gson;
+
 
 import com.pogo.bean.CompanyInfoBean;
 
 import com.pogo.bean.DesignationBean;
-import com.pogo.bean.PoRefEntryItemDetailCopyBean;
+
 
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CurrencyBean;
@@ -54,19 +54,8 @@ import com.pogo.dao.UserEmployeeDao;
 import com.pogo.model.CompanyInfo;
 
 import com.pogo.model.Designation;
-import com.pogo.model.PoRefEntryItemDetailCopy;
-
-
 import com.pogo.model.Country;
-import com.pogo.model.Currency;
-
-
-
 import com.pogo.model.CustomerLevels;
-
-
-import com.pogo.model.UserEmployee;
-
 
 
 import com.pogo.model.Zones;
@@ -101,15 +90,26 @@ public class MasterController
 	private MasterMastersService masterMastersService;
 	
 	@RequestMapping(value="/getuseremp",method = RequestMethod.GET)
-	public ModelAndView getUserEmp(@ModelAttribute("userbean") UserEmployee userEmployee,
-			HttpServletRequest request)
+	public ModelAndView getUserEmpl(Model model,@RequestParam(value = "num", defaultValue = "0", required = false)  int num)
+			
 	{
 	List<UserEmployeeBean> list=new ArrayList<UserEmployeeBean>();
 	list=userEmployeeservice.getUserDetails();
-	Map<String, Object> model= new HashMap<String,Object>();
-	model.put("userlist", list);
+	int size=list.size();
+	int result=0;
+	int rem = size % 5;
+	if (rem > 0)
+		result=(size/10)+1;
+		else
+		result=size/5;
+	model.addAttribute("noOfPage", num);
+	model.addAttribute("totalNoOfPages", result);
+	model.addAttribute("Recordlist",empDao.findDesignationByPageNo(num-1));
+	/*Map<String, Object> mode= new HashMap<String,Object>();
+	mode.put("userlist", list);*/
+	model.addAttribute("totalrecords", list.size());
 	
-		return new ModelAndView("getuseremp",model);
+		return new ModelAndView("getuseremp");
 }
 	//for add jsp
 	@RequestMapping(value="/addUser",method = RequestMethod.GET)
@@ -205,14 +205,7 @@ public class MasterController
 	
 		return new ModelAndView("designation",mode);
 }
-@RequestMapping(value = "/saveDesignation", method = RequestMethod.POST) 
-public String saveDetails(Model model,
-		@ModelAttribute("designationbean") DesignationBean designationBean)
-   {
-	userEmployeeservice.adddDesignation(designationBean);
-	//List<Designation> listDesignation=userEmployeeservice.getListbylevel();
-	return "redirect:getdesignation";
-}
+
 	
 /*@RequestMapping(value = "authority", method = RequestMethod.GET)
 public @ResponseBody
@@ -255,10 +248,34 @@ public void getData(@RequestBody String json,Model model) throws IOException{
 	
 	System.out.println(json);
 	ObjectMapper mapper=new ObjectMapper();
-	//DesignationBean degbean=mapper.readValue(json, DesignationBean.class);
+	DesignationBean degbean=mapper.readValue(json, DesignationBean.class);
+	DesignationBean des=new DesignationBean();
+	des.setDesignation(degbean.getDesignation());
+	des.setLevel(degbean.getLevel());
+	des.setPosition(degbean.getPosition());
+	userEmployeeservice.updateandinsertbylevel(des);
+	
 	}
+@RequestMapping(value="/editDesignation",method = RequestMethod.GET)
+public String editDesignation(@RequestParam int id,Model model)
+{
+DesignationBean bean =userEmployeeservice.getDesignationForEdit(id);
+model.addAttribute("getdata",bean);
+	return "editDesignation";
+}
 
+@RequestMapping(value = "/update-designation", method = RequestMethod.POST)
+public String updateDesignation(
+		@ModelAttribute("designationBean") DesignationBean designationBean)  {
+	userEmployeeservice.updateDesignation(designationBean);
+	return "redirect:/getdesignation";
 
+}
+@RequestMapping(value = "deleteDesg", method = RequestMethod.GET)
+public String deleteuserDesgData(@RequestParam("designationid") int id) {
+	userEmployeeservice.deleteDesignation(id);
+	return "redirect:/getdesignation";
+}
 
 	@RequestMapping(value="/region",method = RequestMethod.GET)
 	public ModelAndView getRegion(Zones porefitem,HttpServletRequest request){

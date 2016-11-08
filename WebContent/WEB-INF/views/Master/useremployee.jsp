@@ -18,52 +18,8 @@
 
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- <link
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/ui-darkness/jquery-ui.css"
-	rel="stylesheet">
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
- -->
-<style>
 
-.modalDialog {
-	position: fixed;
-	font-family: Arial, Helvetica, sans-serif;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: rgba(0, 0, 0, 0.8);
-	z-index: 99999;
-	opacity: 0;
-	-webkit-transition: opacity 400ms ease-in;
-	-moz-transition: opacity 400ms ease-in;
-	transition: opacity 400ms ease-in;
-	pointer-events: none;
-}
 
-.modalDialog:target {
-	opacity: 1;
-	pointer-events: auto;
-}
-
-.modalDialog>div {
-	width: 725px;
-	position: relative;
-	margin: 5% auto;
-	padding: 5px 20px 13px 20px;
-	border-radius: 10px;
-	background: #fff;
-	background: -moz-linear-gradient(#fff, #999);
-	/* background: -webkit-linear-gradient(#fff, #999); */
-	background: -o-linear-gradient(#fff, #999);
-}
-
-}
-
-</style>
 
 <script>
 	function fordelete()
@@ -130,10 +86,9 @@
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.designation
 												+ '</td>';
-												content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id=${user.userempid}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
-													
+									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id=${value.userempid}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
 													+ '</td>';		
-										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser(${user.userempid})"><span class="glyphicon glyphicon-trash"></span></a>'
+										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser(${value.userempid})"><span class="glyphicon glyphicon-trash"></span></a>'
 											+ '</td></tr>';		
 										
 
@@ -206,7 +161,16 @@ function ConfirmDelete()
 </div>
 
 </div>
+<div class="row" style="margin-top: 10px;">
+					<div class="col-md-12">
 
+						<div class="col-md-12 col-sm-12 clearfix"
+							style="text-align: left;">
+							<h5 style="font-weight: 100; color: red;" id="totalrecords">Total
+								Records:${totalrecords}</h5>
+						</div>
+						</div>
+						</div>
 <div id="pop" style="display: none;"></div>
 <div id="searchedRecord"></div>
 <div id="body">
@@ -220,207 +184,73 @@ function ConfirmDelete()
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;"> Delete</th>
 			</tr>
-			<c:if test="${!empty userlist}">
-				<c:forEach items="${userlist}" var="user" varStatus="loop">
+			<c:choose>
+							<c:when test="${empty Recordlist}">
+								<div style="color: red; text-align: center;">No Employee
+													Record in the List</div>
+									</c:when>
+				<c:otherwise>
+			<c:if test="${!empty Recordlist}">
+				<c:forEach items="${Recordlist}" var="user" varStatus="loop">
 
 					<tr>
 						<td>${loop.index+1}</td>
-						<td>${user.loginname}</td>
-						<td>${user.designation}</td>
+						 <td>${user.loginname}</td> 
+						 <td>${user.designation}</td> 
 
-						<%-- <td><a href="#"onclick="getDataList(${user.userempid})" title="Edit"align="center" id="edit"><span
-								class="glyphicon glyphicon-pencil"></span></a></td> --%>
-								<td><a href="editUser?id=${user.userempid}" title="Edit" align="center" >
+						
+								<td><a href="editUser?id=${user.userempid}" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
-								<%-- <td><a href="#openModal1 editEmp?id=${user.userempid}" title="Edit" align="center" ><span
-								class="glyphicon glyphicon-pencil"></span></a></td> --%>
+								
 						<td style="margin"><a href="#"  onclick="deletUser(${user.userempid})"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
+	
 					</tr>
 
 				</c:forEach>
 			</c:if>
-
-
-
+</c:otherwise>
+</c:choose>
 		</tbody>
+		
+		
 	</table>
 
-
 </div>
-
-
 
 
 <div class="row form-group">
 	<div class="col-sm-7"></div>
 </div>
+<div class="row" align="center">
+								<div class="col-xs-9 col-right">
+									<div class="dataTables_paginate paging_bootstrap">
+										<ul class="pagination pagination-sm">
+											<c:if test="${noOfPage > 1}">
+										<li><a href="getuseremp?=${noOfPage - 1}">Previous</a></li>
+											</c:if>
 
- <%-- <div id="openModal" class="modalDialog">
+											<c:forEach begin="1" end="${totalNoOfPages}" var="i">
+												<c:choose>
+													<c:when test="${i==noOfPage}">
 
-	<div>
-	<form:form id="formID" action="saveuserEmp" method="POST"
-			commandName="userbean">
-		<a href="#close" title="Close" class="close">X</a>
-		 <td style="display: none;"><form:input path="userempid" type="hidden" 
-		value="${user.userempid}" id=""></form:input> </td> 
-		<span style="text-align: center;" id="addemp"><h3>Add Employee</h3></span>
-		<!-- <span style="text-align: center;" id="editemp"><h3>Edit Employee</h3></span> -->
-		
-			<table class="flat-table">
-				<tr>
-					<td><span style="color: black;"> <strong>Login
-								Name<span style="color: red;">*</span>:
-						</strong></span></td>
-					<td><form:input path="loginname" type="text" class="validate[required] text-input"
-						style="border-radius: 5px;" value="${user.loginname}" name="loginname"
-						placeholder="Username" maxlength="20" autofocus="autofocus"></form:input></td>
-					<td><span style="color: black;">
-							<strong>Joining Date<span
-								style="color: red;">*</span>:
-						</strong>
-					</span></td>
-					<td><form:input path="dateofjoining" type="text" class="validate[required] text-input"
-						style="border-radius: 2px;" name="dateofjoining" value="${user.dateofjoining}" readonly="readonly"
-						placeholder="Date" maxlength="20" id="datepickerjoin"></form:input></td>
-				</tr>
-				<tr>
-					<td><span style="color: black;"> <strong>FirstName<span
-								style="color: red;">*</span>:
-						</strong></span></td>
+														<li class="active"><a href="#">${i}</a></li>
 
-					<td><form:input path="firstname" type="text" class="validate[required] text-input"
-						style="border-radius: 5px;" name="firstname" value="${user.firstname}"
-						placeholder="Firstname" maxlength="20"></form:input></td>
+													</c:when>
+													<c:otherwise>
+													<li><a href="getuseremp?=${i}"> ${i}</a></li>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
 
-					<td><span style="color: black;"><strong>Designation<span
-								style="color: red;">*</span>:
-						</strong></span></td>
-					<td><form:input path="designation" type="text" class="validate[required] text-input"
-						style="border-radius: 5px;" name="designation" value="${user.designation}"
-						placeholder="eg.Manager" maxlength="20"></form:input></td>
+											<c:if test="${noOfPage < totalNoOfPages}">
+												<li><a href="getuseremp?=${noOfPage + 1}">Next</a></li>
+											</c:if>
 
-				</tr>
-				<tr>
-					<td><span style="color: black;"> <strong>LastName<span
-								style="color: red;">*</span>:
-						</strong></span></td>
-
-					<td><form:input path="lastname" type="text" class="validate[required] text-input"
-						style="border-radius: 5px;" name="lastname" value="${user.lastname}" placeholder="Lastname"
-						maxlength="20"></form:input></td>
-
-				<td><span style="color: black;"><strong>DOB<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-				<td><form:input path="dob"  type="text" id="datepickerDob" class="validate[required] text-input"
-				style="border-radius: 5px;" readonly="readonly" name="dob" value="${user.dob}" placeholder="DD-MM-YY"
-				maxlength="20"></form:input></td>
-				
-				</tr>
-			
-			<tr>
-			<td><span style="color: black;"> <strong>Division<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-			<td><form:select path="division"><option value="none">-----Select Division------</option>
-				<form:option value="Delhi">Delhi</form:option>
-				<form:option value="Delhi">Noida</form:option>
-			</form:select></td>
-			
-			<td><span style="color: black;"><strong>Email<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-			
-			<td><form:input path="eamil"
-				type="text" class="validate[required] text-input"
-				style="border-radius: 5px;" name="eamil" value="${user.eamil}" placeholder="MailId"
-				maxlength="30"></form:input></td>
-			
-			</tr>
-			<tr>
-			
-			<td><span style="color: black;"> <strong>Region<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-			<td><form:select path="region"><option>------Select Region------</option>
-				<form:option value="Delhi NCR">Delhi NCR</form:option>
-				<form:option value="Noida">Noida</form:option>
-			</form:select></td>
-			
-			<td><span style="color: black;"><strong>Password<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-			
-			<td><form:input path="password" type="password"
-				class="validate[required] text-input" value="${user.password}" style="border-radius: 5px;"
-				name="password" placeholder="Password" maxlength="20"></form:input></td>
-			</tr>
-			<tr>
-			
-			<td><span style="color: black;"> <strong>Branch<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-			
-			<td><form:select path="branch" name="branch"><option>------Select Branch------</option>
-				<form:option value="Delhi NCR">Delhi NCR</form:option>
-				<form:option value="Noida">Noida</form:option> 
-			</form:select></td>
-			
-			<td><span style="color: black;"><strong>Re-Password<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-			
-			<td><form:input path="repassword" type="password" class="validate[required] text-input"
-				style="border-radius: 5px;" name="repassword" value="${user.repassword}"
-				placeholder="Re-Password" maxlength="20"></form:input></td>
-			
-			</tr>
-			<tr>
-			
-			<td><span style="color: black;"> <strong>Mobile<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-			
-			<td><form:input  path="usermobile" type="text" class="validate[required] text-input"
-				style="border-radius: 5px;" name="usermobile" value="${user.usermobile}"
-				placeholder="9934012451" maxlength="20"></form:input></td>
-			
-			<td><span style="color: black;"><strong>Phone<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-			
-			<td><form:input path="phone"  value="${user.phone}"
-				type="text" class="validate[required] text-input"
-				style="border-radius: 5px;" name="phone" placeholder="121-12456"
-				maxlength="20"></form:input></td>
-			</tr>
-			<tr>
-			
-			<td><span style="color: black;"> <strong>Gender<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-			
-			<td><form:select path="gender" name="gender"><option>------Select
-					Gender------</option>
-				<form:option value="Male">Male</form:option>
-				<form:option value="Female">Female</form:option> 
-			</form:select></td>
-			
-			<td><span style="color: black;">&nbsp<strong>Address<span
-					style="color: red;">*</span>:
-			</strong></span></td>
-			
-			<td><textarea
-				name="address" cols="18" rows="2" value="${user.address}"
-				style="border-radius:5px;" placeholder="Address"></textarea></td>
-			</tr>
-			</table>
-			<button style="margin-left: 300px; margin-top: 6px;" type="submit"
-				class="btn btn-primary">Save</button>
-		</form:form>
-	</div>
-</div>  --%>
+										</ul>
+									</div>
+								</div>
+							</div>
 
 <script type="text/javascript">
 

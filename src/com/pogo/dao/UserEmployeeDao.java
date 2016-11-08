@@ -36,7 +36,19 @@ public interface UserEmployeeDao
 
 	List<Designation> getDesignationname();
 
-	List<Designation> findlistBylevel();
+	List<Designation> findlistBylevel(int h);
+
+	void upDatelevel(Designation level);
+
+	public List<Designation> findDesignationByPageNo(int i);
+
+	List<Designation> forDesignationGetId(int id);
+
+	void updateDesignation(Designation deg);
+
+	Designation getDesgById(int id);
+
+	void deleteDesignation(Designation deg);
 
 	
 

@@ -25,13 +25,19 @@ public interface UserEmployeeService
 
 	void updateEmployee(UserEmployeeBean userEmployeeBean)throws ParseException;
 
-	void adddDesignation(DesignationBean designationBean);
-
 	List<String> findDataByDesignation(String designation);
 
 	List<DesignationBean> getDesignation();
 
 	List<DesignationBean> getDesignation(int designationid);
+
+	void updateandinsertbylevel(DesignationBean des);
+
+	public DesignationBean getDesignationForEdit(int desgid);
+
+	void updateDesignation(DesignationBean designationBean);
+
+	void deleteDesignation(int id);
 
 	
 

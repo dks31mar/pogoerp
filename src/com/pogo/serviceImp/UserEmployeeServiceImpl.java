@@ -179,32 +179,6 @@ public class UserEmployeeServiceImpl implements UserEmployeeService
 		
 	}
 
-@Override
-public void adddDesignation(DesignationBean designationBean) {
-	Designation degn= new Designation();
-	degn.setDesignation(designationBean.getDesignation());
-	degn.setLevel(designationBean.getLevel());
-    //degn.setDesignationid(designationBean.getDesignationid());
-   // System.out.println(degn.getDesignationid());
-	List<Designation> list=userEmpdao.findlistBylevel();
-	
-	
-	
-	for(Designation u:list){
-		System.out.println("*************         "+u.getLevel());
-	}
-	//System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%       \n"+list);
-	//userEmpdao.createDesign(degn);
-	
-	/*if(designationBean.getPosition()!=2)
-	{
-		//int level=degn.getLevel()+1;
-		//System.err.println(level);
-		//userEmpdao.updateDesign(degn);
-	}*/
-	
-	
-}
 
 @Override
 public List<String> findDataByDesignation(String designation) {
@@ -249,7 +223,64 @@ public List<DesignationBean> getDesignation(int designationid)
 }
 	return listbean;
 
-}	
+}
+
+@Override
+public void updateandinsertbylevel(DesignationBean des) {
+	
+	Designation d=new Designation();
+	
+	d.setDesignation(des.getDesignation());
+	d.setLevel(des.getLevel());
+	List<Designation> list=new ArrayList<>();
+	list=userEmpdao.findlistBylevel(des.getLevel());
+	
+	if(des.getPosition()==2)
+	{
+		userEmpdao.upDatelevel(d);
+	 
+	
+	}else if(des.getPosition()==1){
+		
+	}else if(des.getPosition()==0){
+		
+		
+	}
+	Designation deg=new Designation();
+	deg.setDesignation(des.getDesignation());
+	deg.setLevel(des.getLevel());
+	userEmpdao.createDesign(deg);
 	
 
+	}
+
+@Override
+public DesignationBean getDesignationForEdit(int desgid) 
+{
+	
+	List<Designation> designation=userEmpdao.forDesignationGetId(desgid);
+	DesignationBean bean=new DesignationBean();
+	for(Designation des:designation){
+	bean.setDesignationid(des.getDesignationid());
+	bean.setDesignation(des.getDesignation());
+	}
+	return bean;
 }
+
+@Override
+public void updateDesignation(DesignationBean designationBean) {
+	Designation deg=new Designation();
+	deg.setDesignationid(designationBean.getDesignationid());
+	deg.setDesignation(designationBean.getDesignation());
+	userEmpdao.updateDesignation(deg);
+}
+
+@Override
+public void deleteDesignation(int id) {
+	Designation deg = userEmpdao.getDesgById(id);
+	userEmpdao.deleteDesignation(deg);
+	
+}
+
+}	
+

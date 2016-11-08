@@ -42,12 +42,6 @@
 			<put-attribute name="title" value="Add Employee" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/addUser.jsp" />
 			</definition>
-			<!-- Designation -->
-			<definition name="designation" extends="baseLayout" >
-			<put-attribute name="title" value="Designation" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/designationHome.jsp" />
-			</definition>
-			
 			
 			
 			<definition name="posummary" extends="baseLayout" >
