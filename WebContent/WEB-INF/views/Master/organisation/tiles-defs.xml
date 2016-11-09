@@ -7,18 +7,18 @@
        		
 			<definition name="getuseremp" extends="baseLayout" >
 			<put-attribute name="title" value="Employee" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/useremployee.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/useremployee.jsp" />
 			</definition>
 			<definition name="editUser" extends="baseLayout" >
 			<put-attribute name="title" value="Edit Employee" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/editUser.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/editUser.jsp" />
 			</definition>
 			<definition name="addUser" extends="baseLayout" >
 			<put-attribute name="title" value="Add Employee" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/addUser.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/addUser.jsp" />
 			</definition>
 			
-			<!-- Disignation -->
+			<!-- Role -->
 			
        		<definition name="designation" extends="baseLayout" >
 			<put-attribute name="title" value="Add Designation" />
@@ -37,4 +37,11 @@
 			<put-attribute name="title" value="Add Profile" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/companyprofile.jsp" />
 			</definition>
-       		</tiles-definitions>
+       		
+       		
+       		<!-- Mobile App Registration -->
+       		<definition name="mobileApp" extends="baseLayout" >
+			<put-attribute name="title" value="Mobile App" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileApp.jsp" />
+			</definition>
+			</tiles-definitions>

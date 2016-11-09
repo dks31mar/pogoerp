@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ibm.icu.text.Normalizer.Mode;
 import com.pogo.bean.CompanyProfileBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.UserEmployeeBean;
@@ -295,5 +296,13 @@ public class MasterOrganizationController {
 
 		return comp;
 	}
+	/*Mobile Apps Registration*/
+	@RequestMapping(value="mobileApp", method=RequestMethod.GET)
+	public String forMobileApp(Model model)
+	{
+		return "mobileApp";
+		
+	}
+	
 
 }

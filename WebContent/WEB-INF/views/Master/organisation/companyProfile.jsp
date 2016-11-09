@@ -91,7 +91,7 @@
   </div>
 </div>
 <div class="form-group">
-  <label class="col-md-2 control-label" >VAT TIN<span
+  <label class="col-md-2 control-label" >VAT TIN/JST<span
 					style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">

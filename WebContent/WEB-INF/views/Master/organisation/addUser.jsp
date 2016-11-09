@@ -211,6 +211,7 @@
     </div>
   </div>
 </div>
+
 <div class="form-group"> 
   <label class="col-md-2 control-label">Department<span style="color: red;">*</span></label>
     <div class="col-md-3 selectContainer">
