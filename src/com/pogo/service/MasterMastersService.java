@@ -53,6 +53,6 @@ public interface MasterMastersService {
 	List<ExpenseMaster> expenseheadList();
 	void addExpensehead(ExpenseMasterBean poref1);
 	void deleteExpenceserheader(int id);
-	/*String getExpenceserheaderById(String id);
-	void editExpenseHeader(ExpenseMasterBean poref1);*/
+    String getExpenceheaderById(String id);
+	void editExpenseHeader(ExpenseMasterBean poref1);
 }

@@ -72,8 +72,8 @@
 <div class="col-md-12" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
 				class="btn btn-primary" id="saveexpenseheaderForm">Save</button></div>
 				
-				<!-- <div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
-				class="btn btn-primary" id="EditcurrencyForm">Edit</button></div> -->
+			 <div class="col-md-12" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
+				class="btn btn-primary" id="EditcurrencyForm">Edit</button></div> 
 </div>
 
 
@@ -92,7 +92,7 @@
 				<th data-th="Driver details"><span>Expense Head</span></th>
 				<th>Expense Type</th>
 				<th>Unit</th>
-				<th>Limit</th>
+				<th>Limit/Rate Rs.</th>
 				
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;"> Delete</th>
@@ -139,12 +139,13 @@ $(document).ready(
 $("#getexpenseheadpopup").click(function(){
 	
 	 $("#formid").toggle('show');
-	 /* $('#EditcurrencyForm').hide();
+	 $('#EditcurrencyForm').hide();
 	 $("#savecurrencyForm").show();
-	 $("#currencyname").val('');
-	 $("#currencytypeid").val('');
-	 $("#currencysymbol").val('');
-	 $("#hiddenid").val(''); */
+	 $("#expensehead").val('');
+	 $("#expensetype").val('');
+	 $("#limit").val('');
+	 $("#unit").val('');
+	 $("#hiddenid").val('');
 	
 });
 	    });
@@ -178,4 +179,68 @@ $.ajax({
 	
 	
 });
+function editCur(id){
+	$("#formid").show('show');
+	$('#EditcurrencyForm').show();
+$.ajax({
+	url: "getexpenseheader?expensemasterId="+id,
+			
+	type: "POST",
+
+	     success: function(respose){
+	    	 
+	    	 var data=JSON.parse(respose)
+	    	 var expensehead=data.expensehead;
+	    	 var expensetype=data.expensetype;
+	    	 var limit=data.exlimit;
+	    	 var unit=data.unit;
+	    	 var id=data.expensemasterId;
+	    	 alert("DDDDDDDDDDDDDDDD                   "+id);
+	    	 $("#expensehead").val(expensehead);
+	    	 $("#expensetype").val(expensetype);
+	    	  $("#unit").val(unit);
+	    	 $("#limit").val(limit);
+	    	 $("#hiddenid").val(id); 
+	    	 $("#saveexpenseheaderForm").hide();
+    }});
+} 
+
+
+
+
+ $('#EditcurrencyForm').click(function (){
+	var id=$("#hiddenid").val();
+	var expensehead=$('#expensehead').val();
+	var expensetype=$('#expensetype').val();
+	var limit=$('#limit').val();
+	var unit=$('#unit').val();
+	
+	var d1w=$("#hiddenid").val();
+	alert(d1w);
+	
+	alert(expensehead+'     <<<<<<>>>>>>   ' +expensetype+'               <<<<<<>>>>>>>       '+limit);
+	
+	var jsonObj={'expensehead':expensehead,'expensemasterId':id,
+			'expensetype':expensetype, 'exlimit':limit,'unit':unit
+	} ;
+$.ajax({
+		url: "editexpenseheader",
+		type: "POST",
+		
+		  data :JSON.stringify(jsonObj),
+		  cache:false,
+	        beforeSend: function(xhr) {  
+	            xhr.setRequestHeader("Accept", "application/json");  
+	            xhr.setRequestHeader("Content-Type", "application/json");  
+	        },
+		     success: function(resposeJsonObject){
+		    	 $('#openModal').hide();
+		    	 //window.location.currency;
+		    	 window.location.reload();
+	     alert("edit");
+	    }});
+	
+	
+}); 
+
 </script>

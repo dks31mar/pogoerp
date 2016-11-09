@@ -49,4 +49,6 @@ public interface MasterMastersDao {
 	 List<ExpenseMaster> expenseheadList();
 	 void addExpensehead(ExpenseMaster poref1);
 	 void deleteExpenceserheader(int id);
+	 List<ExpenseMaster> getExpenceserheaderById (String id);
+	 void editExpenseHeader(ExpenseMaster poref1);
 }

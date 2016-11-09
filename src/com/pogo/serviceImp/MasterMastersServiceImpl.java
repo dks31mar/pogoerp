@@ -289,30 +289,37 @@ public void addExpensehead(ExpenseMasterBean poref1) {
 public void deleteExpenceserheader(int id){
 	masterMastersdao.deleteExpenceserheader(id);
 }
-/*@Override
-public String getExpenceserheaderById(String id){
-	List<ExpenseMaster> location=masterMastersdao.getExpenceserheaderById(id);
+@Override
+public String getExpenceheaderById(String id){
+	List<ExpenseMaster> expensemaster =masterMastersdao.getExpenceserheaderById(id);
 	Map<String, Object> dd=new HashMap<>();
-	for(Location data: location)
+	for(ExpenseMaster data: expensemaster)
 	{
 		
-		dd.put("locationId",data.getLocationId() );
-		dd.put("location",data.getLocation());
+		dd.put("expensemasterId",data.getExpensemasterId() );
+		dd.put("expensehead",data.getExpensehead());
+		dd.put("expensetype",data.getExpensetype() );
+		dd.put("unit",data.getUnit() );
+		dd.put("exlimit",data.getExlimit() );
+		
+		
 		
 	}
 	Gson gson=new Gson();
 	
-String locationlist=	gson.toJson(dd);
+String list=	gson.toJson(dd);
 	
-	return locationlist;
+	return list;
 }
 @Override
 @Transactional
-public void editLocation(LocationBean poref1){
-	Location location=new Location();
-	location.setLocationId(poref1.getLocationId());
-	location.setLocation(poref1.getLocation());
-	
-	masterMastersdao.editLocation(location);
-}*/
+public void editExpenseHeader(ExpenseMasterBean poref1){
+	ExpenseMaster expensemaster=new ExpenseMaster();
+	expensemaster.setExpensemasterId(poref1.getExpensemasterId());
+	expensemaster.setExpensehead(poref1.getExpensehead());
+	expensemaster.setExpensetype(poref1.getExpensetype());
+	expensemaster.setExlimit(poref1.getExlimit());
+	expensemaster.setUnit(poref1.getUnit());
+	masterMastersdao.editExpenseHeader(expensemaster);
+}
 }

@@ -500,9 +500,9 @@ public class MasterMasterController {
 	}
 	
 	
-	/*@RequestMapping(value = "getexpenseheader", method = RequestMethod.GET)
+	@RequestMapping(value = "getexpenseheader", method = RequestMethod.POST)
 	public void getExpenseHeader(@RequestParam("expensemasterId") String id,HttpServletResponse res )throws ParseException  {
-		String cuList=masterMastersService.getExpenceserheaderById(id);
+		String cuList=masterMastersService.getExpenceheaderById(id);
 		System.out.println("inside get expenseheader method");
 		
 		System.out.println(cuList);
@@ -517,7 +517,7 @@ public class MasterMasterController {
 	}
 	
 
-	@RequestMapping(value="editlocation",method=RequestMethod.POST)
+	@RequestMapping(value="editexpenseheader",method=RequestMethod.POST)
 	@ResponseBody
 	public void editExpenseHeader(@RequestBody String json,Model model) throws IOException{
 	System.out.println("inside edit expenseheader method   \n"+json);
@@ -532,6 +532,6 @@ public class MasterMasterController {
 		
 		masterMastersService.editExpenseHeader(poref1);
 		
-	}*/
+	}
 
 }

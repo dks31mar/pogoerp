@@ -213,4 +213,18 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			sessionFactory.getCurrentSession().flush();
 			sessionFactory.getCurrentSession().createQuery("DELETE FROM ExpenseMaster WHERE expensemasterId = "+id).executeUpdate();
 		} 
+	 @SuppressWarnings("unchecked")
+		@Override
+	  public List<ExpenseMaster> getExpenceserheaderById (String id){
+	         int f=Integer.parseInt(id);
+			
+			return (List<ExpenseMaster>) sessionFactory.getCurrentSession().createCriteria(ExpenseMaster.class)
+					.add(Restrictions.eq("id", f)).list();
+		}
+	 @Override
+		public void editExpenseHeader(ExpenseMaster poref1){
+			sessionFactory.getCurrentSession().flush();
+			sessionFactory.getCurrentSession().update(poref1);
+			//sessionFactory.getCurrentSession().flush();
+		}
 }
