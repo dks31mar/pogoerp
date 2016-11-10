@@ -1,8 +1,11 @@
 package com.pogo.serviceImp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -132,10 +135,11 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	@Override
 	@Transactional
 	public void addState(StateBean poref1){
-	
+		Country c=new Country();
+		c.setCountryId(poref1.getStateId());
 		State state=new State();
 		state.setState(poref1.getState());
-		
+		state.setCountry(c);
 		masterMastersdao.addState(state);
 	}
 	
@@ -321,5 +325,22 @@ public void editExpenseHeader(ExpenseMasterBean poref1){
 	expensemaster.setExlimit(poref1.getExlimit());
 	expensemaster.setUnit(poref1.getUnit());
 	masterMastersdao.editExpenseHeader(expensemaster);
+}
+
+@Override
+public List<StateBean> stateListbycountryid(String cuntryid) {
+	List<State> list=masterMastersdao.getstatelistbycountryid(cuntryid);
+	List<StateBean> beanlist=new ArrayList<>();
+	Integer id=Integer.parseInt(cuntryid);
+	for(State state:list){
+		StateBean statebean=new StateBean();
+		statebean.setCountryId(id);
+		statebean.setStateId(state.getStateId());
+		statebean.setState(state.getState());
+		System.out.println(state.getState());
+		beanlist.add(statebean);
+	}
+	
+ 	return beanlist;
 }
 }

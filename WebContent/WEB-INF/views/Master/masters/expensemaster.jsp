@@ -42,7 +42,7 @@
 								style="color: red;">*</span>:
 						</strong>
 					</span></div>
-  <div class="col-md-3"><span style="color: black;"> <strong>Limit<span
+  <div class="col-md-3"><span style="color: black;"> <strong>Limit/Rate Rs.<span
 								style="color: red;">*</span>:
 						</strong></span></div>
   <div class="col-md-3"><span style="color: black;"> <strong>Unit<span

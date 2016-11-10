@@ -55,4 +55,6 @@ public interface MasterMastersService {
 	void deleteExpenceserheader(int id);
     String getExpenceheaderById(String id);
 	void editExpenseHeader(ExpenseMasterBean poref1);
+	List<StateBean> stateListbycountryid(String cuntryid);
+	
 }

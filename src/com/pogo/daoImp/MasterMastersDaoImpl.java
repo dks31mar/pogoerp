@@ -2,6 +2,8 @@ package com.pogo.daoImp;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -227,4 +229,17 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			sessionFactory.getCurrentSession().update(poref1);
 			//sessionFactory.getCurrentSession().flush();
 		}
+	@Override
+	public List<State> getstatelistbycountryid(String cuntryid) {
+		int id=Integer.parseInt(cuntryid);
+		Criteria state=sessionFactory.getCurrentSession().createCriteria(State.class);
+		Criteria country=state.createCriteria("country");
+		
+		country.add(Restrictions.eq("countryId", id));
+		List<State> list= state.list();
+				
+				
+				//sessionFactory.getCurrentSession().createCriteria(State.class).list();
+		return list;
+	}
 }

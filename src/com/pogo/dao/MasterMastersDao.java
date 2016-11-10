@@ -51,4 +51,5 @@ public interface MasterMastersDao {
 	 void deleteExpenceserheader(int id);
 	 List<ExpenseMaster> getExpenceserheaderById (String id);
 	 void editExpenseHeader(ExpenseMaster poref1);
+	List<State> getstatelistbycountryid(String cuntryid);
 }
