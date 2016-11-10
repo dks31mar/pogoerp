@@ -1,5 +1,6 @@
 package com.pogo.serviceImp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,14 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
 import com.pogo.bean.CountryBean;
+import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
+import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
+import com.pogo.model.Currency;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
@@ -322,4 +327,62 @@ public void editExpenseHeader(ExpenseMasterBean poref1){
 	expensemaster.setUnit(poref1.getUnit());
 	masterMastersdao.editExpenseHeader(expensemaster);
 }
+
+
+@Override
+public List<CustomerSourceBean> getCustomerSourceList(){
+	List<CustomerSource> getdetails = masterMastersdao.getCustomerSourceList();
+	List<CustomerSourceBean> lists=new ArrayList<CustomerSourceBean>();
+	for(CustomerSource list: getdetails)
+	{
+		CustomerSourceBean data=new CustomerSourceBean();
+		data.setCustomersourceId(list.getCustomersourceId());
+		data.setSource(list.getSource());
+		
+		lists.add(data);
+	}
+	return lists ;
+}
+@Override
+public void deleteCustomerSource(int id) {
+	masterMastersdao.deleteCustomerSource(id);
+}
+@Override
+public void addCustomerSource(CustomerSourceBean poref1) {
+	CustomerSource cur=new CustomerSource();
+	cur.setSource(poref1.getSource());
+	
+	masterMastersdao.addCustomerSource(cur);
+}
+
+@Override
+public String getCustomerSource(String id){
+	List<CustomerSource> customer =masterMastersdao.getCustomerSource(id);
+	Map<String, Object> dd=new HashMap<>();
+	for(CustomerSource data: customer)
+	{
+		
+		dd.put("customersourceId",data.getCustomersourceId() );
+		dd.put("source",data.getSource());
+		
+		
+		
+		
+	}
+	Gson gson=new Gson();
+	
+String list=	gson.toJson(dd);
+	
+	return list;
+}
+@Override
+@Transactional
+public void editCustomerSource(CustomerSourceBean poref1){
+	CustomerSource customer=new CustomerSource();
+	customer.setCustomersourceId(poref1.getCustomersourceId());
+	customer.setSource(poref1.getSource());
+	
+	masterMastersdao.editCustomerSource(customer);
+}
+
 }

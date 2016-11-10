@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
+import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
@@ -55,4 +56,10 @@ public interface MasterMastersService {
 	void deleteExpenceserheader(int id);
     String getExpenceheaderById(String id);
 	void editExpenseHeader(ExpenseMasterBean poref1);
+	
+	List<CustomerSourceBean> getCustomerSourceList();
+	void deleteCustomerSource(int id);
+	void addCustomerSource(CustomerSourceBean poref1);
+	String getCustomerSource(String id);
+	void editCustomerSource(CustomerSourceBean poref1);
 }

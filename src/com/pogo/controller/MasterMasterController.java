@@ -23,9 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CountryBean;
+import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
+import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
@@ -533,5 +536,109 @@ public class MasterMasterController {
 		masterMastersService.editExpenseHeader(poref1);
 		
 	}
+	@RequestMapping(value="/CustomerSources",method = RequestMethod.GET)
+	public ModelAndView getCustomerSources( @ModelAttribute("command")  CustomerSourceBean customer,HttpServletRequest request,BindingResult result ){
+		System.out.println("inside CustomerSources  method");
+		List<CustomerSourceBean> list=new ArrayList<CustomerSourceBean>();
+		list=masterMastersService.getCustomerSourceList();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("customersourcelist", list);
+		
+		System.out.println("***************************************** inside customersource list ****************************");
+	return new ModelAndView("getCustomerSources",model);
+	}	
+	/*@RequestMapping(value = "deletecustomersource", method = RequestMethod.GET)
+	public ModelAndView deleteCustomerSource(@RequestParam("customersourceId") int id) {
+		List<Customer_Source_Bean> list=new ArrayList<Customer_Source_Bean>();
+		list =	masterMastersService.deleteCustomerSource(id);
+		Map<String, Object> model= new HashMap<String,Object>();
+		
+		model.put("expenseheadList", list );
+		return new ModelAndView("customersourcelist",model);
+		
+		
+	}*/
+	@RequestMapping(value = "deletecustomersource", method = RequestMethod.GET)
+	public ModelAndView deleteCustomerSource(@RequestParam("customersourceId") int id) {
+		masterMastersService.deleteCustomerSource(id);
+		List<CustomerSourceBean> list=new ArrayList<CustomerSourceBean>();
+		list=masterMastersService.getCustomerSourceList();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("customersourcelist", list);
+		
+			
+		
+		return new ModelAndView("getCustomerSources",model);
+	}
+	
+	@RequestMapping(value="addcustomersources",method=RequestMethod.POST)
+	@ResponseBody
+	public String addCurrency(@RequestBody String json,Model model) throws IOException{
+	System.out.println(json);
+		ObjectMapper mapper=new ObjectMapper();
+		CustomerSourceBean poref=mapper.readValue(json, CustomerSourceBean.class);
+		CustomerSourceBean poref1=new CustomerSourceBean();
+		poref1.setSource(poref.getSource());
+		
+		masterMastersService.addCustomerSource(poref1);
+		
+	return toJson(poref1);
+	}
+	private String toJson(CustomerSourceBean poRefEntry) {
+		ObjectMapper mapper = new ObjectMapper();
+	    try {
+	        String value = mapper.writeValueAsString(poRefEntry);
+	        // return "["+value+"]";
+	        return value;
+	    } catch (JsonProcessingException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	@RequestMapping(value = "getcustomersource", method = RequestMethod.POST)
+	public void getCustomerSource(@RequestParam("customersourceId") String id,HttpServletResponse res )throws ParseException  {
+		System.out.println(id);
+		String curList=masterMastersService.getCustomerSource(id);
+		System.out.println(curList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(curList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
+	@RequestMapping(value="editcustomersource",method=RequestMethod.POST)
+	@ResponseBody
+	public String editCustomerSource(@RequestBody String json,Model model) throws IOException{
+	System.out.println("*****************************************************");
+		ObjectMapper mapper=new ObjectMapper();
+		CustomerSourceBean poref=mapper.readValue(json, CustomerSourceBean.class);
+		CustomerSourceBean poref1=new CustomerSourceBean();
+		poref1.setCustomersourceId(poref.getCustomersourceId());
+		poref1.setSource(poref.getSource());
+		
+		
+		
+		
+		masterMastersService.editCustomerSource(poref1);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	return toJson1(poref1);
+	}
 
+	private String toJson1(CustomerSourceBean poRefEntry) {
+		ObjectMapper mapper = new ObjectMapper();
+	    try {
+	        String value = mapper.writeValueAsString(poRefEntry);
+	        // return "["+value+"]";
+	        return value;
+	    } catch (JsonProcessingException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	
 }

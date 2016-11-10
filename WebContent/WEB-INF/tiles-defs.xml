@@ -151,6 +151,12 @@
 			 <put-attribute name="title" value="expensemaster"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/expensemaster.jsp" />
 			</definition>
+			
+			<!-- CustomerSources -->
+			<definition name="getCustomerSources" extends="baseLayout" >
+			<put-attribute name="title" value="CustomerSources" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/CustomerSources.jsp" />
+			</definition>
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
@@ -271,6 +277,11 @@
        		<definition name="mobileApp" extends="baseLayout" >
 			<put-attribute name="title" value="Mobile App" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileApp.jsp" />
+			</definition>
+			<!-- Permission for SMS -->
+			<definition name="getsms" extends="baseLayout" >
+			<put-attribute name="title" value="sms permission" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/sms.jsp" />
 			</definition>
 			
 	      </tiles-definitions>

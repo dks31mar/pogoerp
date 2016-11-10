@@ -32,6 +32,7 @@ import com.pogo.bean.PoRefEntryItemDetailBean;
 
 import com.ibm.icu.text.Normalizer.Mode;
 import com.pogo.bean.CompanyProfileBean;
+import com.pogo.bean.CountryBean;
 import com.pogo.bean.DesignationBean;
 
 import com.pogo.bean.UserEmployeeBean;
@@ -357,7 +358,13 @@ public ModelAndView getSouthBranch(@ModelAttribute("command") PoRefEntryItemDeta
 return new ModelAndView("addstates");
 }	
 
-	
-
+@RequestMapping(value="/sms",method = RequestMethod.GET)
+public ModelAndView getcountry( @ModelAttribute("command") CountryBean country,HttpServletRequest request,BindingResult result ){
+	System.out.println("inside sms  method");
+	Map<String, Object> model = new HashMap<String, Object>();
+	//model.put("countryList",  prepareCountryListofBean(masterMastersService.countryList()));
+	//System.out.println("***************************************** inside country list ****************************");
+return new ModelAndView("getsms");
+}	
 
 }

@@ -111,8 +111,12 @@ $("#formid").hide();
 
 $('#saveForm').click(function (){
 	var addstate=$('#addstate').val();
-	
-	
+	if(addstate == ''){
+		
+	}
+	else{
+		
+	}
 	var jsonObj={'state':addstate
 	} ;
 $.ajax({

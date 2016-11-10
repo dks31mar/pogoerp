@@ -2,8 +2,10 @@ package com.pogo.dao;
 
 import java.util.List;
 
+import com.pogo.bean.CustomerSourceBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
@@ -51,4 +53,10 @@ public interface MasterMastersDao {
 	 void deleteExpenceserheader(int id);
 	 List<ExpenseMaster> getExpenceserheaderById (String id);
 	 void editExpenseHeader(ExpenseMaster poref1);
+	 
+	List<CustomerSource> getCustomerSourceList();
+	void deleteCustomerSource(int id);
+	void addCustomerSource(CustomerSource cur);
+	List<CustomerSource> getCustomerSource(String id);
+	void editCustomerSource(CustomerSource customer);
 }

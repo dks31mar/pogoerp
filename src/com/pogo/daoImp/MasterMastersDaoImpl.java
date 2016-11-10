@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pogo.bean.CustomerLevelsBean;
+import com.pogo.bean.CustomerSourceBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.PorefSupplierDetail;
+import com.pogo.model.ProductHead;
+import com.pogo.model.ProductMaster;
 import com.pogo.model.State;
 
 import com.pogo.model.Unit;
@@ -227,4 +231,34 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			sessionFactory.getCurrentSession().update(poref1);
 			//sessionFactory.getCurrentSession().flush();
 		}
+	 
+	 @SuppressWarnings("unchecked")
+		public List<CustomerSource> getCustomerSourceList(){
+			sessionFactory.getCurrentSession().flush();
+			return (List<CustomerSource>) sessionFactory.getCurrentSession().createCriteria(CustomerSource.class).list();
+		}
+		
+		@Override
+		public void deleteCustomerSource(int id) {
+			sessionFactory.getCurrentSession().createQuery("DELETE FROM CustomerSource WHERE customersourceId = "+id).executeUpdate();
+			
+		}
+		@Override
+		public void addCustomerSource(CustomerSource cur) {
+			sessionFactory.getCurrentSession().save(cur);
+			
+		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<CustomerSource> getCustomerSource(String id) {
+			int id1=Integer.parseInt(id);
+			return (List<CustomerSource>)sessionFactory.getCurrentSession().createCriteria(CustomerSource.class).add(Restrictions.eq("customersourceId", id1)).list();
+		}
+		 @Override
+			public void editCustomerSource(CustomerSource poref1){
+				sessionFactory.getCurrentSession().flush();
+				sessionFactory.getCurrentSession().update(poref1);
+				//sessionFactory.getCurrentSession().flush();
+			}
 }
