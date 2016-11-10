@@ -148,10 +148,10 @@ function ConfirmDelete()
 			 style="margin-left: 250px;margin-top: 8px;"><a href="addUser"
 			class="btn btn-primary"> Add New Employee </a>
      </label>
-     <label
+    <label
 			 style="margin-left: 507px;margin-top: 8px;"><a href="#"
 			class="btn btn-primary" >Export</a>
-     </label>
+     </label>   
 			 <div class="input-group" style="margin-left: 590px; width: 230px; top: -38px;
 			 width: 230px;"><input type="text"  
 			placeholder="Search Employee name"  class="form-control" oninput="searchEmp(this.value)" ><span class="input-group-addon">

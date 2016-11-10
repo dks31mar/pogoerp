@@ -144,11 +144,11 @@ $.ajax({
 	type: "GET",
 	
 	     success: function(respose){
-	    	 alert(respose);
+	    	 //alert(respose);
 	    	 var data=JSON.parse(respose)
 	    	 var name=data.district;
 	    	 var id=data.districtId;
-	    	 alert("************************"+id);
+	    	// alert("************************"+id);
 	    	 $("#adddistrict").val(name);
 	    	 $("#hiddenid").val(id);
 	    	 
@@ -164,7 +164,7 @@ $('#EditForm').click(function (){
 	var adddistrict=$('#adddistrict').val();
 	
 	var d1w=$("#hiddenid").val();
-	alert(d1w);
+	//alert(d1w);
 	
 	
 	var jsonObj={'district':adddistrict,'districtId':id} ;
@@ -182,7 +182,7 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	 window.location.reload();
-	     alert("edit");
+	     //alert("edit");
 	    }});
 	
 	

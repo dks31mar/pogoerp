@@ -32,7 +32,7 @@
 <!-- Form Name -->
 <legend>Add Company Details</legend>
  
-<a style="float:right;color:#b30059;" href="AddSignature.jsp?terms=Y">Terms and Conditions</a>
+<a style="float:right;color:#b30059;" href="AddSignature.jsp?terms=Y"></a>
 
   <div class="form-group">
   <label class="col-md-2 control-label">Name<span

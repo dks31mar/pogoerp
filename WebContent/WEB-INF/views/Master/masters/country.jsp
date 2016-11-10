@@ -143,11 +143,11 @@ $.ajax({
 	type: "GET",
 	
 	     success: function(respose){
-	    	 alert(respose);
+	    	// alert(respose);
 	    	 var data=JSON.parse(respose)
 	    	 var name=data.country;
 	    	 var id=data.countryId;
-	    	 alert("************************"+id);
+	    	// alert("************************"+id);
 	    	 $("#addcountry").val(name);
 	    	 $("#hiddenid").val(id);
 	    	 
@@ -163,7 +163,7 @@ $('#EditForm').click(function (){
 	var addcountry=$('#addcountry').val();
 	
 	var d1w=$("#hiddenid").val();
-	alert(d1w);
+	//alert(d1w);
 	
 	
 	var jsonObj={'country':addcountry,'countryId':id} ;
@@ -181,7 +181,7 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	 window.location.reload();
-	     alert("edit");
+	    // alert("edit");
 	    }});
 	
 	

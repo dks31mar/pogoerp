@@ -142,11 +142,11 @@ $.ajax({
 	type: "GET",
 	
 	     success: function(respose){
-	    	 alert(respose);
+	    	// alert(respose);
 	    	 var data=JSON.parse(respose)
 	    	 var name=data.location;
 	    	 var id=data.locationId;
-	    	 alert("************************"+id);
+	    	// alert("************************"+id);
 	    	 $("#addlocation").val(name);
 	    	 $("#hiddenid").val(id);
 	    	 
@@ -162,7 +162,7 @@ $('#EditForm').click(function (){
 	var addlocation=$('#addlocation').val();
 	
 	var d1w=$("#hiddenid").val();
-	alert(d1w);
+	//alert(d1w);
 	
 	
 	var jsonObj={'location':addlocation,'locationId':id} ;
@@ -180,7 +180,7 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	 window.location.reload();
-	     alert("edit");
+	    // alert("edit");
 	    }});
 	
 	
