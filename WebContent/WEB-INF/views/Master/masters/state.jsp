@@ -32,6 +32,7 @@
 
 <div class="row">
 <input type="hidden" id="hiddenid"/>
+<input type="hidden" id="countryid" value="${state123}"/> 
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addstate"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add State"
 						maxlength="20" autofocus="autofocus"></input></div>
@@ -111,6 +112,7 @@ $("#formid").hide();
 
 $('#saveForm').click(function (){
 	var addstate=$('#addstate').val();
+<<<<<<< HEAD
 	if(addstate == ''){
 		
 	}
@@ -118,6 +120,11 @@ $('#saveForm').click(function (){
 		
 	}
 	var jsonObj={'state':addstate
+=======
+	var getcountryid=$('#countryid').val();
+	
+	var jsonObj={'state':addstate,'stateId':getcountryid
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 	} ;
 $.ajax({
 		url: "addstate",
@@ -148,11 +155,11 @@ $.ajax({
 	type: "GET",
 	
 	     success: function(respose){
-	    	 alert(respose);
+	    	// alert(respose);
 	    	 var data=JSON.parse(respose)
 	    	 var name=data.state;
 	    	 var id=data.stateId;
-	    	 alert("************************"+id);
+	    	// alert("************************"+id);
 	    	 $("#addstate").val(name);
 	    	 $("#hiddenid").val(id);
 	    	 
@@ -168,7 +175,7 @@ $('#EditForm').click(function (){
 	var addstate=$('#addstate').val();
 	
 	var d1w=$("#hiddenid").val();
-	alert(d1w);
+	//alert(d1w);
 	
 	
 	var jsonObj={'state':addstate,'stateId':id} ;
@@ -186,7 +193,7 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	 window.location.reload();
-	     alert("edit");
+	     //alert("edit");
 	    }});
 	
 	

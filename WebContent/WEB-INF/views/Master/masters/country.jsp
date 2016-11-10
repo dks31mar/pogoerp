@@ -70,7 +70,7 @@
 					<tr>
 						<td>${loop.index+1}</td>
 						<td>${country.country}</td>
-		            <td><a href = "state">State</a></td> 
+		            <td><a href = "state?countryId=${country.countryId}">State</a></td> 
 					 <td><a href="#" onclick="editCur(${country.countryId})" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
@@ -150,11 +150,11 @@ $.ajax({
 	type: "GET",
 	
 	     success: function(respose){
-	    	 alert(respose);
+	    	// alert(respose);
 	    	 var data=JSON.parse(respose)
 	    	 var name=data.country;
 	    	 var id=data.countryId;
-	    	 alert("************************"+id);
+	    	// alert("************************"+id);
 	    	 $("#addcountry").val(name);
 	    	 $("#hiddenid").val(id);
 	    	 
@@ -170,7 +170,7 @@ $('#EditForm').click(function (){
 	var addcountry=$('#addcountry').val();
 	
 	var d1w=$("#hiddenid").val();
-	alert(d1w);
+	//alert(d1w);
 	
 	
 	var jsonObj={'country':addcountry,'countryId':id} ;
@@ -188,7 +188,7 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	 window.location.reload();
-	     alert("edit");
+	    // alert("edit");
 	    }});
 	
 	

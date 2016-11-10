@@ -98,7 +98,7 @@
 	$('#senddata').click(function (){
 		var productId=$('#prolst').val();
 		var productname=$('#productsubtype').val();
-		alert(productname);
+		// alert(productname);
 		var jsonObj={
 				'productsubheadname': productname,
 				'productheadid':productId

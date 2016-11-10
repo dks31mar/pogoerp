@@ -148,11 +148,11 @@ $.ajax({
 	type: "GET",
 	
 	     success: function(respose){
-	    	 alert(respose);
+	    	// alert(respose);
 	    	 var data=JSON.parse(respose)
 	    	 var name=data.status;
 	    	 var id=data.id;
-	    	 alert("************************"+id);
+	    	// alert("************************"+id);
 	    	 $("#customerlevels").val(name);
 	    	 $("#hiddenid").val(id);
 	    	 
@@ -168,7 +168,7 @@ $('#EditForm').click(function (){
 	var customerlevels=$('#customerlevels').val();
 	
 	var d1w=$("#hiddenid").val();
-	alert(d1w);
+	//alert(d1w);
 	
 	
 	var jsonObj={'status':customerlevels,'id':id} ;
@@ -186,7 +186,7 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	 window.location.reload();
-	     alert("edit");
+	    // alert("edit");
 	    }});
 	
 	

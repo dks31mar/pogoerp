@@ -56,10 +56,15 @@ public interface MasterMastersService {
 	void deleteExpenceserheader(int id);
     String getExpenceheaderById(String id);
 	void editExpenseHeader(ExpenseMasterBean poref1);
+
 	
 	List<CustomerSourceBean> getCustomerSourceList();
 	void deleteCustomerSource(int id);
 	void addCustomerSource(CustomerSourceBean poref1);
 	String getCustomerSource(String id);
 	void editCustomerSource(CustomerSourceBean poref1);
+
+	List<StateBean> stateListbycountryid(String cuntryid);
+	
+
 }

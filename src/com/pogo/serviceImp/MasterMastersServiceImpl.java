@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -124,7 +123,6 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		Country country=new Country();
 		country.setCountryId(poref1.getCountryId());
 		country.setCountry(poref1.getCountry());
-		
 		masterMastersdao.editCountry(country);
 	}
 
@@ -137,10 +135,11 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	@Override
 	@Transactional
 	public void addState(StateBean poref1){
-	
+		Country c=new Country();
+		c.setCountryId(poref1.getStateId());
 		State state=new State();
 		state.setState(poref1.getState());
-		
+		state.setCountry(c);
 		masterMastersdao.addState(state);
 	}
 	
@@ -209,8 +208,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		
 	}
 		Gson gson=new Gson();
-		
-	String districtlist=	gson.toJson(dd);
+		String districtlist=	gson.toJson(dd);
 	
 	return districtlist;
 }
@@ -328,7 +326,6 @@ public void editExpenseHeader(ExpenseMasterBean poref1){
 	masterMastersdao.editExpenseHeader(expensemaster);
 }
 
-
 @Override
 public List<CustomerSourceBean> getCustomerSourceList(){
 	List<CustomerSource> getdetails = masterMastersdao.getCustomerSourceList();
@@ -383,6 +380,24 @@ public void editCustomerSource(CustomerSourceBean poref1){
 	customer.setSource(poref1.getSource());
 	
 	masterMastersdao.editCustomerSource(customer);
+}
+
+
+@Override
+public List<StateBean> stateListbycountryid(String cuntryid) {
+	List<State> list=masterMastersdao.getstatelistbycountryid(cuntryid);
+	List<StateBean> beanlist=new ArrayList<>();
+	Integer id=Integer.parseInt(cuntryid);
+	for(State state:list){
+		StateBean statebean=new StateBean();
+		statebean.setCountryId(id);
+		statebean.setStateId(state.getStateId());
+		statebean.setState(state.getState());
+		System.out.println(state.getState());
+		beanlist.add(statebean);
+	}
+	
+ 	return beanlist;
 }
 
 }

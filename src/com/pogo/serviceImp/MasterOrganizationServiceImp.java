@@ -178,6 +178,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	}
 
 	@Override
+	@Transactional
 	public void deleteuserEmp(int id) {
 		//System.out.println("before getting id \n"+id);
 		UserEmployee user = userEmpdao.getUserById(id);

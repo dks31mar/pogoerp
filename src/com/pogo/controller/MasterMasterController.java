@@ -216,10 +216,16 @@ public class MasterMasterController {
 		
 	}
 	@RequestMapping(value="/state",method = RequestMethod.GET)
-	public ModelAndView getState( @ModelAttribute("command") CountryBean country,HttpServletRequest request,BindingResult result ){
+	public ModelAndView getState(@RequestParam("countryId") String cuntryid, @ModelAttribute("command") CountryBean country,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside state  method");
+		List<StateBean> statelistbycountryid=new ArrayList<>();
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("stateList",  prepareStateListofBean(masterMastersService.stateList()));
+		
+		statelistbycountryid=	masterMastersService.stateListbycountryid(cuntryid);
+	
+		//masterMastersService.stateList();
+		model.put("stateList",statelistbycountryid);
+		model.put("state123",cuntryid);
 		System.out.println("***************************************** inside state list ****************************");
 	return new ModelAndView("getstate",model);
 	}
@@ -231,7 +237,7 @@ public class MasterMasterController {
 			StateBean bean = null;
 			for(State pro : prodel){
 				bean = new StateBean();
-				//System.out.println(bean);
+				
 				bean.setStateId(pro.getStateId());
 				bean.setState(pro.getState());
 				
@@ -248,7 +254,7 @@ public class MasterMasterController {
 		StateBean poref=mapper.readValue(json, StateBean.class);
 		StateBean poref1=new StateBean();
 		poref1.setState(poref.getState());
-		masterMastersService.addState(poref1);
+		masterMastersService.addState(poref);
 	}
 	
 	@RequestMapping(value = "deletestate", method = RequestMethod.GET)
