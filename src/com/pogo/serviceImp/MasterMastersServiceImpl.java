@@ -2,11 +2,8 @@ package com.pogo.serviceImp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -122,7 +119,6 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		Country country=new Country();
 		country.setCountryId(poref1.getCountryId());
 		country.setCountry(poref1.getCountry());
-		
 		masterMastersdao.editCountry(country);
 	}
 
@@ -208,8 +204,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		
 	}
 		Gson gson=new Gson();
-		
-	String districtlist=	gson.toJson(dd);
+		String districtlist=	gson.toJson(dd);
 	
 	return districtlist;
 }
