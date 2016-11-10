@@ -1,8 +1,11 @@
 package com.pogo.serviceImp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +16,14 @@ import com.google.gson.Gson;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.DistrictBean;
+import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
 import com.pogo.service.MasterMastersService;
@@ -130,10 +135,11 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	@Override
 	@Transactional
 	public void addState(StateBean poref1){
-	
+		Country c=new Country();
+		c.setCountryId(poref1.getStateId());
 		State state=new State();
 		state.setState(poref1.getState());
-		
+		state.setCountry(c);
 		masterMastersdao.addState(state);
 	}
 	
@@ -264,5 +270,77 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		
 		masterMastersdao.editLocation(location);
 	}
+	
+@Override
+	
+	public List<ExpenseMaster> expenseheadList(){
+		return masterMastersdao.expenseheadList();
+	}
+@Override
+@Transactional
+public void addExpensehead(ExpenseMasterBean poref1) {
+	ExpenseMaster expensehead=new ExpenseMaster();
+	expensehead.setExpensehead(poref1.getExpensehead());
+	expensehead.setExpensetype(poref1.getExpensetype());
+	expensehead.setExlimit(poref1.getExlimit());
+	expensehead.setUnit(poref1.getUnit());
+	
+	masterMastersdao.addExpensehead(expensehead);
+	
+}
+@Override
+@Transactional
+public void deleteExpenceserheader(int id){
+	masterMastersdao.deleteExpenceserheader(id);
+}
+@Override
+public String getExpenceheaderById(String id){
+	List<ExpenseMaster> expensemaster =masterMastersdao.getExpenceserheaderById(id);
+	Map<String, Object> dd=new HashMap<>();
+	for(ExpenseMaster data: expensemaster)
+	{
+		
+		dd.put("expensemasterId",data.getExpensemasterId() );
+		dd.put("expensehead",data.getExpensehead());
+		dd.put("expensetype",data.getExpensetype() );
+		dd.put("unit",data.getUnit() );
+		dd.put("exlimit",data.getExlimit() );
+		
+		
+		
+	}
+	Gson gson=new Gson();
+	
+String list=	gson.toJson(dd);
+	
+	return list;
+}
+@Override
+@Transactional
+public void editExpenseHeader(ExpenseMasterBean poref1){
+	ExpenseMaster expensemaster=new ExpenseMaster();
+	expensemaster.setExpensemasterId(poref1.getExpensemasterId());
+	expensemaster.setExpensehead(poref1.getExpensehead());
+	expensemaster.setExpensetype(poref1.getExpensetype());
+	expensemaster.setExlimit(poref1.getExlimit());
+	expensemaster.setUnit(poref1.getUnit());
+	masterMastersdao.editExpenseHeader(expensemaster);
+}
 
+@Override
+public List<StateBean> stateListbycountryid(String cuntryid) {
+	List<State> list=masterMastersdao.getstatelistbycountryid(cuntryid);
+	List<StateBean> beanlist=new ArrayList<>();
+	Integer id=Integer.parseInt(cuntryid);
+	for(State state:list){
+		StateBean statebean=new StateBean();
+		statebean.setCountryId(id);
+		statebean.setStateId(state.getStateId());
+		statebean.setState(state.getState());
+		System.out.println(state.getState());
+		beanlist.add(statebean);
+	}
+	
+ 	return beanlist;
+}
 }

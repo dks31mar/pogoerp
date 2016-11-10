@@ -5,6 +5,7 @@ import java.util.List;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
 
@@ -44,5 +45,11 @@ public interface MasterMastersDao {
 	 void deleteLocation(int id);
 	 List<Location> getLocationById (String id);
 	 void editLocation(Location poref1);
-
+	 
+	 List<ExpenseMaster> expenseheadList();
+	 void addExpensehead(ExpenseMaster poref1);
+	 void deleteExpenceserheader(int id);
+	 List<ExpenseMaster> getExpenceserheaderById (String id);
+	 void editExpenseHeader(ExpenseMaster poref1);
+	List<State> getstatelistbycountryid(String cuntryid);
 }

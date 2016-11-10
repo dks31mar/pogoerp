@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,21 +28,19 @@ public class Country implements Serializable{
 	private Integer countryId;
 	@Column(name = "country")
 	private String country;
-	 /*@OneToMany(fetch = FetchType.LAZY)
-	 @JoinColumn(name ="stateId")
-	private State state;
+	
+	@OneToMany(mappedBy="country")
+	private Set<State> state;
 	
 	
-	 
-	
-	 
-	public State getState() {
+
+	public Set<State> getState() {
 		return state;
 	}
 
-	public void setState(State state) {
+	public void setState(Set<State> state) {
 		this.state = state;
-	}*/
+	}
 
 	public Integer getCountryId() {
 		return countryId;

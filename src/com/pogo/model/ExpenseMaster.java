@@ -1,5 +1,8 @@
 package com.pogo.model;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,18 +11,23 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="expensemaster")
-public class ExpenseMaster {
+public class ExpenseMaster implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int expensemasterId;
+	@Column(name="expensemasterId",columnDefinition="bigint(11)")
+	private Integer expensemasterId;
+	@Column(name="expensehead",columnDefinition="varchar(255)")
 	private String expensehead;
+	@Column(name="expensetype",columnDefinition="varchar(255)")
 	private String expensetype;
-	private String unit;
-	private String limit;
-	public int getExpensemasterId() {
+	@Column(name="unit",columnDefinition="bigint(11)")
+	private Integer unit;
+	@Column(name="exlimit",columnDefinition="bigint(11)")
+	private Integer exlimit;
+	public Integer getExpensemasterId() {
 		return expensemasterId;
 	}
-	public void setExpensemasterId(int expensemasterId) {
+	public void setExpensemasterId(Integer expensemasterId) {
 		this.expensemasterId = expensemasterId;
 	}
 	public String getExpensehead() {
@@ -34,18 +42,19 @@ public class ExpenseMaster {
 	public void setExpensetype(String expensetype) {
 		this.expensetype = expensetype;
 	}
-	public String getUnit() {
+	public Integer getUnit() {
 		return unit;
 	}
-	public void setUnit(String unit) {
+	public void setUnit(Integer unit) {
 		this.unit = unit;
 	}
-	public String getLimit() {
-		return limit;
+	public Integer getExlimit() {
+		return exlimit;
 	}
-	public void setLimit(String limit) {
-		this.limit = limit;
+	public void setExlimit(Integer exlimit) {
+		this.exlimit = exlimit;
 	}
 	
-
+	
+	
 }

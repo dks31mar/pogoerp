@@ -16,6 +16,16 @@ public class District {
 	private Integer districtId ;
 	@Column(name="district")
 	private String district ;
+	@Column(name="stateId")
+	private Integer stateId;
+	public Integer getStateId() {
+		return stateId;
+	}
+
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
+	}
+
 	public Integer getDistrictId() {
 		return districtId;
 	}

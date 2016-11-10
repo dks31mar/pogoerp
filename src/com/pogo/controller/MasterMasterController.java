@@ -33,6 +33,7 @@ import com.pogo.bean.StateBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
 import com.pogo.service.MasterMastersService;
@@ -212,10 +213,16 @@ public class MasterMasterController {
 		
 	}
 	@RequestMapping(value="/state",method = RequestMethod.GET)
-	public ModelAndView getState( @ModelAttribute("command") CountryBean country,HttpServletRequest request,BindingResult result ){
+	public ModelAndView getState(@RequestParam("countryId") String cuntryid, @ModelAttribute("command") CountryBean country,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside state  method");
+		List<StateBean> statelistbycountryid=new ArrayList<>();
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("stateList",  prepareStateListofBean(masterMastersService.stateList()));
+		
+		statelistbycountryid=	masterMastersService.stateListbycountryid(cuntryid);
+	
+		//masterMastersService.stateList();
+		model.put("stateList",statelistbycountryid);
+		model.put("state123",cuntryid);
 		System.out.println("***************************************** inside state list ****************************");
 	return new ModelAndView("getstate",model);
 	}
@@ -227,7 +234,7 @@ public class MasterMasterController {
 			StateBean bean = null;
 			for(State pro : prodel){
 				bean = new StateBean();
-				//System.out.println(bean);
+				
 				bean.setStateId(pro.getStateId());
 				bean.setState(pro.getState());
 				
@@ -244,7 +251,7 @@ public class MasterMasterController {
 		StateBean poref=mapper.readValue(json, StateBean.class);
 		StateBean poref1=new StateBean();
 		poref1.setState(poref.getState());
-		masterMastersService.addState(poref1);
+		masterMastersService.addState(poref);
 	}
 	
 	@RequestMapping(value = "deletestate", method = RequestMethod.GET)
@@ -449,10 +456,88 @@ public class MasterMasterController {
 	@RequestMapping(value="/expensemaster",method = RequestMethod.GET)
 	public ModelAndView getexpensemaster( @ModelAttribute("command") ExpenseMasterBean expense,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside expense master  method");
-		//Map<String, Object> model = new HashMap<String, Object>();
-		//model.put("countryList",  prepareCountryListofBean(masterMastersService.countryList()));
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("expenseheadList",  prepareExpenseListofBean(masterMastersService.expenseheadList()));
 		System.out.println("***************************************** inside country list ****************************");
-	return new ModelAndView("getexpensemaster");
+	return new ModelAndView("getexpensemaster",model);
+	}
+	@SuppressWarnings("unused")
+	private List<ExpenseMasterBean> prepareExpenseListofBean(List<ExpenseMaster> prodel){
+		List<ExpenseMasterBean> beans = null;
+		if(prodel != null && !prodel.isEmpty()){
+			beans = new ArrayList<ExpenseMasterBean>();
+			ExpenseMasterBean bean = null;
+			for(ExpenseMaster pro : prodel){
+				bean = new ExpenseMasterBean();
+				//System.out.println(bean);
+				bean.setExpensemasterId(pro.getExpensemasterId());
+				bean.setExpensehead(pro.getExpensehead());
+				bean.setExpensetype(pro.getExpensetype());
+				bean.setExlimit(pro.getExlimit());
+				bean.setUnit(pro.getUnit());
+				
+				beans.add(bean);
+			}
+		}
+		return beans;
+	}
+	@RequestMapping(value="addexpensehead",method=RequestMethod.POST)
+	@ResponseBody
+	public void addExpensehead(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add expensehead method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ExpenseMasterBean poref=mapper.readValue(json, ExpenseMasterBean.class);
+		ExpenseMasterBean poref1=new ExpenseMasterBean();
+		poref1.setExpensehead(poref.getExpensehead());
+		poref1.setExpensetype(poref.getExpensetype());
+		poref1.setExlimit(poref.getExlimit());
+		poref1.setUnit(poref.getUnit());
+		masterMastersService.addExpensehead(poref1);
+	}
+	@RequestMapping(value = "deleteexpenseheader", method = RequestMethod.GET)
+	public ModelAndView deleteexpenseheader(@RequestParam("expensemasterId") Integer id) {
+		masterMastersService.deleteExpenceserheader(id);
+		Map<String, Object> model= new HashMap<String,Object>();
+		List<ExpenseMasterBean> list=new ArrayList<ExpenseMasterBean>();
+		model.put("expenseheadList",  prepareExpenseListofBean(masterMastersService.expenseheadList()));
+		return new ModelAndView("getexpensemaster",model);
+		
+		
 	}
 	
+	
+	@RequestMapping(value = "getexpenseheader", method = RequestMethod.POST)
+	public void getExpenseHeader(@RequestParam("expensemasterId") String id,HttpServletResponse res )throws ParseException  {
+		String cuList=masterMastersService.getExpenceheaderById(id);
+		System.out.println("inside get expenseheader method");
+		
+		System.out.println(cuList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("outside get expenseheader method");
+	}
+	
+
+	@RequestMapping(value="editexpenseheader",method=RequestMethod.POST)
+	@ResponseBody
+	public void editExpenseHeader(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit expenseheader method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ExpenseMasterBean poref=mapper.readValue(json, ExpenseMasterBean.class);
+		ExpenseMasterBean poref1=new ExpenseMasterBean();
+		poref1.setExpensemasterId(poref.getExpensemasterId());
+		poref1.setExpensehead(poref.getExpensehead());
+		poref1.setExpensetype(poref.getExpensetype());
+		poref1.setExlimit(poref.getExlimit());
+		poref1.setUnit(poref.getUnit());
+		
+		masterMastersService.editExpenseHeader(poref1);
+		
+	}
+
 }

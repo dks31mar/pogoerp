@@ -32,6 +32,7 @@
 
 <div class="row">
 <input type="hidden" id="hiddenid"/>
+<input type="hidden" id="countryid" value="${state123}"/> 
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addstate"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add State"
 						maxlength="20" autofocus="autofocus"></input></div>
@@ -111,9 +112,9 @@ $("#formid").hide();
 
 $('#saveForm').click(function (){
 	var addstate=$('#addstate').val();
+	var getcountryid=$('#countryid').val();
 	
-	
-	var jsonObj={'state':addstate
+	var jsonObj={'state':addstate,'stateId':getcountryid
 	} ;
 $.ajax({
 		url: "addstate",
