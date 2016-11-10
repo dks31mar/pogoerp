@@ -20,18 +20,15 @@ public class State {
 	@Column(name="state")
 	private String state ;
 	
+	/*
+	 * many state in one country
+	 * many		to		   one
+	 * 
+	 * */
 	
 	@ManyToOne
 	@JoinColumn(name="countryId")
 	private Country country;
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public Country getCountry() {
 		return country;
@@ -39,8 +36,6 @@ public class State {
 	public void setCountry(Country country) {
 		this.country = country;
 	}
-	
-	
 	public Integer getStateId() {
 		return stateId;
 	}

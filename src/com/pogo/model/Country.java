@@ -15,10 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-
-
-
 @Entity
 @Table(name="country")
 public class Country implements Serializable{
@@ -28,7 +24,14 @@ public class Country implements Serializable{
 	private Integer countryId;
 	@Column(name = "country")
 	private String country;
-	
+	/*
+	 * country has many states 
+	 * one        to     many
+	 * 
+	 * 
+	 * define a collection where 
+	 * we would add values of state
+	 * */
 	@OneToMany(mappedBy="country")
 	private Set<State> state;
 	
@@ -58,14 +61,5 @@ public class Country implements Serializable{
 		this.country = country;
 	}
 
-	/*public Country(){
-		  
-	 }
-	public Country(Integer countryId,String country , State state){
-		super();
-		  this.countryId = countryId;
-		  this.country = country;
-		  this.state = state;
-	 }*/
 
 }
