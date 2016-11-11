@@ -284,4 +284,14 @@
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/sms.jsp" />
 			</definition>
 			
+			
+			<definition name="getserviceprovider" extends="baseLayout" >
+			<put-attribute name="title" value="Srevice Provider" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/DispatchServiceProvider.jsp" />
+			</definition>
+			
+			<definition name="getaddserviceprovider" extends="baseLayout" >
+			<put-attribute name="title" value="Srevice Provider" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addservice.jsp" />
+			</definition>
 	      </tiles-definitions>

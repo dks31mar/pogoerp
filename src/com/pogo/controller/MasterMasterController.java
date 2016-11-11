@@ -31,6 +31,7 @@ import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
+import com.pogo.bean.ServiceProviderBean;
 import com.pogo.bean.StateBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
@@ -647,4 +648,35 @@ public class MasterMasterController {
 	    }
 	}
 	
+	
+	@RequestMapping(value="/serviceprovider",method = RequestMethod.GET)
+	public ModelAndView getServiceProvider( @ModelAttribute("command")  ServiceProviderBean service,HttpServletRequest request,BindingResult result ){
+		System.out.println("inside CustomerSources  method");
+		List<ServiceProviderBean> list=new ArrayList<ServiceProviderBean>();
+		list=masterMastersService.getServiceProviderList();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("servicelist", list);
+		
+	
+	return new ModelAndView("getserviceprovider",model);
+	}	
+	@RequestMapping(value="/getserviceprovider",method = RequestMethod.GET)
+	public ModelAndView addService( @ModelAttribute("command")  CustomerSourceBean customer,HttpServletRequest request,BindingResult result ){
+		
+	return new ModelAndView("getaddserviceprovider");
+	}	
+	
+	
+	
+	
+	@RequestMapping(value="addserviceprovider",method=RequestMethod.POST)
+	@ResponseBody
+	public void addServiceProvider(@RequestBody String json,Model model) throws IOException{
+	System.out.println("*****************************************************");
+		ObjectMapper mapper=new ObjectMapper();
+		ServiceProviderBean serviceprovider=mapper.readValue(json, ServiceProviderBean.class);
+		masterMastersService.addServiceProvider(serviceprovider);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	
+	}
 }

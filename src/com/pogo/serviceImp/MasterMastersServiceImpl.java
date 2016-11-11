@@ -16,6 +16,7 @@ import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
+import com.pogo.bean.ServiceProviderBean;
 import com.pogo.bean.StateBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
@@ -24,6 +25,7 @@ import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
+import com.pogo.model.ServiceProvider;
 import com.pogo.model.State;
 import com.pogo.service.MasterMastersService;
 
@@ -396,6 +398,42 @@ public List<StateBean> stateListbycountryid(String cuntryid) {
 	}
 	
  	return beanlist;
+}
+
+@Override
+public List<ServiceProviderBean> getServiceProviderList() {
+	List<ServiceProvider> list=masterMastersdao.getServiceProviderList();
+	List<ServiceProviderBean> list2=new ArrayList<>();
+	for(ServiceProvider sp:list){
+		ServiceProviderBean spb=new ServiceProviderBean();
+		spb.setContactperson(sp.getContactperson());
+		spb.setEmail(sp.getEmail());
+		spb.setMobile(sp.getMobile());
+		spb.setPhone(sp.getPhone());
+		spb.setServiceaddress(sp.getServiceaddress());
+		spb.setServicename(sp.getServicename());
+		spb.setTransportationmodeid(sp.getTransportationmodeid());
+		spb.setTransportationserviceid(sp.getTransportationserviceid());
+		list2.add(spb);
+		
+	}
+	return list2;
+}
+
+@Override
+public void addServiceProvider(ServiceProviderBean serviceprovider) {
+	ServiceProvider spb=new ServiceProvider();
+	spb.setContactperson(serviceprovider.getContactperson());
+	spb.setEmail(serviceprovider.getEmail());
+	spb.setMobile(serviceprovider.getMobile());
+	spb.setPhone(serviceprovider.getPhone());
+	spb.setServiceaddress(serviceprovider.getServiceaddress());
+	spb.setServicename(serviceprovider.getServicename());
+	spb.setTransportationmodeid(serviceprovider.getTransportationmodeid());
+	spb.setTransportationserviceid(serviceprovider.getTransportationserviceid());
+	
+	masterMastersdao.addServiceProvider(spb);
+	
 }
 
 }

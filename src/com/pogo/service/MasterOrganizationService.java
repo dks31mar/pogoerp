@@ -7,6 +7,7 @@ import java.util.List;
 
 
 import com.pogo.bean.DesignationBean;
+import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.UserEmployeeBean;
 
 import com.pogo.bean.ZonesBean;
@@ -58,6 +59,12 @@ public interface MasterOrganizationService {
 	void updateregion(ZonesBean zonesBean);
 
 	void deleteRegion(int id);
+
+	void permitForSms(SmsAllocationBean smsbean);
+
+	void denyForSms(SmsAllocationBean smsbean);
+
+	List<SmsAllocationBean> getPermitSmsUser();
 	
 	
 }

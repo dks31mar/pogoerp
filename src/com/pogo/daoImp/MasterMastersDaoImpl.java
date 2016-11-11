@@ -15,6 +15,7 @@ import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
+import com.pogo.model.ServiceProvider;
 import com.pogo.model.State;
 @SuppressWarnings("unchecked")
 @Repository("masterMastersdao")
@@ -270,6 +271,16 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 				
 				//sessionFactory.getCurrentSession().createCriteria(State.class).list();
 		return list;
+	}
+	@Override
+	public List<ServiceProvider> getServiceProviderList() {
+		
+		return sessionFactory.getCurrentSession().createCriteria(ServiceProvider.class).list();
+	}
+	@Override
+	public void addServiceProvider(ServiceProvider spb) {
+		
+		sessionFactory.getCurrentSession().save(spb);
 	}
 
 }

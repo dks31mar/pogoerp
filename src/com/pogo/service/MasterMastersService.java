@@ -8,6 +8,7 @@ import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
+import com.pogo.bean.ServiceProviderBean;
 import com.pogo.bean.StateBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
@@ -63,6 +64,8 @@ public interface MasterMastersService {
 	void editCustomerSource(CustomerSourceBean poref1);
 
 	List<StateBean> stateListbycountryid(String cuntryid);
+	List<ServiceProviderBean> getServiceProviderList();
+	void addServiceProvider(ServiceProviderBean serviceprovider);
 	
 
 }

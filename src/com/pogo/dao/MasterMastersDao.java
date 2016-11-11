@@ -8,6 +8,7 @@ import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
+import com.pogo.model.ServiceProvider;
 import com.pogo.model.State;
 
 
@@ -58,5 +59,7 @@ public interface MasterMastersDao {
 	void editCustomerSource(CustomerSource customer);
 
 	List<State> getstatelistbycountryid(String cuntryid);
+	List<ServiceProvider> getServiceProviderList();
+	void addServiceProvider(ServiceProvider spb);
 
 }
