@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
 import com.pogo.bean.CountryBean;
-import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
@@ -20,7 +19,6 @@ import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
-import com.pogo.model.Currency;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
 import com.pogo.model.District;

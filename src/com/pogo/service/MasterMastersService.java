@@ -9,8 +9,6 @@ import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
-import com.pogo.bean.UnitBean;
-import com.pogo.bean.ZonesBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;

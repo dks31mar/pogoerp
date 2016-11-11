@@ -2,7 +2,6 @@ package com.pogo.dao;
 
 import java.util.List;
 
-import com.pogo.bean.CustomerSourceBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
@@ -10,9 +9,6 @@ import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
-
-
-import com.pogo.model.Unit;
 
 
 public interface MasterMastersDao {

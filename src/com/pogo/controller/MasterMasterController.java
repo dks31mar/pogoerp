@@ -26,7 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CountryBean;
-import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
@@ -40,7 +39,7 @@ import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
 import com.pogo.service.MasterMastersService;
-
+@SuppressWarnings("unused")
 @Controller
 public class MasterMasterController {
 	@Autowired
@@ -144,7 +143,7 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside country list ****************************");
 	return new ModelAndView("getcountry",model);
 	}
-	@SuppressWarnings("unused")
+	
 	private List<CountryBean> prepareCountryListofBean(List<Country> prodel){
 		List<CountryBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -229,7 +228,7 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside state list ****************************");
 	return new ModelAndView("getstate",model);
 	}
-	@SuppressWarnings("unused")
+
 	private List<StateBean> prepareStateListofBean(List<State> prodel){
 		List<StateBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -307,7 +306,7 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside district list ****************************");
 	return new ModelAndView("getdistrict",model);
 	}
-	@SuppressWarnings("unused")
+	
 	private List<DistrictBean> prepareDistrictListofBean(List<District> prodel){
 		List<DistrictBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -385,7 +384,7 @@ public class MasterMasterController {
 	return new ModelAndView("getlocation",model);
 	}
 	
-	@SuppressWarnings("unused")
+	
 	private List<LocationBean> prepareLocationListofBean(List<Location> prodel){
 		List<LocationBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -464,7 +463,7 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside country list ****************************");
 	return new ModelAndView("getexpensemaster",model);
 	}
-	@SuppressWarnings("unused")
+	
 	private List<ExpenseMasterBean> prepareExpenseListofBean(List<ExpenseMaster> prodel){
 		List<ExpenseMasterBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -497,6 +496,7 @@ public class MasterMasterController {
 		poref1.setUnit(poref.getUnit());
 		masterMastersService.addExpensehead(poref1);
 	}
+	
 	@RequestMapping(value = "deleteexpenseheader", method = RequestMethod.GET)
 	public ModelAndView deleteexpenseheader(@RequestParam("expensemasterId") Integer id) {
 		masterMastersService.deleteExpenceserheader(id);
