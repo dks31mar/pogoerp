@@ -11,27 +11,19 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
-<link href="resources/css/prettify.css" rel="stylesheet" type="text/css" />
-
 
 <link href="resources/css/table.css" rel="stylesheet" type="text/css" />
-<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-  <script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-  <style>
-  
-  </style>
-  
   <div class="row">
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px;  height: 34px;">
-		<span class="glyphicon glyphicon-home"></span> Location
-		 <label
+		<span class="glyphicon glyphicon-user"></span> Customer Source
+ <label
 			 style="margin-left: 250px;margin-top: 8px;"><button 
-			class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Location </button>
-     </label> 
+			class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Customer Source </button>
+     </label>
 			
 </div>
 <div id="formid" class="col-md-11" style=" left: 20px;  height: 34px;">
@@ -42,8 +34,8 @@
 <input type="hidden" id="hiddenid"/>
   
   
-  <div class="col-md-10" align="right" id="dddd1234"><input path="loginname" type="text" class="validate[required] text-input" id="addlocation"
-						style="border-radius: 5px;" value="" name="loginname" placeholder="Add location"
+  <div class="col-md-10" align="right" id="dddd1234"><input path="loginname" type="text" class="validate[required] text-input" id="addsource"
+						style="border-radius: 5px;" value="" name="loginname" placeholder="Add Customer Source "
 						maxlength="20" autofocus="autofocus" onclick="stopmoving();"></input></div>
   
   
@@ -56,44 +48,43 @@
 				
 				</div>
 </div>
-<div class="row" >
+<div class="row">
 
 
   <div class="col-md-10" align="right" id="messagediv"><span style="color: red;">*Mandatory filed</span></div>
 
 </div>
 </div>
+<div id="pop" style="height: 12px"></div>
+<div id="searchedRecord"></div>
+
 </div>
-
-
 <div class="row" id="body">
 	<table class="responstable" style="margin-left: 22px; ">
 
 		<tbody>
 			<tr>
 				<th style="width: 60px;">S.N.</th>
-				<th data-th="Driver details"><span>Location</span></th>
-				 
-			    <th style="width: 60px;">Edit</th>
-				<th style="width: 60px;"> Delete</th>
+				<th data-th="Driver details"><span>Source</span></th>
+				 <th style="width: 60px;">Edit</th>
+			    <th style="width: 60px;"> Delete</th>
 			</tr>
-			 <c:if test="${!empty locationList}">
-				<c:forEach items="${locationList}" var="location" varStatus="loop">
+			 <c:if test="${!empty customersourcelist}">
+				<c:forEach items="${customersourcelist}" var="customersource" varStatus="loop">
 
 					<tr>
 						<td>${loop.index+1}</td>
-						<td>${location.location}</td>
-		           
-					 <td><a href="#" onclick="editCur(${location.locationId})" title="Edit">
-								<span class="glyphicon glyphicon-pencil"></span></a></td>
-								
-						<td style="margin"><a href="deletelocation?locationId=${location.locationId}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> 
-								
+						<td>${customersource.source}</td>
+		              
+						 
+						<td><a href="#" onclick="editCur(${customersource.customersourceId})" title="Edit">
+								<span class="glyphicon glyphicon-pencil"></span></a></td>		
+					 <td style="margin"><a href="deletecustomersource?customersourceId=${customersource.customersourceId}"><span
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>  
 					</tr>
 
 				</c:forEach>
-			</c:if>
+			</c:if> 
 
 
 
@@ -101,13 +92,15 @@
 	</table>
 
 </div>
+
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="resources/js/jquery.jrumble.1.3.min.js"></script>
 <script src="resources/js/jquery.jrumble.1.3.js"></script>
-<script>
+<script> 
+
 $(document).ready(
 	    function(){
 $("#getcountrypopup").click(function(){
@@ -115,41 +108,25 @@ $("#getcountrypopup").click(function(){
 	 $("#formid").toggle('show');
 	 $('#EditForm').hide();
 	 $("#saveForm").show();
-	 $("#addlocation").val('');
-	 $('#locationspan').hide();
+	 $("#addsource").val('');
+	 $('#countryspan').hide();
 	 $("#hiddenid").val('');
 	
 });
-});
-
-
-
-
+	    });
 $("#formid").hide();
+$('#countryspan').hide();
 $('#messagediv').hide();
-
-$('#dddd1234').jrumble({
-	x: 2,
-	y: 2,
-	rotation: 1
-});
-function stopmoving(){
-	$('#addlocation').css('border-color', 'white');
-	$('#messagediv').hide('slow');
-}
-
 $('#saveForm').click(function (){
-	var addlocation=$('#addlocation').val();
-	
-	if(addlocation==''){
+	var addsource=$('#addsource').val();
+	if(addsource == ''){
+		$('#messagediv').show();
 		
-		$('#addlocation').css('border-color', '#DC143C');
-		$('#messagediv').show('slow');
 	}else{
-		var jsonObj={'location':addlocation
+		var jsonObj={'source':addsource
 		} ;
 	$.ajax({
-			url: "addlocation",
+			url: "addcustomersources",
 			type: "POST",
 			
 			  data :JSON.stringify(jsonObj),
@@ -167,71 +144,20 @@ $('#saveForm').click(function (){
 		
 	}
 	
-});
-
-
-
-function editCur(id){
-	$("#formid").show('show');
-	$('#EditForm').show();
-	$("#saveForm").hide(); 
-$.ajax({
-	url: "getlocation?locationId="+id,
-	type: "GET",
 	
-	     success: function(respose){
-	    	// alert(respose);
-	    	 var data=JSON.parse(respose)
-	    	 var name=data.location;
-	    	 var id=data.locationId;
-	    	// alert("************************"+id);
-	    	 $("#addlocation").val(name);
-	    	 $("#hiddenid").val(id);
-	    	 $('#messagediv').hide('slow');
-	    	 $('#addlocation').css('border-color', 'white');
-	    	 
-    }});
-} 
-
-
-
-
+});
 
 $('#EditForm').click(function (){
 	var id=$("#hiddenid").val();
-	var addlocation=$('#addlocation').val();
+	var addsource=$('#addsource').val();
 	
 	var d1w=$("#hiddenid").val();
-	//alert(d1w);
+	alert(d1w);
 	
-	if(addlocation==''){
-		$('#addlocation').css('border-color', '#DC143C');
-		$('#messagediv').show('slow');
-	}else{
-		var jsonObj={'location':addlocation,'locationId':id} ;
-		$.ajax({
-			url: "editlocation",
-			type: "POST",
-			
-			  data :JSON.stringify(jsonObj),
-			  cache:false,
-		        beforeSend: function(xhr) {  
-		            xhr.setRequestHeader("Accept", "application/json");  
-		            xhr.setRequestHeader("Content-Type", "application/json");  
-		        },
-			     success: function(resposeJsonObject){
-			    	 $('#openModal').hide();
-			    	 //window.location.currency;
-			    	 window.location.reload();
-		     alert("edit");
-		    }});
-	}
 	
-<<<<<<< HEAD
-=======
-	var jsonObj={'location':addlocation,'locationId':id} ;
+	var jsonObj={'source':addsource,'customersourceId':id} ;
 $.ajax({
-		url: "editlocation",
+		url: "editcustomersource",
 		type: "POST",
 		
 		  data :JSON.stringify(jsonObj),
@@ -244,23 +170,29 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	 window.location.reload();
-	    // alert("edit");
+	     alert("edit");
 	    }});
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 	
 	
 });
-/* $(document).ready(function () {
-
-    $('#addlocation').validate({ // initialize the plugin
-        // rules & options,
-        errorPlacement: function(error, element) {
-            element.val("placeholder",error.text());
-        }
-    });
-
-}); */
-
-
+function editCur(id){
+	$("#formid").show('show');
+	$('#EditForm').show();
+	$("#saveForm").hide(); 
+$.ajax({
+	url: "getcustomersource?customersourceId="+id,
+	type: "POST",
+	
+	     success: function(respose){
+	    	 alert(respose);
+	    	 var data=JSON.parse(respose)
+	    	 var name=data.customersourceId;
+	    	 var id=data.source;
+	    	 alert("************************"+id);
+	    	 $("#addsource").val(id);
+	    	 $("#hiddenid").val(name);
+	    	 
+    }});
+} 
 
 </script>

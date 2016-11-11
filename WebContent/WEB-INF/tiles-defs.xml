@@ -158,6 +158,7 @@
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/expensemaster.jsp" />
 			</definition>
 			
+
 			 <!-- Mode of dispatch -->
 			 <definition name="getmodeofdispatch" extends="baseLayout" >
 			 <put-attribute name="title" value="modeofdispatch"></put-attribute>
@@ -169,6 +170,13 @@
 			 <put-attribute name="title" value="teamsegment"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/teamsegment.jsp" />
 			</definition> 
+
+			<!-- CustomerSources -->
+			<definition name="getCustomerSources" extends="baseLayout" >
+			<put-attribute name="title" value="CustomerSources" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/CustomerSources.jsp" />
+			</definition>
+
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
@@ -290,5 +298,20 @@
 			<put-attribute name="title" value="Mobile App" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileApp.jsp" />
 			</definition>
+			<!-- Permission for SMS -->
+			<definition name="getsms" extends="baseLayout" >
+			<put-attribute name="title" value="sms permission" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/sms.jsp" />
+			</definition>
 			
+			
+			<definition name="getserviceprovider" extends="baseLayout" >
+			<put-attribute name="title" value="Srevice Provider" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/DispatchServiceProvider.jsp" />
+			</definition>
+			
+			<definition name="getaddserviceprovider" extends="baseLayout" >
+			<put-attribute name="title" value="Srevice Provider" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addservice.jsp" />
+			</definition>
 	      </tiles-definitions>

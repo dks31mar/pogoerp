@@ -12,19 +12,28 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.gson.Gson;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
+import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.ModeOfDispatchBean;
+
+import com.pogo.bean.ServiceProviderBean;
+
 import com.pogo.bean.StateBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
+
 import com.pogo.model.ModeOfDispatch;
+
+import com.pogo.model.ServiceProvider;
+
 import com.pogo.model.State;
 import com.pogo.model.TeamSegment;
 import com.pogo.service.MasterMastersService;
@@ -327,6 +336,63 @@ public void editExpenseHeader(ExpenseMasterBean poref1){
 }
 
 @Override
+public List<CustomerSourceBean> getCustomerSourceList(){
+	List<CustomerSource> getdetails = masterMastersdao.getCustomerSourceList();
+	List<CustomerSourceBean> lists=new ArrayList<CustomerSourceBean>();
+	for(CustomerSource list: getdetails)
+	{
+		CustomerSourceBean data=new CustomerSourceBean();
+		data.setCustomersourceId(list.getCustomersourceId());
+		data.setSource(list.getSource());
+		
+		lists.add(data);
+	}
+	return lists ;
+}
+@Override
+public void deleteCustomerSource(int id) {
+	masterMastersdao.deleteCustomerSource(id);
+}
+@Override
+public void addCustomerSource(CustomerSourceBean poref1) {
+	CustomerSource cur=new CustomerSource();
+	cur.setSource(poref1.getSource());
+	
+	masterMastersdao.addCustomerSource(cur);
+}
+
+@Override
+public String getCustomerSource(String id){
+	List<CustomerSource> customer =masterMastersdao.getCustomerSource(id);
+	Map<String, Object> dd=new HashMap<>();
+	for(CustomerSource data: customer)
+	{
+		
+		dd.put("customersourceId",data.getCustomersourceId() );
+		dd.put("source",data.getSource());
+		
+		
+		
+		
+	}
+	Gson gson=new Gson();
+	
+String list=	gson.toJson(dd);
+	
+	return list;
+}
+@Override
+@Transactional
+public void editCustomerSource(CustomerSourceBean poref1){
+	CustomerSource customer=new CustomerSource();
+	customer.setCustomersourceId(poref1.getCustomersourceId());
+	customer.setSource(poref1.getSource());
+	
+	masterMastersdao.editCustomerSource(customer);
+}
+
+
+@Override
 public List<StateBean> stateListbycountryid(String cuntryid) {
 	List<State> list=masterMastersdao.getstatelistbycountryid(cuntryid);
 	List<StateBean> beanlist=new ArrayList<>();
@@ -342,6 +408,7 @@ public List<StateBean> stateListbycountryid(String cuntryid) {
 	
  	return beanlist;
 }
+
 @Override
 public List<DistrictBean> districtListbystateid(String stateid) {
 	List<District> list=masterMastersdao.getdistrictlistbystateid(stateid);
@@ -465,5 +532,43 @@ public void editTeam(TeamSegmentBean poref1){
 	
 	masterMastersdao.editTeam(team);
 }
+
+
+@Override
+public List<ServiceProviderBean> getServiceProviderList() {
+	List<ServiceProvider> list=masterMastersdao.getServiceProviderList();
+	List<ServiceProviderBean> list2=new ArrayList<>();
+	for(ServiceProvider sp:list){
+		ServiceProviderBean spb=new ServiceProviderBean();
+		spb.setContactperson(sp.getContactperson());
+		spb.setEmail(sp.getEmail());
+		spb.setMobile(sp.getMobile());
+		spb.setPhone(sp.getPhone());
+		spb.setServiceaddress(sp.getServiceaddress());
+		spb.setServicename(sp.getServicename());
+		spb.setTransportationmodeid(sp.getTransportationmodeid());
+		spb.setTransportationserviceid(sp.getTransportationserviceid());
+		list2.add(spb);
+		
+	}
+	return list2;
+}
+
+@Override
+public void addServiceProvider(ServiceProviderBean serviceprovider) {
+	ServiceProvider spb=new ServiceProvider();
+	spb.setContactperson(serviceprovider.getContactperson());
+	spb.setEmail(serviceprovider.getEmail());
+	spb.setMobile(serviceprovider.getMobile());
+	spb.setPhone(serviceprovider.getPhone());
+	spb.setServiceaddress(serviceprovider.getServiceaddress());
+	spb.setServicename(serviceprovider.getServicename());
+	spb.setTransportationmodeid(serviceprovider.getTransportationmodeid());
+	spb.setTransportationserviceid(serviceprovider.getTransportationserviceid());
+	
+	masterMastersdao.addServiceProvider(spb);
+	
+}
+
 
 }

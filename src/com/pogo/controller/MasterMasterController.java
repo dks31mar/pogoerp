@@ -23,14 +23,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
+import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
+
 import com.pogo.bean.ModeOfDispatchBean;
+
+import com.pogo.bean.ServiceProviderBean;
+
 import com.pogo.bean.StateBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.model.Country;
@@ -40,7 +46,7 @@ import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
 import com.pogo.service.MasterMastersService;
-
+@SuppressWarnings("unused")
 @Controller
 public class MasterMasterController {
 	@Autowired
@@ -144,7 +150,7 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside country list ****************************");
 	return new ModelAndView("getcountry",model);
 	}
-	@SuppressWarnings("unused")
+	
 	private List<CountryBean> prepareCountryListofBean(List<Country> prodel){
 		List<CountryBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -229,7 +235,7 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside state list ****************************");
 	return new ModelAndView("getstate",model);
 	}
-	@SuppressWarnings("unused")
+
 	private List<StateBean> prepareStateListofBean(List<State> prodel){
 		List<StateBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -311,7 +317,7 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside district list ****************************");
 	return new ModelAndView("getdistrict",model);
 	}
-	@SuppressWarnings("unused")
+	
 	private List<DistrictBean> prepareDistrictListofBean(List<District> prodel){
 		List<DistrictBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -389,7 +395,7 @@ public class MasterMasterController {
 	return new ModelAndView("getlocation",model);
 	}
 	
-	@SuppressWarnings("unused")
+	
 	private List<LocationBean> prepareLocationListofBean(List<Location> prodel){
 		List<LocationBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -468,7 +474,7 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside country list ****************************");
 	return new ModelAndView("getexpensemaster",model);
 	}
-	@SuppressWarnings("unused")
+	
 	private List<ExpenseMasterBean> prepareExpenseListofBean(List<ExpenseMaster> prodel){
 		List<ExpenseMasterBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -501,6 +507,7 @@ public class MasterMasterController {
 		poref1.setUnit(poref.getUnit());
 		masterMastersService.addExpensehead(poref1);
 	}
+	
 	@RequestMapping(value = "deleteexpenseheader", method = RequestMethod.GET)
 	public ModelAndView deleteexpenseheader(@RequestParam("expensemasterId") Integer id) {
 		masterMastersService.deleteExpenceserheader(id);
@@ -546,6 +553,7 @@ public class MasterMasterController {
 		masterMastersService.editExpenseHeader(poref1);
 		
 	}
+
 	
 	
 	@RequestMapping(value="/modeofdispatch",method = RequestMethod.GET)
@@ -674,5 +682,142 @@ public class MasterMasterController {
 		
 		masterMastersService.editTeam(poref1);
 		
+	}
+	@RequestMapping(value="/CustomerSources",method = RequestMethod.GET)
+	public ModelAndView getCustomerSources( @ModelAttribute("command")  CustomerSourceBean customer,HttpServletRequest request,BindingResult result ){
+		System.out.println("inside CustomerSources  method");
+		List<CustomerSourceBean> list=new ArrayList<CustomerSourceBean>();
+		list=masterMastersService.getCustomerSourceList();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("customersourcelist", list);
+		
+		System.out.println("***************************************** inside customersource list ****************************");
+	return new ModelAndView("getCustomerSources",model);
+	}	
+	/*@RequestMapping(value = "deletecustomersource", method = RequestMethod.GET)
+	public ModelAndView deleteCustomerSource(@RequestParam("customersourceId") int id) {
+		List<Customer_Source_Bean> list=new ArrayList<Customer_Source_Bean>();
+		list =	masterMastersService.deleteCustomerSource(id);
+		Map<String, Object> model= new HashMap<String,Object>();
+		
+		model.put("expenseheadList", list );
+		return new ModelAndView("customersourcelist",model);
+		
+		
+	}*/
+	@RequestMapping(value = "deletecustomersource", method = RequestMethod.GET)
+	public ModelAndView deleteCustomerSource(@RequestParam("customersourceId") int id) {
+		masterMastersService.deleteCustomerSource(id);
+		List<CustomerSourceBean> list=new ArrayList<CustomerSourceBean>();
+		list=masterMastersService.getCustomerSourceList();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("customersourcelist", list);
+		
+			
+		
+		return new ModelAndView("getCustomerSources",model);
+	}
+	
+	@RequestMapping(value="addcustomersources",method=RequestMethod.POST)
+	@ResponseBody
+	public String addCurrency(@RequestBody String json,Model model) throws IOException{
+	System.out.println(json);
+		ObjectMapper mapper=new ObjectMapper();
+		CustomerSourceBean poref=mapper.readValue(json, CustomerSourceBean.class);
+		CustomerSourceBean poref1=new CustomerSourceBean();
+		poref1.setSource(poref.getSource());
+		
+		masterMastersService.addCustomerSource(poref1);
+		
+	return toJson(poref1);
+	}
+	private String toJson(CustomerSourceBean poRefEntry) {
+		ObjectMapper mapper = new ObjectMapper();
+	    try {
+	        String value = mapper.writeValueAsString(poRefEntry);
+	        // return "["+value+"]";
+	        return value;
+	    } catch (JsonProcessingException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	@RequestMapping(value = "getcustomersource", method = RequestMethod.POST)
+	public void getCustomerSource(@RequestParam("customersourceId") String id,HttpServletResponse res )throws ParseException  {
+		System.out.println(id);
+		String curList=masterMastersService.getCustomerSource(id);
+		System.out.println(curList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(curList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
+	@RequestMapping(value="editcustomersource",method=RequestMethod.POST)
+	@ResponseBody
+	public String editCustomerSource(@RequestBody String json,Model model) throws IOException{
+	System.out.println("*****************************************************");
+		ObjectMapper mapper=new ObjectMapper();
+		CustomerSourceBean poref=mapper.readValue(json, CustomerSourceBean.class);
+		CustomerSourceBean poref1=new CustomerSourceBean();
+		poref1.setCustomersourceId(poref.getCustomersourceId());
+		poref1.setSource(poref.getSource());
+		
+		
+		
+		
+		masterMastersService.editCustomerSource(poref1);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	return toJson1(poref1);
+	}
+
+	private String toJson1(CustomerSourceBean poRefEntry) {
+		ObjectMapper mapper = new ObjectMapper();
+	    try {
+	        String value = mapper.writeValueAsString(poRefEntry);
+	        // return "["+value+"]";
+	        return value;
+	    } catch (JsonProcessingException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	
+	
+	@RequestMapping(value="/serviceprovider",method = RequestMethod.GET)
+	public ModelAndView getServiceProvider( @ModelAttribute("command")  ServiceProviderBean service,HttpServletRequest request,BindingResult result ){
+		System.out.println("inside CustomerSources  method");
+		List<ServiceProviderBean> list=new ArrayList<ServiceProviderBean>();
+		list=masterMastersService.getServiceProviderList();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("servicelist", list);
+		
+	
+	return new ModelAndView("getserviceprovider",model);
+	}	
+	@RequestMapping(value="/getserviceprovider",method = RequestMethod.GET)
+	public ModelAndView addService( @ModelAttribute("command")  CustomerSourceBean customer,HttpServletRequest request,BindingResult result ){
+		
+	return new ModelAndView("getaddserviceprovider");
+	}	
+	
+	
+	
+	
+	@RequestMapping(value="addserviceprovider",method=RequestMethod.POST)
+	@ResponseBody
+	public void addServiceProvider(@RequestBody String json,Model model) throws IOException{
+	System.out.println("*****************************************************");
+		ObjectMapper mapper=new ObjectMapper();
+		ServiceProviderBean serviceprovider=mapper.readValue(json, ServiceProviderBean.class);
+		masterMastersService.addServiceProvider(serviceprovider);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	
+
 	}
 }

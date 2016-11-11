@@ -1,10 +1,11 @@
 package com.pogo.bean;
 
 import java.io.Serializable;
-
+@SuppressWarnings("unused")
 public class UserOptionBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	
 	
 	private Integer id;
 	

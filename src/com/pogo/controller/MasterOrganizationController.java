@@ -1,13 +1,16 @@
 package com.pogo.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,9 +32,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.pogo.bean.PoRefEntryItemDetailBean;
-
+import com.pogo.bean.SmsAllocationBean;
 import com.ibm.icu.text.Normalizer.Mode;
 import com.pogo.bean.CompanyProfileBean;
+import com.pogo.bean.CountryBean;
+import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.DesignationBean;
 
 import com.pogo.bean.UserEmployeeBean;
@@ -39,6 +44,7 @@ import com.pogo.bean.ZonesBean;
 import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.Designation;
+import com.pogo.model.SmsAllocation;
 import com.pogo.model.Zones;
 
 import com.pogo.service.MasterOrganizationService;
@@ -357,7 +363,47 @@ public ModelAndView getSouthBranch(@ModelAttribute("command") PoRefEntryItemDeta
 return new ModelAndView("addstates");
 }	
 
+@RequestMapping(value="/sms",method = RequestMethod.GET)
+public ModelAndView getSmsAllocation( @ModelAttribute("command") SmsAllocationBean sms,HttpServletRequest request,BindingResult result ){
+	System.out.println("inside sms  method");
+	List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
+	list = userEmployeeservice.getUserDetails();
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("empdetails", list);
+return new ModelAndView("getsms",model);
+}	
+
+
+@RequestMapping(value="/permitforsmssend",method = RequestMethod.POST)
+@ResponseBody
+public void permitForSms(@RequestBody String json,Model model) throws IOException{
+System.out.println(json);
+	ObjectMapper mapper=new ObjectMapper();
+	SmsAllocationBean smsbean=mapper.readValue(json, SmsAllocationBean.class);
 	
+	userEmployeeservice.permitForSms(smsbean);
+}
 
-
+@RequestMapping(value="/denyforsmssend",method = RequestMethod.POST)
+@ResponseBody
+public void denyForSms(@RequestBody String json,Model model) throws IOException{
+System.out.println(json);
+	ObjectMapper mapper=new ObjectMapper();
+	SmsAllocationBean smsbean=mapper.readValue(json, SmsAllocationBean.class);
+	
+	userEmployeeservice.denyForSms(smsbean);
+}
+@RequestMapping(value="/getsmspermituser",method = RequestMethod.POST)
+public void getPermitSmsUser(HttpServletResponse res) throws IOException{
+	
+	PrintWriter writer= res.getWriter();
+	List<SmsAllocationBean> list=new ArrayList<>();
+	list=userEmployeeservice.getPermitSmsUser();
+	List<Integer> list2=new ArrayList<>();
+	for(SmsAllocationBean b:list){
+		
+		list2.add(b.getEmpid());
+	}
+	writer.print(list2);
+}
 }

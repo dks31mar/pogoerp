@@ -34,7 +34,7 @@
 <input type="hidden" id="hiddenid"/>
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addcountry"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add Country"
-						maxlength="20" autofocus="autofocus"></input></div>
+						maxlength="20" autofocus="autofocus"></input><span style="color: red;" id="countryspan">Please Enter Country</span></div>
   
 </div>
 
@@ -101,35 +101,42 @@ $("#getcountrypopup").click(function(){
 	 $('#EditForm').hide();
 	 $("#saveForm").show();
 	 $("#addcountry").val('');
-	 
+	 $('#countryspan').hide();
 	 $("#hiddenid").val('');
 	
 });
 	    });
 $("#formid").hide();
+$('#countryspan').hide();
 
 $('#saveForm').click(function (){
 	var addcountry=$('#addcountry').val();
-	
-	
-	var jsonObj={'country':addcountry
-	} ;
-$.ajax({
-		url: "addcountry",
-		type: "POST",
+	if(addcountry == ''){
+		$('#countryspan').show();
 		
-		  data :JSON.stringify(jsonObj),
-		  cache:false,
-	        beforeSend: function(xhr) {  
-	            xhr.setRequestHeader("Accept", "application/json");  
-	            xhr.setRequestHeader("Content-Type", "application/json");  
-	        },
-		     success: function(resposeJsonObject){
-		    	 $('#openModal').hide();
-		    	 //window.location.currency;
-		    	 window.location.reload();
-	     
-	    }});
+	}else{
+		var jsonObj={'country':addcountry
+		} ;
+	$.ajax({
+			url: "addcountry",
+			type: "POST",
+			
+			  data :JSON.stringify(jsonObj),
+			  cache:false,
+		        beforeSend: function(xhr) {  
+		            xhr.setRequestHeader("Accept", "application/json");  
+		            xhr.setRequestHeader("Content-Type", "application/json");  
+		        },
+			     success: function(resposeJsonObject){
+			    	 $('#openModal').hide();
+			    	 //window.location.currency;
+			    	 window.location.reload();
+		     
+		    }});
+		
+	}
+	
+	
 });
 
 

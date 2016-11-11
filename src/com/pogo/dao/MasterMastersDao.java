@@ -4,13 +4,20 @@ import java.util.List;
 
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
+
 import com.pogo.model.ModeOfDispatch;
+
+import com.pogo.model.ServiceProvider;
+
 import com.pogo.model.State;
+
 import com.pogo.model.TeamSegment;
 import com.pogo.model.Unit;
+
 
 
 public interface MasterMastersDao {
@@ -51,6 +58,7 @@ public interface MasterMastersDao {
 	 void deleteExpenceserheader(int id);
 	 List<ExpenseMaster> getExpenceserheaderById (String id);
 	 void editExpenseHeader(ExpenseMaster poref1);
+
 	
 	
 	List<District> getdistrictlistbystateid(String stateid);
@@ -66,4 +74,18 @@ public interface MasterMastersDao {
 	void deleteteam(int id);
 	List<TeamSegment> getTeambyId(String id);
 	void editTeam(TeamSegment team);
+
+
+	 
+	List<CustomerSource> getCustomerSourceList();
+	void deleteCustomerSource(int id);
+	void addCustomerSource(CustomerSource cur);
+	List<CustomerSource> getCustomerSource(String id);
+	void editCustomerSource(CustomerSource customer);
+
+	
+	List<ServiceProvider> getServiceProviderList();
+	void addServiceProvider(ServiceProvider spb);
+
+
 }

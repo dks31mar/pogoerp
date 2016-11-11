@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.Designation;
+import com.pogo.model.SmsAllocation;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 
@@ -69,6 +70,12 @@ public interface MasterOrganizationDao {
 	Designation getDesgById(int id);
 
 	void deleteDesignation(Designation deg);
+
+	void permitForSms(SmsAllocation sms);
+
+	void denyForSms(SmsAllocation sms);
+
+	List<SmsAllocation> getPermitSmsUser();
 
 }
 

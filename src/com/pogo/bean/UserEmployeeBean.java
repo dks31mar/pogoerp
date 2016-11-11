@@ -1,7 +1,5 @@
 package com.pogo.bean;
 
-import java.util.Date;
-
 public class UserEmployeeBean 
 {
 	private Integer userempid;
@@ -17,7 +15,6 @@ public class UserEmployeeBean
 	private String branch;
 	private String dateofjoining;
 	private String designation;
-	
 	
 	private String password;
 	private String repassword;

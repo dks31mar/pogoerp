@@ -4,14 +4,20 @@ import java.util.List;
 
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
+import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
+
 import com.pogo.bean.ModeOfDispatchBean;
+import com.pogo.bean.ServiceProviderBean;
+
 import com.pogo.bean.StateBean;
+
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.bean.ZonesBean;
+
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
@@ -57,8 +63,9 @@ public interface MasterMastersService {
 	void deleteExpenceserheader(int id);
     String getExpenceheaderById(String id);
 	void editExpenseHeader(ExpenseMasterBean poref1);
-	List<StateBean> stateListbycountryid(String cuntryid);
+
 	
+
 	List<DistrictBean> districtListbystateid(String stateid);
 	
 	List<ModeOfDispatchBean> getModeOfDispatchList();
@@ -73,4 +80,17 @@ public interface MasterMastersService {
 	String getTeambyId(String id);
 	void editTeam(TeamSegmentBean poref1);
 	
+
+	List<CustomerSourceBean> getCustomerSourceList();
+	void deleteCustomerSource(int id);
+	void addCustomerSource(CustomerSourceBean poref1);
+	String getCustomerSource(String id);
+	void editCustomerSource(CustomerSourceBean poref1);
+
+	List<StateBean> stateListbycountryid(String cuntryid);
+	List<ServiceProviderBean> getServiceProviderList();
+	void addServiceProvider(ServiceProviderBean serviceprovider);
+	
+
+
 }

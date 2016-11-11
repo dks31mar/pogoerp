@@ -12,19 +12,32 @@ import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
 import com.pogo.model.Currency;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
+
 import com.pogo.model.ModeOfDispatch;
+
+import com.pogo.model.ServiceProvider;
+
 import com.pogo.model.State;
+
 import com.pogo.model.TeamSegment;
+
+@SuppressWarnings("unchecked")
+
 @Repository("masterMastersdao")
 public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+
 	@SuppressWarnings("unchecked")
 	@Override
+
+	
+
 	public List<CustomerLevels> customerLevelsList(){
 		sessionFactory.getCurrentSession().flush();
 		return (List<CustomerLevels>) sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).list();
@@ -39,7 +52,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		sessionFactory.getCurrentSession().flush();
 		sessionFactory.getCurrentSession().createQuery("DELETE FROM CustomerLevels WHERE id = "+id).executeUpdate();
 	}
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<CustomerLevels> getCustomerLevelsById(String id){
      int f=Integer.parseInt(id);
@@ -55,25 +68,25 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<Country> countryList(){
 		sessionFactory.getCurrentSession().flush();
 		return (List<Country>) sessionFactory.getCurrentSession().createCriteria(Country.class).list();
 	}
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void addCountry( Country poref1){
 		sessionFactory.getCurrentSession().save(poref1);
 	}
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public  void  deleteCountry(Integer id){
 		System.out.println("delete country");
 		sessionFactory.getCurrentSession().flush();
 		sessionFactory.getCurrentSession().createQuery("DELETE FROM Country WHERE countryId = "+id).executeUpdate();
 	}
-	@SuppressWarnings("unchecked")
+	
 	@Override
   public List<Country> getCountryById (String id){
          int f=Integer.parseInt(id);
@@ -90,26 +103,28 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	
 
 	
+
 	@SuppressWarnings("unchecked")
+
 	@Override
 	public List<State> stateList(){
 		sessionFactory.getCurrentSession().flush();
 		return (List<State>) sessionFactory.getCurrentSession().createCriteria(State.class).list();
 	}
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void addState( State poref1){
 		sessionFactory.getCurrentSession().save(poref1);
 	}
 	
-	@SuppressWarnings("unchecked")
+	
 	@Override
         public List<Country> getdata (String id){
 		sessionFactory.getCurrentSession().flush();
 		return (List<Country>) sessionFactory.getCurrentSession().createCriteria(Country.class).list();
 	}
 	
-	 @SuppressWarnings("unchecked")
+	
 		@Override
 		public  void  deleteState(Integer id){
 			System.out.println("delete state");
@@ -117,7 +132,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			sessionFactory.getCurrentSession().createQuery("DELETE FROM State WHERE stateId = "+id).executeUpdate();
 		} 
 	 
-	 @SuppressWarnings("unchecked")
+	 
 		@Override
 	  public List<State> getStateById (String id){
 	         int f=Integer.parseInt(id);
@@ -133,25 +148,26 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		}
 
 	 
-	 @SuppressWarnings("unchecked")
-	 @Override
+
+	 	@Override
+
 		public List<District> districtList(){
 			sessionFactory.getCurrentSession().flush();
 			return (List<District>) sessionFactory.getCurrentSession().createCriteria(District.class).list();
 		}
-	 @SuppressWarnings("unchecked")
+	 
 		@Override
 		public void addDistrict( District poref1){
 			sessionFactory.getCurrentSession().save(poref1);
 		}
-	 @SuppressWarnings("unchecked")
+
 		@Override
 		public  void  deleteDistrict(Integer id){
 			System.out.println("delete district");
 			sessionFactory.getCurrentSession().flush();
 			sessionFactory.getCurrentSession().createQuery("DELETE FROM District WHERE districtId = "+id).executeUpdate();
 		} 
-	 @SuppressWarnings("unchecked")
+	
 		@Override
 	  public List<District> getDistrictById (String id){
 	         int f=Integer.parseInt(id);
@@ -166,25 +182,27 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			//sessionFactory.getCurrentSession().flush();
 		}
 	 
-	 @SuppressWarnings("unchecked")
-	 @Override
+
+
+	@Override
+
 		public List<Location> locationList(){
 			sessionFactory.getCurrentSession().flush();
 			return (List<Location>) sessionFactory.getCurrentSession().createCriteria(Location.class).list();
 		}
-	 @SuppressWarnings("unchecked")
+	
 		@Override
 		public void addLocation( Location poref1){
 			sessionFactory.getCurrentSession().save(poref1);
 		}
-	 @SuppressWarnings("unchecked")
+	 
 		@Override
 		public  void  deleteLocation(int id){
 			System.out.println("delete location");
 			sessionFactory.getCurrentSession().flush();
 			sessionFactory.getCurrentSession().createQuery("DELETE FROM Location WHERE locationId = "+id).executeUpdate();
 		} 
-	 @SuppressWarnings("unchecked")
+	 
 		@Override
 	  public List<Location> getLocationById (String id){
 	         int f=Integer.parseInt(id);
@@ -199,25 +217,26 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			//sessionFactory.getCurrentSession().flush();
 		}
 
-	 @SuppressWarnings("unchecked")
-	 @Override
+
+	@Override
+
 		public List<ExpenseMaster> expenseheadList(){
 			sessionFactory.getCurrentSession().flush();
 			return (List<ExpenseMaster>) sessionFactory.getCurrentSession().createCriteria(ExpenseMaster.class).list();
 		}
-	 @SuppressWarnings("unchecked")
+	 
 		@Override
 		public void addExpensehead( ExpenseMaster poref1){
 			sessionFactory.getCurrentSession().save(poref1);
 		}
-	 @SuppressWarnings("unchecked")
+	 
 		@Override
 		public  void  deleteExpenceserheader(int id){
 			System.out.println("delete expenseheader");
 			sessionFactory.getCurrentSession().flush();
 			sessionFactory.getCurrentSession().createQuery("DELETE FROM ExpenseMaster WHERE expensemasterId = "+id).executeUpdate();
 		} 
-	 @SuppressWarnings("unchecked")
+	 
 		@Override
 	  public List<ExpenseMaster> getExpenceserheaderById (String id){
 	         int f=Integer.parseInt(id);
@@ -231,6 +250,39 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			sessionFactory.getCurrentSession().update(poref1);
 			//sessionFactory.getCurrentSession().flush();
 		}
+
+	 
+	 @Override
+		public List<CustomerSource> getCustomerSourceList(){
+			sessionFactory.getCurrentSession().flush();
+			return (List<CustomerSource>) sessionFactory.getCurrentSession().createCriteria(CustomerSource.class).list();
+		}
+		
+		@Override
+		public void deleteCustomerSource(int id) {
+			sessionFactory.getCurrentSession().createQuery("DELETE FROM CustomerSource WHERE customersourceId = "+id).executeUpdate();
+			
+		}
+		@Override
+		public void addCustomerSource(CustomerSource cur) {
+			sessionFactory.getCurrentSession().save(cur);
+			
+		}
+		
+		
+		@Override
+		public List<CustomerSource> getCustomerSource(String id) {
+			int id1=Integer.parseInt(id);
+			return (List<CustomerSource>)sessionFactory.getCurrentSession().createCriteria(CustomerSource.class).add(Restrictions.eq("customersourceId", id1)).list();
+		}
+		 @Override
+			public void editCustomerSource(CustomerSource poref1){
+				sessionFactory.getCurrentSession().flush();
+				sessionFactory.getCurrentSession().update(poref1);
+				//sessionFactory.getCurrentSession().flush();
+			}
+
+	
 	@Override
 	public List<State> getstatelistbycountryid(String cuntryid) {
 		int id=Integer.parseInt(cuntryid);
@@ -244,6 +296,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		return list;
 	}
 	@Override
+
 	public List<District> getdistrictlistbystateid(String stateid) {
 		int id=Integer.parseInt(stateid);
 		Criteria district = sessionFactory.getCurrentSession().createCriteria(District.class);
@@ -284,6 +337,20 @@ public void editModeOfDispatch(ModeOfDispatch modeofdispatch){
 	sessionFactory.getCurrentSession().update(modeofdispatch);
 	//sessionFactory.getCurrentSession().flush();
 }
+
+@Override
+	public List<ServiceProvider> getServiceProviderList() {
+		
+		return sessionFactory.getCurrentSession().createCriteria(ServiceProvider.class).list();
+	}
+	@Override
+	public void addServiceProvider(ServiceProvider spb) {
+		
+		sessionFactory.getCurrentSession().save(spb);
+	}
+
+
+
 
 @SuppressWarnings("unchecked")
 @Override
