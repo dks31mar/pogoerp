@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +20,17 @@ public class District {
 	private String district ;
 	@Column(name="stateId")
 	private Integer stateId;
+	/*@ManyToOne
+	@JoinColumn(name="stateId")
+	private State state;
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+*/
 	public Integer getStateId() {
 		return stateId;
 	}

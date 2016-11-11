@@ -72,7 +72,7 @@
 						<td>${loop.index+1}</td>
 						<td>${state.state}</td>
 						 
-		            <td><a href = "district">District</a></td> 
+		            <td><a href = "district?stateId=${state.stateId}">District</a></td> 
 					 <td><a href="#" onclick="editCur(${state.stateId})" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								

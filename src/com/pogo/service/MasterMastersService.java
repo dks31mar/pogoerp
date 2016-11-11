@@ -7,7 +7,9 @@ import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
+import com.pogo.bean.ModeOfDispatchBean;
 import com.pogo.bean.StateBean;
+import com.pogo.bean.TeamSegmentBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.bean.ZonesBean;
 import com.pogo.model.Country;
@@ -56,5 +58,19 @@ public interface MasterMastersService {
     String getExpenceheaderById(String id);
 	void editExpenseHeader(ExpenseMasterBean poref1);
 	List<StateBean> stateListbycountryid(String cuntryid);
+	
+	List<DistrictBean> districtListbystateid(String stateid);
+	
+	List<ModeOfDispatchBean> getModeOfDispatchList();
+	void addModeOfDispatch(ModeOfDispatchBean poref1);
+	void deleteModeOfDispatch(int id);
+	String getModeOfDispatchbyId(String id);
+	void editModeOfDispatch(ModeOfDispatchBean poref1);
+	
+	List<TeamSegmentBean> getTeamSegmentList();
+	void addteam(TeamSegmentBean poref1);
+	void deleteteam(int id);
+	String getTeambyId(String id);
+	void editTeam(TeamSegmentBean poref1);
 	
 }

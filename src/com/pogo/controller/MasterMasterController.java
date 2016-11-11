@@ -25,11 +25,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CountryBean;
+import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
+import com.pogo.bean.ModeOfDispatchBean;
 import com.pogo.bean.StateBean;
+import com.pogo.bean.TeamSegmentBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
@@ -297,10 +300,14 @@ public class MasterMasterController {
 		
 	}
 	@RequestMapping(value="/district",method = RequestMethod.GET)
-	public ModelAndView getDistrict( @ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result ){
+	public ModelAndView getDistrict( @RequestParam("stateId") String stateid,@ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside district  method");
+		List<DistrictBean> districtlistbystateid=new ArrayList<>();
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("districtList",  prepareDistrictListofBean(masterMastersService.districtList()));
+		districtlistbystateid=	masterMastersService.districtListbystateid(stateid);
+		model.put("districtList",districtlistbystateid);
+		model.put("district123",stateid);
+		//model.put("districtList",  prepareDistrictListofBean(masterMastersService.districtList()));
 		System.out.println("***************************************** inside district list ****************************");
 	return new ModelAndView("getdistrict",model);
 	}
@@ -539,5 +546,133 @@ public class MasterMasterController {
 		masterMastersService.editExpenseHeader(poref1);
 		
 	}
-
+	
+	
+	@RequestMapping(value="/modeofdispatch",method = RequestMethod.GET)
+	public ModelAndView getTransportationMode( @ModelAttribute("command") ExpenseMasterBean expense,HttpServletRequest request){
+		System.out.println("inside mode of dispatch method");
+		List<ModeOfDispatchBean> list = new ArrayList<ModeOfDispatchBean>();
+		list = masterMastersService.getModeOfDispatchList();
+		Map<String , Object> model = new HashMap<String,Object>();
+		model.put("modeofdispatchlist", list);
+		//System.out.println("***************************************** inside country list ****************************");
+	return new ModelAndView("getmodeofdispatch",model);
+	}
+	@RequestMapping(value="addmodeofdispatch",method=RequestMethod.POST)
+	@ResponseBody
+	public void addModeOfDispatch(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add  method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ModeOfDispatchBean poref=mapper.readValue(json, ModeOfDispatchBean.class);
+		ModeOfDispatchBean poref1=new ModeOfDispatchBean();
+		poref1.setModeofdispatch(poref.getModeofdispatch());
+		
+		masterMastersService.addModeOfDispatch(poref1);
+	}
+	@RequestMapping(value = "deletemodeofdispatch", method = RequestMethod.GET)
+	public ModelAndView deleteModeOfDispatch(@RequestParam("modeofdispatchId") int id) {
+		masterMastersService.deleteModeOfDispatch(id);
+		List<ModeOfDispatchBean> list=new ArrayList<ModeOfDispatchBean>();
+		list=masterMastersService.getModeOfDispatchList();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("modeofdispatchlist", list);
+		
+			
+		
+		return new ModelAndView("getmodeofdispatch",model);
+	}
+	
+	@RequestMapping(value = "getmodeofdispatchbyid", method = RequestMethod.POST)
+	public void getModeOfDispatchbyId(@RequestParam("modeofdispatchId") String id,HttpServletResponse res )throws ParseException  {
+		String cuList=masterMastersService.getModeOfDispatchbyId(id);
+		System.out.println("inside get modeofdispatch method");
+		
+		System.out.println(cuList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("outside get modeofdispatch method");
+	}
+	
+	@RequestMapping(value="editmodeofdispatch",method=RequestMethod.POST)
+	@ResponseBody
+	public void editModeOfDispatch(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit mode of dispatch method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ModeOfDispatchBean poref=mapper.readValue(json, ModeOfDispatchBean.class);
+		ModeOfDispatchBean poref1=new ModeOfDispatchBean();
+		poref1.setModeofdispatchId(poref.getModeofdispatchId());
+		poref1.setModeofdispatch(poref.getModeofdispatch());
+		
+		
+		masterMastersService.editModeOfDispatch(poref1);
+		
+	}
+	@RequestMapping(value="/teamsegment",method = RequestMethod.GET)
+	public ModelAndView getTeamSegment( @ModelAttribute("command") ExpenseMasterBean expense,HttpServletRequest request){
+		System.out.println("inside team segment method");
+		List<TeamSegmentBean> list = new ArrayList<TeamSegmentBean>();
+		list = masterMastersService.getTeamSegmentList();
+		Map<String , Object> model = new HashMap<String,Object>();
+		model.put("teamsegmentlist", list);
+		//System.out.println("***************************************** inside country list ****************************");
+	return new ModelAndView("getteamsegment",model);
+	}
+	@RequestMapping(value="addteam",method=RequestMethod.POST)
+	@ResponseBody
+	public void addTeam(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add  method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		TeamSegmentBean poref=mapper.readValue(json, TeamSegmentBean.class);
+		TeamSegmentBean poref1=new TeamSegmentBean();
+		poref1.setTeam(poref.getTeam());
+		
+		masterMastersService.addteam(poref1);
+	}
+	
+	@RequestMapping(value = "deleteteam", method = RequestMethod.GET)
+	public ModelAndView deleteteam(@RequestParam("teamid") int id) {
+		masterMastersService.deleteteam(id);
+		List<TeamSegmentBean> list=new ArrayList<TeamSegmentBean>();
+		list=masterMastersService.getTeamSegmentList();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("teamsegmentlist", list);
+		
+			
+		
+		return new ModelAndView("getteamsegment",model);
+	}
+	@RequestMapping(value = "getteambyid", method = RequestMethod.POST)
+	public void getTeamById(@RequestParam("teamid") String id,HttpServletResponse res )throws ParseException  {
+		String cuList=masterMastersService.getTeambyId(id);
+		System.out.println("inside get team method");
+		
+		System.out.println(cuList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("outside get team method");
+	}
+	@RequestMapping(value="editteam",method=RequestMethod.POST)
+	@ResponseBody
+	public void editTeam(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit team method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		TeamSegmentBean poref=mapper.readValue(json, TeamSegmentBean.class);
+		TeamSegmentBean poref1=new TeamSegmentBean();
+		poref1.setTeamid(poref.getTeamid());
+		poref1.setTeam(poref.getTeam());
+		
+		
+		masterMastersService.editTeam(poref1);
+		
+	}
 }
