@@ -16,8 +16,12 @@ import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
+import com.pogo.bean.ModeOfDispatchBean;
+
 import com.pogo.bean.ServiceProviderBean;
+
 import com.pogo.bean.StateBean;
+import com.pogo.bean.TeamSegmentBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
@@ -25,8 +29,13 @@ import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
+
+import com.pogo.model.ModeOfDispatch;
+
 import com.pogo.model.ServiceProvider;
+
 import com.pogo.model.State;
+import com.pogo.model.TeamSegment;
 import com.pogo.service.MasterMastersService;
 
 @Service("masterMastersService")
@@ -401,6 +410,131 @@ public List<StateBean> stateListbycountryid(String cuntryid) {
 }
 
 @Override
+public List<DistrictBean> districtListbystateid(String stateid) {
+	List<District> list=masterMastersdao.getdistrictlistbystateid(stateid);
+	List<DistrictBean> beanlist=new ArrayList<>();
+	Integer id=Integer.parseInt(stateid);
+	for(District district:list){
+		DistrictBean districtbean=new DistrictBean();
+		districtbean.setStateId(stateid);
+		districtbean.setDistrictId(district.getDistrictId());
+		districtbean.setDistrict(district.getDistrict());
+		System.out.println(district.getDistrict());
+		beanlist.add(districtbean);
+	}
+	
+ 	return beanlist;
+}
+@Override
+public List<ModeOfDispatchBean> getModeOfDispatchList(){
+	List<ModeOfDispatch> getdispatchelist = masterMastersdao.getModeOfDispatchList();
+	List<ModeOfDispatchBean> getlist = new ArrayList<ModeOfDispatchBean>();
+	for(ModeOfDispatch list : getdispatchelist){
+		ModeOfDispatchBean data = new ModeOfDispatchBean();
+		data.setModeofdispatchId(list.getModeofdispatchId());
+		data.setModeofdispatch(list.getModeofdispatch());
+		getlist.add(data);
+	}
+	return getlist;
+}
+@Override
+@Transactional
+public void addModeOfDispatch(ModeOfDispatchBean poref1) {
+	ModeOfDispatch modeofdispatch=new ModeOfDispatch();
+	modeofdispatch.setModeofdispatch(poref1.getModeofdispatch());
+	
+	masterMastersdao.addModeOfDispatch(modeofdispatch);
+	
+}
+
+@Override
+public void deleteModeOfDispatch(int id) {
+	masterMastersdao.deleteModeOfDispatch(id);
+}
+@Override
+public String getModeOfDispatchbyId(String id){
+	List<ModeOfDispatch> modeofdispatch =masterMastersdao.getModeOfDispatchbyId(id);
+	Map<String, Object> dd=new HashMap<>();
+	for(ModeOfDispatch data: modeofdispatch)
+	{
+		
+		dd.put("modeofdispatchId",data.getModeofdispatchId() );
+		dd.put("modeofdispatch",data.getModeofdispatch());
+	}
+	Gson gson=new Gson();
+	
+	String list=	gson.toJson(dd);
+		
+		return list;	
+}	
+
+
+@Override
+@Transactional
+public void editModeOfDispatch(ModeOfDispatchBean poref1){
+	ModeOfDispatch modeofdispatch=new ModeOfDispatch();
+	modeofdispatch.setModeofdispatchId(poref1.getModeofdispatchId());
+	modeofdispatch.setModeofdispatch(poref1.getModeofdispatch());
+	
+	masterMastersdao.editModeOfDispatch(modeofdispatch);
+}
+
+@Override
+public List<TeamSegmentBean> getTeamSegmentList(){
+	List<TeamSegment> teamsegmentlist = masterMastersdao.getTeamSegmentList();
+	List<TeamSegmentBean> getlist = new ArrayList<TeamSegmentBean>();
+	for(TeamSegment list : teamsegmentlist){
+		TeamSegmentBean data = new TeamSegmentBean();
+		data.setTeamid(list.getTeamid());
+		data.setTeam(list.getTeam());
+		getlist.add(data);
+	}
+	return getlist;
+}
+@Override
+@Transactional
+public void addteam(TeamSegmentBean poref1) {
+	TeamSegment team=new TeamSegment();
+	team.setTeam(poref1.getTeam());
+	
+	masterMastersdao.addteam(team);;
+	
+}
+
+@Override
+public void deleteteam(int id) {
+	masterMastersdao.deleteteam(id);
+}
+@Override
+public String getTeambyId(String id){
+	List<TeamSegment> team =masterMastersdao.getTeambyId(id);
+	Map<String, Object> dd=new HashMap<>();
+	for(TeamSegment data: team)
+	{
+		
+		dd.put("teamid",data.getTeamid() );
+		dd.put("team",data.getTeam());
+	}
+	Gson gson=new Gson();
+	
+	String list=	gson.toJson(dd);
+		
+		return list;	
+}	
+
+
+@Override
+@Transactional
+public void editTeam(TeamSegmentBean poref1){
+	TeamSegment team=new TeamSegment();
+	team.setTeamid(poref1.getTeamid());
+	team.setTeam(poref1.getTeam());
+	
+	masterMastersdao.editTeam(team);
+}
+
+
+@Override
 public List<ServiceProviderBean> getServiceProviderList() {
 	List<ServiceProvider> list=masterMastersdao.getServiceProviderList();
 	List<ServiceProviderBean> list2=new ArrayList<>();
@@ -441,5 +575,6 @@ public Object getServiceProvider(int id) {
 	// TODO Auto-generated method stub
 	return null;
 }
+
 
 }

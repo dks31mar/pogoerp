@@ -95,68 +95,88 @@
 	 -->
 	 
 	<!-- ************************************************** use by shweta *************************************************** -->
+	       <!-- View Po -->
 	       <definition name="viewpo" extends="baseLayout" >
 	       <put-attribute name="title" value="view"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/viewPo.jsp" />
 			</definition>
 			
+			 <!-- Edit -->
 			<definition name="edit" extends="baseLayout" >
 			 <put-attribute name="title" value="editpo"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/EditPo.jsp" />
 			</definition>
 		   
+		    <!-- SupplierInvoiceView -->
 		   <definition name="supplierinvoiceview" extends="baseLayout" >
 		   <put-attribute name="title" value="supplierinvoice"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Invoice.jsp" />
 			</definition>
 			
+			 <!-- AcknowledgementView -->
 			<definition name="acknowledgementView" extends="baseLayout" >
 			<put-attribute name="title" value="acknowledgement"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Ack.jsp" />
 			</definition>
 			
+			 <!-- SupplierAcknowledgementView -->
 			<definition name="supplierackView" extends="baseLayout" >
 			<put-attribute name="title" value="supplierack"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Acksupplier.jsp" />
 			</definition>	
 			
 			 <!-- Master masters pages -->
+			  <!-- CustomerLevel -->
 			<definition name="getcustomerlevel" extends="baseLayout" >
 			 <put-attribute name="title" value="customerLevels"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/customerLevelsjsp.jsp" />
 			</definition>
 			
-
+             <!-- Country -->
 			<definition name="getcountry" extends="baseLayout" >
 			 <put-attribute name="title" value="country"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/country.jsp" />
 			</definition>
-			
+			 <!-- State -->
 			<definition name="getstate" extends="baseLayout" >
 			 <put-attribute name="title" value="state"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/state.jsp" />
 			</definition>
-			
+			 <!-- District -->
 			<definition name="getdistrict" extends="baseLayout" >
 			 <put-attribute name="title" value="district"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/district.jsp" />
 			</definition>
-			
+			 <!-- Location -->
 			<definition name="getlocation" extends="baseLayout" >
 			 <put-attribute name="title" value="location"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/location.jsp" />
 			</definition>
-			
+			 <!-- Expense Master -->
 			<definition name="getexpensemaster" extends="baseLayout" >
 			 <put-attribute name="title" value="expensemaster"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/expensemaster.jsp" />
 			</definition>
 			
+
+			 <!-- Mode of dispatch -->
+			 <definition name="getmodeofdispatch" extends="baseLayout" >
+			 <put-attribute name="title" value="modeofdispatch"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/modeOfDispatch.jsp" />
+			</definition> 
+			  
+			   <!-- Team Segment -->
+			   <definition name="getteamsegment" extends="baseLayout" >
+			 <put-attribute name="title" value="teamsegment"></put-attribute>
+			<put-attribute name="body" value="/WEB-INF/views/Master/masters/teamsegment.jsp" />
+			</definition> 
+
 			<!-- CustomerSources -->
 			<definition name="getCustomerSources" extends="baseLayout" >
 			<put-attribute name="title" value="CustomerSources" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/CustomerSources.jsp" />
 			</definition>
+
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>

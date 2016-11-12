@@ -10,20 +10,34 @@ import org.springframework.stereotype.Repository;
 
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
+import com.pogo.model.Currency;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
+
+import com.pogo.model.ModeOfDispatch;
+
 import com.pogo.model.ServiceProvider;
+
 import com.pogo.model.State;
+
+import com.pogo.model.TeamSegment;
+
 @SuppressWarnings("unchecked")
+
 @Repository("masterMastersdao")
 public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+
+	@SuppressWarnings("unchecked")
+	@Override
+
 	
+
 	public List<CustomerLevels> customerLevelsList(){
 		sessionFactory.getCurrentSession().flush();
 		return (List<CustomerLevels>) sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).list();
@@ -89,6 +103,9 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	
 
 	
+
+	@SuppressWarnings("unchecked")
+
 	@Override
 	public List<State> stateList(){
 		sessionFactory.getCurrentSession().flush();
@@ -131,7 +148,9 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		}
 
 	 
+
 	 	@Override
+
 		public List<District> districtList(){
 			sessionFactory.getCurrentSession().flush();
 			return (List<District>) sessionFactory.getCurrentSession().createCriteria(District.class).list();
@@ -163,7 +182,10 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			//sessionFactory.getCurrentSession().flush();
 		}
 	 
+
+
 	@Override
+
 		public List<Location> locationList(){
 			sessionFactory.getCurrentSession().flush();
 			return (List<Location>) sessionFactory.getCurrentSession().createCriteria(Location.class).list();
@@ -195,7 +217,9 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			//sessionFactory.getCurrentSession().flush();
 		}
 
+
 	@Override
+
 		public List<ExpenseMaster> expenseheadList(){
 			sessionFactory.getCurrentSession().flush();
 			return (List<ExpenseMaster>) sessionFactory.getCurrentSession().createCriteria(ExpenseMaster.class).list();
@@ -264,7 +288,6 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		int id=Integer.parseInt(cuntryid);
 		Criteria state=sessionFactory.getCurrentSession().createCriteria(State.class);
 		Criteria country=state.createCriteria("country");
-		
 		country.add(Restrictions.eq("countryId", id));
 		List<State> list= state.list();
 				
@@ -273,6 +296,49 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		return list;
 	}
 	@Override
+
+	public List<District> getdistrictlistbystateid(String stateid) {
+		int id=Integer.parseInt(stateid);
+		Criteria district = sessionFactory.getCurrentSession().createCriteria(District.class);
+		Criteria state=district.createCriteria("state");
+		state.add(Restrictions.eq("stateId", id));
+		List<District> list= district.list();
+					return list;
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ModeOfDispatch> getModeOfDispatchList() {
+		
+		return (List<ModeOfDispatch>)sessionFactory.getCurrentSession().createCriteria(ModeOfDispatch.class).list();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public void addModeOfDispatch( ModeOfDispatch poref1){
+		sessionFactory.getCurrentSession().save(poref1);
+	}
+	@Override
+	public void deleteModeOfDispatch(int id) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM ModeOfDispatch WHERE modeofdispatchId = "+id).executeUpdate();
+		
+	}
+
+@SuppressWarnings("unchecked")
+	@Override
+ public List<ModeOfDispatch> getModeOfDispatchbyId (String id){
+        int f=Integer.parseInt(id);
+		
+		return (List<ModeOfDispatch>) sessionFactory.getCurrentSession().createCriteria(ModeOfDispatch.class)
+				.add(Restrictions.eq("id", f)).list();
+	}
+
+@Override
+public void editModeOfDispatch(ModeOfDispatch modeofdispatch){
+	sessionFactory.getCurrentSession().flush();
+	sessionFactory.getCurrentSession().update(modeofdispatch);
+	//sessionFactory.getCurrentSession().flush();
+}
+
+@Override
 	public List<ServiceProvider> getServiceProviderList() {
 		
 		return sessionFactory.getCurrentSession().createCriteria(ServiceProvider.class).list();
@@ -283,4 +349,42 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		sessionFactory.getCurrentSession().save(spb);
 	}
 
+
+
+
+@SuppressWarnings("unchecked")
+@Override
+public List<TeamSegment> getTeamSegmentList() {
+	
+	return (List<TeamSegment>)sessionFactory.getCurrentSession().createCriteria(TeamSegment.class).list();
 }
+
+@SuppressWarnings("unchecked")
+@Override
+public void addteam( TeamSegment poref1){
+	sessionFactory.getCurrentSession().save(poref1);
+}
+@Override
+public void deleteteam(int id) {
+	sessionFactory.getCurrentSession().createQuery("DELETE FROM TeamSegment WHERE teamid = "+id).executeUpdate();
+	
+}
+
+@SuppressWarnings("unchecked")
+@Override
+public List<TeamSegment> getTeambyId (String id){
+    int f=Integer.parseInt(id);
+	
+	return (List<TeamSegment>) sessionFactory.getCurrentSession().createCriteria(TeamSegment.class)
+			.add(Restrictions.eq("id", f)).list();
+}
+
+@Override
+public void editTeam(TeamSegment team){
+sessionFactory.getCurrentSession().flush();
+sessionFactory.getCurrentSession().update(team);
+//sessionFactory.getCurrentSession().flush();
+}
+
+}
+

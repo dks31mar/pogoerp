@@ -8,8 +8,16 @@ import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
+
+import com.pogo.bean.ModeOfDispatchBean;
 import com.pogo.bean.ServiceProviderBean;
+
 import com.pogo.bean.StateBean;
+
+import com.pogo.bean.TeamSegmentBean;
+import com.pogo.bean.UnitBean;
+import com.pogo.bean.ZonesBean;
+
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
@@ -57,6 +65,22 @@ public interface MasterMastersService {
 	void editExpenseHeader(ExpenseMasterBean poref1);
 
 	
+
+	List<DistrictBean> districtListbystateid(String stateid);
+	
+	List<ModeOfDispatchBean> getModeOfDispatchList();
+	void addModeOfDispatch(ModeOfDispatchBean poref1);
+	void deleteModeOfDispatch(int id);
+	String getModeOfDispatchbyId(String id);
+	void editModeOfDispatch(ModeOfDispatchBean poref1);
+	
+	List<TeamSegmentBean> getTeamSegmentList();
+	void addteam(TeamSegmentBean poref1);
+	void deleteteam(int id);
+	String getTeambyId(String id);
+	void editTeam(TeamSegmentBean poref1);
+	
+
 	List<CustomerSourceBean> getCustomerSourceList();
 	void deleteCustomerSource(int id);
 	void addCustomerSource(CustomerSourceBean poref1);
@@ -68,5 +92,6 @@ public interface MasterMastersService {
 	void addServiceProvider(ServiceProviderBean serviceprovider);
 	Object getServiceProvider(int id);
 	
+
 
 }

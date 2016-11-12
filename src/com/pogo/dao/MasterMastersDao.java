@@ -8,8 +8,16 @@ import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
+
+import com.pogo.model.ModeOfDispatch;
+
 import com.pogo.model.ServiceProvider;
+
 import com.pogo.model.State;
+
+import com.pogo.model.TeamSegment;
+import com.pogo.model.Unit;
+
 
 
 public interface MasterMastersDao {
@@ -51,6 +59,23 @@ public interface MasterMastersDao {
 	 List<ExpenseMaster> getExpenceserheaderById (String id);
 	 void editExpenseHeader(ExpenseMaster poref1);
 
+	
+	
+	List<District> getdistrictlistbystateid(String stateid);
+	List<State> getstatelistbycountryid(String cuntryid);
+	List<ModeOfDispatch> getModeOfDispatchList();
+	void addModeOfDispatch(ModeOfDispatch modeofdispatch);
+	void deleteModeOfDispatch(int id);
+	List<ModeOfDispatch> getModeOfDispatchbyId(String id);
+	void editModeOfDispatch(ModeOfDispatch modeofdispatch);
+	
+	List<TeamSegment> getTeamSegmentList();
+	void addteam(TeamSegment poref1);
+	void deleteteam(int id);
+	List<TeamSegment> getTeambyId(String id);
+	void editTeam(TeamSegment team);
+
+
 	 
 	List<CustomerSource> getCustomerSourceList();
 	void deleteCustomerSource(int id);
@@ -58,8 +83,9 @@ public interface MasterMastersDao {
 	List<CustomerSource> getCustomerSource(String id);
 	void editCustomerSource(CustomerSource customer);
 
-	List<State> getstatelistbycountryid(String cuntryid);
+	
 	List<ServiceProvider> getServiceProviderList();
 	void addServiceProvider(ServiceProvider spb);
+
 
 }
