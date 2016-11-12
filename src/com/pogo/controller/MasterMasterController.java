@@ -679,4 +679,11 @@ public class MasterMasterController {
 		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
 	
 	}
+	
+	@RequestMapping(value = "/editserviceprovider", method = RequestMethod.GET)
+	public String getServiceProvider(@RequestParam int id, Model model) {
+		//model.addAttribute("employee", masterMastersService.getServiceProvider(id));
+
+		return "editserviceprovider";
+	}
 }

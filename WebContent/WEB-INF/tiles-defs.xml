@@ -294,4 +294,10 @@
 			<put-attribute name="title" value="Srevice Provider" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addservice.jsp" />
 			</definition>
+			
+			
+			<definition name="editserviceprovider" extends="baseLayout" >
+			<put-attribute name="title" value="Srevice Provider" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editservice.jsp" />
+			</definition>
 	      </tiles-definitions>

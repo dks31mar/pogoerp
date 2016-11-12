@@ -66,6 +66,7 @@ public interface MasterMastersService {
 	List<StateBean> stateListbycountryid(String cuntryid);
 	List<ServiceProviderBean> getServiceProviderList();
 	void addServiceProvider(ServiceProviderBean serviceprovider);
+	Object getServiceProvider(int id);
 	
 
 }

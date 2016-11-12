@@ -436,4 +436,10 @@ public void addServiceProvider(ServiceProviderBean serviceprovider) {
 	
 }
 
+@Override
+public Object getServiceProvider(int id) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 }
