@@ -51,7 +51,7 @@ public class ProductMaster implements Serializable{
  	@Column(name="description",columnDefinition="varchar(255)")
     private String description; 
 
- 	@Column(name="serviceable",columnDefinition="varchar(5) default 'TRUE'" )
+ 	@Column(name="serviceable",columnDefinition="varchar(5) default 'Y'" )
     private String serviceable; 
 
  	@Column(name="productcategory",columnDefinition="varchar(55)" )

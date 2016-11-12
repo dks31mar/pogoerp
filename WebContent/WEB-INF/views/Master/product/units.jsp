@@ -161,8 +161,8 @@ $.ajax({
 	     success: function(respose){
 	    	 //alert(respose);
 	    	 var data=JSON.parse(respose)
-	    	 var name=data.Unittype;
-	    	 var id=data.id;
+	    	 var name=data.unittype;
+	    	 var id=data.unittypeid;
 	    	// alert("DDDDDDDDDDDDDDDD                   "+id);
 	    	 $("#unitname").val(name);
 	    	 $("#hiddenid").val(id);

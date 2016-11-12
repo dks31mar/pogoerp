@@ -760,32 +760,16 @@ public class MasterMasterController {
 	
 	@RequestMapping(value="editcustomersource",method=RequestMethod.POST)
 	@ResponseBody
-	public String editCustomerSource(@RequestBody String json,Model model) throws IOException{
+	public void editCustomerSource(@RequestBody String json,Model model) throws IOException{
 	System.out.println("*****************************************************");
 		ObjectMapper mapper=new ObjectMapper();
 		CustomerSourceBean poref=mapper.readValue(json, CustomerSourceBean.class);
 		CustomerSourceBean poref1=new CustomerSourceBean();
 		poref1.setCustomersourceId(poref.getCustomersourceId());
 		poref1.setSource(poref.getSource());
-		
-		
-		
-		
 		masterMastersService.editCustomerSource(poref1);
 		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
-	return toJson1(poref1);
-	}
-
-	private String toJson1(CustomerSourceBean poRefEntry) {
-		ObjectMapper mapper = new ObjectMapper();
-	    try {
-	        String value = mapper.writeValueAsString(poRefEntry);
-	        // return "["+value+"]";
-	        return value;
-	    } catch (JsonProcessingException e) {
-	        e.printStackTrace();
-	        return null;
-	    }
+	
 	}
 	
 	
@@ -822,9 +806,25 @@ public class MasterMasterController {
 	}
 	
 	@RequestMapping(value = "/editserviceprovider", method = RequestMethod.GET)
-	public String getServiceProvider(@RequestParam int id, Model model) {
-		//model.addAttribute("employee", masterMastersService.getServiceProvider(id));
+	public String getServiceProvider(@RequestParam("id") int id, Model model) {
+	
+		ServiceProviderBean bean=masterMastersService.getServiceProvider(id);
+		System.out.println(bean.getContactperson());
+		model.addAttribute("service", bean);
 
 		return "editserviceprovider";
 	}
+	
+	@RequestMapping(value="updateservicedata",method=RequestMethod.POST)
+	@ResponseBody
+	public void editServiceProvider(@RequestBody String json,Model model) throws IOException{
+	System.out.println("*****************************************************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ServiceProviderBean servicepro=mapper.readValue(json, ServiceProviderBean.class);
+		
+		masterMastersService.editSourceProviderbyId(servicepro);
+		
+	
+	}
+	
 }

@@ -195,8 +195,8 @@
 		     success: function(respose){
 		    	 //alert(respose);
 		    	 var data=JSON.parse(respose)
-		    	 var name=data.productname;
-		    	 var id=data.id;
+		    	 var name=data.productheadname;
+		    	 var id=data.productheadid;
 		    	// alert("DDDDDDDDDDDDDDDD                   "+id); 
 		    	 $("#unitname").val(name);
 		    	 $("#hiddenid").val(id);

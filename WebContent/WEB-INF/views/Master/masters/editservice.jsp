@@ -31,7 +31,7 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Add Service</legend>
+<legend>Edit Service</legend>
   
 <!-- Text input-->
 <%--
@@ -49,8 +49,8 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control"  type="hidden">
-  <input value="${zones.zonesname}" name="zonesname"  placeholder="Name" id="transportname"  class="form-control"  type="text">
+  <input value="${service.transportationserviceid}"  name="zonesid" placeholder="Region Name" id="serid"  class="form-control"  type="hidden">
+  <input value="${service.servicename}" name="zonesname"  placeholder="Name" id="transportname"  class="form-control"  type="text">
     </div>
   </div>
   
@@ -58,8 +58,8 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control"  type="hidden">
-  <input value="${zones.zonesname}" name="zonesname"  placeholder="Contact person name" id="contactperson"  class="form-control"  type="text">
+  
+  <input value="${service.contactperson}" name="zonesname"  placeholder="Contact person name" id="contactperson"  class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -68,7 +68,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input value="${zones.zonesphone}"  class="form-control" placeholder="8285080678" type="text"  id="mobileno" required="required">
+  <input value="${service.mobile}"  class="form-control" placeholder="8285080678" type="text"  id="mobileno" required="required">
     </div>
  
 </div>
@@ -76,7 +76,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  value="${zones.zonesmail}"  placeholder="Phone Number" class="form-control"  id="phoneno" required="required" type="email">
+  <input  value="${service.phone}"  placeholder="Phone Number" class="form-control"  id="phoneno" required="required" type="email">
     </div>
   </div>
 </div>
@@ -91,16 +91,16 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input  value="${zones.zonesmail}"  placeholder="Address" class="form-control"  id="address" required="required" type="Text">
+  <input  value="${service.serviceaddress}"  placeholder="Address" class="form-control"  id="address" required="required" type="Text">
     </div>
   </div>
   <label class="col-md-2 control-label">Transport Mode<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="subcompany" class="form-control selectpicker" required="required" id="mode">
-  <option value="0">---Select Mode---</option>
-      <option value="by air">By Air</option>
+  <select name="subcompany" class="form-control selectpicker" required="required" id="mode" >
+   <option value="${service.transportationmodeid}" selected="selected">${service.transportationmodeid}</option>
+	<option value="by air">By Air</option>
 	  <option value="by road">By Road</option>
 	  <option value="by train">By Train</option>
 	  <option value="others">Others</option>
@@ -115,7 +115,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control"  id="email" required="required" type="text">
+  <input  value="${service.email}"  placeholder="E-Mail Address" class="form-control"  id="email" required="required" type="text">
     </div>
   </div>
  
@@ -144,7 +144,7 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
  <script type="text/javascript">
  $('#senddata').click(function(){
-	 
+	 var  serid=$('#serid').val();
 	 var  tname=$('#transportname').val();
 	 var  tcontactname=$('#contactperson').val();
 	 var  mobile=$('#mobileno').val();
@@ -167,6 +167,7 @@
 		 
 	 }else{
 		 var jsonObj={
+				 	 'transportationserviceid':serid ,
 					 'servicename': tname,
 					 'contactperson':tcontactname ,
 					 'mobile': mobile,
@@ -178,7 +179,7 @@
 
 
 		 $.ajax({
-				url: "",
+				url: "updateservicedata",
 				type: "POST",
 
 				  data :JSON.stringify(jsonObj),

@@ -22,12 +22,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.ProductHeadBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.bean.ProductSubHeadBean;
+import com.pogo.bean.ServiceProviderBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.service.MasterProductService;
 /*
@@ -409,6 +412,66 @@ public class MasterProductController {
 		ProductMasterBean poref=mapper.readValue(json, ProductMasterBean.class);
 		
 		masterProductService.addProduct(poref);
+	}
+	
+	
+	
+	@RequestMapping(value = "/editproductdata", method = RequestMethod.GET)
+	public ModelAndView getProductById(@RequestParam("id") int id, Model model1) throws JsonParseException, JsonMappingException, IOException {
+	
+		ObjectMapper mapper=new ObjectMapper();
+		List<CurrencyBean> curency=new ArrayList<CurrencyBean>();
+		curency=masterProductService.getCurrencyDetails();
+		List<UnitBean> unit=new ArrayList<UnitBean>();
+		unit=masterProductService.getUnitsDetails();
+		List<ProductHeadBean> producthead=new ArrayList<ProductHeadBean>();
+		producthead=masterProductService.getProductHeadDetails();
+		List<ProductSubHeadBean> productsubhead=new ArrayList<ProductSubHeadBean>();
+		productsubhead=masterProductService.getProductSubHead();
+		Map<String, Object> model= new HashMap<String,Object>();	
+		model.put("currencylist", curency);
+		model.put("unitlist", unit);
+		model.put("productlist", producthead);
+		model.put("subproductlist", productsubhead);
+		
+		ProductMasterBean bean=masterProductService.getProductById(id);
+		System.out.println(bean.getProductheadid());
+		System.out.println(bean.getProductsabheadid());
+		System.out.println(bean.getCurrencyid());
+		System.out.println(bean.getUnittypeid());
+		
+		String proheadid=Integer.toString(bean.getProductheadid());
+		
+		String currency=masterProductService.getCurrency(bean.getCurrencyid());
+		String unitb=masterProductService.getUnitById(bean.getUnittypeid());
+		String prohead=masterProductService.getProductHeadById(proheadid);
+		
+		ProductSubHeadBean prosubhead=masterProductService.getproductsubheadbyid(bean.getProductsabheadid());
+		
+		CurrencyBean curbean=mapper.readValue(currency, CurrencyBean.class);
+		UnitBean unitbean=mapper.readValue(unitb, UnitBean.class);
+		ProductHeadBean proheadbean=mapper.readValue(prohead, ProductHeadBean.class);
+		
+		
+		model1.addAttribute("product", bean);
+		model1.addAttribute("curr", curbean);
+		model1.addAttribute("uintt",unitbean);
+		model1.addAttribute("prohead", proheadbean);
+		model1.addAttribute("prosubhead", prosubhead);
+		
+		return new ModelAndView("editproductdata",model);
+	}
+	
+	@RequestMapping(value="updateproductdata",method=RequestMethod.POST)
+	@ResponseBody
+	public void editProductById(@RequestBody String json,Model model) throws IOException{
+	System.out.println("*****************************************************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ProductMasterBean editpro=mapper.readValue(json, ProductMasterBean.class);
+		
+		masterProductService.editProductById(editpro);
+		
+	
 	}
 	
 }

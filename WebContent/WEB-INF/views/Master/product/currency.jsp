@@ -276,10 +276,10 @@ $.ajax({
 	     success: function(respose){
 	    	 
 	    	 var data=JSON.parse(respose)
-	    	 var name=data.name;
-	    	 var symbol=data.sysmbol;
-	    	 var type=data.type;
-	    	 var id=data.id;
+	    	 var name=data.currencyname;
+	    	 var symbol=data.currencysymbol;
+	    	 var type=data.currencytype;
+	    	 var id=data.currencyid;
 	    	// alert("DDDDDDDDDDDDDDDD                   "+id);
 	    	 $("#currencyname").val(name);
 	    	 $("#currencytypeid").val(type);

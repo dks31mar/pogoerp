@@ -320,4 +320,10 @@
 			<put-attribute name="title" value="Srevice Provider" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editservice.jsp" />
 			</definition>
+			
+			
+			<definition name="editproductdata" extends="baseLayout" >
+			<put-attribute name="title" value="Srevice Provider" />
+				<put-attribute name="body" value="/WEB-INF/views/Master/product/editproduct.jsp" />
+			</definition>
 	      </tiles-definitions>

@@ -86,6 +86,8 @@ public interface MasterMastersDao {
 	
 	List<ServiceProvider> getServiceProviderList();
 	void addServiceProvider(ServiceProvider spb);
+	ServiceProvider getServiceProvider(int id);
+	void editSourceProviderbyId(ServiceProvider sp);
 
 
 }

@@ -81,7 +81,7 @@
 								<td>${cur.transportationmodeid}</td>
 							
 						
-								<td><a href="#" onclick="editCur(${cur.transportationserviceid})" title="Edit" align="center" >
+								<td><a href="editserviceprovider?id=${cur.transportationserviceid}" title="Edit" align="center" >
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deleteprodet?id=${cur.transportationserviceid}"><span
