@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pogo.bean.CompanyProfileBean;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.model.PorefSupplierDetail;
@@ -36,7 +35,7 @@ public class CommonController {
 	return new ModelAndView("AddPrinicpalPO");
 			
 }
-	//create by saty
+
 	@RequestMapping(value="/appuser",method = RequestMethod.GET)
 	public ModelAndView getUser(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
@@ -46,13 +45,13 @@ public class CommonController {
 			
 }
 	
-	@RequestMapping(value="/branches",method = RequestMethod.GET)
+/*	@RequestMapping(value="/branches",method = RequestMethod.GET)
 	public ModelAndView getBranches(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
 		//commonservice.getPoRefNo(request);
 	
 	return new ModelAndView("branches");
-			}
+			} */
 	@RequestMapping(value="/Email",method = RequestMethod.GET)
 	public ModelAndView getEmail(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
@@ -90,6 +89,13 @@ public class CommonController {
 	
 	return new ModelAndView("newbranch");
 }
+	@RequestMapping(value="/states",method = RequestMethod.GET)
+	public ModelAndView getStates(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+	
+		//commonservice.getPoRefNo(request);
+	
+	return new ModelAndView("states");
+	}
 	@RequestMapping(value="/eastBranch",method = RequestMethod.GET)
 	public ModelAndView getEastBranch(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
@@ -152,7 +158,7 @@ public class CommonController {
 		model.put("viewlist",  prepareViewListofBean(commonservice.viewList()));
 	return new ModelAndView("viewpo",model);
 	}
-	@SuppressWarnings("unused")
+	
 	private List<PorefSupplierDetailBean> prepareViewListofBean(List<PorefSupplierDetail> prodel){
 		List<PorefSupplierDetailBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){

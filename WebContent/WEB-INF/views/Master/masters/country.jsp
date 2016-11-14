@@ -34,7 +34,7 @@
 <input type="hidden" id="hiddenid"/>
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addcountry"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add Country"
-						maxlength="20" autofocus="autofocus"></input></div>
+						maxlength="20" autofocus="autofocus"></input><span style="color: red;" id="countryspan">Please Enter Country</span></div>
   
 </div>
 
@@ -70,7 +70,7 @@
 					<tr>
 						<td>${loop.index+1}</td>
 						<td>${country.country}</td>
-		            <td><a href = "state">State</a></td> 
+		            <td><a href = "state?countryId=${country.countryId}">State</a></td> 
 					 <td><a href="#" onclick="editCur(${country.countryId})" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
@@ -101,35 +101,42 @@ $("#getcountrypopup").click(function(){
 	 $('#EditForm').hide();
 	 $("#saveForm").show();
 	 $("#addcountry").val('');
-	 
+	 $('#countryspan').hide();
 	 $("#hiddenid").val('');
 	
 });
 	    });
 $("#formid").hide();
+$('#countryspan').hide();
 
 $('#saveForm').click(function (){
 	var addcountry=$('#addcountry').val();
-	
-	
-	var jsonObj={'country':addcountry
-	} ;
-$.ajax({
-		url: "addcountry",
-		type: "POST",
+	if(addcountry == ''){
+		$('#countryspan').show();
 		
-		  data :JSON.stringify(jsonObj),
-		  cache:false,
-	        beforeSend: function(xhr) {  
-	            xhr.setRequestHeader("Accept", "application/json");  
-	            xhr.setRequestHeader("Content-Type", "application/json");  
-	        },
-		     success: function(resposeJsonObject){
-		    	 $('#openModal').hide();
-		    	 //window.location.currency;
-		    	 window.location.reload();
-	     
-	    }});
+	}else{
+		var jsonObj={'country':addcountry
+		} ;
+	$.ajax({
+			url: "addcountry",
+			type: "POST",
+			
+			  data :JSON.stringify(jsonObj),
+			  cache:false,
+		        beforeSend: function(xhr) {  
+		            xhr.setRequestHeader("Accept", "application/json");  
+		            xhr.setRequestHeader("Content-Type", "application/json");  
+		        },
+			     success: function(resposeJsonObject){
+			    	 $('#openModal').hide();
+			    	 //window.location.currency;
+			    	 window.location.reload();
+		     
+		    }});
+		
+	}
+	
+	
 });
 
 
@@ -143,11 +150,11 @@ $.ajax({
 	type: "GET",
 	
 	     success: function(respose){
-	    	 alert(respose);
+	    	// alert(respose);
 	    	 var data=JSON.parse(respose)
 	    	 var name=data.country;
 	    	 var id=data.countryId;
-	    	 alert("************************"+id);
+	    	// alert("************************"+id);
 	    	 $("#addcountry").val(name);
 	    	 $("#hiddenid").val(id);
 	    	 
@@ -163,7 +170,7 @@ $('#EditForm').click(function (){
 	var addcountry=$('#addcountry').val();
 	
 	var d1w=$("#hiddenid").val();
-	alert(d1w);
+	//alert(d1w);
 	
 	
 	var jsonObj={'country':addcountry,'countryId':id} ;
@@ -181,7 +188,7 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	 window.location.reload();
-	     alert("edit");
+	    // alert("edit");
 	    }});
 	
 	

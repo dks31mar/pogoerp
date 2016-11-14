@@ -164,6 +164,24 @@ int f=Integer.parseInt(id);
 		
 	}
 
+	@Override
+	public ProductMaster getProductById(int id) {
+		
+		return (ProductMaster) sessionFactory.getCurrentSession().get(ProductMaster.class, id);
+	}
+
+	@Override
+	public ProductSubHead getproductsubheadbyid(Integer productsabheadid) {
+		
+		return (ProductSubHead) sessionFactory.getCurrentSession().get(ProductSubHead.class, productsabheadid);
+	}
+
+	@Override
+	public void editProductById(ProductMaster bean) {
+		
+		sessionFactory.getCurrentSession().update(bean);
+		
+	}
 	
 	
 }

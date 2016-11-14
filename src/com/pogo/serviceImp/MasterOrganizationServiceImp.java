@@ -12,18 +12,27 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ibm.icu.text.SimpleDateFormat;
+
 import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
+
+import com.pogo.bean.CompetitiorsProfileBean;
+
 import com.pogo.bean.DesignationBean;
+import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
+
 import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
+import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
+import com.pogo.model.SmsAllocation;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 import com.pogo.service.MasterOrganizationService;
+import com.sun.corba.se.impl.ior.GenericTaggedComponent;
 
 @Service("regionService")
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -38,6 +47,9 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	
 
 
+	
+	
+	/********************* created by satyendra  *************************************/
 	@Override
 	public List<Zones> getBranches() {
 		List<Zones> getbranch =regionDao.getBranches();
@@ -79,6 +91,65 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 
 
 	@Override
+
+	public List<Zones> getStates() {
+		List<Zones> getbranch =regionDao.getBranches();
+		for(Zones s:getbranch)
+			System.out.println(s.getZonesname());
+		
+			return getbranch;
+	
+	}
+
+
+	@Override
+	@Transactional
+	public void updateregion(ZonesBean zonesBean) {
+		Zones zon=new Zones();
+		zon.setZonesid(zonesBean.getZonesid());
+		zon.setZonesaddress(zonesBean.getZonesaddress());
+		zon.setZonesemail(zonesBean.getZonesemail());
+		zon.setZonesname(zonesBean.getZonesname());
+		zon.setZonesfax(zonesBean.getZonesfax());
+		zon.setZonesphone(zonesBean.getZonesphone());
+		regionDao.updateRegion(zon);
+	}
+
+
+	@Override
+	@Transactional
+	public void deleteRegion(int id) {
+		Zones zones =regionDao.deleteRegion(id);
+		//System.out.println("on service"+zones.getZonesaddress());
+		System.out.println("are u sure delete the record");
+		regionDao.deleteRegion(zones);
+		
+	}
+
+	@Override
+	@Transactional
+	public void saveDataCompetitiors(CompetitiorsProfileBean poref) {
+		CompetitiorsProfile compti=new CompetitiorsProfile();
+		
+		compti.setCompname(poref.getCompname());
+		compti.setCompaddress(poref.getCompaddress());
+		compti.setCompphone(poref.getCompphone());
+		compti.setCompfax(poref.getCompfax());
+		compti.setCompemail1(poref.getCompemail1());
+		compti.setCompcontactperson(poref.getCompcontactperson());
+		compti.setCompcontactdesig(poref.getCompcontactdesig());
+		compti.setCompemail2(poref.getCompemail2());
+		compti.setCompphone2(poref.getCompphone2());
+		regionDao.saveDataCompetitiors(compti);
+		
+	}
+		
+	
+	
+
+
+
+	/*************************************end satyendra's method *****************************/
 	public void addCompany(CompanyProfile company) {
 		companyProfiledao.addCompany(company);
 		
@@ -148,11 +219,18 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			UserEmployeeBean data=new UserEmployeeBean();
 			data.setUserempid(list.getUserempid());
 			data.setLoginname(list.getLoginname());
+
 			data.setFirstname(list.getFirstname() +list.getMiddlename()+ list.getLastname() );
 			data.setDeviceno(list.getDeviceno());
 			data.setDesignationName(list.getDesignationName().getDesignation());
 			data.setEmpStatus(list.getEmpStatus());
 			
+
+			data.setFirstname(list.getFirstname());
+			data.setMiddlename(list.getMiddlename());
+			data.setLastname(list.getLastname());
+			//data.setDesignation(list.getDesignation());
+
 			lists.add(data);
 		}
 			return lists;
@@ -249,8 +327,8 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		//emp.setCompanyName(userEmployeeBean.getCompanyName());
 		//city.setCountry(cityDao.get(cityDTO.getCityId()).getCountry());
 		emp.setDesignationName(userEmpdao.getData(userEmployeeBean.getDesignationId()));
-		//emp.setBranchName(userEmpdao.get(userEmployeeBean.getUserempid()).getBranchName());
-		//emp.setCompanyName(userEmpdao.get(userEmployeeBean.getUserempid()).getCompanyName());
+		emp.setBranchName(userEmpdao.getBranch(userEmployeeBean.getBranchId()));
+		emp.setCompanyName(userEmpdao.getCom(userEmployeeBean.getSubcompanyId()));
 		emp.setGender(userEmployeeBean.getGender());
 		emp.setPhone(userEmployeeBean.getPhone());
 		emp.setUsermobile(userEmployeeBean.getUsermobile());
@@ -355,6 +433,7 @@ public DesignationBean getDesignationForEdit(int desgid)
 }
 
 @Override
+@Transactional
 public void updateDesignation(DesignationBean designationBean) {
 	Designation deg=new Designation();
 	deg.setDesignationid(designationBean.getDesignationid());
@@ -363,6 +442,7 @@ public void updateDesignation(DesignationBean designationBean) {
 }
 
 @Override
+@Transactional
 public void deleteDesignation(int id) {
 	Designation deg = userEmpdao.getDesgById(id);
 	userEmpdao.deleteDesignation(deg);
@@ -371,6 +451,7 @@ public void deleteDesignation(int id) {
 
 
 @Override
+
 @Transactional
 public void updateStatus(int id) 
 {
@@ -447,6 +528,64 @@ public List<BranchBean> getBranchList()
 
 
 	
+
+
+
+
+public void updateCompetitior() {
+	// TODO Auto-generated method stub
+	CompetitiorsProfile comprof=new CompetitiorsProfile();
+	comprof.setCompname(CompetitiorsProfileBean.getCompname());
+	comprof.setCompaddress(CompetitiorsProfileBean.getCompaddress());
+	comprof.setCompphone(CompetitiorsProfileBean.getCompphone());
+	comprof.setCompfax(CompetitiorsProfileBean.getCompfax());
+	comprof.setCompemail1(CompetitiorsProfileBean.getCompemail1());
+	comprof.setCompcontactperson(CompetitiorsProfileBean.getCompcontactperson());
+	comprof.setCompcontactdesig(CompetitiorsProfileBean.getCompcontactdesig());
+	comprof.setCompemail2(CompetitiorsProfileBean.getCompemail2());
+	comprof.setCompphone2(CompetitiorsProfileBean.getCompphone2());
+	regionDao.updateCompetitior(comprof);
+}
+
+@Transactional
+public void permitForSms(SmsAllocationBean smsbean) {
+	SmsAllocation sms=new SmsAllocation();
+	sms.setEmpid(smsbean.getEmpid());
+	sms.setIsunlimited("Y");
+	userEmpdao.permitForSms(sms);
+	
+}
+
+
+@Override
+@Transactional
+public void denyForSms(SmsAllocationBean smsbean) {
+	SmsAllocation sms=new SmsAllocation();
+	sms.setEmpid(smsbean.getEmpid());
+	 
+	userEmpdao.denyForSms(sms);
+	
+}
+
+
+@Override
+@Transactional
+public List<SmsAllocationBean> getPermitSmsUser() {
+	
+	List<SmsAllocation> getlist=userEmpdao.getPermitSmsUser();
+	
+	List<SmsAllocationBean> list=new ArrayList<>();
+	for(SmsAllocation s:getlist){
+		SmsAllocationBean bean=new SmsAllocationBean();
+		System.out.println(s.getEmpid());
+		bean.setEmpid(s.getEmpid());
+		list.add(bean);
+	}
+	return list;
+}
+
+
+
 
 
 

@@ -2,24 +2,38 @@ package com.pogo.service;
 
 
 import java.text.ParseException;
+
 import java.util.List;
+
 
 import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
+
+import com.pogo.bean.CompetitiorsProfileBean;
+
 import com.pogo.bean.DesignationBean;
+import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.UserEmployeeBean;
+
 import com.pogo.bean.ZonesBean;
+
 import com.pogo.model.CompanyProfile;
+import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 
 public interface MasterOrganizationService {
 
 	List<Zones> getBranches();
-	
-    public ZonesBean editZones(int id);
 
 	void addZoneDeatils(ZonesBean poref);
+	
+	 public ZonesBean editZones(int empid);
+
+
+	List<Zones> getStates();
+	
+	
 
 	void addCompany(CompanyProfile company);
 	void adduserEmp(UserEmployeeBean userDTO)throws ParseException;
@@ -49,6 +63,8 @@ public interface MasterOrganizationService {
 
 	void deleteDesignation(int id);
 
+
+
 	void updateStatus(int id);
 
 	List<DesignationBean> GetDesignationList();
@@ -66,4 +82,29 @@ public interface MasterOrganizationService {
 	
 
   
+
+	void updateregion(ZonesBean zonesBean);
+
+	void deleteRegion(int id);
+
+
+	void saveDataCompetitiors(CompetitiorsProfileBean poref);
+
+
+
+	void updateCompetitior();
+
+	
+
+
+
+
+	void permitForSms(SmsAllocationBean smsbean);
+
+	void denyForSms(SmsAllocationBean smsbean);
+
+	List<SmsAllocationBean> getPermitSmsUser();
+
+	
+
 }

@@ -1,17 +1,21 @@
 package com.pogo.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,19 +25,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
+import com.fasterxml.jackson.annotation.JsonFormat.Value;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.pogo.bean.PoRefEntryItemDetailBean;
+import com.pogo.bean.SmsAllocationBean;
 import com.ibm.icu.text.Normalizer.Mode;
 import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
+
+import com.pogo.bean.CompetitiorsProfileBean;
+
+import com.pogo.bean.CountryBean;
+import com.pogo.bean.CurrencyBean;
+
 import com.pogo.bean.DesignationBean;
+
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
 import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
+import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
+
 import com.pogo.model.UserEmployee;
+
+import com.pogo.model.SmsAllocation;
+
 import com.pogo.model.Zones;
 
 import com.pogo.service.MasterOrganizationService;
@@ -73,7 +96,9 @@ public class MasterOrganizationController {
 		return new ModelAndView("getuseremp");
 	}
 
-	// for add jsp
+	
+
+
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String addEmployee(Model model) {
 		List<DesignationBean> Deglist = userEmployeeservice.GetDesignationList();
@@ -222,6 +247,7 @@ public class MasterOrganizationController {
 	 * new ModelAndView("getdesignation",model); }
 	 */
 	@RequestMapping(value = "show-designation", method = RequestMethod.POST)
+
 	@ResponseBody
 	public void getData(@RequestBody String json, Model model) throws IOException {
 
@@ -237,7 +263,7 @@ public class MasterOrganizationController {
 	}
 
 	@RequestMapping(value = "/editDesignation", method = RequestMethod.GET)
-	public String editDesignation(@RequestParam int id, Model model) {
+	public String editDesignation(@RequestParam("id") int id, Model model) {
 		DesignationBean bean = userEmployeeservice.getDesignationForEdit(id);
 		model.addAttribute("getdata", bean);
 		return "editDesignation";
@@ -245,6 +271,7 @@ public class MasterOrganizationController {
 
 	@RequestMapping(value = "/update-designation", method = RequestMethod.POST)
 	public String updateDesignation(@ModelAttribute("designationBean") DesignationBean designationBean) {
+		System.out.println("hhhddd");
 		userEmployeeservice.updateDesignation(designationBean);
 		return "redirect:/getdesignation";
 
@@ -254,30 +281,6 @@ public class MasterOrganizationController {
 	public String deleteuserDesgData(@RequestParam("designationid") int id) {
 		userEmployeeservice.deleteDesignation(id);
 		return "redirect:/getdesignation";
-	}
-
-	@RequestMapping(value = "/region", method = RequestMethod.GET)
-	public ModelAndView getRegion(Zones porefitem, HttpServletRequest request) {
-
-		List<Zones> getbranch = new ArrayList<Zones>();
-		getbranch = regionService.getBranches();
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("branchList", getbranch);
-		return new ModelAndView("region", model);
-
-	}
-
-	@RequestMapping(value = "addzonedetails", method = RequestMethod.POST)
-	@ResponseBody
-	public void addZoneDeatils(@RequestBody String json, Model model) throws IOException {
-		System.out.println("Add zone data   \n" + json);
-		ObjectMapper mapper = new ObjectMapper();
-		ZonesBean poref = mapper.readValue(json, ZonesBean.class);
-
-		ZonesBean poref1 = new ZonesBean();
-
-		regionService.addZoneDeatils(poref);
-
 	}
 
 	/* Profile */
@@ -340,6 +343,7 @@ public class MasterOrganizationController {
 		return "mobileApp";
 			
 	}
+
 	// searchEmp
 		@RequestMapping(value = "searchEmp", method = RequestMethod.POST)
 		public @ResponseBody String filterEmployee(@RequestParam String empName) throws JsonProcessingException {
@@ -356,5 +360,170 @@ public class MasterOrganizationController {
 		}
 		
 
+
+	/****************************created by stayendra**********************/
+
+	@RequestMapping(value="/Editregion",method = RequestMethod.GET)
+	public ModelAndView editZones(@RequestParam("id") Integer id,Zones porefitem,HttpServletRequest request,Model model)
+			{
+	    List<Zones> getbranch=new ArrayList<Zones>();
+	    model.addAttribute("getregion", regionService.editZones(id));
+		getbranch=regionService.getBranches();
+		Map<String, Object> mode = new HashMap<String, Object>();
+		mode.put("branchList",  getbranch);
+		
+		return new ModelAndView("editregion",mode);
+}
+	@RequestMapping(value="/branches",method = RequestMethod.GET)
+	public ModelAndView getStates(Zones porefitem,HttpServletRequest request){
+	
+		List<Zones> getStates=new ArrayList<Zones>();
+		//getStates=regionService.getStates();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("branchList",  getStates);
+		return new ModelAndView("branches",model);
+	
+}
+	@RequestMapping(value = "/update-region", method = RequestMethod.POST)
+	public String updateregion(@ModelAttribute("zonesBean")  ZonesBean zonesBean)  {
+		regionService.updateregion(zonesBean);
+		System.out.println("i am here");
+		return "redirect:/region";
+	
+	}
+@RequestMapping(value="/deleteRegion",method=RequestMethod.GET)
+public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
+{
+	regionService.deleteRegion(id);
+	List<Zones> getbranch = new ArrayList<Zones>();
+	getbranch = regionService.getBranches();
+	  model.addAttribute("id", "data deleted");
+	  model.put("branchList", getbranch);
+	return new ModelAndView("region",model);
+	
+}
+@RequestMapping(value="/addstates",method = RequestMethod.GET)
+public ModelAndView getStates(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+
+
+	//commonservice.getPoRefNo(request);
+
+return new ModelAndView("addstates");
+}	
+
+	
+
+@RequestMapping(value="/sms",method = RequestMethod.GET)
+public ModelAndView getSmsAllocation( @ModelAttribute("command") SmsAllocationBean sms,HttpServletRequest request,BindingResult result ){
+	System.out.println("inside sms  method");
+	List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
+	list = userEmployeeservice.getUserDetails();
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("empdetails", list);
+return new ModelAndView("getsms",model);
+}	
+
+
+
+
+@RequestMapping(value = "/region", method = RequestMethod.GET)
+public ModelAndView getRegion(Zones porefitem, HttpServletRequest request) {
+
+	List<Zones> getbranch = new ArrayList<Zones>();
+	getbranch = regionService.getBranches();
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("branchList", getbranch);
+	return new ModelAndView("region", model);
+
+}
+@RequestMapping(value = "addzonedetails", method = RequestMethod.POST)
+@ResponseBody
+public void addZoneDeatils(@RequestBody String json, Model model) throws IOException {
+	System.out.println("Add zone data   \n" + json);
+	ObjectMapper mapper = new ObjectMapper();
+	ZonesBean poref = mapper.readValue(json, ZonesBean.class);
+
+	ZonesBean poref1 = new ZonesBean();
+
+	regionService.addZoneDeatils(poref);
+}
+/************ save competitiorsProfile *************/
+
+@RequestMapping(value="/competitiorsProfile",method = RequestMethod.GET)
+
+public ModelAndView AddCompetitiorsProfile(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+
+	//regionService.AddCompetitiorsProfile(poref);
+return new ModelAndView("competitiorsProfile");
+}
+
+
+@RequestMapping(value = "saveDataCompetitiors", method = RequestMethod.POST)
+@ResponseBody
+public void saveDataCompetitiors(@RequestBody String json, Model model) throws IOException {
+	System.out.println("Add zone data   \n" + json);
+	ObjectMapper mapper = new ObjectMapper();
+	CompetitiorsProfileBean poref = mapper.readValue(json, CompetitiorsProfileBean.class);
+
+	CompetitiorsProfileBean poref1 = new CompetitiorsProfileBean();
+
+	regionService.saveDataCompetitiors(poref);
+}
+
+@RequestMapping(value="/addfeature",method = RequestMethod.GET)
+public ModelAndView getFeature(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+
+return new ModelAndView("feature");
+}
+
+@RequestMapping(value="/editcompetitior",method = RequestMethod.GET)
+public ModelAndView getcompetitior(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+
+return new ModelAndView("competitior");
+}
+
+@RequestMapping(value="/upcompetitior",method = RequestMethod.GET)
+public ModelAndView updateCompetitior(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result,Model model){
+	 List<CompetitiorsProfile> getdata=new ArrayList<CompetitiorsProfile>();
+	    model.addAttribute("getregion");
+	    regionService.updateCompetitior();
+		Map<String, Object> mode = new HashMap<String, Object>();
+		mode.put("branchList",  getdata);
+return new ModelAndView("updatecompetitior");
+}
+
+
+@RequestMapping(value="/permitforsmssend",method = RequestMethod.POST)
+@ResponseBody
+public void permitForSms(@RequestBody String json,Model model) throws IOException{
+System.out.println(json);
+	ObjectMapper mapper=new ObjectMapper();
+	SmsAllocationBean smsbean=mapper.readValue(json, SmsAllocationBean.class);
+	
+	userEmployeeservice.permitForSms(smsbean);
+}
+
+@RequestMapping(value="/denyforsmssend",method = RequestMethod.POST)
+@ResponseBody
+public void denyForSms(@RequestBody String json,Model model) throws IOException{
+System.out.println(json);
+	ObjectMapper mapper=new ObjectMapper();
+	SmsAllocationBean smsbean=mapper.readValue(json, SmsAllocationBean.class);
+	
+	userEmployeeservice.denyForSms(smsbean);
+}
+@RequestMapping(value="/getsmspermituser",method = RequestMethod.POST)
+public void getPermitSmsUser(HttpServletResponse res) throws IOException{
+	
+	PrintWriter writer= res.getWriter();
+	List<SmsAllocationBean> list=new ArrayList<>();
+	list=userEmployeeservice.getPermitSmsUser();
+	List<Integer> list2=new ArrayList<>();
+	for(SmsAllocationBean b:list){
+		
+		list2.add(b.getEmpid());
+	}
+	writer.print(list2);
+}
 
 }

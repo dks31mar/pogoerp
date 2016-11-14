@@ -22,76 +22,38 @@
 </head>
 
 
-<div class="container">
-  <h2></h2>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-  <!-- Modal -->
-
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Employee</h4>
-        </div>
-        <div class="modal-body">
-		<form>
-    
-<table>
-     <tr>  <td> Region Name:</td>  <td><input type="text" name="first"></td></tr>
-    
-     <tr><td> Phone No: </td><td><input type="text" name="last"> </td></tr>
-           <tr><td>Fax No: </td>
-       
-        <td><input type="text" name="first"> </td></tr>
-		<tr><td>EmailId: </td><td><input type="text" name="first"> </td>     </tr>
-        
-           
-       
-        
-        <tr>
-		<td>Region Head Name</td>
-		<td>
-            <select>
-               <option value="affiliate">Select Affiliate</option>
-               <option value="x">x</option>
-               <option value="y">y</option>
-            </select>
-         </td></tr>
-         <tr>
-         		<td>Region Address</td>
-		<td><input type="text"></td>
-		</tr>
-		
-</table>
-		</form>
-         
-        </div>
-        <div class="modal-footer">
-		 <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-</div>
-
 
 <tbody>
 <body>
-<TABLE WIDTH="400" BORDER="0" CELLSPACING="10"   ALIGN="center">
-    <FORM NAME="RegionList" METHOD="post" ACTION="RegionMain.jsp?operation=ADDNEW">
-         	</tbale>
-         	<center>
- </CENTER>
-        
-        
+
+    <div id="pop" style="display: none;"></div>
+
+<div id="body">
+<div>
+<div>
+<div class="row" style="margin-top: 15px">
+	<br>
+	<div align="center">
+		<i>
+			<h3></h3>
+		</i> <input type="hidden" name="profile" value="0" />
+	</div>
+</div>
+<div class="row">
+
+	<div class="page-heading col-sm-11"
+		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
+		<span class="glyphicon glyphicon-user"></span> Branches Details</b>
+		 <label
+			 style="margin-left: 250px;margin-top: 8px;"><a href="addstates"
+			class="btn btn-primary">Add Branches</a>
+			<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
+     </label>
+  		
+</div>
+
+</div>
+</div>      
        <table class="responstable">
   
   <tbody align='center'>
@@ -101,9 +63,10 @@
     <th>S.N.</th>
     <th data-th="Driver details"><span>States</span></th>
      <th>Branches</th>
-    <th>Phone No</th>
+   <!--   <th>Phone No</th>
     <th>Fax No</th>
     <th>Head Name</th>
+    -->
     <th>Edit</th>
     <th>Delete</th>
   </tr>
@@ -111,12 +74,15 @@
   <tr id="str">
     <td>1</td>
    <td id="branch_name1"><a href="#">Bhopal</a></td>
-    <td>Branches</td>
-   <td id="phone_no1" ></td>
+   <td>noida</td>
+  <!--  <td id="phone_no1" ></td>
    <td id="fax_no1" ></td>
     <td id="product_no1" '></td>
+    
    <td><input type="button" id="edit_button1" value="Edit" class="edit" onclick="edit_row('1')">
    <input type="button" id="save_button1" value="Save" class="save" onclick="save_row('1')"></td>
+   -->
+    <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
     <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>
   
@@ -124,10 +90,11 @@
     <td>2</td>
     
     <td id="branch_name"><a href="#">Gwalear</a></td>
-     <td>Branches</td>
-    <td id="phone_no"></td>
-    <td id="fax_no"></td>
-    <td id="product_no"></td>
+     <td>Bangalore</td>
+    <!--  <td id="phone_no1" ></td>
+   <td id="fax_no1" ></td>
+    <td id="product_no1" '></td>
+    -->
     <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
     <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>
@@ -136,41 +103,73 @@
   <tr>
     <td>3</td>
     <td id="branch_name"><a href="#">Delhi</a></td>
-    <td>Branches</td>
-    <td  id="phone_no"></td>
-    <td id="fax_no"></td>
-    <td id="product_no"></td>
-  <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-  </tr>
-  </tr id="5tr">
-  
-    <td>4</td>
-    <td id="branch_name"><a href="#">gurgaon</a></td>
-     <td>Branches</td>
-    <td id="phone_no"></td>
-    <td id="fax_no"></td>
-    <td id="product_no"></td>
+    <td>pune</td>
+    <!--  <td id="phone_no1" ></td>
+   <td id="fax_no1" ></td>
+    <td id="product_no1" '></td>
+    -->
   <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
     <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>
 
-  <tr id="str">
-    <td>5</td>
-    <td id="branch_name"><a href="#">Branches</a></td>
-     <td>Branches</td>
-    <td id="phone_no"></td>
-     <td id="fax_no"></td>
-    <td id="product_no"></td>
-   <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-  </tr>
 </tbody>
 
 </table>      
 </FORM>
 
  <script>
+
+	// by satyendra
+	$('#messagespan').hide();
+	$('#senddata').click(function(){
+		
+	var reginname =	$('#regionname').val();
+	var selecthead =	$('#selecthead').text();
+	var mobileno =	$('#mobileno').val();
+	var emailid =	$('#emailid').val();
+	   var fax    =	$('#fax').val();
+	   var regadress    =	$('#regadress').val();
+	   
+	   alert(selecthead);
+	   
+	   if(reginname==''||mobileno==''||emailid==''||fax==''||regadress==''||selecthead=='---Select Region---'){
+		   $('#messagespan').show('fast');
+		   
+	   }else{
+		   var jsonObj={
+					'zonesname':reginname,
+							'zonesaddress':regadress,
+								'zonesfax':fax,
+								'zonesphone':mobileno,
+								'zonesemail':emailid
+			} ;
+		
+		$.ajax({
+				url: "addzonedetails",
+				type: "POST",
+				
+				  data :JSON.stringify(jsonObj),
+				  cache:false,
+			        beforeSend: function(xhr) {  
+			            xhr.setRequestHeader("Accept", "application/json");  
+			            xhr.setRequestHeader("Content-Type", "application/json");  
+			        },
+				     success: function(resposeJsonObject){
+				    	 window.location.reload();
+			    }});
+			
+		   
+	   }
+	   
+	   
+		
+	  
+	}); 
+	
+function funcal(){
+	$('#messagespan').hide();
+}
+/*	
  function edit_row(no)
  {
   document.getElementById("edit_button"+no).style.display="none";

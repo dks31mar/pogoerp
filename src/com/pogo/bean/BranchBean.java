@@ -5,6 +5,7 @@ public class BranchBean
 private  Integer branchId;
 private String branchname;
 private String state;
+
 private Integer designationId;
 private String designationName;
 
@@ -20,6 +21,7 @@ public String getDesignationName() {
 public void setDesignationName(String designationName) {
 	this.designationName = designationName;
 }
+
 public Integer getBranchId() {
 	return branchId;
 }

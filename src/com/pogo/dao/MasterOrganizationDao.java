@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
+import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
+import com.pogo.model.SmsAllocation;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 
@@ -12,9 +14,23 @@ public interface MasterOrganizationDao {
 
 	List<Zones> getBranches();
 
+	void addZoneDeatils(Zones zon);
+
 	Zones editZones(int empid);
 
-	void addZoneDeatils(Zones zon);
+
+	List<Zones> getStates();
+
+	void updateRegion(Zones zon);
+
+	Zones deleteRegion(int id);
+
+	void deleteRegion(Zones zones);
+	
+	
+	
+
+	
 	void addCompany(CompanyProfile company);
 	void addUser(UserEmployee emp);
 
@@ -58,6 +74,7 @@ public interface MasterOrganizationDao {
 
 	void deleteDesignation(Designation deg);
 
+
 	void updateEmpStatus(UserEmployee emp);
 
 	/*UserEmployee getEmpId(int id);*/
@@ -83,6 +100,20 @@ public interface MasterOrganizationDao {
 
 	
 
+
+void saveDataCompetitiors(CompetitiorsProfile compti);
+
+void updateCompetitior(CompetitiorsProfile comprof);
+
+
 	
+
+	void permitForSms(SmsAllocation sms);
+
+	void denyForSms(SmsAllocation sms);
+
+	List<SmsAllocation> getPermitSmsUser();
+
+
 }
 

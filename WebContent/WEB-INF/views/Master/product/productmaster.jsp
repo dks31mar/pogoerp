@@ -81,7 +81,7 @@
 								<td>${cur.sellingprice}</td>
 							
 						
-								<td><a href="#" onclick="editCur(${cur.productid})" title="Edit" align="center" >
+								<td><a href="editproductdata?id=${cur.productid}" title="Edit" align="center" >
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deleteprodet?id=${cur.productid}"><span

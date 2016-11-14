@@ -13,7 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
+import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
+import com.pogo.model.SmsAllocation;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 @Repository("masterOrganizationDao")
@@ -29,15 +31,21 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		
 	}
 
+	@Override
+	public void addZoneDeatils(Zones zon) {
+		sessionFactory.getCurrentSession().save(zon);
+	}
+
+
 
 	@Override
 	public Zones editZones(int empid) {
 		return (Zones) sessionFactory.getCurrentSession().get(Zones.class, empid);
-}
 
-	@Override
-	public void addZoneDeatils(Zones zon) {
-		sessionFactory.getCurrentSession().save(zon);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Zones> getStates() {
+		return (List<Zones>)sessionFactory.getCurrentSession().createCriteria(Zones.class).list();
 	}
 	@Override
 	public void addCompany(CompanyProfile company) {
@@ -195,6 +203,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		
 	}
 
+
 	@Override
 	public void updateEmpStatus(UserEmployee emp) {
 		sessionFactory.getCurrentSession().update(emp);
@@ -253,5 +262,65 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 	
 
 
+
+
+
+
+	@Override
+	public void updateRegion(Zones zon) {
+		System.out.println("Your zone id is \n"+zon.getZonesid());
+		
+		sessionFactory.getCurrentSession().update(zon);
+		
+	}
+
+	@Override
+	public Zones deleteRegion(int id) {
+		return (Zones) sessionFactory.getCurrentSession().get(Zones.class, id);
+		
+		
+	}
+
+	@Override
+	public void deleteRegion(Zones zones) {
+		sessionFactory.getCurrentSession().delete(zones);
+		
+	}
+
+
+	public void saveDataCompetitiors(CompetitiorsProfile compti) {
+		sessionFactory.getCurrentSession().flush();
+		sessionFactory.getCurrentSession().save(compti);
+		sessionFactory.getCurrentSession().flush();
+	}
+
+	@Override
+	public void updateCompetitior(CompetitiorsProfile comprof) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+
+
+	@Override
+	public void permitForSms(SmsAllocation sms) {
+		System.out.println(sms.getEmpid());
+		sessionFactory.getCurrentSession().save(sms);
+		
+	}
+
+	@Override
+	public void denyForSms(SmsAllocation sms) {
+		sessionFactory.getCurrentSession().delete(sms);
+	}
+
+	@Override
+	public List<SmsAllocation> getPermitSmsUser() {
+		
+		return sessionFactory.getCurrentSession().createCriteria(SmsAllocation.class).list();
+	}
 
 }

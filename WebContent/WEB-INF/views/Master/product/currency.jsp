@@ -234,7 +234,7 @@ $(document).ready(
 $("#getpopup").click(function(){
 	
 	 $("#formid").toggle('show');
-	 $('#EditcurrencyForm').hide();
+	$('#EditcurrencyForm').hide();
 	 $("#savecurrencyForm").show();
 	 $("#currencyname").val('');
 	 $("#currencytypeid").val('');
@@ -276,11 +276,11 @@ $.ajax({
 	     success: function(respose){
 	    	 
 	    	 var data=JSON.parse(respose)
-	    	 var name=data.name;
-	    	 var symbol=data.sysmbol;
-	    	 var type=data.type;
-	    	 var id=data.id;
-	    	 alert("DDDDDDDDDDDDDDDD                   "+id);
+	    	 var name=data.currencyname;
+	    	 var symbol=data.currencysymbol;
+	    	 var type=data.currencytype;
+	    	 var id=data.currencyid;
+	    	// alert("DDDDDDDDDDDDDDDD                   "+id);
 	    	 $("#currencyname").val(name);
 	    	 $("#currencytypeid").val(type);
 	    	 $("#currencysymbol").val(symbol);
@@ -299,9 +299,9 @@ $('#EditcurrencyForm').click(function (){
 	var currencysymbol=$('#currencysymbol').val();
 	
 	var d1w=$("#hiddenid").val();
-	alert(d1w);
+	//alert(d1w);
 	
-	alert(currencyname+'     <<<<<<>>>>>>   ' +currencytype+'               <<<<<<>>>>>>>       '+currencysymbol);
+	//alert(currencyname+'     <<<<<<>>>>>>   ' +currencytype+'               <<<<<<>>>>>>>       '+currencysymbol);
 	
 	var jsonObj={'currencysymbol':currencysymbol,
 			'currencyname':currencyname, 'currencytype':currencytype,'currencyid':id
@@ -320,7 +320,7 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	 window.location.reload();
-	     alert("edit");
+	    // alert("edit");
 	    }});
 	
 	
