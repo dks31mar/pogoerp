@@ -192,9 +192,6 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 	public Designation getDesgById(int id) {
 		
 		 return (Designation) sessionFactory.getCurrentSession().get(Designation.class, id);
-		
-		
-	
 	}
 
 	@Override
