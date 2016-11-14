@@ -1,7 +1,7 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
@@ -86,7 +86,12 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="designation" placeholder="Manger"   class="form-control"  type="text">
+  <select name="designationId" placeholder="Manger"   class="form-control"  >
+  <option value="" selected="selected">----Select Role----</option>
+  <c:forEach items="${listofDeg}" var="designationList">
+  <option value="${designationList.designationid}">${designationList.designation}</option>
+  </c:forEach>
+  </select>
     </div>
   </div>
 </div>
@@ -122,10 +127,11 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="subcompany" class="form-control selectpicker" required="required">
-  <option>---Select SubCompany---</option> 
-      <option value="Relience">Relience</option>
-	  <option value="Vodafone">Vodafone</option>
+  <select name="subcompanyId" class="form-control selectpicker" required="required">
+  <option value="" selected="selected">---Select SubCompany---</option> 
+  <c:forEach items="${listofComp}" var="companylist">
+  <option value="${companylist.companyinfoid}">${companylist.companyinfoname}</option>
+  </c:forEach>
   </select>
     </div>
   </div>
@@ -137,8 +143,8 @@
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
     <select name="division" class="form-control selectpicker" required="required">
    <option>---Select Division---</option> 
-      <option value="Delhi">Delhi</option>
-	  <option value="Delhi">Noida</option>
+      <option value="sales">Sales</option>
+	  <option value="services">Services</option>
      
     </select>
   </div>
@@ -177,10 +183,11 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="branch" class="form-control selectpicker" required="required">
-      <option>---Select Branch---</option>
-      <option value="Delhi NCR">Delhi NCR</option>
-	 <option value="Noida">Noida</option>
+    <select name="branchId" class="form-control selectpicker" required="required">
+      <option value="" selected="selected">---Select Branch---</option>
+      <c:forEach items="${listofBranch}" var="listofBranch">
+       <option value="${listofBranch.branchId}">${listofBranch.branchname}</option>
+      </c:forEach>
      
     </select>
   </div>

@@ -2,6 +2,7 @@ package com.pogo.dao;
 
 import java.util.List;
 
+import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.Designation;
 import com.pogo.model.UserEmployee;
@@ -56,6 +57,31 @@ public interface MasterOrganizationDao {
 	Designation getDesgById(int id);
 
 	void deleteDesignation(Designation deg);
+
+	void updateEmpStatus(UserEmployee emp);
+
+	/*UserEmployee getEmpId(int id);*/
+
+	List<Designation> getDesgnationData();
+
+	List<CompanyProfile> getCompanyData();
+
+	List<Branch> getBranchData();
+	
+	Designation getData(Integer designationId);
+
+	Branch getBranch(Integer branchId);
+
+	CompanyProfile getCom(Integer subcompanyId);
+
+	
+
+	
+
+
+
+
+	
 
 	
 }

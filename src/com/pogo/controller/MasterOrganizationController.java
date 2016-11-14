@@ -24,16 +24,20 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.icu.text.Normalizer.Mode;
+import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
 import com.pogo.dao.MasterOrganizationDao;
+import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.Designation;
+import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 
 import com.pogo.service.MasterOrganizationService;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 
 @Controller
 public class MasterOrganizationController {
@@ -65,19 +69,21 @@ public class MasterOrganizationController {
 		model.addAttribute("noOfPage", num);
 		model.addAttribute("totalNoOfPages", result);
 		model.addAttribute("Recordlist", empDao.findDesignationByPageNo(num - 1));
-		/*
-		 * Map<String, Object> mode= new HashMap<String,Object>();
-		 * mode.put("userlist", list);
-		 */
 		model.addAttribute("totalrecords", list.size());
-
 		return new ModelAndView("getuseremp");
 	}
 
 	// for add jsp
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String addEmployee(Model model) {
-
+		List<DesignationBean> Deglist = userEmployeeservice.GetDesignationList();
+		model.addAttribute("listofDeg", Deglist);
+		List<CompanyProfileBean> comlist=userEmployeeservice.getCompanyList();
+		model.addAttribute("listofComp", comlist);
+		List<BranchBean> branchlist=userEmployeeservice.getBranchList();
+		model.addAttribute("listofBranch", branchlist);
+		
+		//System.out.println("for add emp on controller"+Deglist);
 		return "addUser";
 	}
 
@@ -85,7 +91,30 @@ public class MasterOrganizationController {
 	@RequestMapping(value = "/editUser", method = RequestMethod.GET)
 	public String editEmployee(@RequestParam int id, Model model) {
 		model.addAttribute("employee", userEmployeeservice.getEmployee(id));
-
+		List<DesignationBean> beansDeg=userEmployeeservice.GetDesignationList();
+		model.addAttribute("listofDeg", beansDeg);
+		List<BranchBean> beansBran=userEmployeeservice.getBranchList();
+		model.addAttribute("listofBranch", beansBran);
+		List<CompanyProfileBean> beansCom=userEmployeeservice.getCompanyList();
+		model.addAttribute("listofComp", beansCom);
+		
+		
+		/*UserEmployeeBean beans=userEmployeeservice.getEmployee(id);
+		System.out.println(beans.getDesignationId());
+		System.out.println("on contoller"+beans.getBranchId());
+		String branch=beans.getBranchName();
+		String com=beans.getCompanyName();
+		String  deg=beans.getDesignationName();
+		
+		System.out.println("on controller" +beans.getDesignationName());
+		//String desgId=Integer.toString( beans.getDesignationId());
+		//String branchId=Integer.toString(beans.getBranchId());
+		//String compId=Integer.toString(beans.getSubcompanyId());
+		model.addAttribute("degDetails", deg);
+		model.addAttribute("branchDetails", branch);
+		model.addAttribute("comDetails", com);*/
+		
+		
 		return "editUser";
 	}
 
@@ -139,6 +168,7 @@ public class MasterOrganizationController {
 	@RequestMapping(value = "deleteuser", method = RequestMethod.POST)
 	public String deleteuserEmpData(@RequestParam("userempid") int id) {
 		userEmployeeservice.deleteuserEmp(id);
+		System.out.println("I am on controller");
 		return "getuseremp";
 	}
 
@@ -297,12 +327,34 @@ public class MasterOrganizationController {
 		return comp;
 	}
 	/*Mobile Apps Registration*/
+	
 	@RequestMapping(value="mobileApp", method=RequestMethod.GET)
 	public String forMobileApp(Model model)
 	{
-		return "mobileApp";
+		List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
+		list=userEmployeeservice.getUserDetails();
+		model.addAttribute("totalrecords", list.size());
+		model.addAttribute("emplDetails", list);
+		//model.addAttribute("emplDetails", userEmployeeservice.getUserDetails());
 		
+		return "mobileApp";
+			
 	}
-	
+	// searchEmp
+		@RequestMapping(value = "searchEmp", method = RequestMethod.POST)
+		public @ResponseBody String filterEmployee(@RequestParam String empName) throws JsonProcessingException {
+			List<UserEmployeeBean> userbean = userEmployeeservice.getUser(empName);
+			ObjectMapper map = new ObjectMapper();
+			return map.writeValueAsString(userbean);
+		}
+		//updateStatus
+		@RequestMapping(value="updateEmp", method=RequestMethod.GET)
+		public String statusUpdate(@RequestParam int id)
+		{
+			userEmployeeservice.updateStatus(id);
+			return "redirect:/mobileApp";
+		}
+		
+
 
 }

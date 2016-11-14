@@ -4,6 +4,8 @@ package com.pogo.service;
 import java.text.ParseException;
 import java.util.List;
 
+import com.pogo.bean.BranchBean;
+import com.pogo.bean.CompanyProfileBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
@@ -21,7 +23,6 @@ public interface MasterOrganizationService {
 
 	void addCompany(CompanyProfile company);
 	void adduserEmp(UserEmployeeBean userDTO)throws ParseException;
-
 	List<UserEmployee> getUserById(int userId);
 
     List<UserEmployeeBean> getUserDetails();
@@ -47,6 +48,22 @@ public interface MasterOrganizationService {
 	void updateDesignation(DesignationBean designationBean);
 
 	void deleteDesignation(int id);
+
+	void updateStatus(int id);
+
+	List<DesignationBean> GetDesignationList();
+
+	List<CompanyProfileBean> getCompanyList();
+
+	List<BranchBean> getBranchList();
+
+	
+
+	
+
+	
+
+	
 
   
 }
