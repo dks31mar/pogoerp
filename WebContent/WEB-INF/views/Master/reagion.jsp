@@ -23,7 +23,7 @@
 </head>    
  </CENTER>
         <div id="pop" style="display: none;"></div>
-
+<div><c:out value="${id}" /></div>
 <div id="body">
 <div>
 <div>
@@ -66,9 +66,9 @@
   <tr>
     <td>${loop.index+1}</td>
     <td>${branch.zonesname}</td>
-   <td><a href="NewBranch" target="_blank">states</a></td>
+   <td><a href="states" target="_blank">states</a></td>
     <td><a href="Editregion?id=${branch.zonesid}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="deleteRegion?id=${branch.zonesid}" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+    <td><a href="deleteRegion?id=${branch.zonesid}" title="Delete"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
   </tr>
   
   </c:forEach>
@@ -89,5 +89,6 @@
 <div class="row form-group">
 						<div class="col-sm-7">
 	</div>
+<script>
 
-
+</script>

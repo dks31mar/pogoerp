@@ -43,10 +43,10 @@
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
-		<span class="glyphicon glyphicon-user"></span> Branches Details</b>
+		<span class="glyphicon glyphicon-user"></span> States Details</b>
 		 <label
 			 style="margin-left: 250px;margin-top: 8px;"><a href="addstates"
-			class="btn btn-primary">Add Branches</a>
+			class="btn btn-primary">Add States</a>
 			<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
      </label>
   		
@@ -65,7 +65,7 @@
      <th>Branches</th>
    <!--   <th>Phone No</th>
     <th>Fax No</th>
-    <th>Head Name</th>
+    <th>Head Name</th>*/
     -->
     <th>Edit</th>
     <th>Delete</th>
@@ -74,14 +74,14 @@
   <tr id="str">
     <td>1</td>
    <td id="branch_name1"><a href="#">Bhopal</a></td>
-   <td>noida</td>
-  <!--  <td id="phone_no1" ></td>
+   <td><a href="NewBranch" target="_blank">Branches</a></td>
+  <!--   <td id="phone_no1" ></td>
    <td id="fax_no1" ></td>
     <td id="product_no1" '></td>
-    
+  
    <td><input type="button" id="edit_button1" value="Edit" class="edit" onclick="edit_row('1')">
    <input type="button" id="save_button1" value="Save" class="save" onclick="save_row('1')"></td>
-   -->
+     -->
     <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
     <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>
@@ -90,8 +90,8 @@
     <td>2</td>
     
     <td id="branch_name"><a href="#">Gwalear</a></td>
-     <td>Bangalore</td>
-    <!--  <td id="phone_no1" ></td>
+     <td>Branches</td>
+    <!--   <td id="phone_no1" ></td>
    <td id="fax_no1" ></td>
     <td id="product_no1" '></td>
     -->
@@ -103,8 +103,8 @@
   <tr>
     <td>3</td>
     <td id="branch_name"><a href="#">Delhi</a></td>
-    <td>pune</td>
-    <!--  <td id="phone_no1" ></td>
+    <td>Branches</td>
+    <!--   <td id="phone_no1" ></td>
    <td id="fax_no1" ></td>
     <td id="product_no1" '></td>
     -->
@@ -117,59 +117,9 @@
 </table>      
 </FORM>
 
- <script>
 
-	// by satyendra
-	$('#messagespan').hide();
-	$('#senddata').click(function(){
-		
-	var reginname =	$('#regionname').val();
-	var selecthead =	$('#selecthead').text();
-	var mobileno =	$('#mobileno').val();
-	var emailid =	$('#emailid').val();
-	   var fax    =	$('#fax').val();
-	   var regadress    =	$('#regadress').val();
-	   
-	   alert(selecthead);
-	   
-	   if(reginname==''||mobileno==''||emailid==''||fax==''||regadress==''||selecthead=='---Select Region---'){
-		   $('#messagespan').show('fast');
-		   
-	   }else{
-		   var jsonObj={
-					'zonesname':reginname,
-							'zonesaddress':regadress,
-								'zonesfax':fax,
-								'zonesphone':mobileno,
-								'zonesemail':emailid
-			} ;
-		
-		$.ajax({
-				url: "addzonedetails",
-				type: "POST",
-				
-				  data :JSON.stringify(jsonObj),
-				  cache:false,
-			        beforeSend: function(xhr) {  
-			            xhr.setRequestHeader("Accept", "application/json");  
-			            xhr.setRequestHeader("Content-Type", "application/json");  
-			        },
-				     success: function(resposeJsonObject){
-				    	 window.location.reload();
-			    }});
-			
-		   
-	   }
-	   
-	   
-		
-	  
-	}); 
-	
-function funcal(){
-	$('#messagespan').hide();
-}
-/*	
+ <script>
+ /*
  function edit_row(no)
  {
   document.getElementById("edit_button"+no).style.display="none";
@@ -211,6 +161,7 @@ function funcal(){
  {
   document.getElementById("row"+no+"").outerHTML="";
  }
+ */
 /*
  function add_row()
  {

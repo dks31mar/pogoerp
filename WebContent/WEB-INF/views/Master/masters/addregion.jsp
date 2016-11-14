@@ -52,13 +52,14 @@
     </div>
   </div>
   --%>
+  <span style="color: red;text-align: center;text-transform: uppercase;" id="messagespan">please fill blank or (*) fileds</span>
 <div class="form-group">
   <label class="col-md-2 control-label" >Region Name</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control"  type="hidden">
-  <input value="${zones.zonesname}" name="zonesname"  placeholder="Region Name" id="regionname"  class="form-control"  type="text">
+  <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control" required="required" type="hidden">
+  <input value="${zones.zonesname}" name="zonesname"  placeholder="Region Name" id="regionname" required="required"  class="form-control"  type="text" oninput="funcal();">
     </div>
   </div>
   
@@ -79,7 +80,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input value="${zones.zonesphone}"  class="form-control" placeholder="8285080678" type="text"  id="mobileno" required="required">
+  <input value="${zones.zonesphone}"  class="form-control" placeholder="8285080678" type="text" required="required" id="mobileno" required="required" oninput="funcal();">
     </div>
  
 </div>
@@ -87,7 +88,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control"  id="emailid" required="required" type="email">
+  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control"  id="emailid" required="required" type="email" oninput="funcal();">
     </div>
   </div>
 </div>
@@ -101,15 +102,15 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-        <input  value="${zones.zonesfax}"  placeholder="Fax Address" class="form-control"   id="fax" required="required" type="fax">
+        <input  value="${zones.zonesfax}"  placeholder="Fax Address" class="form-control"   id="fax" required="required" type="fax" oninput="funcal();">
    
   </div>
   </div>
-   <label class="col-md-2 control-label" style="margin-left: -62px;">Region Address<span style="color: red;">*</span></label>  
+   <label class="col-md-2 control-label" style="margin-left: -62px;">State Address<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input type="" name="address" value="${zones.zonesaddress}" placeholder="Address" required="required" id="regadress">
+  <input type="" name="address" value="${zones.zonesaddress}" placeholder="Address" required="required" id="regadress" oninput="funcal();">
     </div>
   </div>
 </div>
@@ -206,52 +207,57 @@
 		  }
 		
 		
+		// by satyendra
+		$('#messagespan').hide();
 		$('#senddata').click(function(){
 			
 		var reginname =	$('#regionname').val();
-		//var selecthead =	$('#selecthead').text();
+		var selecthead =	$('#selecthead').text();
 		var mobileno =	$('#mobileno').val();
 		var emailid =	$('#emailid').val();
 		   var fax    =	$('#fax').val();
 		   var regadress    =	$('#regadress').val();
-
 		   
-		   var mobileval = new RegExp("/[0-9]{10}/");
+		   alert(selecthead);
 		   
-		   
-		   
-		   
-		   if(mobileval.test(mobileno)){
-			   alert("cannot be blank")
+		   if(reginname==''||mobileno==''||emailid==''||fax==''||regadress==''||selecthead=='---Select Region---'){
+			   $('#messagespan').show('fast');
 			   
 		   }else{
-		   
-			var jsonObj={
-					'zonesname':reginname,
-							'zonesaddress':regadress,
-								'zonesfax':fax,
-								'zonesphone':mobileno,
-								'zonesemail':emailid
-			} ;
-		
-		
+			   var jsonObj={
+						'zonesname':reginname,
+								'zonesaddress':regadress,
+									'zonesfax':fax,
+									'zonesphone':mobileno,
+									'zonesemail':emailid
+				} ;
 			
 			$.ajax({
-				url: "addzonedetails",
-				type: "POST",
+					url: "addzonedetails",
+					type: "POST",
+					
+					  data :JSON.stringify(jsonObj),
+					  cache:false,
+				        beforeSend: function(xhr) {  
+				            xhr.setRequestHeader("Accept", "application/json");  
+				            xhr.setRequestHeader("Content-Type", "application/json");  
+				        },
+					     success: function(resposeJsonObject){
+					    	 window.location.reload();
+				    }});
 				
-				  data :JSON.stringify(jsonObj),
-				  cache:false,
-			        beforeSend: function(xhr) {  
-			            xhr.setRequestHeader("Accept", "application/json");  
-			            xhr.setRequestHeader("Content-Type", "application/json");  
-			        },
-				     success: function(resposeJsonObject){
-				    	 alert("save")
-			    }});
-			
+			   
 		   }
-		});
+		   
+		   
+			
+		  
+		}); 
+		
+	function funcal(){
+		$('#messagespan').hide();
+	}
+		
 		
 </script>
 

@@ -3,6 +3,7 @@ package com.pogo.dao;
 import java.util.List;
 
 import com.pogo.model.CompanyProfile;
+import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
@@ -23,6 +24,7 @@ public interface MasterOrganizationDao {
 	Zones deleteRegion(int id);
 
 	void deleteRegion(Zones zones);
+	
 	
 	
 
@@ -69,6 +71,12 @@ public interface MasterOrganizationDao {
 	Designation getDesgById(int id);
 
 	void deleteDesignation(Designation deg);
+
+void saveDataCompetitiors(CompetitiorsProfile compti);
+
+void updateCompetitior(CompetitiorsProfile comprof);
+
+	
 
 }
 

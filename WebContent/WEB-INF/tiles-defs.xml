@@ -84,10 +84,32 @@
 			<definition name="editregion" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/editregion.jsp" />
 			</definition>
-			 <definition name="addregion" extends="baseLayout" >
+			 <definition name="addregion" extends="baseLayout">
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addregion.jsp" />
 			</definition>
-
+			 <definition name="addstates" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addstates.jsp" />
+			</definition>
+			 <definition name="addbranches" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addbranches.jsp" />
+			</definition>
+          <definition name="states" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/states.jsp" />
+			</definition>
+			<definition name="competitiorsProfile" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/Competitiors.jsp" />
+			</definition>
+			
+			<definition name="feature" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/feature.jsp" />
+			</definition>
+			<definition name="feature" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/feature.jsp" />
+			</definition>
+			<definition name="competitior" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/updateCompetitiors.jsp" />
+			</definition>
+			
             		<!-- ************************************************** use by satyendra *************************************************** -->
 			<!-- <definition name="AddPrinicpalPO" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/test.jsp" />

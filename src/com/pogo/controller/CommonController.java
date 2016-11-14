@@ -36,7 +36,7 @@ public class CommonController {
 	return new ModelAndView("AddPrinicpalPO");
 			
 }
-	//create by saty
+
 	@RequestMapping(value="/appuser",method = RequestMethod.GET)
 	public ModelAndView getUser(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
@@ -90,6 +90,13 @@ public class CommonController {
 	
 	return new ModelAndView("newbranch");
 }
+	@RequestMapping(value="/states",method = RequestMethod.GET)
+	public ModelAndView getStates(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+	
+		//commonservice.getPoRefNo(request);
+	
+	return new ModelAndView("states");
+	}
 	@RequestMapping(value="/eastBranch",method = RequestMethod.GET)
 	public ModelAndView getEastBranch(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	

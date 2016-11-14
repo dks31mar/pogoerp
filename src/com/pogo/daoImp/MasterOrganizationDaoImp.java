@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.CompanyProfile;
+import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
@@ -221,4 +222,21 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		sessionFactory.getCurrentSession().delete(zones);
 		
 	}
+
+	public void saveDataCompetitiors(CompetitiorsProfile compti) {
+		sessionFactory.getCurrentSession().flush();
+		sessionFactory.getCurrentSession().save(compti);
+		sessionFactory.getCurrentSession().flush();
+	}
+
+	@Override
+	public void updateCompetitior(CompetitiorsProfile comprof) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+
 }

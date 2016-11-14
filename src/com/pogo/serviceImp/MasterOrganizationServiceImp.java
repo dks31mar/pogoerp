@@ -10,15 +10,19 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ibm.icu.text.SimpleDateFormat;
+import com.pogo.bean.CompetitiorsProfileBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
+
 import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.CompanyProfile;
+import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 import com.pogo.service.MasterOrganizationService;
+import com.sun.corba.se.impl.ior.GenericTaggedComponent;
 
 @Service("regionService")
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -31,6 +35,9 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	@Autowired
 	private MasterOrganizationDao userEmpdao;
 
+	
+	
+	/********************* created by satyendra  *************************************/
 	@Override
 	public List<Zones> getBranches() {
 		List<Zones> getbranch =regionDao.getBranches();
@@ -102,9 +109,35 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	public void deleteRegion(int id) {
 		Zones zones =regionDao.deleteRegion(id);
 		//System.out.println("on service"+zones.getZonesaddress());
+		System.out.println("are u sure delete the record");
 		regionDao.deleteRegion(zones);
 		
 	}
+
+	@Override
+	@Transactional
+	public void saveDataCompetitiors(CompetitiorsProfileBean poref) {
+		CompetitiorsProfile compti=new CompetitiorsProfile();
+		
+		compti.setCompname(poref.getCompname());
+		compti.setCompaddress(poref.getCompaddress());
+		compti.setCompphone(poref.getCompphone());
+		compti.setCompfax(poref.getCompfax());
+		compti.setCompemail1(poref.getCompemail1());
+		compti.setCompcontactperson(poref.getCompcontactperson());
+		compti.setCompcontactdesig(poref.getCompcontactdesig());
+		compti.setCompemail2(poref.getCompemail2());
+		compti.setCompphone2(poref.getCompphone2());
+		regionDao.saveDataCompetitiors(compti);
+		
+	}
+		
+	
+	
+
+
+
+	/*************************************end satyendra's method *****************************/
 	public void addCompany(CompanyProfile company) {
 		companyProfiledao.addCompany(company);
 		
@@ -366,6 +399,23 @@ public void deleteDesignation(int id) {
 	Designation deg = userEmpdao.getDesgById(id);
 	userEmpdao.deleteDesignation(deg);
 	
+}
+
+
+@Override
+public void updateCompetitior() {
+	// TODO Auto-generated method stub
+	CompetitiorsProfile comprof=new CompetitiorsProfile();
+	comprof.setCompname(CompetitiorsProfileBean.getCompname());
+	comprof.setCompaddress(CompetitiorsProfileBean.getCompaddress());
+	comprof.setCompphone(CompetitiorsProfileBean.getCompphone());
+	comprof.setCompfax(CompetitiorsProfileBean.getCompfax());
+	comprof.setCompemail1(CompetitiorsProfileBean.getCompemail1());
+	comprof.setCompcontactperson(CompetitiorsProfileBean.getCompcontactperson());
+	comprof.setCompcontactdesig(CompetitiorsProfileBean.getCompcontactdesig());
+	comprof.setCompemail2(CompetitiorsProfileBean.getCompemail2());
+	comprof.setCompphone2(CompetitiorsProfileBean.getCompphone2());
+	regionDao.updateCompetitior(comprof);
 }
 
 }
