@@ -16,6 +16,12 @@
 <script src="resources/js/jquery.dialogBox.js" type="text/javascript"></script>
 <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
     rel="stylesheet" type="text/css" />
+    
+    
+    <script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.css"/>
 <div class="row">
 
 	<div class="page-heading col-sm-11"
@@ -77,7 +83,7 @@
 						<td><a href="#" onclick="editCur(${unit.unittypeid})" title="Edit" align="center" >
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
-						<td style="margin"><a href="deleteunit?id=${unit.unittypeid}"><span
+						<td style="margin"><a href="#" onclick="deletedata(${unit.unittypeid})"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
 					</tr>
 
@@ -170,7 +176,41 @@ $.ajax({
     }});
 } 
 
-
+function deletedata(id){
+	
+	
+	
+	swal({
+		  title: 'Are you sure?',
+		  text: "You won't be able to revert this!",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Yes, delete it!'
+		}).then(function () {
+			$.ajax({
+				url: "deleteunit?id="+id,
+				type: "GET",
+				
+				     success: function(respose){
+				    	 swal(
+				    			    'Deleted!',
+				    			    'Your record has been deleted.',
+				    			    'success'
+				    			  )
+				    			  
+				    	
+				    	 
+			    }});
+			
+			
+		})
+	
+	
+	
+	
+}
 
 
 

@@ -4,8 +4,7 @@
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/displaytag.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/displaytag.css" />
 <link rel="stylesheet" type="text/css"
 	href="resources/css/messagebox.css" />
 <link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
@@ -284,6 +283,8 @@ System.out.println();
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
 <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+<script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.js"></script>
 <script>
 
 
