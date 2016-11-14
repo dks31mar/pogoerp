@@ -14,6 +14,7 @@ import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
+import com.pogo.model.SmsAllocation;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 @Repository("regionDao")
@@ -223,6 +224,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		
 	}
 
+
 	public void saveDataCompetitiors(CompetitiorsProfile compti) {
 		sessionFactory.getCurrentSession().flush();
 		sessionFactory.getCurrentSession().save(compti);
@@ -238,5 +240,24 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 	
 
 	
+
+
+	@Override
+	public void permitForSms(SmsAllocation sms) {
+		System.out.println(sms.getEmpid());
+		sessionFactory.getCurrentSession().save(sms);
+		
+	}
+
+	@Override
+	public void denyForSms(SmsAllocation sms) {
+		sessionFactory.getCurrentSession().delete(sms);
+	}
+
+	@Override
+	public List<SmsAllocation> getPermitSmsUser() {
+		
+		return sessionFactory.getCurrentSession().createCriteria(SmsAllocation.class).list();
+	}
 
 }

@@ -31,37 +31,50 @@
 <div class="container">
 
     <form:form class="well form-horizontal" name="forp" action="saveuserEmp" method="POST"  commandName="userbean"
-    id="" >
+    id="validate-form" >
    
 <fieldset>
 
 <!-- Form Name -->
-<legend>Add Product</legend>
+<legend>Add Item</legend>
   <div class="form-group">
-  <label class="col-md-2 control-label">Product Id</label>  
+  <label class="col-md-2 control-label">Id</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="" id="productid"   readonly="readonly"  class="form-control"  type="text">
+  <input   name="" id="productid"   readonly="readonly"  class="form-control"  type="text" required="required">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="">Product Code<span style="color: red;">*</span></label>
+  <label class="col-md-2 control-label" style="">Code<span style="color: red;">*</span></label>
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="empCode"  placeholder="Enter Product Code" required="required"  class="form-control"  type="text" id="productcode">
-    </div>
+  <input   name="productcode"  placeholder="Enter Product Code" required="required"  class="form-control"  type="text" id="productcode">
+  <div id="msg1" align="center"><span style="color: red">*Input Needed</span></div>
+  </div>
   </div>
 </div>
  <div class="form-group">
-  <label class="col-md-2 control-label">Product Name<span style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label">Name<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input   name="loginname" placeholder="Product Name" required="required"  class="form-control"  type="text" id="productname">
+   <div id="msg2" align="center"><span style="color: red">*Input Needed</span></div>
     </div>
   </div>
-  <label class="col-md-2 control-label" style="">Product Type<span style="color: red;">*</span></label> 
+   <label class="col-md-2 control-label" style="">Description<span style="color: red;">*</span></label>  
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+  		<textarea class="form-control" name="address"  placeholder="Product Description" required="required" id="description"></textarea>
+    <div id="msg3" align="center"><span style="color: red">*Input Needed</span></div>
+    </div>
+  </div>
+  
+</div>
+<div class="form-group">
+<label class="col-md-2 control-label" style="">Type<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -75,9 +88,7 @@
   </select>
     </div>
   </div>
-</div>
-<div class="form-group">
-  <label class="col-md-2 control-label" style="">Product Sub Type<span style="color: red;">*</span></label> 
+  <label class="col-md-2 control-label" style="">Sub Type<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -91,26 +102,33 @@
   </select>
     </div>
   </div>
-  <label class="col-md-2 control-label" style="">Cost Price</label>  
-  <div class="col-md-3 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="designation" placeholder="Cost Price"   class="form-control"  type="text" id="costprice">
-    </div>
-  </div>
+  
 </div>
 
 <!-- Text input-->
 
 <div class="form-group">
-  <label class="col-md-2 control-label" >Selling Price</label> 
+
+<label class="col-md-2 control-label" style="">Input Cost<span style="color: red;">*</span></label></label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input   name="designation" placeholder="Cost Price"   class="form-control"  type="text" id="costprice">
+   <div id="msg4" align="center"><span style="color: red">*Input Needed</span></div>
+    </div>
+  </div>
+  <label class="col-md-2 control-label" >Price To Sale<span style="color: red;">*</span></label></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input name="middlename" id="sellingprice"  placeholder="Selling Price" id="firstUppermiddle" onkeyup="javascript:capitalizemiddle(this.id, this.value);" class="form-control"  type="text">
+   <div id="msg5" align="center"><span style="color: red">*Input Needed</span></div>
     </div>
   </div>
-  <label class="col-md-2 control-label" style="">Serviceable<span style="color: red;">*</span></label> 
+  
+</div>
+<div class="form-group">
+<label class="col-md-2 control-label" style="">Repairable<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -121,16 +139,19 @@
   </select>
     </div>
   </div>
-</div>
-<div class="form-group">
-  <label class="col-md-2 control-label" >Product Colour</label> 
+  <label class="col-md-2 control-label" >Colour<span style="color: red;">*</span></label></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input name="lastname" id="productcolor"  placeholder="Product Colour" id="firstlastupper" onkeyup="javascript:capitalizelast(this.id, this.value);" class="form-control"  type="text">
+   <div id="msg6" align="center"><span style="color: red">*Input Needed</span></div>
     </div>
   </div>
-  <label class="col-md-2 control-label" style="">Is Active<span style="color: red;">*</span></label> 
+  
+  
+</div>
+<div class="form-group"> 
+<label class="col-md-2 control-label" style="">Active<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -141,15 +162,12 @@
   </select>
     </div>
   </div>
-  
-</div>
-<div class="form-group"> 
-  <label class="col-md-2 control-label">Currency Type</label>
+  <label class="col-md-2 control-label">Currency<span style="color: red;">*</span></label></label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
     <select name="division" class="form-control selectpicker" required="required" id="currencytype">
-   <option>---Select Division---</option> 
+   <option>---Select---</option> 
    <c:if test="${!empty currencylist}">
 	<c:forEach items="${currencylist}" var="curen" varStatus="loop">
       <option value="${curen.currencyid}">${curen.currencyname}</option>
@@ -159,12 +177,15 @@
     </select>
   </div>
 </div>
-  <label class="col-md-2 control-label">Unit Type</label>
+  
+</div>
+<div class="form-group">
+<label class="col-md-2 control-label">Unit<span style="color: red;">*</span></label></label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
     <select name="division" class="form-control selectpicker" required="required" id="unittype">
-   <option>---Select Division---</option> 
+   <option>---Select---</option> 
    
    <c:if test="${!empty unitlist}">
 	<c:forEach items="${unitlist}" var="unit" varStatus="loop">
@@ -174,23 +195,15 @@
      </c:if>
     </select>
   </div>
-</div>
-</div>
-<div class="form-group"> 
-   <label class="col-md-2 control-label" style="">Per Piece Rate <span style="color: red;">*</span></label>  
+</div> 
+   <!-- <label class="col-md-2 control-label" style="">Per Piece Rate <span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
   <input name="password"   class="form-control" id="perpiecerate" placeholder="unit price" required="required" type="text">
     </div>
-  </div>
- <label class="col-md-2 control-label" style="">description<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  		<textarea class="form-control" name="address"  placeholder="Product Description" required="required" id="description"></textarea>
-    </div>
-  </div>
+  </div> -->
+
 </div>
 
 
@@ -199,7 +212,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
-    <button type="button" id="savecurrencyForm" class="btn btn-warning" onclick="message();" >Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="button" id="savecurrencyForm" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>
@@ -208,25 +221,30 @@
 </form:form>
 </div>
 </div>
-
+<link href="resources/css/prettify.css" rel="stylesheet" type="text/css" />
+<script src="resources/js/jquery.jrumble.1.3.min.js"></script>
+<script src="resources/js/jquery.jrumble.1.3.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
  <script type="text/javascript">
 
-		function message() {
-			$('#message').dialogBox({
-				type : 'correct', //three type:'normal'(default),'correct','error',
-				width : 250,
-				height : 150,
-				hasMask : true,
-				hasClose : true,
-				autoHide : false,
-				time : '6000',
-				effect : 'fall',
-				title : 'Record',
-				content : 'Data Saved Successfully!!!'
-			});
-
-		}
-		
+ 
+ $('#productcode,#description,#productcolor,#sellingprice,#productname,#costprice').click(function (){
+	 $('#msg1').hide();
+	 $('#msg2').hide();
+	 $('#msg3').hide();
+	 $('#msg4').hide();
+	 $('#msg5').hide();
+	 $('#msg6').hide();
+	
+ });
+ 
+ $('#msg1').hide();
+ $('#msg2').hide();
+ $('#msg3').hide();
+ $('#msg4').hide();
+ $('#msg5').hide();
+ $('#msg6').hide();
+ 
 		$('#savecurrencyForm').click(function (){
 			var productid=$('#productid').val();
 			var productcode =$('#productcode').val();
@@ -248,41 +266,65 @@
 			var  unittype=$('#unittype :selected').val();
 			var  perpiecerate=$('#perpiecerate').val();
 			var description =$('#description').val();
-			var jsonObj={
-							'productid': productid, 
-							'productheadid': producttype,
-							'productsabheadid': productsubtype,
-							'productname': productname, 
-							'unitprice': perpiecerate, 
-							'producttypeid': '', 
-							'unittypeid': unittype, 
-							'currencyid': currencytype, 
-							'costprice': costprice, 
-							'productcode': productcode, 
-							'description': description, 
-							'serviceable': serviceable, 
-							'productcategory': '', 
-							'isactive': isactive,
-							'sellingprice': sellingprice,
-							'color':productcolor 
-							}; 
 			
-						 $.ajax({
-								url: "saveproductdet",
-								type: "POST",
+			if(productcode==''){
+				$('#msg1').show('fast');
 				
-								  data :JSON.stringify(jsonObj),
-								  cache:false,
-							        beforeSend: function(xhr) {  
-							            xhr.setRequestHeader("Accept", "application/json");  
-							            xhr.setRequestHeader("Content-Type", "application/json");  
-							        },
-								     success: function(resposeJsonObject){
-								    	 $('#openModal').hide();
-								    	 //window.location.currency;
-								    	 window.location.reload();
-							     
-							    }});
+			}else if(productname==''){
+				$('#msg2').show('fast');
+				
+			}else if(description==''){
+				$('#msg3').show('fast');
+				
+			}else if(costprice==''){
+				$('#msg4').show('fast');
+				
+			}else if(sellingprice==''){
+				$('#msg5').show('fast');
+				
+			}else if(productcolor==''){
+				$('#msg6').show('fast');
+				
+			}else {
+				var jsonObj={
+						'productid': productid, 
+						'productheadid': producttype,
+						'productsabheadid': productsubtype,
+						'productname': productname, 
+						'unitprice': perpiecerate, 
+						'producttypeid': '', 
+						'unittypeid': unittype, 
+						'currencyid': currencytype, 
+						'costprice': costprice, 
+						'productcode': productcode, 
+						'description': description, 
+						'serviceable': serviceable, 
+						'productcategory': '', 
+						'isactive': isactive,
+						'sellingprice': sellingprice,
+						'color':productcolor 
+						}; 
+		
+					 $.ajax({
+							url: "saveproductdet",
+							type: "POST",
+			
+							  data :JSON.stringify(jsonObj),
+							  cache:false,
+						        beforeSend: function(xhr) {  
+						            xhr.setRequestHeader("Accept", "application/json");  
+						            xhr.setRequestHeader("Content-Type", "application/json");  
+						        },
+							     success: function(resposeJsonObject){
+							    	 $('#openModal').hide();
+							    	 //window.location.currency;
+							    	 window.location.reload();
+						     
+						    }});
+			}
+			
 						});	
+
+			
 </script>
 

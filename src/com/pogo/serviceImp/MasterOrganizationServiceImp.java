@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.CompetitiorsProfileBean;
 import com.pogo.bean.DesignationBean;
+import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
 
@@ -19,6 +20,7 @@ import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
+import com.pogo.model.SmsAllocation;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 import com.pogo.service.MasterOrganizationService;
@@ -202,7 +204,9 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			UserEmployeeBean data=new UserEmployeeBean();
 			data.setUserempid(list.getUserempid());
 			data.setLoginname(list.getLoginname());
-			//data.setFirstname(list.getFirstname() + list.getLastname() );
+			data.setFirstname(list.getFirstname());
+			data.setMiddlename(list.getMiddlename());
+			data.setLastname(list.getLastname());
 			data.setDesignation(list.getDesignation());
 			lists.add(data);
 		}
@@ -211,6 +215,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	}
 
 	@Override
+	@Transactional
 	public void deleteuserEmp(int id) {
 		//System.out.println("before getting id \n"+id);
 		UserEmployee user = userEmpdao.getUserById(id);
@@ -403,6 +408,7 @@ public void deleteDesignation(int id) {
 
 
 @Override
+
 public void updateCompetitior() {
 	// TODO Auto-generated method stub
 	CompetitiorsProfile comprof=new CompetitiorsProfile();
@@ -417,5 +423,46 @@ public void updateCompetitior() {
 	comprof.setCompphone2(CompetitiorsProfileBean.getCompphone2());
 	regionDao.updateCompetitior(comprof);
 }
+
+@Transactional
+public void permitForSms(SmsAllocationBean smsbean) {
+	SmsAllocation sms=new SmsAllocation();
+	sms.setEmpid(smsbean.getEmpid());
+	sms.setIsunlimited("Y");
+	userEmpdao.permitForSms(sms);
+	
+}
+
+
+@Override
+@Transactional
+public void denyForSms(SmsAllocationBean smsbean) {
+	SmsAllocation sms=new SmsAllocation();
+	sms.setEmpid(smsbean.getEmpid());
+	 
+	userEmpdao.denyForSms(sms);
+	
+}
+
+
+@Override
+@Transactional
+public List<SmsAllocationBean> getPermitSmsUser() {
+	
+	List<SmsAllocation> getlist=userEmpdao.getPermitSmsUser();
+	
+	List<SmsAllocationBean> list=new ArrayList<>();
+	for(SmsAllocation s:getlist){
+		SmsAllocationBean bean=new SmsAllocationBean();
+		System.out.println(s.getEmpid());
+		bean.setEmpid(s.getEmpid());
+		list.add(bean);
+	}
+	return list;
+}
+
+
+
+
 
 }

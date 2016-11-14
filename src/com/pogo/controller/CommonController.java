@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pogo.bean.CompanyProfileBean;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.model.PorefSupplierDetail;
@@ -159,7 +158,7 @@ public class CommonController {
 		model.put("viewlist",  prepareViewListofBean(commonservice.viewList()));
 	return new ModelAndView("viewpo",model);
 	}
-	@SuppressWarnings("unused")
+	
 	private List<PorefSupplierDetailBean> prepareViewListofBean(List<PorefSupplierDetail> prodel){
 		List<PorefSupplierDetailBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){

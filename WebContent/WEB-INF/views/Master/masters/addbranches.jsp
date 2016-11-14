@@ -169,7 +169,7 @@
 			return true;  
 			}  
 			else{  
-			alert("RePassword must be Same!!!");
+			//alert("RePassword must be Same!!!");
 			document.getElementById("ConfirmPassword").value="";
 			document.getElementById("ConfirmPassword").focus();
 			return false;  
@@ -222,7 +222,7 @@
 		   
 		   
 		   if(mobileval.test(mobileno)){
-			   alert("cannot be blank")
+			  // alert("cannot be blank")
 			   
 		   }else{
 		   
@@ -247,7 +247,7 @@
 			            xhr.setRequestHeader("Content-Type", "application/json");  
 			        },
 				     success: function(resposeJsonObject){
-				    	 alert("save")
+				    	 //alert("save")
 			    }});
 			
 		   }

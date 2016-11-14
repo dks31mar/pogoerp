@@ -23,20 +23,30 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CountryBean;
+import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
+import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
+
+import com.pogo.bean.ModeOfDispatchBean;
+
+import com.pogo.bean.ServiceProviderBean;
+
 import com.pogo.bean.StateBean;
+import com.pogo.bean.TeamSegmentBean;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
 import com.pogo.service.MasterMastersService;
-
+@SuppressWarnings("unused")
 @Controller
 public class MasterMasterController {
 	@Autowired
@@ -140,7 +150,7 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside country list ****************************");
 	return new ModelAndView("getcountry",model);
 	}
-	@SuppressWarnings("unused")
+	
 	private List<CountryBean> prepareCountryListofBean(List<Country> prodel){
 		List<CountryBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -212,14 +222,20 @@ public class MasterMasterController {
 		
 	}
 	@RequestMapping(value="/state",method = RequestMethod.GET)
-	public ModelAndView getState( @ModelAttribute("command") CountryBean country,HttpServletRequest request,BindingResult result ){
+	public ModelAndView getState(@RequestParam("countryId") String cuntryid, @ModelAttribute("command") CountryBean country,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside state  method");
+		List<StateBean> statelistbycountryid=new ArrayList<>();
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("stateList",  prepareStateListofBean(masterMastersService.stateList()));
+		
+		statelistbycountryid=	masterMastersService.stateListbycountryid(cuntryid);
+	
+		//masterMastersService.stateList();
+		model.put("stateList",statelistbycountryid);
+		model.put("state123",cuntryid);
 		System.out.println("***************************************** inside state list ****************************");
 	return new ModelAndView("getstate",model);
 	}
-	@SuppressWarnings("unused")
+
 	private List<StateBean> prepareStateListofBean(List<State> prodel){
 		List<StateBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -227,7 +243,7 @@ public class MasterMasterController {
 			StateBean bean = null;
 			for(State pro : prodel){
 				bean = new StateBean();
-				//System.out.println(bean);
+				
 				bean.setStateId(pro.getStateId());
 				bean.setState(pro.getState());
 				
@@ -244,7 +260,7 @@ public class MasterMasterController {
 		StateBean poref=mapper.readValue(json, StateBean.class);
 		StateBean poref1=new StateBean();
 		poref1.setState(poref.getState());
-		masterMastersService.addState(poref1);
+		masterMastersService.addState(poref);
 	}
 	
 	@RequestMapping(value = "deletestate", method = RequestMethod.GET)
@@ -290,14 +306,18 @@ public class MasterMasterController {
 		
 	}
 	@RequestMapping(value="/district",method = RequestMethod.GET)
-	public ModelAndView getDistrict( @ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result ){
+	public ModelAndView getDistrict( @RequestParam("stateId") String stateid,@ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside district  method");
+		List<DistrictBean> districtlistbystateid=new ArrayList<>();
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("districtList",  prepareDistrictListofBean(masterMastersService.districtList()));
+		districtlistbystateid=	masterMastersService.districtListbystateid(stateid);
+		model.put("districtList",districtlistbystateid);
+		model.put("district123",stateid);
+		//model.put("districtList",  prepareDistrictListofBean(masterMastersService.districtList()));
 		System.out.println("***************************************** inside district list ****************************");
 	return new ModelAndView("getdistrict",model);
 	}
-	@SuppressWarnings("unused")
+	
 	private List<DistrictBean> prepareDistrictListofBean(List<District> prodel){
 		List<DistrictBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -375,7 +395,7 @@ public class MasterMasterController {
 	return new ModelAndView("getlocation",model);
 	}
 	
-	@SuppressWarnings("unused")
+	
 	private List<LocationBean> prepareLocationListofBean(List<Location> prodel){
 		List<LocationBean> beans = null;
 		if(prodel != null && !prodel.isEmpty()){
@@ -449,10 +469,362 @@ public class MasterMasterController {
 	@RequestMapping(value="/expensemaster",method = RequestMethod.GET)
 	public ModelAndView getexpensemaster( @ModelAttribute("command") ExpenseMasterBean expense,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside expense master  method");
-		//Map<String, Object> model = new HashMap<String, Object>();
-		//model.put("countryList",  prepareCountryListofBean(masterMastersService.countryList()));
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("expenseheadList",  prepareExpenseListofBean(masterMastersService.expenseheadList()));
 		System.out.println("***************************************** inside country list ****************************");
-	return new ModelAndView("getexpensemaster");
+	return new ModelAndView("getexpensemaster",model);
+	}
+	
+	private List<ExpenseMasterBean> prepareExpenseListofBean(List<ExpenseMaster> prodel){
+		List<ExpenseMasterBean> beans = null;
+		if(prodel != null && !prodel.isEmpty()){
+			beans = new ArrayList<ExpenseMasterBean>();
+			ExpenseMasterBean bean = null;
+			for(ExpenseMaster pro : prodel){
+				bean = new ExpenseMasterBean();
+				//System.out.println(bean);
+				bean.setExpensemasterId(pro.getExpensemasterId());
+				bean.setExpensehead(pro.getExpensehead());
+				bean.setExpensetype(pro.getExpensetype());
+				bean.setExlimit(pro.getExlimit());
+				bean.setUnit(pro.getUnit());
+				
+				beans.add(bean);
+			}
+		}
+		return beans;
+	}
+	@RequestMapping(value="addexpensehead",method=RequestMethod.POST)
+	@ResponseBody
+	public void addExpensehead(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add expensehead method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ExpenseMasterBean poref=mapper.readValue(json, ExpenseMasterBean.class);
+		ExpenseMasterBean poref1=new ExpenseMasterBean();
+		poref1.setExpensehead(poref.getExpensehead());
+		poref1.setExpensetype(poref.getExpensetype());
+		poref1.setExlimit(poref.getExlimit());
+		poref1.setUnit(poref.getUnit());
+		masterMastersService.addExpensehead(poref1);
+	}
+	
+	@RequestMapping(value = "deleteexpenseheader", method = RequestMethod.GET)
+	public ModelAndView deleteexpenseheader(@RequestParam("expensemasterId") Integer id) {
+		masterMastersService.deleteExpenceserheader(id);
+		Map<String, Object> model= new HashMap<String,Object>();
+		List<ExpenseMasterBean> list=new ArrayList<ExpenseMasterBean>();
+		model.put("expenseheadList",  prepareExpenseListofBean(masterMastersService.expenseheadList()));
+		return new ModelAndView("getexpensemaster",model);
+		
+		
+	}
+	
+	
+	@RequestMapping(value = "getexpenseheader", method = RequestMethod.POST)
+	public void getExpenseHeader(@RequestParam("expensemasterId") String id,HttpServletResponse res )throws ParseException  {
+		String cuList=masterMastersService.getExpenceheaderById(id);
+		System.out.println("inside get expenseheader method");
+		
+		System.out.println(cuList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("outside get expenseheader method");
+	}
+	
+
+	@RequestMapping(value="editexpenseheader",method=RequestMethod.POST)
+	@ResponseBody
+	public void editExpenseHeader(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit expenseheader method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ExpenseMasterBean poref=mapper.readValue(json, ExpenseMasterBean.class);
+		ExpenseMasterBean poref1=new ExpenseMasterBean();
+		poref1.setExpensemasterId(poref.getExpensemasterId());
+		poref1.setExpensehead(poref.getExpensehead());
+		poref1.setExpensetype(poref.getExpensetype());
+		poref1.setExlimit(poref.getExlimit());
+		poref1.setUnit(poref.getUnit());
+		
+		masterMastersService.editExpenseHeader(poref1);
+		
+	}
+
+	
+	
+	@RequestMapping(value="/modeofdispatch",method = RequestMethod.GET)
+	public ModelAndView getTransportationMode( @ModelAttribute("command") ExpenseMasterBean expense,HttpServletRequest request){
+		System.out.println("inside mode of dispatch method");
+		List<ModeOfDispatchBean> list = new ArrayList<ModeOfDispatchBean>();
+		list = masterMastersService.getModeOfDispatchList();
+		Map<String , Object> model = new HashMap<String,Object>();
+		model.put("modeofdispatchlist", list);
+		//System.out.println("***************************************** inside country list ****************************");
+	return new ModelAndView("getmodeofdispatch",model);
+	}
+	@RequestMapping(value="addmodeofdispatch",method=RequestMethod.POST)
+	@ResponseBody
+	public void addModeOfDispatch(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add  method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ModeOfDispatchBean poref=mapper.readValue(json, ModeOfDispatchBean.class);
+		ModeOfDispatchBean poref1=new ModeOfDispatchBean();
+		poref1.setModeofdispatch(poref.getModeofdispatch());
+		
+		masterMastersService.addModeOfDispatch(poref1);
+	}
+	@RequestMapping(value = "deletemodeofdispatch", method = RequestMethod.GET)
+	public ModelAndView deleteModeOfDispatch(@RequestParam("modeofdispatchId") int id) {
+		masterMastersService.deleteModeOfDispatch(id);
+		List<ModeOfDispatchBean> list=new ArrayList<ModeOfDispatchBean>();
+		list=masterMastersService.getModeOfDispatchList();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("modeofdispatchlist", list);
+		
+			
+		
+		return new ModelAndView("getmodeofdispatch",model);
+	}
+	
+	@RequestMapping(value = "getmodeofdispatchbyid", method = RequestMethod.POST)
+	public void getModeOfDispatchbyId(@RequestParam("modeofdispatchId") String id,HttpServletResponse res )throws ParseException  {
+		String cuList=masterMastersService.getModeOfDispatchbyId(id);
+		System.out.println("inside get modeofdispatch method");
+		
+		System.out.println(cuList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("outside get modeofdispatch method");
+	}
+	
+	@RequestMapping(value="editmodeofdispatch",method=RequestMethod.POST)
+	@ResponseBody
+	public void editModeOfDispatch(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit mode of dispatch method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ModeOfDispatchBean poref=mapper.readValue(json, ModeOfDispatchBean.class);
+		ModeOfDispatchBean poref1=new ModeOfDispatchBean();
+		poref1.setModeofdispatchId(poref.getModeofdispatchId());
+		poref1.setModeofdispatch(poref.getModeofdispatch());
+		
+		
+		masterMastersService.editModeOfDispatch(poref1);
+		
+	}
+	@RequestMapping(value="/teamsegment",method = RequestMethod.GET)
+	public ModelAndView getTeamSegment( @ModelAttribute("command") ExpenseMasterBean expense,HttpServletRequest request){
+		System.out.println("inside team segment method");
+		List<TeamSegmentBean> list = new ArrayList<TeamSegmentBean>();
+		list = masterMastersService.getTeamSegmentList();
+		Map<String , Object> model = new HashMap<String,Object>();
+		model.put("teamsegmentlist", list);
+		//System.out.println("***************************************** inside country list ****************************");
+	return new ModelAndView("getteamsegment",model);
+	}
+	@RequestMapping(value="addteam",method=RequestMethod.POST)
+	@ResponseBody
+	public void addTeam(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add  method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		TeamSegmentBean poref=mapper.readValue(json, TeamSegmentBean.class);
+		TeamSegmentBean poref1=new TeamSegmentBean();
+		poref1.setTeam(poref.getTeam());
+		
+		masterMastersService.addteam(poref1);
+	}
+	
+	@RequestMapping(value = "deleteteam", method = RequestMethod.GET)
+	public ModelAndView deleteteam(@RequestParam("teamid") int id) {
+		masterMastersService.deleteteam(id);
+		List<TeamSegmentBean> list=new ArrayList<TeamSegmentBean>();
+		list=masterMastersService.getTeamSegmentList();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("teamsegmentlist", list);
+		
+			
+		
+		return new ModelAndView("getteamsegment",model);
+	}
+	@RequestMapping(value = "getteambyid", method = RequestMethod.POST)
+	public void getTeamById(@RequestParam("teamid") String id,HttpServletResponse res )throws ParseException  {
+		String cuList=masterMastersService.getTeambyId(id);
+		System.out.println("inside get team method");
+		
+		System.out.println(cuList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		System.out.println("outside get team method");
+	}
+	@RequestMapping(value="editteam",method=RequestMethod.POST)
+	@ResponseBody
+	public void editTeam(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit team method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		TeamSegmentBean poref=mapper.readValue(json, TeamSegmentBean.class);
+		TeamSegmentBean poref1=new TeamSegmentBean();
+		poref1.setTeamid(poref.getTeamid());
+		poref1.setTeam(poref.getTeam());
+		
+		
+		masterMastersService.editTeam(poref1);
+		
+	}
+	@RequestMapping(value="/CustomerSources",method = RequestMethod.GET)
+	public ModelAndView getCustomerSources( @ModelAttribute("command")  CustomerSourceBean customer,HttpServletRequest request,BindingResult result ){
+		System.out.println("inside CustomerSources  method");
+		List<CustomerSourceBean> list=new ArrayList<CustomerSourceBean>();
+		list=masterMastersService.getCustomerSourceList();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("customersourcelist", list);
+		
+		System.out.println("***************************************** inside customersource list ****************************");
+	return new ModelAndView("getCustomerSources",model);
+	}	
+	/*@RequestMapping(value = "deletecustomersource", method = RequestMethod.GET)
+	public ModelAndView deleteCustomerSource(@RequestParam("customersourceId") int id) {
+		List<Customer_Source_Bean> list=new ArrayList<Customer_Source_Bean>();
+		list =	masterMastersService.deleteCustomerSource(id);
+		Map<String, Object> model= new HashMap<String,Object>();
+		
+		model.put("expenseheadList", list );
+		return new ModelAndView("customersourcelist",model);
+		
+		
+	}*/
+	@RequestMapping(value = "deletecustomersource", method = RequestMethod.GET)
+	public ModelAndView deleteCustomerSource(@RequestParam("customersourceId") int id) {
+		masterMastersService.deleteCustomerSource(id);
+		List<CustomerSourceBean> list=new ArrayList<CustomerSourceBean>();
+		list=masterMastersService.getCustomerSourceList();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("customersourcelist", list);
+		
+			
+		
+		return new ModelAndView("getCustomerSources",model);
+	}
+	
+	@RequestMapping(value="addcustomersources",method=RequestMethod.POST)
+	@ResponseBody
+	public String addCurrency(@RequestBody String json,Model model) throws IOException{
+	System.out.println(json);
+		ObjectMapper mapper=new ObjectMapper();
+		CustomerSourceBean poref=mapper.readValue(json, CustomerSourceBean.class);
+		CustomerSourceBean poref1=new CustomerSourceBean();
+		poref1.setSource(poref.getSource());
+		
+		masterMastersService.addCustomerSource(poref1);
+		
+	return toJson(poref1);
+	}
+	private String toJson(CustomerSourceBean poRefEntry) {
+		ObjectMapper mapper = new ObjectMapper();
+	    try {
+	        String value = mapper.writeValueAsString(poRefEntry);
+	        // return "["+value+"]";
+	        return value;
+	    } catch (JsonProcessingException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	@RequestMapping(value = "getcustomersource", method = RequestMethod.POST)
+	public void getCustomerSource(@RequestParam("customersourceId") String id,HttpServletResponse res )throws ParseException  {
+		System.out.println(id);
+		String curList=masterMastersService.getCustomerSource(id);
+		System.out.println(curList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(curList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
+	@RequestMapping(value="editcustomersource",method=RequestMethod.POST)
+	@ResponseBody
+	public void editCustomerSource(@RequestBody String json,Model model) throws IOException{
+	System.out.println("*****************************************************");
+		ObjectMapper mapper=new ObjectMapper();
+		CustomerSourceBean poref=mapper.readValue(json, CustomerSourceBean.class);
+		CustomerSourceBean poref1=new CustomerSourceBean();
+		poref1.setCustomersourceId(poref.getCustomersourceId());
+		poref1.setSource(poref.getSource());
+		masterMastersService.editCustomerSource(poref1);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	
+	}
+	
+	
+	@RequestMapping(value="/serviceprovider",method = RequestMethod.GET)
+	public ModelAndView getServiceProvider( @ModelAttribute("command")  ServiceProviderBean service,HttpServletRequest request,BindingResult result ){
+		System.out.println("inside CustomerSources  method");
+		List<ServiceProviderBean> list=new ArrayList<ServiceProviderBean>();
+		list=masterMastersService.getServiceProviderList();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("servicelist", list);
+		
+	
+	return new ModelAndView("getserviceprovider",model);
+	}	
+	@RequestMapping(value="/getserviceprovider",method = RequestMethod.GET)
+	public ModelAndView addService( @ModelAttribute("command")  CustomerSourceBean customer,HttpServletRequest request,BindingResult result ){
+		
+	return new ModelAndView("getaddserviceprovider");
+	}	
+	
+	
+	
+	
+	@RequestMapping(value="addserviceprovider",method=RequestMethod.POST)
+	@ResponseBody
+	public void addServiceProvider(@RequestBody String json,Model model) throws IOException{
+	System.out.println("*****************************************************");
+		ObjectMapper mapper=new ObjectMapper();
+		ServiceProviderBean serviceprovider=mapper.readValue(json, ServiceProviderBean.class);
+		masterMastersService.addServiceProvider(serviceprovider);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+	
+
+	}
+	
+	@RequestMapping(value = "/editserviceprovider", method = RequestMethod.GET)
+	public String getServiceProvider(@RequestParam("id") int id, Model model) {
+	
+		ServiceProviderBean bean=masterMastersService.getServiceProvider(id);
+		System.out.println(bean.getContactperson());
+		model.addAttribute("service", bean);
+
+		return "editserviceprovider";
+	}
+	
+	@RequestMapping(value="updateservicedata",method=RequestMethod.POST)
+	@ResponseBody
+	public void editServiceProvider(@RequestBody String json,Model model) throws IOException{
+	System.out.println("*****************************************************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		ServiceProviderBean servicepro=mapper.readValue(json, ServiceProviderBean.class);
+		
+		masterMastersService.editSourceProviderbyId(servicepro);
+		
+	
 	}
 	
 }

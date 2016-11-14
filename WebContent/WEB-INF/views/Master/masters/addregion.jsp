@@ -170,7 +170,7 @@
 			return true;  
 			}  
 			else{  
-			alert("RePassword must be Same!!!");
+			//alert("RePassword must be Same!!!");
 			document.getElementById("ConfirmPassword").value="";
 			document.getElementById("ConfirmPassword").focus();
 			return false;  
@@ -220,8 +220,16 @@
 		   
 		   alert(selecthead);
 		   
+<<<<<<< HEAD
 		   if(reginname==''||mobileno==''||emailid==''||fax==''||regadress==''||selecthead=='---Select Region---'){
 			   $('#messagespan').show('fast');
+=======
+		   
+		   
+		   
+		   if(mobileval.test(mobileno)){
+			  // alert("cannot be blank")
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 			   
 		   }else{
 			   var jsonObj={
@@ -246,7 +254,20 @@
 					    	 window.location.reload();
 				    }});
 				
+<<<<<<< HEAD
 			   
+=======
+				  data :JSON.stringify(jsonObj),
+				  cache:false,
+			        beforeSend: function(xhr) {  
+			            xhr.setRequestHeader("Accept", "application/json");  
+			            xhr.setRequestHeader("Content-Type", "application/json");  
+			        },
+				     success: function(resposeJsonObject){
+				    	// alert("save")
+			    }});
+			
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		   }
 		   
 		   

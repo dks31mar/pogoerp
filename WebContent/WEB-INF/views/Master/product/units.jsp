@@ -159,11 +159,11 @@ $.ajax({
 	type: "POST",
 	
 	     success: function(respose){
-	    	 alert(respose);
+	    	 //alert(respose);
 	    	 var data=JSON.parse(respose)
-	    	 var name=data.Unittype;
-	    	 var id=data.id;
-	    	 alert("DDDDDDDDDDDDDDDD                   "+id);
+	    	 var name=data.unittype;
+	    	 var id=data.unittypeid;
+	    	// alert("DDDDDDDDDDDDDDDD                   "+id);
 	    	 $("#unitname").val(name);
 	    	 $("#hiddenid").val(id);
 	    	 
@@ -197,7 +197,7 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	 window.location.reload();
-	     alert("edit");
+	    alert("edit");
 	    }});
 	
 	

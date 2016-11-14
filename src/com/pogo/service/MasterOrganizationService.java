@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.pogo.bean.CompetitiorsProfileBean;
 import com.pogo.bean.DesignationBean;
+import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.UserEmployeeBean;
 
 import com.pogo.bean.ZonesBean;
@@ -63,6 +64,7 @@ public interface MasterOrganizationService {
 
 	void deleteRegion(int id);
 
+
 	void saveDataCompetitiors(CompetitiorsProfileBean poref);
 
 
@@ -72,6 +74,13 @@ public interface MasterOrganizationService {
 	
 
 
+
+
+	void permitForSms(SmsAllocationBean smsbean);
+
+	void denyForSms(SmsAllocationBean smsbean);
+
+	List<SmsAllocationBean> getPermitSmsUser();
 
 	
 	

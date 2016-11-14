@@ -175,7 +175,7 @@
 			    	 $('#openModal').hide();
 			    	 //window.location.currency;
 			    	 window.location.reload();
-		     alert("edit");
+		 alert("edit"); 
 		    }});
 		
 		
@@ -193,14 +193,14 @@
 		type: "POST",
 		
 		     success: function(respose){
-		    	 alert(respose);
+		    	 //alert(respose);
 		    	 var data=JSON.parse(respose)
-		    	 var name=data.productname;
-		    	 var id=data.id;
-		    	 alert("DDDDDDDDDDDDDDDD                   "+id);
+		    	 var name=data.productheadname;
+		    	 var id=data.productheadid;
+		    	// alert("DDDDDDDDDDDDDDDD                   "+id); 
 		    	 $("#unitname").val(name);
 		    	 $("#hiddenid").val(id);
-		    	 
+		    	
 	    }});
 	} 
 	

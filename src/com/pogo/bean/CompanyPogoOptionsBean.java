@@ -20,6 +20,12 @@ public class CompanyPogoOptionsBean implements Serializable{
 	private String optionId;
 	
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getCompanyId() {
 		return companyId;
 	}
