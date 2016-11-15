@@ -10,11 +10,18 @@ public class UserEmployeeBean
 	private String lastname;
 	private String division;
 	private String department;
-	private String subcompany;
+	private Integer subcompanyId;
+	private String companyName;
 	private String region;
-	private String branch;
+	private Integer branchId;
+	private String branchName;
 	private String dateofjoining;
+
+	private Integer designationId;
+	private String designationName;
+
 	private String designation;
+
 	
 	private String password;
 	private String repassword;
@@ -25,7 +32,30 @@ public class UserEmployeeBean
 	private String address;
 	private String phone;
 	private String usermobile;
+	private String deviceno;
+	private Boolean empStatus;
 	
+	public String getDeviceno() {
+		return deviceno;
+	}
+	public void setDeviceno(String deviceno) {
+		this.deviceno = deviceno;
+	}
+	
+	
+	
+	public String getDesignationName() {
+		return designationName;
+	}
+	public void setDesignationName(String designationName) {
+		this.designationName = designationName;
+	}
+	public Boolean getEmpStatus() {
+		return empStatus;
+	}
+	public void setEmpStatus(Boolean empStatus) {
+		this.empStatus = empStatus;
+	}
 	public String getDateofjoining() {
 		return dateofjoining;
 	}
@@ -70,20 +100,19 @@ public class UserEmployeeBean
 	public void setRegion(String region) {
 		this.region = region;
 	}
-	public String getBranch() {
-		return branch;
-	}
-	public void setBranch(String branch) {
-		this.branch = branch;
-	}
 	
-	public String getDesignation() {
-		return designation;
+	public Integer getBranchId() {
+		return branchId;
 	}
-	public void setDesignation(String designation) {
-		this.designation = designation;
+	public void setBranchId(Integer branchId) {
+		this.branchId = branchId;
 	}
-	
+	public Integer getDesignationId() {
+		return designationId;
+	}
+	public void setDesignationId(Integer designationId) {
+		this.designationId = designationId;
+	}
 	public String getPassword() {
 		return password;
 	}
@@ -151,12 +180,25 @@ public class UserEmployeeBean
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	public String getSubcompany() {
-		return subcompany;
+	public Integer getSubcompanyId() {
+		return subcompanyId;
 	}
-	public void setSubcompany(String subcompany) {
-		this.subcompany = subcompany;
+	public void setSubcompanyId(Integer subcompanyId) {
+		this.subcompanyId = subcompanyId;
 	}
+	public String getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	public String getBranchName() {
+		return branchName;
+	}
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+	
 	
 	
 	

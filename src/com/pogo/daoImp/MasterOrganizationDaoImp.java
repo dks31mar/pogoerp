@@ -11,12 +11,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pogo.dao.MasterOrganizationDao;
+import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
+import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
 import com.pogo.model.SmsAllocation;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
-@Repository("regionDao")
+@Repository("masterOrganizationDao")
 public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 
 	@Autowired
@@ -107,9 +109,9 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 
 	@Override
 	public UserEmployee get(Integer userempid) {
-
-		return (UserEmployee) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
-				.add(Restrictions.eq("userempid", userempid));
+ return (UserEmployee) sessionFactory.getCurrentSession().get(UserEmployee.class, userempid);
+		/*return (UserEmployee) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
+				.add(Restrictions.eq("userempid", userempid));*/
 	}
 
 	@Override
@@ -190,9 +192,6 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 	public Designation getDesgById(int id) {
 		
 		 return (Designation) sessionFactory.getCurrentSession().get(Designation.class, id);
-		
-		
-	
 	}
 
 	@Override
@@ -200,6 +199,68 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		sessionFactory.getCurrentSession().delete(deg);
 		
 	}
+
+
+	@Override
+	public void updateEmpStatus(UserEmployee emp) {
+		sessionFactory.getCurrentSession().update(emp);
+	}
+
+
+	/*@Override
+	public UserEmployee getEmpId(int id) {
+		return   (UserEmployee) sessionFactory.getCurrentSession().
+				createCriteria(UserEmployee.class).add(Restrictions.eq("active", true)).add(Restrictions.eq("userempid", id)).uniqueResult();
+		
+		//sessionFactory.getCurrentSession().get(UserEmployee.class, id);
+	}*/
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Designation> getDesgnationData() {
+		return sessionFactory.getCurrentSession().createCriteria(Designation.class).list();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CompanyProfile> getCompanyData()
+	{
+		return sessionFactory.getCurrentSession().createCriteria(CompanyProfile.class).list();
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Branch> getBranchData() {
+		return sessionFactory.getCurrentSession().createCriteria(Branch.class).list();
+	}
+
+	@Override
+	public Designation getData(Integer designationId) {
+		return (Designation) sessionFactory.getCurrentSession().get(Designation.class, designationId);
+	}
+
+
+	@Override
+	public Branch getBranch(Integer branchId) {
+		return (Branch) sessionFactory.getCurrentSession().get(Branch.class, branchId);
+	}
+
+
+	@Override
+	public CompanyProfile getCom(Integer subcompanyId) {
+		return (CompanyProfile) sessionFactory.getCurrentSession().get(CompanyProfile.class, subcompanyId);
+	}
+
+
+	
+
+
+	
+
+
+
+
 
 
 	@Override
@@ -223,6 +284,24 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		
 	}
 
+
+	public void saveDataCompetitiors(CompetitiorsProfile compti) {
+		sessionFactory.getCurrentSession().flush();
+		sessionFactory.getCurrentSession().save(compti);
+		sessionFactory.getCurrentSession().flush();
+	}
+
+	@Override
+	public void updateCompetitior(CompetitiorsProfile comprof) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+
+
 	@Override
 	public void permitForSms(SmsAllocation sms) {
 		System.out.println(sms.getEmpid());
@@ -240,4 +319,5 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		
 		return sessionFactory.getCurrentSession().createCriteria(SmsAllocation.class).list();
 	}
+
 }

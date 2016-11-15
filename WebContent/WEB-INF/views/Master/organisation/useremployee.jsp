@@ -118,14 +118,14 @@ $( function() {
     $( "#datepickerjoin" ).datepicker();
   } );
   
-function ConfirmDelete()
+/* function ConfirmDelete()
 {
   var x = confirm("Are you sure you want to delete?");
   if (x)
       return true;
   else
     return false;
-}
+} */
 
 	</script>
 </head>
@@ -148,10 +148,17 @@ function ConfirmDelete()
 			 style="margin-left: 250px;margin-top: 8px;"><a href="addUser"
 			class="btn btn-primary"> Add New Employee </a>
      </label>
+
+     <!--  <label
+			 style="margin-left: 300px;margin-top: 8px;"><a href="testMap"
+			class="btn btn-primary">AddTest </a>
+     </label> -->
+
     <label
 			 style="margin-left: 507px;margin-top: 8px;"><a href="#"
 			class="btn btn-primary" >Export</a>
      </label>   
+
 			 <div class="input-group" style="margin-left: 590px; width: 230px; top: -38px;
 			 width: 230px;"><input type="text"  
 			placeholder="Search Employee name"  class="form-control" oninput="searchEmp(this.value)" ><span class="input-group-addon">
@@ -196,14 +203,14 @@ function ConfirmDelete()
 					<tr>
 						<td>${loop.index+1}</td>
 						 <td>${user.loginname}</td> 
-						 <td>${user.designation}</td> 
+						  <%--  <td>${user.designationName}</td> --%> 
 
 						
 								<td><a href="editUser?id=${user.userempid}" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="#"  onclick="deletUser(${user.userempid})"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
+					class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
 	
 					</tr>
 

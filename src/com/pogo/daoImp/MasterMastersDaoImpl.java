@@ -24,6 +24,7 @@ import com.pogo.model.ServiceProvider;
 import com.pogo.model.State;
 
 import com.pogo.model.TeamSegment;
+import com.pogo.model.UserEmployee;
 
 @SuppressWarnings("unchecked")
 
@@ -386,6 +387,16 @@ public void editTeam(TeamSegment team){
 
 sessionFactory.getCurrentSession().update(team);
 //
+}
+@Override
+public ServiceProvider getServiceProvider(int id) {
+	
+	return (ServiceProvider) sessionFactory.getCurrentSession().get(ServiceProvider.class, id);
+}
+@Override
+public void editSourceProviderbyId(ServiceProvider sp) {
+	sessionFactory.getCurrentSession().flush();
+	sessionFactory.getCurrentSession().update(sp);
 }
 
 }

@@ -2,7 +2,9 @@ package com.pogo.dao;
 
 import java.util.List;
 
+import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
+import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
 import com.pogo.model.SmsAllocation;
 import com.pogo.model.UserEmployee;
@@ -24,6 +26,7 @@ public interface MasterOrganizationDao {
 	Zones deleteRegion(int id);
 
 	void deleteRegion(Zones zones);
+	
 	
 	
 
@@ -71,11 +74,46 @@ public interface MasterOrganizationDao {
 
 	void deleteDesignation(Designation deg);
 
+
+	void updateEmpStatus(UserEmployee emp);
+
+	/*UserEmployee getEmpId(int id);*/
+
+	List<Designation> getDesgnationData();
+
+	List<CompanyProfile> getCompanyData();
+
+	List<Branch> getBranchData();
+	
+	Designation getData(Integer designationId);
+
+	Branch getBranch(Integer branchId);
+
+	CompanyProfile getCom(Integer subcompanyId);
+
+	
+
+	
+
+
+
+
+	
+
+
+void saveDataCompetitiors(CompetitiorsProfile compti);
+
+void updateCompetitior(CompetitiorsProfile comprof);
+
+
+	
+
 	void permitForSms(SmsAllocation sms);
 
 	void denyForSms(SmsAllocation sms);
 
 	List<SmsAllocation> getPermitSmsUser();
+
 
 }
 

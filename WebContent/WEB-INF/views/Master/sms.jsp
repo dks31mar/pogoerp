@@ -23,7 +23,7 @@
 </head>    
  </CENTER>
         <div id="pop" style="display: none;"></div>
-<div><c:out value="${id}" /></div>
+
 <div id="body">
 <div>
 <div>
@@ -39,10 +39,10 @@
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
-		<span class="glyphicon glyphicon-user"></span> Zones Details</b>
+		<span class="glyphicon glyphicon-user"></span> Permission in SMS </b>
 		 <label
 			 style="margin-left: 250px;margin-top: 8px;"><a href="getzonepage"
-			class="btn btn-primary">Add Zones</a>
+			class="btn btn-primary">Add Employee</a>
 			<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
      </label>
   		
@@ -55,10 +55,11 @@
   
   <tbody><tr>
     <th>S.N.</th>
-    <th data-th="Driver details"><span>Zone Name</span></th>
-    <th>States</th>
-    <th>Edit</th>
-    <th>Delete</th>
+    <th data-th="Driver details"><span>Employee Name</span></th>
+    <th>Designation</th>
+    <th>Branch</th>
+    <th>SMS Allowed</th>
+   
   </tr>
   <c:if test="${!empty branchList}">
 	<c:forEach items="${branchList}" var="branch" varStatus="loop">
@@ -66,9 +67,9 @@
   <tr>
     <td>${loop.index+1}</td>
     <td>${branch.zonesname}</td>
-   <td><a href="states" target="_blank">states</a></td>
+   <td><a href="NewBranch" target="_blank">states</a></td>
     <td><a href="Editregion?id=${branch.zonesid}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="deleteRegion?id=${branch.zonesid}" title="Delete"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
+    <td><a href="deleteRegion?id=${branch.zonesid}" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>
   
   </c:forEach>
@@ -89,6 +90,5 @@
 <div class="row form-group">
 						<div class="col-sm-7">
 	</div>
-<script>
 
-</script>
+

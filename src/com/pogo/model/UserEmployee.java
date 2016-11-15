@@ -3,11 +3,16 @@ package com.pogo.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="userEmployee")
@@ -32,16 +37,19 @@ public class UserEmployee
 	private String division;
 	@Column(name="region")
 	private String region;
-	@Column(name="branch")
-	private String branch;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="branch_id")
+	private Branch branchName;
 	@Column(name="dateofjoining")
 	private Date dateofjoining;
-	@Column(name="designation")
-	private String designation;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="designation_id")
+	private Designation designationName;
 	@Column(name="department")
 	private String department;
-	@Column(name="subcompany")
-	private String subcompany;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="subcompany_id")
+	private CompanyProfile companyName;
 	@Column(name="password")
 	private String password;
 	@Column(name="repassword")
@@ -59,8 +67,12 @@ public class UserEmployee
 	private String phone;
 	@Column(name="mobile")
 	private String usermobile;
+	@Column(name="deviceno")
+	private String deviceno;
+	@Column(name="empStatus")
+	private Boolean empStatus;
 	@Column(name="active")
-	private boolean active;
+	private Boolean active;
 	
 	
 	
@@ -108,19 +120,7 @@ public class UserEmployee
 	public void setRegion(String region) {
 		this.region = region;
 	}
-	public String getBranch() {
-		return branch;
-	}
-	public void setBranch(String branch) {
-		this.branch = branch;
-	}
 	
-	public String getDesignation() {
-		return designation;
-	}
-	public void setDesignation(String designation) {
-		this.designation = designation;
-	}
 	
 	public String getPassword() {
 		return password;
@@ -159,12 +159,29 @@ public class UserEmployee
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	public String getSubcompany() {
-		return subcompany;
+	
+	
+	
+	
+	public Branch getBranchName() {
+		return branchName;
 	}
-	public void setSubcompany(String subcompany) {
-		this.subcompany = subcompany;
+	public void setBranchName(Branch branchName) {
+		this.branchName = branchName;
 	}
+	public CompanyProfile getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(CompanyProfile companyName) {
+		this.companyName = companyName;
+	}
+	public Designation getDesignationName() {
+		return designationName;
+	}
+	public void setDesignationName(Designation designationName) {
+		this.designationName = designationName;
+	}
+	
 	public Date getDob() {
 		return dob;
 	}
@@ -195,13 +212,25 @@ public class UserEmployee
 	public void setUsermobile(String usermobile) {
 		this.usermobile = usermobile;
 	}
-	public boolean isActive() {
+	
+	public Boolean getActive() {
 		return active;
 	}
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
-	
+	public String getDeviceno() {
+		return deviceno;
+	}
+	public void setDeviceno(String deviceno) {
+		this.deviceno = deviceno;
+	}
+	public Boolean getEmpStatus() {
+		return empStatus;
+	}
+	public void setEmpStatus(Boolean empStatus) {
+		this.empStatus = empStatus;
+	}
 	
 	
 	

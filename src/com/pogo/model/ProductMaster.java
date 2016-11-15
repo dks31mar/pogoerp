@@ -16,7 +16,7 @@ public class ProductMaster implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="productid",columnDefinition="bigInt(20)" )
+	@Column(name="productid",columnDefinition="bigInt(20)")
 	private Integer productid; 
 
 	@Column(name="productheadid",columnDefinition="bigInt(20)" )
@@ -51,7 +51,7 @@ public class ProductMaster implements Serializable{
  	@Column(name="description",columnDefinition="varchar(255)")
     private String description; 
 
- 	@Column(name="serviceable",columnDefinition="varchar(5) default 'TRUE'" )
+ 	@Column(name="serviceable",columnDefinition="varchar(5) default 'Y'" )
     private String serviceable; 
 
  	@Column(name="productcategory",columnDefinition="varchar(55)" )

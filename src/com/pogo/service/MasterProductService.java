@@ -52,6 +52,12 @@ public interface MasterProductService {
 
 	void addProduct(ProductMasterBean poref);
 
+	ProductMasterBean getProductById(int id);
+
+	ProductSubHeadBean getproductsubheadbyid(Integer productsabheadid);
+
+	void editProductById(ProductMasterBean editpro);
+
 	
 
 }

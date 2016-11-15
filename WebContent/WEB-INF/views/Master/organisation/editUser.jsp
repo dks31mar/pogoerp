@@ -1,6 +1,6 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
@@ -144,7 +144,13 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  value="${employee.designation}" name="designation" placeholder="Developer" class="form-control"  type="text">
+  <select   name="designationId"  placeholder="Developer" class="form-control">
+  <c:forEach items="${listofDeg}" var="deg">
+  <option value="${deg.designationid}">${deg.designation}</option>
+  
+  
+  </c:forEach>
+  </select>
     </div>
   </div>
 </div>
@@ -180,10 +186,15 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="subcompany"  class="form-control selectpicker" required="required"> 
- <option value="${employee.subcompany}">${employee.subcompany}
+  <select name="subcompanyId"   class="form-control selectpicker" required="required"> 
+  <c:if test="${!empty listofComp}">
+   <c:forEach items="${listofComp}" var="company">
+  <option  value="${company.companyinfoid}">${company.companyinfoname}</option>
+  </c:forEach> 
+  </c:if>
+ <%-- <option value="${employee.subcompany}">${employee.subcompany} 
       <option value="Relience">Relience</option>
-	  <option value="Vodafone">Vodafone</option>
+	  <option value="Vodafone">Vodafone</option>--%>
   </select>
     </div>
   </div>
@@ -237,10 +248,15 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="branch" class="form-control selectpicker" >
-      <option value="${employee.branch}">${employee.branch}
+    <select name="branchId" class="form-control selectpicker">
+    <c:if test="${!empty listofBranch}">
+    <c:forEach items="${listofBranch}" var="branch">
+    <option value="${branch.branchId}">${branch.branchname}</option>
+    </c:forEach>
+    </c:if>
+      <%-- <option value="${employee.branch}">${employee.branch} 
       <option value="Delhi NCR">Delhi NCR</option>
-	 <option value="Noida">Noida</option>
+	 <option value="Noida">Noida</option>--%>
      
     </select>
   </div>

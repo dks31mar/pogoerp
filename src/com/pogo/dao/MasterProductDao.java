@@ -52,5 +52,11 @@ public interface MasterProductDao {
 
 	void saveproductdetail(ProductMaster promaster);
 
+	ProductMaster getProductById(int id);
+
+	ProductSubHead getproductsubheadbyid(Integer productsabheadid);
+
+	void editProductById(ProductMaster bean);
+
 
 }

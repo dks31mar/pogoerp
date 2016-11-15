@@ -16,14 +16,12 @@ import com.pogo.bean.ProductHeadBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.bean.ProductSubHeadBean;
 import com.pogo.bean.UnitBean;
-import com.pogo.bean.UserEmployeeBean;
 import com.pogo.dao.MasterProductDao;
 import com.pogo.model.Currency;
 import com.pogo.model.ProductHead;
 import com.pogo.model.ProductMaster;
 import com.pogo.model.ProductSubHead;
 import com.pogo.model.Unit;
-import com.pogo.model.UserEmployee;
 import com.pogo.service.MasterProductService;
 @Service("masterProductService")
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -78,10 +76,10 @@ public class MasterProductServiceImp implements MasterProductService{
 			cur.setCurrencysymbol(data.getCurrencysymbol());
 			cur.setCurrencytype(data.getCurrencytype());
 			
-			dd.put("id", data.getCurrencyid());
-			dd.put("name", data.getCurrencyname());
-			dd.put("sysmbol",data.getCurrencysymbol());
-			dd.put("type",data.getCurrencytype());
+			dd.put("currencyid", data.getCurrencyid());
+			dd.put("currencyname", data.getCurrencyname());
+			dd.put("currencysymbol",data.getCurrencysymbol());
+			dd.put("currencytype",data.getCurrencytype());
 		}
  		Gson gson=new Gson();
  		
@@ -142,8 +140,8 @@ public class MasterProductServiceImp implements MasterProductService{
  		for(Unit data: emp)
 		{
 			
-			dd.put("id", data.getUnittypeid());
-			dd.put("Unittype", data.getUnittype());
+			dd.put("unittypeid", data.getUnittypeid());
+			dd.put("unittype", data.getUnittype());
 			
 		}
  		Gson gson=new Gson();
@@ -213,9 +211,8 @@ public class MasterProductServiceImp implements MasterProductService{
 		Map<String, Object> dd=new HashMap<>();
  		for(ProductHead data: emp)
 		{
-			
-			dd.put("id", data.getProductheadid());
-			dd.put("productname", data.getProductheadname());
+			dd.put("productheadid", data.getProductheadid());
+			dd.put("productheadname", data.getProductheadname());
 			
 		}
  		Gson gson=new Gson();
@@ -304,7 +301,7 @@ public class MasterProductServiceImp implements MasterProductService{
 		ProductMaster promaster=new ProductMaster();
 		
 		
-		 promaster.setProductid(poref.getProductid());
+		  promaster.setProductid(poref.getProductid());
 
 	 	  promaster.setProductheadid(poref.getProductheadid());
 	 	
@@ -338,6 +335,106 @@ public class MasterProductServiceImp implements MasterProductService{
 	      
 	      
 	      masterProductDao.saveproductdetail(promaster);
+	}
+
+	@Override
+	public ProductMasterBean getProductById(int id) {
+		ProductMaster promst=masterProductDao.getProductById(id);
+		
+		ProductMasterBean bean=new ProductMasterBean();
+		
+		bean.setProductid(promst.getProductid());
+
+	 	  bean.setProductheadid(promst.getProductheadid());
+	 	
+	 	  bean.setProductsabheadid(promst.getProductsubheadid());
+		
+	 	  bean.setProductname(promst.getProductname()); 
+
+		  bean.setUnitprice(promst.getUnitprice()); 
+
+		  bean.setProducttypeid(promst.getProducttypeid());
+
+	 	  bean.setUnittypeid(promst.getUnittypeid()) ;
+
+	 	  bean.setCurrencyid(promst.getCurrencyid_sc()) ;
+
+	 	  bean.setCostprice(promst.getCostprice()) ;
+
+	 	  bean.setProductcode(promst.getProductcode()); 
+
+	 	  bean.setDescription(promst.getDescription()) ;
+
+	 	 if(promst.getServiceable().equals("Y")){
+	 		bean.setServiceable("Yes") ;
+		 	  }else{
+		 		 bean.setServiceable("No") ;
+		 	  }
+
+	 	  bean.setProductcategory(promst.getProductcategory()); 
+
+	 	 if(promst.getIsactive().equals("Y")){
+	 		bean.setIsactive("Yes");
+		 	  }else{
+		 		 bean.setIsactive("No");
+		 	  }
+	 	
+	 	  bean.setSellingprice(promst.getSellingprice());
+
+	      bean.setColor(promst.getColor());
+	      
+		return bean;
+	}
+
+	@Override
+	public ProductSubHeadBean getproductsubheadbyid(Integer productsabheadid) {
+		ProductSubHead subhead=masterProductDao.getproductsubheadbyid(productsabheadid);
+		ProductSubHeadBean subheadbean=new ProductSubHeadBean();
+		subheadbean.setProductheadid(subhead.getProductheadid());
+		subheadbean.setProductsubheadid(subhead.getProductsubheadid());
+		subheadbean.setProductsubheadname(subhead.getProductsubheadname());
+		return subheadbean;
+	}
+
+	@Override
+	@Transactional
+	public void editProductById(ProductMasterBean editpro) {
+		ProductMaster bean=new ProductMaster();
+		
+		bean.setProductid(editpro.getProductid());
+
+	 	  bean.setProductheadid(editpro.getProductheadid());
+	 	
+	 	  bean.setProductsubheadid(editpro.getProductsabheadid());
+		
+	 	  bean.setProductname(editpro.getProductname()); 
+
+		  bean.setUnitprice(editpro.getUnitprice()); 
+
+		  bean.setProducttypeid(editpro.getProducttypeid());
+
+	 	  bean.setUnittypeid(editpro.getUnittypeid()) ;
+
+	 	  bean.setCurrencyid_sc(editpro.getCurrencyid()) ;
+
+	 	  bean.setCostprice(editpro.getCostprice()) ;
+
+	 	  bean.setProductcode(editpro.getProductcode()); 
+
+	 	  bean.setDescription(editpro.getDescription()) ;
+
+	 	  bean.setServiceable(editpro.getServiceable()) ;
+
+	 	  bean.setProductcategory(editpro.getProductcategory()); 
+
+	 	  bean.setIsactive(editpro.getIsactive());
+	 	
+	 	  bean.setSellingprice(editpro.getSellingprice());
+
+	      bean.setColor(editpro.getColor());
+	      
+	      masterProductDao.editProductById(bean);
+		
 	}
 
 	

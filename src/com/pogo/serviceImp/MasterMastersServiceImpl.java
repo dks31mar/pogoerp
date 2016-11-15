@@ -580,5 +580,41 @@ public void addServiceProvider(ServiceProviderBean serviceprovider) {
 	
 }
 
+@Override
+public ServiceProviderBean getServiceProvider(int id) {
+	
+	ServiceProvider sp=masterMastersdao.getServiceProvider(id);
+	
+	ServiceProviderBean bean=new ServiceProviderBean();
+	bean.setContactperson(sp.getContactperson());
+	bean.setEmail(sp.getEmail());
+	bean.setMobile(sp.getMobile());
+	bean.setPhone(sp.getPhone());
+	bean.setServiceaddress(sp.getServiceaddress());
+	bean.setServicename(sp.getServicename());
+	bean.setTransportationmodeid(sp.getTransportationmodeid());
+	bean.setTransportationserviceid(sp.getTransportationserviceid());
+	
+	return bean;
+}
+
+@Override
+@Transactional
+public void editSourceProviderbyId(ServiceProviderBean servicepro) {
+	
+	ServiceProvider sp=new ServiceProvider();
+	
+	sp.setContactperson(servicepro.getContactperson());
+	sp.setEmail(servicepro.getEmail());
+	sp.setMobile(servicepro.getMobile());
+	sp.setPhone(servicepro.getPhone());
+	sp.setServiceaddress(servicepro.getServiceaddress());
+	sp.setServicename(servicepro.getServicename());
+	sp.setTransportationmodeid(servicepro.getTransportationmodeid());
+	sp.setTransportationserviceid(servicepro.getTransportationserviceid());
+	
+	masterMastersdao.editSourceProviderbyId(sp);
+}
+
 
 }
