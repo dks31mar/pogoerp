@@ -105,7 +105,7 @@
 						style="border-radius: 5px;" value="" name="loginname"
 						maxlength="20" autofocus="autofocus">
 						
-						 <div id="msg1" align="center"><span style="color: red">*Input Needed</span> </input></div></div>
+						 <div id="msg1" align="center"><span style="color: red">* please fill the currencyname</span> </input></div></div>
 						
   <div class="col-md-4"><select class="selectpicker" data-style="btn-success" name="" id="currencytypeid" style="border-radius: 5px;">
       <option value="pc">pc</option>
@@ -114,8 +114,8 @@
   </select></div>
   <div class="col-md-4"><input path="firstname" type="text" class="validate[required] text-input" id="currencysymbol"
 						style="border-radius: 5px;" name="firstname" value=""
-						 maxlength="20"></input>
-						 <div id="msg2" align="center"><span style="color: red">*Input Needed</span>
+						 maxlength="20">
+						 <div id="msg2" align="center"><span style="color: red">*please fill the currencysymbol</span></input>
 						</div>
 						</div>
 						
@@ -250,13 +250,14 @@ $.ajax({
 	        },
 		     success: function(resposeJsonObject){
 		    	 $('#openModal').hide();
-		    	 //window.location.currency;
+		    	// window.location.currency;
 		    	 window.location.reload();
 	     
 		     }});
 	
 	
 });
+
 $(document).ready(
 	    function(){
 $("#getpopup").click(function(){

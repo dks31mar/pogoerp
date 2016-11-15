@@ -12,6 +12,8 @@
        		</definition>
        		<definition name="add" template="/WEB-INF/views/addEmployee.jsp" >
 			</definition>
+			<definition name="logout" template="/WEB-INF/views/LoginPage.jsp" >
+			</definition>
        		<definition name="employeesList" template="/WEB-INF/views/employeesList.jsp" >
 			</definition>
 			<definition name="addEmployee" template="/WEB-INF/views/addEmployee.jsp" >

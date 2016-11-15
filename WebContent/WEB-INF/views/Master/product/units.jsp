@@ -18,10 +18,7 @@
     rel="stylesheet" type="text/css" />
     
     
-    <script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.css"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.css"/>
+    
 <div class="row">
 
 	<div class="page-heading col-sm-11"
@@ -41,7 +38,9 @@
 <input type="hidden" id="hiddenid"/>
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="unitname"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Enter Unit Name"
-						maxlength="20" autofocus="autofocus"></input></div>
+						maxlength="20" autofocus="autofocus"></input>
+						<div id="msg1" align="center"><span style="color: red">*Input Needed</span></div>
+						</div>
   
 </div>
 
@@ -111,10 +110,11 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
 
 <script>
-
+$('#msg1').hide();
 $(document).ready(
 	    function(){
 $("#getpopup").click(function(){
@@ -178,37 +178,15 @@ $.ajax({
 
 function deletedata(id){
 	
-	
-	
-	swal({
-		  title: 'Are you sure?',
-		  text: "You won't be able to revert this!",
-		  type: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: 'Yes, delete it!'
-		}).then(function () {
-			$.ajax({
-				url: "deleteunit?id="+id,
-				type: "GET",
-				
-				     success: function(respose){
-				    	 swal(
-				    			    'Deleted!',
-				    			    'Your record has been deleted.',
-				    			    'success'
-				    			  )
-				    			  
+	/* $.ajax({
+		url: "deleteunit?id="+id,
+		type: "GET",
+		success: function(respose){
 				    	
-				    	 
-			    }});
-			
-			
-		})
+			}
+	}); */
 	
-	
-	
+	jAlert('This is a custom alert box', 'Alert Dialog');
 	
 }
 

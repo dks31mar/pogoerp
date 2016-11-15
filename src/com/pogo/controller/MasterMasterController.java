@@ -818,7 +818,6 @@ public class MasterMasterController {
 	@RequestMapping(value="updateservicedata",method=RequestMethod.POST)
 	@ResponseBody
 	public void editServiceProvider(@RequestBody String json,Model model) throws IOException{
-	System.out.println("*****************************************************\n"+json);
 		ObjectMapper mapper=new ObjectMapper();
 		ServiceProviderBean servicepro=mapper.readValue(json, ServiceProviderBean.class);
 		

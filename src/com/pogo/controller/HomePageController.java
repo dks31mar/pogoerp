@@ -32,7 +32,7 @@ public class HomePageController {
 		session.invalidate();
 		System.out.println("remove");
 		System.out.println(">>>>>>>>>>>>>    "+name);
-		return new ModelAndView("LoginPage");
+		return new ModelAndView("logout");
 		}
 	
 	@SuppressWarnings("unused")
