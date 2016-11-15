@@ -34,7 +34,7 @@
 <input type="hidden" id="hiddenid"/>
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addcountry"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add Country"
-						maxlength="20" autofocus="autofocus"></input><span style="color: red;" id="countryspan">Please Enter Country</span></div>
+						maxlength="20" autofocus="autofocus"></input><span style="color: red;" id="countryspan">Please enter a country</span></div>
   
 </div>
 
@@ -75,7 +75,7 @@
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deletecountry?countryId=${country.countryId}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> 
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td> 
 								
 					</tr>
 

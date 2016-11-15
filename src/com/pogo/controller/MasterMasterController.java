@@ -231,7 +231,7 @@ public class MasterMasterController {
 	
 		//masterMastersService.stateList();
 		model.put("stateList",statelistbycountryid);
-		model.put("state123",cuntryid);
+		model.put("country123",cuntryid);
 		System.out.println("***************************************** inside state list ****************************");
 	return new ModelAndView("getstate",model);
 	}
@@ -306,13 +306,15 @@ public class MasterMasterController {
 		
 	}
 	@RequestMapping(value="/district",method = RequestMethod.GET)
+	
 	public ModelAndView getDistrict( @RequestParam("stateId") String stateid,@ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside district  method");
+		
 		List<DistrictBean> districtlistbystateid=new ArrayList<>();
 		Map<String, Object> model = new HashMap<String, Object>();
 		districtlistbystateid=	masterMastersService.districtListbystateid(stateid);
 		model.put("districtList",districtlistbystateid);
-		model.put("district123",stateid);
+		model.put("state123",stateid);
 		//model.put("districtList",  prepareDistrictListofBean(masterMastersService.districtList()));
 		System.out.println("***************************************** inside district list ****************************");
 	return new ModelAndView("getdistrict",model);
@@ -342,7 +344,7 @@ public class MasterMasterController {
 		DistrictBean poref=mapper.readValue(json, DistrictBean.class);
 		DistrictBean poref1=new DistrictBean();
 		poref1.setDistrict(poref.getDistrict());
-		masterMastersService.addDistrict(poref1);
+		masterMastersService.addDistrict(poref);
 	}
 	@RequestMapping(value = "deletedistrict", method = RequestMethod.GET)
 	public ModelAndView deleteDistrict(@RequestParam("districtId") Integer id) {
@@ -387,9 +389,10 @@ public class MasterMasterController {
 		
 	}
 	@RequestMapping(value="/location",method = RequestMethod.GET)
-	public ModelAndView getLocation( @ModelAttribute("command") LocationBean location,HttpServletRequest request,BindingResult result ){
+	public ModelAndView getLocation( @RequestParam("districtId") String districtid,@ModelAttribute("command") LocationBean location,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside location  method");
 		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("district123",districtid);
 		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList()));
 		System.out.println("***************************************** inside location list ****************************");
 	return new ModelAndView("getlocation",model);

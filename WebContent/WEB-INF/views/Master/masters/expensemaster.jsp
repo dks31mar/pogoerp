@@ -35,65 +35,61 @@
 </div>
 <div id="formid" class="col-md-11" style=" left: 20px;  height: 34px;">
 <div class="row">
-  <div class="col-md-3"><span style="color: black;"> <strong>Expense Head<span style="color: red;">*</span>:
-						</strong></span></div>
-  <div class="col-md-3"><span style="color: black;">
-							<strong>Expense Type<span
-								style="color: red;">*</span>:
-						</strong>
-					</span></div>
-  <div class="col-md-3"><span style="color: black;"> <strong>Limit/Rate Rs.<span
-								style="color: red;">*</span>:
-						</strong></span></div>
-  <div class="col-md-3"><span style="color: black;"> <strong>Unit<span
-								style="color: red;">*</span>:
-						</strong></span></div>						
+  <div class="col-md-3"><span style="color: black;"> <strong>Expense Head<span style="color: red;">*</span>:</strong></span></div>
+						
+  <div class="col-md-3"><span style="color: black;"><strong>Expense Type<span style="color: red;">*</span>:</strong></span></div>
+							
+  <div class="col-md-3"><span style="color: black;"> <strong>Unit<span style="color: red;">*</span>:</strong></span></div> 
+
+  <div class="col-md-3"><span style="color: black;"> <strong>Limit/Rate Rs.<span style="color: red;">*</span>:</strong></span></div>							
+						
+ 					
+</div>								
+					
+<div class="row">  
+<input type="hidden" id="hiddenid"/>								
+<div class="col-md-3">
+<input  type="text" class="validate[required] text-input" id="expensehead" style="border-radius: 5px;" value="" name="loginname" maxlength="20" autofocus="autofocus"></input>	
+									
+</div>
+<div class="col-md-3">
+<input  type="text" class="validate[required] text-input" id="expensetype" style="border-radius: 5px;" value="" name="loginname" maxlength="20" autofocus="autofocus"></input>  
+</div>
+<div class="col-md-3"><input  type="number" class="validate[required] text-input" id="unit" style="border-radius: 5px;" name="firstname" value=""  maxlength="20"></input>
+</div>						
+<div class="col-md-3"><input  type="number" class="validate[required] text-input" id="limit" style="border-radius: 5px;" name="firstname" value=""  maxlength="20"></input>					
+</div>	
+</div>						
+						
+<div class="row">
+<div class="col-md-12" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button" class="btn btn-primary" id="saveexpenseheaderForm">Save</button></div>
+<div class="col-md-12" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button" class="btn btn-primary" id="EditcurrencyForm">Edit</button></div> 				
 </div>
 
 <div class="row">
-<input type="hidden" id="hiddenid"/>
-  <div class="col-md-3"><input path="" type="text" class="validate[required] text-input" id="expensehead"
-						style="border-radius: 5px;" value="" name="loginname"
-						maxlength="20" autofocus="autofocus"></input></div>
-  <div class="col-md-3"><input path="" type="text" class="validate[required] text-input" id="expensetype"
-						style="border-radius: 5px;" value="" name="loginname"
-						maxlength="20" autofocus="autofocus"></input></div>
-  <div class="col-md-3"><input path="" type="text" class="validate[required] text-input" id="unit"
-						style="border-radius: 5px;" name="firstname" value=""
-						 maxlength="20"></input></div>
- <div class="col-md-3"><input path="" type="text" class="validate[required] text-input" id="limit"
-						style="border-radius: 5px;" name="firstname" value=""
-						 maxlength="20"></input></div>					 
-</div>
-
-
-
-<div class="row">
-<div class="col-md-12" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
-				class="btn btn-primary" id="saveexpenseheaderForm">Save</button></div>
-				
-			 <div class="col-md-12" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
-				class="btn btn-primary" id="EditcurrencyForm">Edit</button></div> 
-</div>
-
+<div class="col-md-3"><span style="color: red" id="msg1">*This field is required.</span></div>
+<div class="col-md-3"><span style="color: red" id="msg2">*This field is required.</span></div>
+<div class="col-md-3"><span style="color: red" id="msg3">*This field is required.</span></div>
+<div class="col-md-3"><span style="color: red" id="msg4">*This field is required.</span></div>
 
 </div>
+		
 </div>
-  <br>
+</div>			 
+<br>				
+
 <div id="pop" style="display: none;"></div>
 <div id="searchedRecord"></div>
  
 <div id="body">
-	<table class="responstable" style="margin-left: 22px; ">
-
-		<tbody>
+	<table class="responstable" style="margin-left: 22px; " >
+       <tbody>
 			<tr>
 				<th>S.No.</th>
 				<th data-th="Driver details"><span>Expense Head</span></th>
 				<th>Expense Type</th>
 				<th>Unit</th>
 				<th>Limit/Rate Rs.</th>
-				
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;"> Delete</th>
 			</tr>
@@ -102,84 +98,101 @@
 				<c:forEach items="${expenseheadList}" var="cur" varStatus="loop">
 			
 			<tr>
-						
-								<td>${loop.index+1}</td>
-								<td>${cur.expensehead}</td>
-								<td>${cur.expensetype}</td>
-								<td>${cur.unit}</td>
-								<td>${cur.exlimit}</td>
-							
-						
-								<td><a href="#" onclick="editCur(${cur.expensemasterId})" title="Edit" align="center" >
-								<span class="glyphicon glyphicon-pencil"></span></a></td>
-								
-						<td style="margin"><a href="deleteexpenseheader?expensemasterId=${cur.expensemasterId}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
-					</tr>
+				<td>${loop.index+1}</td>
+				<td>${cur.expensehead}</td>
+				<td>${cur.expensetype}</td>
+				<td>${cur.unit}</td>
+				<td>${cur.exlimit}</td>
+				<td><a href="#" onclick="editCur(${cur.expensemasterId})" title="Edit" align="center" ><span class="glyphicon glyphicon-pencil"></span></a></td>
+				<td style="margin"><a href="deleteexpenseheader?expensemasterId=${cur.expensemasterId}"><span class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick = "return confirm('Are u sure u want to delete?')"></span></a></td>
+			</tr>
 </c:forEach>
 </c:if>
-				
-
-
-		</tbody>
-	</table>
+</tbody>
+</table>
 </div>
-<div class="row form-group">
-	<div class="col-sm-7"></div>
-</div>
-  
 
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
 <script>
-$(document).ready(
-	    function(){
-$("#getexpenseheadpopup").click(function(){
-	
-	 $("#formid").toggle('show');
-	 $('#EditcurrencyForm').hide();
-	 $("#savecurrencyForm").show();
-	 $("#expensehead").val('');
-	 $("#expensetype").val('');
-	 $("#limit").val('');
-	 $("#unit").val('');
-	 $("#hiddenid").val('');
+$(document).ready( function(){
+	  $("#getexpenseheadpopup").click(function(){
+	  $("#formid").toggle('show');
+	  $('#EditcurrencyForm').hide();
+	  $("#savecurrencyForm").show();
+	  $("#expensehead").val('');
+	  $("#expensetype").val('');
+	  $("#limit").val('');
+	  $("#unit").val('');
+	  $("#hiddenid").val('');
+	  $("#expenseheadspan").hide();
+	  $("#expensetypespan").hide();
+	  $("#limitspan").hide();
+	  $("#unitspan").hide();
 	
 });
-	    });
-$("#formid").hide();
+});	   
+$('#msg1').hide();
+$('#msg2').hide();
+$('#msg3').hide();
+$('#msg4').hide();
 
+$("#formid").hide();
+$("#msg1").hide();
+$("#msg2").hide();
+$("#msg3").hide();
+$("#msg4").hide();
 
 $('#saveexpenseheaderForm').click(function (){
+	
 	var expensehead=$('#expensehead').val();
 	var expensetype=$('#expensetype').val();
 	var limit=$('#limit').val();
 	var unit=$('#unit').val();
-	var jsonObj={'expensehead':expensehead,
-			'expensetype':expensetype, 'unit':limit ,'exlimit':unit 
-	} ;
-$.ajax({
-		url: "addexpensehead",
-		type: "POST",
-		
-		  data :JSON.stringify(jsonObj),
-		  cache:false,
-	        beforeSend: function(xhr) {  
-	            xhr.setRequestHeader("Accept", "application/json");  
-	            xhr.setRequestHeader("Content-Type", "application/json");  
-	        },
-		     success: function(resposeJsonObject){
-		    	 $('#openModal').hide();
-		    	 //window.location.currency;
-		    	 window.location.reload();
-	     
-	    }});
+	if(expensehead == ''){
+		/* $("#expenseheadspan").show(); */
+		$('#msg1').show('fast');
+	} else if(expensetype == ''){
+		/* $("#expensetypespan").show(); */
+		$('#msg2').show('fast');
+	}else if(unit == ''){
+		/* $("#limitspan").show(); */
+		$('#msg3').show('fast');
+	}else if (limit == ''){
+		/* $("#unitspan").show(); */
+		$('#msg4').show('fast');
+	}
 	
-	
+	else {
+		var jsonObj={'expensehead':expensehead,
+				'expensetype':expensetype, 'unit':unit ,'exlimit':limit 
+		} ;
+	$.ajax({
+			url: "addexpensehead",
+			type: "POST",
+			
+			  data :JSON.stringify(jsonObj),
+			  cache:false,
+		        beforeSend: function(xhr) {  
+		            xhr.setRequestHeader("Accept", "application/json");  
+		            xhr.setRequestHeader("Content-Type", "application/json");  
+		        },
+			     success: function(resposeJsonObject){
+			    	 $('#openModal').hide();
+			    	 //window.location.currency;
+			    	 window.location.reload();
+		     
+		    }});
+	}
 });
+	
+	
+
 function editCur(id){
+	
+	
 	$("#formid").show('show');
 	$('#EditcurrencyForm').show();
 $.ajax({
@@ -195,13 +208,17 @@ $.ajax({
 	    	 var limit=data.exlimit;
 	    	 var unit=data.unit;
 	    	 var id=data.expensemasterId;
-	    	 alert("DDDDDDDDDDDDDDDD                   "+id);
+	    	// alert("DDDDDDDDDDDDDDDD "+id);
 	    	 $("#expensehead").val(expensehead);
 	    	 $("#expensetype").val(expensetype);
 	    	  $("#unit").val(unit);
 	    	 $("#limit").val(limit);
 	    	 $("#hiddenid").val(id); 
 	    	 $("#saveexpenseheaderForm").hide();
+	    	 $('#msg1').hide();
+	    	 $('#msg2').hide();
+	    	 $('#msg3').hide();
+	    	 $('#msg4').hide();
     }});
 } 
 
@@ -209,6 +226,10 @@ $.ajax({
 
 
  $('#EditcurrencyForm').click(function (){
+	 $('#msg1').hide();
+	 $('#msg2').hide();
+	 $('#msg3').hide();
+	 $('#msg4').hide();
 	var id=$("#hiddenid").val();
 	var expensehead=$('#expensehead').val();
 	var expensetype=$('#expensetype').val();
@@ -216,31 +237,57 @@ $.ajax({
 	var unit=$('#unit').val();
 	
 	var d1w=$("#hiddenid").val();
-	alert(d1w);
+	//alert(d1w);
 	
-	alert(expensehead+'     <<<<<<>>>>>>   ' +expensetype+'               <<<<<<>>>>>>>       '+limit);
-	
-	var jsonObj={'expensehead':expensehead,'expensemasterId':id,
-			'expensetype':expensetype, 'exlimit':limit,'unit':unit
-	} ;
-$.ajax({
-		url: "editexpenseheader",
-		type: "POST",
+	if(expensehead == ''){
+		/* $("#expenseheadspan").show(); */
+		$('#msg1').show('fast');
+	} else if(expensetype == ''){
+		/* $("#expensetypespan").show(); */
+		$('#msg2').show('fast');
+	}else if(unit == ''){
+		/* $("#limitspan").show(); */
+		$('#msg3').show('fast');
+	}else if (limit == ''){
+		/* $("#unitspan").show(); */
+		$('#msg4').show('fast');
+	}
+	else{
 		
-		  data :JSON.stringify(jsonObj),
-		  cache:false,
-	        beforeSend: function(xhr) {  
-	            xhr.setRequestHeader("Accept", "application/json");  
-	            xhr.setRequestHeader("Content-Type", "application/json");  
-	        },
-		     success: function(resposeJsonObject){
-		    	 $('#openModal').hide();
-		    	 //window.location.currency;
-		    	 window.location.reload();
-	     alert("edit");
-	    }});
+		var jsonObj={'expensehead':expensehead,'expensemasterId':id,
+				'expensetype':expensetype, 'exlimit':limit,'unit':unit } ;
+		
+	$.ajax({
+			url: "editexpenseheader",
+			type: "POST",
+			
+			  data :JSON.stringify(jsonObj),
+			  cache:false,
+		        beforeSend: function(xhr) {  
+		            xhr.setRequestHeader("Accept", "application/json");  
+		            xhr.setRequestHeader("Content-Type", "application/json");  
+		        },
+			     success: function(resposeJsonObject){
+			    	 $('#openModal').hide();
+			    	 //window.location.currency;
+			    	 window.location.reload();
+		   //  alert("edit");
+		    }});
+	}
+	
 	
 	
 }); 
+ 
+ $('#expensehead,#expensetype,#unit,#limit').click(function (){
+	 $('#msg1').hide();
+	 $('#msg2').hide();
+	 $('#msg3').hide();
+	 $('#msg4').hide();
+	
+	
+ });
+ 
+
 
 </script>

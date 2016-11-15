@@ -95,7 +95,7 @@
 	 -->
 	 
 	<!-- ************************************************** use by shweta *************************************************** -->
-	       <!-- View Po -->
+	        <!-- View Po -->
 	       <definition name="viewpo" extends="baseLayout" >
 	       <put-attribute name="title" value="view"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/viewPo.jsp" />
@@ -126,12 +126,13 @@
 			</definition>	
 			
 			 <!-- Master masters pages -->
-			  <!-- CustomerLevel -->
+			 
+			 
+			 <!-- CustomerLevel -->
 			<definition name="getcustomerlevel" extends="baseLayout" >
 			 <put-attribute name="title" value="customerLevels"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/customerLevelsjsp.jsp" />
 			</definition>
-			
              <!-- Country -->
 			<definition name="getcountry" extends="baseLayout" >
 			 <put-attribute name="title" value="country"></put-attribute>
@@ -157,25 +158,21 @@
 			 <put-attribute name="title" value="expensemaster"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/masters/expensemaster.jsp" />
 			</definition>
-			
-
 			 <!-- Mode of dispatch -->
 			 <definition name="getmodeofdispatch" extends="baseLayout" >
 			 <put-attribute name="title" value="modeofdispatch"></put-attribute>
-			<put-attribute name="body" value="/WEB-INF/views/Master/masters/modeOfDispatch.jsp" />
-			</definition> 
-			  
-			   <!-- Team Segment -->
-			   <definition name="getteamsegment" extends="baseLayout" >
+			 <put-attribute name="body" value="/WEB-INF/views/Master/masters/modeOfDispatch.jsp" />
+			 </definition> 
+			  <!-- Team Segment -->
+			 <definition name="getteamsegment" extends="baseLayout" >
 			 <put-attribute name="title" value="teamsegment"></put-attribute>
-			<put-attribute name="body" value="/WEB-INF/views/Master/masters/teamsegment.jsp" />
-			</definition> 
-
-			<!-- CustomerSources -->
-			<definition name="getCustomerSources" extends="baseLayout" >
-			<put-attribute name="title" value="CustomerSources" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/masters/CustomerSources.jsp" />
-			</definition>
+			 <put-attribute name="body" value="/WEB-INF/views/Master/masters/teamsegment.jsp" />
+			 </definition> 
+             <!-- CustomerSources -->
+			 <definition name="getCustomerSources" extends="baseLayout" >
+			 <put-attribute name="title" value="CustomerSources" />
+			 <put-attribute name="body" value="/WEB-INF/views/Master/masters/CustomerSources.jsp" />
+			 </definition>
 
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >

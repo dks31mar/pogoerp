@@ -48,8 +48,9 @@
 				<div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
 				class="btn btn-primary" id="EditForm">Edit</button></div>
 </div> 
-
-
+<div class="row">
+<div class="col-md-10" align="right"><span style="color: red" id="msg1" >*This field is required.</span></div>
+</div>
 </div>
 </div>
 <div id="pop" style="display: none;"></div>
@@ -77,7 +78,7 @@
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deletemodeofdispatch?modeofdispatchId=${state.modeofdispatchId}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> 
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td> 
 								
 					</tr>
 
@@ -103,34 +104,40 @@ $("#getcountrypopup").click(function(){
 	 $('#EditForm').hide();
 	 $("#saveForm").show();
 	 $("#addstate").val('');
-	 
+	 $("#msg1").hide();
 	 $("#hiddenid").val('');
 	
 });
 	    });
 $("#formid").hide();
+$("#msg1").hide();
 
 $('#saveForm').click(function (){
 	var addmodeofdispatch=$('#addmodeofdispatche').val();
+	if(addmodeofdispatch == '' ){
+		$("#msg1").show();
+	}
+	else{
+		var jsonObj={'modeofdispatch':addmodeofdispatch
+		} ;
+	$.ajax({
+			url: "addmodeofdispatch",
+			type: "POST",
+			
+			  data :JSON.stringify(jsonObj),
+			  cache:false,
+		        beforeSend: function(xhr) {  
+		            xhr.setRequestHeader("Accept", "application/json");  
+		            xhr.setRequestHeader("Content-Type", "application/json");  
+		        },
+			     success: function(resposeJsonObject){
+			    	 $('#openModal').hide();
+			    	 //window.location.currency;
+			    	 window.location.reload();
+		     
+		    }});
+	}
 	
-	var jsonObj={'modeofdispatch':addmodeofdispatch
-	} ;
-$.ajax({
-		url: "addmodeofdispatch",
-		type: "POST",
-		
-		  data :JSON.stringify(jsonObj),
-		  cache:false,
-	        beforeSend: function(xhr) {  
-	            xhr.setRequestHeader("Accept", "application/json");  
-	            xhr.setRequestHeader("Content-Type", "application/json");  
-	        },
-		     success: function(resposeJsonObject){
-		    	 $('#openModal').hide();
-		    	 //window.location.currency;
-		    	 window.location.reload();
-	     
-	    }});
 });
 
 
@@ -139,6 +146,7 @@ function editCur(id){
 	$("#formid").show('show');
 	$('#EditForm').show();
 	$("#saveForm").hide(); 
+	$("#msg1").hide();
 $.ajax({
 	url: "getmodeofdispatchbyid?modeofdispatchId="+id,
 	type: "POST",

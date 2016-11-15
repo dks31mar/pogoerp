@@ -40,7 +40,7 @@
 
 <div class="row">
 <input type="hidden" id="hiddenid"/>
-  
+ <input type="hidden" id = "districtid" value = "${district123}"/> 
   
   <div class="col-md-10" align="right" id="dddd1234"><input path="loginname" type="text" class="validate[required] text-input" id="addlocation"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add location"
@@ -88,7 +88,7 @@
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deletelocation?locationId=${location.locationId}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> 
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick = "return confirm('Are u sure u want to delete?')"></span></a></td> 
 								
 					</tr>
 
@@ -146,7 +146,8 @@ $('#saveForm').click(function (){
 		$('#addlocation').css('border-color', '#DC143C');
 		$('#messagediv').show('slow');
 	}else{
-		var jsonObj={'location':addlocation
+		var getdistrictid = $('#districtid').val();
+		var jsonObj={'location':addlocation , 'locationId':getdistrictid
 		} ;
 	$.ajax({
 			url: "addlocation",
@@ -227,8 +228,8 @@ $('#EditForm').click(function (){
 		    }});
 	}
 	
-<<<<<<< HEAD
-=======
+
+
 	var jsonObj={'location':addlocation,'locationId':id} ;
 $.ajax({
 		url: "editlocation",
@@ -246,7 +247,7 @@ $.ajax({
 		    	 window.location.reload();
 	    // alert("edit");
 	    }});
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 	
 	
 });
