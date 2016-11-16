@@ -146,7 +146,7 @@ $.ajax({
 	<%
 String name=(String)session.getAttribute("username");
 Integer iduser=(Integer)session.getAttribute("userid");
-if(name==null){
+if(null==iduser){
 	response.sendRedirect("LoginPage.jsp");
 }
 %>
