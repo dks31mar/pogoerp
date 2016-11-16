@@ -173,25 +173,30 @@ $('#EditForm').click(function (){
 	
 	var d1w=$("#hiddenid").val();
 	//alert(d1w);
+	if(addmodeofdispatch == '' ){
+		$("#msg1").show();
+	}
+	else{
+		var jsonObj={'modeofdispatch':addmodeofdispatche,'modeofdispatchId':id} ;
+		$.ajax({
+				url: "editmodeofdispatch",
+				type: "POST",
+				
+				  data :JSON.stringify(jsonObj),
+				  cache:false,
+			        beforeSend: function(xhr) {  
+			            xhr.setRequestHeader("Accept", "application/json");  
+			            xhr.setRequestHeader("Content-Type", "application/json");  
+			        },
+				     success: function(resposeJsonObject){
+				    	 $('#openModal').hide();
+				    	 //window.location.currency;
+				    	 window.location.reload();
+			     //alert("edit");
+			    }});
+			
+	}
 	
-	
-	var jsonObj={'modeofdispatch':addmodeofdispatche,'modeofdispatchId':id} ;
-$.ajax({
-		url: "editmodeofdispatch",
-		type: "POST",
-		
-		  data :JSON.stringify(jsonObj),
-		  cache:false,
-	        beforeSend: function(xhr) {  
-	            xhr.setRequestHeader("Accept", "application/json");  
-	            xhr.setRequestHeader("Content-Type", "application/json");  
-	        },
-		     success: function(resposeJsonObject){
-		    	 $('#openModal').hide();
-		    	 //window.location.currency;
-		    	 window.location.reload();
-	     //alert("edit");
-	    }});
 	
 	
 });
