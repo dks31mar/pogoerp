@@ -86,6 +86,7 @@
 <div id="formid" class="col-md-11" style=" left: 20px;  height: 34px;">
 <div class="row">
   <div class="col-md-4"><span style="color: black;"> <strong>Currency Name<span style="color: red;">*</span>:
+  
 						</strong></span></div>
   <div class="col-md-4"><span style="color: black;">
 							<strong>Currency Type<span
@@ -94,6 +95,7 @@
 					</span></div>
   <div class="col-md-4"><span style="color: black;"> <strong>Currency Symbol<span
 								style="color: red;">*</span>:
+								
 						</strong></span></div>
 </div>
 
@@ -101,7 +103,10 @@
 <input type="hidden" id="hiddenid"/>
   <div class="col-md-4"><input path="loginname" type="text" class="validate[required] text-input" id="currencyname"
 						style="border-radius: 5px;" value="" name="loginname"
-						maxlength="20" autofocus="autofocus"></input></div>
+						maxlength="20" autofocus="autofocus">
+						
+						 <div id="msg1" align="center"><span style="color: red">* please fill the currencyname</span> </input></div></div>
+						
   <div class="col-md-4"><select class="selectpicker" data-style="btn-success" name="" id="currencytypeid" style="border-radius: 5px;">
       <option value="pc">pc</option>
       <option value="sc">sc</option>
@@ -109,7 +114,11 @@
   </select></div>
   <div class="col-md-4"><input path="firstname" type="text" class="validate[required] text-input" id="currencysymbol"
 						style="border-radius: 5px;" name="firstname" value=""
-						 maxlength="20"></input></div>
+						 maxlength="20">
+						 <div id="msg2" align="center"><span style="color: red">*please fill the currencysymbol</span></input>
+						</div>
+						</div>
+						
 </div>
 
 
@@ -199,7 +208,14 @@
     });
      */
     
-    
+     $('#currencyname,#currencysymbol').click(function (){
+    	 $('#msg1').hide();
+    	 $('#msg2').hide();
+    	
+     });
+     $('#msg1').hide();
+     $('#msg2').hide();
+   
     
     
 $('#savecurrencyForm').click(function (){
@@ -207,9 +223,21 @@ $('#savecurrencyForm').click(function (){
 	var currencytype=$('#currencytypeid :selected').text();
 	var currencysymbol=$('#currencysymbol').val();
 	var currencyrate=$('#currencyrate').val();
+	
+	if(currencyname==''){
+		$('#msg1').show('fast');
+		
+	}else if(currencysymbol==''){
+		$('#msg2').show('fast');
+	}
+	else {
+		
+		
+	}
 	var jsonObj={'currencysymbol':currencysymbol,
-			'currencyname':currencyname, 'currencytype':currencytype
-	} ;
+			'currencyname':currencyname, 'currencytype':currencytype };
+	
+	
 $.ajax({
 		url: "savecurrency",
 		type: "POST",
@@ -222,13 +250,14 @@ $.ajax({
 	        },
 		     success: function(resposeJsonObject){
 		    	 $('#openModal').hide();
-		    	 //window.location.currency;
+		    	// window.location.currency;
 		    	 window.location.reload();
 	     
-	    }});
+		     }});
 	
 	
 });
+
 $(document).ready(
 	    function(){
 $("#getpopup").click(function(){

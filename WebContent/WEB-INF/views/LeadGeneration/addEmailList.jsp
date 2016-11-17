@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/table.css" rel="stylesheet" type="text/css" />
+
 <div class="row" style="margin-top: 15px">
 	<br>
 	<div align="center">
@@ -20,81 +21,70 @@
 		</i> <input type="hidden" name="profile" value="0" />
 	</div>
 </div>
+
 <div class="row">
 
-	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; left: 20px;  height: 34px;">
-		<span class="fa fa-money"></span>  Expense Head
-		 <label
-			 style="margin-left: 250px;margin-top: 8px;">
-			 <button href="#"
-			class="btn btn-primary" id="getexpenseheadpopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add ExpenseHead  </button>
-     </label>
-      
+	<div class="page-heading col-sm-11" style="background-color: #3C8DBD; left: 20px;  height: 34px;"><span class="glyphicon glyphicon-envelope"></span> Register New Email
+	<label  style="margin-left: 250px;margin-top: 8px;"><button href="#" class="btn btn-primary" id="getexpenseheadpopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Email </button> </label>
+	</div>		
+			 
 			
-</div>
+    
+      
+		
 <div id="formid" class="col-md-11" style=" left: 20px;  height: 34px;">
 <div class="row">
-  <div class="col-md-3"><span style="color: black;"> <strong>Expense Head<span style="color: red;">*</span>:</strong></span></div>
+  <div class="col-md-6"><span style="color: black;"> <strong>Name<span style="color: red;">*</span>:</strong></span></div>
 						
-  <div class="col-md-3"><span style="color: black;"><strong>Expense Type<span style="color: red;">*</span>:</strong></span></div>
-							
-  <div class="col-md-3"><span style="color: black;"> <strong>Unit<span style="color: red;">*</span>:</strong></span></div> 
-
-  <div class="col-md-3"><span style="color: black;"> <strong>Limit/Rate Rs.<span style="color: red;">*</span>:</strong></span></div>							
-						
+  <div class="col-md-6"><span style="color: black;"><strong>Email<span style="color: red;">*</span>:</strong></span></div>
+	</div>							
+  
  					
-</div>								
+							
 					
 <div class="row">  
 <input type="hidden" id="hiddenid"/>								
-<div class="col-md-3">
+<div class="col-md-6">
 <input  type="text" class="validate[required] text-input" id="expensehead" style="border-radius: 5px;" value="" name="loginname" maxlength="20" autofocus="autofocus"></input>	
 									
 </div>
-<div class="col-md-3">
+<div class="col-md-6">
 <input  type="text" class="validate[required] text-input" id="expensetype" style="border-radius: 5px;" value="" name="loginname" maxlength="20" autofocus="autofocus"></input>  
 </div>
-<div class="col-md-3"><input  type="number" class="validate[required] text-input" id="unit" style="border-radius: 5px;" name="firstname" value=""  maxlength="20"></input>
-</div>						
-<div class="col-md-3"><input  type="number" class="validate[required] text-input" id="limit" style="border-radius: 5px;" name="firstname" value=""  maxlength="20"></input>					
-</div>	
+
 </div>						
 						
 <div class="row">
-<div class="col-md-12" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button" class="btn btn-primary" id="saveexpenseheaderForm">Save</button></div>
-<div class="col-md-12" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button" class="btn btn-primary" id="EditcurrencyForm">Edit</button></div> 				
+<div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button" class="btn btn-primary" id="saveexpenseheaderForm">Save</button></div>
+<!-- <div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button" class="btn btn-primary" id="EditcurrencyForm">Edit</button></div> --> 				
 </div>
 
 <div class="row">
-<div class="col-md-3"><span style="color: red" id="msg1">*This field is required.</span></div>
-<div class="col-md-3"><span style="color: red" id="msg2">*This field is required.</span></div>
-<div class="col-md-3"><span style="color: red" id="msg3">*This field is required.</span></div>
-<div class="col-md-3"><span style="color: red" id="msg4">*This field is required.</span></div>
+<!-- <div class="col-md-6"><span style="color: red" id="msg1">*This field is required.</span></div>
+<div class="col-md-6"><span style="color: red" id="msg2">*This field is required.</span></div> -->
+
 
 </div>
-		
+	
 </div>
-</div>			 
-<br>				
-
+</div>
+<br>
 <div id="pop" style="display: none;"></div>
-<div id="searchedRecord"></div>
- 
+<div id="searchedRecord"></div>			
 <div id="body">
+
 	<table class="responstable" style="margin-left: 22px; " >
        <tbody>
 			<tr>
 				<th>S.No.</th>
-				<th data-th="Driver details"><span>Expense Head</span></th>
-				<th>Expense Type</th>
-				<th>Unit</th>
-				<th>Limit/Rate Rs.</th>
+				<th>Name</th>
+				<th data-th="Driver details"><span>Email</span></th>
+				<th>Status</th>
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;"> Delete</th>
 			</tr>
 			
-			<c:if test="${!empty expenseheadList}">
+<%-- <c:if test="${!empty expenseheadList}">
 				<c:forEach items="${expenseheadList}" var="cur" varStatus="loop">
 			
 			<tr>
@@ -107,11 +97,11 @@
 				<td style="margin"><a href="deleteexpenseheader?expensemasterId=${cur.expensemasterId}"><span class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick = "return confirm('Are u sure u want to delete?')"></span></a></td>
 			</tr>
 </c:forEach>
-</c:if>
+</c:if> --%>
 </tbody>
 </table>
-</div>
 
+</div>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -147,7 +137,7 @@ $("#msg4").hide();
 
 $('#saveexpenseheaderForm').click(function (){
 	
-	var expensehead=$('#expensehead').val();
+	var name=$('#expensehead').val();
 	var expensetype=$('#expensetype').val();
 	var limit=$('#limit').val();
 	var unit=$('#unit').val();

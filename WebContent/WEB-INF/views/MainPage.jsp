@@ -146,7 +146,7 @@ $.ajax({
 	<%
 String name=(String)session.getAttribute("username");
 Integer iduser=(Integer)session.getAttribute("userid");
-if(name==null){
+if(null==iduser){
 	response.sendRedirect("LoginPage.jsp");
 }
 %>
@@ -1316,11 +1316,11 @@ if(name==null){
 
 		<footer class="main-footer">
 		<div class="pull-right hidden-xs">
-			<a href="test" >test</a>
-			<b>Version</b> 2.3.3
+			
+			<!-- <b>Version</b> 2.3.3 -->
 		</div>
-		<strong>Copyright &copy; 2014-2015 <a
-			href="http://almsaeedstudio.com">Almsaeed Studio</a>.
+		<strong>Copyright &copy; 2015-2016 <a
+			href="http://tb-il.com">Technobridge Innovations</a>.
 		</strong> All rights reserved. </footer>
 
 		<!-- Control Sidebar -->
@@ -1493,24 +1493,7 @@ if(name==null){
 		<div class="control-sidebar-bg"></div>
 
 	</div>
-	<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">×</span>
-      <h2>Modal Header</h2>
-    </div>
-    <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div>
-
-</div>
+	
 	<!-- ./wrapper -->
 
 <!--popup window  -->

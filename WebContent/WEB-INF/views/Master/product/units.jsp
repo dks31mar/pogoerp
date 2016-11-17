@@ -16,6 +16,9 @@
 <script src="resources/js/jquery.dialogBox.js" type="text/javascript"></script>
 <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
     rel="stylesheet" type="text/css" />
+    
+    
+    
 <div class="row">
 
 	<div class="page-heading col-sm-11"
@@ -35,7 +38,9 @@
 <input type="hidden" id="hiddenid"/>
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="unitname"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Enter Unit Name"
-						maxlength="20" autofocus="autofocus"></input></div>
+						maxlength="20" autofocus="autofocus"></input>
+						<div id="msg1" align="center"><span style="color: red">*Input Needed</span></div>
+						</div>
   
 </div>
 
@@ -77,7 +82,7 @@
 						<td><a href="#" onclick="editCur(${unit.unittypeid})" title="Edit" align="center" >
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
-						<td style="margin"><a href="deleteunit?id=${unit.unittypeid}"><span
+						<td style="margin"><a href="#" onclick="deletedata(${unit.unittypeid})"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
 					</tr>
 
@@ -105,10 +110,11 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
 
 <script>
-
+$('#msg1').hide();
 $(document).ready(
 	    function(){
 $("#getpopup").click(function(){
@@ -170,7 +176,19 @@ $.ajax({
     }});
 } 
 
-
+function deletedata(id){
+	
+	/* $.ajax({
+		url: "deleteunit?id="+id,
+		type: "GET",
+		success: function(respose){
+				    	
+			}
+	}); */
+	
+	jAlert('This is a custom alert box', 'Alert Dialog');
+	
+}
 
 
 

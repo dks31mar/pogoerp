@@ -41,7 +41,7 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	public List<ProductMaster> getproductDetail(ProductMaster pm) {
 	
 		ProjectionList projList=Projections.projectionList();
-		projList.add(Projections.property("productdescription"));
+		projList.add(Projections.property("description"));
 		projList.add(Projections.property("costprice"));
 		projList.add(Projections.property("unitprice"));
 		Criteria r=	sessionFactory.getCurrentSession().createCriteria(ProductMaster.class).add(Restrictions.eq("productname", pm.getProductname())).setProjection(Projections.distinct(projList));

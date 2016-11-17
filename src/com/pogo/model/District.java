@@ -1,7 +1,9 @@
 package com.pogo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,9 +20,8 @@ public class District {
 	private Integer districtId ;
 	@Column(name="district")
 	private String district ;
-	@Column(name="stateId")
-	private Integer stateId;
-	/*@ManyToOne
+	
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="stateId")
 	private State state;
 	public State getState() {
@@ -30,14 +31,8 @@ public class District {
 	public void setState(State state) {
 		this.state = state;
 	}
-*/
-	public Integer getStateId() {
-		return stateId;
-	}
 
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
-	}
+	
 
 	public Integer getDistrictId() {
 		return districtId;

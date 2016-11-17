@@ -35,7 +35,7 @@
 <input type="hidden" id="hiddenid"/>
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="customerlevels"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Enter Customer Levels "
-						maxlength="20" autofocus="autofocus"></input></div>
+						maxlength="20" autofocus="autofocus"></input><span style = "color:red;" id = "customerval">Please enter a value</span></div>
   
 </div>
 
@@ -76,7 +76,7 @@
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deletecustomerlevels?id=${customerlevel.id}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> 
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick = "return confirm('Are u sure u want to delete?')"></span></a></td> 
 					</tr>
 
 				</c:forEach>
@@ -106,35 +106,40 @@ $("#getcustomerpopup").click(function(){
 	 $('#EditForm').hide();
 	 $("#saveForm").show();
 	 $("#customerlevels").val('');
-	 
+	 $("#customerval").hide();
 	 $("#hiddenid").val('');
 	
 });
 	    });
 $("#formid").hide();
-
+$("#customerval").hide();
 $('#saveForm').click(function (){
 	var customerlevels=$('#customerlevels').val();
+	if(customerlevels == ''){
+		$("#customerval").show();
+	}
+	else{
+		var jsonObj={'status':customerlevels
+		} ;
+	$.ajax({
+			url: "addcustomerlevels",
+			type: "POST",
+			
+			  data :JSON.stringify(jsonObj),
+			  cache:false,
+		        beforeSend: function(xhr) {  
+		            xhr.setRequestHeader("Accept", "application/json");  
+		            xhr.setRequestHeader("Content-Type", "application/json");  
+		        },
+			     success: function(resposeJsonObject){
+			    	 $('#openModal').hide();
+			    	 //window.location.currency;
+			    	 window.location.reload();
+		     
+		    }});
+	}
 	
 	
-	var jsonObj={'status':customerlevels
-	} ;
-$.ajax({
-		url: "addcustomerlevels",
-		type: "POST",
-		
-		  data :JSON.stringify(jsonObj),
-		  cache:false,
-	        beforeSend: function(xhr) {  
-	            xhr.setRequestHeader("Accept", "application/json");  
-	            xhr.setRequestHeader("Content-Type", "application/json");  
-	        },
-		     success: function(resposeJsonObject){
-		    	 $('#openModal').hide();
-		    	 //window.location.currency;
-		    	 window.location.reload();
-	     
-	    }});
 });
 
 
@@ -143,6 +148,7 @@ function editCur(id){
 	$("#formid").show('show');
 	$('#EditForm').show();
 	$("#saveForm").hide(); 
+	
 $.ajax({
 	url: "getcustomerlevel?id="+id,
 	type: "GET",
@@ -164,6 +170,7 @@ $.ajax({
 
 
 $('#EditForm').click(function (){
+	 $("#customerval").hide();
 	var id=$("#hiddenid").val();
 	var customerlevels=$('#customerlevels').val();
 	

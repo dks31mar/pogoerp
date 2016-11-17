@@ -32,10 +32,10 @@
 
 <div class="row">
 <input type="hidden" id="hiddenid"/>
-<input type="hidden" id="countryid" value="${state123}"/> 
+<input type="hidden" id="countryid" value="${country123}"/> 
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addstate"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add State"
-						maxlength="20" autofocus="autofocus"></input></div>
+						maxlength="20" autofocus="autofocus"></input><span style ="color:red;" id = "statespan">Please enter a state</span></div>
   
 </div>
 
@@ -77,8 +77,8 @@
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deletestate?stateId=${state.stateId}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> 
-								
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick = "return confirm('Are u sure u want to delete?')"></span></a></td> 
+			 					
 					</tr>
 
 				</c:forEach>
@@ -103,45 +103,45 @@ $("#getcountrypopup").click(function(){
 	 $('#EditForm').hide();
 	 $("#saveForm").show();
 	 $("#addstate").val('');
-	 
+	 $('#statespan').hide();
 	 $("#hiddenid").val('');
 	
 });
 	    });
 $("#formid").hide();
-
+$('#statespan').hide();
 $('#saveForm').click(function (){
 	var addstate=$('#addstate').val();
-<<<<<<< HEAD
+
 	if(addstate == ''){
-		
+		$('#statespan').show();
 	}
 	else{
+		//var jsonObj={'state':addstate }
+
+		var getcountryid=$('#countryid').val();
 		
+		var jsonObj={'state':addstate,'stateId':getcountryid
+
+		} ;
+	$.ajax({
+			url: "addstate",
+			type: "POST",
+			
+			  data :JSON.stringify(jsonObj),
+			  cache:false,
+		        beforeSend: function(xhr) {  
+		            xhr.setRequestHeader("Accept", "application/json");  
+		            xhr.setRequestHeader("Content-Type", "application/json");  
+		        },
+			     success: function(resposeJsonObject){
+			    	 $('#openModal').hide();
+			    	 //window.location.currency;
+			    	 window.location.reload();
+		     
+		    }});
 	}
-	var jsonObj={'state':addstate
-=======
-	var getcountryid=$('#countryid').val();
 	
-	var jsonObj={'state':addstate,'stateId':getcountryid
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
-	} ;
-$.ajax({
-		url: "addstate",
-		type: "POST",
-		
-		  data :JSON.stringify(jsonObj),
-		  cache:false,
-	        beforeSend: function(xhr) {  
-	            xhr.setRequestHeader("Accept", "application/json");  
-	            xhr.setRequestHeader("Content-Type", "application/json");  
-	        },
-		     success: function(resposeJsonObject){
-		    	 $('#openModal').hide();
-		    	 //window.location.currency;
-		    	 window.location.reload();
-	     
-	    }});
 });
 
 

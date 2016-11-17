@@ -4,8 +4,7 @@
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/displaytag.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/displaytag.css" />
 <link rel="stylesheet" type="text/css"
 	href="resources/css/messagebox.css" />
 <link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
@@ -21,12 +20,12 @@ java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("MM/dd/yyyy");
 java.util.Date date = new java.util.Date();
 System.out.println();
 %>
-<form:form method="POST" action="savepodetails" commandName="productadd">
+<form method="POST" action="savepodetails">
 		<div class="row" style="margin-top: 15px">
 			<br>
 			<div align="center">
 				<i>
-					<h3></h3>
+				
 				</i> <input type="hidden" name="profile" value="0" />
 			</div>
 		</div>
@@ -39,7 +38,7 @@ System.out.println();
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="normal" type="radio"
 					name="potype" checked />Normal <input id="CBW" type="radio"
 					name="potype" />CBW
-				</tr>
+				
 			</div>
 		</div>
 
@@ -95,120 +94,89 @@ System.out.println();
 				</div>
 			</div>
 			<hr style="color: black">
-			<div>
-				<div>
-
 					<div class="row form-group">
 						<div class="col-sm-7">
-
-
-
-	
 						</div>
-
-
-
 					</div>
-
-
-					<!-- <input type="text" name="currency" class="biginput"
-						id="autocomplete"><br> <br> -->
-					
 				
 					<table style="width: 100%; bottom: 15px; position: relative;" border="0" id="quotprodtable">
-					<tr bgcolor="#3C8DBC">
-					<td style="display: none;"><form:label path="porefentryitemdetailid">id</form:label> </td>
-							<td class="col-sm-1 form-level" style="width: 10px">&nbsp;<font
-								size="2" color="white">
-								<form:label path="">S.No.</form:label></font></td>
-							
-							<td class="col-sm-3 form-level" style="width: 80px"
-								align="center">&nbsp;<font size="2" color="white">
-								<form:label path="particular">Part No</form:label></font></td>
-							<td align="center" class="col-sm-1 form-level"
-								style="width: 80px">&nbsp;&nbsp;&nbsp;<font size="2" color="white">
-								<form:label path="productdescription">Description</form:label></font></td>
-							<td align="center">&nbsp;<font size="2" style="width: 80px"
-								color="white">
-								<form:label path="tpinjpy">TP In JPY</form:label></font></td>
-							<td align="center">&nbsp;<font size="2" style="width: 80px"
-								color="white">
-								<form:label path="qty">QTY</form:label></font></td>
-							<td align="center">&nbsp;<font size="2" style="width: 80px"
-								color="white">
-								<form:label path="totaljpy">Total JPY</form:label></font></td>
-							<td align="center">&nbsp;<font size="2" style="width: 65px"
-								color="white"><form:label path="customerporefe">Customer PO Reference</form:label></font></td>
-							<%-- <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white"><form:label path="">Total INR</form:label></font> --%>
+					<thead>
+						<tr bgcolor="#3C8DBC">
+							<td style="display: none;"><label>id</label> </td>
+									<td class="col-sm-1 form-level" style="width: 10px">&nbsp;
+										<font size="2" color="white">
+										<label>S.No.</label></font></td>
+									<td class="col-sm-3 form-level" style="width: 80px"align="center">&nbsp;<font size="2" color="white">
+										<label >Part No</label></font></td>
+									<td align="center" class="col-sm-1 form-level"style="width: 80px">&nbsp;&nbsp;&nbsp;<font size="2" color="white">
+										<label >Description</label></font></td>
+									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
+										<label >TP In JPY</label></font></td>
+									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
+										<label >QTY</label></font></td>
+									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
+										<label >Total JPY</label></font></td>
+									<td align="center">&nbsp;<font size="2" style="width: 65px"color="white">
+										<label >Customer PO Reference</label></font></td>
+							<%-- <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white"><label path="">Total INR</label></font> --%>
 					
 					</tr>
-					<c:if test="${!empty prolist}">
-					<c:forEach items="${prolist}" var="product" varStatus="loop">
+					</thead>
+					<tbody id="addprolisttbody">
 					
-					<tr id="getlst">
+					</tbody>
+					</table>
 					
-					<td class="col-sm-1 form-level" style=" width: 10px;text-align: center;"><lable><c:out value="${loop.index+1}"></c:out></lable></td>
-					<td class="col-sm-3 form-level" style="width: 230px;text-align: center;"><lable><c:out value="${product.particular}"></c:out></lable></td>
-					<td class="col-sm-1 form-level" style="width: 230px;text-align: center;"><lable><c:out value="${product.productdescription}"></c:out></lable></td>
-					<td class="col-sm-1 form-level" style="text-align: center;"><lable><c:out value="${product.tpinjpy}"></c:out></lable></td>
-					<td  style="text-align: center;"><lable><c:out value="${product.qty}"></c:out></lable></td>
-					<td  style="text-align: center;"><lable><c:out value="${product.totaljpy}"></c:out></lable></td>
-					<td  style="text-align: center;"><lable><c:out value="${product.customerporefe}"></c:out></lable></td>
-					<td align="left"><a class="glyphicon glyphicon-pencil" href="editproduct?porefentryitemdetailid=${product.porefentryitemdetailid}"></a> | <a class="glyphicon glyphicon-remove" href="deleteproduct?porefentryitemdetailid=${product.porefentryitemdetailid}"></a></td>
-					</tr>
-			
-					</c:forEach>
-					</c:if>
-					
-					
-					<tr id="mainForm">
-					<td style="display: none;"><form:input path="porefentryitemdetailid" type="hidden" value="${product.porefentryitemdetailid}" id="getid1"></form:input> </td>
+					<table>
+					<tr>
+					<td style="display: none;"><input type="hidden" value="" id="getid1"></input> </td>
 					<td style="right: 5px; position: relative;">&nbsp; 
-					<form:input path="" type='text' style='width: 60px' name='posrno' id='sr'
-								value="${loop.index+1}" class='form-control'/></td>
+					<input type='text' style='width: 60px' name='posrno' id='sr'
+								value="" class='form-control'/></td>
 							<td style="left: 2px; position: relative; width: 150px">&nbsp;
-								<form:input path="particular" type='text' value="${product.particular}" name='particulee1'
+								<input type='text' value="" name='particulee1'
 								style='overflow: auto; border-radius: 3px; width: 223px;'
 								id='autocomplete' class='form-control'
 								/>
 							</td>
-							<td style="width: 250px">&nbsp; <form:input path="productdescription" name='description'
-									id='description' readonly='true' class='form-control'
-									style="text-align: center;width: 238px;" value="${product.productdescription}" onfocus='closeDiv();'></form:input></td>
+							<td style="width: 250px">&nbsp; <input name='description'
+									id='description' class='form-control'
+									style="text-align: center;width: 238px;" value="" onfocus='closeDiv();'></input></td>
 							
-							<td style="right: 7px; position: relative;">&nbsp; <form:input path="tpinjpy"
+							<td style="right: 7px; position: relative;">&nbsp; <input
 								type='text' style='text-align: center;' name='tpinjpy' 
-								id='tpinjpy' value="${product.tpinjpy}" class='form-control' readonly='true'/></td>
+								id='tpinjpy' value="" class='form-control' /></td>
 
 							<td align="center" style="right: 4px; position: relative;">&nbsp;
-								<form:input path="qty" type='text' style='text-align: center;' name='qty'
-								id='qty' class='form-control' value="${product.qty}"
+								<input  type='text' style='text-align: center;' name='qty'
+								id='qty' class='form-control' value=""
 								onfocus='closeDiv();'/>
 							</td>
 							<td align="center">&nbsp; 
-							<form:input path="totaljpy" type='text'
-								style='text-align: center;' name='totaljpy' id='totaljpy' value="${product.totaljpy}"
-								class='form-control' readonly='true' onfocus='closeDiv();'/></td>
+							<input  type='text'
+								style='text-align: center;' name='totaljpy' id='totaljpy' value=""
+								class='form-control'  onfocus='closeDiv();'/></td>
 
 							<td align="center">&nbsp; 
 							
-							<form:input path="customerporefe" type='text'
+							<input type='text'
 								style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' 
-								name='customerporefe' id='customerporefe' value="${product.customerporefe}"
-								class='form-control' readonly='false'/>
+								name='customerporefe' id='customerporefe' value=""
+								class='form-control'/>
 								
 							</td>
 							<td>
-								<input type="hidden" style="text-align:center;" name="unitcost" id="unitcostx" value="" class="form-control"  readonly="true"></td>
+								<input type="hidden" style="text-align:center;" name="unitcost" id="unitcostx" value="" class="form-control"  ></td>
 							<td>
-							<td align="center">&nbsp; <input type="submit" value='+'
-							 id='saveproduct123' class='btn btn-success pull-right' data-toggle='tooltip'
+							<td align="center">&nbsp; <input type="button" value='+'
+							 id='addmorepro12' class='btn btn-success pull-right' data-toggle='tooltip'
 								title='Add More Product'/>
 					</tr>
 					
 					</table>
-</form:form>
-				</div>
+</form>
+
+			
 				<div class="row form-group" style="top: 10px; position: relative;"
 					onclick="">
 					<div class="col-sm-10 form-level" align="right">
@@ -264,7 +232,7 @@ System.out.println();
 
 
 
-					<button type="button" value="Save" onClick="savebutton()"
+					<button type="button" value="Save" onClick=""
 						class="btn btn-success pull-center" id="savedata445"
 						style="background-color: #3C8DBC;">Save</button>
 					<!-- <button type="button" value="AddMore" onClick="productdetail();"
@@ -283,7 +251,9 @@ System.out.println();
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
-<script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+
+<script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.js"></script>
 <script>
 
 
@@ -365,7 +335,7 @@ $('#autocomplete').autocomplete({
       $.ajax({
 			url: "getpartdetail?pro="+pro, 
 			success: function(result){
-					
+					//alert("ddd");
 				//$('#autocomplete').val('');
 				for(i=0;i<result.length;i++){
 					var data=result.replace('"','');
@@ -373,7 +343,7 @@ $('#autocomplete').autocomplete({
 				}
 			var	productdescription=data.split(',')[0]
 			var cost=data.split(',')[1];
-					//alert(data);
+					//alert(productdescription);
 				var unitcostx=data.split(',')[2];	
 				
 				//$('#particulee1').val(pro)
@@ -387,7 +357,7 @@ $('#autocomplete').autocomplete({
   });
 }
 
- $(document).ready(function(){
+ /* $(document).ready(function(){
 	$('#savedata445').click(function(){
 	$.ajax({
 			url: "getviewproduct",
@@ -406,7 +376,7 @@ $('#autocomplete').autocomplete({
 				
 			}});
 	});
-});
+}); */
  
  $('#addmore').click(function (){
 	 $('#mainForm').show();
@@ -445,25 +415,204 @@ $('#autocomplete').autocomplete({
 			    }});
 		});
 	}); */
- 
-	$(document).ready(function(){
-		
 	
-	var doc = new jsPDF();
-	var specialElementHandlers = {
-	    '#editor': function (element, renderer) {
-	        return true;
-	    }
-	};
+	
+	
+	 $(document).ready(function(){
+		 var id=$('#addprolisttbody').children('tr').length;
+		 $('#sr').val(id+1);
+	        $("#addmorepro12").click(function(){
+	        	var id=$('#addprolisttbody').children('tr').length+1;
+	        	var idd=$('#getid1').val();
+				var  dis	= $('#description').val();
+				var  partno	=$('#autocomplete').val();
+				var	 tpn	=$('#tpinjpy').val();
+				var	 qty	=$('#qty').val();
+				var	 totjpy	=$('#totaljpy').val();
+				var	 custpo	=$('#customerporefe').val();
+	            var markup = "<tr>"+
+					"<td style='display: none;'><input type='hidden' value='"+idd+"' id='getid"+id+"'></input> </td>"+
+					"<td style='right: 5px; position: relative;'>&nbsp;"+ 
+					"<input type='text' style='width: 60px' name='posrno' id='sr"+id+"' value='"+id+"' class='form-control' readonly/></td>"+
+					"<td style='left: 2px; position: relative; width: 150px'>&nbsp;"+
+					"<input readonly type='text' value='"+partno+"' name='particulee1'style='overflow: auto; border-radius: 3px; width: 223px;'id='partno"+id+"' class='form-control'/></td>"+
+					"<td style='width: 250px'>&nbsp; <input readonly name='description' id='description"+id+"' class='form-control' style='text-align: center;width: 238px;' value='"+dis+"' onfocus='closeDiv();'></input></td>"+
+					"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='tpinjpy' id='tpinjpy"+id+"' value='"+tpn+"' class='form-control' /></td>"+
+					"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='qty"+id+"' class='form-control' value='"+qty+"' onfocus='closeDiv();'/></td>"+
+					"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'  onfocus='closeDiv();'/></td>"+
+					"<td align='center'>&nbsp;<input readonly type='text' style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' name='customerporefe' id='customerporefe"+id+"' value='"+custpo+"' class='form-control'/>"+
+					"</td>"+
+					"<td><input type='hidden' style='text-align:center;' name='unitcost' id='unitcostx' value='' class='form-control'  ></td>"+
+					"<td><a class='glyphicon glyphicon-pencil' href='#'></a> | <a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+
+					"</tr>";
+	            $("#addprolisttbody").append(markup);
+	            //id++;
+	            $('#sr').val(id+1);
+	        });
+	 });
+	
+	
+	function deletethisrow(id){
+		
+			 $("#"+id).parents("tr").remove();
+		id=$('#addprolisttbody').children('tr').length;
+		 $('#sr').val(id+1);
+		 for (i=0;i<id ; i++){
+			 
+		 }
+	}
+	
+	
+	$('#savedata445').click( function() {
+		  var table = $('#quotprodtable').tableToJSON();
+		  console.log(table);
+		  alert(JSON.stringify(table));  
+		});
+	
+	
+	
+	(function ($) {
+	    'use strict';
 
-	$('#pdf').click(function () {
-	    doc.fromHTML($('#quotprodtable').html(), 15, 15, {
-	        'width': 170,
-	            'elementHandlers': specialElementHandlers
-	    });
-	    doc.save('sample-file.pdf');
-	});
-});
+	    $.fn.tableToJSON = function (opts) {
+
+	        // Set options
+	        var defaults = {
+	            ignoreColumns: [],
+	            onlyColumns: null,
+	            ignoreHiddenRows: true,
+	            headings: null,
+	            allowHTML: false
+	        };
+	        opts = $.extend(defaults, opts);
+
+	        var notNull = function (value) {
+	            return value !== undefined && value !== null;
+	        };
+
+	        var ignoredColumn = function (index) {
+	            if (notNull(opts.onlyColumns)) {
+	                return $.inArray(index, opts.onlyColumns) === -1;
+	            }
+	            return $.inArray(index, opts.ignoreColumns) !== -1;
+	        };
+
+	        var arraysToHash = function (keys, values) {
+	            var result = {}, index = 0;
+	            $.each(values, function (i, value) {
+	                // when ignoring columns, the header option still starts
+	                // with the first defined column
+	                if (index < keys.length && notNull(value)) {
+	                    result[keys[index]] = value;
+	                    index++;
+	                }
+	            });
+	            return result;
+	        };
+
+	        var cellValues = function (cellIndex, cell) {
+	            var value, result;
+	            if (!ignoredColumn(cellIndex)) {
+	                var override = $(cell).data('override');
+	                if (opts.allowHTML) {
+	                    value = $.trim($(cell).html());
+	                } else {
+	                    value = $.trim($(cell).text());
+	                }
+	                result = notNull(override) ? override : value;
+	            }
+	            return result;
+	        };
+
+	        var rowValues = function (row) {
+	            var result = [];
+	            $(row).children('td,th').each(function (cellIndex, cell) {
+	                if (!ignoredColumn(cellIndex)) {
+	                    result.push(cellValues(cellIndex, cell));
+	                }
+	            });
+	            return result;
+	        };
+
+	        var getHeadings = function (table) {
+	            var firstRow = table.find('tr:first').first();
+	            return notNull(opts.headings) ? opts.headings : rowValues(firstRow);
+	        };
+
+	        var construct = function (table, headings) {
+	            var i, j, len, len2, txt, $row, $cell,
+	            tmpArray = [],
+	                cellIndex = 0,
+	                result = [];
+	            table.children('tbody,*').children('tr').each(function (rowIndex, row) {
+	                if (rowIndex > 0 || notNull(opts.headings)) {
+	                    $row = $(row);
+	                    if ($row.is(':visible') || !opts.ignoreHiddenRows) {
+	                        if (!tmpArray[rowIndex]) {
+	                            tmpArray[rowIndex] = [];
+	                        }
+	                        cellIndex = 0;
+	                        $row.children().each(function () {
+	                            if (!ignoredColumn(cellIndex)) {
+	                                $cell = $(this);
+
+	                                // process rowspans
+	                                if ($cell.filter('[rowspan]').length) {
+	                                    len = parseInt($cell.attr('rowspan'), 10) - 1;
+	                                    txt = cellValues(cellIndex, $cell, []);
+	                                    for (i = 1; i <= len; i++) {
+	                                        if (!tmpArray[rowIndex + i]) {
+	                                            tmpArray[rowIndex + i] = [];
+	                                        }
+	                                        tmpArray[rowIndex + i][cellIndex] = txt;
+	                                    }
+	                                }
+	                                // process colspans
+	                                if ($cell.filter('[colspan]').length) {
+	                                    len = parseInt($cell.attr('colspan'), 10) - 1;
+	                                    txt = cellValues(cellIndex, $cell, []);
+	                                    for (i = 1; i <= len; i++) {
+	                                        // cell has both col and row spans
+	                                        if ($cell.filter('[rowspan]').length) {
+	                                            len2 = parseInt($cell.attr('rowspan'), 10);
+	                                            for (j = 0; j < len2; j++) {
+	                                                tmpArray[rowIndex + j][cellIndex + i] = txt;
+	                                            }
+	                                        } else {
+	                                            tmpArray[rowIndex][cellIndex + i] = txt;
+	                                        }
+	                                    }
+	                                }
+	                                // skip column if already defined
+	                                while (tmpArray[rowIndex][cellIndex]) {
+	                                    cellIndex++;
+	                                }
+	                                if (!ignoredColumn(cellIndex)) {
+	                                    txt = tmpArray[rowIndex][cellIndex] || cellValues(cellIndex, $cell, []);
+	                                    if (notNull(txt)) {
+	                                        tmpArray[rowIndex][cellIndex] = txt;
+	                                    }
+	                                }
+	                            }
+	                            cellIndex++;
+	                        });
+	                    }
+	                }
+	            });
+	            $.each(tmpArray, function (i, row) {
+	                if (notNull(row)) {
+	                    txt = arraysToHash(headings, row);
+	                    result[result.length] = txt;
+	                }
+	            });
+	            return result;
+	        };
+
+	        // Run
+	        var headings = getHeadings(this);
+	        return construct(this, headings);
+	    };
+	})(jQuery);
 </script>
 
 

@@ -39,7 +39,8 @@ public interface MasterMastersService {
 	void deleteCountry(Integer id);
 	String getCountryById(String id);
 	void editCountry(CountryBean poref1);
-     List<State> stateList();
+    
+	List<State> stateList();
 	void addState(StateBean poref1);
 	void deleteState(Integer id);
 	String getStateById(String id);

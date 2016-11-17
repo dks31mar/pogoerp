@@ -16,14 +16,12 @@ import com.pogo.bean.ProductHeadBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.bean.ProductSubHeadBean;
 import com.pogo.bean.UnitBean;
-import com.pogo.bean.UserEmployeeBean;
 import com.pogo.dao.MasterProductDao;
 import com.pogo.model.Currency;
 import com.pogo.model.ProductHead;
 import com.pogo.model.ProductMaster;
 import com.pogo.model.ProductSubHead;
 import com.pogo.model.Unit;
-import com.pogo.model.UserEmployee;
 import com.pogo.service.MasterProductService;
 @Service("masterProductService")
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

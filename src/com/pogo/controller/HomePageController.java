@@ -1,8 +1,6 @@
 package com.pogo.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,18 +20,22 @@ import com.pogo.service.HomePageService;
 @Controller
 public class HomePageController {
 	
-	
 	@Autowired
 	private HomePageService homePageService;
-	
+	@Transactional
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public ModelAndView logOut(HttpSession session) {
-		String name=(String)session.getAttribute("username");
-		System.out.println(name);
-		session.invalidate();
+	public ModelAndView logOut(HttpServletRequest request) {
+		
+		HttpSession session1 = request.getSession();
+		int id=(int)session1.getAttribute("userid");
+		session1.removeAttribute("username");
+		System.out.println(id);
+		
+		session1.invalidate();
+		
 		System.out.println("remove");
-		System.out.println(">>>>>>>>>>>>>    "+name);
-		return new ModelAndView("LoginPage");
+		System.out.println(">>>>>>>>>>>>>    "+id);
+		return new ModelAndView("logout");
 		}
 	
 	@SuppressWarnings("unused")
@@ -52,7 +55,7 @@ public class HomePageController {
 			
 			e.printStackTrace();
 		}
-		//return null;
+		
 
 	}
 }

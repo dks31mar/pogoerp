@@ -32,10 +32,10 @@
 
 <div class="row">
 <input type="hidden" id="hiddenid"/>
-<input type="hidden" id="stateid" value="${district123}"/> 
+<input type="hidden" id="stateid" value="${state123}"/> 
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="adddistrict"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add District"
-						maxlength="20" autofocus="autofocus"></input></div>
+						maxlength="20" autofocus="autofocus"><span style = "color:red;" id = districtspan>Please enter a district</span></input></div>
   
 </div>
 
@@ -71,12 +71,12 @@
 					<tr>
 						<td>${loop.index+1}</td>
 						<td>${district.district}</td>
-		            <td><a href = "location">Location</a></td> 
+		            <td><a href = "location?districtId=${district.districtId}">Location</a></td> 
 					 <td><a href="#" onclick="editCur(${district.districtId})" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deletedistrict?districtId=${district.districtId}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> 
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick = "return confirm('Are u sure u want to delete?')"></span></a></td> 
 								
 					</tr>
 
@@ -103,35 +103,45 @@ $("#getcountrypopup").click(function(){
 	 $('#EditForm').hide();
 	 $("#saveForm").show();
 	 $("#adddistrict").val('');
-	 
+	 $("#districtspan").hide();
 	 $("#hiddenid").val('');
 	
 });
 	    });
 $("#formid").hide();
+$("#districtspan").hide();
 
 $('#saveForm').click(function (){
+	
 	var adddistrict=$('#adddistrict').val();
 	
-	
-	var jsonObj={'district':adddistrict
-	} ;
-$.ajax({
-		url: "adddistrict",
-		type: "POST",
+	if(adddistrict == ""){
+		$("#districtspan").show();
+	}
+	else{
 		
-		  data :JSON.stringify(jsonObj),
-		  cache:false,
-	        beforeSend: function(xhr) {  
-	            xhr.setRequestHeader("Accept", "application/json");  
-	            xhr.setRequestHeader("Content-Type", "application/json");  
-	        },
-		     success: function(resposeJsonObject){
-		    	 $('#openModal').hide();
-		    	 //window.location.currency;
-		    	 window.location.reload();
-	     
-	    }});
+		//var jsonObj={'district':adddistrict}
+		
+		var getstateid=$('#stateid').val();
+		var jsonObj = {'district':adddistrict,'districtId':getstateid}
+	$.ajax({
+			url: "adddistrict",
+			type: "POST",
+			
+			  data :JSON.stringify(jsonObj),
+			  cache:false,
+		        beforeSend: function(xhr) {  
+		            xhr.setRequestHeader("Accept", "application/json");  
+		            xhr.setRequestHeader("Content-Type", "application/json");  
+		        },
+			     success: function(resposeJsonObject){
+			    	 $('#openModal').hide();
+			    	 //window.location.currency;
+			    	 window.location.reload();
+		     
+		    }});
+	}
+	
 });
 
 
