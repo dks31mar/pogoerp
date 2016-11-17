@@ -290,11 +290,19 @@
 			<put-attribute name="title" value="Mobile App" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileApp.jsp" />
 			</definition>
+			<!-- Customer Sales Enquiry Call -->
+			<definition name="getSales" extends="baseLayout" >
+			<put-attribute name="title" value="Customer" />
+				<put-attribute name="body" value="/WEB-INF/views/customer/customerSales.jsp" />
+			</definition>
+			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >
 			<put-attribute name="title" value="sms permission" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/sms.jsp" />
 			</definition>
+			
+			
 			
 			
 			<definition name="getserviceprovider" extends="baseLayout" >

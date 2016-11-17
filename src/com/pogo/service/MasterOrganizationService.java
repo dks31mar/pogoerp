@@ -37,7 +37,7 @@ public interface MasterOrganizationService {
 
 	void addCompany(CompanyProfile company);
 	void adduserEmp(UserEmployeeBean userDTO)throws ParseException;
-	List<UserEmployee> getUserById(int userId);
+	
 
     List<UserEmployeeBean> getUserDetails();
 
@@ -49,11 +49,7 @@ public interface MasterOrganizationService {
 
 	void updateEmployee(UserEmployeeBean userEmployeeBean)throws ParseException;
 
-	List<String> findDataByDesignation(String designation);
-
 	List<DesignationBean> getDesignation();
-
-	List<DesignationBean> getDesignation(int designationid);
 
 	void updateandinsertbylevel(DesignationBean des);
 
@@ -63,8 +59,6 @@ public interface MasterOrganizationService {
 
 	void deleteDesignation(int id);
 
-
-
 	void updateStatus(int id);
 
 	List<DesignationBean> GetDesignationList();
@@ -73,31 +67,12 @@ public interface MasterOrganizationService {
 
 	List<BranchBean> getBranchList();
 
-	
-
-	
-
-	
-
-	
-
-  
-
 	void updateregion(ZonesBean zonesBean);
 
 	void deleteRegion(int id);
-
-
 	void saveDataCompetitiors(CompetitiorsProfileBean poref);
 
-
-
 	void updateCompetitior();
-
-	
-
-
-
 
 	void permitForSms(SmsAllocationBean smsbean);
 

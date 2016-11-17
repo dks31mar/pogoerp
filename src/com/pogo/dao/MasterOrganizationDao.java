@@ -42,8 +42,6 @@ public interface MasterOrganizationDao {
 
 	List<UserEmployee> searchUser(String loginname);
 
-	List<UserEmployee> getuserEmpId(int userId);
-
 	void updateEmp(UserEmployee emp);
 
 	UserEmployee getEmployee(int empid);
@@ -52,11 +50,11 @@ public interface MasterOrganizationDao {
 
 	void createDesign(Designation degn);
 
-	List<String> findDesignation(String designation);
+	/*List<String> findDesignation(String designation);*/
 
 	List<Designation> getDesignation();
 
-	List<Designation> getDesignation(int designationid);
+	/*List<Designation> getDesignation(int designationid);*/
 
 	List<Designation> getDesignationname();
 
@@ -77,7 +75,7 @@ public interface MasterOrganizationDao {
 
 	void updateEmpStatus(UserEmployee emp);
 
-	/*UserEmployee getEmpId(int id);*/
+	UserEmployee getEmpId(int id);
 
 	List<Designation> getDesgnationData();
 

@@ -2,6 +2,7 @@ package com.pogo.serviceImp;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.tomcat.util.buf.UDecoder;
@@ -158,7 +159,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	public void adduserEmp(UserEmployeeBean userDTO) throws ParseException 
 	{
 		
-		SimpleDateFormat dateformat = new SimpleDateFormat("dd/mm/yyyy");
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 		UserEmployee emp=new UserEmployee();
 		emp.setLoginname(userDTO.getLoginname());
 		emp.setFirstname(userDTO.getFirstname());
@@ -189,29 +190,11 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		
 	}
 
-	@Override
-	public List<UserEmployee> getUserById(int userId) 
-	{
-		List<UserEmployee> emp=userEmpdao.getuserEmpId(userId);
-		List<UserEmployeeBean> lists=new ArrayList<UserEmployeeBean>();
-		for(UserEmployee data: emp)
-		{
-			UserEmployeeBean userDTO = new UserEmployeeBean();
-			userDTO.setUserempid(data.getUserempid());
-			userDTO.setLoginname(data.getLoginname());
-			userDTO.setFirstname(data.getFirstname());
-			userDTO.setLastname(data.getLastname());
-			
-			//userDTO.setDesignation(data.getDesignation());
-			lists.add(userDTO);
-		}
-		
-		return emp;
-	}
 
 	@Override
 	public List<UserEmployeeBean> getUserDetails() 
 	{
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 		List<UserEmployee> getdetails =userEmpdao.getuserData();
 		List<UserEmployeeBean> lists=new ArrayList<UserEmployeeBean>();
 		for(UserEmployee list: getdetails)
@@ -220,11 +203,15 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			data.setUserempid(list.getUserempid());
 			data.setLoginname(list.getLoginname());
 
-			data.setFirstname(list.getFirstname() +list.getMiddlename()+ list.getLastname() );
+			data.setFirstname(list.getFirstname() +""+list.getMiddlename()+""+ list.getLastname() );
 			data.setDeviceno(list.getDeviceno());
 			data.setDesignationName(list.getDesignationName().getDesignation());
 			data.setEmpStatus(list.getEmpStatus());
-			
+			data.setBranchName(list.getBranchName().getBranchname());
+			/*String date1=(dateformat.format(list.getDateofjoining()));
+			String date2=date1.split("00:00:00:0")[0];
+			data.setDateofjoining(date2);*/
+			data.setDateofjoining(dateformat.format(list.getDateofjoining()));
 
 			data.setFirstname(list.getFirstname());
 			data.setMiddlename(list.getMiddlename());
@@ -256,8 +243,8 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			UserEmployeeBean userData = new UserEmployeeBean();
 			userData.setUserempid(data.getUserempid());
 			userData.setLoginname(data.getLoginname());
-			userData.setFirstname(data.getFirstname()+data.getMiddlename()+data.getLastname());
-			//userData.setDesignation(data.getDesignation());
+			userData.setFirstname(data.getFirstname()+""+ data.getMiddlename()+""+data.getLastname());
+			userData.setDesignationName(data.getDesignationName().getDesignation());
 			userData.setDeviceno(data.getDeviceno());
 			userData.setEmpStatus(data.getEmpStatus());
 			
@@ -271,18 +258,11 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 
 	@Override
 	public UserEmployeeBean getEmployee(int empid) {
-		SimpleDateFormat dateformat = new SimpleDateFormat("dd/mm/yyyy");
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 		UserEmployee empedit = userEmpdao.getEmployee(empid);
 		UserEmployeeBean empbean = new UserEmployeeBean();
 		empbean.setUserempid(empedit.getUserempid());
 		empbean.setLoginname(empedit.getLoginname());
-		
-		/*empbean.setDesignationName(empedit.getDesignationName());
-		empbean.setBranchName(empedit.getBranchName());
-		empbean.setCompanyName(empedit.getCompanyName());
-		System.out.println("On service"+empedit.getBranchName());
-		System.out.println(empedit.getCompanyName());
-		System.out.println(empedit.getDesignationName());*/
 		empbean.setDesignationId(empedit.getDesignationName().getDesignationid());
 		empbean.setBranchId(empedit.getBranchName().getBranchId());
 	    empbean.setSubcompanyId(empedit.getCompanyName().getCompanyinfoid());
@@ -310,7 +290,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 @Transactional
 	@Override
 	public void updateEmployee(UserEmployeeBean userEmployeeBean) throws ParseException {
-		SimpleDateFormat dateformat = new SimpleDateFormat("dd/mm/yyyy");
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 		UserEmployee emp=new UserEmployee();
 		emp.setUserempid(userEmployeeBean.getUserempid());
 		emp.setLoginname(userEmployeeBean.getLoginname());
@@ -322,10 +302,6 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setAddress(userEmployeeBean.getAddress());
 		emp.setDob(dateformat.parse(userEmployeeBean.getDob()));
 		emp.setEamil(userEmployeeBean.getEamil());
-		
-		//emp.setBranchName(userEmployeeBean.getBranchName());
-		//emp.setCompanyName(userEmployeeBean.getCompanyName());
-		//city.setCountry(cityDao.get(cityDTO.getCityId()).getCountry());
 		emp.setDesignationName(userEmpdao.getData(userEmployeeBean.getDesignationId()));
 		emp.setBranchName(userEmpdao.getBranch(userEmployeeBean.getBranchId()));
 		emp.setCompanyName(userEmpdao.getCom(userEmployeeBean.getSubcompanyId()));
@@ -345,20 +321,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	}
 
 
-@Override
-public List<String> findDataByDesignation(String designation) {
-	List<String> list = userEmpdao.findDesignation(designation);
-	/*List<String> listbean = new ArrayList<String>();
-	for (S data : list) {
-		DesignationBean bean=new DesignationBean();
-		bean.setDesignation(data.getDesignation());
-		System.out.println(data.getDesignation());
-		listbean.add(bean);
-		
-}*/
- return  list;
-	
-}
+
 
 @Override
 public List<DesignationBean> getDesignation() {
@@ -374,21 +337,7 @@ public List<DesignationBean> getDesignation() {
 	return lists;
 }
 
-@Override
-public List<DesignationBean> getDesignation(int designationid)
-{
-	List<Designation> list = userEmpdao.getDesignation(designationid);
-	List<DesignationBean> listbean = new ArrayList<DesignationBean>();
-	for (Designation data : list) {
-		DesignationBean userData = new DesignationBean();
-		userData.setDesignationid(data.getDesignationid());
-		userData.setDesignation(data.getDesignation());
-		
-		listbean.add(userData);
-}
-	return listbean;
 
-}
 
 @Override
 public void updateandinsertbylevel(DesignationBean des) {
@@ -517,23 +466,7 @@ public List<BranchBean> getBranchList()
 	return branchbean;
 }
 
-
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
 public void updateCompetitior() {
-	// TODO Auto-generated method stub
 	CompetitiorsProfile comprof=new CompetitiorsProfile();
 	comprof.setCompname(CompetitiorsProfileBean.getCompname());
 	comprof.setCompaddress(CompetitiorsProfileBean.getCompaddress());

@@ -91,13 +91,11 @@ public class MasterOrganizationController {
 			result = size / 5;
 		model.addAttribute("noOfPage", num);
 		model.addAttribute("totalNoOfPages", result);
-		model.addAttribute("Recordlist", empDao.findDesignationByPageNo(num - 1));
+		model.addAttribute("Recordlist", list);
+		/*model.addAttribute("Recordlist", empDao.findDesignationByPageNo(num - 1));*/
 		model.addAttribute("totalrecords", list.size());
 		return new ModelAndView("getuseremp");
 	}
-
-	
-
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String addEmployee(Model model) {
@@ -121,38 +119,13 @@ public class MasterOrganizationController {
 		List<BranchBean> beansBran=userEmployeeservice.getBranchList();
 		model.addAttribute("listofBranch", beansBran);
 		List<CompanyProfileBean> beansCom=userEmployeeservice.getCompanyList();
-		model.addAttribute("listofComp", beansCom);
-		
-		
-		/*UserEmployeeBean beans=userEmployeeservice.getEmployee(id);
-		System.out.println(beans.getDesignationId());
-		System.out.println("on contoller"+beans.getBranchId());
-		String branch=beans.getBranchName();
-		String com=beans.getCompanyName();
-		String  deg=beans.getDesignationName();
-		
-		System.out.println("on controller" +beans.getDesignationName());
-		//String desgId=Integer.toString( beans.getDesignationId());
-		//String branchId=Integer.toString(beans.getBranchId());
-		//String compId=Integer.toString(beans.getSubcompanyId());
-		model.addAttribute("degDetails", deg);
-		model.addAttribute("branchDetails", branch);
-		model.addAttribute("comDetails", com);*/
-		
-		
+		model.addAttribute("listofComp", beansCom);	
 		return "editUser";
 	}
 
-	/*
-	 * @RequestMapping(value="/getuseremp",method = RequestMethod.GET)
-	 * 
-	 * public ModelAndView getUserEmp1() { List<UserEmployeeBean> list=new
-	 * ArrayList<UserEmployeeBean>(); list=userEmployeeservice.getUserDetails();
-	 * Map<String, Object> model= new HashMap<String,Object>();
-	 * model.put("userlist", list);
-	 * 
-	 * return new ModelAndView("getuseremp",model); }
-	 */
+	
+	 
+	 
 	// for add employee
 	@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST)
 	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO) throws ParseException {
@@ -162,26 +135,7 @@ public class MasterOrganizationController {
 
 	}
 
-	// for Edit data fetch
-	/*
-	 * @RequestMapping(value = "/editUserdetails", method = RequestMethod.GET)
-	 * public void editCity(@RequestParam("userempid") Integer
-	 * id, @ModelAttribute("userbean")UserEmployeeBean userDTO , BindingResult
-	 * result, HttpServletResponse res) { List<UserEmployee> emp =
-	 * userEmployeeservice.getUserById(id); try { PrintWriter
-	 * writter=res.getWriter(); writter.print(emp); } catch (IOException e) {
-	 * 
-	 * e.printStackTrace(); }
-	 * 
-	 * //return "getuseremp"; }
-	 */
-	/*
-	 * @RequestMapping(value = "/editEmp", method = RequestMethod.GET) public
-	 * String editEmployee(@RequestParam int id, Model model) {
-	 * model.addAttribute("employee", userEmployeeservice.getEmployee(id));
-	 * System.out.println("employee"); return "getuseremp"; }
-	 */
-
+	
 	@RequestMapping(value = "/update-employee", method = RequestMethod.POST)
 	public String updateEmployee(@ModelAttribute("employeebean") UserEmployeeBean userEmployeeBean)
 			throws ParseException {
@@ -193,7 +147,7 @@ public class MasterOrganizationController {
 	@RequestMapping(value = "deleteuser", method = RequestMethod.POST)
 	public String deleteuserEmpData(@RequestParam("userempid") int id) {
 		userEmployeeservice.deleteuserEmp(id);
-		System.out.println("I am on controller");
+		//System.out.println("I am on controller");
 		return "getuseremp";
 	}
 
@@ -218,34 +172,7 @@ public class MasterOrganizationController {
 		return new ModelAndView("designation", mode);
 	}
 
-	/*
-	 * @RequestMapping(value = "authority", method = RequestMethod.GET)
-	 * public @ResponseBody String designationList(Model model, @RequestParam
-	 * String designation) throws JsonProcessingException { List<String>
-	 * designList = userEmployeeservice.findDataByDesignation(designation);
-	 * Map<String, Object> h=new HashMap<>(); h.put("designationid",
-	 * designList); String listString = "";
-	 * 
-	 * for (String s : designList) { listString += s+">>"; } Gson gson=new
-	 * Gson(); String json=gson.toJson(designList); return new
-	 * ObjectMapper().writeValueAsString(listString); }
-	 */
-	/*
-	 * @RequestMapping(value = "getdesignationId", method = RequestMethod.GET)
-	 * public @ResponseBody String getDesignation(@RequestParam int
-	 * designationid) throws JsonProcessingException { List<DesignationBean>
-	 * desigbean = userEmployeeservice.getDesignation(designationid);
-	 * System.out.println(desigbean); ObjectMapper map = new ObjectMapper();
-	 * return map.writeValueAsString(desigbean); }
-	 */
-	/*
-	 * @RequestMapping(value = "/show-designation", method = RequestMethod.GET)
-	 * public ModelAndView showAllDesignation(Map model,@RequestParam int
-	 * designationid) { List<Designation> designation
-	 * =empDao.getDesignationname(); System.out.println(designationid);
-	 * model.put("desig", designation); System.out.println(designation); return
-	 * new ModelAndView("getdesignation",model); }
-	 */
+	 
 	@RequestMapping(value = "show-designation", method = RequestMethod.POST)
 
 	@ResponseBody

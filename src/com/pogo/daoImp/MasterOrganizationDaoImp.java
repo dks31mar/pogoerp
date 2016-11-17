@@ -87,14 +87,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 				.add(Restrictions.like("loginname", loginname + "%")).add(Restrictions.eq("active", true)).list();
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<UserEmployee> getuserEmpId(int userId) {
-
-		return (List<UserEmployee>) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
-				.add(Restrictions.eq("active", true)).add(Restrictions.eq("userempid", userId)).list();
-	}
-
+	
 	@Override
 	public void updateEmp(UserEmployee emp) {
 		sessionFactory.getCurrentSession().update(emp);
@@ -120,7 +113,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 
 	}
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@Override
 
 	public List<String> findDesignation(String designation) {
@@ -128,7 +121,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		List list = sessionFactory.getCurrentSession().createCriteria(Designation.class)
 				.setProjection(Projections.property("designation")).list();
 		return list;
-	}
+	}*/
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -137,13 +130,13 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		return sessionFactory.getCurrentSession().createCriteria(Designation.class).addOrder(Order.asc("level")).list();
 	}
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@Override
 	public List<Designation> getDesignation(int designationid) {
 
 		return sessionFactory.getCurrentSession().createCriteria(Designation.class)
 				.add(Restrictions.eq("designationid", designationid)).list();
-	}
+	}*/
 
 	@SuppressWarnings("unchecked")
 	@Transactional
@@ -207,13 +200,13 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 	}
 
 
-	/*@Override
+	@Override
 	public UserEmployee getEmpId(int id) {
 		return   (UserEmployee) sessionFactory.getCurrentSession().
 				createCriteria(UserEmployee.class).add(Restrictions.eq("active", true)).add(Restrictions.eq("userempid", id)).uniqueResult();
 		
 		//sessionFactory.getCurrentSession().get(UserEmployee.class, id);
-	}*/
+	}
 
 
 	@SuppressWarnings("unchecked")
@@ -251,16 +244,6 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 	public CompanyProfile getCom(Integer subcompanyId) {
 		return (CompanyProfile) sessionFactory.getCurrentSession().get(CompanyProfile.class, subcompanyId);
 	}
-
-
-	
-
-
-	
-
-
-
-
 
 
 	@Override
@@ -319,5 +302,11 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		
 		return sessionFactory.getCurrentSession().createCriteria(SmsAllocation.class).list();
 	}
+
+	
+
+	
+
+	
 
 }
