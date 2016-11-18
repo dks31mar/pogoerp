@@ -25,6 +25,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.pogo.bean.JsonArraytoJson;
+import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.model.PoRefEntryItemDetailCopy;
@@ -118,9 +119,12 @@ System.out.println(json);
 Gson gson=new Gson();
 
 JsonArraytoJson [] js=gson.fromJson(json, JsonArraytoJson[].class);
-
+PoRefEntryItemDetailBean poref=new PoRefEntryItemDetailBean();
+System.out.println(js.length);
+List<String> lst=new ArrayList<String>();
 for(JsonArraytoJson e:js){
-	System.out.println(e.getName()+"\t<><><><><><><><>\t"+e.getValue());
+	System.out.println(e.getName()+"\t\t\t\t<><><><><><><><>\t"+e.getValue());
+	lst.add(e.getValue());
 }
 
 }

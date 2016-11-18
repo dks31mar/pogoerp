@@ -441,7 +441,7 @@ $('#autocomplete').autocomplete({
 					"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'  /></td>"+
 					"<td align='center'>&nbsp;<input readonly type='text' style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' name='customerporefe' id='customerporefe"+id+"' value='"+custpo+"' class='form-control'/>"+
 					"</td>"+
-					"<td><input type='hidden' style='text-align:center;' name='unitcost' id='unitcostx' value='' class='form-control'  ></td>"+
+					"<td><input type='hidden' style='text-align:center;' name='unitcost' id='' value='split' class='form-control'  ></td>"+
 					"<td><a class='glyphicon glyphicon-pencil' href='#'></a> | <a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+
 					"</tr>";
 	            $("#addprolisttbody").append(markup);
