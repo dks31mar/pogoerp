@@ -21,21 +21,20 @@ public class Branch
 private  Integer branchId;
 	@Column(name="branchname")
 private String branchname;
-	@Column(name="stateid")
-	private String state;
 	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="designation_id")
-    private Designation designation;
+	@JoinColumn(name="stateId")
+private StateZone stateNames;
 
 	
 	
-	public Designation getDesignation() {
-		return designation;
+	
+	public StateZone getStateNames() {
+		return stateNames;
 	}
-	public void setDesignation(Designation designation) {
-		this.designation = designation;
+	public void setStateNames(StateZone stateNames) {
+		this.stateNames = stateNames;
 	}
 	public Integer getBranchId() {
 		return branchId;
@@ -49,12 +48,7 @@ private String branchname;
 	public void setBranchname(String branchname) {
 		this.branchname = branchname;
 	}
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
+	
 
 
 	

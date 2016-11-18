@@ -13,10 +13,11 @@ import com.pogo.bean.CompetitiorsProfileBean;
 
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.SmsAllocationBean;
+import com.pogo.bean.StatezoneBean;
 import com.pogo.bean.UserEmployeeBean;
 
 import com.pogo.bean.ZonesBean;
-
+import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.UserEmployee;
@@ -30,14 +31,15 @@ public interface MasterOrganizationService {
 	
 	 public ZonesBean editZones(int empid);
 
-
+	 List<BranchBean> getStateBranch();
 	List<Zones> getStates();
 	
-	
-
+	void addStates(StatezoneBean statezoneBean);
+	public BranchBean getbranchById(int id);
 	void addCompany(CompanyProfile company);
 	void adduserEmp(UserEmployeeBean userDTO)throws ParseException;
-	
+	StatezoneBean getSatesById(int id);
+	void updateBranch(BranchBean branchBean);
 
     List<UserEmployeeBean> getUserDetails();
 
@@ -80,6 +82,13 @@ public interface MasterOrganizationService {
 
 	List<SmsAllocationBean> getPermitSmsUser();
 
-	
+	List<StatezoneBean> getZoneStates(Integer id);
 
+	List<ZonesBean> getZoneslist();
+
+	void addBranch(BranchBean branchBean);
+
+	List<StatezoneBean> getstateData();
+
+	
 }

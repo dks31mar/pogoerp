@@ -66,7 +66,7 @@
   <tr>
     <td>${loop.index+1}</td>
     <td>${branch.zonesname}</td>
-   <td><a href="states" target="_blank">states</a></td>
+   <td><a href="states?id=${branch.zonesid}" target="_blank">states</a></td>
     <td><a href="Editregion?id=${branch.zonesid}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
     <td><a href="deleteRegion?id=${branch.zonesid}" title="Delete"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
   </tr>

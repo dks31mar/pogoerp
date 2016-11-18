@@ -34,6 +34,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.SmsAllocationBean;
+import com.pogo.bean.StatezoneBean;
 import com.ibm.icu.text.Normalizer.Mode;
 import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
@@ -302,7 +303,7 @@ public class MasterOrganizationController {
 		return new ModelAndView("editregion",mode);
 }
 	@RequestMapping(value="/branches",method = RequestMethod.GET)
-	public ModelAndView getStates(Zones porefitem,HttpServletRequest request){
+	public ModelAndView getBranches(Zones porefitem,HttpServletRequest request){
 	
 		List<Zones> getStates=new ArrayList<Zones>();
 		//getStates=regionService.getStates();
@@ -329,14 +330,56 @@ public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
 	return new ModelAndView("region",model);
 	
 }
-@RequestMapping(value="/addstates",method = RequestMethod.GET)
-public ModelAndView getStates(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+//For State page
+	/*@RequestMapping(value="/states",method = RequestMethod.GET)
+	public String  getStates(Model model){
+		
+	List<BranchBean> list=regionService.getStateBranch();
+	model.addAttribute("branchlist", list);
+	//return new ModelAndView("states", model);
+	 return "states";
+	}*/
+	// For add states
 
+		@RequestMapping(value = "/saveStates", method = RequestMethod.POST)
+		public String saveStateDetails(Model model, @ModelAttribute("statebean") StatezoneBean statezoneBean) {
+			regionService.addStates(statezoneBean);
+			return "addstates";
 
-	//commonservice.getPoRefNo(request);
+		}
+		@RequestMapping(value = "/addstates", method = RequestMethod.GET)
+		public ModelAndView getStates(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,
+				HttpServletRequest request, BindingResult result, Model model) {
 
-return new ModelAndView("addstates");
-}	
+			List<ZonesBean> zone = regionService.getZoneslist();
+			System.out.println(zone);
+			model.addAttribute("zonesList", zone);
+			return new ModelAndView("addstates");
+		}
+		//foe edit states
+		@RequestMapping(value = "/editstates", method = RequestMethod.GET)
+		public String editStates(@RequestParam int id, Model model) 
+		{
+			model.addAttribute("branch",regionService.getbranchById(id));
+			model.addAttribute("liststate", regionService.getSatesById(id));
+			//List<StatezoneBean> liststate=regionService.getSatesById(id);
+			//model.addAttribute("liststate",liststate);
+			/*List<BranchBean> list=regionService.getStateBranch();
+			model.addAttribute("statelist", list);*/
+	     //  model.addAttribute("branch",regionService.getbranchById(		
+			return "editstates";
+		}
+		
+		//update states
+		@RequestMapping(value = "/updatestates", method = RequestMethod.POST)
+		public String updateStates(@ModelAttribute("branchBean") BranchBean  branchBean)
+		{
+			regionService.updateBranch(branchBean);
+			return "redirect:/states";
+
+		}
+	
+
 
 	
 
@@ -453,4 +496,37 @@ public void getPermitSmsUser(HttpServletResponse res) throws IOException{
 	writer.print(list2);
 }
 
+@RequestMapping(value="/states",method = RequestMethod.GET)
+public ModelAndView getZoneStates(@ModelAttribute("command") StatezoneBean porefitem,HttpServletRequest request,BindingResult result,@RequestParam("id") Integer id){
+System.out.println(""+id);
+	List<StatezoneBean> list=new ArrayList<>();
+	list=regionService.getZoneStates(id);
+
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("satyendra", list);
+	
+return new ModelAndView("states",model);
+}
+
+@RequestMapping(value="getbranchbystate",method = RequestMethod.GET)
+public ModelAndView getNewbranch(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+
+	
+
+return new ModelAndView("newbranch");
+}
+
+
+@RequestMapping(value = "/saveBranch", method = RequestMethod.POST)
+public String saveBranchDetails(Model model, @ModelAttribute("branchBean") BranchBean branchBean) {
+	regionService.addBranch(branchBean);
+	return "addbranch123";
+
+}
+@RequestMapping(value="addbranchbystate",method = RequestMethod.GET)
+public ModelAndView addBranch(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result,Model model){
+	List<StatezoneBean> list = regionService.getstateData();
+	model.addAttribute("liststates", list);
+return new ModelAndView("addbranch123");
+}
 }

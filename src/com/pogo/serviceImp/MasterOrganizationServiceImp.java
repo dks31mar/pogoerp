@@ -21,6 +21,7 @@ import com.pogo.bean.CompetitiorsProfileBean;
 
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.SmsAllocationBean;
+import com.pogo.bean.StatezoneBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
 
@@ -30,6 +31,7 @@ import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
 import com.pogo.model.SmsAllocation;
+import com.pogo.model.StateZone;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 import com.pogo.service.MasterOrganizationService;
@@ -51,6 +53,93 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	
 	
 	/********************* created by satyendra  *************************************/
+	
+	@Override
+	public void addBranch(BranchBean branchBean) {
+		Branch branch=new Branch();
+		branch.setBranchname(branchBean.getBranchname());
+		branch.setStateNames(regionDao.getStates(branchBean.getBranchId()));
+		
+		regionDao.addBranch(branch);
+		
+		
+	}
+	@Override
+	public List<StatezoneBean> getstateData() {
+		List<StateZone> list=regionDao.getstateData();
+		List<StatezoneBean> bean=new ArrayList<StatezoneBean>();
+		for(StateZone data:list)
+		{
+			StatezoneBean statezoneBean=new StatezoneBean();
+			statezoneBean.setStateId(data.getStateId());
+			statezoneBean.setStateName(data.getStateName());
+			bean.add(statezoneBean);
+					
+		    
+		}
+		return bean;
+	}
+	@Override
+	public List<BranchBean> getStateBranch() {
+		List<Branch> lists=regionDao.getbranchDetails();
+		List<BranchBean> listbean=new ArrayList<BranchBean>();
+		for(Branch branch:lists)
+		{
+			BranchBean branchbean=new BranchBean();
+			branchbean.setBranchId(branch.getBranchId());
+			branchbean.setBranchname(branch.getBranchname());
+			//branchbean.setStateId(branch.getStateNames().getStateId());
+			//branchbean.setState(branch.getStateNames().getStateName());
+			listbean.add(branchbean);
+		}
+		return listbean;
+	}
+	
+	@Override
+	public void addStates(StatezoneBean statezoneBean) {
+		StateZone stateZone=new StateZone();
+		stateZone.setStateName(statezoneBean.getStateName());
+		stateZone.setZones(regionDao.getZone(statezoneBean.getStateId()));
+		regionDao.addStateDeatils(stateZone);
+		
+	}
+	@Override
+	public List<ZonesBean> getZoneslist() {
+		List<Zones> zones= regionDao.getZones();
+		List<ZonesBean> list=new ArrayList<ZonesBean>();
+		for(Zones data:zones)
+		{
+			ZonesBean beans=new ZonesBean();
+			beans.setZonesid(data.getZonesid());
+			beans.setZonesname(data.getZonesname());
+			list.add(beans);
+		}
+		return list;
+	}
+	@Override
+	public BranchBean getbranchById(int id) {
+		Branch branch=regionDao.getDataById(id);
+		BranchBean branchbean=new BranchBean();
+		branchbean.setBranchId(branch.getBranchId());
+		branchbean.setBranchname(branch.getBranchname());
+		//branchbean.setStateId(branch.getStateNames().getStateId());
+		return branchbean;
+	}
+	@Override
+	public StatezoneBean getSatesById(int id) 
+	{
+		StateZone stateZone=regionDao.getStatesId(id);
+		System.out.println(stateZone);
+		StatezoneBean  bean=new StatezoneBean();
+		bean.setStateId(stateZone.getStateId());
+		bean.setStateName(stateZone.getStateName());
+		return bean;
+		
+	}
+	
+	
+	
+	
 	@Override
 	public List<Zones> getBranches() {
 		List<Zones> getbranch =regionDao.getBranches();
@@ -517,6 +606,31 @@ public List<SmsAllocationBean> getPermitSmsUser() {
 	return list;
 }
 
+
+@Override
+public List<StatezoneBean> getZoneStates(Integer id) {
+	List<StateZone> sz=regionDao.getZoneStates(id);
+	List<StatezoneBean> bean=new ArrayList<>();
+	for(StateZone s:sz){
+		StatezoneBean sBean=new StatezoneBean();
+		sBean.setStateId(s.getStateId());
+		sBean.setStateName(s.getStateName());
+		System.out.println(s.getStateName());
+		bean.add(sBean);
+	}
+	return bean;
+}
+
+@Override
+public void updateBranch(BranchBean branchBean) {
+	Branch branch =new Branch();
+	branch.setBranchId(branchBean.getBranchId());
+	branch.setBranchname(branch.getBranchname());
+	//branch.setStateNames(branchBean.);
+	//branch.setStateNames(regionDao.getStates(branchBean.getStateId()));
+	regionDao.updateBranch(branch);
+	
+}
 
 
 

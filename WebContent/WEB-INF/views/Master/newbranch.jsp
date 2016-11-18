@@ -45,7 +45,7 @@
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
 		<span class="glyphicon glyphicon-user"></span> Branches Details</b>
 		 <label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="addstates"
+			 style="margin-left: 250px;margin-top: 8px;"><a href="addbranchbystate"
 			class="btn btn-primary">Add Branches</a>
 			<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
      </label>
@@ -61,7 +61,7 @@
 
   <tr id="ftr">
     <th>S.N.</th>
-    <th data-th="Driver details"><span>States</span></th>
+    
      <th>Branches</th>
    <!--   <th>Phone No</th>
     <th>Fax No</th>
@@ -73,7 +73,7 @@
   
   <tr id="str">
     <td>1</td>
-   <td id="branch_name1"><a href="#">Bhopal</a></td>
+   
    <td>noida</td>
   <!--  <td id="phone_no1" ></td>
    <td id="fax_no1" ></td>
@@ -89,7 +89,7 @@
   <tr id="3tr">
     <td>2</td>
     
-    <td id="branch_name"><a href="#">Gwalear</a></td>
+    
      <td>Bangalore</td>
     <!--  <td id="phone_no1" ></td>
    <td id="fax_no1" ></td>
@@ -102,7 +102,7 @@
   
   <tr>
     <td>3</td>
-    <td id="branch_name"><a href="#">Delhi</a></td>
+    
     <td>pune</td>
     <!--  <td id="phone_no1" ></td>
    <td id="fax_no1" ></td>

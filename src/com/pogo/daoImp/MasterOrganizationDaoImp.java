@@ -2,9 +2,9 @@ package com.pogo.daoImp;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,6 +16,7 @@ import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
 import com.pogo.model.SmsAllocation;
+import com.pogo.model.StateZone;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 @Repository("masterOrganizationDao")
@@ -30,7 +31,22 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		return (List<Zones>)sessionFactory.getCurrentSession().createCriteria(Zones.class).list();
 		
 	}
-
+	@Override
+	public List<StateZone> getstateData() {
+		
+		return (List<StateZone>) sessionFactory.getCurrentSession().createCriteria(StateZone.class).list();
+	}
+	@Override
+	public StateZone getStates(Integer stateId) {
+		return (StateZone) sessionFactory.getCurrentSession().get(StateZone.class, stateId);
+		
+	}
+	
+	@Override
+	public void addBranch(Branch branch) {
+		sessionFactory.getCurrentSession().save(branch);
+		
+	}
 	@Override
 	public void addZoneDeatils(Zones zon) {
 		sessionFactory.getCurrentSession().save(zon);
@@ -260,6 +276,12 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		
 		
 	}
+	@Override
+	public void updateBranch(Branch branch) {
+		sessionFactory.getCurrentSession().update(branch);
+		
+	}
+
 
 	@Override
 	public void deleteRegion(Zones zones) {
@@ -303,7 +325,47 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao{
 		return sessionFactory.getCurrentSession().createCriteria(SmsAllocation.class).list();
 	}
 
-	
+	@Override
+	public List<StateZone> getZoneStates(Integer id) {
+		Criteria state=sessionFactory.getCurrentSession().createCriteria(StateZone.class);
+		Criteria zone=state.createCriteria("zones");
+		zone.add(Restrictions.eq("zonesid", id));
+		List<StateZone> list= state.list();
+				
+		return list;
+	}
+
+	@Override
+	public StateZone getStatesId(int id) {
+		System.out.println("id is \n"+id);
+		return (StateZone) sessionFactory.getCurrentSession().get(StateZone.class, id);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Branch> getbranchDetails() {
+		
+		return sessionFactory.getCurrentSession().createCriteria(Branch.class).list();
+	}
+
+	@Override
+	public void addStateDeatils(StateZone stateZone) {
+		sessionFactory.getCurrentSession().save(stateZone);
+		
+	}
+	@Override
+	public List<Zones> getZones() {
+		return sessionFactory.getCurrentSession().createCriteria(Zones.class).list();
+	}
+	@Override
+	public Zones getZone(Integer zoneId) {
+		return (Zones) sessionFactory.getCurrentSession().get(Zones.class, zoneId);
+	}
+	@Override
+	public Branch getDataById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 
