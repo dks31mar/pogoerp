@@ -141,7 +141,7 @@ System.out.println();
 							</td>
 							<td style="width: 250px">&nbsp; <input name='description'
 									id='description' class='form-control'
-									style="text-align: center;width: 238px;" value="" onfocus='closeDiv();'></input></td>
+									style="text-align: center;width: 238px;" value="" ></input></td>
 							
 							<td style="right: 7px; position: relative;">&nbsp; <input
 								type='text' style='text-align: center;' name='tpinjpy' 
@@ -149,13 +149,12 @@ System.out.println();
 
 							<td align="center" style="right: 4px; position: relative;">&nbsp;
 								<input  type='text' style='text-align: center;' name='qty'
-								id='qty' class='form-control' value=""
-								onfocus='closeDiv();'/>
+								id='qty' class='form-control' value=""/>
 							</td>
 							<td align="center">&nbsp; 
 							<input  type='text'
 								style='text-align: center;' name='totaljpy' id='totaljpy' value=""
-								class='form-control'  onfocus='closeDiv();'/></td>
+								class='form-control'  /></td>
 
 							<td align="center">&nbsp; 
 							
@@ -436,10 +435,10 @@ $('#autocomplete').autocomplete({
 					"<input type='text' style='width: 60px' name='posrno' id='sr"+id+"' value='"+id+"' class='form-control' readonly/></td>"+
 					"<td style='left: 2px; position: relative; width: 150px'>&nbsp;"+
 					"<input readonly type='text' value='"+partno+"' name='particulee1'style='overflow: auto; border-radius: 3px; width: 223px;'id='partno"+id+"' class='form-control'/></td>"+
-					"<td style='width: 250px'>&nbsp; <input readonly name='description' id='description"+id+"' class='form-control' style='text-align: center;width: 238px;' value='"+dis+"' onfocus='closeDiv();'></input></td>"+
+					"<td style='width: 250px'>&nbsp; <input readonly name='description' id='description"+id+"' class='form-control' style='text-align: center;width: 238px;' value='"+dis+"' ></input></td>"+
 					"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='tpinjpy' id='tpinjpy"+id+"' value='"+tpn+"' class='form-control' /></td>"+
-					"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='qty"+id+"' class='form-control' value='"+qty+"' onfocus='closeDiv();'/></td>"+
-					"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'  onfocus='closeDiv();'/></td>"+
+					"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='qty"+id+"' class='form-control' value='"+qty+"' /></td>"+
+					"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'  /></td>"+
 					"<td align='center'>&nbsp;<input readonly type='text' style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' name='customerporefe' id='customerporefe"+id+"' value='"+custpo+"' class='form-control'/>"+
 					"</td>"+
 					"<td><input type='hidden' style='text-align:center;' name='unitcost' id='unitcostx' value='' class='form-control'  ></td>"+
@@ -463,156 +462,38 @@ $('#autocomplete').autocomplete({
 	}
 	
 	
-	$('#savedata445').click( function() {
+	/* $('#savedata445').click( function() {
 		  var table = $('#quotprodtable').tableToJSON();
 		  console.log(table);
-		  alert(JSON.stringify(table));  
+		  alert(JSON.stringify(table));
+		}); */
+	
+	
+	$("#savedata445").bind("click", function() {
+		  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
+		  console.log(AddressesDataJSON);
+		  alert(JSON.stringify(AddressesDataJSON));
+		  
+		  
+		  $.ajax({
+				url: "savedatadb",
+				type: "POST",
+				
+				  data :JSON.stringify(AddressesDataJSON),
+				  cache:false,
+			        beforeSend: function(xhr) {  
+			            xhr.setRequestHeader("Accept", "application/json");  
+			            xhr.setRequestHeader("Content-Type", "application/json");  
+			        },
+				     success: function(resposeJsonObject){
+				    	 
+			     
+			    }
+			});
 		});
 	
 	
 	
-	(function ($) {
-	    'use strict';
-
-	    $.fn.tableToJSON = function (opts) {
-
-	        // Set options
-	        var defaults = {
-	            ignoreColumns: [],
-	            onlyColumns: null,
-	            ignoreHiddenRows: true,
-	            headings: null,
-	            allowHTML: false
-	        };
-	        opts = $.extend(defaults, opts);
-
-	        var notNull = function (value) {
-	            return value !== undefined && value !== null;
-	        };
-
-	        var ignoredColumn = function (index) {
-	            if (notNull(opts.onlyColumns)) {
-	                return $.inArray(index, opts.onlyColumns) === -1;
-	            }
-	            return $.inArray(index, opts.ignoreColumns) !== -1;
-	        };
-
-	        var arraysToHash = function (keys, values) {
-	            var result = {}, index = 0;
-	            $.each(values, function (i, value) {
-	                // when ignoring columns, the header option still starts
-	                // with the first defined column
-	                if (index < keys.length && notNull(value)) {
-	                    result[keys[index]] = value;
-	                    index++;
-	                }
-	            });
-	            return result;
-	        };
-
-	        var cellValues = function (cellIndex, cell) {
-	            var value, result;
-	            if (!ignoredColumn(cellIndex)) {
-	                var override = $(cell).data('override');
-	                if (opts.allowHTML) {
-	                    value = $.trim($(cell).html());
-	                } else {
-	                    value = $.trim($(cell).text());
-	                }
-	                result = notNull(override) ? override : value;
-	            }
-	            return result;
-	        };
-
-	        var rowValues = function (row) {
-	            var result = [];
-	            $(row).children('td,th').each(function (cellIndex, cell) {
-	                if (!ignoredColumn(cellIndex)) {
-	                    result.push(cellValues(cellIndex, cell));
-	                }
-	            });
-	            return result;
-	        };
-
-	        var getHeadings = function (table) {
-	            var firstRow = table.find('tr:first').first();
-	            return notNull(opts.headings) ? opts.headings : rowValues(firstRow);
-	        };
-
-	        var construct = function (table, headings) {
-	            var i, j, len, len2, txt, $row, $cell,
-	            tmpArray = [],
-	                cellIndex = 0,
-	                result = [];
-	            table.children('tbody,*').children('tr').each(function (rowIndex, row) {
-	                if (rowIndex > 0 || notNull(opts.headings)) {
-	                    $row = $(row);
-	                    if ($row.is(':visible') || !opts.ignoreHiddenRows) {
-	                        if (!tmpArray[rowIndex]) {
-	                            tmpArray[rowIndex] = [];
-	                        }
-	                        cellIndex = 0;
-	                        $row.children().each(function () {
-	                            if (!ignoredColumn(cellIndex)) {
-	                                $cell = $(this);
-
-	                                // process rowspans
-	                                if ($cell.filter('[rowspan]').length) {
-	                                    len = parseInt($cell.attr('rowspan'), 10) - 1;
-	                                    txt = cellValues(cellIndex, $cell, []);
-	                                    for (i = 1; i <= len; i++) {
-	                                        if (!tmpArray[rowIndex + i]) {
-	                                            tmpArray[rowIndex + i] = [];
-	                                        }
-	                                        tmpArray[rowIndex + i][cellIndex] = txt;
-	                                    }
-	                                }
-	                                // process colspans
-	                                if ($cell.filter('[colspan]').length) {
-	                                    len = parseInt($cell.attr('colspan'), 10) - 1;
-	                                    txt = cellValues(cellIndex, $cell, []);
-	                                    for (i = 1; i <= len; i++) {
-	                                        // cell has both col and row spans
-	                                        if ($cell.filter('[rowspan]').length) {
-	                                            len2 = parseInt($cell.attr('rowspan'), 10);
-	                                            for (j = 0; j < len2; j++) {
-	                                                tmpArray[rowIndex + j][cellIndex + i] = txt;
-	                                            }
-	                                        } else {
-	                                            tmpArray[rowIndex][cellIndex + i] = txt;
-	                                        }
-	                                    }
-	                                }
-	                                // skip column if already defined
-	                                while (tmpArray[rowIndex][cellIndex]) {
-	                                    cellIndex++;
-	                                }
-	                                if (!ignoredColumn(cellIndex)) {
-	                                    txt = tmpArray[rowIndex][cellIndex] || cellValues(cellIndex, $cell, []);
-	                                    if (notNull(txt)) {
-	                                        tmpArray[rowIndex][cellIndex] = txt;
-	                                    }
-	                                }
-	                            }
-	                            cellIndex++;
-	                        });
-	                    }
-	                }
-	            });
-	            $.each(tmpArray, function (i, row) {
-	                if (notNull(row)) {
-	                    txt = arraysToHash(headings, row);
-	                    result[result.length] = txt;
-	                }
-	            });
-	            return result;
-	        };
-
-	        // Run
-	        var headings = getHeadings(this);
-	        return construct(this, headings);
-	    };
-	})(jQuery);
 </script>
 
 

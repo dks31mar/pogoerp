@@ -3,6 +3,7 @@ package com.pogo.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.pogo.bean.JsonArraytoJson;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.model.PoRefEntryItemDetailCopy;
@@ -91,10 +94,10 @@ public ModelAndView savePoDetails(@ModelAttribute("productadd")  PoRefEntryItemD
 
 @RequestMapping(value="savedatadb",method=RequestMethod.POST)
 @ResponseBody
-public String addProductUsingAjax(@RequestBody String json,Model model) throws IOException{
+public void addProductUsingAjax(@RequestBody String json,Model model) throws IOException{
 System.out.println(json);
-	ObjectMapper mapper=new ObjectMapper();
-	PoRefEntryItemDetailCopyBean poref=mapper.readValue(json, PoRefEntryItemDetailCopyBean.class);
+	//ObjectMapper mapper=new ObjectMapper();
+	/*PoRefEntryItemDetailCopyBean poref=mapper.readValue(json, PoRefEntryItemDetailCopyBean.class);
 	PoRefEntryItemDetailCopyBean poref1=new PoRefEntryItemDetailCopyBean();
 	poref1.setParticular(poref.getParticular());
 	poref1.setProductdescription(poref.getProductdescription());
@@ -102,28 +105,27 @@ System.out.println(json);
 	poref1.setQty(poref.getQty());
 	poref1.setTotaljpy(poref.getTotaljpy());
 	poref1.setCustomerporefe(poref.getCustomerporefe());
-	poref1.setPorefentryitemdetailid(poref.getPorefentryitemdetailid());
+	poref1.setPorefentryitemdetailid(poref.getPorefentryitemdetailid());*/
 	
 	//poref.setPorefentryitemdetailid(null);
 	
 	
-	PoRefEntryItemDetailCopy poRefEntry = prepareModel(poref1);
-	prinicipalposervice.addPoProduct(poRefEntry);
+	//PoRefEntryItemDetailCopy poRefEntry = prepareModel(poref1);
+	//prinicipalposervice.addPoProduct(poRefEntry);
 	//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
-return toJson(poRefEntry);
+//return toJson(poRefEntry);
+
+Gson gson=new Gson();
+
+JsonArraytoJson [] js=gson.fromJson(json, JsonArraytoJson[].class);
+
+for(JsonArraytoJson e:js){
+	System.out.println(e.getName()+"\t<><><><><><><><>\t"+e.getValue());
 }
 
-private String toJson(PoRefEntryItemDetailCopy poRefEntry) {
-	ObjectMapper mapper = new ObjectMapper();
-    try {
-        String value = mapper.writeValueAsString(poRefEntry);
-        // return "["+value+"]";
-        return value;
-    } catch (JsonProcessingException e) {
-        e.printStackTrace();
-        return null;
-    }
 }
+
+
 
 
 @RequestMapping(value="/prolist", method = RequestMethod.GET)
