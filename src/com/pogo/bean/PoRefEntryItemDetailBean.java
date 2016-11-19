@@ -7,9 +7,9 @@ public class PoRefEntryItemDetailBean{
 		private String porefno;
 	 	private String particular;
 	 	private String tpinjpy;
-	 	private int qty;
-	 	private int totaljpy;
-	 	private int totalinr;
+	 	private double qty;
+	 	private double totaljpy;
+	 	private double totalinr;
 	 	private String ackdate;  
 	 	private String remarks;
 	 	private int posrno;
@@ -17,10 +17,6 @@ public class PoRefEntryItemDetailBean{
 	 	private String invdate;
 	 	private String customerporefe;
 	 	private String productdescription;
-	 	
-	 	
-		
-		
 		public Integer getPorefentryitemdetailid() {
 			return porefentryitemdetailid;
 		}
@@ -45,22 +41,22 @@ public class PoRefEntryItemDetailBean{
 		public void setTpinjpy(String tpinjpy) {
 			this.tpinjpy = tpinjpy;
 		}
-		public int getQty() {
+		public double getQty() {
 			return qty;
 		}
-		public void setQty(int qty) {
+		public void setQty(double qty) {
 			this.qty = qty;
 		}
-		public int getTotaljpy() {
+		public double getTotaljpy() {
 			return totaljpy;
 		}
-		public void setTotaljpy(int totaljpy) {
+		public void setTotaljpy(double totaljpy) {
 			this.totaljpy = totaljpy;
 		}
-		public int getTotalinr() {
+		public double getTotalinr() {
 			return totalinr;
 		}
-		public void setTotalinr(int totalinr) {
+		public void setTotalinr(double totalinr) {
 			this.totalinr = totalinr;
 		}
 		public String getAckdate() {
@@ -106,6 +102,10 @@ public class PoRefEntryItemDetailBean{
 			this.productdescription = productdescription;
 		}
 	 	
+	 	
+		
+		
+		
 	 	
 	 	
 }

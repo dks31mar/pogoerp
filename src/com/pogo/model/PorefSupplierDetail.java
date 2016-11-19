@@ -4,38 +4,41 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name="porefsupplierdetail")
 public class PorefSupplierDetail implements Serializable{
 
-	@Column(name="",columnDefinition="bigInt(20)",nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="porefsupplierdetailid",columnDefinition="bigInt(20)")
 	private String porefsupplierdetailid; 
 	@Id
- 	@Column(name="porefno",columnDefinition="varchar(50)",nullable=false)
+ 	@Column(name="porefno",columnDefinition="varchar(50)")
     private String porefno; 
 
- 	@Column(name="",columnDefinition="varchar(50)")
+ 	@Column(name="porefdate",columnDefinition="varchar(50)")
 	private String porefdate; 
 
- 	@Column(name="",columnDefinition="varchar(50)")
+ 	@Column(name="principalname",columnDefinition="varchar(50)")
     private String principalname; 
 
- 	@Column(name="",columnDefinition="varchar(250)")
+ 	@Column(name="specification",columnDefinition="varchar(250)")
     private String specification; 
 
- 	@Column(name="",columnDefinition="int(11)")
+ 	@Column(name="profileid",columnDefinition="int(11)")
 	private Integer profileid; 
 
- 	@Column(name="",columnDefinition="int(11)")
+ 	@Column(name="roe",columnDefinition="int(11)")
     private Integer roe; 
 
- 	@Column(name="",columnDefinition="varchar(1000)")
+ 	@Column(name="address",columnDefinition="varchar(1000)")
     private String address; 
 
- 	@Column(name="",columnDefinition="int(11)")
-    private Integer total;
+ 	@Column(name="total",columnDefinition="int(11)")
+    private double total;
 
 	public String getPorefsupplierdetailid() {
 		return porefsupplierdetailid;
@@ -101,11 +104,11 @@ public class PorefSupplierDetail implements Serializable{
 		this.address = address;
 	}
 
-	public Integer getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(Integer total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
  	

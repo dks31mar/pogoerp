@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import com.pogo.dao.PrinicipalDao;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
+import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.ProductMaster;
 @Repository("prinicipaldao")
 @SuppressWarnings("unchecked")
@@ -51,7 +52,7 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	}
 
 	@Override
-	public void addPoDetails(PoRefEntryItemDetailCopy poRefEntry) {
+	public void addPoDetails(PoRefEntryItemDetail poRefEntry) {
 		sessionFactory.getCurrentSession().flush();
 		if(poRefEntry.getPorefentryitemdetailid()==null){
 		sessionFactory.getCurrentSession().save(poRefEntry);
@@ -77,21 +78,12 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	}
 
 	
-
-	/*@Override
-	public PoRefEntryItemDetail getProductEdit(int particular) {
-		
-		return (PoRefEntryItemDetail) sessionFactory.getCurrentSession().get(PoRefEntryItemDetail.class, particular);
-	}*/
-	
 	@Override
 	public List<PoRefEntryItemDetailCopy> getProductEdit(int particular) {
 		sessionFactory.getCurrentSession().flush();
 	List<PoRefEntryItemDetailCopy> list=sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetailCopy.class).add(Restrictions.eq("porefentryitemdetailid", particular)).list();
 	System.out.println(""+list.iterator().next().getParticular());	
-	//sessionFactory.getCurrentSession().get(PoRefEntryItemDetail.class, particular);
-		
-		return  list;
+	return  list;
 	}
 
 	@Override
@@ -112,6 +104,13 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	public Object getGrantTotal(HttpServletRequest res) {
 		// TODO Auto-generated method stub
 		return (Integer)sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetailCopy.class).setProjection(Projections.sum("totaljpy")).uniqueResult();
+	}
+
+	@Override
+	public void addPoSupplier(PorefSupplierDetail porefs) {
+		
+		sessionFactory.getCurrentSession().save(porefs);
+		
 	}
 	
 	

@@ -66,7 +66,7 @@ System.out.println();
 					Date:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-2">
-					<span> <input path="" type="text" class="form-control" name="dateTodate"
+					<span> <input type="text" class="form-control" name="dateTodate"
 						id="datepicker" value="<%=dateFormat.format(date) %>" ReadOnly></input>
 						
 					</span>
@@ -183,7 +183,7 @@ System.out.println();
 					</div>
 					<div align="right">
 						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
-							value="${total}" style="width: 15%;" readonly="true">
+							value="${total}" style="width: 15%;" readonly>
 					</div>
 				</div>
 
@@ -256,244 +256,273 @@ System.out.println();
 <script>
 
 
-$(document).ready(function(){
-	var table = document.getElementById("quotprodtable");
-	var len=table.rows.length-1;
-	$('#sr').val('');
-	$('#sr').val(len);
-	
-});
-/* $(document).ready(function(){
-
-}); */
-
-$('#qty').keyup(function(){
-	var qty=$('#qty').val();
-	var unit=$('#unitcostx').val();
-	var jpy=$('#tpinjpy').val();
-	var total=parseInt(qty) * parseInt(jpy);
-	$('#totaljpy').val(total);
-	
-	//alert(qty);
-});
-$(document).ready(function(){
-	$('#editpo').hide();
-	$('#update').hide();
-	$('#back').hide();
-	$('#pdf').hide();
-	$('#print').hide();
-	$('#addmore').hide();
-    $('[data-toggle="tooltip"]').tooltip();
-});
-
-$("#normal").click(function(){
-	$("#porefno").val("<%=norml%>");
-});
-$("#CBW").click(function(){
-	$("#porefno").val("<%=cb%>");
-});
-$( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  
-  
-  
-  
-$('#autocomplete').click(function(){
-	$('#autocomplete').val('');
-	$('#description').val('');
-	$('#tpinjpy').val('');
-	$('#qty').val('');
-	$('#totaljpy').val('');
-	$('#customerporefe').val('');
-	$.ajax({
-		url: "getpartno?word=b", 
-		success: function(result){
-			//alert(""+result)
-			search(result);
-			/* var currencies =jQuery.parseJSON(result);
-			alert(currencies);
-			$('#autocomplete').autocomplete({
-			    lookup: currencies,
-			    onSelect: function (suggestion) {
-			      alert(suggestion);
-			    }
-			  }); */
-    }});
-	
-});
-
-
-function search(result){
-var currencies =jQuery.parseJSON(result);
-/* alert(currencies); */
-$('#autocomplete').autocomplete({
-    lookup: currencies,
-    onSelect: function (suggestion) {
-    var pro= suggestion.value;
-      $.ajax({
-			url: "getpartdetail?pro="+pro, 
-			success: function(result){
-					//alert("ddd");
-				//$('#autocomplete').val('');
-				for(i=0;i<result.length;i++){
-					var data=result.replace('"','');
-					data=data.replace('"','');
-				}
-			var	productdescription=data.split(',')[0]
-			var cost=data.split(',')[1];
-					//alert(productdescription);
-				var unitcostx=data.split(',')[2];	
-				
-				//$('#particulee1').val(pro)
-				$('#description').val(productdescription);
-				$('#tpinjpy').val(cost);
-				$('#unitcostx').val(unitcostx)
-	    }});
-      
-      
-    }
-  });
-}
-
- /* $(document).ready(function(){
-	$('#savedata445').click(function(){
-	$.ajax({
-			url: "getviewproduct",
-			type: "POST",
+		$(document).ready(function(){
+			var table = document.getElementById("quotprodtable");
+			var len=table.rows.length-1;
+			$('#sr').val('');
+			$('#sr').val(len);
 			
-			success: function(result){
-				$('#editpo').show();
-				$('#update').show();
-				$('#back').show();
-				$('#pdf').show();
-				$('#print').show();
-				$('#addmore').show();
-				$('#createpo').hide();
-				$('#savedata445').hide();
-				$('#mainForm').hide();
-				
-			}});
-	});
-}); */
- 
- $('#addmore').click(function (){
-	 $('#mainForm').show();
- });
- 
- /* $(document).ready(function(){
-		$('#saveproduct123').click(function(){
-			var idd=$('#getid1').val();
-			var  dis	= $('#description').val();
-			var  partno	=$('#autocomplete').val();
-			var	 tpn	=$('#tpinjpy').val();
-			var	 qty	=$('#qty').val();
-			var	 totjpy	=$('#totaljpy').val();
-			var	 custpo	=$('#customerporefe').val();
-			var jsonObj={'porefentryitemdetailid':'',
-					'porefno':partno, 'particular':partno, 
-				 	  	'tpinjpy':tpn,
-				 	  'qty':qty,
-				 	  'totaljpy':totjpy,
-				 	  'customerporefe':custpo,
-				 	  'productdescription':dis
-			} ;
-		$.ajax({
-				url: "savedatadb",
-				type: "POST",
-				
-				  data :JSON.stringify(jsonObj),
-				  cache:false,
-			        beforeSend: function(xhr) {  
-			            xhr.setRequestHeader("Accept", "application/json");  
-			            xhr.setRequestHeader("Content-Type", "application/json");  
-			        },
-				     success: function(resposeJsonObject){
-				    	 
-			     
-			    }});
 		});
-	}); */
-	
-	
-	
-	 $(document).ready(function(){
-		 var id=$('#addprolisttbody').children('tr').length;
-		 $('#sr').val(id+1);
-	        $("#addmorepro12").click(function(){
-	        	var id=$('#addprolisttbody').children('tr').length+1;
-	        	var idd=$('#getid1').val();
-				var  dis	= $('#description').val();
-				var  partno	=$('#autocomplete').val();
-				var	 tpn	=$('#tpinjpy').val();
-				var	 qty	=$('#qty').val();
-				var	 totjpy	=$('#totaljpy').val();
-				var	 custpo	=$('#customerporefe').val();
-	            var markup = "<tr>"+
-					"<td style='display: none;'><input type='hidden' value='"+idd+"' id='getid"+id+"'></input> </td>"+
-					"<td style='right: 5px; position: relative;'>&nbsp;"+ 
-					"<input type='text' style='width: 60px' name='posrno' id='sr"+id+"' value='"+id+"' class='form-control' readonly/></td>"+
-					"<td style='left: 2px; position: relative; width: 150px'>&nbsp;"+
-					"<input readonly type='text' value='"+partno+"' name='particulee1'style='overflow: auto; border-radius: 3px; width: 223px;'id='partno"+id+"' class='form-control'/></td>"+
-					"<td style='width: 250px'>&nbsp; <input readonly name='description' id='description"+id+"' class='form-control' style='text-align: center;width: 238px;' value='"+dis+"' ></input></td>"+
-					"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='tpinjpy' id='tpinjpy"+id+"' value='"+tpn+"' class='form-control' /></td>"+
-					"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='qty"+id+"' class='form-control' value='"+qty+"' /></td>"+
-					"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'  /></td>"+
-					"<td align='center'>&nbsp;<input readonly type='text' style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' name='customerporefe' id='customerporefe"+id+"' value='"+custpo+"' class='form-control'/>"+
-					"</td>"+
-					"<td><input type='hidden' style='text-align:center;' name='unitcost' id='' value='split' class='form-control'  ></td>"+
-					"<td><a class='glyphicon glyphicon-pencil' href='#'></a> | <a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+
-					"</tr>";
-	            $("#addprolisttbody").append(markup);
-	            //id++;
-	            $('#sr').val(id+1);
-	        });
-	 });
-	
-	
-	function deletethisrow(id){
+		/* $(document).ready(function(){
 		
-			 $("#"+id).parents("tr").remove();
-		id=$('#addprolisttbody').children('tr').length;
-		 $('#sr').val(id+1);
-		 for (i=0;i<id ; i++){
-			 
-		 }
-	}
-	
-	
-	/* $('#savedata445').click( function() {
-		  var table = $('#quotprodtable').tableToJSON();
-		  console.log(table);
-		  alert(JSON.stringify(table));
 		}); */
-	
-	
-	$("#savedata445").bind("click", function() {
-		  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
-		  console.log(AddressesDataJSON);
-		  alert(JSON.stringify(AddressesDataJSON));
-		  
-		  
-		  $.ajax({
-				url: "savedatadb",
-				type: "POST",
-				
-				  data :JSON.stringify(AddressesDataJSON),
-				  cache:false,
-			        beforeSend: function(xhr) {  
-			            xhr.setRequestHeader("Accept", "application/json");  
-			            xhr.setRequestHeader("Content-Type", "application/json");  
-			        },
-				     success: function(resposeJsonObject){
-				    	 
-			     
-			    }
-			});
+		
+		$('#qty').keyup(function(){
+			var qty=$('#qty').val();
+			var unit=$('#unitcostx').val();
+			var jpy=$('#tpinjpy').val();
+			var total=parseInt(qty) * parseInt(jpy);
+			$('#totaljpy').val(total);
+			
+			//alert(qty);
 		});
-	
-	
-	
+		$(document).ready(function(){
+			$('#editpo').hide();
+			$('#update').hide();
+			$('#back').hide();
+			$('#pdf').hide();
+			$('#print').hide();
+			$('#addmore').hide();
+		    $('[data-toggle="tooltip"]').tooltip();
+		});
+		
+		$("#normal").click(function(){
+			$("#porefno").val("<%=norml%>");
+		});
+		$("#CBW").click(function(){
+			$("#porefno").val("<%=cb%>");
+		});
+		$( function() {
+		    $( "#datepicker" ).datepicker();
+		  } );
+		  
+				$('#autocomplete').click(function(){
+				$('#autocomplete').val('');
+				$('#description').val('');
+				$('#tpinjpy').val('');
+				$('#qty').val('');
+				$('#totaljpy').val('');
+				$('#customerporefe').val('');
+				});
+				$('#autocomplete').on("click",function(){
+				var word=$('#autocomplete').val();
+		
+		//alert($(e.target).val() );	
+			$.ajax({
+				url: "getpartno?word="+word, 
+				success: function(result){
+					
+					search(result);
+					
+		    }});
+			
+		});
+		
+		
+		function search(result){
+		var currencies =jQuery.parseJSON(result);
+		/* alert(currencies); */
+		$('#autocomplete').autocomplete({
+		    lookup: currencies,
+		    onSelect: function (suggestion) {
+		    var pro= suggestion.value;
+		      $.ajax({
+					url: "getpartdetail?pro="+pro, 
+					success: function(result){
+						for(i=0;i<result.length;i++){
+							var data=result.replace('"','');
+							data=data.replace('"','');
+						}
+					var	productdescription=data.split(',')[0]
+					var cost=data.split(',')[1];
+						
+						var unitcostx=data.split(',')[2];	
+						
+						
+						$('#description').val(productdescription);
+						$('#tpinjpy').val(cost);
+						$('#unitcostx').val(unitcostx)
+			    }});
+		      
+		      
+		    }
+		  });
+		}
+		
+		 
+		 $('#addmore').click(function (){
+			 $('#mainForm').show();
+		 });
+		 
+		 
+			
+			
+			 $(document).ready(function(){
+				 var id=$('#addprolisttbody').children('tr').length;
+				 $('#sr').val(id+1);
+			        $("#addmorepro12").click(function(){
+			        	var id=$('#addprolisttbody').children('tr').length+1;
+			        	var idd=$('#getid1').val();
+						var  dis	= $('#description').val();
+						var  partno	=$('#autocomplete').val();
+						var	 tpn	=$('#tpinjpy').val();
+						var	 qty	=$('#qty').val();
+						var	 totjpy	=$('#totaljpy').val();
+						var	 custpo	=$('#customerporefe').val();
+						var poref=$('#porefno').val();
+						var date=$('#datepicker').val();
+			            var markup = "<tr>"+
+			            "<td style='display: none;'><input type='hidden' name='date"+id+"' value='"+date+"' id='getdate"+id+"'></input> </td>"+
+			            "<td style='display: none;'><input type='hidden' name='porefno' value='"+poref+"' id='getporefno"+id+"'></input> </td>"+
+							"<td style='display: none;'><input type='hidden' name='' value='"+idd+"' id='getid'"+id+"'></input> </td>"+
+							"<td style='right: 5px; position: relative;'>&nbsp;"+ 
+							"<input type='text' style='width: 60px' name='' id='sr"+id+"' value='"+id+"' class='form-control' readonly/></td>"+
+							"<td style='left: 2px; position: relative; width: 150px'>&nbsp;"+
+							"<input readonly type='text' value='"+partno+"' name='particulee1'style='overflow: auto; border-radius: 3px; width: 223px;'id='partno"+id+"' class='form-control'/></td>"+
+							"<td style='width: 250px'>&nbsp; <input readonly name='description' id='description"+id+"' class='form-control' style='text-align: center;width: 238px;' value='"+dis+"' ></input></td>"+
+							"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='tpinjpy' id='tpinjpy"+id+"' value='"+tpn+"' class='form-control' /></td>"+
+							"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='qty"+id+"' class='form-control' value='"+qty+"' /></td>"+
+							"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'  /></td>"+
+							"<td align='center'>&nbsp;<input readonly type='text' style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' name='customerporefe' id='customerporefe"+id+"' value='"+custpo+"' class='form-control'/>"+
+							"</td>"+
+							"<td style='display: none;'><input type='hidden' name='grandtotal' value='' id='grandtotal"+id+"'></input> </td>"+"<td style='display: none;'><input type='hidden' name='date' value='"+date+"' id='getdate"+id+"'></input> </td>"+
+							"<td><input type='hidden' style='text-align:center;' name='unitcost' id='' value='split' class='form-control'  ></td>"+
+							"<td><a class='glyphicon glyphicon-pencil' href='#' onclick='editfields("+(id)+")'></a> | <a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+
+							"</tr>";
+			            $("#addprolisttbody").append(markup);
+			            //id++;
+			            $('#sr').val(id+1);
+			            
+			            var d;
+						var d1;
+						var d2=0;
+						 var id=$('#addprolisttbody').children('tr').length;
+						for(var i=1;i<=id;i++){
+						d=$('#totaljpy'+i).val();
+						
+						d1=parseInt((d), 10);
+						d2=parseInt((d1), 10)+parseInt((d2), 10);
+						}
+						$('#tjpy1').val(d2);
+					var d=$('#tjpy1').val();
+					$('#grandtotal1').val(d);
+			        });
+			 });
+			
+			 
+			 $('#datepicker').change(function(){
+				 alert('fffff');
+				var id=$('#addprolisttbody').children('tr').length+1;
+				 var date= $('#datepicker').val();
+				 alert(date+"     "+id);
+				 for(var i=0;i<=id ; i=i+1){
+					 
+					 $('#getdate'+i).val(date);
+					 alert(i);
+				 }
+			 });
+			function deletethisrow(id){
+				
+					 $("#"+id).parents("tr").remove();
+				id=$('#addprolisttbody').children('tr').length;
+				 $('#sr').val(id+1);
+				 for (i=0;i<id ; i++){
+					 
+				 }
+			}
+			
+			
+			$("#savedata445").bind("click", function() {
+				  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
+				  console.log(AddressesDataJSON);
+				  alert(JSON.stringify(AddressesDataJSON));
+				  
+				  
+				 $.ajax({
+						url: "savedatadb",
+						type: "POST",
+						
+						  data :JSON.stringify(AddressesDataJSON),
+						  cache:false,
+					        beforeSend: function(xhr) {  
+					            xhr.setRequestHeader("Accept", "application/json");  
+					            xhr.setRequestHeader("Content-Type", "application/json");  
+					        },
+						     success: function(resposeJsonObject){
+						    	 
+						    	 //location.reload();
+						    	 alert('saved!!!');
+					    }
+					}); 
+				});
+			
+			
+				function editfields(id){
+					var d=$('#totaljpy'+id).val();
+					$('#partno'+id).attr("readonly", false);
+					$('#qty'+id).attr("readonly", false); 
+					$('#customerporefe'+id).attr("readonly", false); 
+					
+					
+					
+					
+					$('#qty'+id).keyup(function(){
+						
+						var d1=$('#tjpy1').val();
+						$('#tjpy1').val(parseInt((d1), 10)-parseInt((d), 10));
+						var qty=$('#qty'+id).val();
+						var unit=$('#unitcostx').val();
+						var jpy=$('#tpinjpy'+id).val();
+						var total=parseInt(qty) * parseInt(jpy);
+						$('#totaljpy'+id).val(total);
+						var d2=$('#totaljpy'+id).val();
+						var d3=$('#tjpy1').val();
+						$('#tjpy1').val(parseInt((d3), 10)+parseInt((d2), 10));
+					var grandtotl=	$('#tjpy1').val();
+						$('#grandtotal1').val(grandtotl);
+					});
+					
+					$('#partno'+id).click(function(){
+						var word=$('#partno'+id).val();
+						$.ajax({
+							url: "getpartno?word="+word, 
+							success: function(result){
+								search1(result);
+								
+					    }});
+						
+					});
+					
+					function search1(result){
+						var currencies =jQuery.parseJSON(result);
+					$('#partno'+id).autocomplete({
+					    lookup: currencies,
+					    onSelect: function (suggestion) {
+					    var pro= suggestion.value;
+					      $.ajax({
+								url: "getpartdetail?pro="+pro, 
+								success: function(result){
+									for(i=0;i<result.length;i++){
+										var data=result.replace('"','');
+										data=data.replace('"','');
+									}
+								var	productdescription=data.split(',')[0]
+								var cost=data.split(',')[1];
+								var unitcostx=data.split(',')[2];	
+									$('#description'+id).val(productdescription);
+									$('#tpinjpy'+id).val(cost);
+									$('#unitcostx'+id).val(unitcostx)
+						    }});
+					      
+					      
+					    }
+					  });
+					}
+					
+				}
+			
+				
+		
 </script>
 
 

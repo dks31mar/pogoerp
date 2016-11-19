@@ -27,11 +27,14 @@ import com.google.gson.Gson;
 import com.pogo.bean.JsonArraytoJson;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
+import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.ProductMasterBean;
+import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
+import com.pogo.model.PorefSupplierDetail;
 import com.pogo.service.PrinicipalPoService;
 
-
+@SuppressWarnings("unused")
 @Controller
 public class PrincipalPOController {
 	
@@ -40,7 +43,7 @@ public class PrincipalPOController {
 
 @RequestMapping(value = "/getpartno", method = RequestMethod.GET)
 public void getProductPartNumber(@RequestParam("word") String word, HttpServletResponse res,ProductMasterBean productmasetr) {
-	word="a";
+	
 	productmasetr.setProductname(word);
 	
 	String getpart=prinicipalposervice.getPartNo(productmasetr);
@@ -78,6 +81,7 @@ public void getProductDetail(@RequestParam("pro") String pro, HttpServletRespons
 	}
 
 
+
 @RequestMapping(value = "/savepodetails", method = RequestMethod.POST,consumes="application/json",headers = "content-type=application/x-www-form-urlencoded")
 
 public ModelAndView savePoDetails(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean porefitem, HttpServletRequest res,BindingResult result) {
@@ -85,7 +89,7 @@ public ModelAndView savePoDetails(@ModelAttribute("productadd")  PoRefEntryItemD
 	System.out.println("^^^^^^^^^^^^^^^^^^^^^     DATE              ^&^^^^^^^^^^^^^^^^^^^       "+val);
 	PoRefEntryItemDetailCopy poRefEntry = prepareModel(porefitem);
 	//PoRefEntryItemDetailCopy poRefEntrycopy = prepareModelCopy(porefitem);
-	prinicipalposervice.addPoProduct(poRefEntry);
+	//prinicipalposervice.addPoProduct(poRefEntry);
 	Map<String, Object> model = new HashMap<String, Object>();
 	model.put("prolist",  prepareListofBean(prinicipalposervice.proList(res)));
 	model.put("total", prinicipalposervice.getGrantTotal(res));
@@ -96,37 +100,45 @@ public ModelAndView savePoDetails(@ModelAttribute("productadd")  PoRefEntryItemD
 @RequestMapping(value="savedatadb",method=RequestMethod.POST)
 @ResponseBody
 public void addProductUsingAjax(@RequestBody String json,Model model) throws IOException{
-System.out.println(json);
-	//ObjectMapper mapper=new ObjectMapper();
-	/*PoRefEntryItemDetailCopyBean poref=mapper.readValue(json, PoRefEntryItemDetailCopyBean.class);
-	PoRefEntryItemDetailCopyBean poref1=new PoRefEntryItemDetailCopyBean();
-	poref1.setParticular(poref.getParticular());
-	poref1.setProductdescription(poref.getProductdescription());
-	poref1.setTpinjpy(poref.getTpinjpy());
-	poref1.setQty(poref.getQty());
-	poref1.setTotaljpy(poref.getTotaljpy());
-	poref1.setCustomerporefe(poref.getCustomerporefe());
-	poref1.setPorefentryitemdetailid(poref.getPorefentryitemdetailid());*/
-	
-	//poref.setPorefentryitemdetailid(null);
-	
-	
-	//PoRefEntryItemDetailCopy poRefEntry = prepareModel(poref1);
-	//prinicipalposervice.addPoProduct(poRefEntry);
-	//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
-//return toJson(poRefEntry);
+	System.out.println(json);
+	Gson gson=new Gson();
+	JsonArraytoJson [] js=gson.fromJson(json, JsonArraytoJson[].class);
+	System.out.println(js.length);
+	List<String> lst=new ArrayList<String>();
+		for(JsonArraytoJson e:js){
+			System.out.println(e.getName()+"\t\t\t\t<><><><><><><><>\t"+e.getValue());
+			lst.add(e.getValue());
+			}
+	System.out.println(lst.size());
+	String [] meth=lst.toArray(new String[lst.size()]);
 
-Gson gson=new Gson();
-
-JsonArraytoJson [] js=gson.fromJson(json, JsonArraytoJson[].class);
-PoRefEntryItemDetailBean poref=new PoRefEntryItemDetailBean();
-System.out.println(js.length);
-List<String> lst=new ArrayList<String>();
-for(JsonArraytoJson e:js){
-	System.out.println(e.getName()+"\t\t\t\t<><><><><><><><>\t"+e.getValue());
-	lst.add(e.getValue());
-}
-
+		for(int i=0;i<meth.length;i=i+11){
+			int timer=0;
+			PoRefEntryItemDetailBean poref=new PoRefEntryItemDetailBean();
+			PorefSupplierDetailBean porefs=new PorefSupplierDetailBean();
+			
+			porefs.setPorefdate(meth[i]);
+			porefs.setPorefno(meth[i+1]);
+			poref.setParticular(meth[i+2]);
+			poref.setProductdescription(meth[i+3]);
+			poref.setTpinjpy(meth[i+4]);
+			poref.setQty(Double.parseDouble(meth[i+5]));
+			poref.setTotaljpy(Double.parseDouble(meth[i+6]));
+			poref.setCustomerporefe(meth[i+7]);
+			porefs.setTotal(Double.parseDouble(meth[8]));
+			System.out.println();
+			System.out.println(i+"     <<<<<<<<<<<<<<<<<<<<<");
+			
+			if(i==0){
+				System.out.println("inside if    "+i);
+				prinicipalposervice.addPoSupplier(porefs);
+				prinicipalposervice.addPoProduct(poref,porefs);
+				timer++;
+			}else{
+				prinicipalposervice.addPoProduct(poref,porefs);
+				}
+			}
+			
 }
 
 
