@@ -95,6 +95,12 @@
 			 <definition name="addstates" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addstates.jsp" />
 			</definition>
+			 <definition name="editstates" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editstates.jsp" />
+			</definition>
+			<definition name="editbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editbranch.jsp" />
+			</definition>
 			 <definition name="addbranches" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addbranches.jsp" />
 			</definition>
@@ -303,6 +309,15 @@
 			<put-attribute name="title" value="Customer" />
 				<put-attribute name="body" value="/WEB-INF/views/customer/customerSales.jsp" />
 			</definition>
+			<definition name="getSalesList" extends="baseLayout" >
+			<put-attribute name="title" value="Customer List" />
+				<put-attribute name="body" value="/WEB-INF/views/customer/salesCustomerList.jsp" />
+			</definition>
+			<definition name="AddDiaryForEntrySales" extends="baseLayout" >
+			<put-attribute name="title" value="Add Diary" />
+			<put-attribute name="body" value="/WEB-INF/views/customer/AddDiaryForEntery.jsp" />
+			</definition>
+				
 			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >

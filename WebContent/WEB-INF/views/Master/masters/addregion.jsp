@@ -121,7 +121,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
-    <button type="submit" class="btn btn-warning" id="senddata">Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="button" class="btn btn-warning" id="senddata">Send <span class="glyphicon glyphicon-send"></span></button>
     
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
@@ -220,20 +220,15 @@
 		   
 		   alert(selecthead);
 		   
-<<<<<<< HEAD
+
 		   if(reginname==''||mobileno==''||emailid==''||fax==''||regadress==''||selecthead=='---Select Region---'){
 			   $('#messagespan').show('fast');
-=======
+		   
+		   }
 		   
 		   
-		   
-		   if(mobileval.test(mobileno)){
-			  // alert("cannot be blank")
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
-			   
-		   }else{
 			   var jsonObj={
-						'zonesname':reginname,
+			                    'zonesname':reginname,
 								'zonesaddress':regadress,
 									'zonesfax':fax,
 									'zonesphone':mobileno,
@@ -252,25 +247,11 @@
 				        },
 					     success: function(resposeJsonObject){
 					    	 window.location.reload();
-				    }});
-				
-<<<<<<< HEAD
-			   
-=======
-				  data :JSON.stringify(jsonObj),
-				  cache:false,
-			        beforeSend: function(xhr) {  
-			            xhr.setRequestHeader("Accept", "application/json");  
-			            xhr.setRequestHeader("Content-Type", "application/json");  
-			        },
-				     success: function(resposeJsonObject){
-				    	// alert("save")
-			    }});
-			
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
-		   }
-		   
-		   
+					    	 alert(save);
+}
+				        
+			});	  
+		  
 			
 		  
 		}); 

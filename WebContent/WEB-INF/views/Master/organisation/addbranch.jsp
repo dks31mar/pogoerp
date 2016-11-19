@@ -52,7 +52,7 @@
     </div>
   </div>
   
-  <label class="col-md-2 control-label" style="margin-left: -62px;">BranchHead<span style="color: red;">*</span></label> 
+  <label class="col-md-2 control-label" style="margin-left: -62px;">Branch Head<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>

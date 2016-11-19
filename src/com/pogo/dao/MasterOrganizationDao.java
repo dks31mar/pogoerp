@@ -127,6 +127,18 @@ void updateCompetitior(CompetitiorsProfile comprof);
 
 	List<StateZone> getstateData();
 
+	void updateStates(StateZone stateZone);
+
+	StateZone deleteState(int id);
+
+	void deletedata(StateZone stateZone);
+
+	List<Branch> getBranchbystate(int id);
+
+	Branch deleteBranch(int id);
+
+	void deletebr(Branch branch);
+
 
 
 

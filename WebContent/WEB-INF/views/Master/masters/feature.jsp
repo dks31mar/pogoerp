@@ -60,7 +60,7 @@
     <th>Delete</th>
    
   </tr>
-  <!--  -->>
+  <!--  -->
   <td>1</td>
   <td>GLOBE RECTIFIERS</td>
   <td><a href="editcompetitior?id=${comprofilr.competitor}" }" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
