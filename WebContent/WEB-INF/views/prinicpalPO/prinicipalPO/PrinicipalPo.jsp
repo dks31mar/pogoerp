@@ -16,7 +16,7 @@ String hh=(String)session.getAttribute("jsonp");
 String norml=(String)session.getAttribute("normal");
 String cb=(String)session.getAttribute("CBW");
 /* Integer total=(Integer)session.getAttribute("total"); */
-java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("MM/dd/yyyy");
+java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
 java.util.Date date = new java.util.Date();
 System.out.println();
 %>
@@ -411,14 +411,14 @@ System.out.println();
 			
 			 
 			 $('#datepicker').change(function(){
-				 alert('fffff');
+				// alert('fffff');
 				var id=$('#addprolisttbody').children('tr').length+1;
 				 var date= $('#datepicker').val();
-				 alert(date+"     "+id);
+				 //alert(date+"     "+id);
 				 for(var i=0;i<=id ; i=i+1){
 					 
 					 $('#getdate'+i).val(date);
-					 alert(i);
+					 //alert(i);
 				 }
 			 });
 			function deletethisrow(id){
@@ -435,7 +435,7 @@ System.out.println();
 			$("#savedata445").bind("click", function() {
 				  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
 				  console.log(AddressesDataJSON);
-				  alert(JSON.stringify(AddressesDataJSON));
+				 alert(JSON.stringify(AddressesDataJSON));
 				  
 				  
 				 $.ajax({

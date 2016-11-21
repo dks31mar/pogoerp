@@ -166,12 +166,7 @@ public class CommonController {
 		}
 		return beans;
 	}
-	@RequestMapping(value="/editpo",method = RequestMethod.GET)
-	public ModelAndView getedit( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
-		System.out.println("in get edit method");
-
-	return new ModelAndView("edit");
-	}
+	
 
 	@RequestMapping(value="/acknowledgement",method = RequestMethod.GET)
 	public ModelAndView getacknowledgement( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){

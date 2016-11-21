@@ -34,5 +34,11 @@ public interface PrinicipalDao {
 
 	List<PorefSupplierDetail> getSupplierlist();
 
+	List<PoRefEntryItemDetail> getPoDetailByPorefNo(String poref);
+
+	void updatePoSupplier(PorefSupplierDetail porefsup);
+
+	PorefSupplierDetail getidbyporefnumber(String s);
+
 
 }

@@ -17,7 +17,7 @@
 	
 	
 <%
-java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("MM/dd/yyyy");
+java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
 java.util.Date date = new java.util.Date();
 %>
 	
@@ -80,7 +80,7 @@ java.util.Date date = new java.util.Date();
 					<tr>
 					
 					<td><c:out value="${loop.index+1}"></c:out></td>
-					<td><a href = "editpo"><c:out value="${view.porefno}"></c:out></a></td>
+					<td><a href = "editpo?poref=${view.porefno}"><c:out value="${view.porefno}"></c:out></a></td>
 					<td><c:out value="${view.porefdate}"></c:out></td>
 					<td><c:out value="${view.principalname}"></c:out></td>
 					<td><c:out value="${view.address}"></c:out></td>
@@ -99,10 +99,10 @@ java.util.Date date = new java.util.Date();
 		<script>
 		$("#hide1,#hide2").hide();
 		$( function() {
-		    $( "#datepicker1" ).datepicker();
+		    $( "#datepicker1" ).datepicker({dateFormat: 'dd/mm/yy'});
 		  } );
 		$( function() {
-		    $( "#datepicker2" ).datepicker();
+		    $( "#datepicker2" ).datepicker({dateFormat: 'dd/mm/yy'});
 		  } );
 		
 		$(document).ready(function(){

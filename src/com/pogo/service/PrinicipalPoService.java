@@ -32,6 +32,12 @@ public interface PrinicipalPoService {
 	void addPoSupplier(PorefSupplierDetailBean porefs);
 
 	List<PorefSupplierDetailBean> getSupplierlist();
+
+	List<PoRefEntryItemDetailBean> getPoDetailByPorefNo(String poref);
+
+	void UpdatePoProduct(PoRefEntryItemDetailBean poref, PorefSupplierDetailBean porefs);
+
+	void updatePoSupplier(PorefSupplierDetailBean porefs);
 	
 	
 }

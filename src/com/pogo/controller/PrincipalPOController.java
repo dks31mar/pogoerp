@@ -3,7 +3,6 @@ package com.pogo.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -21,20 +20,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.pogo.bean.JsonArraytoJson;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
 import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.ProductMasterBean;
-import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
-import com.pogo.model.PorefSupplierDetail;
 import com.pogo.service.PrinicipalPoService;
 
-@SuppressWarnings("unused")
+
 @Controller
 public class PrincipalPOController {
 	
@@ -87,7 +82,7 @@ public void getProductDetail(@RequestParam("pro") String pro, HttpServletRespons
 public ModelAndView savePoDetails(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean porefitem, HttpServletRequest res,BindingResult result) {
 	String val=res.getParameter("dataTodata");
 	System.out.println("^^^^^^^^^^^^^^^^^^^^^     DATE              ^&^^^^^^^^^^^^^^^^^^^       "+val);
-	PoRefEntryItemDetailCopy poRefEntry = prepareModel(porefitem);
+	//PoRefEntryItemDetailCopy poRefEntry = prepareModel(porefitem);
 	//PoRefEntryItemDetailCopy poRefEntrycopy = prepareModelCopy(porefitem);
 	//prinicipalposervice.addPoProduct(poRefEntry);
 	Map<String, Object> model = new HashMap<String, Object>();
@@ -113,7 +108,7 @@ public void addProductUsingAjax(@RequestBody String json,Model model) throws IOE
 	String [] meth=lst.toArray(new String[lst.size()]);
 
 		for(int i=0;i<meth.length;i=i+11){
-			int timer=0;
+			
 			PoRefEntryItemDetailBean poref=new PoRefEntryItemDetailBean();
 			PorefSupplierDetailBean porefs=new PorefSupplierDetailBean();
 			
@@ -133,7 +128,7 @@ public void addProductUsingAjax(@RequestBody String json,Model model) throws IOE
 				System.out.println("inside if    "+i);
 				prinicipalposervice.addPoSupplier(porefs);
 				prinicipalposervice.addPoProduct(poref,porefs);
-				timer++;
+				
 			}else{
 				prinicipalposervice.addPoProduct(poref,porefs);
 				}
@@ -175,7 +170,7 @@ public ModelAndView editProduct(@ModelAttribute("productadd")  PoRefEntryItemDet
 @RequestMapping(value = "/getviewproduct", method = RequestMethod.POST)
 public ModelAndView viewProduct(@ModelAttribute("productadd")  PoRefEntryItemDetailCopy poref,
 		BindingResult result) {
-	Map<String, Object> model = new HashMap<String, Object>();
+	//Map<String, Object> model = new HashMap<String, Object>();
 	//prinicipalposervice.viewPo();
 	
 	
@@ -190,12 +185,108 @@ public ModelAndView getView( @ModelAttribute("command") PorefSupplierDetailBean 
 	System.out.println("in get view method");
 	List<PorefSupplierDetailBean> lst =new ArrayList<>();
 	lst=prinicipalposervice.getSupplierlist();
-Map<String, Object> model = new HashMap<String, Object>();
+	Map<String, Object> model = new HashMap<String, Object>();
 	model.put("viewlist", lst);
 return new ModelAndView("viewpo",model);
 }
+@RequestMapping(value="/editpo",method = RequestMethod.GET)
+public ModelAndView getEditPoDetails(@RequestParam("poref") String poref, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+	System.out.println("in get edit method");
+	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getPoDetailByPorefNo(poref);
+	System.out.println(lst);
+	double total=0.0;
+	String date=null;
+	String porefNo=null;
+	for(PoRefEntryItemDetailBean g:lst){
+		System.out.println(g.getPorefnobysupplier().getTotal());
+		total=g.getPorefnobysupplier().getTotal();
+		date=g.getPorefnobysupplier().getPorefdate();
+		porefNo=g.getPorefnobysupplier().getPorefno();
+	}
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("listbyporef", lst);
+	m.addAttribute("gtotal", total);
+	m.addAttribute("date", date);
+	m.addAttribute("porefnumber", porefNo);
+return new ModelAndView("edit",model);
+}
 
 
+
+@RequestMapping(value="updatedatadb",method=RequestMethod.POST)
+@ResponseBody
+public void updateProductUsingAjax(@RequestBody String json,Model model) throws IOException{
+	System.out.println(json);
+	Gson gson=new Gson();
+	JsonArraytoJson [] js=gson.fromJson(json, JsonArraytoJson[].class);
+	System.out.println(js.length);
+	List<String> lst=new ArrayList<String>();
+		for(JsonArraytoJson e:js){
+			System.out.println(e.getName()+"\t\t\t\t<><><><><><><><>\t"+e.getValue());
+			lst.add(e.getValue());
+			}
+	System.out.println(lst.size());
+	String [] meth=lst.toArray(new String[lst.size()]);
+
+		for(int i=0;i<meth.length;i=i+12){
+			
+			PoRefEntryItemDetailBean poref=new PoRefEntryItemDetailBean();
+			PorefSupplierDetailBean porefs=new PorefSupplierDetailBean();
+			
+			porefs.setPorefdate(meth[i]);
+			porefs.setPorefno(meth[i+1]);
+			System.out.println(meth[i+2]);
+			if(meth[i+2].isEmpty()==false){
+				System.out.println(")()()()()()()()()()()()()()()()()()()()()()()()()()(                     ");
+				poref.setPorefentryitemdetailid(Integer.parseInt(meth[i+2]));
+			}
+			
+			poref.setParticular(meth[i+3]);
+			poref.setProductdescription(meth[i+4]);
+			poref.setTpinjpy(meth[i+5]);
+			poref.setQty(Double.parseDouble(meth[i+6]));
+			poref.setTotaljpy(Double.parseDouble(meth[i+7]));
+			poref.setCustomerporefe(meth[i+8]);
+			porefs.setTotal(Double.parseDouble(meth[9]));
+			System.out.println();
+			System.out.println(i+"     <<<<<<<<<<<<<<<<<<<<<");
+			
+			if(i==0){
+				System.out.println("inside if    "+i);
+				prinicipalposervice.updatePoSupplier(porefs);
+				prinicipalposervice.UpdatePoProduct(poref,porefs);
+				
+			}else{
+				prinicipalposervice.UpdatePoProduct(poref,porefs);
+				}
+			
+			}
+			
+}
+
+@RequestMapping(value="/printreport",method = RequestMethod.GET)
+public ModelAndView printPoDetails(@RequestParam("poref") String poref, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+	System.out.println("in get edit method");
+	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getPoDetailByPorefNo(poref);
+	System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>      "+lst);
+	double total=0.0;
+	String date=null;
+	String porefNo=null;
+	for(PoRefEntryItemDetailBean g:lst){
+		System.out.println(g.getPorefnobysupplier().getTotal());
+		total=g.getPorefnobysupplier().getTotal();
+		date=g.getPorefnobysupplier().getPorefdate();
+		porefNo=g.getPorefnobysupplier().getPorefno();
+	}
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("listbyporef", lst);
+	m.addAttribute("gtotal", total);
+	m.addAttribute("date", date);
+	m.addAttribute("porefnumber", porefNo);
+return new ModelAndView("print",model);
+}
 private PoRefEntryItemDetailCopyBean prepareProductBean(List<PoRefEntryItemDetailCopy> productEdit) {
 	PoRefEntryItemDetailCopyBean poref =new PoRefEntryItemDetailCopyBean();
 	
@@ -212,7 +303,7 @@ private PoRefEntryItemDetailCopyBean prepareProductBean(List<PoRefEntryItemDetai
 }
 
 
-private PoRefEntryItemDetailCopyBean prepareProductBeanCopy(List<PoRefEntryItemDetailCopy> productEdit) {
+/*private PoRefEntryItemDetailCopyBean prepareProductBeanCopy(List<PoRefEntryItemDetailCopy> productEdit) {
 	PoRefEntryItemDetailCopyBean poref =new PoRefEntryItemDetailCopyBean();
 	
 	for(PoRefEntryItemDetailCopy productEdit1:productEdit){
@@ -225,7 +316,7 @@ private PoRefEntryItemDetailCopyBean prepareProductBeanCopy(List<PoRefEntryItemD
 	poref.setPorefentryitemdetailid(productEdit1.getPorefentryitemdetailid());
 	}
 	return poref;
-}
+}*/
 
 
 private PoRefEntryItemDetailCopy prepareModel(PoRefEntryItemDetailCopyBean porefitem) {
@@ -246,7 +337,7 @@ private PoRefEntryItemDetailCopy prepareModel(PoRefEntryItemDetailCopyBean poref
 	return poref;
 }
 
-private PoRefEntryItemDetailCopy prepareModelCopy(PoRefEntryItemDetailCopyBean porefitem) {
+/*private PoRefEntryItemDetailCopy prepareModelCopy(PoRefEntryItemDetailCopyBean porefitem) {
 	PoRefEntryItemDetailCopy poref=new PoRefEntryItemDetailCopy();
 	System.out.println(porefitem.getPorefentryitemdetailid());
 	poref.setParticular(porefitem.getParticular());
@@ -259,7 +350,7 @@ private PoRefEntryItemDetailCopy prepareModelCopy(PoRefEntryItemDetailCopyBean p
 	porefitem.setPorefentryitemdetailid(null);
 	
 	return poref;
-}
+}*/
 private List<PoRefEntryItemDetailCopyBean> prepareListofBean(List<PoRefEntryItemDetailCopy> prodel){
 	List<PoRefEntryItemDetailCopyBean> beans = null;
 	if(prodel != null && !prodel.isEmpty()){
@@ -280,7 +371,7 @@ private List<PoRefEntryItemDetailCopyBean> prepareListofBean(List<PoRefEntryItem
 	return beans;
 }
 
-private List<PoRefEntryItemDetailCopyBean> prepareListofBeanCopy(List<PoRefEntryItemDetailCopy> prodel){
+/*private List<PoRefEntryItemDetailCopyBean> prepareListofBeanCopy(List<PoRefEntryItemDetailCopy> prodel){
 	List<PoRefEntryItemDetailCopyBean> beans = null;
 	if(prodel != null && !prodel.isEmpty()){
 		beans = new ArrayList<PoRefEntryItemDetailCopyBean>();
@@ -298,6 +389,6 @@ private List<PoRefEntryItemDetailCopyBean> prepareListofBeanCopy(List<PoRefEntry
 		}
 	}
 	return beans;
-}
+}*/
 
 }
