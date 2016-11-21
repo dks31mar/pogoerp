@@ -76,10 +76,9 @@
   <tr>
     <td>${loop.index+1}</td>
     <td>${state.stateName}</td>
-
-    <td><a href="getbranchbystate">Branches</a></td>
-    <td><a href="Editregion?id=${state.stateId}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="deleteRegion?id=${state.stateId}" title="Delete"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
+    <td><a href="getbranchbystate?id=${state.stateId}"  target="_blank">Branches</a></td>
+    <td><a href="editstates?id=${state.stateId}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
+    <td><a href="deleteState?id=${state.stateId}" title="Delete"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
   </tr>
   
   </c:forEach>

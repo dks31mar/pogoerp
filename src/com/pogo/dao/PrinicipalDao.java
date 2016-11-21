@@ -32,5 +32,7 @@ public interface PrinicipalDao {
 
 	void addPoSupplier(PorefSupplierDetail porefs);
 
+	List<PorefSupplierDetail> getSupplierlist();
+
 
 }

@@ -185,7 +185,15 @@ public ModelAndView viewProduct(@ModelAttribute("productadd")  PoRefEntryItemDet
 	return new ModelAndView("savepro");
 }
 
-
+@RequestMapping(value="/getviewpo",method = RequestMethod.GET)
+public ModelAndView getView( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
+	System.out.println("in get view method");
+	List<PorefSupplierDetailBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getSupplierlist();
+Map<String, Object> model = new HashMap<String, Object>();
+	model.put("viewlist", lst);
+return new ModelAndView("viewpo",model);
+}
 
 
 private PoRefEntryItemDetailCopyBean prepareProductBean(List<PoRefEntryItemDetailCopy> productEdit) {

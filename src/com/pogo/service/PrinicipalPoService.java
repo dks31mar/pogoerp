@@ -30,6 +30,8 @@ public interface PrinicipalPoService {
 	Object getGrantTotal(HttpServletRequest res);
 
 	void addPoSupplier(PorefSupplierDetailBean porefs);
+
+	List<PorefSupplierDetailBean> getSupplierlist();
 	
 	
 }

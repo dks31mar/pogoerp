@@ -29,45 +29,42 @@
 
 
 	 
-<div id="message" style="display: none;"></div>
-<div id="body">
+
 <div class="container">
 
-    <form:form class="well form-horizontal"  action="updatestates" method="POST"  commandName="branchBean"
-    id="" >
+    <form:form class="well form-horizontal"  action="updatestates" method="POST"  commandName="statezoneBean">
+   
    
 <fieldset>
 
 <!-- Form Name -->
 <legend>Edit States</legend>
   
-  <div class="form-group">
-  <label class="col-md-2 control-label" >Branch</label> 
+   <div class="form-group">
+  <label class="col-md-2 control-label" >State Id</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input type="text" name="branchId" class="form-control" readonly="readonly" value="${branch.branchId}" >
+  <input type="text" name="stateId" class="form-control" readonly="readonly" value="${liststate.stateId}" >
     </div>
   </div>
-  </div> 
+  </div>  
   
   <div class="form-group">
   <label class="col-md-2 control-label" >States Name</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="stateId"  class="form-control">
-  <c:forEach items="${liststate}" var="list1">
+  <input name="stateName" value="${liststate.stateName}"  class="form-control" type="text">
+  <%-- <c:forEach items="${liststate}" var="list1">
   <option value="${list1.stateId}">${list1.state}</option>
-  </c:forEach>
-  <%-- <c:forEach items="${liststate}" var="list">
-  <option value="${list.stateId}">${list.state}</option>
   </c:forEach> --%>
-  </select>
+  
+  
     </div>
   </div> 
   
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Branch<span style="color: red;">*</span></label> 
+  <%-- <label class="col-md-2 control-label" style="margin-left: -62px;">Branch<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -75,7 +72,7 @@
   
  
     </div>
-  </div>
+  </div> --%>
 </div>
 
 <!-- Success message -->
@@ -94,6 +91,6 @@
 </fieldset>
 </form:form>
 </div>
-</div>
+
 
  

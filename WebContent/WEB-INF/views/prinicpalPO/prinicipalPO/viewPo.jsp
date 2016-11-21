@@ -33,12 +33,12 @@ java.util.Date date = new java.util.Date();
 		<div class="row">
 		<div class="page-heading col-sm-11" style="background-color: #3C8DBC; left: 10px">
 			<span class="glyphicon glyphicon-user"></span> Supplier Details	
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="ason"  type="radio" name="potype"> As On
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="ason"  type="radio" name="potype"checked="checked"> As On
 					 <input id="period" type="radio" name="potype" />Period
 					 
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "hide1">From:<input type="text" style="color: black;" id="datepicker1" value="<%=dateFormat.format(date) %>" ReadOnly></span> 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "hide2">To: <input type="text" style = "color:black" id="datepicker2" value="<%=dateFormat.format(date) %>" ReadOnly></span> 
-						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Search" />
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Search" style="color: black;"/>
 						</div>
 			</div>
 			
@@ -97,7 +97,7 @@ java.util.Date date = new java.util.Date();
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
 		<script>
-		
+		$("#hide1,#hide2").hide();
 		$( function() {
 		    $( "#datepicker1" ).datepicker();
 		  } );

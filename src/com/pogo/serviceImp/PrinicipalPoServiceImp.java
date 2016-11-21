@@ -142,5 +142,21 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		
 	}
 
+	@Override
+	public List<PorefSupplierDetailBean> getSupplierlist() {
+		List<PorefSupplierDetail> lst=prinicipaldao.getSupplierlist();
+		List<PorefSupplierDetailBean> lst1=new ArrayList<>();
+		for(PorefSupplierDetail e:lst){
+			PorefSupplierDetailBean bean=new PorefSupplierDetailBean();
+			bean.setAddress(e.getAddress());
+			bean.setPorefdate(e.getPorefdate());
+			bean.setPorefno(e.getPorefno());
+			bean.setTotal(e.getTotal());
+			bean.setPrincipalname(e.getPrincipalname());
+			lst1.add(bean);
+		}
+		return lst1;
+	}
+
 
 }

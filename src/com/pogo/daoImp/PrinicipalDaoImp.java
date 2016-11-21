@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pogo.dao.PrinicipalDao;
+import com.pogo.model.CustomerLevels;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
@@ -111,6 +112,12 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 		
 		sessionFactory.getCurrentSession().save(porefs);
 		
+	}
+
+	@Override
+	public List<PorefSupplierDetail> getSupplierlist() {
+		
+		return (List<PorefSupplierDetail>) sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class).list();
 	}
 	
 	

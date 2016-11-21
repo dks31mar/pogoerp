@@ -360,7 +360,7 @@ public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
 		@RequestMapping(value = "/editstates", method = RequestMethod.GET)
 		public String editStates(@RequestParam int id, Model model) 
 		{
-			model.addAttribute("branch",regionService.getbranchById(id));
+			//model.addAttribute("branch",regionService.getbranchById(id));
 			model.addAttribute("liststate", regionService.getSatesById(id));
 			//List<StatezoneBean> liststate=regionService.getSatesById(id);
 			//model.addAttribute("liststate",liststate);
@@ -372,16 +372,44 @@ public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
 		
 		//update states
 		@RequestMapping(value = "/updatestates", method = RequestMethod.POST)
-		public String updateStates(@ModelAttribute("branchBean") BranchBean  branchBean)
+		public String updateStates(@ModelAttribute("statezoneBean")StatezoneBean statezoneBean )
 		{
-			regionService.updateBranch(branchBean);
-			return "redirect:/states";
+			 regionService.updateState(statezoneBean);
+			System.out.println("for update");
+			return "states";
 
 		}
-	
+		@RequestMapping(value = "deleteState", method = RequestMethod.GET)
+		public String deletestate(@RequestParam("id") int id,HttpServletResponse response) throws IOException {
+			regionService.deletestate(id);
+			return "states";
+		//response.sendRedirect("states");
+		}
 
+		//foe edit Branch
+				@RequestMapping(value = "/editbranch", method = RequestMethod.GET)
+				public String editBranch(@RequestParam int id, Model model) 
+				{
+					BranchBean branchBean=regionService.getbranchById(id);
+					model.addAttribute("branch",branchBean);	
+					return "editbranch";
+				}
+		//update Branch
+				@RequestMapping(value = "/updatebranch", method = RequestMethod.POST)
+				public String updateBranch(@ModelAttribute("branchBean")BranchBean branchBean )
+				{
+					regionService.updateBranch(branchBean);
+					System.out.println("for update");
+					return "newbranch";
 
-	
+				}
+				@RequestMapping(value = "deletebranch", method = RequestMethod.GET)
+				public String deletebran(@RequestParam("id") int id)
+				{
+					regionService.deletebranch(id);
+					return "newbranch";
+				//response.sendRedirect("states");
+				}
 
 @RequestMapping(value="/sms",method = RequestMethod.GET)
 public ModelAndView getSmsAllocation( @ModelAttribute("command") SmsAllocationBean sms,HttpServletRequest request,BindingResult result ){
@@ -508,10 +536,13 @@ System.out.println(""+id);
 return new ModelAndView("states",model);
 }
 
-@RequestMapping(value="getbranchbystate",method = RequestMethod.GET)
-public ModelAndView getNewbranch(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
-
-	
+@RequestMapping(value="/getbranchbystate",method = RequestMethod.GET)
+public ModelAndView getNewbranch(@RequestParam int id,Model model)
+		
+{
+List<BranchBean> list=new ArrayList<>();
+list=regionService.getBranchByState(id);
+	model.addAttribute("branchlist", list);
 
 return new ModelAndView("newbranch");
 }

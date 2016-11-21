@@ -26,16 +26,16 @@
 			
 	
 			<definition name="AddPrinicpalPO" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/PrinicipalPo.jsp" />
 			</definition>
 			<definition name="savepro" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/PrinicipalPo.jsp" />
 			</definition>
 			
 			
 			
 			<definition name="posummary" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PoSummary.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/PoSummary.jsp" />
 			</definition>
 			
 			<!-- ************************************************** used by satyendra *************************************************** -->
@@ -95,6 +95,12 @@
 			 <definition name="addstates" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addstates.jsp" />
 			</definition>
+			 <definition name="editstates" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editstates.jsp" />
+			</definition>
+			<definition name="editbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editbranch.jsp" />
+			</definition>
 			 <definition name="addbranches" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addbranches.jsp" />
 			</definition>
@@ -125,31 +131,31 @@
 	        <!-- View Po -->
 	       <definition name="viewpo" extends="baseLayout" >
 	       <put-attribute name="title" value="view"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/viewPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/viewPo.jsp" />
 			</definition>
 			
 			 <!-- Edit -->
 			<definition name="edit" extends="baseLayout" >
 			 <put-attribute name="title" value="editpo"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/EditPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/EditPo.jsp" />
 			</definition>
 		   
 		    <!-- SupplierInvoiceView -->
 		   <definition name="supplierinvoiceview" extends="baseLayout" >
 		   <put-attribute name="title" value="supplierinvoice"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Invoice.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/Invoice.jsp" />
 			</definition>
 			
 			 <!-- AcknowledgementView -->
 			<definition name="acknowledgementView" extends="baseLayout" >
 			<put-attribute name="title" value="acknowledgement"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Ack.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/Ack.jsp" />
 			</definition>
 			
 			 <!-- SupplierAcknowledgementView -->
 			<definition name="supplierackView" extends="baseLayout" >
 			<put-attribute name="title" value="supplierack"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Acksupplier.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/Acksupplier.jsp" />
 			</definition>	
 			
 			 <!-- Master masters pages -->
@@ -303,6 +309,15 @@
 			<put-attribute name="title" value="Customer" />
 				<put-attribute name="body" value="/WEB-INF/views/customer/customerSales.jsp" />
 			</definition>
+			<definition name="getSalesList" extends="baseLayout" >
+			<put-attribute name="title" value="Customer List" />
+				<put-attribute name="body" value="/WEB-INF/views/customer/salesCustomerList.jsp" />
+			</definition>
+			<definition name="AddDiaryForEntrySales" extends="baseLayout" >
+			<put-attribute name="title" value="Add Diary" />
+			<put-attribute name="body" value="/WEB-INF/views/customer/AddDiaryForEntery.jsp" />
+			</definition>
+				
 			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >

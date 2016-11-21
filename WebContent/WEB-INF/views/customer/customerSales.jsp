@@ -19,8 +19,15 @@
 <div class="row">
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; " >
-		<span class="glyphicon glyphicon-user"></span> Customer 
+		<span class="glyphicon glyphicon-user"></span> <span> Customer</span>
+		<label
+			 style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"
+			class="btn btn-primary">Add Dairy</a>
+			
+     </label>
+  		
 	</div>
+	
 </div>
 <form:form class="well form-horizontal"  action="saveuserEmp" method="POST"  commandName="userbean"
     id="" >

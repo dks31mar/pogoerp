@@ -122,7 +122,6 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		BranchBean branchbean=new BranchBean();
 		branchbean.setBranchId(branch.getBranchId());
 		branchbean.setBranchname(branch.getBranchname());
-		//branchbean.setStateId(branch.getStateNames().getStateId());
 		return branchbean;
 	}
 	@Override
@@ -622,13 +621,52 @@ public List<StatezoneBean> getZoneStates(Integer id) {
 }
 
 @Override
+@Transactional
 public void updateBranch(BranchBean branchBean) {
 	Branch branch =new Branch();
 	branch.setBranchId(branchBean.getBranchId());
-	branch.setBranchname(branch.getBranchname());
-	//branch.setStateNames(branchBean.);
-	//branch.setStateNames(regionDao.getStates(branchBean.getStateId()));
+	branch.setBranchname(branchBean.getBranchname());
+	System.out.println(branchBean.getBranchname());
 	regionDao.updateBranch(branch);
+	
+}
+@Override
+@Transactional
+public void updateState(StatezoneBean statezoneBean) {
+	StateZone stateZone=new StateZone();
+	stateZone.setStateId(statezoneBean.getStateId());
+	System.out.println("on service"+ statezoneBean.getStateId()+statezoneBean.getStateName());
+	stateZone.setStateName(statezoneBean.getStateName());
+	regionDao.updateStates(stateZone);
+	
+}
+@Override
+@Transactional
+public void deletestate(int id) {
+	StateZone stateZone= regionDao.deleteState(id);
+	regionDao.deletedata(stateZone);
+	
+}
+@Override
+public List<BranchBean> getBranchByState(int id) 
+{
+	List<Branch>list= regionDao.getBranchbystate(id);
+	List<BranchBean> beans=new ArrayList<>();
+	for(Branch branch:list)
+	{
+		BranchBean branch1=new BranchBean();
+		branch1.setBranchId(branch.getBranchId());
+		branch1.setBranchname(branch.getBranchname());
+		
+		beans.add(branch1);
+	}
+	return beans;
+}
+@Override
+@Transactional
+public void deletebranch(int id) {
+	Branch branch=regionDao.deleteBranch(id);
+	regionDao.deletebr(branch);
 	
 }
 

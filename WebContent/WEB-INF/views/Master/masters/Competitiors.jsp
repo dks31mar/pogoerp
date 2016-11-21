@@ -65,7 +65,7 @@
     <form:form class="well form-horizontal" name="forp" action="" method="POST"  commandName="userbean"
     id="" >
 <!-- Form Name -->
-<center><legend>Competitor Profile</legend></center>
+<legend>Competitor Profile</legend>
   
 
 <div class="form-group">
@@ -131,14 +131,18 @@
   
   </div>
 </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">E-Mail 2<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
+<!--  
+ <div class="form-group"> 
+  <label class="col-md-2 control-label">Fax No</label>
+    <div class="col-md-3 selectContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="eamil"  placeholder="E-Mail Address" class="form-control" id ="email2" required="required" type="email">
-    </div>
+       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
+   <input  name="fax"  placeholder="fax Address" class="form-control"  id="faxno" required="required" type="fax">
   </div>
 </div>
+ <!--  
+</div>
+
 <div class="form-group"> 
   <label class="col-md-2 control-label">Fax No</label>
     <div class="col-md-3 selectContainer">
@@ -147,6 +151,7 @@
    <input  name="fax"  placeholder="fax Address" class="form-control"  id="faxno" required="required" type="fax">
   </div>
 </div>
+-->
  <label class="col-md-2 control-label" style="margin-left: -62px;">Product Brand<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
