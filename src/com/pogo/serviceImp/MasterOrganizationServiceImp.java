@@ -630,6 +630,23 @@ public void updateBranch(BranchBean branchBean) {
 	regionDao.updateBranch(branch);
 	
 }
+
+@Override
+@Transactional
+public void deletestate(int id) {
+	
+	StateZone stateZone= regionDao.deleteState(id);
+	regionDao.deletedata(stateZone);
+	
+}
+
+@Override
+@Transactional
+public void deletebranch(int id) {
+	Branch branch=regionDao.deleteBranch(id);
+	regionDao.deletebr(branch);
+	
+}
 @Override
 @Transactional
 public void updateState(StatezoneBean statezoneBean) {
@@ -640,13 +657,7 @@ public void updateState(StatezoneBean statezoneBean) {
 	regionDao.updateStates(stateZone);
 	
 }
-@Override
-@Transactional
-public void deletestate(int id) {
-	StateZone stateZone= regionDao.deleteState(id);
-	regionDao.deletedata(stateZone);
-	
-}
+
 @Override
 public List<BranchBean> getBranchByState(int id) 
 {
@@ -662,16 +673,5 @@ public List<BranchBean> getBranchByState(int id)
 	}
 	return beans;
 }
-@Override
-@Transactional
-public void deletebranch(int id) {
-	Branch branch=regionDao.deleteBranch(id);
-	regionDao.deletebr(branch);
-	
-}
-
-
-
-
 
 }

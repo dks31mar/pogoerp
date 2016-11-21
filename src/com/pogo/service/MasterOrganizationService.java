@@ -97,6 +97,6 @@ public interface MasterOrganizationService {
 	List<BranchBean> getBranchByState(int id);
 
 	void deletebranch(int id);
-
 	
+
 }

@@ -402,6 +402,7 @@ public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
 					System.out.println("for update");
 					return "newbranch";
 
+
 				}
 				@RequestMapping(value = "deletebranch", method = RequestMethod.GET)
 				public String deletebran(@RequestParam("id") int id)
@@ -410,6 +411,10 @@ public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
 					return "newbranch";
 				//response.sendRedirect("states");
 				}
+
+				
+				
+
 
 @RequestMapping(value="/sms",method = RequestMethod.GET)
 public ModelAndView getSmsAllocation( @ModelAttribute("command") SmsAllocationBean sms,HttpServletRequest request,BindingResult result ){
