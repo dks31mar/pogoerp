@@ -86,8 +86,9 @@
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.designationName
 												+ '</td>';
-									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
-													+ '</td>';		
+									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id=(${value.userempid})" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
+									   
+													+'</td>';		
 										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser(${value.userempid})"><span class="glyphicon glyphicon-trash"></span></a>'
 											+ '</td></tr>';		
 										
@@ -185,7 +186,11 @@ $( function() {
 				<th>S.N.</th>
 				<th data-th="Driver details"><span>Employees Name</span></th>
 				 <th>Joining Date</th>
+
 				<th>Designation</th> 
+
+				 <th>Designation</th>
+
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;">Delete</th>
 			</tr>
@@ -203,7 +208,11 @@ $( function() {
 								<td>${user.loginname}</td>
 								 <td>${user.dateofjoining}</td>
 								 
+
 								<td>${user.designationName}</td>
+
+								 <td>${user.designationName}</td>
+
 
 
 								<td><a href="editUser?id=${user.userempid}" title="Edit">
@@ -212,7 +221,7 @@ $( function() {
 
 								<td style=""><a href="#"
 									onclick="deletUser(${user.userempid})"> <span
-										class="glyphicon glyphicon-trash" style="margin-left:19px;"></span></a></td>
+									class="glyphicon glyphicon-trash" style="margin-left:19px;"></span></a></td>
 
 							</tr>
 
