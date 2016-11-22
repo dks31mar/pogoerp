@@ -178,15 +178,15 @@ $.ajax({
 
 function deletedata(id){
 	
-	/* $.ajax({
+ $.ajax({
 		url: "deleteunit?id="+id,
 		type: "GET",
 		success: function(respose){
-				    	
+			window.location.reload();	
 			}
-	}); */
+	});
 	
-	jAlert('This is a custom alert box', 'Alert Dialog');
+	
 	
 }
 
