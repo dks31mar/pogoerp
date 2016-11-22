@@ -179,10 +179,14 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	@Override
 	@Transactional
 	public void editState(StateBean poref1){
+		System.out.println("inside edit state service impl");
+		Country c=new Country();
+		c.setCountryId(poref1.getCountryId());
 		State state=new State();
 		state.setStateId(poref1.getStateId());
 		state.setState(poref1.getState());
-		
+		state.setCountry(c);
+		System.out.println("outside edit state service impl");
 		masterMastersdao.editState(state);
 	}
 
@@ -230,10 +234,13 @@ public class MasterMastersServiceImpl implements MasterMastersService {
    @Override
    @Transactional
    public void editDistrict(DistrictBean poref1){
+	  // System.out.println(""+poref1.getDistrictId());
+	   State s=new State();
+	  s.setStateId(Integer.parseInt(poref1.getStateId()));
 	District district=new District();
 	district.setDistrictId(poref1.getDistrictId());
 	district.setDistrict(poref1.getDistrict());
-	
+	district.setState(s);
 	masterMastersdao.editDistrict(district);
 }
    

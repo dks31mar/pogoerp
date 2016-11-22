@@ -6,15 +6,20 @@ public class AddEmailListBean {
 	private Integer emaillistid;
 	private String emaillist;
 	private Date creationdate;
+	private Integer empid;
+	private String status;
+	private String name;
+	
+	
+	
+	
 	public Date getCreationdate() {
 		return creationdate;
 	}
 	public void setCreationdate(Date creationdate) {
 		this.creationdate = creationdate;
 	}
-	private Integer empid;
-	private String status;
-	private String name;
+	
 	public String getName() {
 		return name;
 	}

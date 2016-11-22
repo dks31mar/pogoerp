@@ -175,10 +175,13 @@ $('#EditForm').click(function (){
 	var adddistrict=$('#adddistrict').val();
 	
 	var d1w=$("#hiddenid").val();
+	
+	var d=$('#stateid').val();
+	alert("state id is "+d);
 	//alert(d1w);
 	
 	
-	var jsonObj={'district':adddistrict,'districtId':id} ;
+	var jsonObj={'district':adddistrict,'districtId':id , 'stateId':d} ;
 $.ajax({
 		url: "editdistrict",
 		type: "POST",

@@ -177,8 +177,9 @@ $('#EditForm').click(function (){
 	var d1w=$("#hiddenid").val();
 	//alert(d1w);
 	
-	
-	var jsonObj={'state':addstate,'stateId':id} ;
+	var d=$('#countryid').val();
+	alert("country id is "+d);
+	var jsonObj={'state':addstate,'stateId':id,'countryId':d} ;
 $.ajax({
 		url: "editstate",
 		type: "POST",

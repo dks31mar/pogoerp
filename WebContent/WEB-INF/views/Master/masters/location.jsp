@@ -29,8 +29,8 @@
 		style="background-color: #3C8DBD; left: 20px;  height: 34px;">
 		<span class="glyphicon glyphicon-home"></span> Location
 		 <label
-			 style="margin-left: 250px;margin-top: 8px;"><button 
-			class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Location </button>
+			 style="margin-left: 250px;margin-top: 8px;">
+			 <button class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Location </button>
      </label> 
 			
 </div>
@@ -50,11 +50,13 @@
   
   <div class="col-md-2" align="left">
   <button type="button"
-				class="btn btn-primary" id="saveForm">Save</button>
+				class="btn btn-primary" id="saveForm123">Save</button>
 				<button type="button"
 				class="btn btn-primary" id="EditForm">Edit</button>
 				
 				</div>
+				
+
 </div>
 <div class="row" >
 
@@ -105,8 +107,7 @@
   <script src="//code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="resources/js/jquery.jrumble.1.3.min.js"></script>
-<script src="resources/js/jquery.jrumble.1.3.js"></script>
+
 <script>
 $(document).ready(
 	    function(){
@@ -128,23 +129,20 @@ $("#getcountrypopup").click(function(){
 $("#formid").hide();
 $('#messagediv').hide();
 
-$('#dddd1234').jrumble({
-	x: 2,
-	y: 2,
-	rotation: 1
-});
+
 function stopmoving(){
 	$('#addlocation').css('border-color', 'white');
 	$('#messagediv').hide('slow');
 }
 
-$('#saveForm').click(function (){
+$('#saveForm123').click(function (){
+	//alert("hello");
 	var addlocation=$('#addlocation').val();
 	
 	if(addlocation==''){
 		
-		$('#addlocation').css('border-color', '#DC143C');
-		$('#messagediv').show('slow');
+		//$('#addlocation').css('border-color', '#DC143C');
+		$('#messagediv').show('fast');
 	}else{
 		var getdistrictid = $('#districtid').val();
 		var jsonObj={'location':addlocation , 'locationId':getdistrictid
@@ -164,7 +162,8 @@ $('#saveForm').click(function (){
 			    	 //window.location.currency;
 			    	 window.location.reload();
 		     
-		    }});
+		    }
+		 });
 		
 	}
 	
@@ -175,7 +174,7 @@ $('#saveForm').click(function (){
 function editCur(id){
 	$("#formid").show('show');
 	$('#EditForm').show();
-	$("#saveForm").hide(); 
+	$("#saveForm123").hide(); 
 $.ajax({
 	url: "getlocation?locationId="+id,
 	type: "GET",
@@ -199,6 +198,7 @@ $.ajax({
 
 
 $('#EditForm').click(function (){
+	// $("#saveForm").show();
 	var id=$("#hiddenid").val();
 	var addlocation=$('#addlocation').val();
 	

@@ -202,7 +202,22 @@
             <!-- New Mail Campaign -->
              <definition name="getemaillist" extends="baseLayout" >
 			 <put-attribute name="title" value="newemaillist" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/newMailCampaign.jsp" />
+			 </definition>
+			 <!-- Add Email -->
+			 <definition name="addemaillist" extends="baseLayout" >
+			 <put-attribute name="title" value="newemaillist" />
 			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/addEmailList.jsp" />
+			 </definition>
+			 <!-- Add Address -->
+			 <definition name="getaddress" extends="baseLayout" >
+			 <put-attribute name="title" value="addaddress" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/addAddress.jsp" />
+			 </definition>
+			 <!-- import csv file -->
+			 <definition name="getcsvfile" extends="baseLayout">
+			 <put-attribute name="title" value="importcsvfile" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/importCsvFile.jsp" />
 			 </definition>
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >

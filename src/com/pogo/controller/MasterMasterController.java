@@ -91,9 +91,6 @@ public class MasterMasterController {
 		poref1.setStatus(poref.getStatus());
 		
 		//poref.setPorefentryitemdetailid(null);
-		
-		
-		
 		masterMastersService.addCustomerLevels(poref1);
 		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
 	//return toJson1(poref1);
@@ -302,7 +299,7 @@ public class MasterMasterController {
 		poref1.setStateId(poref.getStateId());
 		poref1.setState(poref.getState());
 		
-		masterMastersService.editState(poref1);
+		masterMastersService.editState(poref);
 		
 	}
 	@RequestMapping(value="/district",method = RequestMethod.GET)
@@ -385,7 +382,7 @@ public class MasterMasterController {
 		poref1.setDistrictId(poref.getDistrictId());
 		poref1.setDistrict(poref.getDistrict());
 		
-		masterMastersService.editDistrict(poref1);
+		masterMastersService.editDistrict(poref);
 		
 	}
 	@RequestMapping(value="/location",method = RequestMethod.GET)
