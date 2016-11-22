@@ -10,6 +10,12 @@
 <link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script>
+	$(document).ready(function(){
+		$('#content').hide();
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+	</script>
 <%
 //HttpSession session=request.getSession();
 String hh=(String)session.getAttribute("jsonp");
@@ -190,6 +196,8 @@ System.out.println();
 					</tr>
 					
 					</table>
+					</div>
+					
 </form>
 
 			
@@ -210,13 +218,13 @@ System.out.println();
 				<div align="center">
 
 
-
+			<table >
 					<tr>
-						<td align="center">
-							<button type="button" value="update" onclick="updatebutton();"
-								class="btn btn-success pull-center" id="update"
-								style="background-color: #3C8DBC;">Update</button>
-						</td>
+						
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td><button type="button" value="Save" onClick=""
+						class="btn btn-success pull-center" id="savedata445"
+						style="background-color: #3C8DBC;">Update</button></td>
 						<td>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							<button type="button" value="update" onclick="printPagePo('${porefnumber}');" 
@@ -226,7 +234,7 @@ System.out.println();
 						<td>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							<button type="button" value="update" onclick=""
-								class="btn btn-success pull-center" id="pdf"
+								class="btn btn-success pull-center" id="cmd"
 								style="background-color: #3C8DBC;">PDF</button>
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;</td>
@@ -235,36 +243,43 @@ System.out.println();
 								class="btn btn-success pull-center" id="back"
 								style="background-color: #3C8DBC;">Back</button>
 						</td>
-						<td>
+						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td class="text-right">
 							<button type="button" value="update"
 								class="btn btn-success pull-center" id="addmore"
 								style="background-color: #3C8DBC;">Add More</button>
 						</td>
-						<td>
-							<button type="button" value="update"
-								class="btn btn-success pull-center" id="validatecal"
-								style="background-color: #3C8DBC;">Validate Calculation</button>
-						</td>
+						
 					</tr>
 
 
-					</table>
-
-
-
-					<button type="button" value="Save" onClick=""
-						class="btn btn-success pull-center" id="savedata445"
-						style="background-color: #3C8DBC;">Save</button>
+			</table>
 					<!-- <button type="button" value="AddMore" onClick="productdetail();"
 						class="btn btn-success pull-right"
 						style="background-color: #3C8DBC;">Add More</button> -->
+</div>
 
 
-				</div>
 
-			</div>
+
+
+<div id="content">
+
+	<div id="main-wrap">
+    <div id="sidebar"></div>
+    
+    <div id="content-wrap"><p align="right">Technobridge Innovations PVT. LTD.<br>
+ 5th floor, Mantec Towers C-56/5,<br>
+ Sector-62 Noida 201 301,<br>
+ Uttar Pardesh,<br>
+ INDIA 91-120-4286134
+</p></div>
 	
 	</div>
+	
+
+
+</div>		
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/js/messagebox.js"></script>
@@ -274,6 +289,17 @@ System.out.println();
 
 <script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.js"></script>
+
+
+<script type="text/javascript" src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.1.135/jspdf.min.js"></script>
+<script type="text/javascript" src="http://cdn.uriit.ru/jsPDF/libs/adler32cs.js/adler32cs.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+<script type="text/javascript" src="libs/Blob.js/BlobBuilder.js"></script>
+<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.addimage.js"></script>
+<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.standard_fonts_metrics.js"></script>
+<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.split_text_to_size.js"></script>
+<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.from_html.js"></script>
 <script>
 
 
@@ -284,9 +310,26 @@ System.out.println();
 			$('#sr').val(len);
 			
 		});
+		
 		/* $(document).ready(function(){
 		
 		}); */
+		
+		$(function () {
+
+		    var specialElementHandlers = {
+		        '#editor': function (element,renderer) {
+		            return true;
+		        }
+		    };
+		 $('#cmd').click(function () {
+		        var doc = new jsPDF();
+		        doc.fromHTML($('#content').html(), 15, 15, {
+		            'width': 170,'elementHandlers': specialElementHandlers
+		        });
+		        doc.save('sample-file.pdf');
+		    });  
+		});
 		
 		$('#qty').keyup(function(){
 			var qty=$('#qty').val();
@@ -295,17 +338,12 @@ System.out.println();
 			var total=parseInt(qty) * parseInt(jpy);
 			$('#totaljpy').val(total);
 			
-			//alert(qty);
+			for(var n=0;n<100;n++){
+				
+			}
+			calculation();
 		});
-		$(document).ready(function(){
-			$('#editpo').show();
-			$('#update').show();
-			$('#back').hide();
-			$('#pdf').hide();
-			$('#print').show();
-			$('#addmore').show();
-		    $('[data-toggle="tooltip"]').tooltip();
-		});
+		
 		
 		$("#normal").click(function(){
 			$("#porefno").val("<%=norml%>");
@@ -430,6 +468,10 @@ System.out.println();
 						$('#tjpy1').val(d2);
 					var d=$('#tjpy1').val();
 					$('#grandtotal1').val(d);
+					for(var n=0;n<100;n++){
+						
+					}
+					calculation();
 			        });
 			 });
 			
@@ -442,7 +484,10 @@ System.out.println();
 				 for(var i=0;i<=id ; i=i+1){
 					 
 					 $('#getdate'+i).val(date);
-					 //alert(i);
+					 for(var n=0;n<100;n++){
+							
+						}
+						calculation();
 				 }
 			 });
 			function deletethisrow(id){
@@ -453,6 +498,10 @@ System.out.println();
 				 for (i=0;i<id ; i++){
 					 
 				 }
+				 for(var n=0;n<100;n++){
+						
+					}
+					calculation();
 			}
 			
 			
@@ -506,6 +555,10 @@ System.out.println();
 						$('#tjpy1').val(parseInt((d3), 10)+parseInt((d2), 10));
 					var grandtotl=	$('#tjpy1').val();
 						$('#grandtotal1').val(grandtotl);
+						for(var n=0;n<100;n++){
+							
+						}
+						calculation();
 					});
 					
 					$('#partno'+id).click(function(){
@@ -549,7 +602,7 @@ System.out.println();
 					
 				}
 			
-				$('#validatecal').click(function(){
+				function calculation(){
 					var id=$('#addprolisttbody').children('tr').length;
 					//alert(id)
 					var t1=0;
@@ -559,7 +612,7 @@ System.out.println();
 						// alert(t1);
 					 }
 					$('#tjpy1').val(t1);
-				});
+				}
 				
 				function printPagePo(poref){
 					window.open('printreport?poref='+poref , '_blank');
