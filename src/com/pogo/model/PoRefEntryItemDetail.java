@@ -3,9 +3,12 @@ package com.pogo.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="porefentryitemdetail")
@@ -21,19 +24,20 @@ public class PoRefEntryItemDetail implements Serializable {
 	private Integer porefentryitemdetailid;
 	
 
-	@Column(name="porefno",columnDefinition="varchar(50)")
-	private String porefno;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="porefno")
+	private PorefSupplierDetail porefnobysupplier;
 	
 	@Column(name="particular",columnDefinition="varchar(50)")
 	private String particular;
 	@Column(name="tpinjpy",columnDefinition="varchar(50)")
 	private String tpinjpy;
 	@Column(name="qty",columnDefinition="int(11)")
-	private int qty;
+	private double qty;
 	@Column(name="totaljpy",columnDefinition="int(11)")
-	private int totaljpy;
+	private double totaljpy;
 	@Column(name="totalinr",columnDefinition="int(11)")
-	private int totalinr;
+	private double totalinr;
 	@Column(name="ackdate",columnDefinition="varchar(50)")
 	private String ackdate;  
 	@Column(name="remarks",columnDefinition="varchar(50)")
@@ -49,18 +53,19 @@ public class PoRefEntryItemDetail implements Serializable {
 	@Column(name="productdescription",columnDefinition="varchar(50)")
 	private String productdescription;
 	
-
+	
 	public Integer getPorefentryitemdetailid() {
 		return porefentryitemdetailid;
 	}
 	public void setPorefentryitemdetailid(Integer porefentryitemdetailid) {
 		this.porefentryitemdetailid = porefentryitemdetailid;
 	}
-	public String getPorefno() {
-		return porefno;
+	
+	public PorefSupplierDetail getPorefnobysupplier() {
+		return porefnobysupplier;
 	}
-	public void setPorefno(String porefno) {
-		this.porefno = porefno;
+	public void setPorefnobysupplier(PorefSupplierDetail porefnobysupplier) {
+		this.porefnobysupplier = porefnobysupplier;
 	}
 	public String getParticular() {
 		return particular;
@@ -74,22 +79,22 @@ public class PoRefEntryItemDetail implements Serializable {
 	public void setTpinjpy(String tpinjpy) {
 		this.tpinjpy = tpinjpy;
 	}
-	public int getQty() {
+	public double getQty() {
 		return qty;
 	}
-	public void setQty(int qty) {
+	public void setQty(double qty) {
 		this.qty = qty;
 	}
-	public int getTotaljpy() {
+	public double getTotaljpy() {
 		return totaljpy;
 	}
-	public void setTotaljpy(int totaljpy) {
+	public void setTotaljpy(double totaljpy) {
 		this.totaljpy = totaljpy;
 	}
-	public int getTotalinr() {
+	public double getTotalinr() {
 		return totalinr;
 	}
-	public void setTotalinr(int totalinr) {
+	public void setTotalinr(double totalinr) {
 		this.totalinr = totalinr;
 	}
 	public String getAckdate() {
@@ -134,6 +139,8 @@ public class PoRefEntryItemDetail implements Serializable {
 	public void setProductdescription(String productdescription) {
 		this.productdescription = productdescription;
 	}
- 	
+	
+
+	
  	
 }

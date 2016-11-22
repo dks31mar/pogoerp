@@ -7,6 +7,7 @@ import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Designation;
 import com.pogo.model.SmsAllocation;
+import com.pogo.model.StateZone;
 import com.pogo.model.UserEmployee;
 import com.pogo.model.Zones;
 
@@ -17,19 +18,19 @@ public interface MasterOrganizationDao {
 	void addZoneDeatils(Zones zon);
 
 	Zones editZones(int empid);
-
+	List<Branch> getbranchDetails();
 
 	List<Zones> getStates();
 
 	void updateRegion(Zones zon);
 
 	Zones deleteRegion(int id);
-
+	void updateBranch(Branch branch);
 	void deleteRegion(Zones zones);
 	
-	
-	
-
+	void addStateDeatils(StateZone stateZone);
+	Branch getDataById(int id);
+	StateZone getStatesId(int id);
 	
 	void addCompany(CompanyProfile company);
 	void addUser(UserEmployee emp);
@@ -111,6 +112,46 @@ void updateCompetitior(CompetitiorsProfile comprof);
 	void denyForSms(SmsAllocation sms);
 
 	List<SmsAllocation> getPermitSmsUser();
+
+	List<StateZone> getZoneStates(Integer id);
+
+	List<Zones> getZones();
+
+	Zones getZone(Integer stateId);
+
+
+
+	StateZone getStates(Integer branchId);
+
+	void addBranch(Branch branch);
+
+	List<StateZone> getstateData();
+
+	void updateStates(StateZone stateZone);
+
+
+	StateZone deleteState(int id);
+
+	void deletedata(StateZone stateZone);
+
+	List<Branch> getBranchbystate(int id);
+
+	Branch deleteBranch(int id);
+
+	void deletebr(Branch branch);
+
+
+
+	
+
+	
+
+
+	
+
+	
+
+
 
 
 }

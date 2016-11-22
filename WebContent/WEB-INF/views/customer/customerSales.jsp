@@ -103,12 +103,24 @@
 </div>
 <div class="row">
 	<div class="page-heading col-sm-11"
+
 		style="background-color: #3C8DBD; left: 20px; height: 54px; color: white; " >
 		<span class="glyphicon glyphicon-user"></span><span> Customer</span>
 		<label
 			style="margin-left: 250px; margin-top: 8px;"><a
 			href="getSalesList" class="btn btn-primary"> Sales List </a> </label> 
+
+	
+		<span class="glyphicon glyphicon-user"></span> <span> Customer</span>
+		<label
+			 style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"
+			class="btn btn-primary">Add Dairy</a>
+			
+     </label>
+  		
+
 	</div>
+	
 </div>
 <form:form class="well form-horizontal"  action="saveCustomer" method="POST"  commandName="customerSalesBean" style="width: 1217px;">
 <fieldset>

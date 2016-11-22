@@ -13,26 +13,41 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.google.gson.Gson;
 import com.pogo.dao.CommonDao;
 import com.pogo.model.PorefSupplierDetail;
-import com.pogo.model.ProductMaster;
 @Repository("commondao")
+@SuppressWarnings("rawtypes")
 public class CommonDaoImp implements CommonDao{
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	
 	@Override
 	public void getPoReFNo(HttpServletRequest request,PorefSupplierDetail porefId) {
-		String hint="b%";
+		
 		sessionFactory.getCurrentSession().flush();
+		
+		
+		Criteria criteria = sessionFactory.getCurrentSession()
+			    .createCriteria(PorefSupplierDetail.class).add(Restrictions.like("porefno","%/CBW-%"))
+			    .setProjection(Projections.max("porefsupplierdetailid"));
+			String maxval = (String)criteria.uniqueResult();
+			System.out.println(maxval);
+			
+			Criteria criteria1 = sessionFactory.getCurrentSession()
+				    .createCriteria(PorefSupplierDetail.class).add(Restrictions.not(Restrictions.like("porefno","%/CBW-%" )))
+				    .setProjection(Projections.max("porefsupplierdetailid"));
+				String maxval2= (String)criteria1.uniqueResult();
+			System.out.println(maxval2);
 	Criteria r=	sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class).
+			add(Restrictions.eq("porefsupplierdetailid", maxval)).
 							add(Restrictions.like("porefno","%/CBW-%" )).setProjection(Projections.max("porefno"));
 	
 	
 	
 	Criteria r2=	sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class)
+			.add(Restrictions.eq("porefsupplierdetailid", maxval2))
 			.add(Restrictions.not(Restrictions.like("porefno","%/CBW-%" )))
 			.setProjection(Projections.max("porefno"));
 	

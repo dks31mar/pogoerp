@@ -10,7 +10,7 @@ public class PorefSupplierDetailBean {
 	private int profileid;
     private int roe;
     private String address;
-    private int total;
+    private double total;
 	
     public String getPorefsupplierdetailid() {
 		return porefsupplierdetailid;
@@ -60,10 +60,10 @@ public class PorefSupplierDetailBean {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getTotal() {
+	public double getTotal() {
 		return total;
 	}
-	public void setTotal(int total) {
+	public void setTotal(Double total) {
 		this.total = total;
 	}
     

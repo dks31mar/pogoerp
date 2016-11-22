@@ -45,7 +45,7 @@
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
 		<span class="glyphicon glyphicon-user"></span> Branches Details</b>
 		 <label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="addstates"
+			 style="margin-left: 250px;margin-top: 8px;"><a href="addbranchbystate"
 			class="btn btn-primary">Add Branches</a>
 			<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
      </label>
@@ -55,67 +55,33 @@
 </div>
 </div>      
        <table class="responstable">
+       
   
   <tbody align='center'>
- <div="wrapper">
-
-  <tr id="ftr">
+ <tr>
     <th>S.N.</th>
-    <th data-th="Driver details"><span>States</span></th>
      <th>Branches</th>
-   <!--   <th>Phone No</th>
-    <th>Fax No</th>
-    <th>Head Name</th>
-    -->
     <th>Edit</th>
     <th>Delete</th>
   </tr>
-  
-  <tr id="str">
-    <td>1</td>
-   <td id="branch_name1"><a href="#">Bhopal</a></td>
-   <td>noida</td>
-  <!--  <td id="phone_no1" ></td>
-   <td id="fax_no1" ></td>
-    <td id="product_no1" '></td>
-    
-   <td><input type="button" id="edit_button1" value="Edit" class="edit" onclick="edit_row('1')">
-   <input type="button" id="save_button1" value="Save" class="save" onclick="save_row('1')"></td>
-   -->
-    <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-  </tr>
-  
-  <tr id="3tr">
-    <td>2</td>
-    
-    <td id="branch_name"><a href="#">Gwalear</a></td>
-     <td>Bangalore</td>
-    <!--  <td id="phone_no1" ></td>
-   <td id="fax_no1" ></td>
-    <td id="product_no1" '></td>
-    -->
-    <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-  </tr>
-  </tr id="ftr">
-  
+  <c:if test="${!empty branchlist}">
+  <c:forEach items="${branchlist}" var="branch" varStatus="loop">
   <tr>
-    <td>3</td>
-    <td id="branch_name"><a href="#">Delhi</a></td>
-    <td>pune</td>
-    <!--  <td id="phone_no1" ></td>
-   <td id="fax_no1" ></td>
-    <td id="product_no1" '></td>
-    -->
-  <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+  
+  <td>${loop.index+1}</td>
+  <td>${branch.branchname}</td>
+ 
+    <td><a href="editbranch?id=${branch.branchId}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
+    <td><a href="deletebranch?id=${branch.branchId}" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>
+  </c:forEach>
+  </c:if>
+  
 
 </tbody>
 
 </table>      
-</FORM>
+
 
  <script>
 

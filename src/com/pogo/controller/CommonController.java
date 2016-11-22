@@ -89,13 +89,7 @@ public class CommonController {
 	
 	return new ModelAndView("newbranch");
 }
-	@RequestMapping(value="/states",method = RequestMethod.GET)
-	public ModelAndView getStates(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
-		//commonservice.getPoRefNo(request);
-	
-	return new ModelAndView("states");
-	}
 	@RequestMapping(value="/eastBranch",method = RequestMethod.GET)
 	public ModelAndView getEastBranch(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
 	
@@ -151,13 +145,7 @@ public class CommonController {
 	
 
 	/**************************************************** use by shweta *****************************************************/
-	@RequestMapping(value="/getviewpo",method = RequestMethod.GET)
-	public ModelAndView getView( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
-		System.out.println("in get view method");
-	Map<String, Object> model = new HashMap<String, Object>();
-		model.put("viewlist",  prepareViewListofBean(commonservice.viewList()));
-	return new ModelAndView("viewpo",model);
-	}
+	
 	
 	private List<PorefSupplierDetailBean> prepareViewListofBean(List<PorefSupplierDetail> prodel){
 		List<PorefSupplierDetailBean> beans = null;
@@ -178,12 +166,7 @@ public class CommonController {
 		}
 		return beans;
 	}
-	@RequestMapping(value="/editpo",method = RequestMethod.GET)
-	public ModelAndView getedit( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
-		System.out.println("in get edit method");
-
-	return new ModelAndView("edit");
-	}
+	
 
 	@RequestMapping(value="/acknowledgement",method = RequestMethod.GET)
 	public ModelAndView getacknowledgement( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){

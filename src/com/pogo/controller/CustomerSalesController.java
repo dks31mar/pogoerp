@@ -1,6 +1,11 @@
 package com.pogo.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.servlet.http.HttpServletRequest;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,13 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
-import com.pogo.bean.DesignationBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
@@ -27,7 +30,8 @@ import com.pogo.service.MasterOrganizationService;
 import java.text.ParseException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class CustomerSalesController 
@@ -52,6 +56,7 @@ public String getCustomerPage(Model model) throws ParseException
 	model.addAttribute("locList", locationlist);
 	return "getSales";
 }
+
 @RequestMapping(value="/saveCustomer", method=RequestMethod.POST)
 public String saveCustomer(@ModelAttribute("customerSalesBean") CustomerSalesBean customerSalesBean,BindingResult result )throws ParseException
 {
@@ -93,4 +98,12 @@ public String getSalesList(Model model)
 	return "getSalesList";
 }
 
+
+@RequestMapping(value="/AddDiaryForEntrySales",method = RequestMethod.GET)
+public ModelAndView getAddDiaryForEntery()
+		{
+
+
+return new ModelAndView("AddDiaryForEntrySales");
+}
 }
