@@ -712,5 +712,11 @@ public List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId
 	return districtBeans;
 }
 
+@Override
+public void deleteServiceprovider(int id) {
+	masterMastersdao.deleteserviceprovider(id);
+	
+}
+
 
 }

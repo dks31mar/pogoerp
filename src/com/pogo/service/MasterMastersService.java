@@ -98,6 +98,7 @@ public interface MasterMastersService {
 	List<StateBean> getStateByCountryId(int id);
 	List<LocationBean> getLocationDetails();
 	List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId);
+	void deleteServiceprovider(int id);
 	
 
 

@@ -815,7 +815,17 @@ public class MasterMasterController {
 
 		return "editserviceprovider";
 	}
+	@RequestMapping(value = "/deleteserviceprovider", method = RequestMethod.GET)
+	public ModelAndView deleteServiceProvider(@RequestParam("id") int id) {
 	
+		masterMastersService.deleteServiceprovider(id);
+		List<ServiceProviderBean> list=new ArrayList<ServiceProviderBean>();
+		list=masterMastersService.getServiceProviderList();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("servicelist", list);
+
+		return new ModelAndView("getserviceprovider",model);
+	}
 	@RequestMapping(value="updateservicedata",method=RequestMethod.POST)
 	@ResponseBody
 	public void editServiceProvider(@RequestBody String json,Model model) throws IOException{

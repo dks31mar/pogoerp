@@ -452,6 +452,11 @@ public List<District> getdistrictByStateIdAndCountryId(int id, int countryId) {
 	return sessionFactory.getCurrentSession().createCriteria(District.class)
 			.add(Restrictions.eq("state.stateId", id)).add(Restrictions.eq("country.countryId", countryId)).list();
 }
+@Override
+public void deleteserviceprovider(int id) {
+	sessionFactory.getCurrentSession().createQuery("DELETE FROM ServiceProvider WHERE transportationserviceid = "+id).executeUpdate();
+	
+}
 
 
 }

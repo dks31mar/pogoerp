@@ -84,7 +84,7 @@
 								<td><a href="editserviceprovider?id=${cur.transportationserviceid}" title="Edit" align="center" >
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
-						<td style="margin"><a href="deleteprodet?id=${cur.transportationserviceid}"><span
+						<td style="margin"><a href="deleteserviceprovider?id=${cur.transportationserviceid}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
 					</tr>
 </c:forEach>
