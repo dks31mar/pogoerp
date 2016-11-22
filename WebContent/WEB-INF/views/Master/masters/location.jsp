@@ -44,7 +44,7 @@
   
   <div class="col-md-10" align="right" id="dddd1234"><input path="loginname" type="text" class="validate[required] text-input" id="addlocation"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add location"
-						maxlength="20" autofocus="autofocus" onclick="stopmoving();"></input></div>
+						 autofocus="autofocus" onclick="stopmoving();"></input></div>
   
   
   
@@ -261,6 +261,11 @@ $.ajax({
 
 }); */
 
-
+$('#addlocation').click(function (){
+	 $('#msg1').hide();
+	 
+	
+	
+});
 
 </script>

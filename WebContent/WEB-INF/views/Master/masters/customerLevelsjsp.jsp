@@ -35,7 +35,7 @@
 <input type="hidden" id="hiddenid"/>
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="customerlevels"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Enter Customer Levels "
-						maxlength="20" autofocus="autofocus"></input></div>
+						 autofocus="autofocus"></input></div>
   
 </div>
 
@@ -209,6 +209,15 @@ $.ajax({
 	}
 	
 });
+
+$('#customerlevels').click(function (){
+	 $('#msg1').hide();
+	 
+	
+	
+});
+
+
 </script>
 
 

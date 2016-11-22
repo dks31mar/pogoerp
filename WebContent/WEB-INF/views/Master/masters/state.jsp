@@ -35,7 +35,7 @@
 <input type="hidden" id="countryid" value="${country123}"/> 
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addstate"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add State"
-						maxlength="20" autofocus="autofocus"></input></div>
+						 autofocus="autofocus"></input></div>
   
 </div>
 
@@ -206,6 +206,12 @@ $.ajax({
 	     //alert("edit");
 	    }});
 	}
+	
+});
+$('#addstate').click(function (){
+	 $('#msg1').hide();
+	 
+	
 	
 });
 </script>
