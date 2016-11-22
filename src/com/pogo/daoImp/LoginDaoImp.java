@@ -39,6 +39,7 @@ public class LoginDaoImp implements LoginDao{
 		Criteria q=	sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("userName", userBean.getUserName())).add(Restrictions.eq("password", userBean.getPassword()));
 		
 		//Query q=sessionFactory.getCurrentSession().createQuery("Select id from User where userName='"+userBean.getUserName()+"' and password='"+userBean.getPassword()+"'");
+
 try{
 	User u=(User)q.uniqueResult();
 	System.out.println(u.getId());
@@ -56,6 +57,17 @@ try{
 	return false;
 }
 		
+
+
+		User u=(User)q.uniqueResult();
+		userId=u.getId();
+		HttpSession session=request.getSession();
+		session.setAttribute("userid", userId);
+		System.out.println(userId);
+		if(userId>0){
+			
+			return true;
+		}
 		return false;
 	}
 	
