@@ -48,7 +48,7 @@
   <input   name=""    readonly="readonly"  class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Employee Code<span
+  <label class="col-md-2 control-label" >Employee Code<span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
@@ -65,7 +65,7 @@
   <input   name="loginname" placeholder="User Name" required="required"  class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Joining Date<span style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label" >Joining Date<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -82,7 +82,7 @@
   <input   name="firstname" placeholder="First Name" id="firstUpper" required="required" onkeyup="javascript:capitalize(this.id, this.value);" class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Designation</label>  
+  <label class="col-md-2 control-label" >Designation</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -106,7 +106,7 @@
   <input name="middlename"   placeholder="Middle Name" id="firstUppermiddle" onkeyup="javascript:capitalizemiddle(this.id, this.value);" class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">DOB<span style="color: red;">*</span></label> 
+  <label class="col-md-2 control-label" >DOB<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -123,7 +123,7 @@
     </div>
   </div>
   
-  <label class="col-md-2 control-label" style="margin-left: -62px;">SubCompany<span style="color: red;">*</span></label> 
+  <label class="col-md-2 control-label" >SubCompany<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -149,7 +149,7 @@
     </select>
   </div>
 </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">E-Mail<span style="color: red;">*</span></label>  
+ <label class="col-md-2 control-label" >E-Mail<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
@@ -170,7 +170,7 @@
     </select>
   </div>
 </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">Password<span style="color: red;">*</span></label>  
+ <label class="col-md-2 control-label" >Password<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -192,7 +192,7 @@
     </select>
   </div>
 </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">RePassword<span style="color: red;">*</span></label>  
+ <label class="col-md-2 control-label" >RePassword<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -210,7 +210,7 @@
   <input name="usermobile"  class="form-control" placeholder="8285080678" type="text" required="required">
     </div>
   </div>
-   <label class="col-md-2 control-label" style="margin-left: -62px;">Phone #</label>  
+   <label class="col-md-2 control-label" >Phone #</label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
@@ -246,7 +246,7 @@
     </select>
   </div>
   </div>
-   <label class="col-md-2 control-label" style="margin-left: -62px;">Address<span style="color: red;">*</span></label>  
+   <label class="col-md-2 control-label" >Address<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
@@ -275,10 +275,12 @@
 
 	  $( function() {
 		    $("#datepickerDob" ).datepicker();
+		    dateFormat : "mm-dd-yyyy"
 		  } );
 
 		$( function() {
 		    $( "#datepickerjoin").datepicker();
+		    dateFormat : "mm-dd-yyyy"
 		  } );
 		
 		
@@ -302,7 +304,7 @@
 		
 		function pass_validation()
 		{
-			var firstpassword=document.forp.Password1.value;  
+			/* var firstpassword=document.forp.Password1.value;  
 			var secondpassword=document.forp.ConfirmPassword.value;  
 
 			if(firstpassword==secondpassword){  
@@ -313,8 +315,26 @@
 			document.getElementById("ConfirmPassword").value="";
 			document.getElementById("ConfirmPassword").focus();
 			return false;  
-			}  
-			} 
+			}   */
+			var pass1=$('#Password1').val();
+			var confirmpass=$('#ConfirmPassword').val();
+			
+			if(pass1!='' || confirmpass!=''){
+				
+				var checkvar=checkpassword(pass1,confirmpass);
+				if(checkvar==false){
+					
+					alert("password not match")
+				}
+			}
+			
+			}
+		
+		function checkpassword(pass1,confirmpass){
+			if(pass1!=confirmpass){
+				return false;
+			}
+		}
 		
 
 		function capitalize(firstUpper, str) {

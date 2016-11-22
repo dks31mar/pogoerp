@@ -3,8 +3,13 @@ package com.pogo.service;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.pogo.bean.PoRefEntryItemDetailBean;
+import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.ProductMasterBean;
+import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
+import com.pogo.model.PorefSupplierDetail;
 
 public interface PrinicipalPoService {
 
@@ -12,7 +17,7 @@ public interface PrinicipalPoService {
 
 	String getproductDetail(ProductMasterBean productmasetr);
 
-	void addPoProduct(PoRefEntryItemDetailCopy poRefEntry);
+	void addPoProduct(PoRefEntryItemDetailBean poRefEntry, PorefSupplierDetailBean porefs);
 
 	List<PoRefEntryItemDetailCopy> proList(HttpServletRequest res);
 
@@ -23,6 +28,16 @@ public interface PrinicipalPoService {
 	void viewPo();
 
 	Object getGrantTotal(HttpServletRequest res);
+
+	void addPoSupplier(PorefSupplierDetailBean porefs);
+
+	List<PorefSupplierDetailBean> getSupplierlist();
+
+	List<PoRefEntryItemDetailBean> getPoDetailByPorefNo(String poref);
+
+	void UpdatePoProduct(PoRefEntryItemDetailBean poref, PorefSupplierDetailBean porefs);
+
+	void updatePoSupplier(PorefSupplierDetailBean porefs);
 	
 	
 }

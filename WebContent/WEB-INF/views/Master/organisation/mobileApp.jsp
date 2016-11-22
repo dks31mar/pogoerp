@@ -48,7 +48,7 @@
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.firstname + '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-												+ value.designation
+												+ value.designationName
 												+ '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.deviceno 

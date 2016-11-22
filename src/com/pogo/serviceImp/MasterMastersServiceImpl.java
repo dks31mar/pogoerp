@@ -623,5 +623,91 @@ public void editSourceProviderbyId(ServiceProviderBean servicepro) {
 	masterMastersdao.editSourceProviderbyId(sp);
 }
 
+@Override
+public List<CountryBean> countryDetails() 
+{
+	List<Country> countries=masterMastersdao.getCountryDetails();
+	List<CountryBean> bean=new ArrayList<CountryBean>();
+	for(Country data:countries)
+	{
+		CountryBean countryBean=new CountryBean();
+		countryBean.setCountryId(data.getCountryId());
+		countryBean.setCountry(data.getCountry());
+		bean.add(countryBean);
+	}
+	
+	return bean;
+}
+
+@Override
+public List<CustomerLevelsBean> getCustomersStatus() {
+	List<CustomerLevels> cusStatus=masterMastersdao.getCustomerStatusDetails();
+	List<CustomerLevelsBean> beans=new ArrayList<CustomerLevelsBean>();
+	for(CustomerLevels status:cusStatus)
+	{
+		CustomerLevelsBean cstatus=new CustomerLevelsBean();
+		cstatus.setId(status.getId());
+		cstatus.setStatus(status.getStatus());
+		beans.add(cstatus);
+	}
+	return beans;
+}
+
+@Override
+public List<StateBean> getStateByCountryId(int id) {
+	List<State> state=masterMastersdao.getStateByContryId(id);
+	List<StateBean> beans=new ArrayList<StateBean>();
+	for(State data:state)
+	{
+		StateBean stateBean=new StateBean();
+		stateBean.setStateId(data.getStateId());
+		stateBean.setState(data.getState());
+		System.out.println("on Service"+ data.getState());
+		Country country=data.getCountry();
+		stateBean.setCountryId(country.getCountryId());
+		stateBean.setCountryName(country.getCountry());
+		beans.add(stateBean);
+	}
+	return beans;
+}
+
+@Override
+public List<LocationBean> getLocationDetails() 
+{
+	List<Location> locations=masterMastersdao.getLocationDetails();
+	List<LocationBean> locationbeans=new ArrayList<LocationBean>();
+	for(Location data:locations)
+	{
+		LocationBean bean=new LocationBean();
+		bean.setLocationId(data.getLocationId());
+		bean.setLocation(data.getLocation());
+		locationbeans.add(bean);
+	}
+	return locationbeans;
+}
+
+@Override
+public List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId) 
+{
+	List<District> districts=masterMastersdao.getdistrictByStateIdAndCountryId(id,countryId);
+	List<DistrictBean> districtBeans=new ArrayList<DistrictBean>();
+	for(District data:districts)
+	{
+		DistrictBean bean=new DistrictBean();
+		bean.setDistrictId(data.getDistrictId());
+		bean.setDistrict(data.getDistrict());
+		System.out.println("on service" +data.getDistrict());
+		State state=data.getState();
+		Country country=data.getCountry();
+		bean.setStateName(state.getState());
+		bean.setStatesId(state.getStateId());
+		//bean.setStateId(String.valueOf(state.getStateId()));
+		bean.setCountryName(country.getCountry());
+		bean.setCountryId(country.getCountryId());
+		districtBeans.add(bean);
+	}
+	return districtBeans;
+}
+
 
 }

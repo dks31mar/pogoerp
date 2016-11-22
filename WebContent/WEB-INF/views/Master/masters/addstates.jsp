@@ -1,7 +1,7 @@
 
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
@@ -33,7 +33,7 @@
 <div id="body">
 <div class="container">
 
-    <form:form class="well form-horizontal" name="forp" action="" method="POST"  commandName="regionEdit"
+    <form:form class="well form-horizontal"  action="saveStates" method="POST"  commandName="statebean"
     id="" >
    
 <fieldset>
@@ -41,24 +41,14 @@
 <!-- Form Name -->
 <legend>Add States</legend>
   
-<!-- Text input-->
-<%--
-<div class="form-group">
-  <label class="col-md-2 control-label" >Region Id</label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="region"  class="form-control"  type="text">
-    </div>
-  </div>
-  --%>
+
 <div class="form-group">
   <label class="col-md-2 control-label" >States Name</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control"  type="hidden">
-  <input value="${zones.zonesname}" name="zonesname"  placeholder="Region Name" id="regionname"  class="form-control"  type="text">
+  <input name="stateName" placeholder="State Name"    id ="statename" class="form-control"  type="text">
+  
     </div>
   </div>
   
@@ -66,15 +56,16 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="subregion" class="form-control selectpicker" required="required" id="selecthead" >
-  <option>---Select Region---</option> 
-      <option value="north">north</option>
-	  <option value="south">south</option>
+  <select name="stateId" class="form-control selectpicker"  id="regionhead" >
+  <option value="" selected="selected">----Select Region----</option>
+  <c:forEach items="${zonesList}" var="list">
+  <option value="${list.zonesid}">${list.zonesname}</option>
+  </c:forEach>
   </select>
     </div>
   </div>
 </div>
-<div class="form-group">
+<%-- <div class="form-group">
   <label class="col-md-2 control-label">Mobile No #<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
@@ -93,7 +84,7 @@
 </div>
 
 
-<!-- Text input-->
+ <!-- Text input-->
 
 <!-- Text input-->
 <div class="form-group"> 
@@ -112,7 +103,7 @@
   <input type="" name="address" value="${zones.zonesaddress}" placeholder="Address" required="required" id="regadress">
     </div>
   </div>
-</div>
+</div> --%>
 <!-- Success message -->
 
 <!-- <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for Register</div> -->
@@ -120,7 +111,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
-    <button type="button" class="btn btn-warning" id="senddata">Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
     
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
@@ -131,7 +122,7 @@
 </div>
 </div>
 
- <script type="text/javascript">
+ <!-- <script type="text/javascript">
 
 	  $( function() {
 		    $("#datepickerDob" ).datepicker();
@@ -204,11 +195,15 @@
 		      }
 		      document.getElementById(firstlastupper).value = str;
 		  }
-		
-		
+		-->
+	<!-- <script type="text/javascript">
+	
 		$('#senddata').click(function(){
 			
-		var reginname =	$('#regionname').val();
+		var statename =	$('#statename').val();
+		var regionhead=$('#regionhead').val();
+		alert(statename+regionhead);
+		<!--
 		//var selecthead =	$('#selecthead').text();
 		var mobileno =	$('#mobileno').val();
 		var emailid =	$('#emailid').val();
@@ -225,19 +220,16 @@
 			   alert("cannot be blank")
 			   
 		   }else{
-		   
+		  
 			var jsonObj={
-					'zonesname':reginname,
-							'zonesaddress':regadress,
-								'zonesfax':fax,
-								'zonesphone':mobileno,
-								'zonesemail':emailid
+					'stateName':statename,
+						'zones':regionhead
 			} ;
 		
 		
 			
 			$.ajax({
-				url: "addzonedetails",
+				url: "saveStates",
 				type: "POST",
 				
 				  data :JSON.stringify(jsonObj),
@@ -247,11 +239,11 @@
 			            xhr.setRequestHeader("Content-Type", "application/json");  
 			        },
 				     success: function(resposeJsonObject){
-				    	 alert("save")
+				    	alert("save")
 			    }});
 			
 		   }
 		});
 		
-</script>
+</script>  -->
 

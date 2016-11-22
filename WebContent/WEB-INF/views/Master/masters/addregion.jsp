@@ -221,19 +221,22 @@
 		   alert(selecthead);
 		   
 <<<<<<< HEAD
+
+=======
+
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		   if(reginname==''||mobileno==''||emailid==''||fax==''||regadress==''||selecthead=='---Select Region---'){
+<<<<<<< HEAD
 			   $('#messagespan').show('fast');
 =======
-		   
-		   
-		   
-		   if(mobileval.test(mobileno)){
-			  // alert("cannot be blank")
+			   $('#messagespan').show('fast');
 >>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
-			   
-		   }else{
+		   
+		   }
+		   
+		   
 			   var jsonObj={
-						'zonesname':reginname,
+			                    'zonesname':reginname,
 								'zonesaddress':regadress,
 									'zonesfax':fax,
 									'zonesphone':mobileno,
@@ -252,25 +255,11 @@
 				        },
 					     success: function(resposeJsonObject){
 					    	 window.location.reload();
-				    }});
-				
-<<<<<<< HEAD
-			   
-=======
-				  data :JSON.stringify(jsonObj),
-				  cache:false,
-			        beforeSend: function(xhr) {  
-			            xhr.setRequestHeader("Accept", "application/json");  
-			            xhr.setRequestHeader("Content-Type", "application/json");  
-			        },
-				     success: function(resposeJsonObject){
-				    	// alert("save")
-			    }});
-			
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
-		   }
-		   
-		   
+					    	 alert(save);
+}
+				        
+			});	  
+		  
 			
 		  
 		}); 

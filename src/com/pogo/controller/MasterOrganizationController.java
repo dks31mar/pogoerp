@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +33,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.SmsAllocationBean;
+import com.pogo.bean.StatezoneBean;
 import com.ibm.icu.text.Normalizer.Mode;
 import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
@@ -77,7 +77,7 @@ public class MasterOrganizationController {
 	/* Employee */
 	@RequestMapping(value = "/getuseremp", method = RequestMethod.GET)
 	public ModelAndView getUserEmpl(Model model,
-			@RequestParam(value = "num", defaultValue = "0", required = false) int num)
+			@RequestParam(value = "num", defaultValue = "0", required = false) int num)throws ParseException
 
 	{
 		List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
@@ -91,13 +91,11 @@ public class MasterOrganizationController {
 			result = size / 5;
 		model.addAttribute("noOfPage", num);
 		model.addAttribute("totalNoOfPages", result);
-		model.addAttribute("Recordlist", empDao.findDesignationByPageNo(num - 1));
+		model.addAttribute("Recordlist", list);
+		/*model.addAttribute("Recordlist", empDao.findDesignationByPageNo(num - 1));*/
 		model.addAttribute("totalrecords", list.size());
 		return new ModelAndView("getuseremp");
 	}
-
-	
-
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
 	public String addEmployee(Model model) {
@@ -121,69 +119,25 @@ public class MasterOrganizationController {
 		List<BranchBean> beansBran=userEmployeeservice.getBranchList();
 		model.addAttribute("listofBranch", beansBran);
 		List<CompanyProfileBean> beansCom=userEmployeeservice.getCompanyList();
-		model.addAttribute("listofComp", beansCom);
-		
-		
-		/*UserEmployeeBean beans=userEmployeeservice.getEmployee(id);
-		System.out.println(beans.getDesignationId());
-		System.out.println("on contoller"+beans.getBranchId());
-		String branch=beans.getBranchName();
-		String com=beans.getCompanyName();
-		String  deg=beans.getDesignationName();
-		
-		System.out.println("on controller" +beans.getDesignationName());
-		//String desgId=Integer.toString( beans.getDesignationId());
-		//String branchId=Integer.toString(beans.getBranchId());
-		//String compId=Integer.toString(beans.getSubcompanyId());
-		model.addAttribute("degDetails", deg);
-		model.addAttribute("branchDetails", branch);
-		model.addAttribute("comDetails", com);*/
-		
-		
+		model.addAttribute("listofComp", beansCom);	
 		return "editUser";
 	}
 
-	/*
-	 * @RequestMapping(value="/getuseremp",method = RequestMethod.GET)
-	 * 
-	 * public ModelAndView getUserEmp1() { List<UserEmployeeBean> list=new
-	 * ArrayList<UserEmployeeBean>(); list=userEmployeeservice.getUserDetails();
-	 * Map<String, Object> model= new HashMap<String,Object>();
-	 * model.put("userlist", list);
-	 * 
-	 * return new ModelAndView("getuseremp",model); }
-	 */
+	
+	 
+	 
 	// for add employee
 	@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST)
-	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO) throws ParseException {
+	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO,BindingResult result) throws ParseException {
 		userEmployeeservice.adduserEmp(userDTO);
 		return "redirect:getuseremp";
 		// return new ModelAndView("getuseremp") ;
 
 	}
 
-	// for Edit data fetch
-	/*
-	 * @RequestMapping(value = "/editUserdetails", method = RequestMethod.GET)
-	 * public void editCity(@RequestParam("userempid") Integer
-	 * id, @ModelAttribute("userbean")UserEmployeeBean userDTO , BindingResult
-	 * result, HttpServletResponse res) { List<UserEmployee> emp =
-	 * userEmployeeservice.getUserById(id); try { PrintWriter
-	 * writter=res.getWriter(); writter.print(emp); } catch (IOException e) {
-	 * 
-	 * e.printStackTrace(); }
-	 * 
-	 * //return "getuseremp"; }
-	 */
-	/*
-	 * @RequestMapping(value = "/editEmp", method = RequestMethod.GET) public
-	 * String editEmployee(@RequestParam int id, Model model) {
-	 * model.addAttribute("employee", userEmployeeservice.getEmployee(id));
-	 * System.out.println("employee"); return "getuseremp"; }
-	 */
-
+	
 	@RequestMapping(value = "/update-employee", method = RequestMethod.POST)
-	public String updateEmployee(@ModelAttribute("employeebean") UserEmployeeBean userEmployeeBean)
+	public String updateEmployee(@ModelAttribute("employeebean") UserEmployeeBean userEmployeeBean,BindingResult result)
 			throws ParseException {
 		userEmployeeservice.updateEmployee(userEmployeeBean);
 		return "redirect:/getuseremp";
@@ -193,7 +147,7 @@ public class MasterOrganizationController {
 	@RequestMapping(value = "deleteuser", method = RequestMethod.POST)
 	public String deleteuserEmpData(@RequestParam("userempid") int id) {
 		userEmployeeservice.deleteuserEmp(id);
-		System.out.println("I am on controller");
+		//System.out.println("I am on controller");
 		return "getuseremp";
 	}
 
@@ -218,34 +172,7 @@ public class MasterOrganizationController {
 		return new ModelAndView("designation", mode);
 	}
 
-	/*
-	 * @RequestMapping(value = "authority", method = RequestMethod.GET)
-	 * public @ResponseBody String designationList(Model model, @RequestParam
-	 * String designation) throws JsonProcessingException { List<String>
-	 * designList = userEmployeeservice.findDataByDesignation(designation);
-	 * Map<String, Object> h=new HashMap<>(); h.put("designationid",
-	 * designList); String listString = "";
-	 * 
-	 * for (String s : designList) { listString += s+">>"; } Gson gson=new
-	 * Gson(); String json=gson.toJson(designList); return new
-	 * ObjectMapper().writeValueAsString(listString); }
-	 */
-	/*
-	 * @RequestMapping(value = "getdesignationId", method = RequestMethod.GET)
-	 * public @ResponseBody String getDesignation(@RequestParam int
-	 * designationid) throws JsonProcessingException { List<DesignationBean>
-	 * desigbean = userEmployeeservice.getDesignation(designationid);
-	 * System.out.println(desigbean); ObjectMapper map = new ObjectMapper();
-	 * return map.writeValueAsString(desigbean); }
-	 */
-	/*
-	 * @RequestMapping(value = "/show-designation", method = RequestMethod.GET)
-	 * public ModelAndView showAllDesignation(Map model,@RequestParam int
-	 * designationid) { List<Designation> designation
-	 * =empDao.getDesignationname(); System.out.println(designationid);
-	 * model.put("desig", designation); System.out.println(designation); return
-	 * new ModelAndView("getdesignation",model); }
-	 */
+	 
 	@RequestMapping(value = "show-designation", method = RequestMethod.POST)
 
 	@ResponseBody
@@ -332,7 +259,7 @@ public class MasterOrganizationController {
 	/*Mobile Apps Registration*/
 	
 	@RequestMapping(value="mobileApp", method=RequestMethod.GET)
-	public String forMobileApp(Model model)
+	public String forMobileApp(Model model)throws ParseException
 	{
 		List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
 		list=userEmployeeservice.getUserDetails();
@@ -375,7 +302,7 @@ public class MasterOrganizationController {
 		return new ModelAndView("editregion",mode);
 }
 	@RequestMapping(value="/branches",method = RequestMethod.GET)
-	public ModelAndView getStates(Zones porefitem,HttpServletRequest request){
+	public ModelAndView getBranches(Zones porefitem,HttpServletRequest request){
 	
 		List<Zones> getStates=new ArrayList<Zones>();
 		//getStates=regionService.getStates();
@@ -402,19 +329,95 @@ public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
 	return new ModelAndView("region",model);
 	
 }
-@RequestMapping(value="/addstates",method = RequestMethod.GET)
-public ModelAndView getStates(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result){
+//For State page
+	/*@RequestMapping(value="/states",method = RequestMethod.GET)
+	public String  getStates(Model model){
+		
+	List<BranchBean> list=regionService.getStateBranch();
+	model.addAttribute("branchlist", list);
+	//return new ModelAndView("states", model);
+	 return "states";
+	}*/
+	// For add states
+
+		@RequestMapping(value = "/saveStates", method = RequestMethod.POST)
+		public String saveStateDetails(Model model, @ModelAttribute("statebean") StatezoneBean statezoneBean) {
+			regionService.addStates(statezoneBean);
+			return "addstates";
+
+		}
+		@RequestMapping(value = "/addstates", method = RequestMethod.GET)
+		public ModelAndView getStates(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,
+				HttpServletRequest request, BindingResult result, Model model) {
+
+			List<ZonesBean> zone = regionService.getZoneslist();
+			System.out.println(zone);
+			model.addAttribute("zonesList", zone);
+			return new ModelAndView("addstates");
+		}
+		//foe edit states
+		@RequestMapping(value = "/editstates", method = RequestMethod.GET)
+		public String editStates(@RequestParam int id, Model model) 
+		{
+			//model.addAttribute("branch",regionService.getbranchById(id));
+			model.addAttribute("liststate", regionService.getSatesById(id));
+			//List<StatezoneBean> liststate=regionService.getSatesById(id);
+			//model.addAttribute("liststate",liststate);
+			/*List<BranchBean> list=regionService.getStateBranch();
+			model.addAttribute("statelist", list);*/
+	     //  model.addAttribute("branch",regionService.getbranchById(		
+			return "editstates";
+		}
+		
+		//update states
+		@RequestMapping(value = "/updatestates", method = RequestMethod.POST)
+		public String updateStates(@ModelAttribute("statezoneBean")StatezoneBean statezoneBean )
+		{
+			 regionService.updateState(statezoneBean);
+			System.out.println("for update");
+			return "states";
+
+		}
+		@RequestMapping(value = "deleteState", method = RequestMethod.GET)
+		public String deletestate(@RequestParam("id") int id,HttpServletResponse response) throws IOException {
+			regionService.deletestate(id);
+			return "states";
+		//response.sendRedirect("states");
+		}
+
+		//foe edit Branch
+				@RequestMapping(value = "/editbranch", method = RequestMethod.GET)
+				public String editBranch(@RequestParam int id, Model model) 
+				{
+					BranchBean branchBean=regionService.getbranchById(id);
+					model.addAttribute("branch",branchBean);	
+					return "editbranch";
+				}
+		//update Branch
+				@RequestMapping(value = "/updatebranch", method = RequestMethod.POST)
+				public String updateBranch(@ModelAttribute("branchBean")BranchBean branchBean )
+				{
+					regionService.updateBranch(branchBean);
+					System.out.println("for update");
+					return "newbranch";
 
 
-	//commonservice.getPoRefNo(request);
+				}
+				@RequestMapping(value = "deletebranch", method = RequestMethod.GET)
+				public String deletebran(@RequestParam("id") int id)
+				{
+					regionService.deletebranch(id);
+					return "newbranch";
+				//response.sendRedirect("states");
+				}
 
-return new ModelAndView("addstates");
-}	
+				
+				
 
-	
 
 @RequestMapping(value="/sms",method = RequestMethod.GET)
-public ModelAndView getSmsAllocation( @ModelAttribute("command") SmsAllocationBean sms,HttpServletRequest request,BindingResult result ){
+public ModelAndView getSmsAllocation( @ModelAttribute("command") SmsAllocationBean sms,HttpServletRequest request,BindingResult result )throws ParseException
+{
 	System.out.println("inside sms  method");
 	List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
 	list = userEmployeeservice.getUserDetails();
@@ -526,4 +529,40 @@ public void getPermitSmsUser(HttpServletResponse res) throws IOException{
 	writer.print(list2);
 }
 
+@RequestMapping(value="/states",method = RequestMethod.GET)
+public ModelAndView getZoneStates(@ModelAttribute("command") StatezoneBean porefitem,HttpServletRequest request,BindingResult result,@RequestParam("id") Integer id){
+System.out.println(""+id);
+	List<StatezoneBean> list=new ArrayList<>();
+	list=regionService.getZoneStates(id);
+
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("satyendra", list);
+	
+return new ModelAndView("states",model);
+}
+
+@RequestMapping(value="/getbranchbystate",method = RequestMethod.GET)
+public ModelAndView getNewbranch(@RequestParam int id,Model model)
+		
+{
+List<BranchBean> list=new ArrayList<>();
+list=regionService.getBranchByState(id);
+	model.addAttribute("branchlist", list);
+
+return new ModelAndView("newbranch");
+}
+
+
+@RequestMapping(value = "/saveBranch", method = RequestMethod.POST)
+public String saveBranchDetails(Model model, @ModelAttribute("branchBean") BranchBean branchBean) {
+	regionService.addBranch(branchBean);
+	return "addbranch123";
+
+}
+@RequestMapping(value="addbranchbystate",method = RequestMethod.GET)
+public ModelAndView addBranch(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,HttpServletRequest request,BindingResult result,Model model){
+	List<StatezoneBean> list = regionService.getstateData();
+	model.addAttribute("liststates", list);
+return new ModelAndView("addbranch123");
+}
 }

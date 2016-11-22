@@ -13,10 +13,11 @@ import com.pogo.bean.CompetitiorsProfileBean;
 
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.SmsAllocationBean;
+import com.pogo.bean.StatezoneBean;
 import com.pogo.bean.UserEmployeeBean;
 
 import com.pogo.bean.ZonesBean;
-
+import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.UserEmployee;
@@ -30,16 +31,17 @@ public interface MasterOrganizationService {
 	
 	 public ZonesBean editZones(int empid);
 
-
+	 List<BranchBean> getStateBranch();
 	List<Zones> getStates();
 	
-	
-
+	void addStates(StatezoneBean statezoneBean);
+	public BranchBean getbranchById(int id);
 	void addCompany(CompanyProfile company);
 	void adduserEmp(UserEmployeeBean userDTO)throws ParseException;
-	List<UserEmployee> getUserById(int userId);
+	StatezoneBean getSatesById(int id);
+	void updateBranch(BranchBean branchBean);
 
-    List<UserEmployeeBean> getUserDetails();
+    List<UserEmployeeBean> getUserDetails()throws ParseException;
 
 	void deleteuserEmp(int id);
 
@@ -49,11 +51,7 @@ public interface MasterOrganizationService {
 
 	void updateEmployee(UserEmployeeBean userEmployeeBean)throws ParseException;
 
-	List<String> findDataByDesignation(String designation);
-
 	List<DesignationBean> getDesignation();
-
-	List<DesignationBean> getDesignation(int designationid);
 
 	void updateandinsertbylevel(DesignationBean des);
 
@@ -63,8 +61,6 @@ public interface MasterOrganizationService {
 
 	void deleteDesignation(int id);
 
-
-
 	void updateStatus(int id);
 
 	List<DesignationBean> GetDesignationList();
@@ -73,31 +69,12 @@ public interface MasterOrganizationService {
 
 	List<BranchBean> getBranchList();
 
-	
-
-	
-
-	
-
-	
-
-  
-
 	void updateregion(ZonesBean zonesBean);
 
 	void deleteRegion(int id);
-
-
 	void saveDataCompetitiors(CompetitiorsProfileBean poref);
 
-
-
 	void updateCompetitior();
-
-	
-
-
-
 
 	void permitForSms(SmsAllocationBean smsbean);
 
@@ -105,6 +82,21 @@ public interface MasterOrganizationService {
 
 	List<SmsAllocationBean> getPermitSmsUser();
 
+	List<StatezoneBean> getZoneStates(Integer id);
+
+	List<ZonesBean> getZoneslist();
+
+	void addBranch(BranchBean branchBean);
+
+	List<StatezoneBean> getstateData();
+
+	void updateState(StatezoneBean statezoneBean);
+
+	void deletestate(int id);
+
+	List<BranchBean> getBranchByState(int id);
+
+	void deletebranch(int id);
 	
 
 }

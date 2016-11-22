@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" type="text/css"
 	href="resources/css/jquery.dialogbox.css" />
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="resources/css/tableview.css" />
 <script src="resources/plugins/jQuery/jquery-1.9.1.min.js"
 	type="text/javascript"></script>
@@ -84,9 +84,9 @@
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.loginname + '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-												+ value.designation
+												+ value.designationName
 												+ '</td>';
-									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id=${value.userempid}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
+									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
 													+ '</td>';		
 										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser(${value.userempid})"><span class="glyphicon glyphicon-trash"></span></a>'
 											+ '</td></tr>';		
@@ -142,85 +142,87 @@ $( function() {
 <div class="row">
 
 	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; left: 20px;  height: 64px;">
-		<span class="glyphicon glyphicon-user"></span> Employee Details
-		 <label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="addUser"
-			class="btn btn-primary"> Add New Employee </a>
-     </label>
+		style="background-color: #3C8DBD; left: 20px; height: 64px;">
+		<span class="glyphicon glyphicon-user"></span> Employee Details <label
+			style="margin-left: 250px; margin-top: 8px;"><a
+			href="addUser" class="btn btn-primary"> Add New Employee </a> </label>
 
-     <!--  <label
+		<!--  <label
 			 style="margin-left: 300px;margin-top: 8px;"><a href="testMap"
 			class="btn btn-primary">AddTest </a>
      </label> -->
 
-    <label
-			 style="margin-left: 507px;margin-top: 8px;"><a href="#"
-			class="btn btn-primary" >Export</a>
-     </label>   
+		<!-- <label style="margin-left: 507px; margin-top: 8px;"><a
+			href="#" class="btn btn-primary">Export</a> </label> -->
 
-			 <div class="input-group" style="margin-left: 590px; width: 230px; top: -38px;
-			 width: 230px;"><input type="text"  
-			placeholder="Search Employee name"  class="form-control" oninput="searchEmp(this.value)" ><span class="input-group-addon">
-        <i class="fa fa-search"></i>
-    </span></div> 
-			
-</div>
+		<div class="input-group"
+			style="margin-left: 590px; width: 230px; top: -38px; width: 230px;">
+			<input type="text" placeholder="Search Employee name"
+				class="form-control" oninput="searchEmp(this.value)"><span
+				class="input-group-addon"> <i class="fa fa-search"></i>
+			</span>
+		</div>
+
+	</div>
 
 </div>
 <div class="row" style="margin-top: 10px;">
-					<div class="col-md-12">
+	<div class="col-md-12">
 
-						<div class="col-md-12 col-sm-12 clearfix"
-							style="text-align: left;">
-							<h5 style="font-weight: 100; color: red;" id="totalrecords">Total
-								Records:${totalrecords}</h5>
-						</div>
-						</div>
-						</div>
+		<div class="col-md-12 col-sm-12 clearfix" style="text-align: left;">
+			<h5 style="font-weight: 100; color: red;" id="totalrecords">Total
+				Records:${totalrecords}</h5>
+		</div>
+	</div>
+</div>
 <div id="pop" style="display: none;"></div>
 <div id="searchedRecord"></div>
 <div id="body">
-	<table class="responstable" style="margin-left: 22px; ">
+	<table class="responstable" style="margin-left: 22px;">
 
 		<tbody>
 			<tr>
 				<th>S.N.</th>
 				<th data-th="Driver details"><span>Employees Name</span></th>
-				<th>Designation</th>
+				 <th>Joining Date</th>
+				<!--  <th>Designation</th>  -->
 				<th style="width: 60px;">Edit</th>
-				<th style="width: 60px;"> Delete</th>
+				<th style="width: 60px;">Delete</th>
 			</tr>
 			<c:choose>
-							<c:when test="${empty Recordlist}">
-								<div style="color: red; text-align: center;">No Employee
-													Record in the List</div>
-									</c:when>
+				<c:when test="${empty Recordlist}">
+					<div style="color: red; text-align: center;">No Employee
+						Record in the List</div>
+				</c:when>
 				<c:otherwise>
-			<c:if test="${!empty Recordlist}">
-				<c:forEach items="${Recordlist}" var="user" varStatus="loop">
+					<c:if test="${!empty Recordlist}">
+						<c:forEach items="${Recordlist}" var="user" varStatus="loop">
 
-					<tr>
-						<td>${loop.index+1}</td>
-						 <td>${user.loginname}</td> 
-						  <%--  <td>${user.designationName}</td> --%> 
+							<tr>
+								<td>${loop.index+1}</td>  
+								<td>${user.loginname}</td>
+								 <td>${user.dateofjoining}</td>
+								 
+								<%-- <td>${user.designationName}</td> --%>
 
-						
+
 								<td><a href="editUser?id=${user.userempid}" title="Edit">
-								<span class="glyphicon glyphicon-pencil"></span></a></td>
-								
-						<td style="margin"><a href="#"  onclick="deletUser(${user.userempid})"><span
-					class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
-	
-					</tr>
+										<span class="glyphicon glyphicon-pencil"></span>
+								</a></td>
 
-				</c:forEach>
-			</c:if>
-</c:otherwise>
-</c:choose>
+								<td style=""><a href="#"
+									onclick="deletUser(${user.userempid})"> <span
+										class="glyphicon glyphicon-trash" style="margin-left:19px;"></span></a></td>
+
+							</tr>
+
+						</c:forEach>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
 		</tbody>
-		
-		
+
+
 	</table>
 
 </div>
@@ -230,34 +232,34 @@ $( function() {
 	<div class="col-sm-7"></div>
 </div>
 <div class="row" align="center">
-								<div class="col-xs-9 col-right">
-									<div class="dataTables_paginate paging_bootstrap">
-										<ul class="pagination pagination-sm">
-											<c:if test="${noOfPage > 1}">
-										<li><a href="getuseremp?=${noOfPage - 1}">Previous</a></li>
-											</c:if>
+	<div class="col-xs-9 col-right">
+		<div class="dataTables_paginate paging_bootstrap">
+			<ul class="pagination pagination-sm">
+				<c:if test="${noOfPage > 1}">
+					<li><a href="getuseremp?=${noOfPage - 1}">Previous</a></li>
+				</c:if>
 
-											<c:forEach begin="1" end="${totalNoOfPages}" var="i">
-												<c:choose>
-													<c:when test="${i==noOfPage}">
+				<c:forEach begin="1" end="${totalNoOfPages}" var="i">
+					<c:choose>
+						<c:when test="${i==noOfPage}">
 
-														<li class="active"><a href="#">${i}</a></li>
+							<li class="active"><a href="#">${i}</a></li>
 
-													</c:when>
-													<c:otherwise>
-													<li><a href="getuseremp?=${i}"> ${i}</a></li>
-													</c:otherwise>
-												</c:choose>
-											</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<li><a href="getuseremp?=${i}"> ${i}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
 
-											<c:if test="${noOfPage < totalNoOfPages}">
-												<li><a href="getuseremp?=${noOfPage + 1}">Next</a></li>
-											</c:if>
+				<c:if test="${noOfPage < totalNoOfPages}">
+					<li><a href="getuseremp?=${noOfPage + 1}">Next</a></li>
+				</c:if>
 
-										</ul>
-									</div>
-								</div>
-							</div>
+			</ul>
+		</div>
+	</div>
+</div>
 
 <script type="text/javascript">
 

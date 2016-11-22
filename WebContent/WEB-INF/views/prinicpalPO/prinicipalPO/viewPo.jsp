@@ -17,7 +17,7 @@
 	
 	
 <%
-java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("MM/dd/yyyy");
+java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
 java.util.Date date = new java.util.Date();
 %>
 	
@@ -33,12 +33,12 @@ java.util.Date date = new java.util.Date();
 		<div class="row">
 		<div class="page-heading col-sm-11" style="background-color: #3C8DBC; left: 10px">
 			<span class="glyphicon glyphicon-user"></span> Supplier Details	
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="ason"  type="radio" name="potype"> As On
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="ason"  type="radio" name="potype"checked="checked"> As On
 					 <input id="period" type="radio" name="potype" />Period
 					 
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "hide1">From:<input type="text" style="color: black;" id="datepicker1" value="<%=dateFormat.format(date) %>" ReadOnly></span> 
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "hide2">To: <input type="text" style = "color:black" id="datepicker2" value="<%=dateFormat.format(date) %>" ReadOnly></span> 
-						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Search" />
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Search" style="color: black;"/>
 						</div>
 			</div>
 			
@@ -80,7 +80,7 @@ java.util.Date date = new java.util.Date();
 					<tr>
 					
 					<td><c:out value="${loop.index+1}"></c:out></td>
-					<td><a href = "editpo"><c:out value="${view.porefno}"></c:out></a></td>
+					<td><a href = "editpo?poref=${view.porefno}"><c:out value="${view.porefno}"></c:out></a></td>
 					<td><c:out value="${view.porefdate}"></c:out></td>
 					<td><c:out value="${view.principalname}"></c:out></td>
 					<td><c:out value="${view.address}"></c:out></td>
@@ -97,12 +97,12 @@ java.util.Date date = new java.util.Date();
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		
 		<script>
-		
+		$("#hide1,#hide2").hide();
 		$( function() {
-		    $( "#datepicker1" ).datepicker();
+		    $( "#datepicker1" ).datepicker({dateFormat: 'dd/mm/yy'});
 		  } );
 		$( function() {
-		    $( "#datepicker2" ).datepicker();
+		    $( "#datepicker2" ).datepicker({dateFormat: 'dd/mm/yy'});
 		  } );
 		
 		$(document).ready(function(){

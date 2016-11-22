@@ -14,6 +14,8 @@
 			</definition>
 			<definition name="logout" template="/WEB-INF/views/LoginPage.jsp" >
 			</definition>
+			<definition name="print" template="/WEB-INF/views/prinicpalPO/prinicipalPO/PrintPoReport.jsp" >
+			</definition>
        		<definition name="employeesList" template="/WEB-INF/views/employeesList.jsp" >
 			</definition>
 			<definition name="addEmployee" template="/WEB-INF/views/addEmployee.jsp" >
@@ -26,16 +28,16 @@
 			
 	
 			<definition name="AddPrinicpalPO" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/PrinicipalPo.jsp" />
 			</definition>
 			<definition name="savepro" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/PrinicipalPo.jsp" />
 			</definition>
 			
 			
 			
 			<definition name="posummary" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PoSummary.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/PoSummary.jsp" />
 			</definition>
 			
 			<!-- ************************************************** used by satyendra *************************************************** -->
@@ -69,6 +71,9 @@
 			<definition name="newbranch" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/newbranch.jsp" />
 			</definition>
+			<definition name="addbranch123" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/addbranch.jsp" />
+			</definition>
 			<definition name="eastbranch" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/eastbranch.jsp" />
 			</definition>
@@ -91,6 +96,12 @@
 			</definition>
 			 <definition name="addstates" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addstates.jsp" />
+			</definition>
+			 <definition name="editstates" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editstates.jsp" />
+			</definition>
+			<definition name="editbranch" extends="baseLayout" >
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editbranch.jsp" />
 			</definition>
 			 <definition name="addbranches" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addbranches.jsp" />
@@ -122,31 +133,31 @@
 	        <!-- View Po -->
 	       <definition name="viewpo" extends="baseLayout" >
 	       <put-attribute name="title" value="view"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/viewPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/viewPo.jsp" />
 			</definition>
 			
 			 <!-- Edit -->
 			<definition name="edit" extends="baseLayout" >
 			 <put-attribute name="title" value="editpo"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/EditPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/EditPo.jsp" />
 			</definition>
 		   
 		    <!-- SupplierInvoiceView -->
 		   <definition name="supplierinvoiceview" extends="baseLayout" >
 		   <put-attribute name="title" value="supplierinvoice"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Invoice.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/Invoice.jsp" />
 			</definition>
 			
 			 <!-- AcknowledgementView -->
 			<definition name="acknowledgementView" extends="baseLayout" >
 			<put-attribute name="title" value="acknowledgement"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Ack.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/Ack.jsp" />
 			</definition>
 			
 			 <!-- SupplierAcknowledgementView -->
 			<definition name="supplierackView" extends="baseLayout" >
 			<put-attribute name="title" value="supplierack"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Acksupplier.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/Acksupplier.jsp" />
 			</definition>	
 			
 			 <!-- Master masters pages -->
@@ -209,6 +220,7 @@
 			 <put-attribute name="title" value="newemaillist" />
 			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/addEmailList.jsp" />
 			 </definition>
+
 			 <!-- Add Address -->
 			 <definition name="getaddress" extends="baseLayout" >
 			 <put-attribute name="title" value="addaddress" />
@@ -219,6 +231,7 @@
 			 <put-attribute name="title" value="importcsvfile" />
 			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/importCsvFile.jsp" />
 			 </definition>
+
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
@@ -310,11 +323,30 @@
 			<put-attribute name="title" value="Mobile App" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileApp.jsp" />
 			</definition>
+			<!-- Customer Sales Enquiry Call -->
+			<definition name="getSales" extends="baseLayout" >
+			<put-attribute name="title" value="Customer" />
+				<put-attribute name="body" value="/WEB-INF/views/customer/customerSales.jsp" />
+			</definition>
+			<definition name="getSalesList" extends="baseLayout" >
+			<put-attribute name="title" value="Customer List" />
+				<put-attribute name="body" value="/WEB-INF/views/customer/salesCustomerList.jsp" />
+			</definition>
+
+			<definition name="AddDiaryForEntrySales" extends="baseLayout" >
+			<put-attribute name="title" value="Add Diary" />
+			<put-attribute name="body" value="/WEB-INF/views/customer/AddDiaryForEntery.jsp" />
+			</definition>
+				
+
+			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >
 			<put-attribute name="title" value="sms permission" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/sms.jsp" />
 			</definition>
+			
+			
 			
 			
 			<definition name="getserviceprovider" extends="baseLayout" >

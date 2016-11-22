@@ -56,7 +56,7 @@
 		      document.getElementById(firstlast).value = str;
 		  }
 		
-		function pass_validation()
+		/* function pass_validation()
 		{
 			var firstpassword=document.forp.password1.value;  
 			var secondpassword=document.forp.confirmPassword.value;  
@@ -69,7 +69,42 @@
 			document.getElementById("confirmPassword").focus();
 			return false;  
 			}  
-			} 
+			}  */
+			
+			
+			function pass_validation()
+			{
+				/* var firstpassword=document.forp.Password1.value;  
+				var secondpassword=document.forp.ConfirmPassword.value;  
+
+				if(firstpassword==secondpassword){  
+				return true;  
+				}  
+				else{  
+				alert("RePassword must be Same!!!");
+				document.getElementById("ConfirmPassword").value="";
+				document.getElementById("ConfirmPassword").focus();
+				return false;  
+				}   */
+				var pass1=$('#Password1').val();
+				var confirmpass=$('#ConfirmPassword').val();
+				
+				if(pass1!='' || confirmpass!=''){
+					
+					var checkvar=checkpassword(pass1,confirmpass);
+					if(checkvar==false){
+						
+						alert("password not match")
+					}
+				}
+				
+				}
+			
+			function checkpassword(pass1,confirmpass){
+				if(pass1!=confirmpass){
+					return false;
+				}
+			}
 		
 	</script>
 		
@@ -104,7 +139,7 @@
   <input  value="${employee.userempid}" name="userempid"  readonly="readonly"  class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Employee Code<span
+  <label class="col-md-2 control-label" >Employee Code<span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
@@ -123,7 +158,7 @@
   <input value="${employee.loginname}"  name="loginname"  class="form-control" required="required"  type="text">
     </div>
   </div>
-  <label  class="col-md-2 control-label" style="margin-left: -62px;">Joining Date</label>  
+  <label  class="col-md-2 control-label" >Joining Date</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -140,15 +175,13 @@
   <input  value="${employee.firstname}" name="firstname" id="firstname" onkeyup="javascipt:capitalize(this.id,this.value)" placeholder="First Name" class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Designation</label>  
+  <label class="col-md-2 control-label" >Designation</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select   name="designationId"  placeholder="Developer" class="form-control">
   <c:forEach items="${listofDeg}" var="deg">
   <option value="${deg.designationid}">${deg.designation}</option>
-  
-  
   </c:forEach>
   </select>
     </div>
@@ -165,7 +198,7 @@
   <input name="middlename" value="${employee.middlename}" id="firstmiddle" onkeyup="javascript:capitalizemiddle(this.id,this.value)" placeholder="MiddleName" class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">DOB</label> 
+  <label class="col-md-2 control-label" >DOB</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -182,7 +215,7 @@
     </div>
   </div>
   
-  <label class="col-md-2 control-label" style="margin-left: -62px;">SubCompany</label> 
+  <label class="col-md-2 control-label" >SubCompany</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -212,7 +245,7 @@
     </select>
   </div>
 </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">E-Mail<span
+ <label class="col-md-2 control-label" >E-Mail<span
 					style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
@@ -234,7 +267,7 @@
     </select>
   </div>
 </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">Password<span
+ <label class="col-md-2 control-label" >Password<span
 					style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
@@ -261,7 +294,7 @@
     </select>
   </div>
 </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">RePassword<span
+ <label class="col-md-2 control-label" >RePassword<span
 					style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
@@ -284,7 +317,7 @@
   <input name="usermobile" value="${employee.usermobile}" placeholder="8455551212" class="form-control" required="required" type="text">
     </div>
   </div>
-   <label class="col-md-2 control-label" style="margin-left: -62px;">Phone #</label>  
+   <label class="col-md-2 control-label" >Phone #</label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
@@ -319,7 +352,7 @@
     </select>
   </div>
   </div>
-   <label class="col-md-2 control-label" style="margin-left: -62px;">Address<span
+   <label class="col-md-2 control-label" >Address<span
 					style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group" style="width: 215px;height: 70px;" >

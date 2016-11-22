@@ -63,8 +63,8 @@
 				<th>S.No.</th>
 				<th data-th="Driver details"><span>Product Code</span></th>
 				<th>Product Name</th>
-				<th>Cost price</th>
-				<th>Selling price</th>
+				<th>Input Cost</th>
+				<th>Price To Sale</th>
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;"> Delete</th>
 			</tr>
