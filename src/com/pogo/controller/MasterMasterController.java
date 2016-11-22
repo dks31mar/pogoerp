@@ -386,11 +386,11 @@ public class MasterMasterController {
 		
 	}
 	@RequestMapping(value="/location",method = RequestMethod.GET)
-	public ModelAndView getLocation( @RequestParam("districtId") String districtid,@ModelAttribute("command") LocationBean location,HttpServletRequest request,BindingResult result ){
+	public ModelAndView getLocation( @RequestParam("districtId") Integer districtid,@ModelAttribute("command") LocationBean location,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside location  method");
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("district123",districtid);
-		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList()));
+		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList(districtid)));
 		System.out.println("***************************************** inside location list ****************************");
 	return new ModelAndView("getlocation",model);
 	}
@@ -421,14 +421,15 @@ public class MasterMasterController {
 		LocationBean poref=mapper.readValue(json, LocationBean.class);
 		LocationBean poref1=new LocationBean();
 		poref1.setLocation(poref.getLocation());
-		masterMastersService.addLocation(poref1);
+		masterMastersService.addLocation(poref);
 	}
 	@RequestMapping(value = "deletelocation", method = RequestMethod.GET)
 	public ModelAndView deleteLocation(@RequestParam("locationId") Integer id) {
+		
 		masterMastersService.deleteLocation(id);
 		Map<String, Object> model= new HashMap<String,Object>();
 		List<LocationBean> list=new ArrayList<LocationBean>();
-		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList()));
+		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList(id)));
 		return new ModelAndView("getlocation",model);
 		
 		
@@ -462,7 +463,7 @@ public class MasterMasterController {
 		poref1.setLocationId(poref.getLocationId());
 		poref1.setLocation(poref.getLocation());
 		
-		masterMastersService.editLocation(poref1);
+		masterMastersService.editLocation(poref);
 		
 	}
 

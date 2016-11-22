@@ -53,7 +53,7 @@ public interface MasterMastersService {
 	String getDistrictById(String id);
 	void editDistrict(DistrictBean poref1);
 	
-	List<Location> locationList();
+	List<Location> locationList(Integer districtid);
 	void addLocation(LocationBean poref1);
 	void deleteLocation(int id);
 	String getLocationById(String id);

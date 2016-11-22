@@ -204,11 +204,13 @@ $('#EditForm').click(function (){
 	var d1w=$("#hiddenid").val();
 	//alert(d1w);
 	
+	var d=$('#districtid').val();
+	
 	if(addlocation==''){
 		//$('#addlocation').css('border-color', '#DC143C');
 		$("#msg1").show();
 	}else{
-		var jsonObj={'location':addlocation,'locationId':id} ;
+		var jsonObj={'location':addlocation,'locationId':id,'districtId':d} ;
 		$.ajax({
 			url: "editlocation",
 			type: "POST",

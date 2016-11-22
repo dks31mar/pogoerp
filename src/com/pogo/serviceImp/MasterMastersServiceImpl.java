@@ -246,20 +246,20 @@ public class MasterMastersServiceImpl implements MasterMastersService {
    
    @Override
 	
-	public List<Location> locationList(){
-		return masterMastersdao.locationList();
+	public List<Location> locationList(Integer id){
+		return masterMastersdao.locationList(id);
 	}
 	
 	@Override
 	@Transactional
 	public void addLocation(LocationBean poref1) {
-		//District district = new District();
-		//district.setDistrictId(poref1.getLocationId());
-		//System.out.println(poref1.getDistrictId());
+		District district = new District();
+		district.setDistrictId(poref1.getLocationId());
+		System.out.println(poref1.getDistrictId());
 		
 		Location location=new Location();
 		location.setLocation(poref1.getLocation());
-		//location.setDistrict(district);
+		location.setDistrict(district);
 		masterMastersdao.addLocation(location);
 		
 		
@@ -289,10 +289,13 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	@Override
 	@Transactional
 	public void editLocation(LocationBean poref1){
+		District district=new District();
+		district.setDistrictId(poref1.getDistrictId());
+		System.out.println(poref1.getDistrictId());
 		Location location=new Location();
 		location.setLocationId(poref1.getLocationId());
 		location.setLocation(poref1.getLocation());
-		
+		location.setDistrict(district);
 		masterMastersdao.editLocation(location);
 	}
 	

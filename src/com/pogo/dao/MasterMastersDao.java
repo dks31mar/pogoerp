@@ -47,7 +47,7 @@ public interface MasterMastersDao {
 	 List<District> getDistrictById (String id);
 	 void editDistrict(District poref1);
 	 
-	 List<Location> locationList();
+	 List<Location> locationList(Integer id);
 	 void addLocation(Location poref1);
 	 void deleteLocation(int id);
 	 List<Location> getLocationById (String id);
