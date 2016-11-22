@@ -7,8 +7,6 @@
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css"
 	href="resources/css/table.css">
-	
-<<<<<<< HEAD
  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -81,49 +79,10 @@
   </c:if>
   </c:otherwise>
    </c:choose>
-=======
 
 
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      ...
-    </div>
-  </div>
-</div>	
-<div class="row">
-	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; " >
-		<span class="glyphicon glyphicon-user"></span> Sales Enquiry 
-	</div>
-	
-</div>
 
-<table class="responstable">
-       
-  
-  <tbody align='center'>
- <tr>
-    <th>S.N.</th>
-     <th>Creation Date</th>
-    <th>Customer</th>
-    <th>Address</th>
-    <th>Contact Person</th>
-    <th>Status</th>
-    <th>A/c Manager</th>
-    <th>Operation</th>
-  </tr>
-  <tr>
-  <td>1</td>
-  <td>11-12-2016</td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button></td>
-  </tr>
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
   </tbody>
   </table>
   

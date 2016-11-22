@@ -111,7 +111,7 @@
 			href="getSalesList" class="btn btn-primary"> Sales List </a> </label> 
 
 	
-		<span class="glyphicon glyphicon-user"></span> <span> Customer</span>
+		
 		<label
 			 style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"
 			class="btn btn-primary">Add Dairy</a>
