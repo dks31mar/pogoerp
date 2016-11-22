@@ -86,7 +86,7 @@
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.designationName
 												+ '</td>';
-									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id=${value.userempid}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
+									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
 													+ '</td>';		
 										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser(${value.userempid})"><span class="glyphicon glyphicon-trash"></span></a>'
 											+ '</td></tr>';		
@@ -152,8 +152,8 @@ $( function() {
 			class="btn btn-primary">AddTest </a>
      </label> -->
 
-		<label style="margin-left: 507px; margin-top: 8px;"><a
-			href="#" class="btn btn-primary">Export</a> </label>
+		<!-- <label style="margin-left: 507px; margin-top: 8px;"><a
+			href="#" class="btn btn-primary">Export</a> </label> -->
 
 		<div class="input-group"
 			style="margin-left: 590px; width: 230px; top: -38px; width: 230px;">

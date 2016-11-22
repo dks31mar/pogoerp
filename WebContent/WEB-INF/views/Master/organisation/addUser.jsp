@@ -275,10 +275,12 @@
 
 	  $( function() {
 		    $("#datepickerDob" ).datepicker();
+		    dateFormat : "mm-dd-yyyy"
 		  } );
 
 		$( function() {
 		    $( "#datepickerjoin").datepicker();
+		    dateFormat : "mm-dd-yyyy"
 		  } );
 		
 		

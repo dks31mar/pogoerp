@@ -300,6 +300,10 @@
 			<put-attribute name="title" value="Customer" />
 				<put-attribute name="body" value="/WEB-INF/views/customer/customerSales.jsp" />
 			</definition>
+			<definition name="getSalesList" extends="baseLayout" >
+			<put-attribute name="title" value="Customer List" />
+				<put-attribute name="body" value="/WEB-INF/views/customer/salesCustomerList.jsp" />
+			</definition>
 			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >

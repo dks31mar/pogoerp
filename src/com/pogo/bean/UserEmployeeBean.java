@@ -1,5 +1,7 @@
 package com.pogo.bean;
 
+import java.util.Date;
+
 public class UserEmployeeBean 
 {
 	private Integer userempid;
@@ -15,19 +17,17 @@ public class UserEmployeeBean
 	private String region;
 	private Integer branchId;
 	private String branchName;
-	private String dateofjoining;
+	private Date dateofjoining;
 
 	private Integer designationId;
 	private String designationName;
-
-	private String designation;
 
 	
 	private String password;
 	private String repassword;
 	private String eamil;
 	
-	private String dob;
+	private Date dob;
 	private String gender;
 	private String address;
 	private String phone;
@@ -56,12 +56,7 @@ public class UserEmployeeBean
 	public void setEmpStatus(Boolean empStatus) {
 		this.empStatus = empStatus;
 	}
-	public String getDateofjoining() {
-		return dateofjoining;
-	}
-	public void setDateofjoining(String dateofjoining) {
-		this.dateofjoining = dateofjoining;
-	}
+	
 	
 	public Integer getUserempid() {
 		return userempid;
@@ -132,10 +127,17 @@ public class UserEmployeeBean
 		this.eamil = eamil;
 	}
 	
-	public String getDob() {
+	
+	public Date getDateofjoining() {
+		return dateofjoining;
+	}
+	public void setDateofjoining(Date dateofjoining) {
+		this.dateofjoining = dateofjoining;
+	}
+	public Date getDob() {
 		return dob;
 	}
-	public void setDob(String dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 	public String getGender() {

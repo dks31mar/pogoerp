@@ -93,6 +93,11 @@ public interface MasterMastersService {
 	void addServiceProvider(ServiceProviderBean serviceprovider);
 	ServiceProviderBean getServiceProvider(int id);
 	void editSourceProviderbyId(ServiceProviderBean servicepro);
+	List<CountryBean> countryDetails();
+	List<CustomerLevelsBean> getCustomersStatus();
+	List<StateBean> getStateByCountryId(int id);
+	List<LocationBean> getLocationDetails();
+	List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId);
 	
 
 

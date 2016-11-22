@@ -3,6 +3,7 @@ package com.pogo.bean;
 public class StateBean {
 	private Integer countryId ;
 	private Integer stateId ;
+	private String countryName;
 	private String state ;
 	public Integer getCountryId() {
 		return countryId;
@@ -21,6 +22,12 @@ public class StateBean {
 	}
 	public void setState(String state) {
 		this.state = state;
+	}
+	public String getCountryName() {
+		return countryName;
+	}
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
 	}
 	
 

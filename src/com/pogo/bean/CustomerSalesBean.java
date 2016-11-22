@@ -5,31 +5,40 @@ import java.util.Date;
 public class CustomerSalesBean 
 {
 	private Integer customerId;
-	private Date creationDate;
+	private String creationDate;
 	private Date orderdate;
 	private String organisation;
 	private String orgShortName;
 	private String initiatedBy;
+	private Integer empId;
 	private String acmanager;
 	private String address;
+	private Integer stateId;
 	private String state;
 	private String districtName;
+	private Integer districtId;
+	private Integer sublocationId;
 	private String sublocation;
 	private String contactPerson;
 	private String telephoneNo;
 	private String emailId;
 	private String status;
+	private Integer customerLevelId;
 	private String mobileNo;
+	private String  category;
+	private Integer countryId;
+	private String country;
 	public Integer getCustomerId() {
 		return customerId;
 	}
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
-	public Date getCreationDate() {
+	
+	public String getCreationDate() {
 		return creationDate;
 	}
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
 	public Date getOrderdate() {
@@ -115,6 +124,54 @@ public class CustomerSalesBean
 	}
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public Integer getEmpId() {
+		return empId;
+	}
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
+	}
+	public Integer getStateId() {
+		return stateId;
+	}
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
+	}
+	public Integer getCustomerLevelId() {
+		return customerLevelId;
+	}
+	public void setCustomerLevelId(Integer customerLevelId) {
+		this.customerLevelId = customerLevelId;
+	}
+	public Integer getCountryId() {
+		return countryId;
+	}
+	public void setCountryId(Integer countryId) {
+		this.countryId = countryId;
+	}
+	public Integer getDistrictId() {
+		return districtId;
+	}
+	public void setDistrictId(Integer districtId) {
+		this.districtId = districtId;
+	}
+	public Integer getSublocationId() {
+		return sublocationId;
+	}
+	public void setSublocationId(Integer sublocationId) {
+		this.sublocationId = sublocationId;
 	}
 	
 

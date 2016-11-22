@@ -25,18 +25,11 @@ private String branchname;
 	private String state;
 	
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="designation_id")
-    private Designation designation;
+	
 
 	
 	
-	public Designation getDesignation() {
-		return designation;
-	}
-	public void setDesignation(Designation designation) {
-		this.designation = designation;
-	}
+	
 	public Integer getBranchId() {
 		return branchId;
 	}

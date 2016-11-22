@@ -39,7 +39,7 @@ public interface MasterOrganizationService {
 	void adduserEmp(UserEmployeeBean userDTO)throws ParseException;
 	
 
-    List<UserEmployeeBean> getUserDetails();
+    List<UserEmployeeBean> getUserDetails()throws ParseException;
 
 	void deleteuserEmp(int id);
 
