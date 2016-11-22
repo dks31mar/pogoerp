@@ -185,7 +185,7 @@ $( function() {
 				<th>S.N.</th>
 				<th data-th="Driver details"><span>Employees Name</span></th>
 				 <th>Joining Date</th>
-				<!--  <th>Designation</th>  -->
+				<th>Designation</th> 
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;">Delete</th>
 			</tr>
@@ -203,7 +203,7 @@ $( function() {
 								<td>${user.loginname}</td>
 								 <td>${user.dateofjoining}</td>
 								 
-								<%-- <td>${user.designationName}</td> --%>
+								<td>${user.designationName}</td>
 
 
 								<td><a href="editUser?id=${user.userempid}" title="Edit">
