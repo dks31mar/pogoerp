@@ -41,8 +41,6 @@ public class LoginDaoImp implements LoginDao{
 		//Query q=sessionFactory.getCurrentSession().createQuery("Select id from User where userName='"+userBean.getUserName()+"' and password='"+userBean.getPassword()+"'");
 
 		User u=(User)q.uniqueResult();
-		System.out.println(u.getId());
-//			userId=0;
 		userId=u.getId();
 		HttpSession session=request.getSession();
 		session.setAttribute("userid", userId);

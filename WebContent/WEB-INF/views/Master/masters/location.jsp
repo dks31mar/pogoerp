@@ -58,11 +58,8 @@
 				
 
 </div>
-<div class="row" >
-
-
-  <div class="col-md-10" align="right" id="messagediv"><span style="color: red;">*Mandatory filed</span></div>
-
+<div class="row">
+<div class="col-md-10" align="right"><span style="color: red" id="msg1" >*This field is required.</span></div>
 </div>
 </div>
 </div>
@@ -119,6 +116,7 @@ $("#getcountrypopup").click(function(){
 	 $("#addlocation").val('');
 	 $('#locationspan').hide();
 	 $("#hiddenid").val('');
+	 $("#msg1").hide();
 	
 });
 });
@@ -128,7 +126,7 @@ $("#getcountrypopup").click(function(){
 
 $("#formid").hide();
 $('#messagediv').hide();
-
+$("#msg1").hide();
 
 function stopmoving(){
 	$('#addlocation').css('border-color', 'white');
@@ -142,7 +140,7 @@ $('#saveForm123').click(function (){
 	if(addlocation==''){
 		
 		//$('#addlocation').css('border-color', '#DC143C');
-		$('#messagediv').show('fast');
+		$("#msg1").show();
 	}else{
 		var getdistrictid = $('#districtid').val();
 		var jsonObj={'location':addlocation , 'locationId':getdistrictid
@@ -175,6 +173,7 @@ function editCur(id){
 	$("#formid").show('show');
 	$('#EditForm').show();
 	$("#saveForm123").hide(); 
+	$("#msg1").hide();
 $.ajax({
 	url: "getlocation?locationId="+id,
 	type: "GET",
@@ -206,8 +205,8 @@ $('#EditForm').click(function (){
 	//alert(d1w);
 	
 	if(addlocation==''){
-		$('#addlocation').css('border-color', '#DC143C');
-		$('#messagediv').show('slow');
+		//$('#addlocation').css('border-color', '#DC143C');
+		$("#msg1").show();
 	}else{
 		var jsonObj={'location':addlocation,'locationId':id} ;
 		$.ajax({
@@ -224,9 +223,9 @@ $('#EditForm').click(function (){
 			    	 $('#openModal').hide();
 			    	 //window.location.currency;
 			    	 window.location.reload();
-		     alert("edit");
+		    // alert("edit");
 		    }});
-	}
+	
 	
 
 
@@ -248,7 +247,7 @@ $.ajax({
 	    // alert("edit");
 	    }});
 
-	
+	}
 	
 });
 /* $(document).ready(function () {
