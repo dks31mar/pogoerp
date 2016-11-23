@@ -32,7 +32,7 @@
 
 <div class="container">
 
-    <form:form class="well form-horizontal"  action="updatestates" method="POST"  commandName="statezoneBean">
+    <form:form class="well form-horizontal"  action="updatestates?id=${zonid}" method="POST"  commandName="statezoneBean">
    
    
 <fieldset>

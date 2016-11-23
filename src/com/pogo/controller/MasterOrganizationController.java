@@ -357,25 +357,21 @@ public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
 		}
 		//foe edit states
 		@RequestMapping(value = "/editstates", method = RequestMethod.GET)
-		public String editStates(@RequestParam int id, Model model) 
+		public String editStates(@RequestParam("id") int id,@RequestParam("id2") int id2, Model model) 
 		{
-			//model.addAttribute("branch",regionService.getbranchById(id));
+		System.out.println(id2);
 			model.addAttribute("liststate", regionService.getSatesById(id));
-			//List<StatezoneBean> liststate=regionService.getSatesById(id);
-			//model.addAttribute("liststate",liststate);
-			/*List<BranchBean> list=regionService.getStateBranch();
-			model.addAttribute("statelist", list);*/
-	     //  model.addAttribute("branch",regionService.getbranchById(		
+			model.addAttribute("zonid", id2);
 			return "editstates";
 		}
 		
 		//update states
 		@RequestMapping(value = "/updatestates", method = RequestMethod.POST)
-		public String updateStates(@ModelAttribute("statezoneBean")StatezoneBean statezoneBean )
+		public String updateStates(@ModelAttribute("statezoneBean")StatezoneBean statezoneBean,@RequestParam("id") int id )
 		{
-			 regionService.updateState(statezoneBean);
+			 regionService.updateState(statezoneBean,id);
 			System.out.println("for update");
-			return "states";
+			return "redirect:/states?id="+id;
 
 		}
 		@RequestMapping(value = "deleteState", method = RequestMethod.GET)
@@ -537,7 +533,7 @@ System.out.println(""+id);
 
 	Map<String, Object> model = new HashMap<String, Object>();
 	model.put("satyendra", list);
-	
+	model.put("zoneid", id);
 return new ModelAndView("states",model);
 }
 

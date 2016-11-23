@@ -87,8 +87,16 @@
 												+ value.designationName
 												+ '</td>';
 									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id='+value.userempid+'" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
+<<<<<<< HEAD
+=======
+									   
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 													+'</td>';		
+<<<<<<< HEAD
 										content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a title="Delete" href="#" onclick="deletUser('+value.userempid+')"><span class="glyphicon glyphicon-trash"></span></a>'
+=======
+										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser('+value.userempid+')"><span class="glyphicon glyphicon-trash"></span></a>'
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 											+ '</td></tr>';		
 										
 
@@ -185,7 +193,11 @@ $( function() {
 				<th>S.N.</th>
 				<th data-th="Driver details"><span>Employees Name</span></th>
 				 <th>Joining Date</th>
+
+				<th>Designation</th> 
+
 				 <th>Designation</th>
+
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;">Delete</th>
 			</tr>
@@ -203,7 +215,11 @@ $( function() {
 								<td>${user.loginname}</td>
 								 <td>${user.dateofjoining}</td>
 								 
+
+								<td>${user.designationName}</td>
+
 								 <td>${user.designationName}</td>
+
 
 
 								<td><a href="editUser?id=${user.userempid}" title="Edit">

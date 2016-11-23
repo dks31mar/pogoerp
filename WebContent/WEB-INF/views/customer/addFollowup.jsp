@@ -23,13 +23,12 @@
 	</div>
 </div>
 <div class="row">
-
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
-		<span class="glyphicon glyphicon-user"></span>New Entry in Diary</b></span>
+		<span class="glyphicon glyphicon-user"></span>Mobile</b></span>
 		<label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"
-			class="btn btn-primary"> View Diary Entries</a>
+			 style="margin-left: 250px;margin-top: 8px;"><a href=""
+			class="btn btn-primary">Other tasks</a>
 			
      </label>
      
@@ -48,47 +47,37 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>New Entry in Diary</legend>
+<legend>Update Sales Call</legend>
   <div class="form-group">
   <label class="col-md-2 control-label">Date</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-   <input  type="text"  class="form-control" name="dateofjoining" id="datepickup"   placeholder="Select Date" >
+   <input  type="text"  class="form-control" name="dateofjoining" id="datepickerjoin"  readonly="readonly" placeholder="Select Date" >
     </div>
   </div>
-  <label class="col-md-2 control-label" >Time<span
+  <label class="col-md-2 control-label" >Time In<span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="Time"  placeholder="Enter Time "  id ="time" required="required"  class="form-control"  type="text">
+  <input   name="Time"  placeholder="Enter Time In " required="required"  class="form-control"  type="text">
     </div>
   </div>
 </div>
  <div class="form-group">
-  <label class="col-md-2 control-label"> Organization<span style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label"> Time Out<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="Organization" placeholder="Organization Name" required="required" id ="org" class="form-control"  type="text">
+  <input   name="Timeout" placeholder="Time out" required="required"  class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" >Contact Person <span style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label" >Action Type <span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  type="text"  class="form-control" name="Contact Person "  id="contactperson" placeholder="Contact Person Name" type="text" >
-    </div> 
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-md-2 control-label">Task Type <span
-					style="color: red;">*</span></label>  
-  <div class="col-md-3 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="task" class="form-control selectpicker"  id="tasktype" required="required">
+   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <select name="task" class="form-control selectpicker" required="required">
    <option>---Select Task---</option> 
       <option value="sales">Phone</option>
 	  <option value="services">Sms</option>
@@ -96,12 +85,24 @@
     </select>
     </div>
   </div>
+</div>
+<div class="form-group">
+  <label class="col-md-2 control-label">Action Taken <span
+					style="color: red;">*</span></label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+  
+   <textarea rows="2" cols="33">
+</textarea>
+    </div>
+  </div>
+ 
   <label class="col-md-2 control-label" >Entry For </label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select name="Entryuser" placeholder="Entry"   class="form-control"  >
-  <option value="" selected="selected" id ="entry">----Select Entry user----</option>
+  <option value="" selected="selected">----Select Entry user----</option>
   <option value="sales">satyendra</option>
 	  <option value="services">deepak</option>
  <!--  > <c:forEach items="${listofDeg}" var="designationList">
@@ -120,13 +121,13 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="Authority"   placeholder="Authority Name" id=" Authority" class="form-control"  type="text">
+  <input name="Authority"   placeholder="Authority Name"  class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" >Address<span style="color: red;">*</span></label> 
+  <label class="col-md-2 control-label" >Address	<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
- <textarea rows="2" cols="33" id ="address">
+ <textarea rows="2" cols="33">
 </textarea>
     </div>
   </div>
@@ -136,7 +137,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="usermobile"  class="form-control"  id ="mobile" placeholder="8285080678" type="text" required="required">
+  <input name="usermobile"  class="form-control" placeholder="8285080678" type="text" required="required">
     </div>
   </div>
   
@@ -144,7 +145,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-   <input name="faxno"   placeholder="Fax No"  id="faxno" class="form-control"  type="text">
+   <input name="faxno"   placeholder="Fax No"  class="form-control"  type="text">
   
     </div>
   </div>
@@ -154,13 +155,13 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="eamil"  placeholder="E-Mail Address" class="form-control"id ="email" required="required" type="email">
+  <input  name="eamil"  placeholder="E-Mail Address" class="form-control" required="required" type="email">
   </div>
 </div>
  <label class="col-md-2 control-label" >Objective<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
      <div class="input-group">
- <textarea rows="2" cols="33" id ="object">
+ <textarea rows="2" cols="33">
 </textarea>
     </div>
     </div> 
@@ -206,7 +207,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
-    <button type="button" class="btn btn-warning" onclick="message();" id="savediarydata" >Save<span class="glyphicon glyphicon-send"></span></button> 
+    <button type="submit" class="btn btn-warning" onclick="message();" >Save<span class="glyphicon glyphicon-send"></span></button> 
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
     
   </div>
@@ -215,63 +216,6 @@
 </form:form>
 </div>
 </div>
-<script>
-$('#savediarydata').click(function(){
-	
-	var date  =	$('#datepickup').val();
-	var time=$('#time').val();
-	
-	var orgenaigation=$('org').val();
-	//var selecthead =	$('#selecthead').text();
-	var contacper =	$('#contactperson').val();
-	var tasktype =	$('#tasktype').val();
-	   var enteruser    =	$('#entry').val();
-	   var decidauthourity    =	$('#Authority').val();
-	   var address=	$('#address').val()
-		   var mobile=	$('#mobile').val()
-			   var fax=	$('#faxno').val()
-				   var email=	$('#email').val()
-					   var object=	$('#object').val()
-	   alert(date+time+orgenaigation+contacper+tasktype+enteruser+decidauthourity+address+mobile+fax+email+object);
-	   
-	   
-	   
-	  
-		var jsonObj={
 
-		   'Date':date,
-		   'Time':time,
-		   'Organization':org,
-		   'Contactperson':contactperson,
-		   'tasktype':tasktype,
-		   'Enteruser':entry,
-		   'DecidingAuthority':Authority,
-		   'Adress':address,
-		   'mobil':mobile,
-		   'faxno':faxno,
-		   'email':email,
-		   'objective':object
-		} ;
-	
-	
-		
-		$.ajax({
-			url: "SaveDiaryForEntrySales",
-			type: "POST",
-			
-			  data :JSON.stringify(jsonObj),
-			  cache:false,
-		        beforeSend: function(xhr) {  
-		            xhr.setRequestHeader("Accept", "application/json");  
-		            xhr.setRequestHeader("Content-Type", "application/json");  
-		        },
-			     success: function(resposeJsonObject){
-			    	alert("save")
-		    }});
-		
-	   }
-	);
-	
-</script>
 
 

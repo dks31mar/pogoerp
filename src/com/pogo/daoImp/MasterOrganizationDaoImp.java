@@ -322,6 +322,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 		sessionFactory.getCurrentSession().delete(sms);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SmsAllocation> getPermitSmsUser() {
 

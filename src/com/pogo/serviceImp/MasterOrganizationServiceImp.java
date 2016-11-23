@@ -654,11 +654,14 @@ public void deletebranch(int id) {
 }
 @Override
 @Transactional
-public void updateState(StatezoneBean statezoneBean) {
+public void updateState(StatezoneBean statezoneBean,int id) {
 	StateZone stateZone=new StateZone();
+	Zones zone=new Zones();
+	zone.setZonesid(id);
 	stateZone.setStateId(statezoneBean.getStateId());
 	System.out.println("on service"+ statezoneBean.getStateId()+statezoneBean.getStateName());
 	stateZone.setStateName(statezoneBean.getStateName());
+	stateZone.setZones(zone);
 	regionDao.updateStates(stateZone);
 	
 }

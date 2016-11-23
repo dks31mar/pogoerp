@@ -47,7 +47,7 @@
 		 <label
 			 style="margin-left: 250px;margin-top: 8px;"><a href="addstates"
 			class="btn btn-primary">Add States</a>
-			<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
+			
      </label>
   		
 </div>
@@ -58,7 +58,7 @@
   
   <tbody align='center'>
  <div="wrapper">
-
+<input type="hidden" value="${zoneid}">
   <tr id="ftr">
     <th>S.N.</th>
     <th data-th="Driver details"><span>States</span></th>
@@ -77,7 +77,7 @@
     <td>${loop.index+1}</td>
     <td>${state.stateName}</td>
     <td><a href="getbranchbystate?id=${state.stateId}"  target="_blank">Branches</a></td>
-    <td><a href="editstates?id=${state.stateId}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
+    <td><a href="editstates?id=${state.stateId}&id2=${zoneid}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
     <td><a href="deleteState?id=${state.stateId}" title="Delete"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
   </tr>
   
