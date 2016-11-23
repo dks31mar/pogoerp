@@ -270,9 +270,6 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDepartment(userDTO.getDepartment());
 		emp.setEmpCode(userDTO.getEmpCode());
 		emp.setMiddlename(userDTO.getMiddlename());
-		
-		
-		
 		emp.setActive(true);
 		emp.setEmpStatus(true);
 		userEmpdao.addUser(emp);
@@ -283,7 +280,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	@Override
 	public List<UserEmployeeBean> getUserDetails() throws ParseException 
 	{
-		SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd-yyyy");
+		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 		List<UserEmployee> getdetails =userEmpdao.getuserData();
 		List<UserEmployeeBean> lists=new ArrayList<UserEmployeeBean>();
 		for(UserEmployee list: getdetails)
@@ -299,9 +296,8 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			data.setBranchName(list.getBranchName().getBranchname());
 			/*String date1=(dateformat.format(list.getDateofjoining()));
 			String date2=date1.split("00:00:00:0")[0];
-
-			data.setDateofjoining(dateformat.parse(date2));*/
-			data.setDateofjoining(list.getDateofjoining());
+			data.setDateofjoining(dateformat.format(date2));*/
+			data.setDateofjoining( list.getDateofjoining());
 
 
 			//data.setDateofjoining(date2);

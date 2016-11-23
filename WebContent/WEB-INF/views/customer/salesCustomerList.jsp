@@ -30,7 +30,7 @@
         </div>
         <div class="modal-body">
           <div><a href="#"><strong>Edit</strong></a></div>
-           <div><a href="#"><strong>Add Diary</strong></a></div>
+           <div><a href="AddDiaryForEntrySales"><strong>Add Diary</strong></a></div>
             <div><a href="#"><strong> Create Quotation</strong></a></div>
              <div><a href="#"><strong> Add Followup</strong></a></div>
         </div>
