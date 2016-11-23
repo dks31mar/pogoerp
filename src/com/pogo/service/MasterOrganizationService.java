@@ -41,7 +41,7 @@ public interface MasterOrganizationService {
 	StatezoneBean getSatesById(int id);
 	void updateBranch(BranchBean branchBean);
 
-    List<UserEmployeeBean> getUserDetails();
+    List<UserEmployeeBean> getUserDetails()throws ParseException;
 
 	void deleteuserEmp(int id);
 
@@ -97,6 +97,6 @@ public interface MasterOrganizationService {
 	List<BranchBean> getBranchByState(int id);
 
 	void deletebranch(int id);
-
 	
+
 }

@@ -247,16 +247,17 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	public void adduserEmp(UserEmployeeBean userDTO) throws ParseException 
 	{
 		
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateformat = new SimpleDateFormat("mm-dd-yyyy");
+		//SimpleDateFormat df=new SimpleDateFormat("MMM-dd-yyyy");
 		UserEmployee emp=new UserEmployee();
 		emp.setLoginname(userDTO.getLoginname());
 		emp.setFirstname(userDTO.getFirstname());
 		emp.setLastname(userDTO.getLastname());
 		emp.setDivision(userDTO.getDivision());
 		emp.setRegion(userDTO.getRegion());
-		emp.setDateofjoining(dateformat.parse(userDTO.getDateofjoining()));
+		emp.setDateofjoining(userDTO.getDateofjoining());
 		emp.setAddress(userDTO.getAddress());
-		emp.setDob(dateformat.parse(userDTO.getDob()));			
+		emp.setDob(userDTO.getDob());			
 		emp.setEamil(userDTO.getEamil());
 	    emp.setBranchName(userEmpdao.getBranch(userDTO.getBranchId()));
 		emp.setCompanyName(userEmpdao.getCom(userDTO.getSubcompanyId()));
@@ -269,9 +270,6 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDepartment(userDTO.getDepartment());
 		emp.setEmpCode(userDTO.getEmpCode());
 		emp.setMiddlename(userDTO.getMiddlename());
-		
-		
-		
 		emp.setActive(true);
 		emp.setEmpStatus(true);
 		userEmpdao.addUser(emp);
@@ -280,7 +278,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 
 
 	@Override
-	public List<UserEmployeeBean> getUserDetails() 
+	public List<UserEmployeeBean> getUserDetails() throws ParseException 
 	{
 		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
 		List<UserEmployee> getdetails =userEmpdao.getuserData();
@@ -298,8 +296,13 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			data.setBranchName(list.getBranchName().getBranchname());
 			/*String date1=(dateformat.format(list.getDateofjoining()));
 			String date2=date1.split("00:00:00:0")[0];
-			data.setDateofjoining(date2);*/
-			data.setDateofjoining(dateformat.format(list.getDateofjoining()));
+			data.setDateofjoining(dateformat.format(date2));*/
+			data.setDateofjoining( list.getDateofjoining());
+
+
+			//data.setDateofjoining(date2);
+			//data.setDateofjoining(dateformat.format(list.getDateofjoining()));
+
 
 			data.setFirstname(list.getFirstname());
 			data.setMiddlename(list.getMiddlename());
@@ -346,7 +349,8 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 
 	@Override
 	public UserEmployeeBean getEmployee(int empid) {
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd-yyyy");
+		//SimpleDateFormat df=new SimpleDateFormat("MMM-dd-yyyy");
 		UserEmployee empedit = userEmpdao.getEmployee(empid);
 		UserEmployeeBean empbean = new UserEmployeeBean();
 		empbean.setUserempid(empedit.getUserempid());
@@ -358,8 +362,8 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		empbean.setLastname(empedit.getLastname());
 		empbean.setDivision(empedit.getDivision());
 		empbean.setRegion(empedit.getRegion());
-		empbean.setDateofjoining(dateformat.format(empedit.getDateofjoining()));
-		empbean.setDob(dateformat.format(empedit.getDob()));
+		empbean.setDateofjoining(empedit.getDateofjoining());
+		empbean.setDob(empedit.getDob());
 	    empbean.setAddress(empedit.getAddress());
 		empbean.setEamil(empedit.getEamil());
 		empbean.setGender(empedit.getGender());
@@ -378,7 +382,8 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 @Transactional
 	@Override
 	public void updateEmployee(UserEmployeeBean userEmployeeBean) throws ParseException {
-		SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd-yyyy");
+		//SimpleDateFormat df=new SimpleDateFormat("MMM-dd-yyyy");
 		UserEmployee emp=new UserEmployee();
 		emp.setUserempid(userEmployeeBean.getUserempid());
 		emp.setLoginname(userEmployeeBean.getLoginname());
@@ -386,9 +391,9 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setLastname(userEmployeeBean.getLastname());
 		emp.setDivision(userEmployeeBean.getDivision());
 		emp.setRegion(userEmployeeBean.getRegion());
-		emp.setDateofjoining(dateformat.parse(userEmployeeBean.getDateofjoining()));
+		emp.setDateofjoining(userEmployeeBean.getDateofjoining());
 		emp.setAddress(userEmployeeBean.getAddress());
-		emp.setDob(dateformat.parse(userEmployeeBean.getDob()));
+		emp.setDob(userEmployeeBean.getDob());
 		emp.setEamil(userEmployeeBean.getEamil());
 		emp.setDesignationName(userEmpdao.getData(userEmployeeBean.getDesignationId()));
 		emp.setBranchName(userEmpdao.getBranch(userEmployeeBean.getBranchId()));
@@ -630,6 +635,23 @@ public void updateBranch(BranchBean branchBean) {
 	regionDao.updateBranch(branch);
 	
 }
+
+@Override
+@Transactional
+public void deletestate(int id) {
+	
+	StateZone stateZone= regionDao.deleteState(id);
+	regionDao.deletedata(stateZone);
+	
+}
+
+@Override
+@Transactional
+public void deletebranch(int id) {
+	Branch branch=regionDao.deleteBranch(id);
+	regionDao.deletebr(branch);
+	
+}
 @Override
 @Transactional
 public void updateState(StatezoneBean statezoneBean,int id) {
@@ -643,13 +665,7 @@ public void updateState(StatezoneBean statezoneBean,int id) {
 	regionDao.updateStates(stateZone);
 	
 }
-@Override
-@Transactional
-public void deletestate(int id) {
-	StateZone stateZone= regionDao.deleteState(id);
-	regionDao.deletedata(stateZone);
-	
-}
+
 @Override
 public List<BranchBean> getBranchByState(int id) 
 {
@@ -665,16 +681,5 @@ public List<BranchBean> getBranchByState(int id)
 	}
 	return beans;
 }
-@Override
-@Transactional
-public void deletebranch(int id) {
-	Branch branch=regionDao.deleteBranch(id);
-	regionDao.deletebr(branch);
-	
-}
-
-
-
-
 
 }

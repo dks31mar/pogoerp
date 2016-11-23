@@ -63,8 +63,8 @@
 				<th>S.No.</th>
 				<th data-th="Driver details"><span>Product Code</span></th>
 				<th>Product Name</th>
-				<th>Cost price</th>
-				<th>Selling price</th>
+				<th>Input Cost</th>
+				<th>Price To Sale</th>
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;"> Delete</th>
 			</tr>
@@ -161,7 +161,7 @@ function searchPro(wordinsrch) {
 									content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 											+ value.sellingprice
 											+ '</td>';
-									content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id=${user.userempid}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
+									content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editproductdata?id='+value.productid+'" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
 											+ '</td>';		
 									content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletSearchPro('+value.productid+')"><span class="glyphicon glyphicon-trash"></span></a>'
 										+ '</td></tr>';		

@@ -18,24 +18,22 @@ public class Branch
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="branchid")
-private  Integer branchId;
+	private  Integer branchId;
 	@Column(name="branchname")
-private String branchname;
+	private String branchname;
 	
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="stateId")
-private StateZone stateNames;
+	private StateZone stateNames;
 
-	
-	
-	
 	public StateZone getStateNames() {
 		return stateNames;
 	}
 	public void setStateNames(StateZone stateNames) {
 		this.stateNames = stateNames;
 	}
+
 	public Integer getBranchId() {
 		return branchId;
 	}

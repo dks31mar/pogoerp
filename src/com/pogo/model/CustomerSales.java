@@ -4,13 +4,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="salescall")
+@Table(name="customersalescall")
 public class CustomerSales 
 {
 	@Id
@@ -23,30 +26,41 @@ private Date creationDate;
 private Date orderdate;
 	@Column(name="organisation")
 private String organisation;
-	@Column(name="orgShortName")
+	@Column(name="orgShort_name")
 private String orgShortName;
-	@Column(name="initiatedBy")
-private String initiatedBy;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="emp_id")
+private UserEmployee initiatedBy;
 	@Column(name="acmanager")
 private String acmanager;
 	@Column(name="address")
 private String address;
-	@Column(name="state")
-private String state;
-	@Column(name="districtName")
-private String districtName;
-	@Column(name="sublocation")
-private String sublocation;
-	@Column(name="contactPerson")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="state_id")
+private State state;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="district_id")
+private District districtName;
+	
+	@Column(name="contact_person")
 private String contactPerson;
 	@Column(name="telephoneNo")
 private String telephoneNo;
-	@Column(name="emailId")
+	@Column(name="email_id")
 private String emailId;
-	@Column(name="status")
-private String status;
-	@Column(name="mobileNo")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="customerLevel_id")
+private CustomerLevels status;
+	@Column(name="mobile_no")
 private String mobileNo;
+@Column(name="category")	
+private String  category;
+@ManyToOne(fetch=FetchType.LAZY)
+@JoinColumn(name="country_id")
+private Country country;
+@ManyToOne(fetch=FetchType.EAGER,optional=true)
+@JoinColumn(name="location_id")
+private Location location;
 	public Integer getCustomerId() {
 		return customerId;
 	}
@@ -77,10 +91,11 @@ private String mobileNo;
 	public void setOrgShortName(String orgShortName) {
 		this.orgShortName = orgShortName;
 	}
-	public String getInitiatedBy() {
+	
+	public UserEmployee getInitiatedBy() {
 		return initiatedBy;
 	}
-	public void setInitiatedBy(String initiatedBy) {
+	public void setInitiatedBy(UserEmployee initiatedBy) {
 		this.initiatedBy = initiatedBy;
 	}
 	public String getAcmanager() {
@@ -95,23 +110,25 @@ private String mobileNo;
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getState() {
+	
+	public State getState() {
 		return state;
 	}
-	public void setState(String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
-	public String getDistrictName() {
+	public District getDistrictName() {
 		return districtName;
 	}
-	public void setDistrictName(String districtName) {
+	public void setDistrictName(District districtName) {
 		this.districtName = districtName;
 	}
-	public String getSublocation() {
-		return sublocation;
+	
+	public Location getLocation() {
+		return location;
 	}
-	public void setSublocation(String sublocation) {
-		this.sublocation = sublocation;
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 	public String getContactPerson() {
 		return contactPerson;
@@ -131,17 +148,31 @@ private String mobileNo;
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
 	public String getMobileNo() {
 		return mobileNo;
 	}
 	public void setMobileNo(String mobileNo) {
 		this.mobileNo = mobileNo;
 	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public CustomerLevels getStatus() {
+		return status;
+	}
+	public void setStatus(CustomerLevels status) {
+		this.status = status;
+	}
+	public Country getCountry() {
+		return country;
+	}
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+	
 
 }

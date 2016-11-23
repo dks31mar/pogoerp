@@ -53,7 +53,7 @@ public interface MasterMastersService {
 	String getDistrictById(String id);
 	void editDistrict(DistrictBean poref1);
 	
-	List<Location> locationList();
+	List<Location> locationList(Integer districtid);
 	void addLocation(LocationBean poref1);
 	void deleteLocation(int id);
 	String getLocationById(String id);
@@ -93,6 +93,12 @@ public interface MasterMastersService {
 	void addServiceProvider(ServiceProviderBean serviceprovider);
 	ServiceProviderBean getServiceProvider(int id);
 	void editSourceProviderbyId(ServiceProviderBean servicepro);
+	List<CountryBean> countryDetails();
+	List<CustomerLevelsBean> getCustomersStatus();
+	List<StateBean> getStateByCountryId(int id);
+	List<LocationBean> getLocationDetails();
+	List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId);
+	void deleteServiceprovider(int id);
 	
 
 

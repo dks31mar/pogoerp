@@ -47,7 +47,7 @@ public interface MasterMastersDao {
 	 List<District> getDistrictById (String id);
 	 void editDistrict(District poref1);
 	 
-	 List<Location> locationList();
+	 List<Location> locationList(Integer id);
 	 void addLocation(Location poref1);
 	 void deleteLocation(int id);
 	 List<Location> getLocationById (String id);
@@ -88,6 +88,19 @@ public interface MasterMastersDao {
 	void addServiceProvider(ServiceProvider spb);
 	ServiceProvider getServiceProvider(int id);
 	void editSourceProviderbyId(ServiceProvider sp);
+	List<Country> getCountryDetails();
+	List<CustomerLevels> getCustomerStatusDetails();
+	District getDistrictDataById(Integer districtId);
+	Country getCountryDataById(Integer countryId);
+	List<State> getStateByContryId(int id);
+	
+	State getStatesById(Integer stateId);
+	List<Location> getLocationDetails();
+	Location getLocations(Integer sublocationId);
+	CustomerLevels getCustomerStatusById(Integer customerLevelId);
+	List<District> getdistrictByStateIdAndCountryId(int id, int countryId);
+	void deleteserviceprovider(int id);
+	
 
 
 }

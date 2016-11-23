@@ -1,6 +1,5 @@
 package com.pogo.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +18,7 @@ public class Location {
 	private int locationId;
 	@Column(name="location")
 	private String location;
-	/*@ManyToOne(fetch=FetchType.EAGER , cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="districtId")
 	private District district;
 	public District getDistrict() {
@@ -27,7 +26,7 @@ public class Location {
 	}
 	public void setDistrict(District district) {
 		this.district = district;
-	}*/
+	}
 	public int getLocationId() {
 		return locationId;
 	}

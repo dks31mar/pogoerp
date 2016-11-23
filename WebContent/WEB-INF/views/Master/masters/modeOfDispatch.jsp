@@ -173,7 +173,7 @@ $('#EditForm').click(function (){
 	
 	var d1w=$("#hiddenid").val();
 	//alert(d1w);
-	if(addmodeofdispatch == '' ){
+	if(addmodeofdispatche == '' ){
 		$("#msg1").show();
 	}
 	else{

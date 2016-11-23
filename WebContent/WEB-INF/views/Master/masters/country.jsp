@@ -34,7 +34,7 @@
 <input type="hidden" id="hiddenid"/>
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addcountry"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add Country"
-						maxlength="20" autofocus="autofocus"></input><span style="color: red;" id="countryspan">Please enter a country</span></div>
+						 autofocus="autofocus"></input></div>
   
 </div>
 
@@ -47,7 +47,9 @@
 				<div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
 				class="btn btn-primary" id="EditForm">Edit</button></div>
 </div> 
-
+<div class="row">
+<div class="col-md-10" align="right"><span style="color: red" id="msg1" >*This field is required.</span></div>
+</div>
 
 </div>
 </div>
@@ -103,16 +105,18 @@ $("#getcountrypopup").click(function(){
 	 $("#addcountry").val('');
 	 $('#countryspan').hide();
 	 $("#hiddenid").val('');
+	 $("#msg1").hide();
 	
 });
 	    });
 $("#formid").hide();
 $('#countryspan').hide();
+$("#msg1").hide();
 
 $('#saveForm').click(function (){
 	var addcountry=$('#addcountry').val();
 	if(addcountry == ''){
-		$('#countryspan').show();
+		$("#msg1").show();
 		
 	}else{
 		var jsonObj={'country':addcountry
@@ -145,6 +149,7 @@ function editCur(id){
 	$("#formid").show('show');
 	$('#EditForm').show();
 	$("#saveForm").hide(); 
+	$("#msg1").hide();
 $.ajax({
 	url: "getcountry?countryId="+id,
 	type: "GET",
@@ -171,7 +176,10 @@ $('#EditForm').click(function (){
 	
 	var d1w=$("#hiddenid").val();
 	//alert(d1w);
-	
+	if(addcountry == '' ){
+		$("#msg1").show();
+	}
+	else{
 	
 	var jsonObj={'country':addcountry,'countryId':id} ;
 $.ajax({
@@ -190,6 +198,13 @@ $.ajax({
 		    	 window.location.reload();
 	    // alert("edit");
 	    }});
+	}
+	
+});
+
+$('#addcountry').click(function (){
+	 $('#msg1').hide();
+	 
 	
 	
 });

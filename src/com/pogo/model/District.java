@@ -1,6 +1,6 @@
 package com.pogo.model;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,6 +24,18 @@ public class District {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="stateId")
 	private State state;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="country_id")
+	private Country country; 
+	
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
 	public State getState() {
 		return state;
 	}

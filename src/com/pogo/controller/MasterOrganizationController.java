@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,7 +77,7 @@ public class MasterOrganizationController {
 	/* Employee */
 	@RequestMapping(value = "/getuseremp", method = RequestMethod.GET)
 	public ModelAndView getUserEmpl(Model model,
-			@RequestParam(value = "num", defaultValue = "0", required = false) int num)
+			@RequestParam(value = "num", defaultValue = "0", required = false) int num)throws ParseException
 
 	{
 		List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
@@ -129,7 +128,7 @@ public class MasterOrganizationController {
 	 
 	// for add employee
 	@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST)
-	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO) throws ParseException {
+	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO,BindingResult result) throws ParseException {
 		userEmployeeservice.adduserEmp(userDTO);
 		return "redirect:getuseremp";
 		// return new ModelAndView("getuseremp") ;
@@ -138,7 +137,7 @@ public class MasterOrganizationController {
 
 	
 	@RequestMapping(value = "/update-employee", method = RequestMethod.POST)
-	public String updateEmployee(@ModelAttribute("employeebean") UserEmployeeBean userEmployeeBean)
+	public String updateEmployee(@ModelAttribute("employeebean") UserEmployeeBean userEmployeeBean,BindingResult result)
 			throws ParseException {
 		userEmployeeservice.updateEmployee(userEmployeeBean);
 		return "redirect:/getuseremp";
@@ -260,7 +259,7 @@ public class MasterOrganizationController {
 	/*Mobile Apps Registration*/
 	
 	@RequestMapping(value="mobileApp", method=RequestMethod.GET)
-	public String forMobileApp(Model model)
+	public String forMobileApp(Model model)throws ParseException
 	{
 		List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
 		list=userEmployeeservice.getUserDetails();
@@ -398,6 +397,7 @@ public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
 					System.out.println("for update");
 					return "newbranch";
 
+
 				}
 				@RequestMapping(value = "deletebranch", method = RequestMethod.GET)
 				public String deletebran(@RequestParam("id") int id)
@@ -407,8 +407,13 @@ public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
 				//response.sendRedirect("states");
 				}
 
+				
+				
+
+
 @RequestMapping(value="/sms",method = RequestMethod.GET)
-public ModelAndView getSmsAllocation( @ModelAttribute("command") SmsAllocationBean sms,HttpServletRequest request,BindingResult result ){
+public ModelAndView getSmsAllocation( @ModelAttribute("command") SmsAllocationBean sms,HttpServletRequest request,BindingResult result )throws ParseException
+{
 	System.out.println("inside sms  method");
 	List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
 	list = userEmployeeservice.getUserDetails();

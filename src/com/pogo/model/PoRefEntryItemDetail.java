@@ -26,7 +26,7 @@ public class PoRefEntryItemDetail implements Serializable {
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="porefno")
-	private PorefSupplierDetail porefno;
+	private PorefSupplierDetail porefnobysupplier;
 	
 	@Column(name="particular",columnDefinition="varchar(50)")
 	private String particular;
@@ -60,11 +60,12 @@ public class PoRefEntryItemDetail implements Serializable {
 	public void setPorefentryitemdetailid(Integer porefentryitemdetailid) {
 		this.porefentryitemdetailid = porefentryitemdetailid;
 	}
-	public PorefSupplierDetail getPorefno() {
-		return porefno;
+	
+	public PorefSupplierDetail getPorefnobysupplier() {
+		return porefnobysupplier;
 	}
-	public void setPorefno(PorefSupplierDetail porefno) {
-		this.porefno = porefno;
+	public void setPorefnobysupplier(PorefSupplierDetail porefnobysupplier) {
+		this.porefnobysupplier = porefnobysupplier;
 	}
 	public String getParticular() {
 		return particular;

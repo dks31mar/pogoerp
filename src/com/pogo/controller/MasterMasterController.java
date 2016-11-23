@@ -91,9 +91,6 @@ public class MasterMasterController {
 		poref1.setStatus(poref.getStatus());
 		
 		//poref.setPorefentryitemdetailid(null);
-		
-		
-		
 		masterMastersService.addCustomerLevels(poref1);
 		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
 	//return toJson1(poref1);
@@ -302,7 +299,7 @@ public class MasterMasterController {
 		poref1.setStateId(poref.getStateId());
 		poref1.setState(poref.getState());
 		
-		masterMastersService.editState(poref1);
+		masterMastersService.editState(poref);
 		
 	}
 	@RequestMapping(value="/district",method = RequestMethod.GET)
@@ -385,15 +382,15 @@ public class MasterMasterController {
 		poref1.setDistrictId(poref.getDistrictId());
 		poref1.setDistrict(poref.getDistrict());
 		
-		masterMastersService.editDistrict(poref1);
+		masterMastersService.editDistrict(poref);
 		
 	}
 	@RequestMapping(value="/location",method = RequestMethod.GET)
-	public ModelAndView getLocation( @RequestParam("districtId") String districtid,@ModelAttribute("command") LocationBean location,HttpServletRequest request,BindingResult result ){
+	public ModelAndView getLocation( @RequestParam("districtId") Integer districtid,@ModelAttribute("command") LocationBean location,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside location  method");
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("district123",districtid);
-		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList()));
+		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList(districtid)));
 		System.out.println("***************************************** inside location list ****************************");
 	return new ModelAndView("getlocation",model);
 	}
@@ -424,14 +421,15 @@ public class MasterMasterController {
 		LocationBean poref=mapper.readValue(json, LocationBean.class);
 		LocationBean poref1=new LocationBean();
 		poref1.setLocation(poref.getLocation());
-		masterMastersService.addLocation(poref1);
+		masterMastersService.addLocation(poref);
 	}
 	@RequestMapping(value = "deletelocation", method = RequestMethod.GET)
 	public ModelAndView deleteLocation(@RequestParam("locationId") Integer id) {
+		
 		masterMastersService.deleteLocation(id);
 		Map<String, Object> model= new HashMap<String,Object>();
 		List<LocationBean> list=new ArrayList<LocationBean>();
-		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList()));
+		model.put("locationList",  prepareLocationListofBean(masterMastersService.locationList(id)));
 		return new ModelAndView("getlocation",model);
 		
 		
@@ -465,7 +463,7 @@ public class MasterMasterController {
 		poref1.setLocationId(poref.getLocationId());
 		poref1.setLocation(poref.getLocation());
 		
-		masterMastersService.editLocation(poref1);
+		masterMastersService.editLocation(poref);
 		
 	}
 
@@ -817,7 +815,17 @@ public class MasterMasterController {
 
 		return "editserviceprovider";
 	}
+	@RequestMapping(value = "/deleteserviceprovider", method = RequestMethod.GET)
+	public ModelAndView deleteServiceProvider(@RequestParam("id") int id) {
 	
+		masterMastersService.deleteServiceprovider(id);
+		List<ServiceProviderBean> list=new ArrayList<ServiceProviderBean>();
+		list=masterMastersService.getServiceProviderList();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("servicelist", list);
+
+		return new ModelAndView("getserviceprovider",model);
+	}
 	@RequestMapping(value="updateservicedata",method=RequestMethod.POST)
 	@ResponseBody
 	public void editServiceProvider(@RequestBody String json,Model model) throws IOException{

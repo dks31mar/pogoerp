@@ -35,7 +35,7 @@
 <input type="hidden" id="stateid" value="${state123}"/> 
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="adddistrict"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add District"
-						maxlength="20" autofocus="autofocus"><span style = "color:red;" id = districtspan>Please enter a district</span></input></div>
+						 autofocus="autofocus"></input></div>
   
 </div>
 
@@ -48,7 +48,9 @@
 				<div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
 				class="btn btn-primary" id="EditForm">Edit</button></div>
 </div> 
-
+<div class="row">
+<div class="col-md-10" align="right"><span style="color: red" id="msg1" >*This field is required.</span></div>
+</div>
 
 </div>
 </div>
@@ -105,18 +107,19 @@ $("#getcountrypopup").click(function(){
 	 $("#adddistrict").val('');
 	 $("#districtspan").hide();
 	 $("#hiddenid").val('');
+	 $("#msg1").hide();
 	
 });
 	    });
 $("#formid").hide();
-$("#districtspan").hide();
+$("#msg1").hide();
 
 $('#saveForm').click(function (){
 	
 	var adddistrict=$('#adddistrict').val();
 	
 	if(adddistrict == ""){
-		$("#districtspan").show();
+		 $("#msg1").show();
 	}
 	else{
 		
@@ -150,6 +153,7 @@ function editCur(id){
 	$("#formid").show('show');
 	$('#EditForm').show();
 	$("#saveForm").hide(); 
+	$("#msg1").hide();
 $.ajax({
 	url: "getdistrict?districtId="+id,
 	type: "GET",
@@ -175,10 +179,16 @@ $('#EditForm').click(function (){
 	var adddistrict=$('#adddistrict').val();
 	
 	var d1w=$("#hiddenid").val();
+	
+	var d=$('#stateid').val();
+	//alert("state id is "+d);
 	//alert(d1w);
+	if(adddistrict == '' ){
+		$("#msg1").show();
+	}
+	else{
 	
-	
-	var jsonObj={'district':adddistrict,'districtId':id} ;
+	var jsonObj={'district':adddistrict,'districtId':id , 'stateId':d} ;
 $.ajax({
 		url: "editdistrict",
 		type: "POST",
@@ -195,6 +205,13 @@ $.ajax({
 		    	 window.location.reload();
 	     //alert("edit");
 	    }});
+	}
+	
+});
+
+$('#adddistrict').click(function (){
+	 $('#msg1').hide();
+	 
 	
 	
 });

@@ -40,7 +40,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="companyinfoname" id="firstlastupper" placeholder="Name" onkeyup="javascript:capitalizemiddle(this.id, this.value);"  class="form-control"  type="text">
+  <input   name="companyinfoname" id="firstlastupper" placeholder="Name"   class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" style="margin-left: -62px;">Contact Person<span
@@ -48,7 +48,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="companyinfocontactperson" id="capitalizelast"  placeholder="Enter Contect Person"  onkeyup="javascript:capitalizemiddle(this.id, this.value);"  required="required"  class="form-control"  type="text">
+  <input   name="companyinfocontactperson" id="capitalizelast"  placeholder="Enter Contect Person"    required="required"  class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -158,7 +158,7 @@
   <label class="col-md-4 control-label"></label>
   <div class="col-md-3" align="center">
     <button type="submit" class="btn btn-warning" onclick="message();" >Send <span class="glyphicon glyphicon-send"></span></button>
-    <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
+    <button type="button" class="btn btn-warning" onclick="javascript:self.close();">Close <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>
 

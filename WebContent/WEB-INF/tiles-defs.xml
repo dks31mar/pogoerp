@@ -14,6 +14,8 @@
 			</definition>
 			<definition name="logout" template="/WEB-INF/views/LoginPage.jsp" >
 			</definition>
+			<definition name="print" template="/WEB-INF/views/prinicpalPO/prinicipalPO/PrintPoReport.jsp" >
+			</definition>
        		<definition name="employeesList" template="/WEB-INF/views/employeesList.jsp" >
 			</definition>
 			<definition name="addEmployee" template="/WEB-INF/views/addEmployee.jsp" >
@@ -26,16 +28,16 @@
 			
 	
 			<definition name="AddPrinicpalPO" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/PrinicipalPo.jsp" />
 			</definition>
 			<definition name="savepro" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PrinicipalPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/PrinicipalPo.jsp" />
 			</definition>
 			
 			
 			
 			<definition name="posummary" extends="baseLayout" >
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/PoSummary.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/PoSummary.jsp" />
 			</definition>
 			
 			<!-- ************************************************** used by satyendra *************************************************** -->
@@ -131,31 +133,31 @@
 	        <!-- View Po -->
 	       <definition name="viewpo" extends="baseLayout" >
 	       <put-attribute name="title" value="view"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/viewPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/viewPo.jsp" />
 			</definition>
 			
 			 <!-- Edit -->
 			<definition name="edit" extends="baseLayout" >
 			 <put-attribute name="title" value="editpo"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/EditPo.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/EditPo.jsp" />
 			</definition>
 		   
 		    <!-- SupplierInvoiceView -->
 		   <definition name="supplierinvoiceview" extends="baseLayout" >
 		   <put-attribute name="title" value="supplierinvoice"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Invoice.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/Invoice.jsp" />
 			</definition>
 			
 			 <!-- AcknowledgementView -->
 			<definition name="acknowledgementView" extends="baseLayout" >
 			<put-attribute name="title" value="acknowledgement"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Ack.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/Ack.jsp" />
 			</definition>
 			
 			 <!-- SupplierAcknowledgementView -->
 			<definition name="supplierackView" extends="baseLayout" >
 			<put-attribute name="title" value="supplierack"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/Acksupplier.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/Acksupplier.jsp" />
 			</definition>	
 			
 			 <!-- Master masters pages -->
@@ -211,8 +213,25 @@
             <!-- New Mail Campaign -->
              <definition name="getemaillist" extends="baseLayout" >
 			 <put-attribute name="title" value="newemaillist" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/newMailCampaign.jsp" />
+			 </definition>
+			 <!-- Add Email -->
+			 <definition name="addemaillist" extends="baseLayout" >
+			 <put-attribute name="title" value="newemaillist" />
 			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/addEmailList.jsp" />
 			 </definition>
+
+			 <!-- Add Address -->
+			 <definition name="getaddress" extends="baseLayout" >
+			 <put-attribute name="title" value="addaddress" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/addAddress.jsp" />
+			 </definition>
+			 <!-- import csv file -->
+			 <definition name="getcsvfile" extends="baseLayout">
+			 <put-attribute name="title" value="importcsvfile" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/importCsvFile.jsp" />
+			 </definition>
+
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
@@ -315,10 +334,12 @@
 			<put-attribute name="title" value="Customer List" />
 				<put-attribute name="body" value="/WEB-INF/views/customer/salesCustomerList.jsp" />
 			</definition>
+
 			<definition name="AddDiaryForEntrySales" extends="baseLayout" >
 			<put-attribute name="title" value="Add Diary" />
 			<put-attribute name="body" value="/WEB-INF/views/customer/AddDiaryForEntery.jsp" />
 			</definition>
+
 			<definition name="CreateQuotationForm" extends="baseLayout" >
 			<put-attribute name="title" value="Create Quotation" />
 			<put-attribute name="body" value="/WEB-INF/views/customer/createQuotation.jsp" />
@@ -333,14 +354,15 @@
 			<put-attribute name="title" value="Edit Customer " />
 			<put-attribute name="body" value="/WEB-INF/views/customer/editCustomer.jsp" />
 			</definition>
+
+				
+
 			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >
 			<put-attribute name="title" value="sms permission" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/sms.jsp" />
 			</definition>
-			
-			
 			
 			
 			<definition name="getserviceprovider" extends="baseLayout" >

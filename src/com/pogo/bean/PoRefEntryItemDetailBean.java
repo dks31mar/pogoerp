@@ -1,5 +1,7 @@
 package com.pogo.bean;
 
+import com.pogo.model.PorefSupplierDetail;
+
 public class PoRefEntryItemDetailBean{
 		
 
@@ -17,6 +19,14 @@ public class PoRefEntryItemDetailBean{
 	 	private String invdate;
 	 	private String customerporefe;
 	 	private String productdescription;
+	 	private PorefSupplierDetail porefnobysupplier;
+	 	
+		public PorefSupplierDetail getPorefnobysupplier() {
+			return porefnobysupplier;
+		}
+		public void setPorefnobysupplier(PorefSupplierDetail porefnobysupplier) {
+			this.porefnobysupplier = porefnobysupplier;
+		}
 		public Integer getPorefentryitemdetailid() {
 			return porefentryitemdetailid;
 		}

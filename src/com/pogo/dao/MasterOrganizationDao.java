@@ -129,6 +129,7 @@ void updateCompetitior(CompetitiorsProfile comprof);
 
 	void updateStates(StateZone stateZone);
 
+
 	StateZone deleteState(int id);
 
 	void deletedata(StateZone stateZone);
@@ -138,6 +139,17 @@ void updateCompetitior(CompetitiorsProfile comprof);
 	Branch deleteBranch(int id);
 
 	void deletebr(Branch branch);
+
+
+
+	
+
+	
+
+
+	
+
+	
 
 
 

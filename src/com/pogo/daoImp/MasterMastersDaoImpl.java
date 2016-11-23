@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.Country;
@@ -192,16 +193,24 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		public void editDistrict(District poref1){
 			
 			sessionFactory.getCurrentSession().update(poref1);
-			//
+			
 		}
 	 
 
 
 	@Override
 
-		public List<Location> locationList(){
+		public List<Location> locationList(Integer id){
 			
-			return (List<Location>) sessionFactory.getCurrentSession().createCriteria(Location.class).list();
+			/* (List<Location>) sessionFactory.getCurrentSession().createCriteria(Location.class).list();*/
+		Criteria location=sessionFactory.getCurrentSession().createCriteria(Location.class);
+		Criteria district=location.createCriteria("district");
+		district.add(Restrictions.eq("districtId", id));
+		List<Location> list= location.list();
+			 
+			 
+			 
+			 return list;
 		}
 	
 		@Override
@@ -398,6 +407,57 @@ public void editSourceProviderbyId(ServiceProvider sp) {
 	sessionFactory.getCurrentSession().flush();
 	sessionFactory.getCurrentSession().update(sp);
 }
+@Override
+public List<Country> getCountryDetails() {
+	return sessionFactory.getCurrentSession().createCriteria(Country.class).list();
+}
+@Override
+public List<CustomerLevels> getCustomerStatusDetails() 
+{
+	return sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).list();
+}
+@Override
+public District getDistrictDataById(Integer districtId) {
+	return (District) sessionFactory.getCurrentSession().get(District.class, districtId);
+}
+@Override
+public Country getCountryDataById(Integer countryId) {
+	return (Country) sessionFactory.getCurrentSession().get(Country.class, countryId);
+}
+@Override
+public List<State> getStateByContryId(int id) {
+	return sessionFactory.getCurrentSession().createCriteria(State.class)
+			.add(Restrictions.eq("country.countryId", id)).list();
+}
+
+@Override
+@Transactional
+public State getStatesById(Integer stateId) {
+	return (State) sessionFactory.getCurrentSession().get(State.class, stateId);
+}
+@Override
+public List<Location> getLocationDetails() {
+	return sessionFactory.getCurrentSession().createCriteria(Location.class).list();
+}
+@Override
+public Location getLocations(Integer sublocationId) {
+	return (Location) sessionFactory.getCurrentSession().get(Location.class, sublocationId);
+}
+@Override
+public CustomerLevels getCustomerStatusById(Integer customerLevelId) {
+	return (CustomerLevels) sessionFactory.getCurrentSession().get(CustomerLevels.class, customerLevelId);
+}
+@Override
+public List<District> getdistrictByStateIdAndCountryId(int id, int countryId) {
+	return sessionFactory.getCurrentSession().createCriteria(District.class)
+			.add(Restrictions.eq("state.stateId", id)).add(Restrictions.eq("country.countryId", countryId)).list();
+}
+@Override
+public void deleteserviceprovider(int id) {
+	sessionFactory.getCurrentSession().createQuery("DELETE FROM ServiceProvider WHERE transportationserviceid = "+id).executeUpdate();
+	
+}
+
 
 }
 

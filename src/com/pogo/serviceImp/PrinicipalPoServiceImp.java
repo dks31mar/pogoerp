@@ -84,7 +84,7 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		porefentry.setQty(poRefEntry.getQty());
 		porefentry.setTotaljpy(poRefEntry.getTotaljpy());
 		porefentry.setCustomerporefe(poRefEntry.getCustomerporefe());
-		porefentry.setPorefno(pore);
+		porefentry.setPorefnobysupplier(pore);
 		prinicipaldao.addPoDetails(porefentry);
 		
 	}
@@ -140,6 +140,102 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		porefsup.setTotal(porefs.getTotal());
 		prinicipaldao.addPoSupplier(porefsup);
 		
+	}
+
+	@Override
+	public List<PorefSupplierDetailBean> getSupplierlist() {
+		List<PorefSupplierDetail> lst=prinicipaldao.getSupplierlist();
+		List<PorefSupplierDetailBean> lst1=new ArrayList<>();
+		for(PorefSupplierDetail e:lst){
+			PorefSupplierDetailBean bean=new PorefSupplierDetailBean();
+			bean.setAddress(e.getAddress());
+			bean.setPorefdate(e.getPorefdate());
+			bean.setPorefno(e.getPorefno());
+			bean.setTotal(e.getTotal());
+			bean.setPrincipalname(e.getPrincipalname());
+			lst1.add(bean);
+		}
+		return lst1;
+	}
+
+	@Override
+	public List<PoRefEntryItemDetailBean> getPoDetailByPorefNo(String poref) {
+		List<PoRefEntryItemDetail> lst=prinicipaldao.getPoDetailByPorefNo(poref);
+		List<PoRefEntryItemDetailBean> lst1=new ArrayList<>();
+		for(PoRefEntryItemDetail e:lst){
+			PoRefEntryItemDetailBean bean=new PoRefEntryItemDetailBean();
+			bean.setPorefentryitemdetailid(e.getPorefentryitemdetailid());
+			  
+		 	  bean.setParticular(e.getParticular());
+		 	  bean.setTpinjpy(e.getTpinjpy());
+		 	  bean.setQty(e.getQty());
+		 	  bean.setTotaljpy(e.getTotaljpy());
+		 	  bean.setTotalinr(e.getTotalinr());
+		 	  bean.setAckdate(e.getAckdate());  
+		 	  bean.setRemarks(e.getRemarks());
+		 	  bean.setPosrno(e.getPosrno());
+		 	  bean.setInvno(e.getInvno());
+		 	  bean.setInvdate(e.getInvdate());
+		 	  bean.setCustomerporefe(e.getCustomerporefe());
+		 	  bean.setProductdescription(e.getProductdescription());
+		 	  bean.setPorefnobysupplier(e.getPorefnobysupplier());
+		 	  System.out.println(e.getParticular());
+		 	 System.out.println("<<<<<<<<<<<<<<>>>>>>>>>>>      "+e.getPorefnobysupplier().getPorefno());
+		 	 lst1.add(bean);
+		}
+		return lst1;
+	}
+
+	@Override
+	@Transactional
+	public void UpdatePoProduct(PoRefEntryItemDetailBean poref, PorefSupplierDetailBean porefs) {
+		String s=porefs.getPorefno();
+		String s2=null;
+		if(s.contains("CBW")){
+			String data=s.split("/")[2];
+			int i=Integer.parseInt(data.split("-")[1]);
+			s2=s.split("/")[0]+"/"+s.split("/")[1]+"/"+"CBW"+"-"+(i+1);
+		}else {
+			int i=Integer.parseInt(s.split("/")[2]);
+			s2=s.split("/")[0]+"/"+s.split("/")[1]+"/"+"0"+(i+1);
+		}
+		PoRefEntryItemDetail porefentry=new PoRefEntryItemDetail();
+		PorefSupplierDetail pore=new PorefSupplierDetail();
+		porefentry.setPorefentryitemdetailid(poref.getPorefentryitemdetailid());
+		pore.setPorefno(porefs.getPorefno());
+		porefentry.setParticular(poref.getParticular());
+		porefentry.setProductdescription(poref.getProductdescription());
+		porefentry.setTpinjpy(poref.getTpinjpy());
+		porefentry.setQty(poref.getQty());
+		porefentry.setTotaljpy(poref.getTotaljpy());
+		porefentry.setCustomerporefe(poref.getCustomerporefe());
+		porefentry.setPorefnobysupplier(pore);
+		prinicipaldao.addPoDetails(porefentry);
+		
+	}
+
+	@Override
+	@Transactional
+	public void updatePoSupplier(PorefSupplierDetailBean porefs) {
+		String s=porefs.getPorefno();
+		String s2=null;
+		if(s.contains("CBW")){
+			String data=s.split("/")[2];
+			int i=Integer.parseInt(data.split("-")[1]);
+			s2=s.split("/")[0]+"/"+s.split("/")[1]+"/"+"CBW"+"-"+(i+1);
+		}else {
+			int i=Integer.parseInt(s.split("/")[2]);
+			s2=s.split("/")[0]+"/"+s.split("/")[1]+"/"+"0"+(i+1);
+		}
+		PorefSupplierDetail porefgetid=prinicipaldao.getidbyporefnumber(s);
+		PorefSupplierDetail porefsup=new PorefSupplierDetail();
+		porefsup.setPorefsupplierdetailid(porefgetid.getPorefsupplierdetailid());
+		porefsup.setPorefno(porefs.getPorefno());
+		porefsup.setAddress("YMC CO.,LTD. YMC Karasuma-Gojo Building 284 Daigo-cho Karasuma Nishiliru Gojo-dori,Shimogyo -Ku Kyoto 600-8106 Japan");
+		porefsup.setPrincipalname("YMC Co. Ltd., Japan");
+		porefsup.setPorefdate(porefs.getPorefdate());
+		porefsup.setTotal(porefs.getTotal());
+		prinicipaldao.updatePoSupplier(porefsup);
 	}
 
 

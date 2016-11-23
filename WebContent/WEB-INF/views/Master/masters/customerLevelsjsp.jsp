@@ -35,7 +35,7 @@
 <input type="hidden" id="hiddenid"/>
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="customerlevels"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Enter Customer Levels "
-						maxlength="20" autofocus="autofocus"></input><span style = "color:red;" id = "customerval">Please enter a value</span></div>
+						 autofocus="autofocus"></input></div>
   
 </div>
 
@@ -48,7 +48,9 @@
 				<div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
 				class="btn btn-primary" id="EditForm">Edit</button></div>
 </div> 
-
+<div class="row">
+<div class="col-md-10" align="right"><span style="color: red" id="msg1" >*This field is required.</span></div>
+</div>
 
 </div>
 </div>
@@ -108,15 +110,20 @@ $("#getcustomerpopup").click(function(){
 	 $("#customerlevels").val('');
 	 $("#customerval").hide();
 	 $("#hiddenid").val('');
+	 $("#msg1").hide();
+
 	
 });
 	    });
 $("#formid").hide();
 $("#customerval").hide();
+$("#msg1").hide();
+
+
 $('#saveForm').click(function (){
 	var customerlevels=$('#customerlevels').val();
 	if(customerlevels == ''){
-		$("#customerval").show();
+		$("#msg1").show('fast');
 	}
 	else{
 		var jsonObj={'status':customerlevels
@@ -148,6 +155,7 @@ function editCur(id){
 	$("#formid").show('show');
 	$('#EditForm').show();
 	$("#saveForm").hide(); 
+	$("#msg1").hide();
 	
 $.ajax({
 	url: "getcustomerlevel?id="+id,
@@ -176,7 +184,10 @@ $('#EditForm').click(function (){
 	
 	var d1w=$("#hiddenid").val();
 	//alert(d1w);
-	
+	if(customerlevels == '' ){
+		$("#msg1").show('fast');
+	}
+	else{
 	
 	var jsonObj={'status':customerlevels,'id':id} ;
 $.ajax({
@@ -195,9 +206,18 @@ $.ajax({
 		    	 window.location.reload();
 	    // alert("edit");
 	    }});
+	}
+	
+});
+
+$('#customerlevels').click(function (){
+	 $('#msg1').hide();
+	 
 	
 	
 });
+
+
 </script>
 
 

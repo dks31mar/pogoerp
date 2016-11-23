@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pogo.dao.PrinicipalDao;
+import com.pogo.model.CustomerLevels;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
@@ -53,6 +54,7 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 
 	@Override
 	public void addPoDetails(PoRefEntryItemDetail poRefEntry) {
+		System.out.println(poRefEntry.getPorefentryitemdetailid());
 		sessionFactory.getCurrentSession().flush();
 		if(poRefEntry.getPorefentryitemdetailid()==null){
 		sessionFactory.getCurrentSession().save(poRefEntry);
@@ -111,6 +113,31 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 		
 		sessionFactory.getCurrentSession().save(porefs);
 		
+	}
+
+	@Override
+	public List<PorefSupplierDetail> getSupplierlist() {
+		
+		return (List<PorefSupplierDetail>) sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class).list();
+	}
+
+	@Override
+	public List<PoRefEntryItemDetail> getPoDetailByPorefNo(String poref) {
+		
+		return sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefnobysupplier.porefno", poref)).list();
+	}
+
+	@Override
+	public void updatePoSupplier(PorefSupplierDetail porefsup) {
+		
+		sessionFactory.getCurrentSession().merge(porefsup);
+	}
+
+	@Override
+	public PorefSupplierDetail getidbyporefnumber(String s) {
+	PorefSupplierDetail d=	(PorefSupplierDetail) sessionFactory.getCurrentSession().get(PorefSupplierDetail.class, s);
+	
+	return d;
 	}
 	
 	

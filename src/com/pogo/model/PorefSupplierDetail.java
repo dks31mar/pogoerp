@@ -1,12 +1,16 @@
 package com.pogo.model;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="porefsupplierdetail")
@@ -39,6 +43,22 @@ public class PorefSupplierDetail implements Serializable{
 
  	@Column(name="total",columnDefinition="int(11)")
     private double total;
+
+ 	@OneToMany(targetEntity=PoRefEntryItemDetail.class,mappedBy="porefnobysupplier",fetch=FetchType.LAZY)
+ 	private List<PoRefEntryItemDetail> porefnobysupplier;
+ 	
+ 	
+ 	
+ 	
+	
+ 	
+	public List<PoRefEntryItemDetail> getPorefsupplier() {
+		return porefnobysupplier;
+	}
+
+	public void setPorefsupplier(List<PoRefEntryItemDetail> porefnobysupplier) {
+		this.porefnobysupplier = porefnobysupplier;
+	}
 
 	public String getPorefsupplierdetailid() {
 		return porefsupplierdetailid;

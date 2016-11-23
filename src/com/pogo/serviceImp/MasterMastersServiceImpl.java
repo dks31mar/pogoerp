@@ -179,10 +179,14 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	@Override
 	@Transactional
 	public void editState(StateBean poref1){
+		System.out.println("inside edit state service impl");
+		Country c=new Country();
+		c.setCountryId(poref1.getCountryId());
 		State state=new State();
 		state.setStateId(poref1.getStateId());
 		state.setState(poref1.getState());
-		
+		state.setCountry(c);
+		System.out.println("outside edit state service impl");
 		masterMastersdao.editState(state);
 	}
 
@@ -230,29 +234,32 @@ public class MasterMastersServiceImpl implements MasterMastersService {
    @Override
    @Transactional
    public void editDistrict(DistrictBean poref1){
+	  // System.out.println(""+poref1.getDistrictId());
+	   State s=new State();
+	  s.setStateId(Integer.parseInt(poref1.getStateId()));
 	District district=new District();
 	district.setDistrictId(poref1.getDistrictId());
 	district.setDistrict(poref1.getDistrict());
-	
+	district.setState(s);
 	masterMastersdao.editDistrict(district);
 }
    
    @Override
 	
-	public List<Location> locationList(){
-		return masterMastersdao.locationList();
+	public List<Location> locationList(Integer id){
+		return masterMastersdao.locationList(id);
 	}
 	
 	@Override
 	@Transactional
 	public void addLocation(LocationBean poref1) {
-		//District district = new District();
-		//district.setDistrictId(poref1.getLocationId());
-		//System.out.println(poref1.getDistrictId());
+		District district = new District();
+		district.setDistrictId(poref1.getLocationId());
+		System.out.println(poref1.getDistrictId());
 		
 		Location location=new Location();
 		location.setLocation(poref1.getLocation());
-		//location.setDistrict(district);
+		location.setDistrict(district);
 		masterMastersdao.addLocation(location);
 		
 		
@@ -282,10 +289,13 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	@Override
 	@Transactional
 	public void editLocation(LocationBean poref1){
+		District district=new District();
+		district.setDistrictId(poref1.getDistrictId());
+		System.out.println(poref1.getDistrictId());
 		Location location=new Location();
 		location.setLocationId(poref1.getLocationId());
 		location.setLocation(poref1.getLocation());
-		
+		location.setDistrict(district);
 		masterMastersdao.editLocation(location);
 	}
 	
@@ -614,6 +624,98 @@ public void editSourceProviderbyId(ServiceProviderBean servicepro) {
 	sp.setTransportationserviceid(servicepro.getTransportationserviceid());
 	
 	masterMastersdao.editSourceProviderbyId(sp);
+}
+
+@Override
+public List<CountryBean> countryDetails() 
+{
+	List<Country> countries=masterMastersdao.getCountryDetails();
+	List<CountryBean> bean=new ArrayList<CountryBean>();
+	for(Country data:countries)
+	{
+		CountryBean countryBean=new CountryBean();
+		countryBean.setCountryId(data.getCountryId());
+		countryBean.setCountry(data.getCountry());
+		bean.add(countryBean);
+	}
+	
+	return bean;
+}
+
+@Override
+public List<CustomerLevelsBean> getCustomersStatus() {
+	List<CustomerLevels> cusStatus=masterMastersdao.getCustomerStatusDetails();
+	List<CustomerLevelsBean> beans=new ArrayList<CustomerLevelsBean>();
+	for(CustomerLevels status:cusStatus)
+	{
+		CustomerLevelsBean cstatus=new CustomerLevelsBean();
+		cstatus.setId(status.getId());
+		cstatus.setStatus(status.getStatus());
+		beans.add(cstatus);
+	}
+	return beans;
+}
+
+@Override
+public List<StateBean> getStateByCountryId(int id) {
+	List<State> state=masterMastersdao.getStateByContryId(id);
+	List<StateBean> beans=new ArrayList<StateBean>();
+	for(State data:state)
+	{
+		StateBean stateBean=new StateBean();
+		stateBean.setStateId(data.getStateId());
+		stateBean.setState(data.getState());
+		System.out.println("on Service"+ data.getState());
+		Country country=data.getCountry();
+		stateBean.setCountryId(country.getCountryId());
+		stateBean.setCountryName(country.getCountry());
+		beans.add(stateBean);
+	}
+	return beans;
+}
+
+@Override
+public List<LocationBean> getLocationDetails() 
+{
+	List<Location> locations=masterMastersdao.getLocationDetails();
+	List<LocationBean> locationbeans=new ArrayList<LocationBean>();
+	for(Location data:locations)
+	{
+		LocationBean bean=new LocationBean();
+		bean.setLocationId(data.getLocationId());
+		bean.setLocation(data.getLocation());
+		locationbeans.add(bean);
+	}
+	return locationbeans;
+}
+
+@Override
+public List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId) 
+{
+	List<District> districts=masterMastersdao.getdistrictByStateIdAndCountryId(id,countryId);
+	List<DistrictBean> districtBeans=new ArrayList<DistrictBean>();
+	for(District data:districts)
+	{
+		DistrictBean bean=new DistrictBean();
+		bean.setDistrictId(data.getDistrictId());
+		bean.setDistrict(data.getDistrict());
+		System.out.println("on service" +data.getDistrict());
+		State state=data.getState();
+		Country country=data.getCountry();
+		bean.setStateName(state.getState());
+		bean.setStatesId(state.getStateId());
+		//bean.setStateId(String.valueOf(state.getStateId()));
+		bean.setCountryName(country.getCountry());
+		bean.setCountryId(country.getCountryId());
+		districtBeans.add(bean);
+	}
+	return districtBeans;
+}
+
+@Override
+public void deleteServiceprovider(int id) {
+	masterMastersdao.deleteserviceprovider(id);
+	
 }
 
 
