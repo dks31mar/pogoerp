@@ -47,7 +47,7 @@
 		 <label
 			 style="margin-left: 250px;margin-top: 8px;"><a href="addbranchbystate"
 			class="btn btn-primary">Add Branches</a>
-			<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
+			
      </label>
   		
 </div>

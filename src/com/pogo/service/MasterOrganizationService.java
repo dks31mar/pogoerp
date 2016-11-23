@@ -90,7 +90,7 @@ public interface MasterOrganizationService {
 
 	List<StatezoneBean> getstateData();
 
-	void updateState(StatezoneBean statezoneBean);
+	void updateState(StatezoneBean statezoneBean, int id);
 
 	void deletestate(int id);
 

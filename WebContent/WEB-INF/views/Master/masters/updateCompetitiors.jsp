@@ -65,7 +65,7 @@
     <form:form class="well form-horizontal" name="forp" action="" method="POST"  commandName="userbean"
     id="" >
 <!-- Form Name -->
-<center><legend>Competitor Profile</legend></center>
+<legend>Edit Competitor Profile</legend>
   
 
 <div class="form-group">
@@ -122,99 +122,54 @@
   </div> 
 </div>
 <div class="form-group"> 
-  <label class="col-md-2 control-label">E-Mail 1</label>
+  <label class="col-md-2 control-label">E-Mail</label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
   <input  name="eamil"  placeholder="E-Mail Address" class="form-control"id ="email1" required="required" type="email">
     
+  
   </div>
 </div>
-<div class="form-group"> 
+<!--  
+ <div class="form-group"> 
   <label class="col-md-2 control-label">Fax No</label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
    <input  name="fax"  placeholder="fax Address" class="form-control"  id="faxno" required="required" type="fax">
-   </div>
-   </div>
-   </div>
-<!--  
- <label class="col-md-2 control-label" style="margin-left: -62px;">E-Mail 2<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="eamil"  placeholder="E-Mail Address" class="form-control" id ="email2" required="required" type="email">
-    </div>
   </div>
-  -->
-<!--  
 </div>
- 
-<div class="form-group"> 
-  <label class="col-md-2 control-label">Fax No</label>
-    <div class="col-md-3 selectContainer">
-    <div class="input-group">
-       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
-   <input  name="fax"  placeholder="fax Address" class="form-control"  id="faxno" required="required" type="fax">
-  </div>
-  </div>
-   
-   </div>
- 
-<div class="form-group"> 
-  <label class="col-md-2 control-label">Fax No</label>
-    <div class="col-md-3 selectContainer">
-    <div class="input-group">
-       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
-   <input  name="fax"  placeholder="fax Address" class="form-control"  id="faxno" required="required" type="fax">
-  </div>
-  </div>
+ <!--  
+</div>
 
+<div class="form-group"> 
+  <label class="col-md-2 control-label">Fax No</label>
+    <div class="col-md-3 selectContainer">
+    <div class="input-group">
+       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
+   <input  name="fax"  placeholder="fax Address" class="form-control"  id="faxno" required="required" type="fax">
+  </div>
+</div>
+-->
  <label class="col-md-2 control-label" style="margin-left: -62px;">Product Brand<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
   <input   name="Product" placeholder=" Product Brand" id="product" required="required"  class="form-control"  type="text">
-    </div>
+    </div> 
   </div>
-</div>
--->
 </div>
 <div class="form-group"> 
   <label class="col-md-2 control-label">Product Name</label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input   name="firstname" placeholder=" Name" id="firstUpper" required="required"  class="form-control"  type="text">
+  <input   name="firstname" placeholder="ProductName" id="firstUpper" required="required"  class="form-control"  type="text">
    
- </div>
+  </div>
 </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">Product Type<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="department" class="form-control selectpicker" required="required" >
-   <option>---Select Product---</option> 
-      <option value="HR">Chemical</option>
-	  <option value="Data Entry">Filters</option>
-     
-    </select>
-    </div>
-  </div>
-</div> 
-<!-- Text input-->
-   
-<div class="form-group">
-  <label class="col-md-2 control-label">Price(Rs.)<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-doller"></i></span>
-  <input name="price"  class="form-control" placeholder="$122" type="text" required="required">
-    </div>
-  </div>
-  
-   <label class="col-md-2 control-label" style="margin-left: -62px;">Warranty Period</label>  
+<label class="col-md-2 control-label" style="margin-left: -62px;">Warranty Period</label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
@@ -224,6 +179,30 @@
 	  <option value="yera entry">1 year</option>
      <option value="yera entry">2 years</option>
      <option value="yera entry">3 years</option>
+    </select>
+    </div>
+  </div>
+</div> 
+
+<!-- Text input-->
+       
+<div class="form-group">
+  <label class="col-md-2 control-label">Price(Rs.)<span style="color: red;">*</span></label>  
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-doller"></i></span>
+  <input name="price"  class="form-control" placeholder="$122" type="text" required="required">
+    </div>
+  </div>
+   <label class="col-md-2 control-label" style="margin-left: -62px;">NO of Free AMC<span style="color: red;">*</span></label>  
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="department" class="form-control selectpicker" required="required" >
+    <option>--- Select Free AMC---</option> 
+      <option value="" >1</option>
+      <option value="">2</option>
+       <option value="">More Than 2</option>
     </select>
     </div>
   </div>
@@ -238,18 +217,7 @@
    
   </div>
 </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">NO of Free AMC<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="department" class="form-control selectpicker" required="required" >
-    <option>--- Select Free AMC---</option> 
-      <option value="" >1</option>
-      <option value="">2</option>
-       <option value="">More Than 2</option>
-    </select>
-    </div>
-  </div>
+ 
 </div> 
 
 <!-- Success message -->
@@ -259,7 +227,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
-    <button type="button" class="btn btn-warning" onclick="message();" id="" >Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="button" class="btn btn-warning" onclick="message();" id="senddata" >Send <span class="glyphicon glyphicon-send"></span></button>
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>
@@ -309,7 +277,7 @@
 		            xhr.setRequestHeader("Content-Type", "application/json");  
 		        },
 			     success: function(resposeJsonObject){
-			    	 window.location.href = "competitiorsProfile";
+			    	 window.location.href ="competitiorsProfile";
 		    }});
 		
    }

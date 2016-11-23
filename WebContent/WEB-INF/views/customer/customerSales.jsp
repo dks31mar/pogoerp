@@ -20,11 +20,11 @@
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; " >
 		<span class="glyphicon glyphicon-user"></span> <span> Customer</span>
-		<label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"
-			class="btn btn-primary">Add Dairy</a>
-			
-     </label>
+		<label style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"class="btn btn-primary">Add Dairy</a></label>
+		<label style="margin-left: 250px;margin-top: 8px;"><a href="CreateQuotationForm"class="btn btn-primary">Create Quotation</a></label>
+		<label style="margin-left: 250px;margin-top: 8px;"><a href="AddFollowupForm"class="btn btn-primary">Add FallowUp</a></label>
+		<label style="margin-left: 250px;margin-top: 8px;"><a href="editCustomerForm" class="btn btn-primary">Edit Customer</a></label>	
+  
   		
 	</div>
 	
