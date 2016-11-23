@@ -200,9 +200,17 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 
 	@Override
 
-		public List<Location> locationList(){
+		public List<Location> locationList(Integer id){
 			
-			return (List<Location>) sessionFactory.getCurrentSession().createCriteria(Location.class).list();
+			/* (List<Location>) sessionFactory.getCurrentSession().createCriteria(Location.class).list();*/
+		Criteria location=sessionFactory.getCurrentSession().createCriteria(Location.class);
+		Criteria district=location.createCriteria("district");
+		district.add(Restrictions.eq("districtId", id));
+		List<Location> list= location.list();
+			 
+			 
+			 
+			 return list;
 		}
 	
 		@Override
@@ -443,6 +451,11 @@ public CustomerLevels getCustomerStatusById(Integer customerLevelId) {
 public List<District> getdistrictByStateIdAndCountryId(int id, int countryId) {
 	return sessionFactory.getCurrentSession().createCriteria(District.class)
 			.add(Restrictions.eq("state.stateId", id)).add(Restrictions.eq("country.countryId", countryId)).list();
+}
+@Override
+public void deleteserviceprovider(int id) {
+	sessionFactory.getCurrentSession().createQuery("DELETE FROM ServiceProvider WHERE transportationserviceid = "+id).executeUpdate();
+	
 }
 
 

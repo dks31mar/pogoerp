@@ -47,7 +47,7 @@ public interface MasterMastersDao {
 	 List<District> getDistrictById (String id);
 	 void editDistrict(District poref1);
 	 
-	 List<Location> locationList();
+	 List<Location> locationList(Integer id);
 	 void addLocation(Location poref1);
 	 void deleteLocation(int id);
 	 List<Location> getLocationById (String id);
@@ -99,6 +99,7 @@ public interface MasterMastersDao {
 	Location getLocations(Integer sublocationId);
 	CustomerLevels getCustomerStatusById(Integer customerLevelId);
 	List<District> getdistrictByStateIdAndCountryId(int id, int countryId);
+	void deleteserviceprovider(int id);
 	
 
 

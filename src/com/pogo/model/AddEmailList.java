@@ -1,5 +1,6 @@
 package com.pogo.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,20 +10,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "addemaillist")
-public class AddEmailList {
+public class AddEmailList implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="emaillistid")
 	private Integer emaillistid;
-	@Column(name="emaillist", nullable = false)
+	@Column(name="emaillist")
 	private String emaillist;
-	@Column(name = "date" , columnDefinition = "date default sysdate")
+	@Column(name = "date")
 	private Date creationdate;
-	@Column(name="empid" , nullable = false)
+	@Column(name="empid" )
 	private Integer empid;
-	@Column(name="status" , nullable = false , columnDefinition = "char default 'N'")
+	@Column(name="status" , columnDefinition="char(1) DEFAULT 'N'")
 	private String status;
 	@Column(name = "name")
 	private String name;

@@ -3,6 +3,7 @@ package com.pogo.bean;
 public class CountryBean {
 	
 	private Integer countryId ;
+	private String country;
 	public Integer getCountryId() {
 		return countryId;
 	}
@@ -15,6 +16,6 @@ public class CountryBean {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	private String country;
+	
 
 }

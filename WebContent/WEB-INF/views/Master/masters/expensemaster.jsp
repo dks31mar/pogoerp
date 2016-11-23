@@ -49,13 +49,13 @@
 <div class="row">  
 <input type="hidden" id="hiddenid"/>								
 <div class="col-md-3">
-<input  type="text" class="validate[required] text-input" id="expensehead" style="border-radius: 5px;" value="" name="loginname" maxlength="20" autofocus="autofocus"></input>	
+<input  type="text" class="validate[required] text-input" id="expensehead" style="border-radius: 5px;" value="" name="loginname"  autofocus="autofocus"></input>	
 									
 </div>
 <div class="col-md-3">
-<input  type="text" class="validate[required] text-input" id="expensetype" style="border-radius: 5px;" value="" name="loginname" maxlength="20" autofocus="autofocus"></input>  
+<input  type="text" class="validate[required] text-input" id="expensetype" style="border-radius: 5px;" value="" name="loginname"  autofocus="autofocus"></input>  
 </div>
-<div class="col-md-3"><input  type="number" class="validate[required] text-input" id="unit" style="border-radius: 5px;" name="firstname" value=""  maxlength="20"></input>
+<div class="col-md-3"><input  type="number" class="validate[required] text-input" id="unit" style="border-radius: 5px;" name="firstname" value=""  ></input>
 </div>						
 <div class="col-md-3"><input  type="number" class="validate[required] text-input" id="limit" style="border-radius: 5px;" name="firstname" value=""  maxlength="20"></input>					
 </div>	

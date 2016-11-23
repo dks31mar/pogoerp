@@ -35,7 +35,7 @@
 <input type="hidden" id="countryid" value="${country123}"/> 
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addstate"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add State"
-						maxlength="20" autofocus="autofocus"></input><span style ="color:red;" id = "statespan">Please enter a state</span></div>
+						 autofocus="autofocus"></input></div>
   
 </div>
 
@@ -48,7 +48,9 @@
 				<div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
 				class="btn btn-primary" id="EditForm">Edit</button></div>
 </div> 
-
+<div class="row">
+<div class="col-md-10" align="right"><span style="color: red" id="msg1" >*This field is required.</span></div>
+</div>
 
 </div>
 </div>
@@ -105,16 +107,17 @@ $("#getcountrypopup").click(function(){
 	 $("#addstate").val('');
 	 $('#statespan').hide();
 	 $("#hiddenid").val('');
+	 $("#msg1").hide();
 	
 });
 	    });
 $("#formid").hide();
-$('#statespan').hide();
+$("#msg1").hide();
 $('#saveForm').click(function (){
 	var addstate=$('#addstate').val();
 
 	if(addstate == ''){
-		$('#statespan').show();
+		$("#msg1").show();
 	}
 	else{
 		//var jsonObj={'state':addstate }
@@ -150,6 +153,8 @@ function editCur(id){
 	$("#formid").show('show');
 	$('#EditForm').show();
 	$("#saveForm").hide(); 
+	
+	$("#msg1").hide();
 $.ajax({
 	url: "getstate?stateId="+id,
 	type: "GET",
@@ -177,8 +182,13 @@ $('#EditForm').click(function (){
 	var d1w=$("#hiddenid").val();
 	//alert(d1w);
 	
-	
-	var jsonObj={'state':addstate,'stateId':id} ;
+	var d=$('#countryid').val();
+	if(addstate == '' ){
+		$("#msg1").show();
+	}
+	else{
+	//alert("country id is "+d);
+	var jsonObj={'state':addstate,'stateId':id,'countryId':d} ;
 $.ajax({
 		url: "editstate",
 		type: "POST",
@@ -195,6 +205,12 @@ $.ajax({
 		    	 window.location.reload();
 	     //alert("edit");
 	    }});
+	}
+	
+});
+$('#addstate').click(function (){
+	 $('#msg1').hide();
+	 
 	
 	
 });
