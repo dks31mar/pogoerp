@@ -13,4 +13,6 @@ public interface CustomerSalesService
 
 	List<CustomerSalesBean> findAllData();
 
+	void SaveDiaryForEntery();
+
 }

@@ -220,19 +220,17 @@
 		   
 		   alert(selecthead);
 		   
-<<<<<<< HEAD
 
-=======
-
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		   if(reginname==''||mobileno==''||emailid==''||fax==''||regadress==''||selecthead=='---Select Region---'){
-<<<<<<< HEAD
+
 			   $('#messagespan').show('fast');
-=======
+
 			   $('#messagespan').show('fast');
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 		   
 		   }
+		   else{
+			   
 		   
 		   
 			   var jsonObj={
@@ -259,7 +257,7 @@
 }
 				        
 			});	  
-		  
+		   }  
 			
 		  
 		}); 

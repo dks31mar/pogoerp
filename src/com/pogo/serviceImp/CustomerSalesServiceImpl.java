@@ -98,5 +98,10 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 		}
 		return salesbean;
 	}
+	@Override
+	public void SaveDiaryForEntery() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
