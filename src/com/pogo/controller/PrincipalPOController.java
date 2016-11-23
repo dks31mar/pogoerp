@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.pogo.bean.Book;
 import com.pogo.bean.JsonArraytoJson;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
 import com.pogo.bean.PorefSupplierDetailBean;
+import com.pogo.bean.PrinicipalPoPDFBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.service.PrinicipalPoService;
@@ -302,7 +304,28 @@ private PoRefEntryItemDetailCopyBean prepareProductBean(List<PoRefEntryItemDetai
 	return poref;
 }
 
-
+@RequestMapping(value = "/downloadPDF", method = RequestMethod.GET)
+public ModelAndView downloadExcel(@RequestParam("poref") String poref) {
+	// create some sample data
+	
+	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getPoDetailByPorefNo(poref);
+	
+	List<PrinicipalPoPDFBean> listBooks = new ArrayList<PrinicipalPoPDFBean>();
+	int i=0;
+	double totlqty=0.0;
+	for(PoRefEntryItemDetailBean e:lst){
+		totlqty+=e.getQty();
+	}
+	
+	
+	for(PoRefEntryItemDetailBean e:lst){
+		listBooks.add(new PrinicipalPoPDFBean(++i,e.getProductdescription(),e.getParticular(),e.getTpinjpy(),e.getQty(),e.getTotaljpy(),e.getPorefnobysupplier().getPorefno(),e.getPorefnobysupplier().getPorefdate(),"Deepak",e.getPorefnobysupplier().getAddress(),e.getPorefnobysupplier().getTotal(),totlqty));
+	
+	}
+	
+	return new ModelAndView("pdfView", "listBooks", listBooks);
+}
 /*private PoRefEntryItemDetailCopyBean prepareProductBeanCopy(List<PoRefEntryItemDetailCopy> productEdit) {
 	PoRefEntryItemDetailCopyBean poref =new PoRefEntryItemDetailCopyBean();
 	

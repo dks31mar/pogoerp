@@ -21,6 +21,17 @@ public class PoRefEntryItemDetailBean{
 	 	private String productdescription;
 	 	private PorefSupplierDetail porefnobysupplier;
 	 	
+	 	
+	 	
+		
+		public PoRefEntryItemDetailBean() {
+			super();
+		}
+		public PoRefEntryItemDetailBean(String porefno, String particular) {
+			super();
+			this.porefno = porefno;
+			this.particular = particular;
+		}
 		public PorefSupplierDetail getPorefnobysupplier() {
 			return porefnobysupplier;
 		}

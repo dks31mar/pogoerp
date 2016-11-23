@@ -22,7 +22,7 @@ public class MainController {
 	/**
 	 * Handle request to download a PDF document 
 	 */
-	@RequestMapping(value = "/downloadPDF", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/downloadPDF", method = RequestMethod.GET)
 	public ModelAndView downloadExcel() {
 		// create some sample data
 		List<Book> listBooks = new ArrayList<Book>();
@@ -37,5 +37,5 @@ public class MainController {
 
 		// return a view which will be resolved by an excel view resolver
 		return new ModelAndView("pdfView", "listBooks", listBooks);
-	}
+	}*/
 }

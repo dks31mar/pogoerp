@@ -293,7 +293,7 @@ System.out.println();
 			$("#porefno").val("<%=cb%>");
 		});
 		$( function() {
-		    $( "#datepicker" ).datepicker();
+		    $( "#datepicker" ).datepicker({dateFormat: 'dd/mm/yy'});
 		  } );
 		  
 				$('#autocomplete').click(function(){

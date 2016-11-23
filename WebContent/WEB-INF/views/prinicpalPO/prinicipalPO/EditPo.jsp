@@ -22,7 +22,7 @@ String hh=(String)session.getAttribute("jsonp");
 String norml=(String)session.getAttribute("normal");
 String cb=(String)session.getAttribute("CBW");
 /* Integer total=(Integer)session.getAttribute("total"); */
-java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("MM/dd/yyyy");
+java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
 java.util.Date date = new java.util.Date();
 System.out.println();
 %>
@@ -73,7 +73,7 @@ System.out.println();
 				</div>
 				<div class="col-sm-2">
 					<span> <input type="text" class="form-control" name="dateTodate"
-						id="datepicker" value="${date}" ReadOnly title="MM/DD/YYYY"></input>
+						id="datepicker" value="${date}" ReadOnly title="DD/MM/YYYY"></input>
 					</span>
 
 				</div>
@@ -228,13 +228,13 @@ System.out.println();
 						<td>&nbsp;&nbsp;&nbsp;</td>
 						<td>
 							<button type="button" value="update" onclick="printPagePo('${porefnumber}');" 
-								class="btn btn-success pull-center" id="print"
+								class="btn btn-success pull-center" id=""
 								style="background-color: #3C8DBC;">Print</button>
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;</td>
 						<td>
-							<button type="button" value="update" onclick=""
-								class="btn btn-success pull-center" id="cmd"
+							<button type="button" value="update" onclick="pdfPagePo('${porefnumber}');"
+								class="btn btn-success pull-center" id=""
 								style="background-color: #3C8DBC;">PDF</button>
 						</td>
 						<td>&nbsp;&nbsp;&nbsp;</td>
@@ -265,19 +265,10 @@ System.out.println();
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/sweetalert2/6.1.0/sweetalert2.js"></script>
 
 
-<script type="text/javascript" src="https://code.jquery.com/ui/1.12.0-beta.1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.1.135/jspdf.min.js"></script>
-<script type="text/javascript" src="http://cdn.uriit.ru/jsPDF/libs/adler32cs.js/adler32cs.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
-<script type="text/javascript" src="libs/Blob.js/BlobBuilder.js"></script>
-<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.addimage.js"></script>
-<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.standard_fonts_metrics.js"></script>
-<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.split_text_to_size.js"></script>
-<script type="text/javascript" src="http://cdn.immex1.com/js/jspdf/plugins/jspdf.plugin.from_html.js"></script>
+
+
 <script>
 
 
@@ -287,29 +278,6 @@ System.out.println();
 			$('#sr').val('');
 			$('#sr').val(len);
 			
-		});
-		
-		/* $(document).ready(function(){
-		
-		}); */
-		
-		$(function () {
-
-		    var specialElementHandlers = {
-		        '#editor': function (element,renderer) {
-		            return true;
-		        }
-		    };
-		 $('#cmd').click(function () {
-		        /* var doc = new jsPDF();
-		        doc.fromHTML($('#content').html(), 15, 15, {
-		            'width': 170,'elementHandlers': specialElementHandlers
-		        });
-		        doc.save('sample-file.pdf'); */
-			 window.open('downloadPDF');
-		        
-		        
-		    });  
 		});
 		
 		$('#qty').keyup(function(){
@@ -333,7 +301,7 @@ System.out.println();
 			$("#porefno").val("<%=cb%>");
 		});
 		$( function() {
-		    $( "#datepicker" ).datepicker();
+		    $( "#datepicker" ).datepicker({dateFormat: 'dd/mm/yy'});
 		  } );
 		  
 				$('#autocomplete').click(function(){
@@ -347,7 +315,7 @@ System.out.println();
 				$('#autocomplete').on("click",function(){
 				var word=$('#autocomplete').val();
 		
-		//alert($(e.target).val() );	
+		//alert($(e.target).val() );
 			$.ajax({
 				url: "getpartno?word="+word, 
 				success: function(result){
@@ -484,7 +452,13 @@ System.out.println();
 					}
 					calculation();
 			}
+			function printPagePo(poref){
+				window.open('printreport?poref='+poref , '_blank');
+			}
 			
+			function pdfPagePo(porefnumber){
+				window.open('downloadPDF?poref='+porefnumber);
+			}
 			
 			$("#savedata445").bind("click", function() {
 				 var d=$('#tjpy1').val();
@@ -595,10 +569,7 @@ System.out.println();
 					$('#tjpy1').val(t1);
 				}
 				
-				function printPagePo(poref){
-					window.open('printreport?poref='+poref , '_blank');
-				}
-		
+				
 </script>
 
 
