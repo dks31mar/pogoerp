@@ -257,29 +257,7 @@ System.out.println();
 					<!-- <button type="button" value="AddMore" onClick="productdetail();"
 						class="btn btn-success pull-right"
 						style="background-color: #3C8DBC;">Add More</button> -->
-</div>
-
-
-
-
-
-<div id="content">
-
-	<div id="main-wrap">
-    <div id="sidebar"></div>
-    
-    <div id="content-wrap"><p align="right">Technobridge Innovations PVT. LTD.<br>
- 5th floor, Mantec Towers C-56/5,<br>
- Sector-62 Noida 201 301,<br>
- Uttar Pardesh,<br>
- INDIA 91-120-4286134
-</p></div>
-	
-	</div>
-	
-
-
-</div>		
+</div>	
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/js/messagebox.js"></script>
@@ -323,11 +301,14 @@ System.out.println();
 		        }
 		    };
 		 $('#cmd').click(function () {
-		        var doc = new jsPDF();
+		        /* var doc = new jsPDF();
 		        doc.fromHTML($('#content').html(), 15, 15, {
 		            'width': 170,'elementHandlers': specialElementHandlers
 		        });
-		        doc.save('sample-file.pdf');
+		        doc.save('sample-file.pdf'); */
+			 window.open('downloadPDF');
+		        
+		        
 		    });  
 		});
 		
