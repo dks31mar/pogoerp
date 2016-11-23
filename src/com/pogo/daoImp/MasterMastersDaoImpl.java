@@ -448,9 +448,9 @@ public CustomerLevels getCustomerStatusById(Integer customerLevelId) {
 	return (CustomerLevels) sessionFactory.getCurrentSession().get(CustomerLevels.class, customerLevelId);
 }
 @Override
-public List<District> getdistrictByStateIdAndCountryId(int id, int countryId) {
+public List<District> getdistrictByStateIdAndCountryId(int id) {
 	return sessionFactory.getCurrentSession().createCriteria(District.class)
-			.add(Restrictions.eq("state.stateId", id)).add(Restrictions.eq("country.countryId", countryId)).list();
+			.add(Restrictions.eq("state.stateId", id)).list();
 }
 @Override
 public void deleteserviceprovider(int id) {

@@ -98,5 +98,34 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 		}
 		return salesbean;
 	}
+	@Override
+	public CustomerSalesBean getCustomerDetailsById(int id) {
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-dd-MM");
+		CustomerSales sales=customerSalesDao.getCustomerDetailsbyId(id);
+		CustomerSalesBean bean=new CustomerSalesBean();
+		bean.setCustomerId(sales.getCustomerId());
+		bean.setAddress(sales.getAddress());
+		bean.setAcmanager(sales.getAcmanager());
+		bean.setCategory(sales.getCategory());
+		bean.setCreationDate(df.format(sales.getCreationDate()));
+		bean.setOrderdate(sales.getOrderdate());
+		bean.setEmailId(sales.getEmailId());
+		bean.setContactPerson(sales.getContactPerson());
+		bean.setMobileNo(sales.getMobileNo());
+		bean.setOrganisation(sales.getOrganisation());
+		bean.setOrgShortName(sales.getOrgShortName());
+		bean.setTelephoneNo(sales.getTelephoneNo());
+		if(sales.getLocation()!=null)
+		{
+			bean.setSublocation(sales.getLocation().getLocation());
+			bean.setSublocationId(sales.getLocation().getLocationId());
+		}
+		if(sales.getInitiatedBy()!=null)
+		{
+			bean.setEmpId(sales.getInitiatedBy().getUserempid());
+			
+		}
+		return bean;
+	}
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -69,20 +70,16 @@ public @ResponseBody String getState(@PathVariable("id") int id,
 		HttpServletRequest request, Model model)
 		throws JsonProcessingException {
     List<StateBean> list=masterService.getStateByCountryId(id); 
-	System.out.println(list);
 	ObjectMapper mapper = new ObjectMapper();
-
 	return mapper.writeValueAsString(list);
 }
 
-@RequestMapping(value = "/getdistrictList/{id}/{countryId}", method = RequestMethod.POST)
+@RequestMapping(value = "/getdistrict/{id}", method = RequestMethod.GET)
 public @ResponseBody String getDistrict(@PathVariable("id") int id,
-		@PathVariable("countryId") int countryId,
 		HttpServletRequest request, Model model)
 		throws JsonProcessingException {
-
-	List<DistrictBean> list = masterService.getDistrictByStateIdAndcountryId(id,
-			countryId);
+	List<DistrictBean> list = masterService.getDistrictByStateIdAndcountryId(id);
+			
 	System.out.println(list.size());
 	System.out.println("I am on controller");
 	ObjectMapper mapper = new ObjectMapper();
@@ -96,6 +93,12 @@ public String getSalesList(Model model)
 	List<CustomerSalesBean> salesList=customerSalesService.findAllData();
 	model.addAttribute("salesList", salesList);
 	return "getSalesList";
+}
+@RequestMapping(value="/editcustomer", method=RequestMethod.GET)
+public String editcustomerData(Model model,@RequestParam int id)
+{
+	model.addAttribute("editcustomer",customerSalesService.getCustomerDetailsById(id));
+	return "editcustomer";
 }
 
 

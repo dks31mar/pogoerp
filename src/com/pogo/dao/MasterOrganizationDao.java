@@ -140,6 +140,8 @@ void updateCompetitior(CompetitiorsProfile comprof);
 
 	void deletebr(Branch branch);
 
+	List<UserEmployee> getUserEmp(String empName);
+
 
 
 	

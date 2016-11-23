@@ -13,4 +13,6 @@ public interface CustomerSalesService
 
 	List<CustomerSalesBean> findAllData();
 
+	public CustomerSalesBean getCustomerDetailsById(int id);
+
 }

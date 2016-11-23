@@ -678,5 +678,21 @@ public List<BranchBean> getBranchByState(int id)
 	}
 	return beans;
 }
+@Override
+public List<UserEmployeeBean> getUserByName(String empName) {
+	List<UserEmployee> user=userEmpdao.getUserEmp(empName);
+	List<UserEmployeeBean> listbean=new ArrayList<UserEmployeeBean>();
+	for(UserEmployee data:user)
+	{
+		UserEmployeeBean bean=new UserEmployeeBean();
+		bean.setUserempid(data.getUserempid());
+		bean.setFirstname(data.getFirstname());
+		bean.setDesignationName(data.getDesignationName().getDesignation());
+		bean.setDeviceno(data.getDeviceno());
+		bean.setEmpStatus(data.getEmpStatus());
+		listbean.add(bean);
+	}
+	return listbean;
+}
 
 }
