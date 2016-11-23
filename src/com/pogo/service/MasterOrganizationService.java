@@ -97,6 +97,8 @@ public interface MasterOrganizationService {
 	List<BranchBean> getBranchByState(int id);
 
 	void deletebranch(int id);
+
+	List<UserEmployeeBean> getUserByName(String empName);
 	
 
 }

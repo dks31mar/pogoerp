@@ -319,13 +319,14 @@
        		
        		
        		<!-- Mobile App Registration -->
+       		
        		<definition name="mobileApp" extends="baseLayout" >
 			<put-attribute name="title" value="Mobile App" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileApp.jsp" />
 			</definition>
 			<!-- Customer Sales Enquiry Call -->
 			
-			
+
 			<definition name="getSales" extends="baseLayout" >
 			<put-attribute name="title" value="Customer" />
 				<put-attribute name="body" value="/WEB-INF/views/customer/customerSales.jsp" />
@@ -356,7 +357,10 @@
 			</definition>
 
 				
-
+            <definition name="editcustomer" extends="baseLayout" >
+			<put-attribute name="title" value="Edit Customer " />
+			<put-attribute name="body" value="/WEB-INF/views/customer/editCustomer.jsp" />
+			</definition>
 			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >

@@ -59,7 +59,7 @@
 					},
 					success : function(data) {
 						var obj = JSON.parse(data);
-						
+						var count=0;
 						var content = '<table class="responstable" style="margin-top: 5px;margin-left: 22px; border-radius: 5px;"><thead><tr>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">SN</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Employee Name</label></th>'
@@ -79,17 +79,24 @@
 									function(key, value) {
 										content += '<tr height="30">';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-												+ value.userempid
+												+ ++count
 												+ '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.loginname + '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.designationName
 												+ '</td>';
-									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id=(${value.userempid})" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
+									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id='+value.userempid+'" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
+<<<<<<< HEAD
+=======
 									   
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 													+'</td>';		
-										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser(${value.userempid})"><span class="glyphicon glyphicon-trash"></span></a>'
+<<<<<<< HEAD
+										content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a title="Delete" href="#" onclick="deletUser('+value.userempid+')"><span class="glyphicon glyphicon-trash"></span></a>'
+=======
+										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser('+value.userempid+')"><span class="glyphicon glyphicon-trash"></span></a>'
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 											+ '</td></tr>';		
 										
 

@@ -28,4 +28,9 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao
 		return sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).list();
 	}
 
+	@Override
+	public CustomerSales getCustomerDetailsbyId(int id) {
+		return (CustomerSales) sessionFactory.getCurrentSession().get(CustomerSales.class, id);
+	}
+
 }

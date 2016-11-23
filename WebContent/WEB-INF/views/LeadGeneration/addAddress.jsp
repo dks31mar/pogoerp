@@ -22,16 +22,12 @@
 		</i> <input type="hidden" name="profile" value="0" />
 	</div>
 </div>
-<div class="row">
-<div class="page-heading col-sm-12" style="background-color: #3C8DBD;   height: 34px; text-align: center;"><strong> Import Customers From Files </strong> </div>	
-	<label class = "col-sm-4"><a href = "importcsvfile">Import email file</a> </label>
-	<label  style="margin-left: 250px;margin-top: 8px;"><a href = "#">Select from contacts</a> </label>
-</div>	
+
 
 
 <div class="row">
 
-<div class="page-heading col-sm-12" style="background-color: #3C8DBD;   height: 34px; text-align: center;"><strong> Enter Customers Manually </strong> 
+<div class="page-heading col-sm-12" style="background-color: #3C8DBD;   height: 34px; text-align: center;" ><strong id = showlabeltext> Enter Customers Manually </strong> 
 <label  style="margin-left: 250px;margin-top: 8px;"><button href="#" class="btn btn-primary" id="getpopup1" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Email </button> </label>		
 <label  style="margin-left: 250px;margin-top: -5px;"><button href="#" class="btn btn-primary" id="getpopup2" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Import </button> </label>
 </div>	
@@ -80,6 +76,15 @@
 
 </div>
 	
+</div>
+
+
+<div id="formid123" class="col-md-12" style=" left: 20px;  height: 34px;">
+<div class="row">
+<!-- <div class="page-heading col-sm-12" style="background-color: #3C8DBD;   height: 34px; text-align: center;"><strong> Import Customers From Files </strong> </div> -->	
+	<label class = "col-sm-4"><a href = "importcsvfile">Import email file</a> </label>
+	<label class = "col-sm-4" ><a href = "#">Select from contacts</a> </label>
+ </div> 
 </div>
 
 </div>
@@ -138,16 +143,25 @@
 		 $('#msg3').hide();
 		 $('#invalid_email').hide();
 		// $("#hiddenid").val('');
+		 $('#formid123').hide();
+		 $('#showlabeltext').text("Enter Customers Manually");
 		
 	});
 		    });	 
+ 
+ 
+
+ 
+ 
+ 
+ 
  
  
  $(document).ready(
 		    function(){
 	$("#getpopup2").click(function(){
 		
-		 $("#formid").toggle('show');
+		 $("#formid123").toggle('show');
 		 $('#edit').hide();
 		 $("#save").show();
 		// $("#name").val('');
@@ -157,7 +171,8 @@
 		 $('#msg3').hide();
 		 $('#invalid_email').hide();
 		// $("#hiddenid").val('');
-		
+		 $('#formid').hide();
+		 $('#showlabeltext').text("Import Customers From Files");
 	});
 		    });	 
  
@@ -165,6 +180,7 @@
  
 
  $("#formid").hide();
+ $("#formid123").hide();
  
  $('#save').click(function (){
 		

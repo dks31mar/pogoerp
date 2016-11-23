@@ -274,7 +274,7 @@ public class MasterOrganizationController {
 	// searchEmp
 		@RequestMapping(value = "searchEmp", method = RequestMethod.POST)
 		public @ResponseBody String filterEmployee(@RequestParam String empName) throws JsonProcessingException {
-			List<UserEmployeeBean> userbean = userEmployeeservice.getUser(empName);
+			List<UserEmployeeBean> userbean = userEmployeeservice.getUserByName(empName);
 			ObjectMapper map = new ObjectMapper();
 			return map.writeValueAsString(userbean);
 		}

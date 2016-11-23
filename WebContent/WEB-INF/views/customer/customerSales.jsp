@@ -43,19 +43,17 @@
 
 	}
  
- function getdistrictLists(id, countryId) 
+ function getdistrictLists(id) 
  {
-	 alert("hi");alert("State"+ id+""+"Country"+ countryId);
-		var url = 'getdistrictList/' + id + '/' + countryId;
+	 alert("District"+ id);
+		var url = 'getdistrict/' + id;
 		$
 				.ajax({
 					url : url,
-
-					type : 'POST',
+					type : 'GET',
 					success : function(data, status) {
 						$("#districts").empty();
-
-						var st = '<select name="districtId" class="form-control select " style="width: 100%;" id="districtId">'
+						var st = '<select name="districtId" class="form-control" style="width: 100%;">'
 								+ '<option value="">-- Select District --</option>';
 						var j = JSON.parse(data);
 						var length = j.length;
@@ -74,15 +72,6 @@
 					}
 				});
 	}
- 
- 
- 
- 
- 
- 
- 
- 
- 
  
 	  $( function() {
 		    $("#enquirydate" ).datepicker();
@@ -116,16 +105,18 @@
 		<label
 			style="margin-left: 250px; margin-top: 8px;"><a
 			href="getSalesList" class="btn btn-primary"> Sales List </a> </label> 
-
-	
 		
 		<label
 			 style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"
 			class="btn btn-primary">Add Dairy</a>
+<<<<<<< HEAD
+     </label>
+=======
 			
      </label>
   		
 
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 	</div>
 	
 </div>
@@ -233,7 +224,7 @@
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <div class="span9"  id="state">
-  <select name="stateId"  id="state" onchange="getdistrictLists(this.value)"  class="form-control" >
+  <select name="stateId"  id="state" onchange="getdistrictLists(this.value);"  class="form-control" >
   <option>----Select State----</option>
   </select>
     </div>

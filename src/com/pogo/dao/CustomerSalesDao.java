@@ -11,4 +11,6 @@ public interface CustomerSalesDao
 
 	List<CustomerSales> getsalesList();
 
+	CustomerSales getCustomerDetailsbyId(int id);
+
 }

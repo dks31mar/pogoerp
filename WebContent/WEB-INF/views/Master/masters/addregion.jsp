@@ -228,9 +228,13 @@
 			   $('#messagespan').show('fast');
 
 		   
+<<<<<<< HEAD
 		   }
 		   else{
 			   
+=======
+		   }else{
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		   
 		   
 			   var jsonObj={
@@ -254,11 +258,16 @@
 					     success: function(resposeJsonObject){
 					    	 window.location.reload();
 					    	 alert(save);
-}
+								}
 				        
 			});	  
+<<<<<<< HEAD
 		   }  
 			
+=======
+		  
+		   }
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		  
 		}); 
 		
