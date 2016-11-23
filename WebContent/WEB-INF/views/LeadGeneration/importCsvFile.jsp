@@ -14,8 +14,8 @@
 <link href="resources/css/table.css" rel="stylesheet" type="text/css" />
 
 <div class="row">
-<div class="page-heading col-sm-12" style="background-color: #3C8DBD;   height: 34px; text-align: center;"><strong> List of CSV Files  </strong> 
-<label  style="margin-left: 250px;margin-top: 8px;"><button href="#" class="btn btn-primary" id="getpopup1" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Choose File </button> </label>
-<!-- <label  style="margin-left: 250px;margin-top: 8px;"><button href="#" class="btn btn-primary" id="getpopup2" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Upload </button> </label> -->
-</div>
+<div class="page-heading col-sm-12" style="background-color: #3C8DBD;   height: 34px; text-align: center;" ><strong id = showlabeltext> List of CSV Files  </strong> 
+<label  style="margin-left: 500px;"><!-- <button href="#" class="btn btn-primary" id="getpopup1" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Choose File </button> --><input type = "file" > </label>		
+<!--  <label  style="margin-left: 400px;margin-top: -5px;"><button href="#" class="btn btn-primary" id="getpopup2" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Upload </button> </label>  -->
+</div>	
 </div>

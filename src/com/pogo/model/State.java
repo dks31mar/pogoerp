@@ -3,6 +3,7 @@ package com.pogo.model;
 
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +32,7 @@ public class State {
 	 * 
 	 * */
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY , cascade = CascadeType.REMOVE)
 	@JoinColumn(name="countryId")
 	private Country country;
 	
