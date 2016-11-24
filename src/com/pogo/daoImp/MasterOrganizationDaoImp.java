@@ -286,8 +286,8 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 
 	@Override
 	public void updateBranch(Branch branch) {
-		sessionFactory.getCurrentSession()
-				.createQuery("Update Branch SET branchname WHERE branchId =" + branch.getBranchId()).executeUpdate();
+		sessionFactory.getCurrentSession().update(branch);
+				//.createQuery("Update Branch SET branchname WHERE branchId =" + branch.getBranchId()).executeUpdate();
 		/* sessionFactory.getCurrentSession().update(branch); */
 
 	}

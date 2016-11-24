@@ -53,7 +53,8 @@
 </div>
 
 </div>
-</div>      
+</div> 
+     
        <table class="responstable">
        
   
@@ -71,7 +72,7 @@
   <td>${loop.index+1}</td>
   <td>${branch.branchname}</td>
  
-    <td><a href="editbranch?id=${branch.branchId}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
+    <td><a href="editbranch?id=${branch.branchId}&stateid=${stateid}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
     <td><a href="deletebranch?id=${branch.branchId}" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
   </tr>
   </c:forEach>

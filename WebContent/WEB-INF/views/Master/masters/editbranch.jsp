@@ -10,7 +10,7 @@
 
 <div class="container">
 
-    <form:form class="well form-horizontal"  action="updatebranch" method="POST"  commandName="branchBean" >
+    <form:form class="well form-horizontal"  action="updatebranch?id=${branch.branchId}&stateid=${stateId}" method="POST"  commandName="branchBean" >
    
    
 <fieldset>
