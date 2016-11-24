@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
@@ -32,6 +33,7 @@ import com.pogo.bean.DistrictBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
 import com.pogo.bean.UserEmployeeBean;
+import com.pogo.bean.ZonesBean;
 import com.pogo.service.CustomerSalesService;
 import com.pogo.service.MasterMastersService;
 import com.pogo.service.MasterOrganizationService;
@@ -129,10 +131,15 @@ return new ModelAndView("AddDiaryForEntrySales");
 public void SaveDiaryForEntery(@RequestBody String json, Model model) throws IOException 
 {
 	//System.out.println("print diary data \n",+json);
-	//CustomerSalesService.SaveDiaryForEntery();
-	
-	
-	
+
+
+	System.out.println("Add zone data   \n" + json);
+	ObjectMapper mapper = new ObjectMapper();
+	AddDiaryBean adddiary = mapper.readValue(json, AddDiaryBean.class);
+
+	AddDiaryBean poref1 = new AddDiaryBean();
+
+	//CustomerSalesService.SaveDiaryForEntery(adddiary);
 }
 
 @RequestMapping(value="/CreateQuotationForm",method = RequestMethod.GET)

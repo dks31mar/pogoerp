@@ -17,5 +17,7 @@ public interface CustomerSalesService
 
 	public CustomerSalesBean getCustomerDetailsById(int id);
 
+	void SaveDiaryForEntery();
+
 
 }

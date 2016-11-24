@@ -71,7 +71,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="Organization" placeholder="Organization Name" required="required" id ="org" class="form-control"  type="text">
+  <input name="Organization" placeholder="Organization Name" required="required" id ="organiz" class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" >Contact Person <span style="color: red;">*</span></label>  
@@ -90,9 +90,9 @@
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select name="task" class="form-control selectpicker"  id="tasktype" required="required">
    <option>---Select Task---</option> 
-      <option value="sales">Phone</option>
-	  <option value="services">Sms</option>
-      <option value="services">E-mail</option>
+      <option value="Phone">Phone </option>
+	  <option value="Sms">Sms </option>
+      <option value="E-mail">E-mail </option>
     </select>
     </div>
   </div>
@@ -100,14 +100,11 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="Entryuser" placeholder="Entry"   class="form-control"  >
-  <option value="" selected="selected" id ="entry">----Select Entry user----</option>
-  <option value="sales">satyendra</option>
-	  <option value="services">deepak</option>
- <!--  > <c:forEach items="${listofDeg}" var="designationList">
-  <option value="${designationList.designationid}">${designationList.designation}</option>
-  </c:forEach>
-  -->
+  <select name="Entryuser" placeholder="Entry"  id ="entry"  class="form-control"  >
+  <option value="" selected="selected">----Select Entry user----</option>
+  <option value="satyendra">satyendra</option>
+	  <option value="deepak">deepak</option>
+ 
   </select>
     </div>
   </div>
@@ -120,7 +117,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="Authority"   placeholder="Authority Name" id=" Authority" class="form-control"  type="text">
+  <input name=""   placeholder="Authority Name" id="Authority112" class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" >Address<span style="color: red;">*</span></label> 
@@ -221,18 +218,20 @@ $('#savediarydata').click(function(){
 	var date  =	$('#datepickup').val();
 	var time=$('#time').val();
 	
-	var orgenaigation=$('org').val();
+	var orgenaigation=$('#organiz').val();
 	//var selecthead =	$('#selecthead').text();
 	var contacper =	$('#contactperson').val();
-	var tasktype =	$('#tasktype').val();
-	   var enteruser    =	$('#entry').val();
-	   var decidauthourity    =	$('#Authority').val();
+	var opts = "Phone,sms,E-mail" ;
+     var opts = $("#tasktype").val() ;
+     var enteruser ="satyendra,deepk";
+     var enteruser =$("#entry").val();
+	   var decidauthourity = $('#Authority112').val();
 	   var address=	$('#address').val()
 		   var mobile=	$('#mobile').val()
 			   var fax=	$('#faxno').val()
 				   var email=	$('#email').val()
 					   var object=	$('#object').val()
-	   alert(date+time+orgenaigation+contacper+tasktype+enteruser+decidauthourity+address+mobile+fax+email+object);
+	   alert(date+time+orgenaigation+contacper+opts+enteruser+decidauthourity+address+mobile+fax+email+object);
 	   
 	   
 	   
@@ -243,12 +242,12 @@ $('#savediarydata').click(function(){
 		   'Time':time,
 		   'Organization':org,
 		   'Contactperson':contactperson,
-		   'tasktype':tasktype,
-		   'Enteruser':entry,
-		   'DecidingAuthority':Authority,
+		   'tasktype':opts,
+		   'Enteruser':enteruser,
+		   'DecidingAuthority':decidauthourity,
 		   'Adress':address,
 		   'mobil':mobile,
-		   'faxno':faxno,
+		   'faxno':fax,
 		   'email':email,
 		   'objective':object
 		} ;

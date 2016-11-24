@@ -128,6 +128,11 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		return bean;
 
 	}
+	@Override
+	public void SaveDiaryForEntery() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }
