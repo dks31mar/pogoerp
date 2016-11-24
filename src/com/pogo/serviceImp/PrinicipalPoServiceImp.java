@@ -238,5 +238,16 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		prinicipaldao.updatePoSupplier(porefsup);
 	}
 
+	@Override
+	@Transactional
+	public void deletePoById(String id) {
+		int poid=Integer.parseInt(id);
+		PoRefEntryItemDetail poref=new PoRefEntryItemDetail();
+		poref.setPorefentryitemdetailid(poid);
+		
+		prinicipaldao.deletePoById(poref);
+		
+	}
+
 
 }

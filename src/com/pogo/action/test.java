@@ -10,4 +10,7 @@ public class test {
 	String s1=s.split("/")[0]+"/"+s.split("/")[1]+"/"+"0"+(i+1);
 	System.out.println(s1);
 	}
+	
+	
+	
 }

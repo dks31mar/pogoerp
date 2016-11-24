@@ -143,7 +143,7 @@ System.out.println();
 					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;" name="totaljpy" id="totaljpy${loop.index+1}" value="${poref.totaljpy}" class="form-control"></td>
 					<td align="center">&nbsp;<input readonly type="text" style="text-align: center;width: 132px;" onkeyup="this.value=value.toUpperCase();" name="customerporefe" id="customerporefe${loop.index+1}" value="${poref.customerporefe}" class="form-control"></td>
 					<td style="display: none;"><input type="hidden" name="grandtotal" value="${gtotal}" id="grandtotal${loop.index+1}"> </td><td style="display: none;"><input type="hidden" name="date" value="11/21/2016" id="getdate"> </td>
-					<td><input type="hidden" style="text-align:center;" name="unitcost" id="" value="split" class="form-control"></td><td><a class="glyphicon glyphicon-pencil" href="#" onclick="editfields(${loop.index+1})"></a> | <a class="glyphicon glyphicon-remove" href="#" onclick="deletethisrow(${loop.index+1})" id="${loop.index+1}"></a></td>
+					<td><input type="hidden" style="text-align:center;" name="unitcost" id="" value="split" class="form-control"></td><td><a class="glyphicon glyphicon-pencil" href="#" onclick="editfields(${loop.index+1})"></a> | <a class="glyphicon glyphicon-remove" href="#" onclick="deletethisrow(${loop.index+1}); deletethisfromdb(${poref.porefentryitemdetailid})" id="${loop.index+1}"></a></td>
 					</tr>
 					</c:forEach>
 					</c:if>
@@ -569,6 +569,27 @@ System.out.println();
 					$('#tjpy1').val(t1);
 				}
 				
+				
+				function deletethisfromdb(id){
+					var jsonObj={
+							'porefentryitemdetailid': id
+						  };
+					$.ajax({
+						url: "deletepo",
+						type: "POST",
+						data :JSON.stringify(jsonObj),
+						  cache:false,
+					        beforeSend: function(xhr) {  
+					            xhr.setRequestHeader("Accept", "application/json");  
+					            xhr.setRequestHeader("Content-Type", "application/json");  
+					        },
+						success: function(result){
+							
+				    }
+					
+					
+					});
+				}
 				
 </script>
 

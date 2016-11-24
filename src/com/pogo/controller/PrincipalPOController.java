@@ -20,8 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.pogo.bean.Book;
+import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.JsonArraytoJson;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
@@ -266,6 +270,18 @@ public void updateProductUsingAjax(@RequestBody String json,Model model) throws 
 			}
 			
 }
+
+
+@RequestMapping(value="deletepo",method = RequestMethod.POST)
+@ResponseBody
+public void deletePoById(@RequestBody String json, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m) throws JsonParseException, JsonMappingException, IOException{
+
+	ObjectMapper mapper=new ObjectMapper();
+	PoRefEntryItemDetailBean poref=mapper.readValue(json, PoRefEntryItemDetailBean.class);
+	
+	prinicipalposervice.deletePoById(Integer.toString(poref.getPorefentryitemdetailid()));
+}
+
 
 @RequestMapping(value="/printreport",method = RequestMethod.GET)
 public ModelAndView printPoDetails(@RequestParam("poref") String poref, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
