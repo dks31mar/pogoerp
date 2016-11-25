@@ -223,6 +223,12 @@ System.out.println();
 								class="btn btn-success pull-center" id="addmore"
 								style="background-color: #3C8DBC;">Add More</button>
 						</td>
+						
+						<td>
+							<button type="button" value="update" onclick="numberingRow();"
+								class="btn btn-success pull-center"
+								style="background-color: #3C8DBC;">Number row</button>
+						</td>
 
 					</tr>
 
@@ -520,7 +526,18 @@ System.out.println();
 					}
 					
 				}
-			
+			function numberingRow(){
+				alert("dddd");
+				var id=$('#addprolisttbody').children('tr').length+1;
+				alert("fff");
+				var w=parseInt(1);
+				for(var ids=1;ids<=id;ids++){
+					alert("ggg");
+					alert(i);
+					$('#sr'+ids).val(ids);
+					w++;
+				}
+			}
 				
 		
 </script>
