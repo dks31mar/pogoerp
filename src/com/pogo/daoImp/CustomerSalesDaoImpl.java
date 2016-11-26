@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pogo.dao.CustomerSalesDao;
+import com.pogo.model.AddDiary;
 import com.pogo.model.CustomerSales;
 
 
@@ -31,6 +32,18 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao
 	@Override
 	public CustomerSales getCustomerDetailsbyId(int id) {
 		return (CustomerSales) sessionFactory.getCurrentSession().get(CustomerSales.class, id);
+	}
+
+	@Override
+	public void updateCustomer(CustomerSales sales) {
+		sessionFactory.getCurrentSession().update(sales);
+		
+	}
+
+	@Override
+	public void saveDiary(AddDiary diary) {
+		sessionFactory.getCurrentSession().save(diary);
+		
 	}
 
 }

@@ -56,20 +56,7 @@
 		      document.getElementById(firstlast).value = str;
 		  }
 		
-		/* function pass_validation()
-		{
-			var firstpassword=document.forp.password1.value;  
-			var secondpassword=document.forp.confirmPassword.value;  
-			if(firstpassword==secondpassword){  
-			return true;  
-			}  
-			else{  
-			alert("RePassword must be Same!!!");
-			document.getElementById("confirmPassword").value="";
-			document.getElementById("confirmPassword").focus();
-			return false;  
-			}  
-			}  */
+		
 			
 			
 			function pass_validation()

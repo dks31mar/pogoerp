@@ -5,15 +5,19 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.crypto.CipherInputStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ibm.icu.text.SimpleDateFormat;
+import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.dao.MasterOrganizationDao;
+import com.pogo.model.AddDiary;
 import com.pogo.model.CustomerSales;
 import com.pogo.service.CustomerSalesService;
 
@@ -35,10 +39,8 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 		CustomerSales customerSales=new CustomerSales();
 		customerSales.setAddress(customerSalesBean.getAddress());
 		customerSales.setContactPerson(customerSalesBean.getContactPerson());
-		//customerSales.setCreationDate(customerSalesBean.getCreationDate());
+		customerSales.setCreationDate(customerSalesBean.getCreationDate());
 		customerSales.setOrderdate(customerSalesBean.getOrderdate());
-		//customerSales.setCreationDate(dateFormat.format((customerSalesBean.getCreationDate()));
-		//customerSales.setOrderdate(dateFormat.parse(customerSalesBean.getOrderdate()));
 		customerSales.setMobileNo(customerSalesBean.getMobileNo());
 		customerSales.setEmailId(customerSalesBean.getEmailId());
 		customerSales.setCategory(customerSalesBean.getCategory());
@@ -88,7 +90,7 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
 			CustomerSalesBean salebean=new CustomerSalesBean();
 			salebean.setCustomerId(data.getCustomerId());
-			salebean.setCreationDate(df.format(data.getCreationDate()));
+			salebean.setCreationDate(data.getCreationDate());
 			//salebean.setAcmanager(data.getInitiatedBy().getFirstname());
 			salebean.setAddress(data.getAddress());
 			salebean.setOrganisation(data.getOrganisation());
@@ -107,7 +109,7 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 		bean.setAddress(sales.getAddress());
 		bean.setAcmanager(sales.getAcmanager());
 		bean.setCategory(sales.getCategory());
-		bean.setCreationDate(df.format(sales.getCreationDate()));
+		bean.setCreationDate(sales.getCreationDate());
 		bean.setOrderdate(sales.getOrderdate());
 		bean.setEmailId(sales.getEmailId());
 		bean.setContactPerson(sales.getContactPerson());
@@ -125,7 +127,70 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			bean.setEmpId(sales.getInitiatedBy().getUserempid());
 			
 		}
+		if(sales.getCountry()!=null)
+		{
+			bean.setCountryId(sales.getCountry().getCountryId());
+		}
+		if(sales.getStatus()!=null)
+		{
+			bean.setCustomerLevelId(sales.getStatus().getId());
+		}
 		return bean;
+	}
+	@Override
+	public void upadtecustomerData(CustomerSalesBean customerSalesBean) throws ParseException 
+	{
+		SimpleDateFormat df=new SimpleDateFormat("yyyy-dd-MM");
+		CustomerSales sales=new CustomerSales();
+		sales.setAddress(customerSalesBean.getAddress());
+		sales.setContactPerson(customerSalesBean.getContactPerson());
+		sales.setCreationDate(customerSalesBean.getCreationDate());
+		sales.setEmailId(customerSalesBean.getEmailId());
+		sales.setCategory(customerSalesBean.getCategory());
+		sales.setMobileNo(customerSalesBean.getMobileNo());
+		sales.setOrderdate(customerSalesBean.getOrderdate());
+		sales.setOrganisation(customerSalesBean.getOrganisation());
+		sales.setOrgShortName(customerSalesBean.getOrgShortName());
+		sales.setTelephoneNo(customerSalesBean.getTelephoneNo());
+		if(customerSalesBean.getEmpId()>0)
+		{
+			sales.setInitiatedBy(empDao.get(customerSalesBean.getEmpId()));
+		}else
+			sales.setInitiatedBy(null);
+		if(customerSalesBean.getCountryId()>0)
+		{
+			sales.setCountry(masterMasterDao.getCountryDataById(customerSalesBean.getCountryId()));
+		}else
+			sales.setCountry(null);
+		if(customerSalesBean.getCustomerLevelId()>0){
+			sales.setStatus(masterMasterDao.getCustomerStatusById(customerSalesBean.getCustomerLevelId()));
+		}else
+			sales.setStatus(null);
+		if(customerSalesBean.getSublocationId()>0)
+		{
+			sales.setLocation(masterMasterDao.getLocations(customerSalesBean.getSublocationId()));
+		}else
+			sales.setLocation(null);
+		customerSalesDao.updateCustomer(sales);
+		
+		
+	}
+	@Override
+	public void savediary(AddDiaryBean addDiaryBean) {
+		AddDiary diary=new AddDiary();
+		diary.setDate(addDiaryBean.getDate());
+		diary.setAddress(addDiaryBean.getAddress());
+		diary.setContacperson(addDiaryBean.getContacperson());
+		diary.setDecidingAuthority(addDiaryBean.getDecidingAuthority());
+		diary.setDiarytime(addDiaryBean.getTime());
+		diary.setEmail(addDiaryBean.getEmail());
+		diary.setFaxno(addDiaryBean.getFaxno());
+		diary.setMobileno(addDiaryBean.getMobileno());
+		diary.setObjective(addDiaryBean.getObjective());
+		diary.setOrganizationName(addDiaryBean.getOrganization());
+		diary.setTasktype(addDiaryBean.getTasktype());
+		diary.setEnteryuser(empDao.get(addDiaryBean.getEnteryuserId()));
+		customerSalesDao.saveDiary(diary);
 	}
 
 }

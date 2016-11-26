@@ -43,7 +43,7 @@ public class UserEmployee
 	@JoinColumn(name="branch_id")
 	private Branch branchName;
 	@Column(name="dateofjoining")
-	private Date dateofjoining;
+	private String dateofjoining;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="designation_id")
 	private Designation designationName;
@@ -60,7 +60,7 @@ public class UserEmployee
 	private String eamil;
 	
 	@Column(name="dob")
-	private Date dob;
+	private String dob;
 	@Column(name="gender")
 	private String gender;
 	@Column(name="address")
@@ -76,13 +76,10 @@ public class UserEmployee
 	@Column(name="active")
 	private Boolean active;
 	
-	
-	
-	
-	public Date getDateofjoining() {
+	public String getDateofjoining() {
 		return dateofjoining;
 	}
-	public void setDateofjoining(Date dateofjoining) {
+	public void setDateofjoining(String dateofjoining) {
 		this.dateofjoining = dateofjoining;
 	}
 	public String getLoginname() {
@@ -184,10 +181,11 @@ public class UserEmployee
 		this.designationName = designationName;
 	}
 	
-	public Date getDob() {
+	
+	public String getDob() {
 		return dob;
 	}
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 	public String getGender() {

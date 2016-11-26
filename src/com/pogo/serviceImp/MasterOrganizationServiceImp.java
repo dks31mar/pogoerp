@@ -247,7 +247,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	public void adduserEmp(UserEmployeeBean userDTO) throws ParseException 
 	{
 		
-		SimpleDateFormat dateformat = new SimpleDateFormat("mm-dd-yyyy");
+		SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd-yyyy");
 		//SimpleDateFormat df=new SimpleDateFormat("MMM-dd-yyyy");
 		UserEmployee emp=new UserEmployee();
 		emp.setLoginname(userDTO.getLoginname());
@@ -293,11 +293,12 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			data.setDeviceno(list.getDeviceno());
 			data.setDesignationName(list.getDesignationName().getDesignation());
 			data.setEmpStatus(list.getEmpStatus());
+			data.setEmpCode(list.getEmpCode());
 			data.setBranchName(list.getBranchName().getBranchname());
-			/*String date1=(dateformat.format(list.getDateofjoining()));
-			String date2=date1.split("00:00:00:0")[0];
-			data.setDateofjoining(dateformat.format(date2));*/
-			data.setDateofjoining( list.getDateofjoining());
+			//String date1=(dateformat.format(list.getDateofjoining()));
+			//String date2=date1.split("00:00:00:0")[0];
+			//data.setDateofjoining(dateformat.parse(date2));
+			data.setDateofjoining(list.getDateofjoining());
 
 
 			//data.setDateofjoining(date2);
@@ -307,7 +308,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			data.setFirstname(list.getFirstname());
 			data.setMiddlename(list.getMiddlename());
 			data.setLastname(list.getLastname());
-			//data.setDesignation(list.getDesignation());
+			
 
 			lists.add(data);
 		}
@@ -337,6 +338,9 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			userData.setFirstname(data.getFirstname()+""+ data.getMiddlename()+""+data.getLastname());
 			userData.setDesignationName(data.getDesignationName().getDesignation());
 			userData.setDeviceno(data.getDeviceno());
+			userData.setBranchName(data.getBranchName().getBranchname());
+			userData.setEmpCode(data.getEmpCode());
+			userData.setDateofjoining(data.getDateofjoining());
 			userData.setEmpStatus(data.getEmpStatus());
 			
 			
