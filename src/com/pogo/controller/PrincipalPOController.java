@@ -33,6 +33,8 @@ import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.PrinicipalPoPDFBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.model.PoRefEntryItemDetailCopy;
+import com.pogo.model.PorefSupplierDetail;
+import com.pogo.service.CommonService;
 import com.pogo.service.PrinicipalPoService;
 
 
@@ -41,7 +43,8 @@ public class PrincipalPOController {
 	
 	@Autowired
 	private PrinicipalPoService prinicipalposervice;
-
+	@Autowired
+	private CommonService commonservice;
 @RequestMapping(value = "/getpartno", method = RequestMethod.GET)
 public void getProductPartNumber(@RequestParam("word") String word, HttpServletResponse res,ProductMasterBean productmasetr) {
 	
@@ -341,6 +344,88 @@ public ModelAndView downloadExcel(@RequestParam("poref") String poref) {
 	}
 	
 	return new ModelAndView("pdfView", "listBooks", listBooks);
+}
+
+
+@RequestMapping(value="/acknowledgement",method = RequestMethod.GET)
+public ModelAndView getacknowledgement( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
+	System.out.println("in get acknowledgement method");
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("acklist",  prepareViewListofBean(commonservice.viewList()));
+return new ModelAndView("acknowledgementView", model);
+}
+
+
+private List<PorefSupplierDetailBean> prepareViewListofBean(List<PorefSupplierDetail> prodel){
+	List<PorefSupplierDetailBean> beans = null;
+	if(prodel != null && !prodel.isEmpty()){
+		beans = new ArrayList<PorefSupplierDetailBean>();
+		PorefSupplierDetailBean bean = null;
+		for(PorefSupplierDetail pro : prodel){
+			bean = new PorefSupplierDetailBean();
+			//System.out.println(bean);
+			bean.setPorefno(pro.getPorefno());
+			System.out.println(bean.getPorefno());
+			bean.setPorefdate(pro.getPorefdate());
+			System.out.println(bean.getPorefdate());
+			bean.setPrincipalname(pro.getPrincipalname());
+			bean.setAddress(pro.getAddress());
+			beans.add(bean);
+		}
+	}
+	return beans;
+}
+
+
+
+@RequestMapping(value="/supplierack",method = RequestMethod.GET)
+public ModelAndView getacknowledsupplierpo(@RequestParam("poref") String poref, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+	System.out.println("in get edit method");
+	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getPoDetailByPorefNo(poref);
+	System.out.println(lst);
+	double total=0.0;
+	String date=null;
+	String porefNo=null;
+	for(PoRefEntryItemDetailBean g:lst){
+		System.out.println(g.getPorefnobysupplier().getTotal());
+		total=g.getPorefnobysupplier().getTotal();
+		date=g.getPorefnobysupplier().getPorefdate();
+		porefNo=g.getPorefnobysupplier().getPorefno();
+	}
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("listbyporef", lst);
+	m.addAttribute("gtotal", total);
+	m.addAttribute("date", date);
+	m.addAttribute("porefnumber", porefNo);
+return new ModelAndView("supplierackView",model);
+
+}
+
+
+
+@RequestMapping(value="/ackdatabysearch",method = RequestMethod.GET)
+public ModelAndView getacknowledDataBySearch(@RequestParam("poref") String poref, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+	System.out.println("in get edit method");
+	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getPoDetailByPorefNo(poref);
+	System.out.println(lst);
+	double total=0.0;
+	String date=null;
+	String porefNo=null;
+	for(PoRefEntryItemDetailBean g:lst){
+		System.out.println(g.getPorefnobysupplier().getTotal());
+		total=g.getPorefnobysupplier().getTotal();
+		date=g.getPorefnobysupplier().getPorefdate();
+		porefNo=g.getPorefnobysupplier().getPorefno();
+	}
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("listbyporef", lst);
+	m.addAttribute("gtotal", total);
+	m.addAttribute("date", date);
+	m.addAttribute("porefnumber", porefNo);
+return new ModelAndView("supplierackView",model);
+//return new ModelAndView("supplierackView");
 }
 /*private PoRefEntryItemDetailCopyBean prepareProductBeanCopy(List<PoRefEntryItemDetailCopy> productEdit) {
 	PoRefEntryItemDetailCopyBean poref =new PoRefEntryItemDetailCopyBean();

@@ -58,7 +58,7 @@
 					<td><c:out value="${loop.index+1}"></c:out></td>
 				    <td><c:out value="${view.porefno}"></c:out></td>
 					<td><c:out value="${view.porefdate}"></c:out></td>
-					<td><a href = "supplierack"><c:out value="Acknowledgement Entry"></c:out></a></td>
+					<td><a href = "supplierack?poref=${view.porefno}"><c:out value="Acknowledgement Entry"></c:out></a></td>
 					<td><a href = supplierinvoice><c:out value="Invoice Entry"></c:out></a></td>
 					</tr>
 					
