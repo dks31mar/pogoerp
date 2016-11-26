@@ -84,7 +84,11 @@ $( function() {
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+<<<<<<< HEAD
   <input   name="Organization" placeholder="Organization Name" required="required"  class="form-control"  type="text">
+=======
+  <input name="Organization" placeholder="Organization Name" required="required" id ="organiz" class="form-control"  type="text">
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
     </div>
   </div>
   <label class="col-md-2 control-label" >Contact Person <span style="color: red;">*</span></label>  
@@ -103,10 +107,16 @@ $( function() {
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select name="tasktype" class="form-control selectpicker"  required="required">
    <option>---Select Task---</option> 
+<<<<<<< HEAD
       <option value="appointment">Appointment</option>
 	  <option value="email">E-mail</option>
       <option value="fax">Fax</option>
       <option value="sms">SMS</option>
+=======
+      <option value="Phone">Phone </option>
+	  <option value="Sms">Sms </option>
+      <option value="E-mail">E-mail </option>
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
     </select>
     </div>
   </div>
@@ -114,11 +124,19 @@ $( function() {
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+<<<<<<< HEAD
   <select name="enteryuserId"  class="form-control"  >
   <option value="" selected="selected">----Select Entry user----</option>
   <c:forEach items="${listemp}" var="listemp">
   <option value="${listemp.userempid}">${listemp.loginname}</option>
   </c:forEach>
+=======
+  <select name="Entryuser" placeholder="Entry"  id ="entry"  class="form-control"  >
+  <option value="" selected="selected">----Select Entry user----</option>
+  <option value="satyendra">satyendra</option>
+	  <option value="deepak">deepak</option>
+ 
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
   </select>
     </div>
   </div>
@@ -131,7 +149,11 @@ $( function() {
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+<<<<<<< HEAD
   <input name="decidingAuthority" placeholder="Authority Name"  class="form-control"  type="text">
+=======
+  <input name=""   placeholder="Authority Name" id="Authority112" class="form-control"  type="text">
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
     </div>
   </div>
   <label class="col-md-2 control-label" >Address<span style="color: red;">*</span></label> 
@@ -207,5 +229,68 @@ $( function() {
 </form:form>
 </div>
 </div>
+<<<<<<< HEAD
+=======
+<script>
+$('#savediarydata').click(function(){
+	
+	var date  =	$('#datepickup').val();
+	var time=$('#time').val();
+	
+	var orgenaigation=$('#organiz').val();
+	//var selecthead =	$('#selecthead').text();
+	var contacper =	$('#contactperson').val();
+	var opts = "Phone,sms,E-mail" ;
+     var opts = $("#tasktype").val() ;
+     var enteruser ="satyendra,deepk";
+     var enteruser =$("#entry").val();
+	   var decidauthourity = $('#Authority112').val();
+	   var address=	$('#address').val()
+		   var mobile=	$('#mobile').val()
+			   var fax=	$('#faxno').val()
+				   var email=	$('#email').val()
+					   var object=	$('#object').val()
+	   alert(date+time+orgenaigation+contacper+opts+enteruser+decidauthourity+address+mobile+fax+email+object);
+	   
+	   
+	   
+	  
+		var jsonObj={
+
+		   'Date':date,
+		   'Time':time,
+		   'Organization':org,
+		   'Contactperson':contactperson,
+		   'tasktype':opts,
+		   'Enteruser':enteruser,
+		   'DecidingAuthority':decidauthourity,
+		   'Adress':address,
+		   'mobil':mobile,
+		   'faxno':fax,
+		   'email':email,
+		   'objective':object
+		} ;
+	
+	
+		
+		$.ajax({
+			url: "SaveDiaryForEntrySales",
+			type: "POST",
+			
+			  data :JSON.stringify(jsonObj),
+			  cache:false,
+		        beforeSend: function(xhr) {  
+		            xhr.setRequestHeader("Accept", "application/json");  
+		            xhr.setRequestHeader("Content-Type", "application/json");  
+		        },
+			     success: function(resposeJsonObject){
+			    	alert("save")
+		    }});
+		
+	   }
+	);
+	
+</script>
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
 

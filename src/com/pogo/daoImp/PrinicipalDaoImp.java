@@ -139,6 +139,13 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	
 	return d;
 	}
+
+	@Override
+	public void deletePoById(PoRefEntryItemDetail poref) {
+	
+		sessionFactory.getCurrentSession().delete(poref);
+		
+	}
 	
 	
 }

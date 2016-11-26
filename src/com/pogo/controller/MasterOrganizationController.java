@@ -383,19 +383,20 @@ public ModelAndView deleteRegionData(@RequestParam ("id")int id,ModelMap model)
 
 		//foe edit Branch
 				@RequestMapping(value = "/editbranch", method = RequestMethod.GET)
-				public String editBranch(@RequestParam int id, Model model) 
+				public String editBranch(@RequestParam("id") int id, Model model,@RequestParam("stateid") int stateid) 
 				{
+					//System.out.println("for branch"+id2);
 					BranchBean branchBean=regionService.getbranchById(id);
+					model.addAttribute("stateId", stateid);
 					model.addAttribute("branch",branchBean);	
 					return "editbranch";
 				}
 		//update Branch
 				@RequestMapping(value = "/updatebranch", method = RequestMethod.POST)
-				public String updateBranch(@ModelAttribute("branchBean")BranchBean branchBean )
+				public String updateBranch(@ModelAttribute("branchBean")BranchBean branchBean,@RequestParam("id") int id,@RequestParam("stateid") int id2 )
 				{
-					regionService.updateBranch(branchBean);
-					System.out.println("for update");
-					return "newbranch";
+					regionService.updateBranch(branchBean,id,id2);
+					return "redirect:/getbranchbystate?id="+id2;
 
 
 				}
@@ -544,7 +545,7 @@ public ModelAndView getNewbranch(@RequestParam int id,Model model)
 List<BranchBean> list=new ArrayList<>();
 list=regionService.getBranchByState(id);
 	model.addAttribute("branchlist", list);
-
+	model.addAttribute("stateid",id);
 return new ModelAndView("newbranch");
 }
 

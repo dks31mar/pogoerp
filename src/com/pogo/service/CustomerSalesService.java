@@ -14,10 +14,17 @@ public interface CustomerSalesService
 
 	List<CustomerSalesBean> findAllData();
 
+
+
 	public CustomerSalesBean getCustomerDetailsById(int id);
+
 
 	void upadtecustomerData(CustomerSalesBean customerSalesBean) throws ParseException;
 
 	void savediary(AddDiaryBean addDiaryBean);
+
+	void SaveDiaryForEntery();
+
+
 
 }

@@ -631,10 +631,13 @@ public List<StatezoneBean> getZoneStates(Integer id) {
 
 @Override
 @Transactional
-public void updateBranch(BranchBean branchBean) {
+public void updateBranch(BranchBean branchBean,int id,int id2) {
 	Branch branch =new Branch();
 	branch.setBranchId(branchBean.getBranchId());
 	branch.setBranchname(branchBean.getBranchname());
+	StateZone state=new StateZone();
+	state.setStateId(id2);
+	branch.setStateNames(state);
 	System.out.println(branchBean.getBranchname());
 	regionDao.updateBranch(branch);
 	
@@ -663,7 +666,7 @@ public void updateState(StatezoneBean statezoneBean,int id) {
 	Zones zone=new Zones();
 	zone.setZonesid(id);
 	stateZone.setStateId(statezoneBean.getStateId());
-	System.out.println("on service"+ statezoneBean.getStateId()+statezoneBean.getStateName());
+	//System.out.println("on service"+ statezoneBean.getStateId()+statezoneBean.getStateName());
 	stateZone.setStateName(statezoneBean.getStateName());
 	stateZone.setZones(zone);
 	regionDao.updateStates(stateZone);

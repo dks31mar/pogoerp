@@ -101,7 +101,7 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 		return salesbean;
 	}
 	@Override
-	public CustomerSalesBean getCustomerDetailsById(int id) {
+public CustomerSalesBean getCustomerDetailsById(int id) {
 		SimpleDateFormat df=new SimpleDateFormat("yyyy-dd-MM");
 		CustomerSales sales=customerSalesDao.getCustomerDetailsbyId(id);
 		CustomerSalesBean bean=new CustomerSalesBean();
@@ -136,8 +136,10 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			bean.setCustomerLevelId(sales.getStatus().getId());
 		}
 		return bean;
+
 	}
 	@Override
+
 	public void upadtecustomerData(CustomerSalesBean customerSalesBean) throws ParseException 
 	{
 		SimpleDateFormat df=new SimpleDateFormat("yyyy-dd-MM");
@@ -192,5 +194,12 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 		diary.setEnteryuser(empDao.get(addDiaryBean.getEnteryuserId()));
 		customerSalesDao.saveDiary(diary);
 	}
+
+	public void SaveDiaryForEntery() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
 
 }

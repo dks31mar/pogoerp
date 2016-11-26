@@ -40,5 +40,7 @@ public interface PrinicipalDao {
 
 	PorefSupplierDetail getidbyporefnumber(String s);
 
+	void deletePoById(PoRefEntryItemDetail poref);
+
 
 }

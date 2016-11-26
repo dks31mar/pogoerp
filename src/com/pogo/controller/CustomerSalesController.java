@@ -9,7 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,10 +27,12 @@ import com.pogo.bean.DistrictBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
 import com.pogo.bean.UserEmployeeBean;
+import com.pogo.bean.ZonesBean;
 import com.pogo.service.CustomerSalesService;
 import com.pogo.service.MasterMastersService;
 import com.pogo.service.MasterOrganizationService;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -83,12 +85,30 @@ public class CustomerSalesController {
 		return mapper.writeValueAsString(list);
 	}
 
+
 	@RequestMapping(value = "/getSalesList", method = RequestMethod.GET)
 	public String getSalesList(Model model) {
 		List<CustomerSalesBean> salesList = customerSalesService.findAllData();
 		model.addAttribute("salesList", salesList);
 		return "getSalesList";
 	}
+
+@RequestMapping(value="/SaveDiaryForEntrySales",method = RequestMethod.POST)
+@ResponseBody
+public void SaveDiaryForEntery(@RequestBody String json, Model model) throws IOException 
+{
+	//System.out.println("print diary data \n",+json);
+
+
+	System.out.println("Add zone data   \n" + json);
+	ObjectMapper mapper = new ObjectMapper();
+	AddDiaryBean adddiary = mapper.readValue(json, AddDiaryBean.class);
+
+	AddDiaryBean poref1 = new AddDiaryBean();
+
+	//CustomerSalesService.SaveDiaryForEntery(adddiary);
+}
+
 
 	@RequestMapping(value = "/editcustomer", method = RequestMethod.GET)
 	public String editcustomerData(@RequestParam("id") int id, Model model) throws ParseException 
