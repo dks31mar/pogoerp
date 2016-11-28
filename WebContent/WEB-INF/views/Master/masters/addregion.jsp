@@ -54,26 +54,21 @@
   --%>
   <span style="color: red;text-align: center;text-transform: uppercase;" id="messagespan">please fill blank or (*) fileds</span>
 <div class="form-group">
-  <label class="col-md-2 control-label" >Region Name</label> 
+  <label class="col-md-2 control-label" >Zone Name</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control" required="required" type="hidden">
-  <input value="${zones.zonesname}" name="zonesname"  placeholder="Region Name" id="regionname" required="required"  class="form-control"  type="text" oninput="funcal();">
+  <input value="${zones.zonesid}"  name="zonesid" placeholder="Zone Name" id="zoneid"  class="form-control" required="required" type="hidden">
+  <input value="${zones.zonesname}" name="zonesname"  placeholder="Zone Name" id="regionname" required="required"  class="form-control"  type="text" oninput="funcal();">
     </div>
   </div>
-  
-  <label class="col-md-2 control-label" style="margin-left: -62px;">RegionHead<span style="color: red;">*</span></label> 
+ <label class="col-md-2 control-label" style="margin-left: -62px;">E-Mail Id<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="subregion" class="form-control selectpicker" required="required" id="selecthead" >
-  <option>---Select Region---</option> 
-      <option value="north">north</option>
-	  <option value="south">south</option>
-  </select>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control"  id="emailid" required="required" type="email" oninput="funcal();">
     </div>
-  </div>
+  </div> 
 </div>
 <div class="form-group">
   <label class="col-md-2 control-label">Mobile No #<span style="color: red;">*</span></label>  
@@ -84,11 +79,11 @@
     </div>
  
 </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">E-Mail Id<span style="color: red;">*</span></label>  
+ <label class="col-md-2 control-label" style="margin-left: -62px;">Zone Address<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control"  id="emailid" required="required" type="email" oninput="funcal();">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+   <input  value="${zones.zones}"  placeholder="Zones Address" class="form-control"  id="address" required="required" type="address" oninput="funcal();">
     </div>
   </div>
 </div>
@@ -102,17 +97,18 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-        <input  value="${zones.zonesfax}"  placeholder="Fax Address" class="form-control"   id="fax" required="required" type="fax" oninput="funcal();">
+        <input  value="${zones.zonesfax}"  placeholder="Fax No" class="form-control"   id="fax" required="required" type="fax" oninput="funcal();">
    
   </div>
   </div>
-   <label class="col-md-2 control-label" style="margin-left: -62px;">State Address<span style="color: red;">*</span></label>  
+  <!--  
+   <label class="col-md-2 control-label" style="margin-left: -62px;">Zone Address<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input type="" name="address" value="${zones.zonesaddress}" placeholder="Address" required="required" id="regadress" oninput="funcal();">
+   <input  value="${zones.zonesmail}"  placeholder="Zones Address" class="form-control"  id="address" required="required" type="address" oninput="funcal();">
     </div>
-  </div>
+  </div>-->
 </div>
 <!-- Success message -->
 
@@ -228,7 +224,13 @@
 			   $('#messagespan').show('fast');
 
 		   
-		   }else{
+
+		   }
+		   else{
+			   
+
+		  
+
 		   
 		   
 			   var jsonObj={
@@ -255,10 +257,15 @@
 								}
 				        
 			});	  
+
+		    
+		   }
+
 		  
 		   }
+
 		  
-		}); 
+		); 
 		
 	function funcal(){
 		$('#messagespan').hide();

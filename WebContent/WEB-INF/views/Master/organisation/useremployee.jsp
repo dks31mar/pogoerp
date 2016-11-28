@@ -64,6 +64,9 @@
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">SN</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Employee Name</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Designation</label></th>'
+							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Branch</label></th>'
+							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Employee Code</label></th>'
+							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Joining Date</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Edit</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Delete</label></th>'
 							
@@ -86,10 +89,18 @@
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.designationName
 												+ '</td>';
-									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id='+value.userempid+'" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'
-									   
+										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
+												+ value.branchName
+												+ '</td>';
+										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
+												+ value.empCode
+												+ '</td>';		
+										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
+												+ value.dateofjoining
+												+ '</td>';			
+									    content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a href="editUser?id='+value.userempid+'" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>'	   
 													+'</td>';		
-										content += '<td style="font-size: 13px; color:black;width: 60px;"" class="corg_th"><a title="Delete" href="#" onclick="deletUser('+value.userempid+')"><span class="glyphicon glyphicon-trash"></span></a>'
+										content += '<td style="font-size: 13px; color:black;width: 60px;" class="corg_th"><a title="Delete" href="#" onclick="deletUser('+value.userempid+')"><span class="glyphicon glyphicon-trash"></span></a>'
 											+ '</td></tr>';		
 										
 
@@ -148,14 +159,6 @@ $( function() {
 			style="margin-left: 250px; margin-top: 8px;"><a
 			href="addUser" class="btn btn-primary"> Add New Employee </a> </label>
 
-		<!--  <label
-			 style="margin-left: 300px;margin-top: 8px;"><a href="testMap"
-			class="btn btn-primary">AddTest </a>
-     </label> -->
-
-		<!-- <label style="margin-left: 507px; margin-top: 8px;"><a
-			href="#" class="btn btn-primary">Export</a> </label> -->
-
 		<div class="input-group"
 			style="margin-left: 590px; width: 230px; top: -38px; width: 230px;">
 			<input type="text" placeholder="Search Employee name"
@@ -185,12 +188,10 @@ $( function() {
 			<tr>
 				<th>S.N.</th>
 				<th data-th="Driver details"><span>Employees Name</span></th>
+				<th>Designation</th>
+				<th>Branch</th>
+				<th>Employee Code</th>
 				 <th>Joining Date</th>
-
-				<th>Designation</th> 
-
-				 <th>Designation</th>
-
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;">Delete</th>
 			</tr>
@@ -206,19 +207,13 @@ $( function() {
 							<tr>
 								<td>${loop.index+1}</td>  
 								<td>${user.loginname}</td>
-								 <td>${user.dateofjoining}</td>
-								 
-
 								<td>${user.designationName}</td>
-
-								 <td>${user.designationName}</td>
-
-
-
+								 <td>${user.branchName}</td>
+								  <td>${user.empCode}</td>
+                                 <td>${user.dateofjoining}</td>
 								<td><a href="editUser?id=${user.userempid}" title="Edit">
 										<span class="glyphicon glyphicon-pencil"></span>
 								</a></td>
-
 								<td style=""><a href="#"
 									onclick="deletUser(${user.userempid})"> <span
 									class="glyphicon glyphicon-trash" style="margin-left:19px;"></span></a></td>

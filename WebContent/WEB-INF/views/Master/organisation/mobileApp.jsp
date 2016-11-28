@@ -24,6 +24,7 @@
 					success : function(data) {
 						var obj = JSON.parse(data);
 						//alert(obj.firstname)
+						var count=0;
 						var content = '<table class="responstable" style="margin-top: 5px;margin-left: 22px; border-radius: 5px;"><thead><tr>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">SN</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Employee Name</label></th>'
@@ -43,7 +44,7 @@
 									function(key, value) {
 										content += '<tr height="30">';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-												+ value.userempid
+												+ ++count
 												+ '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.firstname + '</td>';
@@ -53,13 +54,14 @@
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.deviceno 
 												+'</td>';
-										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-												+ value.empStatus	
-										content += '<td style="font-size: 13px; color:black;" class="corg_th"><a href="updateEmp?id=${emp.userempid}"'
-												+ value.userempid	
-												+'</a></td></tr>';	
-										
-									    
+												if(value.empStatus==true)
+													{
+													content +='<td class=""><img src="resources/image/greens.gif"></td>'
+													}else
+													content += '<td class=""><img src="resources/image/reds.gif"></td>'	
+										content += '<td class="corg_th"><a href="updateEmp?id='+value.userempid+'"<span class="btn btn-success">Approved</a>'
+												+ "</td></tr>";
+													
 									});
 					content += '</tbody></table>';
 							}
@@ -160,12 +162,6 @@
 			
 </div>
 </div>
-<h4>
- <div class="col-md-12 col-sm-12 clearfix"
-	style="text-align: left;font-weight: 200; color: red;" id="searchtotalrecords">
-							</div>
-							
-							</h4> 
 							<div class="row" style="margin-top: 10px;">
 					<div class="col-md-12">
 

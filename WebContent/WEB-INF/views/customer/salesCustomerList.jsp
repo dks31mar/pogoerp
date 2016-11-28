@@ -29,10 +29,9 @@
           <h4 class="modal-title">Customer Operation</h4>
         </div>
         <div class="modal-body">
-          <div><a href="#"><strong>Edit</strong></a></div>
            <div><a href="AddDiaryForEntrySales"><strong>Add Diary</strong></a></div>
             <div><a href="#"><strong> Create Quotation</strong></a></div>
-             <div><a href="#"><strong> Add Followup</strong></a></div>
+             <div><a href="AddFollowupForm"><strong> Add Followup</strong></a></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
@@ -71,9 +70,8 @@
   <td>${salesdetails.contactPerson}</td>
   <td>${salesdetails.status}</td>
   <td>${salesdetails.acmanager}</td>
-  <td><button type="button"  title="More Action" data-toggle="modal" data-target="#myModal"><i class="fa fa-th" aria-hidden="true"></i></button>
-
-</td>
+  <td><a href="editcustomer?id=${salesdetails.customerId}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a> <span>&nbsp;</span>
+  <button type="button"  title="More Action" data-toggle="modal" data-target="#myModal"><i class="fa fa-th" aria-hidden="true"></i></button></td>
   </tr>
   </c:forEach>
   </c:if>

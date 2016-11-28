@@ -38,6 +38,14 @@ public interface PrinicipalPoService {
 	void UpdatePoProduct(PoRefEntryItemDetailBean poref, PorefSupplierDetailBean porefs);
 
 	void updatePoSupplier(PorefSupplierDetailBean porefs);
+
+	void deletePoById(String id);
+
+	List<PoRefEntryItemDetailBean> getPoDetailByPorefId(String poref);
+
+	List<PoRefEntryItemDetailBean> getackDetailByPorefNo(String poref);
+
+
 	
 	
 }

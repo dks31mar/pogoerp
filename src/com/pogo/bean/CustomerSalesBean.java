@@ -6,7 +6,7 @@ public class CustomerSalesBean
 {
 	private Integer customerId;
 	private String creationDate;
-	private Date orderdate;
+	private String orderdate;
 	private String organisation;
 	private String orgShortName;
 	private String initiatedBy;
@@ -41,10 +41,11 @@ public class CustomerSalesBean
 	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Date getOrderdate() {
+	
+	public String getOrderdate() {
 		return orderdate;
 	}
-	public void setOrderdate(Date orderdate) {
+	public void setOrderdate(String orderdate) {
 		this.orderdate = orderdate;
 	}
 	public String getOrganisation() {

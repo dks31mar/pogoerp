@@ -67,8 +67,8 @@
     <td>${loop.index+1}</td>
     <td>${branch.zonesname}</td>
    <td><a href="states?id=${branch.zonesid}" target="_blank">States</a></td>
-    <td><a href="Editregion?id=${branch.zonesid}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="deleteRegion?id=${branch.zonesid}" title="Delete"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
+    <td><a href="Editregion?id=${branch.zonesid}" title="Edit" id="validate"><span class="glyphicon glyphicon-pencil"></span></a></td>
+    <td><a href="deleteRegion?id=${branch.zonesid}" title="Delete"  Onclick="ConfirmDelete()"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
   </tr>
   
   </c:forEach>
@@ -90,5 +90,14 @@
 						<div class="col-sm-7">
 	</div>
 <script>
+function ConfirmDelete()
+{
+  var x = confirm("Are you sure you want to delete?");
+  if (x)
+      return true;
+  else
+    return false;
+}
+
 
 </script>

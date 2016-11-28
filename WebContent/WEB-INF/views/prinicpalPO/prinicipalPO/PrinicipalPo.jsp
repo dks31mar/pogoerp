@@ -14,6 +14,9 @@
 //HttpSession session=request.getSession();
 String hh=(String)session.getAttribute("jsonp");
 String norml=(String)session.getAttribute("normal");
+if(norml==null){
+norml="Test/11-10/000";
+}
 String cb=(String)session.getAttribute("CBW");
 /* Integer total=(Integer)session.getAttribute("total"); */
 java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
@@ -223,6 +226,12 @@ System.out.println();
 								class="btn btn-success pull-center" id="addmore"
 								style="background-color: #3C8DBC;">Add More</button>
 						</td>
+						
+						<td>
+							<button type="button" value="update" onclick="numberingRow();"
+								class="btn btn-success pull-center"
+								style="background-color: #3C8DBC;">Number row</button>
+						</td>
 
 					</tr>
 
@@ -293,7 +302,7 @@ System.out.println();
 			$("#porefno").val("<%=cb%>");
 		});
 		$( function() {
-		    $( "#datepicker" ).datepicker();
+		    $( "#datepicker" ).datepicker({dateFormat: 'dd/mm/yy'});
 		  } );
 		  
 				$('#autocomplete').click(function(){
@@ -452,6 +461,7 @@ System.out.println();
 						    	 
 						    	 //location.reload();
 						    	 alert('saved!!!');
+						    	 window.location.href = "getaddpo";
 					    }
 					}); 
 				});
@@ -522,7 +532,18 @@ System.out.println();
 					}
 					
 				}
-			
+			function numberingRow(){
+				alert("dddd");
+				var id=$('#addprolisttbody').children('tr').length+1;
+				alert("fff");
+				var w=parseInt(1);
+				for(var ids=1;ids<=id;ids++){
+					alert("ggg");
+					alert(i);
+					$('#sr'+ids).val(ids);
+					w++;
+				}
+			}
 				
 		
 </script>

@@ -56,14 +56,20 @@ public class LoginController {
 	
 	@RequestMapping(value = "/homepage", method = RequestMethod.GET)
 	public ModelAndView homePage(HttpServletRequest request,PogoMenuOptions pmob) {
-		HttpSession session=request.getSession();
-		int id=(int)session.getAttribute("userid");
+		ModelAndView model=null;
 		Map<String, Object> getLeftMenuList=new HashMap<String, Object>();
+		int id=0;
+		try{
+		HttpSession session=request.getSession();
+		id=(int)session.getAttribute("userid");
+		
 		getLeftMenuList=loginService.getLeftMenu(request,id,pmob);
 		
-		 ModelAndView model = new ModelAndView("MainPage");
+		model = new ModelAndView("MainPage");
 		 model.addObject("lists", getLeftMenuList);
-		 
+		}catch(Exception e){
+			return new ModelAndView("redirect:/LoginPage.jsp");
+		}
 		 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&      "+getLeftMenuList);
 		 System.out.println("ID*************************** "+id);
 		return model;

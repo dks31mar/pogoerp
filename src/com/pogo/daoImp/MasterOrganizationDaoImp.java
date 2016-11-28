@@ -286,8 +286,8 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 
 	@Override
 	public void updateBranch(Branch branch) {
-		sessionFactory.getCurrentSession()
-				.createQuery("Update Branch SET branchname WHERE branchId =" + branch.getBranchId()).executeUpdate();
+		sessionFactory.getCurrentSession().update(branch);
+				//.createQuery("Update Branch SET branchname WHERE branchId =" + branch.getBranchId()).executeUpdate();
 		/* sessionFactory.getCurrentSession().update(branch); */
 
 	}
@@ -358,6 +358,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Zones> getZones() {
 		return sessionFactory.getCurrentSession().createCriteria(Zones.class).list();
@@ -408,6 +409,13 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 	public void deletebr(Branch branch) {
 		sessionFactory.getCurrentSession().delete(branch);
 
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<UserEmployee> getUserEmp(String empName) {
+		return sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
+				.add(Restrictions.like("firstname", empName+ "%")).add(Restrictions.eq("active", true)).list();
 	}
 
 }

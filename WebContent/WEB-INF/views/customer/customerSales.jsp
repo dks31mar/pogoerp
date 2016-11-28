@@ -43,19 +43,17 @@
 
 	}
  
- function getdistrictLists(id, countryId) 
+ function getdistrictLists(id) 
  {
-	 alert("hi");alert("State"+ id+""+"Country"+ countryId);
-		var url = 'getdistrictList/' + id + '/' + countryId;
+	 alert("District"+ id);
+		var url = 'getdistrict/' + id;
 		$
 				.ajax({
 					url : url,
-
-					type : 'POST',
+					type : 'GET',
 					success : function(data, status) {
 						$("#districts").empty();
-
-						var st = '<select name="districtId" class="form-control select " style="width: 100%;" id="districtId">'
+						var st = '<select name="districtId" class="form-control" style="width: 100%;">'
 								+ '<option value="">-- Select District --</option>';
 						var j = JSON.parse(data);
 						var length = j.length;
@@ -74,15 +72,6 @@
 					}
 				});
 	}
- 
- 
- 
- 
- 
- 
- 
- 
- 
  
 	  $( function() {
 		    $("#enquirydate" ).datepicker();
@@ -106,25 +95,17 @@
 
 		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; " >
 		<span class="glyphicon glyphicon-user"></span> <span> Customer</span>
-		<label style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"class="btn btn-primary">Add Dairy</a></label>
-		<label style="margin-left: 250px;margin-top: 8px;"><a href="CreateQuotationForm"class="btn btn-primary">Create Quotation</a></label>
-		<label style="margin-left: 250px;margin-top: 8px;"><a href="AddFollowupForm"class="btn btn-primary">Add FallowUp</a></label>
-		<label style="margin-left: 250px;margin-top: 8px;"><a href="editCustomerForm" class="btn btn-primary">Edit Customer</a></label>	
-
-		
-		<span class="glyphicon glyphicon-user"></span><span> Customer</span>
+		<label style="margin-left: 120px;"><a href="AddDiaryForEntrySales"  style="margin-top: -3px;" class="btn btn-primary">Add Dairy</a></label>
+		<label style="margin-left: 100px;"><a href="CreateQuotationForm" style="margin-top: -3px;" class="btn btn-primary">Create Quotation</a></label>
+		<label style="margin-left: 50px;"><a href="AddFollowupForm" style="margin-top: -3px;" class="btn btn-primary">Add FallowUp</a></label>
 		<label
-			style="margin-left: 250px; margin-top: 8px;"><a
-			href="getSalesList" class="btn btn-primary"> Sales List </a> </label> 
+			style="margin-left: 40px;"><a
+			href="getSalesList" style="margin-top: -3px;" class="btn btn-primary"> Sales List </a> </label> 
 
-	
-		
-		<label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"
-			class="btn btn-primary">Add Dairy</a>
 			
-     </label>
+     
   		
+
 
 	</div>
 	
@@ -208,7 +189,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="address"   placeholder="Middle Name"  class="form-control"  type="text">
+  <input name="address"   placeholder="Address"  class="form-control"  type="text">
     </div>
   </div>
    <label class="col-md-2 control-label" >Country<span style="color: red;">*</span></label> 
@@ -233,7 +214,7 @@
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <div class="span9"  id="state">
-  <select name="stateId"  id="state" onchange="getdistrictLists(this.value)"  class="form-control" >
+  <select name="stateId"  id="state" onchange="getdistrictLists(this.value);"  class="form-control" >
   <option>----Select State----</option>
   </select>
     </div>

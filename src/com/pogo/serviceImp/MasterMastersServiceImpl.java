@@ -671,8 +671,13 @@ public List<StateBean> getStateByCountryId(int id) {
 		StateBean stateBean=new StateBean();
 		stateBean.setStateId(data.getStateId());
 		stateBean.setState(data.getState());
+
 		System.out.println("on Service"+ data.getState());
 		/*Country country=data.getCountry();
+=======
+		//System.out.println("on Service"+ data.getState());
+		Country country=data.getCountry();
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		stateBean.setCountryId(country.getCountryId());
 		stateBean.setCountryName(country.getCountry());
 		beans.add(stateBean);*///comment for test
@@ -696,9 +701,9 @@ public List<LocationBean> getLocationDetails()
 }
 // comment by shweta 
 @Override
-public List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId) 
+public List<DistrictBean> getDistrictByStateIdAndcountryId(int id) 
 {
-	List<District> districts=masterMastersdao.getdistrictByStateIdAndCountryId(id,countryId);
+	List<District> districts=masterMastersdao.getdistrictByStateIdAndCountryId(id);
 	List<DistrictBean> districtBeans=new ArrayList<DistrictBean>();
 	for(District data:districts)
 	{
@@ -708,12 +713,25 @@ public List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId
 		System.out.println("on service" +data.getDistrict());
 		/*State state=data.getState();
 		Country country=data.getCountry();
+=======
+		State state=data.getState();
+		//Country country=data.getCountry();
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		bean.setStateName(state.getState());
+		System.out.println("On Service for district"+state.getState());
 		bean.setStatesId(state.getStateId());
+		bean.setCountryName(state.getCountry().getCountry());
+		bean.setCountryId(state.getCountry().getCountryId());
 		//bean.setStateId(String.valueOf(state.getStateId()));
+<<<<<<< HEAD
 		bean.setCountryName(country.getCountry());
 		bean.setCountryId(country.getCountryId());
 		districtBeans.add(bean);*///comment for test
+
+		//bean.setCountryName(country.getCountry());
+		//bean.setCountryId(country.getCountryId());
+		districtBeans.add(bean);
+
 	}
 	return districtBeans;
 }
@@ -723,6 +741,12 @@ public void deleteServiceprovider(int id) {
 	
 	masterMastersdao.deleteserviceprovider(id);
 	
+}
+
+@Override
+public List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId) {
+	// TODO Auto-generated method stub
+	return null;
 }
 
 }

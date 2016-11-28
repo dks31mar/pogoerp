@@ -10,6 +10,15 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
+<script type="text/javascript">
+$( function() {
+    $("#enquirydate" ).datepicker();
+  });
+
+$( function() {
+    $( "#orderdate").datepicker();
+  });
+</script>
 <div class="row" style="margin-top: 15px">
 	<br>
 	<div align="center">
@@ -20,25 +29,31 @@
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; " >
 		<span class="glyphicon glyphicon-user"></span> <span> Customer</span>
-		
-  
-  		
 	</div>
 	
 </div>
-<form:form class="well form-horizontal"  action="saveuserEmp" method="POST"  commandName="userbean"
+<form:form class="well form-horizontal"  action="updateCustomer" method="POST"  commandName="customerSalesBean"
     id="" >
    
 <fieldset>
 
 <!-- Form Name -->
 <legend>Edit Customer</legend>
+ <div class="form-group">
+  <label class="col-md-2 control-label">Customer Id</label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input name="" value="${editcustomers.customerId}" readonly="readonly" placeholder="Select Date" class="form-control"  type="text">
+    </div>
+  </div>
+  </div>
   <div class="form-group">
   <label class="col-md-2 control-label">Enquiry Date</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="" value="" readonly="readonly" placeholder="Select Date" class="form-control"  type="text">
+  <input name="creationDate" value="${editcustomers.creationDate}" readonly="readonly" id="enquirydate" placeholder="Select Date" class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" >Order Expected In<span
@@ -46,7 +61,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="empCode" value=""  placeholder="Select Date" required="required" readonly="readonly" class="form-control"  type="text">
+  <input   name="orderdate" value="${editcustomers.orderdate}"  placeholder="Select Date" id="orderdate" required="required" readonly="readonly" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -55,14 +70,14 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="loginname" value=""  placeholder="User Name" required="required"  class="form-control"  type="text">
+  <input   name="organisation" value="${editcustomers.organisation}"  placeholder="User Name" required="required"  class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" >Organisation Short Name<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  type="text"  value=""  class="form-control" name="dateofjoining" id="datepickerjoin"  readonly="readonly" placeholder="Select Date" >
+  <input  type="text"  value="${editcustomers.orgShortName}"  class="form-control" name="orgShortName"  placeholder="Technobridge" >
     </div>
   </div>
 </div>
@@ -72,8 +87,10 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select   name="firstname"  value="" placeholder="Employee Name"  required="required"  class="form-control" >
-  <option value="" selected="selected">----Select Employee----</option>
+  <select   name="empId"  value="" placeholder="Employee Name"  required="required"  class="form-control" >
+  <c:forEach items="${listemp}" var="list">
+  <option value="${list.userempid}">${list.loginname}</option>
+  </c:forEach>
   </select>
     </div>
   </div>
@@ -81,10 +98,9 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="designationId"  placeholder="Manger"   class="form-control"  >
-  <option value="" selected="selected">----Select Role----</option>
-  <c:forEach items="${listofDeg}" var="designationList">
-  <option value="${designationList.designationid}">${designationList.designation}</option>
+  <select name="acmanager"  placeholder="Manger"   class="form-control"  >
+  <c:forEach items="${listemp}" var="List">
+  <option value="${List.userempid}">${List.firstname}</option>
   </c:forEach>
   </select>
     </div>
@@ -98,14 +114,29 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="middlename"  value=""  placeholder="Middle Name" id="firstUppermiddle" onkeyup="javascript:capitalizemiddle(this.id, this.value);" class="form-control"  type="text">
+  <input name="address"  value="${editcustomers.address}"  placeholder="Address"   class="form-control"  type="text">
     </div>
   </div>
+  <label class="col-md-2 control-label" >Country<span style="color: red;">*</span></label> 
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <select name="countryId" class="form-control" onchange="getstateList(this.value)" >
+  <c:forEach items="${countrylist}" var="list">
+  <option value="${list.countryId}">${list.country}</option>
+  </c:forEach>
+  </select>
+    </div>
+    </div>
+    </div>
+    
+    <div class="form-group">
   <label class="col-md-2 control-label" >State<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="dob"  id="datepickerDob" value=""  placeholder="Select Date" readonly="readonly" class="form-control" >
+  <select name="stateId"  value=""  placeholder="Select Date"  class="form-control" >
+  <option value="">----Select State----</option>
   </select>
     </div>
   </div>
@@ -115,7 +146,8 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="lastname"      class="form-control" >
+  <select name="districtId" class="form-control">
+  <option value="">----Select District----</option>
   </select>
     </div>
   </div>
@@ -125,9 +157,8 @@
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select name="subcompanyId" class="form-control selectpicker" required="required">
-  <option value="" selected="selected">---Select SubCompany---</option> 
-  <c:forEach items="${listofComp}" var="companylist">
-  <option value="${companylist.companyinfoid}">${companylist.companyinfoname}</option>
+   <c:forEach items="${locList}" var="list">
+  <option value="${list.locationId}">${list.location}</option>
   </c:forEach>
   </select>
     </div>
@@ -138,19 +169,14 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="division" class="form-control selectpicker" required="required">
-   <option>---Select Division---</option> 
-      <option value="sales">Sales</option>
-	  <option value="services">Services</option>
-     
-    </select>
+    <input name="contactPerson" value="${editcustomers.contactPerson}" class="form-control selectpicker" required="required" type="text">
   </div>
 </div>
  <label class="col-md-2 control-label" >Telephone No.<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="eamil" value=""  placeholder="E-Mail Address" class="form-control" required="required" type="email">
+  <input  name="telephoneNo" value="${editcustomers.telephoneNo}"  placeholder="Telephone No" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -159,12 +185,8 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="region" class="form-control selectpicker" required="required">
-    <option>---Select Region---</option>
-      <option value="Delhi NCR">Delhi NCR</option>
-	 <option value="Noida">Noida</option>
-     
-    </select>
+    <input name="emailId" value="${editcustomers.emailId}" class="form-control selectpicker" required="required" type="email">
+    
   </div>
 </div>
  <label class="col-md-2 control-label" >Status<span style="color: red;">*</span></label>  
@@ -172,7 +194,9 @@
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
   <select name="password" value=""   class="form-control" required="required" >
-  <option>---Select Status---</option>
+  <c:forEach items="${cusStatus}" var="statuslist">
+  <option value="${statuslist.id}">${statuslist.status}</option>
+  </c:forEach>
   </select>
     </div>
   </div>
@@ -182,21 +206,19 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="branchId" class="form-control selectpicker" required="required">
-      <option value="" selected="selected">---Select Branch---</option>
-      <c:forEach items="${listofBranch}" var="listofBranch">
-       <option value="${listofBranch.branchId}">${listofBranch.branchname}</option>
-      </c:forEach>
+    <input name="mobileNo" value="${editcustomers.mobileNo}" class="form-control selectpicker" required="required" type="text">
      
-    </select>
   </div>
 </div>
  <label class="col-md-2 control-label" >Category<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <select name="repassword" class="form-control">
-  <option value="" selected="selected">---Select Branch---</option>
+  <select name="category" class="form-control" value="${editcustomers.category}">
+   <option value="retail">Retail</option>
+   <option value="distributor">Distributor</option>
+   <option value="stockist">Stocklist</option>
+   <option value="dealer">Dealer</option>
   </select>
     </div>
   </div>
@@ -209,7 +231,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
-    <button type="submit" class="btn btn-warning" onclick="message();" >Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="submit" class="btn btn-warning" onclick="message();">Send <span class="glyphicon glyphicon-send"></span></button>
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>

@@ -21,9 +21,9 @@ public class CustomerSales
 	@Column(name="customerid")
 private Integer customerId;
 	@Column(name="creation_date")
-private Date creationDate;
+private String creationDate;
 	@Column(name="orderdate")
-private Date orderdate;
+private String orderdate;
 	@Column(name="organisation")
 private String organisation;
 	@Column(name="orgShort_name")
@@ -67,16 +67,16 @@ private Location location;
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
-	public Date getCreationDate() {
+	public String getCreationDate() {
 		return creationDate;
 	}
-	public void setCreationDate(Date creationDate) {
+	public void setCreationDate(String creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Date getOrderdate() {
+	public String getOrderdate() {
 		return orderdate;
 	}
-	public void setOrderdate(Date orderdate) {
+	public void setOrderdate(String orderdate) {
 		this.orderdate = orderdate;
 	}
 	public String getOrganisation() {

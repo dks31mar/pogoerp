@@ -247,7 +247,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	public void adduserEmp(UserEmployeeBean userDTO) throws ParseException 
 	{
 		
-		SimpleDateFormat dateformat = new SimpleDateFormat("mm-dd-yyyy");
+		SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd-yyyy");
 		//SimpleDateFormat df=new SimpleDateFormat("MMM-dd-yyyy");
 		UserEmployee emp=new UserEmployee();
 		emp.setLoginname(userDTO.getLoginname());
@@ -293,11 +293,12 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			data.setDeviceno(list.getDeviceno());
 			data.setDesignationName(list.getDesignationName().getDesignation());
 			data.setEmpStatus(list.getEmpStatus());
+			data.setEmpCode(list.getEmpCode());
 			data.setBranchName(list.getBranchName().getBranchname());
-			/*String date1=(dateformat.format(list.getDateofjoining()));
-			String date2=date1.split("00:00:00:0")[0];
-			data.setDateofjoining(dateformat.format(date2));*/
-			data.setDateofjoining( list.getDateofjoining());
+			//String date1=(dateformat.format(list.getDateofjoining()));
+			//String date2=date1.split("00:00:00:0")[0];
+			//data.setDateofjoining(dateformat.parse(date2));
+			data.setDateofjoining(list.getDateofjoining());
 
 
 			//data.setDateofjoining(date2);
@@ -307,7 +308,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			data.setFirstname(list.getFirstname());
 			data.setMiddlename(list.getMiddlename());
 			data.setLastname(list.getLastname());
-			//data.setDesignation(list.getDesignation());
+			
 
 			lists.add(data);
 		}
@@ -337,6 +338,9 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			userData.setFirstname(data.getFirstname()+""+ data.getMiddlename()+""+data.getLastname());
 			userData.setDesignationName(data.getDesignationName().getDesignation());
 			userData.setDeviceno(data.getDeviceno());
+			userData.setBranchName(data.getBranchName().getBranchname());
+			userData.setEmpCode(data.getEmpCode());
+			userData.setDateofjoining(data.getDateofjoining());
 			userData.setEmpStatus(data.getEmpStatus());
 			
 			
@@ -627,10 +631,13 @@ public List<StatezoneBean> getZoneStates(Integer id) {
 
 @Override
 @Transactional
-public void updateBranch(BranchBean branchBean) {
+public void updateBranch(BranchBean branchBean,int id,int id2) {
 	Branch branch =new Branch();
 	branch.setBranchId(branchBean.getBranchId());
 	branch.setBranchname(branchBean.getBranchname());
+	StateZone state=new StateZone();
+	state.setStateId(id2);
+	branch.setStateNames(state);
 	System.out.println(branchBean.getBranchname());
 	regionDao.updateBranch(branch);
 	
@@ -659,7 +666,7 @@ public void updateState(StatezoneBean statezoneBean,int id) {
 	Zones zone=new Zones();
 	zone.setZonesid(id);
 	stateZone.setStateId(statezoneBean.getStateId());
-	System.out.println("on service"+ statezoneBean.getStateId()+statezoneBean.getStateName());
+	//System.out.println("on service"+ statezoneBean.getStateId()+statezoneBean.getStateName());
 	stateZone.setStateName(statezoneBean.getStateName());
 	stateZone.setZones(zone);
 	regionDao.updateStates(stateZone);
@@ -680,6 +687,22 @@ public List<BranchBean> getBranchByState(int id)
 		beans.add(branch1);
 	}
 	return beans;
+}
+@Override
+public List<UserEmployeeBean> getUserByName(String empName) {
+	List<UserEmployee> user=userEmpdao.getUserEmp(empName);
+	List<UserEmployeeBean> listbean=new ArrayList<UserEmployeeBean>();
+	for(UserEmployee data:user)
+	{
+		UserEmployeeBean bean=new UserEmployeeBean();
+		bean.setUserempid(data.getUserempid());
+		bean.setFirstname(data.getFirstname());
+		bean.setDesignationName(data.getDesignationName().getDesignation());
+		bean.setDeviceno(data.getDeviceno());
+		bean.setEmpStatus(data.getEmpStatus());
+		listbean.add(bean);
+	}
+	return listbean;
 }
 
 }
