@@ -106,6 +106,10 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	@Override
 	@Transactional
 	public void deleteCountry(Integer id){
+		System.out.println("delete");
+		
+		//State sateid= masterMastersdao.getStateIdByContryId(id);
+		//System.out.println(sateid);
 		masterMastersdao.deleteCountry(id);
 	}
 	@Override
@@ -148,7 +152,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		c.setCountryId(poref1.getStateId());
 		State state=new State();
 		state.setState(poref1.getState());
-		state.setCountry(c);
+		/*state.setCountry(c);*///comment for test
 		masterMastersdao.addState(state);
 	}
 	
@@ -185,7 +189,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		State state=new State();
 		state.setStateId(poref1.getStateId());
 		state.setState(poref1.getState());
-		state.setCountry(c);
+		/*state.setCountry(c);*///comment for test
 		System.out.println("outside edit state service impl");
 		masterMastersdao.editState(state);
 	}
@@ -204,7 +208,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		System.out.println(poref1.getDistrictId());
     	District district=new District();
 		district.setDistrict(poref1.getDistrict());
-		district.setState(s);
+		/*district.setState(s);*///comment for test
 		masterMastersdao.addDistrict(district);
      }
 
@@ -240,7 +244,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	District district=new District();
 	district.setDistrictId(poref1.getDistrictId());
 	district.setDistrict(poref1.getDistrict());
-	district.setState(s);
+	/*district.setState(s);*///comment for test
 	masterMastersdao.editDistrict(district);
 }
    
@@ -259,14 +263,16 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		
 		Location location=new Location();
 		location.setLocation(poref1.getLocation());
-		location.setDistrict(district);
+		/*location.setDistrict(district);*///comment for test
 		masterMastersdao.addLocation(location);
 		
 		
 	}
 	@Override
 	@Transactional
-	public void deleteLocation(int id){
+	public void deleteLocation(int id ){
+		
+		
 		masterMastersdao.deleteLocation(id);
 	}
 	@Override
@@ -295,7 +301,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		Location location=new Location();
 		location.setLocationId(poref1.getLocationId());
 		location.setLocation(poref1.getLocation());
-		location.setDistrict(district);
+		/*location.setDistrict(district);*///comment for test
 		masterMastersdao.editLocation(location);
 	}
 	
@@ -666,10 +672,10 @@ public List<StateBean> getStateByCountryId(int id) {
 		stateBean.setStateId(data.getStateId());
 		stateBean.setState(data.getState());
 		System.out.println("on Service"+ data.getState());
-		Country country=data.getCountry();
+		/*Country country=data.getCountry();
 		stateBean.setCountryId(country.getCountryId());
 		stateBean.setCountryName(country.getCountry());
-		beans.add(stateBean);
+		beans.add(stateBean);*///comment for test
 	}
 	return beans;
 }
@@ -688,7 +694,7 @@ public List<LocationBean> getLocationDetails()
 	}
 	return locationbeans;
 }
-
+// comment by shweta 
 @Override
 public List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId) 
 {
@@ -700,23 +706,23 @@ public List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId
 		bean.setDistrictId(data.getDistrictId());
 		bean.setDistrict(data.getDistrict());
 		System.out.println("on service" +data.getDistrict());
-		State state=data.getState();
+		/*State state=data.getState();
 		Country country=data.getCountry();
 		bean.setStateName(state.getState());
 		bean.setStatesId(state.getStateId());
 		//bean.setStateId(String.valueOf(state.getStateId()));
 		bean.setCountryName(country.getCountry());
 		bean.setCountryId(country.getCountryId());
-		districtBeans.add(bean);
+		districtBeans.add(bean);*///comment for test
 	}
 	return districtBeans;
 }
-
+ // comment by shweta 
 @Override
 public void deleteServiceprovider(int id) {
+	
 	masterMastersdao.deleteserviceprovider(id);
 	
 }
-
 
 }

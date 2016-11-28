@@ -494,7 +494,9 @@ System.out.println();
 					});
 					
 					function search1(result){
+						alert(result);
 						var currencies =jQuery.parseJSON(result);
+						alert(currencies);
 					$('#partno'+id).autocomplete({
 					    lookup: currencies,
 					    onSelect: function (suggestion) {

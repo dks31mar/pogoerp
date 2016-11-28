@@ -1,5 +1,7 @@
 package com.pogo.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -8,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.AddAddressBean;
 import com.pogo.bean.AddEmailListBean;
+import com.pogo.model.CsvFile;
 import com.pogo.service.LeadGenerationCampaignsService;
 
 @Controller
@@ -167,8 +172,36 @@ public class LeadGenerationCampaignsController {
 		return new ModelAndView("getcsvfile");
 	}
 	
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public @ResponseBody String doUpload(@RequestParam("file") MultipartFile multipartFile)throws Exception{
+		System.out.println("inside upload method");
+		/*MultipartFile multipart = file.getFile();
+		String filename = "";
+		if(multipart!= null){
+			filename = multipart.getOriginalFilename();
+			
+		}
+		
+		return new ModelAndView("getcsvfile","filename" ,filename);*/
+		String path = "C:\\Users\\Administrator\\Desktop\\file";
+		String filename = multipartFile.getOriginalFilename();
+		System.out.println(path+" "+filename);  
+		 try{  
+		        byte barr[]=multipartFile.getBytes();  
+		          
+		        BufferedOutputStream bout=new BufferedOutputStream(  
+		                 new FileOutputStream(path+"/"+filename));  
+		        bout.write(barr);  
+		        bout.flush();  
+		        bout.close();  
+		          
+		        }catch(Exception e)
+		 {System.out.println(e);}  
+		       // return multipartFile("upload-success","filename",path+"/"+filename);  
+		  return "upload-success: " + multipartFile.getSize() + " bytes";
+	}
 }
-	
+	 
 	
 	
 	

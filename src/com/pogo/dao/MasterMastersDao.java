@@ -100,6 +100,7 @@ public interface MasterMastersDao {
 	CustomerLevels getCustomerStatusById(Integer customerLevelId);
 	List<District> getdistrictByStateIdAndCountryId(int id, int countryId);
 	void deleteserviceprovider(int id);
+	State getStateIdByContryId(Integer id);
 	
 
 

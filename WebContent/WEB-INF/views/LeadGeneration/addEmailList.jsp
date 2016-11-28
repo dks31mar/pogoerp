@@ -45,7 +45,7 @@
 <div class="row">  
 <input type="hidden" id="hiddenid"/>								
 <div class="col-md-6">
-<input  type="text" class="validate[required] text-input" id="name" style="border-radius: 5px;" value="" name="loginname"  autofocus="autofocus"></input>	
+<input  type="text"  class="validate[required] text-input" id="name" style="border-radius: 5px;" value="" name="loginname"  autofocus="autofocus" ></input>	
 									
 </div>
 <div class="col-md-6">
@@ -63,7 +63,7 @@
  <div class="col-md-6"><span style="color: red" id="msg1">*This field is required.</span></div>
 <div class="col-md-6" id='emailmsg1'><span style="color: red" id="msg2">*This field is required.</span></div>
 <div class="col-md-6" id='emailmsg2'><span style="color: red" id="invalid_email">*This email is not valid.</span></div>
-
+<div class="col-md-6"><span style="color: red" id="msg">*Please Enter Alphabets Only.</span></div>
 </div>
 	
 </div>
@@ -119,6 +119,7 @@ $("#getpopup").click(function(){
 	 $('#msg1').hide();
 	 $('#msg2').hide();
 	 $('#invalid_email').hide();
+	 $('#msg').hide();
 	// $("#hiddenid").val('');
 	
 });
@@ -129,11 +130,15 @@ $('#save').click(function (){
 	
 	var name=$('#name').val();
 	var email=$('#email').val();
-	
+	var regex = /^[a-zA-Z]*$/;
 	if(name == ''){
 		/* $("#expenseheadspan").show(); */
 		$('#msg1').show('fast');
-	} else if(email == ''){
+	} 
+	else if(name == regex){
+		$('#msg').show('fast');	
+	}
+	else if(email == ''){
 		/* $("#expensetypespan").show(); */
 		$('#msg2').show('fast');
 	}else if(IsEmail(email)==false){
