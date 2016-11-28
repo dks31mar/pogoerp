@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -379,10 +380,10 @@ private List<PorefSupplierDetailBean> prepareViewListofBean(List<PorefSupplierDe
 
 
 @RequestMapping(value="/supplierack",method = RequestMethod.GET)
-public ModelAndView getacknowledsupplierpo(@RequestParam("poref") String poref, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+public ModelAndView getacknowledsupplierpo(@RequestParam("poref") String poref,@RequestParam("page") String pagename, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
 	System.out.println("in get edit method");
 	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
-	lst=prinicipalposervice.getPoDetailByPorefNo(poref);
+	lst=prinicipalposervice.getackDetailByPorefNo(poref);
 	System.out.println(lst);
 	double total=0.0;
 	String date=null;
@@ -405,26 +406,12 @@ return new ModelAndView("supplierackView",model);
 
 
 @RequestMapping(value="/ackdatabysearch",method = RequestMethod.GET)
-public ModelAndView getacknowledDataBySearch(@RequestParam("poref") String poref, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+public @ResponseBody String getacknowledDataBySearch(@RequestParam("poref") String poref, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m) throws JsonProcessingException{
 	System.out.println("in get edit method");
 	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
-	lst=prinicipalposervice.getPoDetailByPorefNo(poref);
-	System.out.println(lst);
-	double total=0.0;
-	String date=null;
-	String porefNo=null;
-	for(PoRefEntryItemDetailBean g:lst){
-		System.out.println(g.getPorefnobysupplier().getTotal());
-		total=g.getPorefnobysupplier().getTotal();
-		date=g.getPorefnobysupplier().getPorefdate();
-		porefNo=g.getPorefnobysupplier().getPorefno();
-	}
-	Map<String, Object> model = new HashMap<String, Object>();
-	model.put("listbyporef", lst);
-	m.addAttribute("gtotal", total);
-	m.addAttribute("date", date);
-	m.addAttribute("porefnumber", porefNo);
-return new ModelAndView("supplierackView",model);
+	lst=prinicipalposervice.getPoDetailByPorefId(poref);
+	ObjectMapper map = new ObjectMapper();
+	return map.writeValueAsString(lst);
 //return new ModelAndView("supplierackView");
 }
 /*private PoRefEntryItemDetailCopyBean prepareProductBeanCopy(List<PoRefEntryItemDetailCopy> productEdit) {

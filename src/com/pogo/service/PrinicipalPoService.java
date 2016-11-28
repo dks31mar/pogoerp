@@ -41,6 +41,10 @@ public interface PrinicipalPoService {
 
 	void deletePoById(String id);
 
+	List<PoRefEntryItemDetailBean> getPoDetailByPorefId(String poref);
+
+	List<PoRefEntryItemDetailBean> getackDetailByPorefNo(String poref);
+
 
 	
 	

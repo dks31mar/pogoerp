@@ -14,6 +14,9 @@
 //HttpSession session=request.getSession();
 String hh=(String)session.getAttribute("jsonp");
 String norml=(String)session.getAttribute("normal");
+if(norml==null){
+norml="Test/11-10/000";
+}
 String cb=(String)session.getAttribute("CBW");
 /* Integer total=(Integer)session.getAttribute("total"); */
 java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
@@ -458,6 +461,7 @@ System.out.println();
 						    	 
 						    	 //location.reload();
 						    	 alert('saved!!!');
+						    	 window.location.href = "getaddpo";
 					    }
 					}); 
 				});

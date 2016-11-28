@@ -1,6 +1,8 @@
 package com.pogo.model;
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,9 +26,12 @@ public class PoRefEntryItemDetail implements Serializable {
 	private Integer porefentryitemdetailid;
 	
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="porefno")
 	private PorefSupplierDetail porefnobysupplier;
+	
+	
+	
 	
 	@Column(name="particular",columnDefinition="varchar(50)")
 	private String particular;

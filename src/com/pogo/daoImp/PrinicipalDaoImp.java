@@ -19,6 +19,7 @@ import com.pogo.model.CustomerLevels;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
+import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
 @Repository("prinicipaldao")
 @SuppressWarnings("unchecked")
@@ -104,7 +105,7 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 
 	@Override
 	public Object getGrantTotal(HttpServletRequest res) {
-		// TODO Auto-generated method stub
+		
 		return (Integer)sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetailCopy.class).setProjection(Projections.sum("totaljpy")).uniqueResult();
 	}
 
@@ -123,8 +124,15 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 
 	@Override
 	public List<PoRefEntryItemDetail> getPoDetailByPorefNo(String poref) {
+		return  sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefnobysupplier.porefno",poref)).list();
+		/*System.out.println("seasrcgh");
+		Criteria poentry=sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class);
+		Criteria supplier=poentry.createAlias("porefnobysupplier","po");
+		supplier.add(Restrictions.eq("po.porefno", poref));
+		List<PoRefEntryItemDetail> list=poentry.list();*/
 		
-		return sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefnobysupplier.porefno", poref)).list();
+		
+		//return sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefnobysupplier.porefno", poref)).list();
 	}
 
 	@Override
@@ -145,6 +153,24 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	
 		sessionFactory.getCurrentSession().delete(poref);
 		
+	}
+
+	@Override
+	public List<PoRefEntryItemDetail> getPoDetailByPorefId(String poref) {
+		int id=Integer.parseInt(poref);
+		
+		return (List<PoRefEntryItemDetail>) sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefentryitemdetailid", id)).list();
+	}
+
+	@Override
+	public List<PoRefEntryItemDetail> getackDetailByPorefNo(String poref) {
+		return  sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefnobysupplier.porefno",poref)).list();
+	}
+
+	@Override
+	public ProductAcknowledgement getPendindQty(String porefNo, String particular) {
+		ProductAcknowledgement pa=(ProductAcknowledgement) sessionFactory.getCurrentSession().createCriteria(ProductAcknowledgement.class).add(Restrictions.eq("porefno", porefNo)).add(Restrictions.eq("particular", particular)).uniqueResult();
+		return pa;
 	}
 	
 	

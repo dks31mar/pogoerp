@@ -1,6 +1,8 @@
 package com.pogo.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pogo.model.PorefSupplierDetail;
+import com.pogo.model.ProductAcknowledgement;
 
 public class PoRefEntryItemDetailBean{
 		
@@ -19,11 +21,29 @@ public class PoRefEntryItemDetailBean{
 	 	private String invdate;
 	 	private String customerporefe;
 	 	private String productdescription;
+	 	@JsonIgnore
 	 	private PorefSupplierDetail porefnobysupplier;
+	 	@JsonIgnore
+	 	private ProductAcknowledgement productack;
+	 	
+	 	private double pendingqty;
+	 	
 	 	
 	 	
 	 	
 		
+		public double getPendingqty() {
+			return pendingqty;
+		}
+		public void setPendingqty(double pendingqty) {
+			this.pendingqty = pendingqty;
+		}
+		public ProductAcknowledgement getProductack() {
+			return productack;
+		}
+		public void setProductack(ProductAcknowledgement productack) {
+			this.productack = productack;
+		}
 		public PoRefEntryItemDetailBean() {
 			super();
 		}
@@ -32,9 +52,11 @@ public class PoRefEntryItemDetailBean{
 			this.porefno = porefno;
 			this.particular = particular;
 		}
+	
 		public PorefSupplierDetail getPorefnobysupplier() {
 			return porefnobysupplier;
 		}
+		
 		public void setPorefnobysupplier(PorefSupplierDetail porefnobysupplier) {
 			this.porefnobysupplier = porefnobysupplier;
 		}
