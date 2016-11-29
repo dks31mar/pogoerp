@@ -355,7 +355,18 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 	@Override
 	public List<ProductAcknowledgementBean> getAckData(String s1, String s2) {
 		List<ProductAcknowledgement> productack=prinicipaldao.getAckData(s1,s2);
-		return null;
+		List<ProductAcknowledgementBean> beanlist=new ArrayList<>();
+		for(ProductAcknowledgement pa:productack){
+			ProductAcknowledgementBean bean=new ProductAcknowledgementBean();
+			bean.setExpdate(pa.getExpdate());
+			bean.setParticular(pa.getParticular());
+			bean.setPendingqty(pa.getPendingqty());
+			bean.setPorefno(pa.getPorefno());
+			bean.setReceiveqty(pa.getReceiveqty());
+			bean.setProductacknowledgementid(pa.getProductacknowledgementid());
+			beanlist.add(bean);
+		}
+		return beanlist;
 	}
 
 	
