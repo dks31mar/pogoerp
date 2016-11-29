@@ -82,7 +82,7 @@
 					<div class="col-md-3 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input type="text"
+								class="glyphicon glyphicon-calendar"></i></span> <input type="text"
 								class="form-control" name="dateofjoining" id="datepickerjoin"
 								readonly="readonly" placeholder="Select Date">
 						</div>
@@ -95,7 +95,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="firstname"
-								placeholder="Letters Olny" pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" id="firstname"
+								placeholder="Letters Only" pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" id="firstname"
 								required="required"
 								onkeyup="javascript:capitalize(this.id, this.value);"
 								class="form-control" type="text">
@@ -135,7 +135,7 @@
 					<div class="col-md-3 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input name="dob"
+								class="glyphicon glyphicon-calendar"></i></span> <input name="dob"
 								id="datepickerDob" placeholder="Select Date" readonly="readonly"
 								class="form-control" type="text">
 						</div>
@@ -147,7 +147,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="lastname"
-								placeholder="Last Name" id="firstlastupper" pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$"
+								placeholder="Last Name" id="firstlastupper" pattern="^[a-zA-Z](\s?[a-zA-Z]){3,20}$"
 								onkeyup="javascript:capitalizelast(this.id, this.value);"
 								class="form-control" type="text">
 						</div>

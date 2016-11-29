@@ -9,10 +9,8 @@ public class AddDiaryBean {
 	private String tasktype;
 	private int enteryuserId;
 	private String enteryuser;
-	private String decidingAuthority;
 	private String address;
 	private String mobileno;
-	private String faxno;
 	private String email;
 	private String objective;
 	
@@ -52,12 +50,7 @@ public class AddDiaryBean {
 	public void setEnteryuser(String enteryuser) {
 		this.enteryuser = enteryuser;
 	}
-	public String getDecidingAuthority() {
-		return decidingAuthority;
-	}
-	public void setDecidingAuthority(String decidingAuthority) {
-		this.decidingAuthority = decidingAuthority;
-	}
+	
 	public String getAddress() {
 		return address;
 	}
@@ -70,12 +63,6 @@ public class AddDiaryBean {
 	}
 	public void setMobileno(String mobileno) {
 		this.mobileno = mobileno;
-	}
-	public String getFaxno() {
-		return faxno;
-	}
-	public void setFaxno(String faxno) {
-		this.faxno = faxno;
 	}
 	public String getEmail() {
 		return email;

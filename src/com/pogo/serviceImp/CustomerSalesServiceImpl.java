@@ -183,10 +183,8 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		diary.setDate(addDiaryBean.getDate());
 		diary.setAddress(addDiaryBean.getAddress());
 		diary.setContacperson(addDiaryBean.getContacperson());
-		diary.setDecidingAuthority(addDiaryBean.getDecidingAuthority());
 		diary.setDiarytime(addDiaryBean.getTime());
 		diary.setEmail(addDiaryBean.getEmail());
-		diary.setFaxno(addDiaryBean.getFaxno());
 		diary.setMobileno(addDiaryBean.getMobileno());
 		diary.setObjective(addDiaryBean.getObjective());
 		diary.setOrganizationName(addDiaryBean.getOrganization());
@@ -194,11 +192,8 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		diary.setEnteryuser(empDao.get(addDiaryBean.getEnteryuserId()));
 		customerSalesDao.saveDiary(diary);
 	}
+	
 
-	public void SaveDiaryForEntery() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 
 

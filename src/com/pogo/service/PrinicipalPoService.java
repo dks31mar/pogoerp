@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PorefSupplierDetailBean;
+import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
@@ -44,6 +45,12 @@ public interface PrinicipalPoService {
 	List<PoRefEntryItemDetailBean> getPoDetailByPorefId(String poref);
 
 	List<PoRefEntryItemDetailBean> getackDetailByPorefNo(String poref);
+
+	void saveAcknowledData(ProductAcknowledgementBean bean);
+
+	List<ProductAcknowledgementBean> getAckData(String s1, String s2);
+
+	
 
 
 	

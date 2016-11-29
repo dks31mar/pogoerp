@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PorefSupplierDetailBean;
+import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.dao.PrinicipalDao;
 import com.pogo.model.PoRefEntryItemDetail;
@@ -305,8 +306,10 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 			String particular=e.getParticular();
 			double pendingqty=e.getQty();
 			try{
-			ProductAcknowledgement proack=	prinicipaldao.getPendindQty(porefNo,particular);
-			pendingqty=proack.getPendingqty();
+			List<ProductAcknowledgement> proack=	prinicipaldao.getPendindQty(porefNo,particular);
+			for(ProductAcknowledgement pro:proack){
+			pendingqty=pro.getPendingqty();
+			}
 			bean.setPendingqty(pendingqty);
 			}catch(Exception ex){
 				bean.setPendingqty(pendingqty);
@@ -335,6 +338,38 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		}
 		return lst1;
 	}
+
+	@Override
+	public void saveAcknowledData(ProductAcknowledgementBean bean) {
+		ProductAcknowledgement proack=new ProductAcknowledgement();
+		proack.setExpdate(bean.getExpdate());
+		proack.setParticular(bean.getParticular());
+		proack.setPendingqty(bean.getPendingqty());
+		proack.setPorefno(bean.getPorefno());
+		proack.setReceiveqty(bean.getReceiveqty());
+		
+		prinicipaldao.saveAcknowledData(proack);
+		
+	}
+
+	@Override
+	public List<ProductAcknowledgementBean> getAckData(String s1, String s2) {
+		List<ProductAcknowledgement> productack=prinicipaldao.getAckData(s1,s2);
+		List<ProductAcknowledgementBean> beanlist=new ArrayList<>();
+		for(ProductAcknowledgement pa:productack){
+			ProductAcknowledgementBean bean=new ProductAcknowledgementBean();
+			bean.setExpdate(pa.getExpdate());
+			bean.setParticular(pa.getParticular());
+			bean.setPendingqty(pa.getPendingqty());
+			bean.setPorefno(pa.getPorefno());
+			bean.setReceiveqty(pa.getReceiveqty());
+			bean.setProductacknowledgementid(pa.getProductacknowledgementid());
+			beanlist.add(bean);
+		}
+		return beanlist;
+	}
+
+	
 
 	
 

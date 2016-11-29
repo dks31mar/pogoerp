@@ -299,12 +299,6 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			//String date2=date1.split("00:00:00:0")[0];
 			//data.setDateofjoining(dateformat.parse(date2));
 			data.setDateofjoining(list.getDateofjoining());
-
-
-			//data.setDateofjoining(date2);
-			//data.setDateofjoining(dateformat.format(list.getDateofjoining()));
-
-
 			data.setFirstname(list.getFirstname());
 			data.setMiddlename(list.getMiddlename());
 			data.setLastname(list.getLastname());

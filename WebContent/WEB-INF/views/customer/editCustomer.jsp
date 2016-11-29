@@ -27,13 +27,16 @@ $( function() {
 </div>
 <div class="row">
 	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; " >
+		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; ">
 		<span class="glyphicon glyphicon-user"></span> <span> Customer</span>
+		<label style="margin-left: 120px;"><a href="addDiaryForEntrySales"  style="margin-top: -3px;" class="btn btn-primary">Planner</a></label>
+		<label style="margin-left: 150px;"><a href="createQuotation" style="margin-top: -3px;" class="btn btn-primary">Quotation</a></label>
+		<label style="margin-left: 170px;"><a href="addFollowup" style="margin-top: -3px;" class="btn btn-primary">Add Activities</a></label>
 	</div>
 	
 </div>
 <form:form class="well form-horizontal"  action="updateCustomer" method="POST"  commandName="customerSalesBean"
-    id="" >
+    id="" style="width: 1217px;" >
    
 <fieldset>
 

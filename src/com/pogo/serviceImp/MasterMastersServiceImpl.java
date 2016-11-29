@@ -670,12 +670,16 @@ public List<StateBean> getStateByCountryId(int id) {
 	{
 		StateBean stateBean=new StateBean();
 		stateBean.setStateId(data.getStateId());
+		System.out.println("On service State"+ data.getStateId());
 		stateBean.setState(data.getState());
-
 		System.out.println("on Service"+ data.getState());
+
 		Country country=data.getCountry();
 
 		//System.out.println("on Service"+ data.getState());
+		//Country country=data.getCountry();
+
+
 		//Country country=data.getCountry();
 
 		stateBean.setCountryId(country.getCountryId());
@@ -701,36 +705,38 @@ public List<LocationBean> getLocationDetails()
 }
 
 @Override
-public List<DistrictBean> getDistrictByStateIdAndcountryId(int id) 
+public List<DistrictBean> getDistrictByStateIdAndcountryId(int id,int countryId) 
 {
-	List<District> districts=masterMastersdao.getdistrictByStateIdAndCountryId(id);
+	List<District> districts=masterMastersdao.getdistrictByStateIdAndCountryId(id,countryId);
 	List<DistrictBean> districtBeans=new ArrayList<DistrictBean>();
 	for(District data:districts)
 	{
 		DistrictBean bean=new DistrictBean();
 		bean.setDistrictId(data.getDistrictId());
+
 		bean.setDistrict(data.getDistrict());
 		System.out.println("on service" +data.getDistrict());
+
+		bean.setDistrict(data.getDistrict());
+		System.out.println("on service District" +data.getDistrict());
+
 		State state=data.getState();
+
 		Country country=data.getCountry();
 
-		//State state=data.getState();
-		//Country country=data.getCountry();
+		
+		bean.setStatesId(state.getStateId());
 
 		bean.setStateName(state.getState());
 		System.out.println("On Service for district"+state.getState());
+
 		bean.setStatesId(state.getStateId());
 		bean.setCountryName(state.getCountry().getCountry());
 		bean.setCountryId(state.getCountry().getCountryId());
-		//bean.setStateId(String.valueOf(state.getStateId()));
+		
+		
 
-		bean.setCountryName(country.getCountry());
-		bean.setCountryId(country.getCountryId());
 		districtBeans.add(bean);//comment for test
-
-		//bean.setCountryName(country.getCountry());
-		//bean.setCountryId(country.getCountryId());
-		districtBeans.add(bean);
 
 	}
 	return districtBeans;
@@ -743,10 +749,8 @@ public void deleteServiceprovider(int id) {
 	
 }
 
-@Override
-public List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId) {
-	// TODO Auto-generated method stub
-	return null;
-}
+
+
+
 
 }

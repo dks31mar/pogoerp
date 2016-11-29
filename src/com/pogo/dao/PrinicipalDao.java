@@ -47,7 +47,11 @@ public interface PrinicipalDao {
 
 	List<PoRefEntryItemDetail> getackDetailByPorefNo(String poref);
 
-	ProductAcknowledgement getPendindQty(String porefNo, String particular);
+	List<ProductAcknowledgement> getPendindQty(String porefNo, String particular);
+
+	void saveAcknowledData(ProductAcknowledgement proack);
+
+	List<ProductAcknowledgement> getAckData(String s1, String s2);
 
 	
 

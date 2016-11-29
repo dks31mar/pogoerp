@@ -148,7 +148,7 @@
   <label  class="col-md-2 control-label" >Joining Date</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
   <input  value="${employee.dateofjoining}" name="dateofjoining" id="datepickerjoin" readonly="readonly" placeholder="Select Date"  class="form-control"  type="text">
     </div>
   </div>
@@ -188,7 +188,7 @@
   <label class="col-md-2 control-label" >DOB</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
   <input name="dob" value="${employee.dob}" id="datepickerDob" placeholder="Select Date of Birth" readonly="readonly" class="form-control"  type="text">
     </div>
   </div>
