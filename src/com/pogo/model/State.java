@@ -43,7 +43,7 @@ public class State {
 	public void setCountry(Country country) {
 		this.country = country;
 	}
-	@OneToMany(mappedBy="state" , cascade = CascadeType.ALL)
+	/*@OneToMany(mappedBy="state" , cascade = CascadeType.ALL)
      private Set<District> district;
 	
 	
@@ -53,7 +53,7 @@ public class State {
 	}
 	public void setDistrict(Set<District> district) {
 		this.district = district;
-	}
+	}*/
 	
 	public Integer getStateId() {
 		return stateId;

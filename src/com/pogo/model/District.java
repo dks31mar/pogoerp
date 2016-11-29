@@ -38,7 +38,7 @@ public class District {
 	}
 	
 	
-	/*@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="country_id")
 	private Country country; 
 	
@@ -48,9 +48,9 @@ public class District {
 
 	public void setCountry(Country country) {
 		this.country = country;
-	}*/
+	}
 	
-	@OneToMany(mappedBy="district" , cascade = CascadeType.ALL)
+	/*@OneToMany(mappedBy="district" , cascade = CascadeType.ALL)
     private Set<Location> location;
 
 	public Set<Location> getLocation() {
@@ -60,7 +60,7 @@ public class District {
 	public void setLocation(Set<Location> location) {
 		this.location = location;
 	}
-
+*/
 	
 
 	

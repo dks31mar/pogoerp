@@ -200,6 +200,29 @@ public class LeadGenerationCampaignsController {
 		       // return multipartFile("upload-success","filename",path+"/"+filename);  
 		  return "upload-success: " + multipartFile.getSize() + " bytes";
 	}
+	
+	@RequestMapping(value = "/Vieweditdelete" , method = RequestMethod.GET)
+	public ModelAndView viewEditDelete(){
+		return new ModelAndView("getViewEditDelete");
+	}
+	
+	@RequestMapping(value = "/selectMailingList" , method = RequestMethod.GET)
+	public ModelAndView selectFromSalesCall(){
+		return new ModelAndView("getmailinglist");
+	}
+	
+	@RequestMapping(value = "/selectFromContacts" , method = RequestMethod.GET)
+	public ModelAndView selectFromContacts(){
+		return new ModelAndView("getselectfromcontacts");
+	}
+	
+	@RequestMapping(value = "/selectFromSalesCalls" , method = RequestMethod.GET)
+	public ModelAndView selectFromSalesCalls(){
+		return new ModelAndView("getselectfromsalescalls");
+	}
+	
+	
+	
 }
 	 
 	

@@ -72,6 +72,10 @@
 	 <!-- <div class="row"> -->
 	<div class="col-md-4" ><strong>No. of Email address selected = 0</strong></div>
 	<div class="col-md-2"><a href = "addaddress">Add Address</a></div>
+	<div class="col-md-2"><a href = "Vieweditdelete">View/Edit/Delete</a></div>
+	<div class="col-md-2"><a href = "selectMailingList">Select Mailing List</a></div>
+	<div class="col-md-2"><a href = "selectFromContacts">Select from Contacts </a></div>
+	<div class="col-md-2"><a href = "selectFromSalesCalls">Select from SalesCall</a></div>
 	</div>
 	<!-- </div> -->
 	<!-- <div class="row"> -->
