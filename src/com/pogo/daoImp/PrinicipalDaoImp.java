@@ -168,9 +168,31 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	}
 
 	@Override
-	public ProductAcknowledgement getPendindQty(String porefNo, String particular) {
-		ProductAcknowledgement pa=(ProductAcknowledgement) sessionFactory.getCurrentSession().createCriteria(ProductAcknowledgement.class).add(Restrictions.eq("porefno", porefNo)).add(Restrictions.eq("particular", particular)).uniqueResult();
+	public List<ProductAcknowledgement> getPendindQty(String porefNo, String particular) {
+		List<ProductAcknowledgement> pa=sessionFactory.getCurrentSession().createCriteria(ProductAcknowledgement.class).add(Restrictions.eq("porefno", porefNo)).add(Restrictions.eq("particular", particular)).list();
 		return pa;
+	}
+
+	@Override
+	public void saveAcknowledData(ProductAcknowledgement proack) {
+	
+		//ProductAcknowledgement pa=(ProductAcknowledgement) sessionFactory.getCurrentSession().createCriteria(ProductAcknowledgement.class).add(Restrictions.eq("porefno", proack.getPorefno())).add(Restrictions.eq("particular", proack.getParticular())).uniqueResult();
+		/*try{
+		if(proack.getPorefno().equals(pa.getPorefno()) && proack.getParticular().equals(pa.getParticular())){
+		sessionFactory.getCurrentSession().createQuery("UPDATE ProductAcknowledgement set receiveqty="+(proack.getReceiveqty()+pa.getReceiveqty())+", pendingqty='"+proack.getPendingqty()+"', expdate='"+proack.getExpdate()+"' Where porefno='"+proack.getPorefno()+"' AND particular='"+proack.getParticular()+"'").executeUpdate();	
+		}else{
+		sessionFactory.getCurrentSession().save(proack);
+		}
+		}catch(Exception ex){*/
+			//ex.printStackTrace();
+			sessionFactory.getCurrentSession().save(proack);
+		//}
+	}
+
+	@Override
+	public List<ProductAcknowledgement> getAckData(String s1, String s2) {
+		
+		return sessionFactory.getCurrentSession().createCriteria(ProductAcknowledgement.class).add(Restrictions.eq("porefno", s1)).add(Restrictions.eq("particular", s2)).list();
 	}
 	
 	

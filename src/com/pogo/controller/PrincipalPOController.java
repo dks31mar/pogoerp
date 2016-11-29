@@ -32,9 +32,11 @@ import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
 import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.PrinicipalPoPDFBean;
+import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
+import com.pogo.model.ProductAcknowledgement;
 import com.pogo.service.CommonService;
 import com.pogo.service.PrinicipalPoService;
 
@@ -414,6 +416,33 @@ public @ResponseBody String getacknowledDataBySearch(@RequestParam("poref") Stri
 	return map.writeValueAsString(lst);
 //return new ModelAndView("supplierackView");
 }
+
+
+
+@RequestMapping(value="saveackindb",method=RequestMethod.POST)
+@ResponseBody
+public void saveAcknowledData(@RequestBody String json,Model model) throws IOException{
+	System.out.println(""+json);
+	
+	
+	ObjectMapper mapper=new ObjectMapper();
+	ProductAcknowledgementBean bean=mapper.readValue(json, ProductAcknowledgementBean.class);
+		prinicipalposervice.saveAcknowledData(bean);	
+}
+
+@RequestMapping(value="getackdatabypo",method = RequestMethod.POST)
+@ResponseBody
+public void getAckData(@RequestParam("porefno") String s1,@RequestParam("particular") String s2,@ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+	System.out.println("in get view method");
+	List<ProductAcknowledgementBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getAckData(s1,s2);
+	
+	m.addAttribute("acklist", lst);
+
+}
+
+
+
 /*private PoRefEntryItemDetailCopyBean prepareProductBeanCopy(List<PoRefEntryItemDetailCopy> productEdit) {
 	PoRefEntryItemDetailCopyBean poref =new PoRefEntryItemDetailCopyBean();
 	

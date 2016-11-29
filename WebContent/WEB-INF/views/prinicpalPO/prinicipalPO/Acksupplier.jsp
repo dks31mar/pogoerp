@@ -158,7 +158,7 @@
 					<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="tpinjpy" id="tpinjpy${loop.index+1}" value="${poref.tpinjpy}" class="form-control"></td>
 					<td align="center" style="right: 4px; position: relative;">&nbsp;<input readonly type="text" style="text-align: center;" name="qty" id="qty${loop.index+1}" class="form-control" value="${poref.qty}"></td>
 					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;" name="totaljpy" id="totaljpy${loop.index+1}" value="${poref.totaljpy}" class="form-control"></td>
-					<td align="center">&nbsp;<button  type="button" style="text-align: center;width: 99px;background-color: #3C8DBC;color: aliceblue" name="customerporefe" id="pendindqty${loop.index+1}" value="${poref.pendingqty}" class="form-control" onclick="saveacknowlegdement(${loop.index+1});">${poref.pendingqty}</button></td>
+					<td align="center">&nbsp;<button  type="button" style="text-align: center;width: 99px;background-color: #3C8DBC;color: aliceblue" name="customerporefe" id="pendindqty${loop.index+1}" value="${poref.pendingqty}" class="form-control" onclick="getacknowlegdement(${loop.index+1});">${poref.pendingqty}</button></td>
 					<td style="display: none;"><input type="hidden" name="grandtotal" value="${gtotal}" id="grandtotal${loop.index+1}"> </td><td style="display: none;"><input type="hidden" name="date" value="11/21/2016" id="getdate"> </td>
 					
 					</tr>
@@ -170,31 +170,32 @@
 					
 					
 					<div class="row form-group"  position: relative;" onclick="" id="pendingformdiv">
-					<table>
+					<table id="idoftable">
 					<tr>
-					<td class="col-sm-6 form-level" align="center">
+					<td class="col-sm-4 form-level" align="center">
 					
 						Exp.Delivery Date
 					
 					</td>
-					<td class="col-sm-6 form-level">
+					<td class="col-sm-4 form-level">
 					
 						Receive Quantity	
 					
 					</td>
+					<td class="col-sm-4 form-level">
+					
+						Action	
+					
+					</td>
 					</tr>
-					<tr>
-					<td class="col-sm-6 form-level">
 					
-						<input type="text" class="form-control" name="dateTodate" id="datepicker1" value="" ReadOnly></input>
+					<tr id="pendingtabletr">
 					
-					</td>
-					<td class="col-sm-6 form-level">
+					<!-- 
+					<td class="col-sm-6 form-level"><input type="text" class="form-control" name="dateTodate" id="datepicker1" value="" ReadOnly></input></td>
+					<td class="col-sm-6 form-level"><input type="text" name="tjpy1" id="tjpy" class="form-control" value="" style="width: 35%;"></td>
 					
-						<input type="text" name="tjpy1" id="tjpy" class="form-control"
-							value="" style="width: 35%;">
-					
-					</td>
+					 -->
 					</tr>
 					
 					
@@ -229,9 +230,7 @@ $( function() {
     $("#datepicker").datepicker({dateFormat: 'dd/mm/yy'});
   });
   
-$( function() {
-    $( "#datepicker1" ).datepicker({dateFormat: 'dd/mm/yy'});
-  } );
+
   
 function searchPro(wordinsrch) {
 	//alert("hi");
@@ -298,7 +297,7 @@ function searchPro(wordinsrch) {
 
 }	
 
-function saveacknowlegdement(id){
+function getacknowlegdement(id){
 	var ponum=$("#getporefno"+id).val();
 	var particular=$("#partno"+id).val();
 	var qty=$('#qty'+id).val();
@@ -343,6 +342,57 @@ function saveacknowlegdement(id){
 	$("#body").hide();
 	$("#searchedRecord").append(content);
 	$('#pendingformdiv').show('slow');
+	$.ajax({
+		url: "getackdatabypo?porefno=Test/11-10/01&particular=AA12S03-R504WT",
+		type: "POST",
+		     success: function(resposeJsonObject){
+		    	 var id=$('#idoftable').children('tr').length;
+		    	 $("#pendingtabletr").empty();
+		    	var content1  = '<td style="display: none;"><input type="hidden" name="date" value="" id="getdate"> </td>';
+		    	content1 += '<td style="display: none;"><input type="hidden" name="porefno" value="" id="getporefno"> </td>';
+		    	content1 += '<td style="display: none;">&nbsp;<input readonly type="text" value="" name="particulee" style="overflow: auto; border-radius: 3px; width: 223px;" id="partno" class="form-control"></td>';
+		    	content1 += '<td style="display: none;">&nbsp;<input  type="text" style="text-align: center;width: 99px;background-color: #3C8DBC;color: aliceblue" name="pendingqty" id="pendindqty" value="" class="form-control"/></td>'; 
+		    	content1+='<td class="col-sm-4 form-level"><input type="text" class="form-control" name="recivedate" id="datepicker1"  value="" ReadOnly></input></td>';
+				content1+='<td class="col-sm-4 form-level"><input type="text" name="reciveqty" id="reciveqty" class="form-control" value="" style="width: 35%;"></td>';
+				content1+='<td class="col-sm-4 form-level"><a class="glyphicon glyphicon-plus" href="#" onclick="addfildes();return false;"></a> | <a class="glyphicon glyphicon-remove" href="#" onclick="deletethisrow()"></a></td>';
+					
+					
+					$('#pendingtabletr').append(content1);
+					getdate();
+	    }});
+
+
+
+
+}
+
+
+function addfildes(){
+	
+	var content1='<tr>';
+	
+	content1 += '<td style="display: none;"><input type="hidden" name="date" value="" id="getdate"> </td>';
+ 	content1 += '<td style="display: none;"><input type="hidden" name="porefno" value="" id="getporefno"> </td>';
+ 	content1 += '<td style="display: none;">&nbsp;<input readonly type="text" value="" name="particulee" style="overflow: auto; border-radius: 3px; width: 223px;" id="partno" class="form-control"></td>';
+ 	content1 += '<td style="display: none;">&nbsp;<input  type="text" style="text-align: center;width: 99px;background-color: #3C8DBC;color: aliceblue" name="pendingqty" id="pendindqty" value="" class="form-control"/></td>'; 
+ 	content1+='<td class="col-sm-4 form-level"><input type="text" class="form-control" name="recivedate" id="datepicker1"  value="" ReadOnly></input></td>';
+	content1+='<td class="col-sm-4 form-level"><input type="text" name="reciveqty" id="reciveqty" class="form-control" value="" style="width: 35%;"></td>';
+	content1+='<td class="col-sm-4 form-level"><a class="glyphicon glyphicon-plus" href="#" onclick="addfildes();return false;"></a> | <a class="glyphicon glyphicon-remove" href="#" onclick="deletethisrow()"></a></td>';
+			
+			content1+='</tr>';
+		
+		$('#idoftable').append(content1);
+		getdate();
+		
+}
+
+
+function getdate(){
+	
+	
+	$( "#datepicker1" ).datepicker({dateFormat: 'dd/mm/yy'});
+	
+	  
 }
 $('#pendingformdiv').hide();
 
@@ -365,20 +415,38 @@ $('#saveackdetail').click(function(){
 	var rqty=$('#tjpy').val();
 	var date=$('#datepicker1').val();
 	var sr=$('#sr').val();
+	var pendingis=parseInt(pqty)-parseInt(rqty);
 	
-	
-   var json={
+   var jsonObj={
 		  		'porefno': ponum,
 			    'posrno': '',
 			    'particular': particular,
 			    'receiveqty': rqty,
-			    'pendingqty': pqty,
+			    'pendingqty': pendingis,
 			    'expdate': date
 	};
    
-   
-   alert(json.porefno+'  <>  ' +json.particular+'   <>  '+json.receiveqty+'   <>  '+json.pendingqty+'   <>   '+json.expdate);
+   var AddressesDataJSON = $("#idoftable").find('input').serializeArray();
+   alert(JSON.stringify(AddressesDataJSON));
 	
+   
+  /*  $.ajax({
+		url: "saveackindb",
+		type: "POST",
+
+		  data :JSON.stringify(jsonObj),
+		  cache:false,
+	        beforeSend: function(xhr) {  
+	            xhr.setRequestHeader("Accept", "application/json");  
+	            xhr.setRequestHeader("Content-Type", "application/json");  
+	        },
+		     success: function(resposeJsonObject){
+		    	
+		    	 window.location.href ='supplierack?poref='+ponum+'&page=acknoledment';
+	     
+	    }}); */
+   
+   
 });
 </script>
 
