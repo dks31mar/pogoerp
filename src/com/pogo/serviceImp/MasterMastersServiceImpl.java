@@ -92,8 +92,24 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		masterMastersdao.editCustomerLevels(customer);
 	}
 	@Override
-	public List<Country> countryList(){
-		return masterMastersdao.countryList();
+	public List<CountryBean> countryList(){
+		
+		List<Country> country=masterMastersdao.countryList();
+
+		List<CountryBean> beans = new ArrayList<CountryBean>();
+			
+			
+			for(Country pro : country){
+				CountryBean bean = new CountryBean();
+				
+				bean.setCountryId(pro.getCountryId());
+				bean.setCountry(pro.getCountry());
+				
+				beans.add(bean);
+			}
+	
+		
+		return beans;
 	}
 	@Override
 	@Transactional

@@ -34,7 +34,7 @@ public interface MasterMastersService {
 	String getCustomerLevelsById(String id);
 	void editCustomerLevels(CustomerLevelsBean poref1);
 	
-	List<Country> countryList();
+	List<CountryBean> countryList();
 	void addCountry(CountryBean poref1);
 	void deleteCountry(Integer id);
 	String getCountryById(String id);
