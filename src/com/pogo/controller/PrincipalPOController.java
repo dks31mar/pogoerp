@@ -432,12 +432,13 @@ public void saveAcknowledData(@RequestBody String json,Model model) throws IOExc
 
 @RequestMapping(value="getackdatabypo",method = RequestMethod.POST)
 @ResponseBody
-public void getAckData(@RequestParam("porefno") String s1,@RequestParam("particular") String s2,@ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+public String getAckData(@RequestParam("porefno") String s1,@RequestParam("particular") String s2,@ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m) throws JsonProcessingException{
 	System.out.println("in get view method");
 	List<ProductAcknowledgementBean> lst =new ArrayList<>();
 	lst=prinicipalposervice.getAckData(s1,s2);
 	
-	m.addAttribute("acklist", lst);
+	ObjectMapper map = new ObjectMapper();
+	return map.writeValueAsString(lst);
 
 }
 
