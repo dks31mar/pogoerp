@@ -664,6 +664,7 @@ public List<StateBean> getStateByCountryId(int id) {
 	{
 		StateBean stateBean=new StateBean();
 		stateBean.setStateId(data.getStateId());
+		System.out.println("On service State"+ data.getStateId());
 		stateBean.setState(data.getState());
 		//System.out.println("on Service"+ data.getState());
 		Country country=data.getCountry();
@@ -690,26 +691,26 @@ public List<LocationBean> getLocationDetails()
 }
 
 @Override
-public List<DistrictBean> getDistrictByStateIdAndcountryId(int id) 
+public List<DistrictBean> getDistrictByStateIdAndcountryId(int id,int countryId) 
 {
-	List<District> districts=masterMastersdao.getdistrictByStateIdAndCountryId(id);
+	List<District> districts=masterMastersdao.getdistrictByStateIdAndCountryId(id,countryId);
 	List<DistrictBean> districtBeans=new ArrayList<DistrictBean>();
 	for(District data:districts)
 	{
 		DistrictBean bean=new DistrictBean();
 		bean.setDistrictId(data.getDistrictId());
 		bean.setDistrict(data.getDistrict());
-		System.out.println("on service" +data.getDistrict());
+		System.out.println("on service District" +data.getDistrict());
 		State state=data.getState();
-		//Country country=data.getCountry();
+		Country country=state.getCountry();
+		bean.setStatesId(state.getStateId());
 		bean.setStateName(state.getState());
 		System.out.println("On Service for district"+state.getState());
-		bean.setStatesId(state.getStateId());
-		bean.setCountryName(state.getCountry().getCountry());
-		bean.setCountryId(state.getCountry().getCountryId());
+		//bean.setCountryName(state.getCountry().getCountry());
+		//bean.setCountryId(state.getCountry().getCountryId());
 		//bean.setStateId(String.valueOf(state.getStateId()));
-		//bean.setCountryName(country.getCountry());
-		//bean.setCountryId(country.getCountryId());
+		bean.setCountryName(country.getCountry());
+		bean.setCountryId(country.getCountryId());
 		districtBeans.add(bean);
 	}
 	return districtBeans;

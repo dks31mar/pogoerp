@@ -14,8 +14,6 @@ public interface CustomerSalesService
 
 	List<CustomerSalesBean> findAllData();
 
-
-
 	public CustomerSalesBean getCustomerDetailsById(int id);
 
 
@@ -23,7 +21,9 @@ public interface CustomerSalesService
 
 	void savediary(AddDiaryBean addDiaryBean);
 
-	void SaveDiaryForEntery();
+	
+
+	
 
 
 

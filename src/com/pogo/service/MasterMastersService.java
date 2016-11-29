@@ -97,7 +97,7 @@ public interface MasterMastersService {
 	List<CustomerLevelsBean> getCustomersStatus();
 	List<StateBean> getStateByCountryId(int id);
 	List<LocationBean> getLocationDetails();
-	List<DistrictBean> getDistrictByStateIdAndcountryId(int id);
+	List<DistrictBean> getDistrictByStateIdAndcountryId(int id,int countryId);
 	void deleteServiceprovider(int id);
 	
 

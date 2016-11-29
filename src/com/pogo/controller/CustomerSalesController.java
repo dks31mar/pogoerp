@@ -74,15 +74,19 @@ public class CustomerSalesController {
 		return mapper.writeValueAsString(list);
 	}
 //not call
-	@RequestMapping(value = "/getdistrict/{id}", method = RequestMethod.GET)
-	public @ResponseBody String getDistrict(@PathVariable("id") int id, HttpServletRequest request, Model model)
+	@RequestMapping(value = "/getdistrictLists/{id}/{countryId}", method = RequestMethod.POST)
+	public @ResponseBody String getDistrict(@PathVariable("id")int id,@PathVariable("countryId") int countryId, HttpServletRequest request)
 			throws JsonProcessingException {
-		List<DistrictBean> list = masterService.getDistrictByStateIdAndcountryId(id);
-
-		System.out.println(list.size());
+		System.out.println("hi");
+		List<DistrictBean> list1 = masterService.getDistrictByStateIdAndcountryId(id,countryId);
+		System.out.println(list1.size());
+		System.out.println(list1);
 		System.out.println("I am on controller");
 		ObjectMapper mapper = new ObjectMapper();
-		return mapper.writeValueAsString(list);
+		return mapper.writeValueAsString(list1);
+		//return "data";
+		
+		
 	}
 
 
@@ -93,21 +97,7 @@ public class CustomerSalesController {
 		return "getSalesList";
 	}
 
-@RequestMapping(value="/SaveDiaryForEntrySales",method = RequestMethod.POST)
-@ResponseBody
-public void SaveDiaryForEntery(@RequestBody String json, Model model) throws IOException 
-{
-	//System.out.println("print diary data \n",+json);
 
-
-	System.out.println("Add zone data   \n" + json);
-	ObjectMapper mapper = new ObjectMapper();
-	AddDiaryBean adddiary = mapper.readValue(json, AddDiaryBean.class);
-
-	AddDiaryBean poref1 = new AddDiaryBean();
-
-	//CustomerSalesService.SaveDiaryForEntery(adddiary);
-}
 
 
 	@RequestMapping(value = "/editcustomer", method = RequestMethod.GET)
@@ -133,9 +123,11 @@ public void SaveDiaryForEntery(@RequestBody String json, Model model) throws IOE
 	}
 
 	@RequestMapping(value = "/addDiaryForEntrySales", method = RequestMethod.GET)
-	public ModelAndView getAddDiaryForEntery(Model model) throws ParseException {
+	public ModelAndView getAddDiaryForEntery(Model model,@RequestParam int id) throws ParseException {
 		 List<UserEmployeeBean> emp = empServive.getUserDetails();
-			model.addAttribute("listemp", emp);
+		model.addAttribute("listemp", emp);
+		CustomerSalesBean salesList = customerSalesService.getCustomerDetailsById(id);
+		model.addAttribute("salesList", salesList);
 		return new ModelAndView("AddDiaryForEntrySales");
 	}
 

@@ -32,14 +32,10 @@ public class AddDiary {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="enteruser")
 	private UserEmployee enteryuser;
-	@Column(name="deciding_Authority")
-	private String decidingAuthority;
 	@Column(name="adress")
     private String address;
 	@Column(name="mobileno")
 	private String mobileno;
-	@Column(name="faxno")
-	private String faxno;
 	@Column(name="email")
 	private String email;
 	@Column(name="objective")
@@ -90,12 +86,6 @@ public class AddDiary {
 	public void setEnteryuser(UserEmployee enteryuser) {
 		this.enteryuser = enteryuser;
 	}
-	public String getDecidingAuthority() {
-		return decidingAuthority;
-	}
-	public void setDecidingAuthority(String decidingAuthority) {
-		this.decidingAuthority = decidingAuthority;
-	}
 	public String getAddress() {
 		return address;
 	}
@@ -109,12 +99,7 @@ public class AddDiary {
 	public void setMobileno(String mobileno) {
 		this.mobileno = mobileno;
 	}
-	public String getFaxno() {
-		return faxno;
-	}
-	public void setFaxno(String faxno) {
-		this.faxno = faxno;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
