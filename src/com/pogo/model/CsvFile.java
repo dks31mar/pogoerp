@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table(name="csvfile")
 public class CsvFile {
@@ -21,6 +23,21 @@ public class CsvFile {
     private long size;
     @Column(name = "date")
 	private Date date;
+    
+     /*private MultipartFile file;
+    
+    public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}*/
+	 
+	
+    
+    
+    
+    
     public int getId() {
 		return id;
 	}

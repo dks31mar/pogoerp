@@ -2,6 +2,8 @@ package com.pogo.bean;
 
 import java.util.Date;
 
+import javax.mail.Multipart;
+
 
 
 public class CsvFileBean {
@@ -11,7 +13,18 @@ public class CsvFileBean {
 	private String filename;
     private long size;
     private Date date;
+    /*private Multipart file;
    
+    public Multipart getFile() {
+		return file;
+	}
+
+	public void setFile(Multipart file) {
+		this.file = file;
+	}*/
+
+	
+    
 	public int getId() {
 		return id;
 	}

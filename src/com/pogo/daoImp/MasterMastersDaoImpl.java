@@ -80,12 +80,14 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	@Override
 	public void addCountry( Country poref1){
 		sessionFactory.getCurrentSession().save(poref1);
+		sessionFactory.getCurrentSession().flush();
 	}
 	
 	@Override
 	public  void  deleteCountry(Integer id){
 		System.out.println("delete country");
-		
+	     //Country country = new Country();
+	     //sessionFactory.getCurrentSession().refresh(country);
 		sessionFactory.getCurrentSession().createQuery("DELETE FROM Country WHERE countryId = "+id).executeUpdate();
 	}
 	
@@ -133,7 +135,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			
 			sessionFactory.getCurrentSession().createQuery("DELETE FROM State WHERE stateId = "+id).executeUpdate();
 		} 
-	 
+	
 	 
 		@Override
 	  public List<State> getStateById (String id){
@@ -459,6 +461,11 @@ public List<District> getdistrictByStateIdAndCountryId(int id,int countryId) {
 public void deleteserviceprovider(int id) {
 	sessionFactory.getCurrentSession().createQuery("DELETE FROM ServiceProvider WHERE transportationserviceid = "+id).executeUpdate();
 	
+}
+@Override
+public State getStateIdByContryId(Integer id) {
+	System.out.println(id);
+	return (State) sessionFactory.getCurrentSession().get(State.class, id);
 }
 
 

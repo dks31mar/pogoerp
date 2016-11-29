@@ -32,7 +32,7 @@
 
 <div class="row">
 <input type="hidden" id="hiddenid"/>
-<input type="hidden" id="stateid" value="${state123}"/> 
+<input type="hidden" id="locationid" value="${state123}"/> 
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="adddistrict"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add District"
 						 autofocus="autofocus"></input></div>

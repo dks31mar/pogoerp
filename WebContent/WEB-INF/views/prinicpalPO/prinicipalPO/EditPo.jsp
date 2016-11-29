@@ -154,7 +154,7 @@ System.out.println();
 					<tr>
 					<td style="display: none;"><input type="hidden" value="" id="getid1"></input> </td>
 					<td style="right: 5px; position: relative;">&nbsp; 
-					<input type='text' style='width: 60px' name='posrno' id='sr'
+					<input type='text' style='width: 60px;' name='posrno' id='sr'
 								value="" class='form-control'/></td>
 							<td style="left: 2px; position: relative; width: 150px">&nbsp;
 								<input type='text' value="" name='particulee1'

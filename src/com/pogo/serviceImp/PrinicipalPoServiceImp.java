@@ -15,11 +15,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PorefSupplierDetailBean;
+import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.dao.PrinicipalDao;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
+import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
 import com.pogo.service.PrinicipalPoService;
 
@@ -75,6 +77,10 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 			int i=Integer.parseInt(s.split("/")[2]);
 			s2=s.split("/")[0]+"/"+s.split("/")[1]+"/"+"0"+(i+1);
 		}
+		
+		
+		
+		
 		PoRefEntryItemDetail porefentry=new PoRefEntryItemDetail();
 		PorefSupplierDetail pore=new PorefSupplierDetail();
 		pore.setPorefno(s2);
@@ -85,6 +91,7 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		porefentry.setTotaljpy(poRefEntry.getTotaljpy());
 		porefentry.setCustomerporefe(poRefEntry.getCustomerporefe());
 		porefentry.setPorefnobysupplier(pore);
+		
 		prinicipaldao.addPoDetails(porefentry);
 		
 	}
@@ -136,6 +143,8 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		
 		PorefSupplierDetail porefsup=new PorefSupplierDetail();
 		porefsup.setPorefno(s2);
+		porefsup.setAddress("YMC CO.,LTD. YMC Karasuma-Gojo Building 284 Daigo-cho Karasuma Nishiliru Gojo-dori,Shimogyo -Ku Kyoto 600-8106 Japan");
+		porefsup.setPrincipalname("YMC Co. Ltd., Japan");
 		porefsup.setPorefdate(porefs.getPorefdate());
 		porefsup.setTotal(porefs.getTotal());
 		prinicipaldao.addPoSupplier(porefsup);
@@ -161,6 +170,7 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 	@Override
 	public List<PoRefEntryItemDetailBean> getPoDetailByPorefNo(String poref) {
 		List<PoRefEntryItemDetail> lst=prinicipaldao.getPoDetailByPorefNo(poref);
+		System.out.println(lst);
 		List<PoRefEntryItemDetailBean> lst1=new ArrayList<>();
 		for(PoRefEntryItemDetail e:lst){
 			PoRefEntryItemDetailBean bean=new PoRefEntryItemDetailBean();
@@ -180,7 +190,7 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		 	  bean.setProductdescription(e.getProductdescription());
 		 	  bean.setPorefnobysupplier(e.getPorefnobysupplier());
 		 	  System.out.println(e.getParticular());
-		 	 System.out.println("<<<<<<<<<<<<<<>>>>>>>>>>>      "+e.getPorefnobysupplier().getPorefno());
+		 	
 		 	 lst1.add(bean);
 		}
 		return lst1;
@@ -190,6 +200,8 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 	@Transactional
 	public void UpdatePoProduct(PoRefEntryItemDetailBean poref, PorefSupplierDetailBean porefs) {
 		String s=porefs.getPorefno();
+		
+		
 		String s2=null;
 		if(s.contains("CBW")){
 			String data=s.split("/")[2];
@@ -199,6 +211,9 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 			int i=Integer.parseInt(s.split("/")[2]);
 			s2=s.split("/")[0]+"/"+s.split("/")[1]+"/"+"0"+(i+1);
 		}
+	
+		
+		
 		PoRefEntryItemDetail porefentry=new PoRefEntryItemDetail();
 		PorefSupplierDetail pore=new PorefSupplierDetail();
 		porefentry.setPorefentryitemdetailid(poref.getPorefentryitemdetailid());
@@ -210,6 +225,7 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		porefentry.setTotaljpy(poref.getTotaljpy());
 		porefentry.setCustomerporefe(poref.getCustomerporefe());
 		porefentry.setPorefnobysupplier(pore);
+		
 		prinicipaldao.addPoDetails(porefentry);
 		
 	}
@@ -249,5 +265,101 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		
 	}
 
+	@Override
+	@Transactional
+	public List<PoRefEntryItemDetailBean> getPoDetailByPorefId(String poref) {
+		List<PoRefEntryItemDetail> lst=prinicipaldao.getPoDetailByPorefId(poref);
+		System.out.println(lst);
+		List<PoRefEntryItemDetailBean> lst1=new ArrayList<>();
+		for(PoRefEntryItemDetail e:lst){
+			PoRefEntryItemDetailBean bean=new PoRefEntryItemDetailBean();
+			bean.setPorefentryitemdetailid(e.getPorefentryitemdetailid());
+			  
+		 	  bean.setParticular(e.getParticular());
+		 	  bean.setTpinjpy(e.getTpinjpy());
+		 	  bean.setQty(e.getQty());
+		 	  bean.setTotaljpy(e.getTotaljpy());
+		 	  bean.setTotalinr(e.getTotalinr());
+		 	  bean.setAckdate(e.getAckdate());  
+		 	  bean.setRemarks(e.getRemarks());
+		 	  bean.setPosrno(e.getPosrno());
+		 	  bean.setInvno(e.getInvno());
+		 	  bean.setInvdate(e.getInvdate());
+		 	  bean.setCustomerporefe(e.getCustomerporefe());
+		 	  bean.setProductdescription(e.getProductdescription());
+		 	  bean.setPorefnobysupplier(e.getPorefnobysupplier());
+		 	  System.out.println(e.getParticular());
+		 	 System.out.println("<<<<<<<<<<<<<<>>>>>>>>>>>      "+e.getPorefnobysupplier().getPorefno());
+		 	 lst1.add(bean);
+		}
+		return lst1;
+	}
+
+	@Override
+	public List<PoRefEntryItemDetailBean> getackDetailByPorefNo(String poref) {
+		List<PoRefEntryItemDetail> lst=prinicipaldao.getPoDetailByPorefNo(poref);
+		System.out.println(lst);
+		List<PoRefEntryItemDetailBean> lst1=new ArrayList<>();
+		for(PoRefEntryItemDetail e:lst){
+			PoRefEntryItemDetailBean bean=new PoRefEntryItemDetailBean();
+			String porefNo=e.getPorefnobysupplier().getPorefno();
+			String particular=e.getParticular();
+			double pendingqty=e.getQty();
+			try{
+			List<ProductAcknowledgement> proack=	prinicipaldao.getPendindQty(porefNo,particular);
+			for(ProductAcknowledgement pro:proack){
+			pendingqty=pro.getPendingqty();
+			}
+			bean.setPendingqty(pendingqty);
+			}catch(Exception ex){
+				bean.setPendingqty(pendingqty);
+				ex.printStackTrace();
+				
+			}
+			
+			  bean.setPorefentryitemdetailid(e.getPorefentryitemdetailid());
+			  bean.setParticular(e.getParticular());
+		 	  bean.setTpinjpy(e.getTpinjpy());
+		 	  bean.setQty(e.getQty());
+		 	  bean.setTotaljpy(e.getTotaljpy());
+		 	  bean.setTotalinr(e.getTotalinr());
+		 	  bean.setAckdate(e.getAckdate());  
+		 	  bean.setRemarks(e.getRemarks());
+		 	  bean.setPosrno(e.getPosrno());
+		 	  bean.setInvno(e.getInvno());
+		 	  bean.setInvdate(e.getInvdate());
+		 	  
+		 	  bean.setCustomerporefe(e.getCustomerporefe());
+		 	  bean.setProductdescription(e.getProductdescription());
+		 	  bean.setPorefnobysupplier(e.getPorefnobysupplier());
+		 	  System.out.println(e.getParticular());
+		 	  
+		 	 lst1.add(bean);
+		}
+		return lst1;
+	}
+
+	@Override
+	public void saveAcknowledData(ProductAcknowledgementBean bean) {
+		ProductAcknowledgement proack=new ProductAcknowledgement();
+		proack.setExpdate(bean.getExpdate());
+		proack.setParticular(bean.getParticular());
+		proack.setPendingqty(bean.getPendingqty());
+		proack.setPorefno(bean.getPorefno());
+		proack.setReceiveqty(bean.getReceiveqty());
+		
+		prinicipaldao.saveAcknowledData(proack);
+		
+	}
+
+	@Override
+	public List<ProductAcknowledgementBean> getAckData(String s1, String s2) {
+		List<ProductAcknowledgement> productack=prinicipaldao.getAckData(s1,s2);
+		return null;
+	}
+
+	
+
+	
 
 }
