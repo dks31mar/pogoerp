@@ -100,7 +100,7 @@ public interface MasterMastersService {
 
 
 
-	List<DistrictBean> getDistrictByStateIdAndcountryId(int id, int countryId); // comment by shweta
+	List<DistrictBean> getDistrictByStateIdAndcountryId(int id); // comment by shweta
 
 	
 

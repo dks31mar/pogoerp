@@ -20,8 +20,8 @@
 					type : 'POST',
 					success : function(data, status) {
 						$("#state").empty();
-						var st = '<select name="stateId" onchange=getdistrictLists(this.value,'
-								+ id
+						var st = '<select name="stateId" onchange=getdistrictLists(this.value'
+								
 								+ ') class="form-control select style="width: 100%; height:31%;">'
 								+ '<option value="">-- Select State --</option>';
 						var j = JSON.parse(data);
@@ -29,7 +29,7 @@
 						alert(j.stateId);
 						for (var i = 0; i < length; i++) {
 							alert(j[i].id);
-							st = st + '<option value=' + j[i].id + '>'
+							st = st + '<option value=' + j[i].stateId + '>'
 									+ j[i].state + '</option>';
 
 						}
@@ -66,9 +66,13 @@
 	 });
  } */
  
-  function getdistrictLists(id,countryId) 
+  function getdistrictLists(id) 
  {
-		var url = 'getdistrictLists/' + id +'/'+ countryId;
+	 
+	 
+	 alert(id);
+	 
+	 var url = 'getdistrictLists/' + id;
 		//alert("dis=+districtId+");
 		$
 				.ajax({
@@ -81,7 +85,7 @@
 						var j = JSON.parse(data);
 						var length = j.length;
 						for (var i = 0; i < length; i++) {
-							st = st + '<option value=' + j[i].id + '>'
+							st = st + '<option value=' + j[i].districtId + '>'
 									+ j[i].district + '</option>';
 
 						}
@@ -92,7 +96,7 @@
 					},
 					error : function(error, status) {
 					} 
-				});
+				}); 
 	}
   
 	  $( function() {

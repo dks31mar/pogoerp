@@ -74,11 +74,11 @@ public class CustomerSalesController {
 		return mapper.writeValueAsString(list);
 	}
 //not call
-	@RequestMapping(value = "/getdistrictLists/{id}/{countryId}", method = RequestMethod.POST)
-	public @ResponseBody String getDistrict(@PathVariable("id")int id,@PathVariable("countryId") int countryId, HttpServletRequest request)
+	@RequestMapping(value = "/getdistrictLists/{id}", method = RequestMethod.POST)
+	public @ResponseBody String getDistrict(@PathVariable("id")int id, HttpServletRequest request)
 			throws JsonProcessingException {
 		System.out.println("hi");
-		List<DistrictBean> list1 = masterService.getDistrictByStateIdAndcountryId(id,countryId);
+		List<DistrictBean> list1 = masterService.getDistrictByStateIdAndcountryId(id);
 		System.out.println(list1.size());
 		System.out.println(list1);
 		System.out.println("I am on controller");

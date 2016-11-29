@@ -450,12 +450,12 @@ public CustomerLevels getCustomerStatusById(Integer customerLevelId) {
 	return (CustomerLevels) sessionFactory.getCurrentSession().get(CustomerLevels.class, customerLevelId);
 }
 @Override
-public List<District> getdistrictByStateIdAndCountryId(int id,int countryId) {
+public List<District> getdistrictByStateIdAndCountryId(int id) {
 	/*return (List<District>) sessionFactory.getCurrentSession().get(District.class, districtId);*/
 	System.out.println("on DaoImpl");
 	return sessionFactory.getCurrentSession().createCriteria(District.class)
 			.add(Restrictions.eq("state.stateId", id))
-			 .add(Restrictions.eq("country.id",countryId)).list();
+			 .list();
 }
 @Override
 public void deleteserviceprovider(int id) {
