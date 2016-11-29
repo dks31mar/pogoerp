@@ -672,16 +672,11 @@ public List<StateBean> getStateByCountryId(int id) {
 		stateBean.setStateId(data.getStateId());
 		System.out.println("On service State"+ data.getStateId());
 		stateBean.setState(data.getState());
-
 		System.out.println("on Service"+ data.getState());
-		/*Country country=data.getCountry();
-=======
-		//System.out.println("on Service"+ data.getState());
 		Country country=data.getCountry();
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		stateBean.setCountryId(country.getCountryId());
 		stateBean.setCountryName(country.getCountry());
-		beans.add(stateBean);*///comment for test
+		beans.add(stateBean);
 	}
 	return beans;
 }
@@ -711,34 +706,19 @@ public List<DistrictBean> getDistrictByStateIdAndcountryId(int id,int countryId)
 		DistrictBean bean=new DistrictBean();
 		bean.setDistrictId(data.getDistrictId());
 		bean.setDistrict(data.getDistrict());
-
 		System.out.println("on service District" +data.getDistrict());
-
-		System.out.println("on service" +data.getDistrict());
-		/*State state=data.getState();
-		Country country=data.getCountry();
-
- 
 		State state=data.getState();
-
 		Country country=state.getCountry();
+		//Country country=state.getCountry();
 		bean.setStatesId(state.getStateId());
-
-		//Country country=data.getCountry();
-
 		bean.setStateName(state.getState());
 		System.out.println("On Service for district"+state.getState());
 		//bean.setCountryName(state.getCountry().getCountry());
 		//bean.setCountryId(state.getCountry().getCountryId());
 		//bean.setStateId(String.valueOf(state.getStateId()));
-
 		bean.setCountryName(country.getCountry());
 		bean.setCountryId(country.getCountryId());
-
-
-		bean.setCountryName(country.getCountry());
-		bean.setCountryId(country.getCountryId());
-		districtBeans.add(bean);*///comment for test
+		districtBeans.add(bean);
 
 		//bean.setCountryName(country.getCountry());
 		//bean.setCountryId(country.getCountryId());
