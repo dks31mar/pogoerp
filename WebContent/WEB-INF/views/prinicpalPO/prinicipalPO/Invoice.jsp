@@ -225,7 +225,7 @@
 									<td align="center">&nbsp;<font size="2" style="width: 65px"color="white"><label >Pending Qty</label></font></td>
 									<td align="center">&nbsp;<div class="checkbox">
           <label>
-            <input type="checkbox" value="">
+            <input type="checkbox" value="" id="maincheackbox" onclick="toggle(this)">
             <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
             
           </label>
@@ -253,7 +253,7 @@
 					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;width: 69px" name="tpinjpy" id="tpinjpy${loop.index+1}" value="" class="form-control"></td>
 					<td align="center">&nbsp;<div class="checkbox">
           <label>
-            <input type="checkbox" value="">
+            <input type="checkbox" value="" name="savecheck">
             <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
             
           </label>
@@ -309,4 +309,16 @@
 $( function() {
     $("#invoicedate").datepicker({dateFormat: 'dd/mm/yy'});
   });
+  
+  
+
+	function toggle(source)
+    {
+        checkboxes = document.getElementsByName('savecheck');
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = source.checked;
+        }
+    }
+  
+ 
 </script>
