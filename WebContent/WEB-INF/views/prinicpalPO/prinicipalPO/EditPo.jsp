@@ -439,7 +439,9 @@ System.out.println();
 									calculation();
 							 }
 						 });
-						function deletethisrow(id){
+						
+						 
+						 function deletethisrow(id){
 							
 								 $("#"+id).parents("tr").remove();
 							id=$('#addprolisttbody').children('tr').length;
@@ -452,6 +454,9 @@ System.out.println();
 								}
 								calculation();
 						}
+						
+						
+						
 						function printPagePo(poref){
 							window.open('printreport?poref='+poref , '_blank');
 						}

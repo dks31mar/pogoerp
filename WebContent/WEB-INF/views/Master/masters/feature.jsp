@@ -53,34 +53,41 @@
         
        <table class="responstable">
   
-  <tbody><tr>
-    <th>S.NO.</th>
-    <th data-th="Driver details"><span>Feature</span></th>
-    <th>Edit</th>
-    <th>Delete</th>
-   
-  </tr>
-  <!--  -->
-  <td>1</td>
-  <td>GLOBE RECTIFIERS</td>
-  <td><a href="editcompetitior?id=${comprofilr.competitor}" }" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
-  <td><a href="" title="Edit" id=""><span class="glyphicon glyphicon-trash"></span></a></td>
-  <!--  
-  <c:if test="${!empty branchList}">
-	<c:forEach items="${branchList}" var="branch" varStatus="loop">
+  <tbody align='center'>
   <tr>
-    <td>${loop.index+1}</td>
-    <td>${branch.zonesname}</td>
-  
-    <td><a href="Editregion?id=${branch.zonesid}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="deleteRegion?id=${branch.zonesid}" title="Delete"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td> 
-  -->
+    <th>S.NO.</th>
+     <th>Name</th>
+      <th data-th="Driver details"><span>Product</span></th>
+        <th>Price(Rs.)</th>
+         <th>Warranty period</th>
+          <th>AMC(Rates)</th>
+           <th>	No. Of Free AMC</th>
+    <th>Edit</th>
+    <th>Delete</th> 
   </tr>
+<c:if test="${!empty compList}">
+	<c:forEach items="${compList}" var="list" varStatus="loop">
+	
+  <tr>
+     <td>${loop.index+1}</td>
+      <td>${list.name}</td>
+  <td>${list.productname}</td>
+  <td>${list.price}</td>
+  <td>${list.warrentyperiod}</td>
+  <td>${list.amcrate}</td>
+  <td>${list.nooffreeamc}</td>
+  <td><a href="editcompetitior?id=${list.compid}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
+  <!-- <td><a href="" title="Edit" id=""><span class="glyphicon glyphicon-trash"></span></a></td> -->
+ <td style="margin"><a href="deletefeature?id=${list.compid}"><span
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td> 
  
+  </tr>
+  
   </c:forEach>
   </c:if>
   
-</tbody></table>
+</tbody>
+</table>
         
 </div>
 

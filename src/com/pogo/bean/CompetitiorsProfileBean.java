@@ -2,76 +2,107 @@ package com.pogo.bean;
 
 public class CompetitiorsProfileBean {
 	private int compid;
-	private static String compname;
-	private static String compaddress;
-	private static String compphone;
-	private static String compfax;
-	private static String compemail1;
-	private static String compcontactperson;
-	private static String compcontactdesig;
-	private static String compemail2;
-	private static String compphone2;
-	
+	private  String name;
+	private  String contactperson;
+	private  String address;
+	private  String designation;
+	private String mobileno;
+	private  String phoneno;
+	private String emailid;
+	private  String productbrand;
+	private  String productname;
+	private String warrentyperiod;
+	private String price;
+	private String nooffreeamc;
+	private String amcrate;
 	public int getCompid() {
 		return compid;
 	}
 	public void setCompid(int compid) {
 		this.compid = compid;
 	}
-	public static String getCompname() {
-		return compname;
+	
+	public String getName() {
+		return name;
 	}
-	public void setCompname(String compname) {
-		this.compname = compname;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public static String getCompaddress() {
-		return compaddress;
+	public String getNooffreeamc() {
+		return nooffreeamc;
 	}
-	public void setCompaddress(String compaddress) {
-		this.compaddress = compaddress;
+	public void setNooffreeamc(String nooffreeamc) {
+		this.nooffreeamc = nooffreeamc;
 	}
-	public static String getCompphone() {
-		return compphone;
+	public String getContactperson() {
+		return contactperson;
 	}
-	public void setCompphone(String compphone) {
-		this.compphone = compphone;
+	public void setContactperson(String contactperson) {
+		this.contactperson = contactperson;
 	}
-	public static String getCompfax() {
-		return compfax;
+	public String getAddress() {
+		return address;
 	}
-	public void setCompfax(String compfax) {
-		this.compfax = compfax;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public static String getCompemail1() {
-		return compemail1;
+	public String getDesignation() {
+		return designation;
 	}
-	public void setCompemail1(String compemail) {
-		this.compemail1 = compemail;
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
-	public static String getCompcontactperson() {
-		return compcontactperson;
+	public String getMobileno() {
+		return mobileno;
 	}
-	public void setCompcontactperson(String compcontactperson) {
-		this.compcontactperson = compcontactperson;
+	public void setMobileno(String mobilno) {
+		this.mobileno = mobilno;
 	}
-	public static String getCompcontactdesig() {
-		return compcontactdesig;
+	public String getPhoneno() {
+		return phoneno;
 	}
-	public void setCompcontactdesig(String compcontactdesig) {
-		this.compcontactdesig = compcontactdesig;
+	public void setPhoneno(String phoneno) {
+		this.phoneno = phoneno;
 	}
-	public static String getCompemail2() {
-		return compemail2;
+	public String getEmailid() {
+		return emailid;
 	}
-	public void setCompemail2(String compemail2) {
-		this.compemail2 = compemail2;
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
 	}
-	public static String getCompphone2() {
-		return compphone2;
+	public String getProductbrand() {
+		return productbrand;
 	}
-	public void setCompphone2(String compphone2) {
-		this.compphone2 = compphone2;
+	public void setProductbrand(String productbrand) {
+		this.productbrand = productbrand;
 	}
+	public String getProductname() {
+		return productname;
+	}
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+	public String getWarrentyperiod() {
+		return warrentyperiod;
+	}
+	public void setWarrentyperiod(String warrentyperiod) {
+		this.warrentyperiod = warrentyperiod;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	
+	public String getAmcrate() {
+		return amcrate;
+	}
+	public void setAmcrate(String amcrate) {
+		this.amcrate = amcrate;
+	}
+	
+	
 	
 
 }

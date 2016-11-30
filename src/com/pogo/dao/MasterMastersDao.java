@@ -2,6 +2,10 @@ package com.pogo.dao;
 
 import java.util.List;
 
+import com.pogo.bean.AddActionBean;
+import com.pogo.model.AddAction;
+import com.pogo.model.AddPlan;
+import com.pogo.model.Branch;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
@@ -100,8 +104,20 @@ public interface MasterMastersDao {
 	CustomerLevels getCustomerStatusById(Integer customerLevelId);
 	List<District> getdistrictByStateIdAndCountryId(int id);
 	void deleteserviceprovider(int id);
-	State getStateIdByContryId(Integer id);
+
 	
+	
+	
+	List<AddAction> actionPlanList();
+	
+	void addActionPlan(AddAction action);
+	
+	AddAction getplanDataById(int id);
+	
+	void saveAddAction(AddPlan bean);
+
+	State getStateIdByContryId(Integer id);
+
 
 
 }

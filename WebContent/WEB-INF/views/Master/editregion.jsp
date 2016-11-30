@@ -34,9 +34,10 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Add/Edit Region</legend>
+<legend>Add/Edit Zones</legend>
   
 <!-- Text input-->
+<!--  
 <div class="form-group">
   <label class="col-md-2 control-label" >Region Id</label> 
     <div class="col-md-3 inputGroupContainer">
@@ -46,8 +47,9 @@
     </div>
   </div>
   </div>
+  -->
 <div class="form-group">
-  <label class="col-md-2 control-label" >Region Name</label> 
+  <label class="col-md-2 control-label" >Zone Name</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -98,7 +100,7 @@
    
   </div>
   </div>
-   <label class="col-md-2 control-label" style="margin-left: -62px;">Region Address<span style="color: red;">*</span></label>  
+   <label class="col-md-2 control-label" style="margin-left: -62px;">Zone Address<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>

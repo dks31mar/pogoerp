@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
+import com.pogo.bean.AddActionBean;
+import com.pogo.bean.AddPlanBean;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
@@ -23,6 +25,8 @@ import com.pogo.bean.ServiceProviderBean;
 import com.pogo.bean.StateBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.dao.MasterMastersDao;
+import com.pogo.model.AddAction;
+import com.pogo.model.AddPlan;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
@@ -762,10 +766,50 @@ public void deleteServiceprovider(int id) {
 	
 	masterMastersdao.deleteserviceprovider(id);
 	
+
+}
+
+
+
+@Override
+public void addActionPlan(AddActionBean poref1) {
+	AddAction action=new AddAction();
+	action.setAction(poref1.getAction());
+	
+	masterMastersdao.addActionPlan(action);
+	
+}
+
+@Override
+public List<AddAction> actionPlanList() {
+	return masterMastersdao.actionPlanList();
+}
+
+
+@Override
+public AddActionBean EditForActionPlan(int id) {
+	// TODO Auto-generated method stub
+	AddAction addaction=masterMastersdao.getplanDataById(id);
+	AddActionBean actionbean= new AddActionBean();
+	actionbean.setAction(addaction.getAction());
+	return actionbean;
+	
+}
+
+@Override
+public void saveAddAction(AddPlanBean planbean) {
+	// TODO Auto-generated method stub
+	AddPlan bean=new AddPlan();
+	bean.setPlan(planbean.getPaln());
+	masterMastersdao.saveAddAction(bean);
+	
+}
+
+
+
 }
 
 
 
 
 
-}

@@ -90,22 +90,11 @@ public interface MasterOrganizationDao {
 
 	CompanyProfile getCom(Integer subcompanyId);
 
-	
-
-	
-
-
-
-
-	
 
 
 void saveDataCompetitiors(CompetitiorsProfile compti);
 
-void updateCompetitior(CompetitiorsProfile comprof);
-
-
-	
+void updateCompetitior(CompetitiorsProfile comp);
 
 	void permitForSms(SmsAllocation sms);
 
@@ -118,8 +107,6 @@ void updateCompetitior(CompetitiorsProfile comprof);
 	List<Zones> getZones();
 
 	Zones getZone(Integer stateId);
-
-
 
 	StateZone getStates(Integer branchId);
 
@@ -141,6 +128,12 @@ void updateCompetitior(CompetitiorsProfile comprof);
 	void deletebr(Branch branch);
 
 	List<UserEmployee> getUserEmp(String empName);
+
+	CompetitiorsProfile getdataForCompiter(int id);
+
+	List<CompetitiorsProfile> getCompData();
+
+	void deletefeture(int id);
 
 
 

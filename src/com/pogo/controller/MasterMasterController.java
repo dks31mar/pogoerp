@@ -25,6 +25,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pogo.bean.AddActionBean;
+import com.pogo.bean.AddPlanBean;
+import com.pogo.bean.CompanyProfileBean;
+import com.pogo.bean.CompetitiorsProfileBean;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
@@ -39,6 +43,7 @@ import com.pogo.bean.ServiceProviderBean;
 
 import com.pogo.bean.StateBean;
 import com.pogo.bean.TeamSegmentBean;
+import com.pogo.model.AddAction;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
@@ -51,6 +56,7 @@ import com.pogo.service.MasterMastersService;
 public class MasterMasterController {
 	@Autowired
 	private MasterMastersService masterMastersService;
+	
 	@RequestMapping(value="/customerLevels",method = RequestMethod.GET)
 	public ModelAndView getcustomerLevels( @ModelAttribute("command") CustomerLevelsBean customerlevel,HttpServletRequest request,BindingResult result ){
 		System.out.println("in customerlevels  method");
@@ -857,4 +863,57 @@ public class MasterMasterController {
 	
 	}
 	
+	
+	//satyendra method
+	@RequestMapping(value="/addplanAction",method=RequestMethod.GET)
+	public ModelAndView getPlanAction(@ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result)
+   {
+		
+		System.out.println("inside add plan action");
+		List<AddAction> list = new ArrayList<AddAction>();
+		list = masterMastersService.actionPlanList();
+		Map<String , Object> model = new HashMap<String,Object>();
+		model.put("actionplanlist", list);
+		//System.out.println("***************************************** inside action plan ****************************");
+	
+		return new ModelAndView("addplanAction",model);
+	}
+	
+	@RequestMapping(value="addactionplan",method=RequestMethod.POST)
+	@ResponseBody
+	public void addActionPlan(@RequestBody String json,Model model) throws IOException{
+	System.out.println("********************inside add Action Plan method **************\n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		AddActionBean poref=mapper.readValue(json, AddActionBean.class);
+		AddActionBean poref1=new AddActionBean();
+		poref1.setAction(poref.getAction());
+		
+		masterMastersService.addActionPlan(poref1);
+	}
+	@RequestMapping(value="editforactionplan" , method=RequestMethod.POST)
+	public String EditForActionPlan(@RequestParam("id") int id,  Model model) {
+		AddActionBean addobj=masterMastersService.EditForActionPlan(id);
+		model.addAttribute("planname", addobj);
+		
+		return "addplanAction";
+	}
+	
+	//call the page for add actrion
+	@RequestMapping(value = "/addaction", method = RequestMethod.GET)
+	public ModelAndView getAction() {
+		
+     return new ModelAndView("addaction");
+	}
+	//save the add actin page
+	@RequestMapping(value = "saveaddaction", method = RequestMethod.POST)
+	@ResponseBody
+	public void saveAddAction(@RequestBody String json, Model model) throws IOException {
+		System.out.println("i m in controller Add action data   \n" + json);
+		ObjectMapper mapper = new ObjectMapper();
+		AddPlanBean planbean = mapper.readValue(json, AddPlanBean.class);
+
+		AddPlanBean pbean = new AddPlanBean();
+
+		masterMastersService.saveAddAction(planbean);
+	}
 }
