@@ -181,58 +181,44 @@ System.out.println();
 			
 				<div class="row form-group" style="top: 10px; position: relative;"
 					onclick="">
-					<div class="col-sm-10 form-level" align="right">
-						Total:<font color="#FF0000"></font>
-					</div>
-					<div align="right">
-						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
-							value="${total}" style="width: 15%;" readonly>
-					</div>
+					
+					
 				</div>
 
-				<hr align="left" size="1" width="100%"
-					style="background-color: #000000" />
+				<hr align="left" size="" width="100%"
+					style="background-color: #3C8DBC;height: 1px; " />
 
 				<div align="center">
 
-
-
+					<table>
 					<tr>
-						<td align="center">
-							<button type="button" value="update" onclick="updatebutton();"
-								class="btn btn-success pull-center" id="update"
-								style="background-color: #3C8DBC;">Update</button>
-						</td>
-						<td>&nbsp;&nbsp;&nbsp;</td>
-						<td>
-							<button type="button" value="update" onclick="updatebutton();"
-								class="btn btn-success pull-center" id="print"
-								style="background-color: #3C8DBC;">Print</button>
-						</td>
-						<td>&nbsp;&nbsp;&nbsp;</td>
-						<td>
-							<button type="button" value="update" onclick=""
-								class="btn btn-success pull-center" id="pdf"
-								style="background-color: #3C8DBC;">PDF</button>
-						</td>
-						<td>&nbsp;&nbsp;&nbsp;</td>
-						<td>
-							<button type="button" value="update" onclick="updatebutton();"
-								class="btn btn-success pull-center" id="back"
-								style="background-color: #3C8DBC;">Back</button>
-						</td>
-						<td>
-							<button type="button" value="update"
-								class="btn btn-success pull-center" id="addmore"
-								style="background-color: #3C8DBC;">Add More</button>
-						</td>
+						
 						
 						<td>
 							<button type="button" value="update" onclick="numberingRow();"
 								class="btn btn-success pull-center"
 								style="background-color: #3C8DBC;">Number row</button>
 						</td>
-
+						<td>&nbsp;&nbsp;</td>
+						<td>
+						<button type="button" value="Save" onClick=""
+						class="btn btn-success pull-center" id="savedata445"
+						style="background-color: #3C8DBC;">Save</button>
+						</td>
+						<td class="col-sm-2 form-level">
+						
+						
+						Total:<font color="#FF0000"></font>
+					
+						</td>
+						<td>
+						
+						<div align="right">
+						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
+							value="${total}" style="width: 65%;" readonly>
+					</div>
+						</td>
+						
 					</tr>
 
 
@@ -240,9 +226,7 @@ System.out.println();
 
 
 
-					<button type="button" value="Save" onClick=""
-						class="btn btn-success pull-center" id="savedata445"
-						style="background-color: #3C8DBC;">Save</button>
+					
 					<!-- <button type="button" value="AddMore" onClick="productdetail();"
 						class="btn btn-success pull-right"
 						style="background-color: #3C8DBC;">Add More</button> -->

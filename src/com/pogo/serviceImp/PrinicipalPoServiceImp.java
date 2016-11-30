@@ -344,10 +344,10 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		ProductAcknowledgement proack=new ProductAcknowledgement();
 		proack.setExpdate(bean.getExpdate());
 		proack.setParticular(bean.getParticular());
-		proack.setPendingqty(bean.getPendingqty());
+		proack.setPendingqty(bean.getPendingqty()-bean.getReceiveqty());
 		proack.setPorefno(bean.getPorefno());
 		proack.setReceiveqty(bean.getReceiveqty());
-		
+		proack.setProductacknowledgementid(bean.getProductacknowledgementid());
 		prinicipaldao.saveAcknowledData(proack);
 		
 	}
@@ -367,6 +367,12 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 			beanlist.add(bean);
 		}
 		return beanlist;
+	}
+
+	@Override
+	public void deleteParticularAck(String s1) {
+		prinicipaldao.deleteParticularAck(s1);
+		
 	}
 
 	

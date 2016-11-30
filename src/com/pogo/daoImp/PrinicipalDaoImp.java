@@ -185,7 +185,11 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 		}
 		}catch(Exception ex){*/
 			//ex.printStackTrace();
-			sessionFactory.getCurrentSession().save(proack);
+		if(proack.getProductacknowledgementid()!=0){
+			sessionFactory.getCurrentSession().createQuery("DELETE From ProductAcknowledgement Where productacknowledgementid="+proack.getProductacknowledgementid()).executeUpdate();
+		}
+		
+		sessionFactory.getCurrentSession().save(proack);	
 		//}
 	}
 
@@ -193,6 +197,14 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	public List<ProductAcknowledgement> getAckData(String s1, String s2) {
 		
 		return sessionFactory.getCurrentSession().createCriteria(ProductAcknowledgement.class).add(Restrictions.eq("porefno", s1)).add(Restrictions.eq("particular", s2)).list();
+	}
+
+	@Override
+	public void deleteParticularAck(String s1) {
+		
+		int id=Integer.parseInt(s1);
+		sessionFactory.getCurrentSession().createQuery("DELETE ProductAcknowledgement Where productacknowledgementid="+id).executeUpdate();
+		
 	}
 	
 	
