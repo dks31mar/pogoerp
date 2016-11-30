@@ -4,15 +4,19 @@ public class CountryBean {
 	
 	private Integer countryId ;
 	private String country;
-	private String status;
+	private String isUsed;
 	
 	
 	
-	public String getStatus() {
-		return status;
+	
+	
+	
+	
+	public String getIsUsed() {
+		return isUsed;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setIsUsed(String isUsed) {
+		this.isUsed = isUsed;
 	}
 	public Integer getCountryId() {
 		return countryId;
