@@ -305,8 +305,9 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 	}
 
 	@Override
-	public void updateCompetitior(CompetitiorsProfile comprof) {
-		// TODO Auto-generated method stub
+	public void updateCompetitior(CompetitiorsProfile comp) {
+		//sessionFactory.getCurrentSession().createQuery("UPDATE CompetitiorsProfile set contactperson="+comp.getContactperson()+",set name="+comp.getName()+",set address="+comp.getaddress()+," where compid="+comp.getCompid()).executeUpdate();
+		
 
 	}
 
@@ -416,6 +417,25 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 	public List<UserEmployee> getUserEmp(String empName) {
 		return sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
 				.add(Restrictions.like("firstname", empName+ "%")).add(Restrictions.eq("active", true)).list();
+	}
+
+	@Override
+	public CompetitiorsProfile getdataForCompiter(int id) {
+		return (CompetitiorsProfile) sessionFactory.getCurrentSession().get(CompetitiorsProfile.class, id);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CompetitiorsProfile> getCompData() {
+		return sessionFactory.getCurrentSession().createCriteria(CompetitiorsProfile.class).list();
+	}
+
+	@Override
+	public void deletefeture(int id) {
+System.out.println("delete");
+		
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM  CompetitiorsProfile WHERE id = "+id).executeUpdate();
+		
 	}
 
 }

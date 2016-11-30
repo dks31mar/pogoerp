@@ -83,7 +83,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-   <input  value="${zones.zones}"  placeholder="Zones Address" class="form-control"  id="address" required="required" type="address" oninput="funcal();">
+   <input  value="${zones.zones}"  placeholder="Zones Address" class="form-control"  id="regadress" required="required" type="address" oninput="funcal();">
     </div>
   </div>
 </div>
@@ -214,7 +214,7 @@
 		   var fax    =	$('#fax').val();
 		   var regadress    =	$('#regadress').val();
 		   
-		   alert(selecthead);
+		  //alert(regadress+reginname);
 		   
 
 		   if(reginname==''||mobileno==''||emailid==''||fax==''||regadress==''||selecthead=='---Select Region---'){

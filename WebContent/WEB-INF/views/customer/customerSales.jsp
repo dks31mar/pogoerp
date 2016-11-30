@@ -109,14 +109,13 @@
 		<label
 			 style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"
 			class="btn btn-primary">Add Dairy</a>
-<<<<<<< HEAD
      </label>
-=======
+
 			
-     </label>
+    
   		
 
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 	</div>
 	
 </div>

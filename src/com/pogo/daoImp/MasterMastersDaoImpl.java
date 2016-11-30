@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pogo.bean.AddActionBean;
 import com.pogo.dao.MasterMastersDao;
+import com.pogo.model.AddAction;
+import com.pogo.model.AddPlan;
+import com.pogo.model.Branch;
 import com.pogo.model.Country;
 import com.pogo.model.Currency;
 import com.pogo.model.CustomerLevels;
@@ -455,6 +459,29 @@ public List<District> getdistrictByStateIdAndCountryId(int id) {
 @Override
 public void deleteserviceprovider(int id) {
 	sessionFactory.getCurrentSession().createQuery("DELETE FROM ServiceProvider WHERE transportationserviceid = "+id).executeUpdate();
+	
+}
+@Override
+public List<AddAction> actionPlanList() {
+	return (List<AddAction>) sessionFactory.getCurrentSession().createCriteria(AddAction.class).list();
+}
+@Override
+public void addActionPlan(AddAction action) {
+	sessionFactory.getCurrentSession().save(action);
+	
+}
+@Override
+public AddAction getplanDataById(int id) {
+	
+	return (AddAction) sessionFactory.getCurrentSession().get(AddAction.class, id);
+
+
+}
+@Override
+public void saveAddAction(AddPlan bean) {
+	sessionFactory.getCurrentSession().flush();
+	sessionFactory.getCurrentSession().save(bean);
+	sessionFactory.getCurrentSession().flush();
 	
 }
 

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="competitor")
+@Table(name="competitorProfile")
 public class CompetitiorsProfile {
 
 	@Id
@@ -16,32 +16,44 @@ public class CompetitiorsProfile {
 	@Column(name="compid",columnDefinition="Bigint(12)")
 	private Integer compid;
 	
-	@Column(name="compname",columnDefinition="int(11)")
-	private String compname;
+	@Column(name="name",columnDefinition="varchar(11)")
+	private String name;
 	
-	@Column(name="compaddress",columnDefinition="int(11)")
-	private String compaddress;
+	@Column(name="contactperson",columnDefinition="varchar(11)")
+	private String contactperson;
      
-	@Column(name="compphone",columnDefinition="varchar(100)")
-	private String compphone;
+	@Column(name="address",columnDefinition="varchar(100)")
+	private String address;
 	
-	@Column(name="compfax",columnDefinition="varchar(100)")
-	private String compfax;
+	@Column(name="designation",columnDefinition="varchar(100)")
+	private String designation;
 	
-	@Column(name="compemail1",columnDefinition="varchar(25)")
-	private String compemail1;
+	@Column(name="mobileno",columnDefinition="int(25)")
+	private String mobileno;
 	
-	@Column(name="compcontactperson",columnDefinition="varchar(25)")
-    private String compcontactperson;
+	@Column(name="phoneno",columnDefinition="int(25)")
+    private String phoneno;
     
-	@Column(name="compcontactdesig",columnDefinition="varchar(50)")
-    private String compcontactdesig;
+	@Column(name="emailid",columnDefinition="varchar(50)")
+    private String emailid;
 	
-	@Column(name="compemail2",columnDefinition="varchar(1)")
-    private String compemail2;
+	@Column(name="productbrand",columnDefinition="varchar(10)")
+    private String productbrand;
 
-	@Column(name="compphone2",columnDefinition="varchar(1)")
-    private String compphone2;
+	@Column(name="productname",columnDefinition="varchar(20)")
+    private String productname;
+	
+	@Column(name="warrentyperiod",columnDefinition="varchar(10)")
+	private String warrentyperiod;
+	
+	@Column(name="price", columnDefinition="int(10)")
+	private String price;
+	
+	@Column(name="no_of_freeamc" ,columnDefinition="varchar(10)")
+	private String nooffreeamc;
+	
+	@Column(name="amcrate")
+    private String amcrate;
 
 	public Integer getCompid() {
 		return compid;
@@ -51,77 +63,110 @@ public class CompetitiorsProfile {
 		this.compid = compid;
 	}
 
-	public String getCompname() {
-		return compname;
+	public String getName() {
+		return name;
 	}
 
-	public void setCompname(String compname) {
-		this.compname = compname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getCompaddress() {
-		return compaddress;
+	public String getContactperson() {
+		return contactperson;
 	}
 
-	public void setCompaddress(String compaddress) {
-		this.compaddress = compaddress;
+	public void setContactperson(String contactperson) {
+		this.contactperson = contactperson;
 	}
 
-	public String getCompphone() {
-		return compphone;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setCompphone(String compphone) {
-		this.compphone = compphone;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getCompfax() {
-		return compfax;
+	public String getDesignation() {
+		return designation;
 	}
 
-	public void setCompfax(String compfax) {
-		this.compfax = compfax;
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 
-	public String getCompemail1() {
-		return compemail1;
+	public String getMobileno() {
+		return mobileno;
 	}
 
-	public void setCompemail1(String compemail) {
-		this.compemail1 = compemail;
+	public void setMobileno(String mobileno) {
+		this.mobileno = mobileno;
 	}
 
-	public String getCompcontactperson() {
-		return compcontactperson;
+	public String getPhoneno() {
+		return phoneno;
 	}
 
-	public void setCompcontactperson(String compcontactperson) {
-		this.compcontactperson = compcontactperson;
+	public void setPhoneno(String phoneno) {
+		this.phoneno = phoneno;
 	}
 
-	public String getCompcontactdesig() {
-		return compcontactdesig;
+	public String getEmailid() {
+		return emailid;
 	}
 
-	public void setCompcontactdesig(String compcontactdesig) {
-		this.compcontactdesig = compcontactdesig;
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
 	}
 
-	public String getCompemail2() {
-		return compemail2;
+	public String getProductbrand() {
+		return productbrand;
 	}
 
-	public void setCompemail2(String compemail2) {
-		this.compemail2 = compemail2;
+	public void setProductbrand(String productbrand) {
+		this.productbrand = productbrand;
 	}
 
-	public String getCompphone2() {
-		return compphone2;
+	public String getProductname() {
+		return productname;
 	}
 
-	public void setCompphone2(String compphone2) {
-		this.compphone2 = compphone2;
+	public void setProductname(String productname) {
+		this.productname = productname;
 	}
+
+	public String getWarrentyperiod() {
+		return warrentyperiod;
+	}
+
+	public void setWarrentyperiod(String warrentyperiod) {
+		this.warrentyperiod = warrentyperiod;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getNooffreeamc() {
+		return nooffreeamc;
+	}
+
+	public void setNooffreeamc(String nooffreeamc) {
+		this.nooffreeamc = nooffreeamc;
+	}
+
+	public String getAmcrate() {
+		return amcrate;
+	}
+
+	public void setAmcrate(String amcrate) {
+		this.amcrate = amcrate;
+	}
+
 	
-	
+
 }

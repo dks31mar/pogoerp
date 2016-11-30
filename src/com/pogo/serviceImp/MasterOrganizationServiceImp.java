@@ -145,8 +145,6 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		for(Zones s:getbranch)
 			System.out.println(s.getZonesname());
 		
-			
-	
 		return getbranch;
 	}
 
@@ -214,27 +212,6 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		regionDao.deleteRegion(zones);
 		
 	}
-
-	@Override
-	@Transactional
-	public void saveDataCompetitiors(CompetitiorsProfileBean poref) {
-		CompetitiorsProfile compti=new CompetitiorsProfile();
-		
-		compti.setCompname(poref.getCompname());
-		compti.setCompaddress(poref.getCompaddress());
-		compti.setCompphone(poref.getCompphone());
-		compti.setCompfax(poref.getCompfax());
-		compti.setCompemail1(poref.getCompemail1());
-		compti.setCompcontactperson(poref.getCompcontactperson());
-		compti.setCompcontactdesig(poref.getCompcontactdesig());
-		compti.setCompemail2(poref.getCompemail2());
-		compti.setCompphone2(poref.getCompphone2());
-		regionDao.saveDataCompetitiors(compti);
-		
-	}
-		
-	
-	
 
 
 
@@ -558,19 +535,24 @@ public List<BranchBean> getBranchList()
 	
 	return branchbean;
 }
-
-public void updateCompetitior() {
-	CompetitiorsProfile comprof=new CompetitiorsProfile();
-	comprof.setCompname(CompetitiorsProfileBean.getCompname());
-	comprof.setCompaddress(CompetitiorsProfileBean.getCompaddress());
-	comprof.setCompphone(CompetitiorsProfileBean.getCompphone());
-	comprof.setCompfax(CompetitiorsProfileBean.getCompfax());
-	comprof.setCompemail1(CompetitiorsProfileBean.getCompemail1());
-	comprof.setCompcontactperson(CompetitiorsProfileBean.getCompcontactperson());
-	comprof.setCompcontactdesig(CompetitiorsProfileBean.getCompcontactdesig());
-	comprof.setCompemail2(CompetitiorsProfileBean.getCompemail2());
-	comprof.setCompphone2(CompetitiorsProfileBean.getCompphone2());
-	regionDao.updateCompetitior(comprof);
+@Transactional
+public void updateCompetitior(CompetitiorsProfileBean compp) {
+	CompetitiorsProfile comp=new CompetitiorsProfile();
+	comp.setCompid(compp.getCompid());
+	comp.setName(compp.getName());
+	comp.setContactperson(compp.getContactperson());
+	comp.setAddress(compp.getAddress());
+	comp.setDesignation(compp.getDesignation());
+	comp.setMobileno(compp.getMobileno());
+	comp.setPhoneno(compp.getPhoneno());
+	comp.setEmailid(compp.getEmailid());
+	comp.setProductbrand(compp.getProductbrand());
+	comp.setProductname(compp.getProductname());
+	comp.setWarrentyperiod(compp.getWarrentyperiod());
+	comp.setPrice(compp.getPrice());
+	comp.setNooffreeamc(compp.getNooffreeamc());
+	comp.setAmcrate(compp.getAmcrate());
+	regionDao.updateCompetitior(comp);
 }
 
 @Transactional
@@ -588,7 +570,6 @@ public void permitForSms(SmsAllocationBean smsbean) {
 public void denyForSms(SmsAllocationBean smsbean) {
 	SmsAllocation sms=new SmsAllocation();
 	sms.setEmpid(smsbean.getEmpid());
-	 
 	userEmpdao.denyForSms(sms);
 	
 }
@@ -701,4 +682,84 @@ public List<UserEmployeeBean> getUserByName(String empName) {
 	return listbean;
 }
 
+@Override
+public void saveDataCompetitiors(CompetitiorsProfileBean poref) {
+	
+	CompetitiorsProfile compp=new CompetitiorsProfile();
+	compp.setName(poref.getName());
+	compp.setContactperson(poref.getContactperson());
+	compp.setAddress(poref.getAddress());
+	compp.setDesignation(poref.getDesignation());
+	compp.setMobileno(poref.getMobileno());
+	compp.setPhoneno(poref.getPhoneno());
+	compp.setEmailid(poref.getEmailid());
+    compp.setProductbrand(poref.getProductbrand());
+	compp.setProductname(poref.getProductname());
+	compp.setWarrentyperiod(poref.getWarrentyperiod());
+	compp.setPrice(poref.getPrice());
+	compp.setNooffreeamc(poref.getNooffreeamc());
+	compp.setAmcrate(poref.getAmcrate());
+	regionDao.saveDataCompetitiors(compp);
+	
+		
 }
+@Override
+public CompetitiorsProfileBean getCompititerId(int id) 
+{
+	CompetitiorsProfile com=regionDao.getdataForCompiter(id);
+	CompetitiorsProfileBean bean=new CompetitiorsProfileBean();
+	bean.setName(com.getName());
+	bean.setContactperson(com.getContactperson());
+	bean.setAddress(com.getAddress());
+	bean.setDesignation(com.getDesignation());
+	bean.setMobileno(com.getMobileno());
+	bean.setPhoneno(com.getPhoneno());
+	bean.setEmailid(com.getEmailid());
+	bean.setProductbrand(com.getProductbrand());
+	bean.setProductname(com.getProductname());
+	bean.setWarrentyperiod(com.getWarrentyperiod());
+	bean.setPrice(com.getPrice());
+	bean.setNooffreeamc(com.getNooffreeamc());
+	bean.setAmcrate(com.getAmcrate());
+	
+	//System.out.println("On service"+ com.getAddress());
+	
+	return bean;
+	
+	
+}
+@Override
+public List<CompetitiorsProfileBean> getcompetitiorList() {
+	List<CompetitiorsProfile> com=regionDao.getCompData();
+	List<CompetitiorsProfileBean> compp=new ArrayList<CompetitiorsProfileBean>();
+	for(CompetitiorsProfile data:com)
+	{
+		CompetitiorsProfileBean bean=new CompetitiorsProfileBean();
+		bean.setCompid(data.getCompid());
+		bean.setName(data.getName());
+		System.out.println(data.getProductname());
+		bean.setProductname(data.getProductname());
+		bean.setPrice(data.getPrice());
+		bean.setWarrentyperiod(data.getWarrentyperiod());
+		bean.setAmcrate(data.getAmcrate());
+		bean.setNooffreeamc(data.getNooffreeamc());
+		compp.add(bean);
+	}
+	return compp;
+}
+
+@Override
+@Transactional
+public void deletefeture(int id){
+	regionDao.deletefeture(id);
+}
+	
+}
+
+	
+	
+
+
+	
+
+

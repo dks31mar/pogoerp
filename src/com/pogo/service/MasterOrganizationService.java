@@ -74,7 +74,7 @@ public interface MasterOrganizationService {
 	void deleteRegion(int id);
 	void saveDataCompetitiors(CompetitiorsProfileBean poref);
 
-	void updateCompetitior();
+	void updateCompetitior(CompetitiorsProfileBean compp);
 
 	void permitForSms(SmsAllocationBean smsbean);
 
@@ -99,6 +99,15 @@ public interface MasterOrganizationService {
 	void deletebranch(int id);
 
 	List<UserEmployeeBean> getUserByName(String empName);
+  
+	public CompetitiorsProfileBean getCompititerId(int id);
+
+	List<CompetitiorsProfileBean> getcompetitiorList();
+
+	void deletefeture(int id);
+
+	
+	
 	
 
 }
