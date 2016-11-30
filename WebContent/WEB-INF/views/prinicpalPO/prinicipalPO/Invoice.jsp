@@ -11,7 +11,16 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
+<style>
 
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
+
+</style>
 
 
 <div class="row" style="margin-top: 15px">
@@ -163,7 +172,10 @@
 									<td align="center">&nbsp;<font size="2" style="width: 65px"color="white"><label >Pending Qty</label></font></td>
 									<td align="center">&nbsp;<font size="2" style="width: 65px"color="white"><label >Receive Qty</label></font></td>
 									<td align="center">&nbsp;<font size="2" style="width: 65px"color="white"><label >Pending Qty</label></font></td>
-									<td align="center">&nbsp;<input type="checkbox" ></td>
+									<td align="center">&nbsp;<label class="btn btn-info">
+															<input type="checkbox" autocomplete="off">
+															<span class="glyphicon glyphicon-ok"></span>
+														</label></td>
 							<%-- <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white"><label path="">Total INR</label></font> --%>
 					
 					</tr>
@@ -180,10 +192,17 @@
 					<td style="left: 2px; position: relative; width: 150px">&nbsp;<input readonly type="text" value="${poref.particular}" name="particulee${loop.index+1}" style="overflow: auto; border-radius: 3px; width: 223px;" id="partno${loop.index+1}" class="form-control"></td>
 					<td style="width: 250px">&nbsp; <input readonly name="description" id="description${loop.index+1}" class="form-control" style="text-align: center;width: 238px;" value="${poref.productdescription}"></td>
 					<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="tpinjpy" id="tpinjpy${loop.index+1}" value="${poref.tpinjpy}" class="form-control"></td>
-					<td align="center" style="right: 4px; position: relative;">&nbsp;<input readonly type="text" style="text-align: center;" name="qty" id="qty${loop.index+1}" class="form-control" value="${poref.qty}"></td>
+					<td align="center" style="right: 4px; position: relative;">&nbsp;<input readonly type="text" style="text-align: center;width: 55px;" name="qty" id="qty${loop.index+1}" class="form-control" value="${poref.qty}"></td>
 					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;" name="totaljpy" id="totaljpy${loop.index+1}" value="${poref.totaljpy}" class="form-control"></td>
-					<td align="center">&nbsp;<button  type="button" style="text-align: center;width: 99px;background-color: #3C8DBC;color: aliceblue" name="customerporefe" id="pendindqty${loop.index+1}" value="${poref.pendingqty}" class="form-control" onclick="getacknowlegdement(${loop.index+1});">${poref.pendingqty}</button></td>
-					<td style="display: none;"><input type="hidden" name="grandtotal" value="${gtotal}" id="grandtotal${loop.index+1}"> </td><td style="display: none;"><input type="hidden" name="date" value="11/21/2016" id="getdate"> </td>
+					<td align="center">&nbsp;<button  type="button" style="text-align: center;width: 49px;background-color: #3C8DBC;color: aliceblue" name="customerporefe" id="pendindqty${loop.index+1}" value="${poref.pendingqty}" class="form-control" onclick="getacknowlegdement(${loop.index+1});">${poref.pendingqty}</button></td>
+					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;width: 69px" name="tpinjpy" id="tpinjpy${loop.index+1}" value="" class="form-control"></td>
+					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;width: 69px" name="tpinjpy" id="tpinjpy${loop.index+1}" value="" class="form-control"></td>
+					<td align="center">&nbsp;<label class="btn btn-info">
+				<input type="checkbox" autocomplete="off">
+				<span class="glyphicon glyphicon-ok"></span>
+			</label></td>
+					<td style="display: none;"><input type="hidden" name="grandtotal" value="${gtotal}" id="grandtotal${loop.index+1}"> </td>
+					<td style="display: none;"><input type="hidden" name="date" value="11/21/2016" id="getdate"> </td>
 					
 					</tr>
 					</c:forEach>

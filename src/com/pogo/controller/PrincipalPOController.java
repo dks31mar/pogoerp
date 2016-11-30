@@ -570,10 +570,29 @@ private List<PoRefEntryItemDetailCopyBean> prepareListofBean(List<PoRefEntryItem
 }*/
 
 @RequestMapping(value="/supplierinvoice",method = RequestMethod.GET)
-public ModelAndView getsupplierinvoice( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
+public ModelAndView getsupplierinvoice(@RequestParam("poref") String poref,@RequestParam("page") String page, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+	
 	System.out.println("in get edit method");
-
-return new ModelAndView("supplierinvoiceview");
+	System.out.println("in get edit method");
+	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getackDetailByPorefNo(poref);
+	System.out.println(lst);
+	double total=0.0;
+	String date=null;
+	String porefNo=null;
+	for(PoRefEntryItemDetailBean g:lst){
+		System.out.println(g.getPorefnobysupplier().getTotal());
+		total=g.getPorefnobysupplier().getTotal();
+		date=g.getPorefnobysupplier().getPorefdate();
+		porefNo=g.getPorefnobysupplier().getPorefno();
+	}
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("listbyporef", lst);
+	m.addAttribute("gtotal", total);
+	m.addAttribute("date", date);
+	m.addAttribute("porefnumber", porefNo);
+return new ModelAndView("supplierinvoiceview",model);
+//return new ModelAndView("supplierinvoiceview");
 }
 
 
