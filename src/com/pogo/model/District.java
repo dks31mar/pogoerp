@@ -1,6 +1,8 @@
 package com.pogo.model;
 
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,9 +25,19 @@ public class District {
 	@Column(name="district")
 	private String district ;
 	
-	@ManyToOne(fetch=FetchType.LAZY , cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch=FetchType.LAZY , cascade = CascadeType.ALL)
 	@JoinColumn(name="stateId")
 	private State state;
+	
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+	
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="country_id")
 	private Country country; 
@@ -36,14 +49,19 @@ public class District {
 	public void setCountry(Country country) {
 		this.country = country;
 	}
+	
+	/*@OneToMany(mappedBy="district" , cascade = CascadeType.ALL)
+    private Set<Location> location;
 
-	public State getState() {
-		return state;
+	public Set<Location> getLocation() {
+		return location;
 	}
 
-	public void setState(State state) {
-		this.state = state;
+	public void setLocation(Set<Location> location) {
+		this.location = location;
 	}
+*/
+	
 
 	
 

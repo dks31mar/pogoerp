@@ -32,7 +32,7 @@
 
 <div class="row">
 <input type="hidden" id="hiddenid"/>
-<input type="hidden" id="countryid" value="${country123}"/> 
+<input type="hidden" id="districtid" value="${district123}"/> 
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="addstate"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Add State"
 						 autofocus="autofocus"></input></div>
@@ -122,9 +122,9 @@ $('#saveForm').click(function (){
 	else{
 		//var jsonObj={'state':addstate }
 
-		var getcountryid=$('#countryid').val();
+	var getdistrictid = $('#districtid').val();
 		
-		var jsonObj={'state':addstate,'stateId':getcountryid
+		var jsonObj={'state':addstate,'stateId':getdistrictid
 
 		} ;
 	$.ajax({

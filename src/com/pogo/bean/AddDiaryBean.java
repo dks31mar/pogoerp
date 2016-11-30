@@ -1,30 +1,29 @@
 package com.pogo.bean;
 
-import java.util.PropertyPermission;
-
 public class AddDiaryBean {
-	private Integer date;
-	private Integer time;
+	private Integer diaryId;
+	private String date;
+	private String time;
 	private String Organization;
 	private String contacperson;
 	private String tasktype;
+	private int enteryuserId;
 	private String enteryuser;
-	private String decidingAuthority;
 	private String address;
-	private Integer mobileno;
-	private String faxno;
+	private String mobileno;
 	private String email;
 	private String objective;
-	public Integer getDate() {
+	
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Integer date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public Integer getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(Integer time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	public String getOrganization() {
@@ -51,29 +50,19 @@ public class AddDiaryBean {
 	public void setEnteryuser(String enteryuser) {
 		this.enteryuser = enteryuser;
 	}
-	public String getDecidingAuthority() {
-		return decidingAuthority;
-	}
-	public void setDecidingAuthority(String decidingAuthority) {
-		this.decidingAuthority = decidingAuthority;
-	}
+	
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Integer getMobileno() {
+	
+	public String getMobileno() {
 		return mobileno;
 	}
-	public void setMobileno(Integer mobileno) {
+	public void setMobileno(String mobileno) {
 		this.mobileno = mobileno;
-	}
-	public String getFaxno() {
-		return faxno;
-	}
-	public void setFaxno(String faxno) {
-		this.faxno = faxno;
 	}
 	public String getEmail() {
 		return email;
@@ -86,6 +75,18 @@ public class AddDiaryBean {
 	}
 	public void setObjective(String objective) {
 		this.objective = objective;
+	}
+	public int getEnteryuserId() {
+		return enteryuserId;
+	}
+	public void setEnteryuserId(int enteryuserId) {
+		this.enteryuserId = enteryuserId;
+	}
+	public Integer getDiaryId() {
+		return diaryId;
+	}
+	public void setDiaryId(Integer diaryId) {
+		this.diaryId = diaryId;
 	}
 	
 	}

@@ -17,7 +17,11 @@
 <div class="row">
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; " >
-		<span class="glyphicon glyphicon-user"></span> Sales Enquiry 
+		<span class="glyphicon glyphicon-user"></span> <span> Sales Enquiry </span>
+		<label
+			style="margin-left: 540px;"><a
+			href="#" onclick="history.back();"style="margin-top: -3px;" class="btn btn-primary"> Return to Customer Add </a> </label> 
+		
 	</div>
 	
 </div>
@@ -29,10 +33,9 @@
           <h4 class="modal-title">Customer Operation</h4>
         </div>
         <div class="modal-body">
-          <div><a href="#"><strong>Edit</strong></a></div>
-           <div><a href="AddDiaryForEntrySales"><strong>Add Diary</strong></a></div>
-            <div><a href="#"><strong> Create Quotation</strong></a></div>
-             <div><a href="#"><strong> Add Followup</strong></a></div>
+           <div><a  id="plannerbuttonid"><strong>Planner</strong></a></div>
+            <div><a href="createQuotation"><strong>Quotation</strong></a></div>
+             <div><a href="addFollowup"><strong> Add Activities</strong></a></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
@@ -71,18 +74,22 @@
   <td>${salesdetails.contactPerson}</td>
   <td>${salesdetails.status}</td>
   <td>${salesdetails.acmanager}</td>
-  <td><button type="button"  title="More Action" data-toggle="modal" data-target="#myModal"><i class="fa fa-th" aria-hidden="true"></i></button>
-
-</td>
+  <td><a href="editcustomer?id=${salesdetails.customerId}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a> <span>&nbsp;</span>
+  <button type="button"  onclick="putIdAtPlanner(${salesdetails.customerId})" title="More Action" data-toggle="modal" data-target="#myModal"><i class="fa fa-th" aria-hidden="true"></i></button></td>
   </tr>
   </c:forEach>
   </c:if>
   </c:otherwise>
    </c:choose>
 
+</tbody>
+</table>
+
+<script type="text/javascript">
+function putIdAtPlanner(id){
+	$("#plannerbuttonid").attr("href","addDiaryForEntrySales?id="+id);
+}
 
 
-
-  </tbody>
-  </table>
+</script>
   

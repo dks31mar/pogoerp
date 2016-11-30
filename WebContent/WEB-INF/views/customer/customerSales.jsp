@@ -20,14 +20,16 @@
 					type : 'POST',
 					success : function(data, status) {
 						$("#state").empty();
-						var st = '<select name="stateId" onchange=getdistrictLists(this.value,'
-								+ id
+						var st = '<select name="stateId" onchange=getdistrictLists(this.value'
+								
 								+ ') class="form-control select style="width: 100%; height:31%;">'
 								+ '<option value="">-- Select State --</option>';
 						var j = JSON.parse(data);
 						var length = j.length;
+						alert(j.stateId);
 						for (var i = 0; i < length; i++) {
-							st = st + '<option value=' + j[i].id + '>'
+							alert(j[i].id);
+							st = st + '<option value=' + j[i].stateId + '>'
 									+ j[i].state + '</option>';
 
 						}
@@ -42,24 +44,48 @@
 				});
 
 	}
- 
- function getdistrictLists(id) 
+ /* function getdata(districtId)
  {
-	 alert("District"+ id);
-		var url = 'getdistrict/' + id;
+	 
+	 var url='getdistrictLists/'+districtId;
+	 $
+	 .ajax({
+		 url:  url,
+	    type : 'POST',
+	    success:function(data,status)
+	    {
+	    	alert("hello under success");
+	    	var j=JSON.parse(data);
+	    	alert(j);
+	    	alert("Ram");
+	    },
+	    error :function(error,status)
+	    {
+	    	alert("not reachable");
+	    }
+	 });
+ } */
+ 
+  function getdistrictLists(id) 
+ {
+	 
+	 
+	 alert(id);
+	 
+	 var url = 'getdistrictLists/' + id;
+		//alert("dis=+districtId+");
 		$
 				.ajax({
 					url : url,
-					type : 'GET',
+					type : 'POST',
 					success : function(data, status) {
-						$("#districts").empty();
-						var st = '<select name="districtId" class="form-control" style="width: 100%;">'
+						 $("#districts").empty();
+						var st = '<select name="districtId" class="form-control" style="width: 100%;" id="districtId">'
 								+ '<option value="">-- Select District --</option>';
 						var j = JSON.parse(data);
 						var length = j.length;
 						for (var i = 0; i < length; i++) {
-
-							st = st + '<option value=' + j[i].id + '>'
+							st = st + '<option value=' + j[i].districtId + '>'
 									+ j[i].district + '</option>';
 
 						}
@@ -69,18 +95,17 @@
 
 					},
 					error : function(error, status) {
-					}
-				});
+					} 
+				}); 
 	}
- 
+  
 	  $( function() {
 		    $("#enquirydate" ).datepicker();
-		    dateFormat : "yyyy-MM-dd"
+		    
 		  } );
 
 		$( function() {
 		    $( "#orderdate").datepicker();
-		    dateFormat : "yyyy-MM-dd"
 		  } );
 		</script>
 
@@ -95,11 +120,11 @@
 
 		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; " >
 		<span class="glyphicon glyphicon-user"></span> <span> Customer</span>
-		<label style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"class="btn btn-primary">Add Dairy</a></label>
-		<label style="margin-left: 250px;margin-top: 8px;"><a href="CreateQuotationForm"class="btn btn-primary">Create Quotation</a></label>
-		<label style="margin-left: 250px;margin-top: 8px;"><a href="AddFollowupForm"class="btn btn-primary">Add FallowUp</a></label>
-		<label style="margin-left: 250px;margin-top: 8px;"><a href="editCustomerForm" class="btn btn-primary">Edit Customer</a></label>	
+		<label
+			style="margin-left: 540px;"><a 
+			href="getSalesList" style="margin-top: -3px;" class="btn btn-primary"> Sales List </a> </label> 
 
+<<<<<<< HEAD
 		
 		<span class="glyphicon glyphicon-user"></span><span> Customer</span>
 		<label
@@ -113,6 +138,12 @@
 
 			
     
+=======
+			<label
+			style="margin-left: 540px;">
+			<a href="#" onclick="getdata();" style="margin-top: -3px;" class="btn btn-primary"> Click </a> </label>
+     
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
   		
 
 
@@ -128,7 +159,7 @@
   <label class="col-md-2 control-label">Enquiry Date</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
   <input   name="creationDate" readonly="readonly" id="enquirydate" placeholder="Select Date" class="form-control"  type="text">
     </div>
   </div>
@@ -136,7 +167,7 @@
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
   <input   name="orderdate"  placeholder="Select Date" required="required" id="orderdate" readonly="readonly" class="form-control"  type="text">
     </div>
   </div>
@@ -146,7 +177,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="organisation" placeholder="User Name" required="required"  class="form-control"  type="text">
+  <input   name="organisation" placeholder="Organisation Name" required="required"  class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" >Organisation Short Name<span style="color: red;">*</span></label>  
@@ -198,7 +229,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="address"   placeholder="Middle Name"  class="form-control"  type="text">
+  <input name="address"   placeholder="Address"  class="form-control"  type="text">
     </div>
   </div>
    <label class="col-md-2 control-label" >Country<span style="color: red;">*</span></label> 

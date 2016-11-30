@@ -243,7 +243,26 @@
 			 <put-attribute name="title" value="importcsvfile" />
 			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/importCsvFile.jsp" />
 			 </definition>
-
+            <!-- ViewEditDelete -->
+            <definition name="getViewEditDelete" extends="baseLayout">
+			 <put-attribute name="title" value="vieweditdelete" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/viewEditDelete.jsp" />
+			 </definition>
+            <!-- SelectfromSalesCall -->
+            <definition name="getmailinglist" extends="baseLayout">
+			 <put-attribute name="title" value="selectfromsalescalls" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/selectMailinglist.jsp" />
+			 </definition>
+			 <!-- SelectFromContacts -->
+			 <definition name="getselectfromcontacts" extends="baseLayout">
+			 <put-attribute name="title" value="selectfromsalescalls" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/selectFromContacts.jsp" />
+			 </definition>
+			 <!--SelectFromSalesCalls  -->
+			 <definition name="getselectfromsalescalls" extends="baseLayout">
+			 <put-attribute name="title" value="selectfromsalescalls" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/selectFromSalesCalls.jsp" />
+			 </definition>
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
@@ -361,11 +380,6 @@
 			<definition name="AddFollowupForm" extends="baseLayout" >
 			<put-attribute name="title" value="Add Followup " />
 			<put-attribute name="body" value="/WEB-INF/views/customer/addFollowup.jsp" />
-			</definition>
-			
-			<definition name="editCustomerForm" extends="baseLayout" >
-			<put-attribute name="title" value="Edit Customer " />
-			<put-attribute name="body" value="/WEB-INF/views/customer/editCustomer.jsp" />
 			</definition>
 
 				

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
+import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
 
 public interface PrinicipalDao {
@@ -41,6 +42,20 @@ public interface PrinicipalDao {
 	PorefSupplierDetail getidbyporefnumber(String s);
 
 	void deletePoById(PoRefEntryItemDetail poref);
+
+	List<PoRefEntryItemDetail> getPoDetailByPorefId(String poref);
+
+	List<PoRefEntryItemDetail> getackDetailByPorefNo(String poref);
+
+	List<ProductAcknowledgement> getPendindQty(String porefNo, String particular);
+
+	void saveAcknowledData(ProductAcknowledgement proack);
+
+	List<ProductAcknowledgement> getAckData(String s1, String s2);
+
+	void deleteParticularAck(String s1);
+
+	
 
 
 }

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -31,8 +32,12 @@ import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
 import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.PrinicipalPoPDFBean;
+import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.model.PoRefEntryItemDetailCopy;
+import com.pogo.model.PorefSupplierDetail;
+import com.pogo.model.ProductAcknowledgement;
+import com.pogo.service.CommonService;
 import com.pogo.service.PrinicipalPoService;
 
 
@@ -41,7 +46,8 @@ public class PrincipalPOController {
 	
 	@Autowired
 	private PrinicipalPoService prinicipalposervice;
-
+	@Autowired
+	private CommonService commonservice;
 @RequestMapping(value = "/getpartno", method = RequestMethod.GET)
 public void getProductPartNumber(@RequestParam("word") String word, HttpServletResponse res,ProductMasterBean productmasetr) {
 	
@@ -342,6 +348,139 @@ public ModelAndView downloadExcel(@RequestParam("poref") String poref) {
 	
 	return new ModelAndView("pdfView", "listBooks", listBooks);
 }
+
+
+@RequestMapping(value="/acknowledgement",method = RequestMethod.GET)
+public ModelAndView getacknowledgement( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
+	System.out.println("in get acknowledgement method");
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("acklist",  prepareViewListofBean(commonservice.viewList()));
+return new ModelAndView("acknowledgementView", model);
+}
+
+
+private List<PorefSupplierDetailBean> prepareViewListofBean(List<PorefSupplierDetail> prodel){
+	List<PorefSupplierDetailBean> beans = null;
+	if(prodel != null && !prodel.isEmpty()){
+		beans = new ArrayList<PorefSupplierDetailBean>();
+		PorefSupplierDetailBean bean = null;
+		for(PorefSupplierDetail pro : prodel){
+			bean = new PorefSupplierDetailBean();
+			//System.out.println(bean);
+			bean.setPorefno(pro.getPorefno());
+			System.out.println(bean.getPorefno());
+			bean.setPorefdate(pro.getPorefdate());
+			System.out.println(bean.getPorefdate());
+			bean.setPrincipalname(pro.getPrincipalname());
+			bean.setAddress(pro.getAddress());
+			beans.add(bean);
+		}
+	}
+	return beans;
+}
+
+
+
+@RequestMapping(value="/supplierack",method = RequestMethod.GET)
+public ModelAndView getacknowledsupplierpo(@RequestParam("poref") String poref,@RequestParam("page") String pagename, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+	System.out.println("in get edit method");
+	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getackDetailByPorefNo(poref);
+	System.out.println(lst);
+	double total=0.0;
+	String date=null;
+	String porefNo=null;
+	for(PoRefEntryItemDetailBean g:lst){
+		System.out.println(g.getPorefnobysupplier().getTotal());
+		total=g.getPorefnobysupplier().getTotal();
+		date=g.getPorefnobysupplier().getPorefdate();
+		porefNo=g.getPorefnobysupplier().getPorefno();
+	}
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("listbyporef", lst);
+	m.addAttribute("gtotal", total);
+	m.addAttribute("date", date);
+	m.addAttribute("porefnumber", porefNo);
+return new ModelAndView("supplierackView",model);
+
+}
+
+
+
+@RequestMapping(value="/ackdatabysearch",method = RequestMethod.GET)
+public @ResponseBody String getacknowledDataBySearch(@RequestParam("poref") String poref, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m) throws JsonProcessingException{
+	System.out.println("in get edit method");
+	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getPoDetailByPorefId(poref);
+	ObjectMapper map = new ObjectMapper();
+	return map.writeValueAsString(lst);
+//return new ModelAndView("supplierackView");
+}
+
+
+
+@RequestMapping(value="saveackindb",method=RequestMethod.POST)
+@ResponseBody
+public void saveAcknowledData(@RequestBody String json,Model model) throws IOException{
+	System.out.println(""+json);
+	
+	System.out.println(json);
+	Gson gson=new Gson();
+	JsonArraytoJson [] js=gson.fromJson(json, JsonArraytoJson[].class);
+	System.out.println(js.length);
+	List<String> lst=new ArrayList<String>();
+		for(JsonArraytoJson e:js){
+			System.out.println(e.getName()+"\t\t\t\t<><><><><><><><>\t"+e.getValue());
+			lst.add(e.getValue());
+			}
+	System.out.println(lst.size());
+	String [] meth=lst.toArray(new String[lst.size()]);
+
+	for(int i=0;i<meth.length;i=i+6){
+		ProductAcknowledgementBean bean=new ProductAcknowledgementBean();
+		bean.setProductacknowledgementid(Integer.parseInt(meth[i]));
+		bean.setPorefno(meth[1]);
+		bean.setParticular(meth[2]);
+		bean.setPendingqty(Double.parseDouble(meth[3]));
+		bean.setExpdate(meth[i+4]);
+		bean.setReceiveqty(Double.parseDouble(meth[i+5]));
+		prinicipalposervice.saveAcknowledData(bean);
+	}
+	
+	
+	
+	
+	
+	/*ObjectMapper mapper=new ObjectMapper();
+	ProductAcknowledgementBean bean=mapper.readValue(json, ProductAcknowledgementBean.class);
+		prinicipalposervice.saveAcknowledData(bean);	*/
+}
+
+@RequestMapping(value="getackdatabypo",method = RequestMethod.POST)
+@ResponseBody
+public String getAckData(@RequestParam("porefno") String s1,@RequestParam("particular") String s2,@ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m) throws JsonProcessingException{
+	System.out.println("in get view method");
+	List<ProductAcknowledgementBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getAckData(s1,s2);
+	
+	ObjectMapper map = new ObjectMapper();
+	return map.writeValueAsString(lst);
+
+}
+
+@RequestMapping(value="deleteparticularack",method = RequestMethod.POST)
+@ResponseBody
+public void deleteParticularAck(@RequestParam("aid") String s1,@ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m) throws JsonProcessingException{
+	System.out.println("in get view method");
+	//List<ProductAcknowledgementBean> lst =new ArrayList<>();
+	//lst=
+			prinicipalposervice.deleteParticularAck(s1);
+	
+	//ObjectMapper map = new ObjectMapper();
+	//return map.writeValueAsString(lst);
+
+}
+
 /*private PoRefEntryItemDetailCopyBean prepareProductBeanCopy(List<PoRefEntryItemDetailCopy> productEdit) {
 	PoRefEntryItemDetailCopyBean poref =new PoRefEntryItemDetailCopyBean();
 	
@@ -429,5 +568,32 @@ private List<PoRefEntryItemDetailCopyBean> prepareListofBean(List<PoRefEntryItem
 	}
 	return beans;
 }*/
+
+@RequestMapping(value="/supplierinvoice",method = RequestMethod.GET)
+public ModelAndView getsupplierinvoice(@RequestParam("poref") String poref,@RequestParam("page") String page, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
+	
+	System.out.println("in get edit method");
+	System.out.println("in get edit method");
+	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
+	lst=prinicipalposervice.getackDetailByPorefNo(poref);
+	System.out.println(lst);
+	double total=0.0;
+	String date=null;
+	String porefNo=null;
+	for(PoRefEntryItemDetailBean g:lst){
+		System.out.println(g.getPorefnobysupplier().getTotal());
+		total=g.getPorefnobysupplier().getTotal();
+		date=g.getPorefnobysupplier().getPorefdate();
+		porefNo=g.getPorefnobysupplier().getPorefno();
+	}
+	Map<String, Object> model = new HashMap<String, Object>();
+	model.put("listbyporef", lst);
+	m.addAttribute("gtotal", total);
+	m.addAttribute("date", date);
+	m.addAttribute("porefnumber", porefNo);
+return new ModelAndView("supplierinvoiceview",model);
+//return new ModelAndView("supplierinvoiceview");
+}
+
 
 }

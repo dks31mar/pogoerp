@@ -84,12 +84,14 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	@Override
 	public void addCountry( Country poref1){
 		sessionFactory.getCurrentSession().save(poref1);
+		sessionFactory.getCurrentSession().flush();
 	}
 	
 	@Override
 	public  void  deleteCountry(Integer id){
 		System.out.println("delete country");
-		
+	     //Country country = new Country();
+	     //sessionFactory.getCurrentSession().refresh(country);
 		sessionFactory.getCurrentSession().createQuery("DELETE FROM Country WHERE countryId = "+id).executeUpdate();
 	}
 	
@@ -137,7 +139,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			
 			sessionFactory.getCurrentSession().createQuery("DELETE FROM State WHERE stateId = "+id).executeUpdate();
 		} 
-	 
+	
 	 
 		@Override
 	  public List<State> getStateById (String id){
@@ -453,8 +455,11 @@ public CustomerLevels getCustomerStatusById(Integer customerLevelId) {
 }
 @Override
 public List<District> getdistrictByStateIdAndCountryId(int id) {
+	/*return (List<District>) sessionFactory.getCurrentSession().get(District.class, districtId);*/
+	System.out.println("on DaoImpl");
 	return sessionFactory.getCurrentSession().createCriteria(District.class)
-			.add(Restrictions.eq("state.stateId", id)).list();
+			.add(Restrictions.eq("state.stateId", id))
+			 .list();
 }
 @Override
 public void deleteserviceprovider(int id) {
@@ -462,6 +467,7 @@ public void deleteserviceprovider(int id) {
 	
 }
 @Override
+
 public List<AddAction> actionPlanList() {
 	return (List<AddAction>) sessionFactory.getCurrentSession().createCriteria(AddAction.class).list();
 }
@@ -483,6 +489,12 @@ public void saveAddAction(AddPlan bean) {
 	sessionFactory.getCurrentSession().save(bean);
 	sessionFactory.getCurrentSession().flush();
 	
+}
+@Override
+public State getStateIdByContryId(Integer id) {
+	System.out.println(id);
+	return (State) sessionFactory.getCurrentSession().get(State.class, id);
+
 }
 
 

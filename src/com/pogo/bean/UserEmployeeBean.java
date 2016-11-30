@@ -17,7 +17,7 @@ public class UserEmployeeBean
 	private String region;
 	private Integer branchId;
 	private String branchName;
-	private Date dateofjoining;
+	private String dateofjoining;
 
 	private Integer designationId;
 	private String designationName;
@@ -27,7 +27,7 @@ public class UserEmployeeBean
 	private String repassword;
 	private String eamil;
 	
-	private Date dob;
+	private String dob;
 	private String gender;
 	private String address;
 	private String phone;
@@ -126,18 +126,17 @@ public class UserEmployeeBean
 	public void setEamil(String eamil) {
 		this.eamil = eamil;
 	}
-	
-	
-	public Date getDateofjoining() {
+	public String getDateofjoining() {
 		return dateofjoining;
 	}
-	public void setDateofjoining(Date dateofjoining) {
+	public void setDateofjoining(String dateofjoining) {
 		this.dateofjoining = dateofjoining;
 	}
-	public Date getDob() {
+	
+	public String getDob() {
 		return dob;
 	}
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 	public String getGender() {

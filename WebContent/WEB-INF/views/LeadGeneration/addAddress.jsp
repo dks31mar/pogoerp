@@ -190,6 +190,7 @@
 		if(name == ''){
 			/* $("#expenseheadspan").show(); */
 			$('#msg1').show('fast');
+			$('#invalid_email').hide();
 		} else if(email == ''){
 			/* $("#expensetypespan").show(); */
 			$('#msg2').show('fast');

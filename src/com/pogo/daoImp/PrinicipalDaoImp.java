@@ -19,6 +19,7 @@ import com.pogo.model.CustomerLevels;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
+import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
 @Repository("prinicipaldao")
 @SuppressWarnings("unchecked")
@@ -104,7 +105,7 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 
 	@Override
 	public Object getGrantTotal(HttpServletRequest res) {
-		// TODO Auto-generated method stub
+		
 		return (Integer)sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetailCopy.class).setProjection(Projections.sum("totaljpy")).uniqueResult();
 	}
 
@@ -123,8 +124,15 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 
 	@Override
 	public List<PoRefEntryItemDetail> getPoDetailByPorefNo(String poref) {
+		return  sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefnobysupplier.porefno",poref)).list();
+		/*System.out.println("seasrcgh");
+		Criteria poentry=sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class);
+		Criteria supplier=poentry.createAlias("porefnobysupplier","po");
+		supplier.add(Restrictions.eq("po.porefno", poref));
+		List<PoRefEntryItemDetail> list=poentry.list();*/
 		
-		return sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefnobysupplier.porefno", poref)).list();
+		
+		//return sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefnobysupplier.porefno", poref)).list();
 	}
 
 	@Override
@@ -144,6 +152,58 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	public void deletePoById(PoRefEntryItemDetail poref) {
 	
 		sessionFactory.getCurrentSession().delete(poref);
+		
+	}
+
+	@Override
+	public List<PoRefEntryItemDetail> getPoDetailByPorefId(String poref) {
+		int id=Integer.parseInt(poref);
+		
+		return (List<PoRefEntryItemDetail>) sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefentryitemdetailid", id)).list();
+	}
+
+	@Override
+	public List<PoRefEntryItemDetail> getackDetailByPorefNo(String poref) {
+		return  sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefnobysupplier.porefno",poref)).list();
+	}
+
+	@Override
+	public List<ProductAcknowledgement> getPendindQty(String porefNo, String particular) {
+		List<ProductAcknowledgement> pa=sessionFactory.getCurrentSession().createCriteria(ProductAcknowledgement.class).add(Restrictions.eq("porefno", porefNo)).add(Restrictions.eq("particular", particular)).list();
+		return pa;
+	}
+
+	@Override
+	public void saveAcknowledData(ProductAcknowledgement proack) {
+	
+		//ProductAcknowledgement pa=(ProductAcknowledgement) sessionFactory.getCurrentSession().createCriteria(ProductAcknowledgement.class).add(Restrictions.eq("porefno", proack.getPorefno())).add(Restrictions.eq("particular", proack.getParticular())).uniqueResult();
+		/*try{
+		if(proack.getPorefno().equals(pa.getPorefno()) && proack.getParticular().equals(pa.getParticular())){
+		sessionFactory.getCurrentSession().createQuery("UPDATE ProductAcknowledgement set receiveqty="+(proack.getReceiveqty()+pa.getReceiveqty())+", pendingqty='"+proack.getPendingqty()+"', expdate='"+proack.getExpdate()+"' Where porefno='"+proack.getPorefno()+"' AND particular='"+proack.getParticular()+"'").executeUpdate();	
+		}else{
+		sessionFactory.getCurrentSession().save(proack);
+		}
+		}catch(Exception ex){*/
+			//ex.printStackTrace();
+		if(proack.getProductacknowledgementid()!=0){
+			sessionFactory.getCurrentSession().createQuery("DELETE From ProductAcknowledgement Where productacknowledgementid="+proack.getProductacknowledgementid()).executeUpdate();
+		}
+		
+		sessionFactory.getCurrentSession().save(proack);	
+		//}
+	}
+
+	@Override
+	public List<ProductAcknowledgement> getAckData(String s1, String s2) {
+		
+		return sessionFactory.getCurrentSession().createCriteria(ProductAcknowledgement.class).add(Restrictions.eq("porefno", s1)).add(Restrictions.eq("particular", s2)).list();
+	}
+
+	@Override
+	public void deleteParticularAck(String s1) {
+		
+		int id=Integer.parseInt(s1);
+		sessionFactory.getCurrentSession().createQuery("DELETE ProductAcknowledgement Where productacknowledgementid="+id).executeUpdate();
 		
 	}
 	

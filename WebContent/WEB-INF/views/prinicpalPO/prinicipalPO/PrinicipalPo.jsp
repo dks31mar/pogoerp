@@ -14,6 +14,9 @@
 //HttpSession session=request.getSession();
 String hh=(String)session.getAttribute("jsonp");
 String norml=(String)session.getAttribute("normal");
+if(norml==null){
+norml="Test/11-10/000";
+}
 String cb=(String)session.getAttribute("CBW");
 /* Integer total=(Integer)session.getAttribute("total"); */
 java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
@@ -178,52 +181,44 @@ System.out.println();
 			
 				<div class="row form-group" style="top: 10px; position: relative;"
 					onclick="">
-					<div class="col-sm-10 form-level" align="right">
-						Total:<font color="#FF0000"></font>
-					</div>
-					<div align="right">
-						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
-							value="${total}" style="width: 15%;" readonly>
-					</div>
+					
+					
 				</div>
 
-				<hr align="left" size="1" width="100%"
-					style="background-color: #000000" />
+				<hr align="left" size="" width="100%"
+					style="background-color: #3C8DBC;height: 1px; " />
 
 				<div align="center">
 
-
-
+					<table>
 					<tr>
-						<td align="center">
-							<button type="button" value="update" onclick="updatebutton();"
-								class="btn btn-success pull-center" id="update"
-								style="background-color: #3C8DBC;">Update</button>
-						</td>
-						<td>&nbsp;&nbsp;&nbsp;</td>
+						
+						
 						<td>
-							<button type="button" value="update" onclick="updatebutton();"
-								class="btn btn-success pull-center" id="print"
-								style="background-color: #3C8DBC;">Print</button>
+							<button type="button" value="update" onclick="numberingRow();"
+								class="btn btn-success pull-center"
+								style="background-color: #3C8DBC;">Number row</button>
 						</td>
-						<td>&nbsp;&nbsp;&nbsp;</td>
+						<td>&nbsp;&nbsp;</td>
 						<td>
-							<button type="button" value="update" onclick=""
-								class="btn btn-success pull-center" id="pdf"
-								style="background-color: #3C8DBC;">PDF</button>
+						<button type="button" value="Save" onClick=""
+						class="btn btn-success pull-center" id="savedata445"
+						style="background-color: #3C8DBC;">Save</button>
 						</td>
-						<td>&nbsp;&nbsp;&nbsp;</td>
-						<td>
-							<button type="button" value="update" onclick="updatebutton();"
-								class="btn btn-success pull-center" id="back"
-								style="background-color: #3C8DBC;">Back</button>
+						<td class="col-sm-2 form-level">
+						
+						
+						Total:<font color="#FF0000"></font>
+					
 						</td>
 						<td>
-							<button type="button" value="update"
-								class="btn btn-success pull-center" id="addmore"
-								style="background-color: #3C8DBC;">Add More</button>
+						
+						<div align="right">
+						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
+							value="${total}" style="width: 65%;" readonly>
+					</div>
 						</td>
-
+						
 					</tr>
 
 
@@ -231,9 +226,7 @@ System.out.println();
 
 
 
-					<button type="button" value="Save" onClick=""
-						class="btn btn-success pull-center" id="savedata445"
-						style="background-color: #3C8DBC;">Save</button>
+					
 					<!-- <button type="button" value="AddMore" onClick="productdetail();"
 						class="btn btn-success pull-right"
 						style="background-color: #3C8DBC;">Add More</button> -->
@@ -452,6 +445,7 @@ System.out.println();
 						    	 
 						    	 //location.reload();
 						    	 alert('saved!!!');
+						    	 window.location.href = "getaddpo";
 					    }
 					}); 
 				});
@@ -494,7 +488,9 @@ System.out.println();
 					});
 					
 					function search1(result){
+						alert(result);
 						var currencies =jQuery.parseJSON(result);
+						alert(currencies);
 					$('#partno'+id).autocomplete({
 					    lookup: currencies,
 					    onSelect: function (suggestion) {
@@ -520,7 +516,18 @@ System.out.println();
 					}
 					
 				}
-			
+			function numberingRow(){
+				alert("dddd");
+				var id=$('#addprolisttbody').children('tr').length+1;
+				alert("fff");
+				var w=parseInt(1);
+				for(var ids=1;ids<=id;ids++){
+					alert("ggg");
+					alert(i);
+					$('#sr'+ids).val(ids);
+					w++;
+				}
+			}
 				
 		
 </script>

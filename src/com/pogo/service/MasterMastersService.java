@@ -36,7 +36,7 @@ public interface MasterMastersService {
 	String getCustomerLevelsById(String id);
 	void editCustomerLevels(CustomerLevelsBean poref1);
 	
-	List<Country> countryList();
+	List<CountryBean> countryList();
 	void addCountry(CountryBean poref1);
 	void deleteCountry(Integer id);
 	String getCountryById(String id);
@@ -99,7 +99,14 @@ public interface MasterMastersService {
 	List<CustomerLevelsBean> getCustomersStatus();
 	List<StateBean> getStateByCountryId(int id);
 	List<LocationBean> getLocationDetails();
-	List<DistrictBean> getDistrictByStateIdAndcountryId(int id);
+
+
+
+	List<DistrictBean> getDistrictByStateIdAndcountryId(int id); // comment by shweta
+
+	
+
+
 	void deleteServiceprovider(int id);
 	
 

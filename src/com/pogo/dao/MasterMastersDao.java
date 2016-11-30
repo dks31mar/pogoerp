@@ -104,6 +104,7 @@ public interface MasterMastersDao {
 	CustomerLevels getCustomerStatusById(Integer customerLevelId);
 	List<District> getdistrictByStateIdAndCountryId(int id);
 	void deleteserviceprovider(int id);
+
 	
 	
 	
@@ -114,7 +115,9 @@ public interface MasterMastersDao {
 	AddAction getplanDataById(int id);
 	
 	void saveAddAction(AddPlan bean);
-	
+
+	State getStateIdByContryId(Integer id);
+
 
 
 }

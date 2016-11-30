@@ -58,8 +58,8 @@
 					<td><c:out value="${loop.index+1}"></c:out></td>
 				    <td><c:out value="${view.porefno}"></c:out></td>
 					<td><c:out value="${view.porefdate}"></c:out></td>
-					<td><a href = "supplierack"><c:out value="Acknowledgement Entry"></c:out></a></td>
-					<td><a href = supplierinvoice><c:out value="Invoice Entry"></c:out></a></td>
+					<td><a href = "supplierack?poref=${view.porefno}&page=acknoledment"><c:out value="Acknowledgement Entry"></c:out></a></td>
+					<td><a href = supplierinvoice?poref=${view.porefno}&page=Invoice><c:out value="Invoice Entry"></c:out></a></td>
 					</tr>
 					
 			
@@ -68,33 +68,6 @@
 					</table>
         </form:form> 
 					
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
+<script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	

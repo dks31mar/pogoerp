@@ -32,13 +32,17 @@ public class Country implements Serializable{
 	 * define a collection where 
 	 * we would add values of state
 	 * */
-	/*@OneToMany(mappedBy="country")
-	private Set<State> state;*/
+/*@OneToMany(mappedBy="country" , cascade = CascadeType.ALL)
+	private Set<State> state;
 	
-	
+	public Set<State> getState() {
+	return state;
+       }
 
-	
-
+public void setState(Set<State> state) {
+	this.state = state;
+        }
+*/
 	public Integer getCountryId() {
 		return countryId;
 	}

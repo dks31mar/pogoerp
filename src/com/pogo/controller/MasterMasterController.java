@@ -148,28 +148,15 @@ public class MasterMasterController {
 	@RequestMapping(value="/country",method = RequestMethod.GET)
 	public ModelAndView getcountry( @ModelAttribute("command") CountryBean country,HttpServletRequest request,BindingResult result ){
 		System.out.println("inside country  method");
+		
+		List<CountryBean> countrybean=masterMastersService.countryList();
+		
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("countryList",  prepareCountryListofBean(masterMastersService.countryList()));
+		model.put("countryList", countrybean);
 		System.out.println("***************************************** inside country list ****************************");
 	return new ModelAndView("getcountry",model);
 	}
 	
-	private List<CountryBean> prepareCountryListofBean(List<Country> prodel){
-		List<CountryBean> beans = null;
-		if(prodel != null && !prodel.isEmpty()){
-			beans = new ArrayList<CountryBean>();
-			CountryBean bean = null;
-			for(Country pro : prodel){
-				bean = new CountryBean();
-				//System.out.println(bean);
-				bean.setCountryId(pro.getCountryId());
-				bean.setCountry(pro.getCountry());
-				
-				beans.add(bean);
-			}
-		}
-		return beans;
-	}
 	
 	@RequestMapping(value="addcountry",method=RequestMethod.POST)
 	@ResponseBody
@@ -185,9 +172,11 @@ public class MasterMasterController {
 	@RequestMapping(value = "deletecountry", method = RequestMethod.GET)
 	public ModelAndView deleteCountry(@RequestParam("countryId") Integer id) {
 		masterMastersService.deleteCountry(id);
+		
+		List<CountryBean> countrybean=masterMastersService.countryList();
 		Map<String, Object> model= new HashMap<String,Object>();
 		List<CountryBean> list=new ArrayList<CountryBean>();
-		model.put("countryList",  prepareCountryListofBean(masterMastersService.countryList()));
+		model.put("countryList",  countrybean);
 		return new ModelAndView("getcountry",model);
 		
 		

@@ -2,9 +2,12 @@ package com.pogo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -14,57 +17,56 @@ public class AddDiary {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="SNO")
-	private Integer sno;
-	@Column(name="Date")
-	private Integer date;
-	@Column(name="Time")
-	private Integer time;
-	@Column(name ="Organization")
-	private String Organization;
-	@Column(name="Contactperson")
+	@Column(name="diaryId")
+	private Integer diaryId;
+	@Column(name="date")
+	private String date;
+	@Column(name="time")
+	private String diarytime;
+	@Column(name ="organization_name")
+	private String organizationName;
+	@Column(name="contact_person")
 	private String contacperson;
 	@Column(name="tasktype")
 	private String tasktype;
-	@Column(name="Enteruser")
-	private String enteryuser;
-	@Column(name="DecidingAuthority")
-	private String decidingAuthority;
-	@Column(name="Adress")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="enteruser")
+	private UserEmployee enteryuser;
+	@Column(name="adress")
     private String address;
-	@Column(name="mobil")
-	private Integer mobileno;
-	@Column(name="faxno")
-	private String faxno;
+	@Column(name="mobileno")
+	private String mobileno;
 	@Column(name="email")
 	private String email;
 	@Column(name="objective")
 	private String objective;
 	
 	
-	public Integer getSno() {
-		return sno;
+	
+	public Integer getDiaryId() {
+		return diaryId;
 	}
-	public void setSno(Integer sno) {
-		this.sno = sno;
+	public void setDiaryId(Integer diaryId) {
+		this.diaryId = diaryId;
 	}
-	public Integer getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Integer date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public Integer getTime() {
-		return time;
+	
+	public String getDiarytime() {
+		return diarytime;
 	}
-	public void setTime(Integer time) {
-		this.time = time;
+	public void setDiarytime(String diarytime) {
+		this.diarytime = diarytime;
 	}
-	public String getOrganization() {
-		return Organization;
+	public String getOrganizationName() {
+		return organizationName;
 	}
-	public void setOrganization(String organization) {
-		Organization = organization;
+	public void setOrganizationName(String organizationName) {
+		this.organizationName = organizationName;
 	}
 	public String getContacperson() {
 		return contacperson;
@@ -78,17 +80,11 @@ public class AddDiary {
 	public void setTasktype(String tasktype) {
 		this.tasktype = tasktype;
 	}
-	public String getEnteryuser() {
+	public UserEmployee getEnteryuser() {
 		return enteryuser;
 	}
-	public void setEnteryuser(String enteryuser) {
+	public void setEnteryuser(UserEmployee enteryuser) {
 		this.enteryuser = enteryuser;
-	}
-	public String getDecidingAuthority() {
-		return decidingAuthority;
-	}
-	public void setDecidingAuthority(String decidingAuthority) {
-		this.decidingAuthority = decidingAuthority;
 	}
 	public String getAddress() {
 		return address;
@@ -96,18 +92,14 @@ public class AddDiary {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Integer getMobileno() {
+	
+	public String getMobileno() {
 		return mobileno;
 	}
-	public void setMobileno(Integer mobileno) {
+	public void setMobileno(String mobileno) {
 		this.mobileno = mobileno;
 	}
-	public String getFaxno() {
-		return faxno;
-	}
-	public void setFaxno(String faxno) {
-		this.faxno = faxno;
-	}
+	
 	public String getEmail() {
 		return email;
 	}

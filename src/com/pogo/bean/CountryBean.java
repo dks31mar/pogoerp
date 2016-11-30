@@ -4,6 +4,16 @@ public class CountryBean {
 	
 	private Integer countryId ;
 	private String country;
+	private String status;
+	
+	
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public Integer getCountryId() {
 		return countryId;
 	}

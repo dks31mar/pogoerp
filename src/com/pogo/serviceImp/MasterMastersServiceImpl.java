@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.gson.Gson;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddPlanBean;
-import com.pogo.bean.BranchBean;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
@@ -24,12 +23,10 @@ import com.pogo.bean.ModeOfDispatchBean;
 import com.pogo.bean.ServiceProviderBean;
 
 import com.pogo.bean.StateBean;
-import com.pogo.bean.StatezoneBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.AddAction;
 import com.pogo.model.AddPlan;
-import com.pogo.model.Branch;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
@@ -42,7 +39,6 @@ import com.pogo.model.ModeOfDispatch;
 import com.pogo.model.ServiceProvider;
 
 import com.pogo.model.State;
-import com.pogo.model.StateZone;
 import com.pogo.model.TeamSegment;
 import com.pogo.service.MasterMastersService;
 
@@ -100,8 +96,24 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		masterMastersdao.editCustomerLevels(customer);
 	}
 	@Override
-	public List<Country> countryList(){
-		return masterMastersdao.countryList();
+	public List<CountryBean> countryList(){
+		
+		List<Country> country=masterMastersdao.countryList();
+
+		List<CountryBean> beans = new ArrayList<CountryBean>();
+			
+			
+			for(Country pro : country){
+				CountryBean bean = new CountryBean();
+				
+				bean.setCountryId(pro.getCountryId());
+				bean.setCountry(pro.getCountry());
+				
+				beans.add(bean);
+			}
+	
+		
+		return beans;
 	}
 	@Override
 	@Transactional
@@ -114,6 +126,10 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	@Override
 	@Transactional
 	public void deleteCountry(Integer id){
+		System.out.println("delete");
+		
+		//State sateid= masterMastersdao.getStateIdByContryId(id);
+		//System.out.println(sateid);
 		masterMastersdao.deleteCountry(id);
 	}
 	@Override
@@ -156,7 +172,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		c.setCountryId(poref1.getStateId());
 		State state=new State();
 		state.setState(poref1.getState());
-		state.setCountry(c);
+		state.setCountry(c);//comment for test
 		masterMastersdao.addState(state);
 	}
 	
@@ -193,7 +209,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		State state=new State();
 		state.setStateId(poref1.getStateId());
 		state.setState(poref1.getState());
-		state.setCountry(c);
+		/*state.setCountry(c);*///comment for test
 		System.out.println("outside edit state service impl");
 		masterMastersdao.editState(state);
 	}
@@ -212,7 +228,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		System.out.println(poref1.getDistrictId());
     	District district=new District();
 		district.setDistrict(poref1.getDistrict());
-		district.setState(s);
+		district.setState(s);//comment for test
 		masterMastersdao.addDistrict(district);
      }
 
@@ -248,7 +264,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 	District district=new District();
 	district.setDistrictId(poref1.getDistrictId());
 	district.setDistrict(poref1.getDistrict());
-	district.setState(s);
+	district.setState(s);//comment for test
 	masterMastersdao.editDistrict(district);
 }
    
@@ -267,14 +283,16 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		
 		Location location=new Location();
 		location.setLocation(poref1.getLocation());
-		location.setDistrict(district);
+		location.setDistrict(district);//comment for test
 		masterMastersdao.addLocation(location);
 		
 		
 	}
 	@Override
 	@Transactional
-	public void deleteLocation(int id){
+	public void deleteLocation(int id ){
+		
+		
 		masterMastersdao.deleteLocation(id);
 	}
 	@Override
@@ -303,7 +321,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		Location location=new Location();
 		location.setLocationId(poref1.getLocationId());
 		location.setLocation(poref1.getLocation());
-		location.setDistrict(district);
+		location.setDistrict(district);//comment for test
 		masterMastersdao.editLocation(location);
 	}
 	
@@ -672,9 +690,12 @@ public List<StateBean> getStateByCountryId(int id) {
 	{
 		StateBean stateBean=new StateBean();
 		stateBean.setStateId(data.getStateId());
+		System.out.println("On service State"+ data.getStateId());
 		stateBean.setState(data.getState());
-		//System.out.println("on Service"+ data.getState());
+		System.out.println("on Service"+ data.getState());
+
 		Country country=data.getCountry();
+
 		stateBean.setCountryId(country.getCountryId());
 		stateBean.setCountryName(country.getCountry());
 		beans.add(stateBean);
@@ -706,27 +727,41 @@ public List<DistrictBean> getDistrictByStateIdAndcountryId(int id)
 	{
 		DistrictBean bean=new DistrictBean();
 		bean.setDistrictId(data.getDistrictId());
+
 		bean.setDistrict(data.getDistrict());
 		System.out.println("on service" +data.getDistrict());
+
+		bean.setDistrict(data.getDistrict());
+		System.out.println("on service District" +data.getDistrict());
+
 		State state=data.getState();
-		//Country country=data.getCountry();
+
+		Country country=data.getCountry();
+
+		
+		bean.setStatesId(state.getStateId());
+
 		bean.setStateName(state.getState());
 		System.out.println("On Service for district"+state.getState());
+
 		bean.setStatesId(state.getStateId());
 		bean.setCountryName(state.getCountry().getCountry());
 		bean.setCountryId(state.getCountry().getCountryId());
-		//bean.setStateId(String.valueOf(state.getStateId()));
-		//bean.setCountryName(country.getCountry());
-		//bean.setCountryId(country.getCountryId());
-		districtBeans.add(bean);
+		
+		
+
+		districtBeans.add(bean);//comment for test
+
 	}
 	return districtBeans;
 }
 
 @Override
 public void deleteServiceprovider(int id) {
+	
 	masterMastersdao.deleteserviceprovider(id);
 	
+
 }
 
 
@@ -765,4 +800,11 @@ public void saveAddAction(AddPlanBean planbean) {
 	
 }
 
+
+
 }
+
+
+
+
+

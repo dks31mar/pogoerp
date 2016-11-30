@@ -6,13 +6,38 @@
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+ <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> -->
+
+<script src="resources/time/jquery.js"></script>
+<script src="resources/time/build/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/time/jquery.datetimepicker.css"/>
+ <style type="text/css">
+.custom-date-style {
+	background-color: red !important;
+}
+
+.input{	
+}
+.input-wide{
+	width: 500px;
+}
+</style>
+
+<script>
+$( function() {
+    $("#date" ).datepicker();
+  });
+$('#datetimepicker').datetimepicker({
+	datepicker:false,
+	format:'H:i',
+	step:5
+});
+</script>
 
   <div id="pop" style="display: none;"></div>
-<div id="body">
+   <div id="body">
 
 <div class="row" style="margin-top: 15px">
 	<br>
@@ -28,7 +53,7 @@
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
 		<span class="glyphicon glyphicon-user"></span>New Entry in Diary</b></span>
 		<label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"
+			 style="margin-left: 250px;margin-top: 8px;"><a href="#"
 			class="btn btn-primary"> View Diary Entries</a>
 			
      </label>
@@ -42,7 +67,7 @@
 <div id="body">
 <div class="container">
 
-    <form:form class="well form-horizontal" name="forp" action="" method="POST"  commandName=""
+    <form:form class="well form-horizontal" name="forp" action="saveDiaryForEntrySales" method="POST"  commandName="addDiaryBean"
     id="" >
    
 <fieldset>
@@ -53,32 +78,34 @@
   <label class="col-md-2 control-label">Date</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
- <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-   <input  type="text"  class="form-control" name="dateofjoining" id="datepickup"   placeholder="Select Date" >
+ <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+   <input  type="text"  class="form-control" name="date" id="date" readonly="readonly" value="${salesList.creationDate}" placeholder="Select Date" >
     </div>
   </div>
+  
   <label class="col-md-2 control-label" >Time<span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="Time"  placeholder="Enter Time "  id ="time" required="required"  class="form-control"  type="text">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+  <input  id="datetimepicker"   placeholder="Enter Time"   name="time" class="form-control" readonly="readonly" type="text">
     </div>
   </div>
 </div>
+
  <div class="form-group">
   <label class="col-md-2 control-label"> Organization<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="Organization" placeholder="Organization Name" required="required" id ="organiz" class="form-control"  type="text">
+  <input   name="Organization" value="${salesList.organisation}" placeholder="Organization Name" required="required"  class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" >Contact Person <span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  type="text"  class="form-control" name="Contact Person "  id="contactperson" placeholder="Contact Person Name" type="text" >
+  <input  type="text"  class="form-control" name="contacperson"  placeholder="Contact Person Name" type="text" >
     </div> 
   </div>
 </div>
@@ -88,11 +115,14 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="task" class="form-control selectpicker"  id="tasktype" required="required">
-   <option>---Select Task---</option> 
+  <select name="tasktype" class="form-control selectpicker"  required="required"> 
+      <option value="appointment">Appointment</option>
+	  <option value="email">E-mail</option>
+      <option value="fax">Fax</option>
+      <option value="sms">SMS</option>
       <option value="Phone">Phone </option>
-	  <option value="Sms">Sms </option>
-      <option value="E-mail">E-mail </option>
+	 
+
     </select>
     </div>
   </div>
@@ -100,11 +130,10 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="Entryuser" placeholder="Entry"  id ="entry"  class="form-control"  >
-  <option value="" selected="selected">----Select Entry user----</option>
-  <option value="satyendra">satyendra</option>
-	  <option value="deepak">deepak</option>
- 
+  <select name="enteryuserId"  class="form-control">
+  <c:forEach items="${listemp}" var="listemp">
+  <option value="${listemp.userempid}">${listemp.loginname}</option>
+  </c:forEach>
   </select>
     </div>
   </div>
@@ -113,164 +142,55 @@
 <!-- Text input-->
 
 <div class="form-group">
-  <label class="col-md-2 control-label" >Deciding Authority</label> 
+  <label class="col-md-2 control-label" >Mobile</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name=""   placeholder="Authority Name" id="Authority112" class="form-control"  type="text">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+  <input name="mobileno"  class="form-control" value="${salesList.mobileNo}"  placeholder="8285080678" type="text" required="required">
     </div>
   </div>
   <label class="col-md-2 control-label" >Address<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
- <textarea rows="2" cols="33" id ="address">
+ <textarea rows="2" cols="33" name="address" >
 </textarea>
     </div>
   </div>
 </div>
-<div class="form-group">
-  <label class="col-md-2 control-label" >Mobile </label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="usermobile"  class="form-control"  id ="mobile" placeholder="8285080678" type="text" required="required">
-    </div>
-  </div>
-  
-  <label class="col-md-2 control-label" >Fax No<span style="color: red;">*</span></label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-   <input name="faxno"   placeholder="Fax No"  id="faxno" class="form-control"  type="text">
-  
-    </div>
-  </div>
-</div>
+
 <div class="form-group"> 
   <label class="col-md-2 control-label">Email	</label>
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="eamil"  placeholder="E-Mail Address" class="form-control"id ="email" required="required" type="email">
+  <input  name="email"  placeholder="E-Mail Address" value="${salesList.emailId}" class="form-control"  required="required" type="email">
   </div>
 </div>
  <label class="col-md-2 control-label" >Objective<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
      <div class="input-group">
- <textarea rows="2" cols="33" id ="object">
+ <textarea rows="2" cols="33" name="objective">
 </textarea>
     </div>
     </div> 
   </div>
-    <tr>
-     <td width="24%" align="right" nowrap="" class="subheading">Action For</td>
-      <td colspan="3" class="backgroundColor" nowrap=""> 
-		<input type="checkbox" name="isSales" value="Y">
-		    
-            New Sales
-		<input type="checkbox" name="isAmc" value="Y">
-		AMC
-		<input type="checkbox" name="isPaymentFollowup" value="Y">
-		Payments
-			<input type="checkbox" name="isCalliberation" value="Y">
-	Calibration Req.
-		<input type="checkbox" name="isMisc" value="Y">
-		Consumables
-		<input type="checkbox" name="isRelationship" value="Y">
-		 Relational Call 
-      </td>
-    </tr>
-    
-</div>
- 
-
-<!--  
- <label class="col-md-2 control-label" >Password<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input name="password"   class="form-control" id="Password1" placeholder="Password" required="required" type="password">
-    </div>
-  </div>
-</div>
--->
-
-<!-- Text input-->
-
-<!-- Success message -->
-
-
+  
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
-    <button type="button" class="btn btn-warning" onclick="message();" id="savediarydata" >Save<span class="glyphicon glyphicon-send"></span></button> 
+    <button type="submit" class="btn btn-warning" onclick="message();">Send<span class="glyphicon glyphicon-send"></span></button> 
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
     
   </div>
 </div>
+ 
 </fieldset>
 </form:form>
 </div>
 </div>
-<script>
-$('#savediarydata').click(function(){
-	
-	var date  =	$('#datepickup').val();
-	var time=$('#time').val();
-	
-	var orgenaigation=$('#organiz').val();
-	//var selecthead =	$('#selecthead').text();
-	var contacper =	$('#contactperson').val();
-	var opts = "Phone,sms,E-mail" ;
-     var opts = $("#tasktype").val() ;
-     var enteruser ="satyendra,deepk";
-     var enteruser =$("#entry").val();
-	   var decidauthourity = $('#Authority112').val();
-	   var address=	$('#address').val()
-		   var mobile=	$('#mobile').val()
-			   var fax=	$('#faxno').val()
-				   var email=	$('#email').val()
-					   var object=	$('#object').val()
-	   alert(date+time+orgenaigation+contacper+opts+enteruser+decidauthourity+address+mobile+fax+email+object);
-	   
-	   
-	   
-	  
-		var jsonObj={
 
-		   'Date':date,
-		   'Time':time,
-		   'Organization':org,
-		   'Contactperson':contactperson,
-		   'tasktype':opts,
-		   'Enteruser':enteruser,
-		   'DecidingAuthority':decidauthourity,
-		   'Adress':address,
-		   'mobil':mobile,
-		   'faxno':fax,
-		   'email':email,
-		   'objective':object
-		} ;
-	
-	
-		
-		$.ajax({
-			url: "SaveDiaryForEntrySales",
-			type: "POST",
-			
-			  data :JSON.stringify(jsonObj),
-			  cache:false,
-		        beforeSend: function(xhr) {  
-		            xhr.setRequestHeader("Accept", "application/json");  
-		            xhr.setRequestHeader("Content-Type", "application/json");  
-		        },
-			     success: function(resposeJsonObject){
-			    	alert("save")
-		    }});
-		
-	   }
-	);
-	
-</script>
+
+
+
 
 
