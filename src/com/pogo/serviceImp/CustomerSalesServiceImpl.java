@@ -229,7 +229,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		followUp.setCusOrganisation(addFollowUpBean.getCusOrganisation());
 		if(addFollowUpBean.getActionId()>0)
 		{
-			//followUp.setAddAction(masterMasterDao.);
+			//followUp.setAddAction(masterMasterDao.getActi);
 		}
 		customerSalesDao.addfollowup(followUp);
 		
