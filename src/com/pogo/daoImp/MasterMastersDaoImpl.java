@@ -470,8 +470,8 @@ public void deleteserviceprovider(int id) {
 }
 @Override
 
-public List<AddAction> actionPlanList() {
-	return (List<AddAction>) sessionFactory.getCurrentSession().createCriteria(AddAction.class).list();
+public List<AddPlan> actionPlanList() {
+	return (List<AddPlan>) sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();
 }
 @Override
 public void addActionPlan(AddAction action) {
@@ -485,13 +485,7 @@ public AddAction getplanDataById(int id) {
 
 
 }
-@Override
-public void saveAddAction(AddPlan bean) {
-	sessionFactory.getCurrentSession().flush();
-	sessionFactory.getCurrentSession().save(bean);
-	sessionFactory.getCurrentSession().flush();
-	
-}
+
 @Override
 public State getStateIdByContryId(Integer id) {
 	System.out.println(id);
@@ -507,8 +501,28 @@ public List<AddAction> getactiondata() {
 public List<AddPlan> getActionList() {
 	// TODO Auto-generated method stub
 	return (List<AddPlan>) sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();}
-
-
-
+@Override
+public void saveAddAction(AddAction action) {
+	sessionFactory.getCurrentSession().save(action);
+	
 }
+
+@Override
+public List<AddActionBean> ActionList() {
+	return (List<AddActionBean>) sessionFactory.getCurrentSession().createCriteria(AddActionBean.class).list();}
+@Override
+public List<AddAction> actionList() {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+public AddAction getActionDataById(int id) {
+	return (AddAction) sessionFactory.getCurrentSession().get(AddAction.class, id);
+}
+}
+
+
+
+
+
 

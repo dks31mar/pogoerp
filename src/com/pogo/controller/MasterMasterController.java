@@ -864,14 +864,13 @@ public class MasterMasterController {
 	
 	}
 	
-	
-	//satyendra list for add action plan
+/*	
+	//list for add action plan
 	@RequestMapping(value="/addplanAction",method=RequestMethod.GET)
 	public ModelAndView getPlanAction(@ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result)
    {
-		
 		System.out.println("inside add plan action");
-		List<AddAction> list = new ArrayList<AddAction>();
+		List<AddPlan> list = new ArrayList<AddPlan>();
 		list = masterMastersService.actionPlanList();
 		Map<String , Object> model = new HashMap<String,Object>();
 		model.put("actionplanlist", list);
@@ -885,9 +884,9 @@ public class MasterMasterController {
 	public void addActionPlan(@RequestBody String json,Model model) throws IOException{
 	System.out.println("********************inside add Action Plan method **************\n"+json);
 		ObjectMapper mapper=new ObjectMapper();
-		AddActionBean poref=mapper.readValue(json, AddActionBean.class);
-		AddActionBean poref1=new AddActionBean();
-		poref1.setAction(poref.getAction());
+		AddPlanBean poref=mapper.readValue(json, AddPlanBean.class);
+		AddPlanBean poref1=new AddPlanBean();
+		poref1.setPaln(poref.getPaln());
 		
 		masterMastersService.addActionPlan(poref1);
 	}
@@ -898,31 +897,42 @@ public class MasterMasterController {
 		
 		return "addplanAction";
 	}
-	
+*/	
 	//call the page for add actrion
 	@RequestMapping(value = "/addaction", method = RequestMethod.GET)
-	public ModelAndView getAction() {
-		
-     return new ModelAndView("addaction");
+	public ModelAndView getAction(Model model) {
+		List<AddActionBean> list=masterMastersService.findAllAction();
+		model.addAttribute("actionList",list );
+		//AddActionBean actionBean=masterMastersService.getActionById(id);
+		//model.addAttribute("actionId", actionBean);
+		return new ModelAndView("addaction");
 	}
+	
 	//save the add actin page
 	@RequestMapping(value = "saveaddaction", method = RequestMethod.POST)
 	@ResponseBody
 	public void saveAddAction(@RequestBody String json, Model model) throws IOException {
-		System.out.println("i m in controller Add action data   \n" + json);
+		
 		ObjectMapper mapper = new ObjectMapper();
-		AddPlanBean planbean = mapper.readValue(json, AddPlanBean.class);
-
-		AddPlanBean pbean = new AddPlanBean();
-
-		masterMastersService.saveAddAction(planbean);
+		AddActionBean actionBean=mapper.readValue(json, AddActionBean.class);
+		AddActionBean actionBean2=new AddActionBean();
+		actionBean2.setAction(actionBean.getAction());
+		masterMastersService.saveAddAction(actionBean2);
 	}
-	// list for action
+	
+	/*// list for action
 	@RequestMapping(value="/getactionlist",method=RequestMethod.GET)
 	public ModelAndView getActionList(@ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result)
    {
-		
-		System.out.println("get the paln list");
+		List<AddAction> list = new ArrayList<AddAction>();
+		//list = masterMastersService.actionList();
+		Map<String , Object> model = new HashMap<String,Object>();
+		model.put("actionlist", list);
+		System.out.println("***** inside add action ******");
+	
+		return new ModelAndView("addaction",model);
+	}*/
+	/*	System.out.println("get the paln list");
 		List<AddPlanBean> list = new ArrayList<AddPlanBean>();
 		list = masterMastersService.getActionList();
 		Map<String , Object> model = new HashMap<String,Object>();
@@ -930,5 +940,5 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside action plan ****************************");
 	
 		return new ModelAndView("addaction",model);
-	}
+  	}*/
 }

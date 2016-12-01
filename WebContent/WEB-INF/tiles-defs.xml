@@ -125,7 +125,7 @@
 			</definition>
 		
 			<definition name="addplanAction" extends="baseLayout" >
-			<put-attribute name="title" value="Add Action Plan"></put-attribute>
+			<put-attribute name="title" value="Add plan"></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addPlanAction.jsp" />
 			</definition>
 			

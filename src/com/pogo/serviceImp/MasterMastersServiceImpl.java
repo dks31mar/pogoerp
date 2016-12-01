@@ -769,7 +769,7 @@ public void addActionPlan(AddActionBean poref1) {
 }
 
 @Override
-public List<AddAction> actionPlanList() {
+public List<AddPlan> actionPlanList() {
 	return masterMastersdao.actionPlanList();
 }
 
@@ -784,7 +784,7 @@ public AddActionBean EditForActionPlan(int id) {
 	
 }
 
-@Override
+/*@Override
 @Transactional
 public void saveAddAction(AddPlanBean planbean) {
 	// TODO Auto-generated method stub
@@ -792,7 +792,7 @@ public void saveAddAction(AddPlanBean planbean) {
 	bean.setPlan(planbean.getPaln());
 	masterMastersdao.saveAddAction(bean);
 	
-}
+}*/
 
 @Override
 
@@ -809,17 +809,36 @@ public List<AddActionBean> findAllAction() {
 	return actionbean;
 }
 public List<AddPlanBean> getActionList() {
-	
-	
 	List<AddPlan> addplan=masterMastersdao.getActionList();
-	
 	List<AddPlanBean> bean=new ArrayList<>();
+  return bean;
 	
-	
-	
-	return bean;
-	
+}
 
+@Override
+public void saveAddAction(AddActionBean actionBean2) 
+{
+	AddAction action=new AddAction();
+	action.setAction(actionBean2.getAction());
+	masterMastersdao.saveAddAction(action);
+	
+}
+
+
+@Override
+public void addActionPlan(AddPlanBean poref1) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public AddActionBean getActionById(int id) {
+     AddAction action=masterMastersdao.getActionDataById(id);
+     AddActionBean bean=new AddActionBean();
+     bean.setAction(action.getAction());
+     bean.setId(action.getId());
+     
+	return bean;
 }
 
 

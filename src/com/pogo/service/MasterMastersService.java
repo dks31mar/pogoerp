@@ -101,25 +101,24 @@ public interface MasterMastersService {
 	List<StateBean> getStateByCountryId(int id);
 	List<LocationBean> getLocationDetails();
 
-
-
 	List<DistrictBean> getDistrictByStateIdAndcountryId(int id); // comment by shweta
-
-	
-
 
 	void deleteServiceprovider(int id);
 	
 
-	List<AddAction> actionPlanList();
-	void addActionPlan(AddActionBean poref1);
+	List<AddPlan> actionPlanList();
+	void addActionPlan(AddPlanBean poref1);
 
 	AddActionBean EditForActionPlan(int id);
-	void saveAddAction(AddPlanBean planbean);
 
 	List<AddActionBean> findAllAction();
 
 	List<AddPlanBean> getActionList();
+	void saveAddAction(AddActionBean actionBean2);
+	
+	void addActionPlan(AddActionBean poref1);
+	AddActionBean getActionById(int id);
+	
 
 
 }

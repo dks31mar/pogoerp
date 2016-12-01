@@ -22,7 +22,7 @@
 		<span class="glyphicon glyphicon-user"></span> Add Plan 
  <label
 			 style="margin-left: 250px;margin-top: 8px;"><button 
-			class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Plan of Action </button>
+			class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Plan </button>
      </label>
 			
 </div>
@@ -35,7 +35,7 @@
   
   
   <div class="col-md-10" align="right" id="dddd1234"><input path="loginname" type="text" class="validate[required] text-input" id="addsource"
-						style="border-radius: 5px;" value="${planname.action}" name="" placeholder="Add Plan of Action  "
+						style="border-radius: 5px;" value="${planname.action}" name="" placeholder="Add Plan "
 						maxlength="20" autofocus="autofocus" onclick="stopmoving();"></input></div>
   
   
@@ -77,8 +77,7 @@
 						<td>${action.action}</td>
 		              
 						 
-						<td><a href="#" onclick="editCur(${action.id})" title="Edit">
-								<span class="glyphicon glyphicon-pencil"></span></a></td>		
+						<td><a href="#" onclick="editCur(${action.id})" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>		
 					 <td style="margin"><a href="deletecustomerso?id=${action.id}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>  
 					</tr>

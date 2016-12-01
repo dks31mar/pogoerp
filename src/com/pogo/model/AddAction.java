@@ -13,10 +13,8 @@ public class AddAction {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
 	@Column(name="id")
 	private int id;
-	
 	@Column(name="action")
 	private String action;
 	
