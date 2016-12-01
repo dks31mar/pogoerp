@@ -358,10 +358,16 @@ $( function() {
 				var row = $('#savecheck'+n).closest('tr').html();
 				
 				$('#gettrifchecked tbody').append('<tr>'+row+'</tr>');
+				
+				
 			
 				
 			}
 			
 	 }
+		
+		var AddressesDataJSON = $("#gettrifchecked").find('input').serializeArray();
+		  console.log(AddressesDataJSON);
+		 alert(JSON.stringify(AddressesDataJSON));
  });
 </script>
