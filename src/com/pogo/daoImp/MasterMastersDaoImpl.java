@@ -499,9 +499,15 @@ public State getStateIdByContryId(Integer id) {
 
 }
 @Override
+
 public List<AddAction> getactiondata() {
 	return sessionFactory.getCurrentSession().createCriteria(AddAction.class).list();
 }
+
+public List<AddPlan> getActionList() {
+	// TODO Auto-generated method stub
+	return (List<AddPlan>) sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();}
+
 
 
 }

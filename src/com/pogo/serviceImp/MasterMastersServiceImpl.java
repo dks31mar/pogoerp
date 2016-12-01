@@ -795,6 +795,7 @@ public void saveAddAction(AddPlanBean planbean) {
 }
 
 @Override
+
 public List<AddActionBean> findAllAction() {
 	List<AddAction> actionlist=masterMastersdao.getactiondata();
 	List<AddActionBean> actionbean=new ArrayList<AddActionBean>();
@@ -806,6 +807,19 @@ public List<AddActionBean> findAllAction() {
 		actionbean.add(bean);
 	}
 	return actionbean;
+}
+public List<AddPlanBean> getActionList() {
+	
+	
+	List<AddPlan> addplan=masterMastersdao.getActionList();
+	
+	List<AddPlanBean> bean=new ArrayList<>();
+	
+	
+	
+	return bean;
+	
+
 }
 
 
