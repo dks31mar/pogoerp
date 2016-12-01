@@ -305,10 +305,12 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 			String porefNo=e.getPorefnobysupplier().getPorefno();
 			String particular=e.getParticular();
 			double pendingqty=e.getQty();
+			double totolrecive=0.0;
 			try{
 			List<ProductAcknowledgement> proack=	prinicipaldao.getPendindQty(porefNo,particular);
 			for(ProductAcknowledgement pro:proack){
-			pendingqty=pro.getPendingqty();
+				totolrecive+=pro.getReceiveqty();
+				pendingqty=e.getQty()-totolrecive;
 			}
 			bean.setPendingqty(pendingqty);
 			}catch(Exception ex){
