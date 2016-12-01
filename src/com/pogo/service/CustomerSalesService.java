@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import com.pogo.bean.AddDiaryBean;
+import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.CustomerSalesBean;
 
 public interface CustomerSalesService 
@@ -20,6 +21,10 @@ public interface CustomerSalesService
 	void upadtecustomerData(CustomerSalesBean customerSalesBean) throws ParseException;
 
 	void savediary(AddDiaryBean addDiaryBean);
+
+	void addFollowup(AddFollowUpBean addFollowUpBean);
+
+	List<CustomerSalesBean> findAllDataById(int id);
 
 	
 

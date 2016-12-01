@@ -11,6 +11,73 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 <script type="text/javascript">
+function getstateList(id) {
+	var url = 'getstate/' + id;
+	$
+			.ajax({
+				url : url,
+
+				type : 'POST',
+				success : function(data, status) {
+					$("#state").empty();
+					var st = '<select name="stateId" onchange=getdistrictLists(this.value'
+							
+							+ ') class="form-control select style="width: 100%; height:31%;">'
+							+ '<option value="">-- Select State --</option>';
+					var j = JSON.parse(data);
+					var length = j.length;
+					for (var i = 0; i < length; i++) {
+						st = st + '<option value=' + j[i].stateId + '>'
+								+ j[i].state + '</option>';
+
+					}
+					st = st + '</select>';
+
+					$("#state").append(st);
+
+				},
+				error : function(error, status) {
+
+				}
+			});
+
+}
+
+function getdistrictLists(id) 
+{
+ var url = 'getdistrictLists/' + id;
+	$
+			.ajax({
+				url : url,
+				type : 'POST',
+				success : function(data, status) {
+					 $("#districts").empty();
+					var st = '<select name="districtId" class="form-control" style="width: 100%;" id="districtId">'
+							+ '<option value="">-- Select District --</option>';
+					var j = JSON.parse(data);
+					var length = j.length;
+					for (var i = 0; i < length; i++) {
+						st = st + '<option value=' + j[i].districtId + '>'
+								+ j[i].district + '</option>';
+
+					}
+					st = st + '</select>';
+
+					$("#districts").append(st);
+
+				},
+				error : function(error, status) {
+				} 
+			}); 
+}
+
+
+
+
+
+
+
+
 $( function() {
     $("#enquirydate" ).datepicker();
   });
@@ -138,23 +205,26 @@ $( function() {
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="stateId"  value=""  placeholder="Select Date"  class="form-control" >
+  <div class="span9"  id="state">
+  <select name="stateId"    id="state" onchange="getdistrictLists(this.value);" class="form-control" >
   <option value="">----Select State----</option>
   </select>
     </div>
   </div>
+</div>
 </div>
 <div class="form-group">
   <label class="col-md-2 control-label" >District</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="districtId" class="form-control">
+  <div class="span9" id="districts">
+  <select name="districtId" id="districts" class="form-control">
   <option value="">----Select District----</option>
   </select>
     </div>
   </div>
-  
+  </div>
   <label class="col-md-2 control-label" >Sub Location<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
