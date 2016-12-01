@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pogo.bean.ProductAcknowledgementBean;
+import com.pogo.model.InvoiceDetail;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
@@ -59,6 +60,8 @@ public interface PrinicipalDao {
 	PoRefEntryItemDetail getquantybyval(ProductAcknowledgementBean bean);
 
 	List<Double> getqtrybyack(ProductAcknowledgementBean bean);
+
+	List<InvoiceDetail> getpendyqtyfrominvoice(String porefNo, String particular);
 
 	
 

@@ -201,9 +201,11 @@
 						<div class="col-sm-7">
 						</div>
 					</div>
-					<div id="searchedRecord">
+					<table style="width: 100%; bottom: 15px; position: relative; visibility: hidden;" border="0" id="gettrifchecked">
+					<tbody>
 					
-					</div>
+					</tbody>
+					</table>
 					
 					<div id='body'>
 					
@@ -249,11 +251,11 @@
 					<td align="center" style="right: 4px; position: relative;">&nbsp;<input readonly type="text" style="text-align: center;width: 55px;" name="qty" id="qty${loop.index+1}" class="form-control" value="${poref.qty}"></td>
 					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;" name="totaljpy" id="totaljpy${loop.index+1}" value="${poref.totaljpy}" class="form-control"></td>
 					<td align="center">&nbsp;<button  type="button" style="text-align: center;width: 49px;background-color: #3C8DBC;color: aliceblue" name="pendingqty" id="pendingqty${loop.index+1}" value="${poref.pendingqty}" class="form-control" onclick="getacknowlegdement(${loop.index+1});">${poref.pendingqty}</button></td>
-					<td align="center">&nbsp; <input  type="text" style="text-align: center;width: 69px" name="reciveqty" id="reciveqty${loop.index+1}" value="" class="form-control" onkeyup="getcals(this.value,${loop.index+1});"></td>
-					<td align="center">&nbsp; <input  type="text" style="text-align: center;width: 69px" name="remainingqty" id="remainingqty${loop.index+1}" value="" class="form-control"></td>
+					<td align="center">&nbsp; <input  type="text" style="text-align: center;width: 69px" name="reciveqty" id="reciveqty${loop.index+1}" class="form-control" onkeyup="getcals(this.value,${loop.index+1});"></td>
+					<td align="center">&nbsp; <input  type="text" style="text-align: center;width: 69px" name="remainingqty" id="remainingqty${loop.index+1}" class="form-control"></td>
 					<td align="center">&nbsp;<div class="checkbox">
           		<label>
-            <input type="checkbox" value="" name="savecheck">
+            <input type="checkbox" value="" name="savecheck" id="savecheck${loop.index+1}">
             <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
             
           		</label>
@@ -276,7 +278,7 @@
 					<tr >
 					<td class="col-sm-6 form-level" align="center">
 					<button type="button" value="update"
-								class="btn btn-success pull-center" id="saveackdetail"
+								class="btn btn-success pull-center" id="saveinvoicedetail"
 								style="background-color: #3C8DBC;">Save Invoice</button>
 					</td>
 					
@@ -338,9 +340,28 @@ $( function() {
  
  
  function getcals(v1,v2){
-	 
-	 $('#remainingqty'+v2).val();
+	 var pending=$('#pendingqty'+v2).val();
+	 $('#remainingqty'+v2).val(pending-v1);
  }
  
- $('#test').attr('id');
+ $('#saveinvoicedetail').click(function(){
+	 var table = document.getElementById("quotprodtable");
+		var len=table.rows.length-1;
+		
+		for(var n=1;n<=len;n++)
+	{
+			if($('#savecheck'+n).is(':checked')){
+				var rec=$('#reciveqty'+n).val();
+				var rem=	$('#remainingqty'+n).val();
+				$('#reciveqty'+n).attr("value",rec);
+				$('#remainingqty'+n).attr("value",rem);
+				var row = $('#savecheck'+n).closest('tr').html();
+				
+				$('#gettrifchecked tbody').append('<tr>'+row+'</tr>');
+			
+				
+			}
+			
+	 }
+ });
 </script>

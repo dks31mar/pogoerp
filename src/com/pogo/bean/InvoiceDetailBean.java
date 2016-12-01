@@ -8,6 +8,8 @@ public class InvoiceDetailBean {
 	
 	private String	particular ;
 	
+	private String	porefno ;
+	
 	private Integer posrno ;
 	
 	private double receiveqty ;
@@ -15,6 +17,13 @@ public class InvoiceDetailBean {
 	private double totalqty ;
 	
 	
+	
+	public String getPorefno() {
+		return porefno;
+	}
+	public void setPorefno(String porefno) {
+		this.porefno = porefno;
+	}
 	public Integer getInvoicedetailid() {
 		return invoicedetailid;
 	}

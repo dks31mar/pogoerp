@@ -18,6 +18,8 @@ public class InvoiceDetail implements Serializable{
 	private Integer invoicedetailid ;
 	@Column(name="invno")
 	private	String invno ;
+	@Column(name="porefno")
+	private String	porefno ;
 	@Column(name="particular")
 	private String	particular ;
 	@Column(name="posrno")
@@ -28,6 +30,12 @@ public class InvoiceDetail implements Serializable{
 	private double totalqty ;
 	
 	
+	public String getPorefno() {
+		return porefno;
+	}
+	public void setPorefno(String porefno) {
+		this.porefno = porefno;
+	}
 	public Integer getInvoicedetailid() {
 		return invoicedetailid;
 	}
