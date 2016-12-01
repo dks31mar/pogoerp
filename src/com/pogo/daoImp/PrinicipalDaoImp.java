@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.dao.PrinicipalDao;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.InvoiceDetail;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
@@ -235,6 +236,12 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 		
 		
 		return getqty;
+	}
+
+	@Override
+	public List<InvoiceDetail> getpendyqtyfrominvoice(String porefNo, String particular) {
+		List<InvoiceDetail> pa=sessionFactory.getCurrentSession().createCriteria(InvoiceDetail.class).add(Restrictions.eq("porefno", porefNo)).add(Restrictions.eq("particular", particular)).list();
+		return pa;
 	}
 	
 	

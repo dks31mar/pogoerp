@@ -572,10 +572,8 @@ private List<PoRefEntryItemDetailCopyBean> prepareListofBean(List<PoRefEntryItem
 @RequestMapping(value="/supplierinvoice",method = RequestMethod.GET)
 public ModelAndView getsupplierinvoice(@RequestParam("poref") String poref,@RequestParam("page") String page, @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result,Model m){
 	
-	System.out.println("in get edit method");
-	System.out.println("in get edit method");
 	List<PoRefEntryItemDetailBean> lst =new ArrayList<>();
-	lst=prinicipalposervice.getackDetailByPorefNo(poref);
+	lst=prinicipalposervice.getInvoiceData(poref);
 	System.out.println(lst);
 	double total=0.0;
 	String date=null;
