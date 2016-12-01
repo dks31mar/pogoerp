@@ -171,13 +171,26 @@ public class MasterMasterController {
 	}
 		
 	@RequestMapping(value = "deletecountry", method = RequestMethod.GET)
-	public ModelAndView deleteCountry(@RequestParam("countryId") Integer id) {
-		masterMastersService.deleteCountry(id);
+	
+	public ModelAndView deleteCountry(@RequestParam("countryId") Integer id,Model m) {
 		
+		
+		List<StateBean> bean=masterMastersService.getStateByCountryId(id);
+		
+		System.out.println("<><><><><><><><>   &*&*&*&*&*&*&*    *&*&*&*&    "+bean.isEmpty());
+		//
+		if(bean.isEmpty()==false){
+			m.addAttribute("notdeleting", "Please delete state first");
+			}else{
+				masterMastersService.deleteCountry(id);
+			}
 		List<CountryBean> countrybean=masterMastersService.countryList();
 		Map<String, Object> model= new HashMap<String,Object>();
 		List<CountryBean> list=new ArrayList<CountryBean>();
 		model.put("countryList",  countrybean);
+		
+			
+			
 		return new ModelAndView("getcountry",model);
 		
 		
@@ -257,8 +270,16 @@ public class MasterMasterController {
 	}
 	
 	@RequestMapping(value = "deletestate", method = RequestMethod.GET)
-	public ModelAndView deleteState(@RequestParam("stateId") Integer id) {
-		masterMastersService.deleteState(id);
+	public ModelAndView deleteState(@RequestParam("stateId") Integer id , Model m) {
+		List<DistrictBean> bean = masterMastersService.getDistrictByStateIdAndcountryId(id);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@ "+bean.isEmpty());
+		if(bean.isEmpty()==false){
+			m.addAttribute("notdeleting", "Please delete district first");
+			
+		}else {
+			masterMastersService.deleteState(id);
+		}
+		
 		Map<String, Object> model= new HashMap<String,Object>();
 		List<StateBean> list=new ArrayList<StateBean>();
 		model.put("stateList",  prepareStateListofBean(masterMastersService.stateList()));
@@ -340,8 +361,18 @@ public class MasterMasterController {
 		masterMastersService.addDistrict(poref);
 	}
 	@RequestMapping(value = "deletedistrict", method = RequestMethod.GET)
-	public ModelAndView deleteDistrict(@RequestParam("districtId") Integer id) {
-		masterMastersService.deleteDistrict(id);
+	public ModelAndView deleteDistrict(@RequestParam("districtId") Integer id , Model m) {
+		
+		List<LocationBean> bean = masterMastersService.getLocationDetails();
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@ "+bean.isEmpty());
+		if(bean.isEmpty()==false){
+			m.addAttribute("notdeleting", "Please delete district first");
+			
+		}else {
+			masterMastersService.deleteDistrict(id);
+		}
+		
+		
 		Map<String, Object> model= new HashMap<String,Object>();
 		List<DistrictBean> list=new ArrayList<DistrictBean>();
 		model.put("districtList",  prepareDistrictListofBean(masterMastersService.districtList()));

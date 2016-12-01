@@ -41,7 +41,6 @@ private State state;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="district_id")
 private District districtName;
-	
 	@Column(name="contact_person")
 private String contactPerson;
 	@Column(name="telephoneNo")

@@ -19,7 +19,7 @@ public class Location {
 	private int locationId;
 	@Column(name="location")
 	private String location;
-	@ManyToOne(fetch=FetchType.LAZY , cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="districtId")
 	private District district;
 	public District getDistrict() {

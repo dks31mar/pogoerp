@@ -388,6 +388,11 @@
 			<put-attribute name="body" value="/WEB-INF/views/customer/editCustomer.jsp" />
 			</definition>
 			
+			<definition name="attachfiles" extends="baseLayout" >
+			<put-attribute name="title" value="Attach Files " />
+			<put-attribute name="body" value="/WEB-INF/views/customer/salesCallFiles.jsp" />
+			</definition>
+			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >
 			<put-attribute name="title" value="sms permission" />

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pogo.bean.AddDiaryBean;
+import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
@@ -27,12 +28,11 @@ import com.pogo.bean.DistrictBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
 import com.pogo.bean.UserEmployeeBean;
-import com.pogo.bean.ZonesBean;
 import com.pogo.service.CustomerSalesService;
 import com.pogo.service.MasterMastersService;
 import com.pogo.service.MasterOrganizationService;
+import com.sun.java.swing.plaf.motif.resources.motif;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -73,20 +73,12 @@ public class CustomerSalesController {
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(list);
 	}
-//not call
 	@RequestMapping(value = "/getdistrictLists/{id}", method = RequestMethod.POST)
 	public @ResponseBody String getDistrict(@PathVariable("id")int id, HttpServletRequest request)
 			throws JsonProcessingException {
-		System.out.println("hi");
 		List<DistrictBean> list1 = masterService.getDistrictByStateIdAndcountryId(id);
-		System.out.println(list1.size());
-		System.out.println(list1);
-		System.out.println("I am on controller");
 		ObjectMapper mapper = new ObjectMapper();
-		return mapper.writeValueAsString(list1);
-		//return "data";
-		
-		
+		return mapper.writeValueAsString(list1);	
 	}
 
 
@@ -96,9 +88,6 @@ public class CustomerSalesController {
 		model.addAttribute("salesList", salesList);
 		return "getSalesList";
 	}
-
-
-
 
 	@RequestMapping(value = "/editcustomer", method = RequestMethod.GET)
 	public String editcustomerData(@RequestParam("id") int id, Model model) throws ParseException 
@@ -145,9 +134,32 @@ public class CustomerSalesController {
 	}
 
 	@RequestMapping(value = "/addFollowup", method = RequestMethod.GET)
-	public ModelAndView AddFollowup() {
-
+	public ModelAndView AddFollowup(Model model) 
+	{
+		List<CustomerSalesBean> salesList = customerSalesService.findAllData();
+		model.addAttribute("salesList", salesList);
 		return new ModelAndView("AddFollowupForm");
 	}
-
+	
+	@RequestMapping(value="/savefollowup", method=RequestMethod.POST)
+	public String addfollowup(@ModelAttribute("addFollowUpBean")AddFollowUpBean addFollowUpBean,BindingResult result)
+	{
+		customerSalesService.addFollowup(addFollowUpBean);
+		return "AddFollowupForm";
+	}
+	@RequestMapping(value="/attachFiles", method=RequestMethod.GET)
+   public String attachFiles()
+   {
+		return "attachfiles";
+   }
+	@RequestMapping(value="/getCustomerRecord/{id}", method=RequestMethod.POST)
+	public @ResponseBody String getCustomerData(@PathVariable("id") int id,HttpServletRequest request)throws JsonProcessingException
+	{
+		List<CustomerSalesBean> list=customerSalesService.findAllDataById(id);
+		System.out.println(list.size());
+		ObjectMapper map=new ObjectMapper();
+		return map.writeValueAsString(list);
+		
+	}
+	
 }

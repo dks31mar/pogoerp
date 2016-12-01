@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.model.AddDiary;
+import com.pogo.model.AddFollowUp;
 import com.pogo.model.CustomerSales;
 
 
@@ -44,6 +45,18 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao
 	public void saveDiary(AddDiary diary) {
 		sessionFactory.getCurrentSession().save(diary);
 		
+	}
+
+	@Override
+	public void addfollowup(AddFollowUp followUp) {
+		sessionFactory.getCurrentSession().save(followUp);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CustomerSales> getsalesListById(int id) {
+		return (List<CustomerSales>) sessionFactory.getCurrentSession().get(CustomerSales.class, id);
 	}
 
 }

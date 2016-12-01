@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
@@ -54,6 +55,10 @@ public interface PrinicipalDao {
 	List<ProductAcknowledgement> getAckData(String s1, String s2);
 
 	void deleteParticularAck(String s1);
+
+	PoRefEntryItemDetail getquantybyval(ProductAcknowledgementBean bean);
+
+	List<Double> getqtrybyack(ProductAcknowledgementBean bean);
 
 	
 

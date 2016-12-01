@@ -101,13 +101,18 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		List<Country> country=masterMastersdao.countryList();
 
 		List<CountryBean> beans = new ArrayList<CountryBean>();
-			
+		//List<State> state=mast
 			
 			for(Country pro : country){
 				CountryBean bean = new CountryBean();
 				
 				bean.setCountryId(pro.getCountryId());
 				bean.setCountry(pro.getCountry());
+				
+				//State state = new State();
+				
+				
+	
 				
 				beans.add(bean);
 			}
@@ -138,8 +143,8 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		Map<String, Object> dd=new HashMap<>();
  		for(Country data: country)
 		{
-			
-			dd.put("countryId",data.getCountryId() );
+			 
+			dd.put("countryId",data.getCountryId());
 			dd.put("country",data.getCountry());
 			
 		}
@@ -730,27 +735,15 @@ public List<DistrictBean> getDistrictByStateIdAndcountryId(int id)
 
 		bean.setDistrict(data.getDistrict());
 		System.out.println("on service" +data.getDistrict());
-
-		bean.setDistrict(data.getDistrict());
 		System.out.println("on service District" +data.getDistrict());
-
 		State state=data.getState();
-
-		Country country=data.getCountry();
-
-		
 		bean.setStatesId(state.getStateId());
-
 		bean.setStateName(state.getState());
 		System.out.println("On Service for district"+state.getState());
-
 		bean.setStatesId(state.getStateId());
 		bean.setCountryName(state.getCountry().getCountry());
 		bean.setCountryId(state.getCountry().getCountryId());
-		
-		
-
-		districtBeans.add(bean);//comment for test
+		districtBeans.add(bean);
 
 	}
 	return districtBeans;

@@ -25,7 +25,7 @@ public class District {
 	@Column(name="district")
 	private String district ;
 	
-	@ManyToOne(fetch=FetchType.LAZY , cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="stateId")
 	private State state;
 	

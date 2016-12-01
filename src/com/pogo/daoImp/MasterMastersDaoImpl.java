@@ -84,7 +84,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	@Override
 	public void addCountry( Country poref1){
 		sessionFactory.getCurrentSession().save(poref1);
-		sessionFactory.getCurrentSession().flush();
+		//sessionFactory.getCurrentSession().flush();
 	}
 	
 	@Override
@@ -123,6 +123,8 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	@Override
 	public void addState( State poref1){
 		sessionFactory.getCurrentSession().save(poref1);
+		//sessionFactory.getCurrentSession().flush();
+		System.out.println("outside save state dao impl");
 	}
 	
 	
