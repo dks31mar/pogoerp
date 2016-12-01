@@ -1,5 +1,6 @@
 package com.pogo.daoImp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,12 +9,15 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.PropertyProjection;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.dao.PrinicipalDao;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.PoRefEntryItemDetail;
@@ -205,6 +209,32 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 		int id=Integer.parseInt(s1);
 		sessionFactory.getCurrentSession().createQuery("DELETE ProductAcknowledgement Where productacknowledgementid="+id).executeUpdate();
 		
+	}
+
+	@Override
+	public PoRefEntryItemDetail getquantybyval(ProductAcknowledgementBean bean) {
+		
+		return (PoRefEntryItemDetail) sessionFactory.getCurrentSession().createCriteria(PoRefEntryItemDetail.class).add(Restrictions.eq("porefnobysupplier.porefno", bean.getPorefno())).add(Restrictions.eq("particular", bean.getParticular())).uniqueResult();
+	}
+
+	@Override
+	public List<Double> getqtrybyack(ProductAcknowledgementBean bean) {
+		List<Double> getqty=new ArrayList<>();
+		try{
+	getqty= sessionFactory.getCurrentSession().createCriteria(ProductAcknowledgement.class)
+				.add(Restrictions.eq("porefno", bean.getPorefno()))
+				.add(Restrictions.eq("particular", bean.getParticular())).setProjection(Projections.property("pendingqty")).list();
+		}catch(Exception ex){
+			ex.printStackTrace();
+			List<Double> getqty1=new ArrayList<>();
+			
+			
+			getqty1.add(0.0);
+			return getqty1;
+		}
+		
+		
+		return getqty;
 	}
 	
 	

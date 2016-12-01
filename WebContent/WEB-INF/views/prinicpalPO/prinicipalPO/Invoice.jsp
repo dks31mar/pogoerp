@@ -252,11 +252,11 @@
 					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;width: 69px" name="tpinjpy" id="tpinjpy${loop.index+1}" value="" class="form-control"></td>
 					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;width: 69px" name="tpinjpy" id="tpinjpy${loop.index+1}" value="" class="form-control"></td>
 					<td align="center">&nbsp;<div class="checkbox">
-          <label>
+          		<label>
             <input type="checkbox" value="" name="savecheck">
             <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
             
-          </label>
+          		</label>
         </div></td>
 					<td style="display: none;"><input type="hidden" name="grandtotal" value="${gtotal}" id="grandtotal${loop.index+1}"> </td>
 					<td style="display: none;"><input type="hidden" name="date" value="11/21/2016" id="getdate"> </td>
