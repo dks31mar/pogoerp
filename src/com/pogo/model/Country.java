@@ -24,6 +24,11 @@ public class Country implements Serializable{
 	private Integer countryId;
 	@Column(name = "country")
 	private String country;
+	
+	
+	
+	
+	
 	/*
 	 * country has many states 
 	 * one        to     many

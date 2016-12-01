@@ -95,6 +95,33 @@
 		<label
 			style="margin-left: 540px;"><a 
 			href="getSalesList" style="margin-top: -3px;" class="btn btn-primary"> Sales List </a> </label> 
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+		
+		<span class="glyphicon glyphicon-user"></span><span> Customer</span>
+		<label
+			style="margin-left: 250px; margin-top: 8px;"><a
+			href="getSalesList" class="btn btn-primary"> Sales List </a> </label> 
+		
+		<label
+			 style="margin-left: 250px;margin-top: 8px;"><a href="AddDiaryForEntrySales"
+			class="btn btn-primary">Add Dairy</a>
+     </label>
+
+			
+    
+=======
+			<label
+			style="margin-left: 540px;">
+			<a href="#" onclick="getdata();" style="margin-top: -3px;" class="btn btn-primary"> Click </a> </label>
+     
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+  		
+
+
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 	</div>
 	
 </div>

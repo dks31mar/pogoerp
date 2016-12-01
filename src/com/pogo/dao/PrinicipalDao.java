@@ -53,6 +53,8 @@ public interface PrinicipalDao {
 
 	List<ProductAcknowledgement> getAckData(String s1, String s2);
 
+	void deleteParticularAck(String s1);
+
 	
 
 

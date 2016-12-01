@@ -26,9 +26,7 @@
 #success_message{ display: Edited;}
 </style>
 
- <div id="pop" style="display: none;"></div>
-<div><c:out value="${id}" /></div>
-<div id="body">
+
 <div>
 <div>
 <div class="row" style="margin-top: 15px">
@@ -37,33 +35,20 @@
 		 <input type="hidden" name="profile" value="0" />
 	</div>
 </div>
-<!--  
-<div class="row">
 
-	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
-		<span class="glyphicon glyphicon-user"></span>Competitor Details</b>
-		 <label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="addfeature"
-			class="btn btn-primary">Add Competitor </a>
-			<!--   <label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="getzonepage"
-			class="btn btn-primary">Show Competitor List
-			 </a>
-          -->	
   
-    </label> 		
+   	
 </div>
 
 </div>
 </div> 
 
 	 
-<div id="message" style="display: none;"></div>
-<div id="body">
+
 <div class="container"></div>
-    <form:form class="well form-horizontal" name="forp" action="" method="POST"  commandName="userbean"
+    <form:form class="well form-horizontal"  action="upcompetitior" method="POST"  commandName="competitiorsProfileBean"
     id="" >
+    <fieldset>
 <!-- Form Name -->
 <legend>Edit Competitor Profile</legend>
   
@@ -74,14 +59,14 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="" placeholder=" Name" id="name" required="required"  class="form-control"  type="text">
+  <input   name="name" placeholder=" Name" id="name"value="${listofcompetitior.name}" required="required"  class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" style="margin-left: -62px;">Contact Person</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="designation" placeholder="Contact Person"   id="contactper" class="form-control"  type="text">
+  <input   name="contactperson" placeholder="Contact Person"  value="${listofcompetitior.contactperson}" id="contactper" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -93,87 +78,52 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="middlename"   placeholder="Address" id="address"  class="form-control"  type="text">
+  <input name="address" value="${listofcompetitior.address}"  placeholder="Address" id="address"  class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Designation<span style="color: red;">*</span></label> 
+    
+  <label class="col-md-2 control-label" style="margin-left: -62px;">Phone No</label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="dob"  id="designation" placeholder="Designation"  class="form-control"  type="text">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+  <input name="phoneno"   class="form-control" id="phone2" value="${listofcompetitior.phoneno}"  placeholder="(845)555-1212" type="text" required="required">
     </div>
-  </div>
+  </div> 
+  
 </div>
 <div class="form-group">
   <label class="col-md-2 control-label" >Mobile No</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="lastname"   placeholder="Mobile No" id="phone1"  class="form-control"  type="text">
+  <input name="mobileno"   placeholder="Mobile No" id="phone1" value="${listofcompetitior.mobileno}" class="form-control"  type="text">
     </div>
   </div>
   
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Phone #</label>  
+ <label class="col-md-2 control-label" style="margin-left: -62px;">Product Brand<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
-  <input name="phone"   class="form-control" id="phone2" placeholder="(845)555-1212" type="text" required="required">
-    </div>
-  </div> 
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+  <input   name="productbrand" placeholder=" Product Brand" id="product" required="required" value="${listofcompetitior.productbrand}"  class="form-control"  type="text">
+    </div> 
+  </div>
 </div>
 <div class="form-group"> 
   <label class="col-md-2 control-label">E-Mail</label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="eamil"  placeholder="E-Mail Address" class="form-control"id ="email1" required="required" type="email">
+  <input  name="emailid"  placeholder="E-Mail Address" class="form-control"id ="email1"  value="${listofcompetitior.emailid}" required="required" type="email">
     
   
   </div>
 </div>
-<!--  
- <div class="form-group"> 
-  <label class="col-md-2 control-label">Fax No</label>
-    <div class="col-md-3 selectContainer">
-    <div class="input-group">
-       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
-   <input  name="fax"  placeholder="fax Address" class="form-control"  id="faxno" required="required" type="fax">
-  </div>
-</div>
- <!--  
-</div>
 
-<div class="form-group"> 
-  <label class="col-md-2 control-label">Fax No</label>
-    <div class="col-md-3 selectContainer">
-    <div class="input-group">
-       <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span> 
-   <input  name="fax"  placeholder="fax Address" class="form-control"  id="faxno" required="required" type="fax">
-  </div>
-</div>
--->
- <label class="col-md-2 control-label" style="margin-left: -62px;">Product Brand<span style="color: red;">*</span></label>  
+ <label class="col-md-2 control-label" style="margin-left: -62px;">Warranty Period</label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input   name="Product" placeholder=" Product Brand" id="product" required="required"  class="form-control"  type="text">
-    </div> 
-  </div>
-</div>
-<div class="form-group"> 
-  <label class="col-md-2 control-label">Product Name</label>
-    <div class="col-md-3 selectContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input   name="firstname" placeholder="ProductName" id="firstUpper" required="required"  class="form-control"  type="text">
-   
-  </div>
-</div>
-<label class="col-md-2 control-label" style="margin-left: -62px;">Warranty Period</label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="department" class="form-control selectpicker" required="required" >
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list" ></i></span>
+    <select name="warrentyperiod" class="form-control selectpicker" required="required" value="${listofcompetitior.warrentyperiod}" >
    <option>---Select Warranty---</option> 
       <option value="availbility">Not available</option>
 	  <option value="yera entry">1 year</option>
@@ -182,23 +132,21 @@
     </select>
     </div>
   </div>
-</div> 
-
-<!-- Text input-->
-       
-<div class="form-group">
-  <label class="col-md-2 control-label">Price(Rs.)<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
+</div>
+<div class="form-group"> 
+  <label class="col-md-2 control-label">Product Name</label>
+    <div class="col-md-3 selectContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-doller"></i></span>
-  <input name="price"  class="form-control" placeholder="$122" type="text" required="required">
-    </div>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+  <input   name="productname" placeholder="ProductName"value="${listofcompetitior.productname}"  id="firstUpper" required="required"  class="form-control"  type="text">
+   
   </div>
-   <label class="col-md-2 control-label" style="margin-left: -62px;">NO of Free AMC<span style="color: red;">*</span></label>  
+</div>
+<label class="col-md-2 control-label" style="margin-left: -62px;">NO of Free AMC<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="department" class="form-control selectpicker" required="required" >
+    <select name="nooffreeamc" class="form-control selectpicker" required="required" value="${listofcompetitior.nooffreeamc}" >
     <option>--- Select Free AMC---</option> 
       <option value="" >1</option>
       <option value="">2</option>
@@ -206,19 +154,27 @@
     </select>
     </div>
   </div>
-</div>
+</div> 
 
-<div class="form-group"> 
-  <label class="col-md-2 control-label">AMC Rate</label>
+<!-- Text input-->
+       
+<div class="form-group">
+  <label class="col-md-2 control-label">Price<span style="color: red;">*</span></label>  
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-doller"></i></span>
+  <input name="price"  class="form-control"  type="text" required="required" value="${listofcompetitior.price}" >
+    </div>
+  </div>
+   <label class="col-md-2 control-label">AMC Rate</label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input name="Product Name"   class="form-control" id="Password1" placeholder="AMC Rate" required="required" type="text">
+  <input name="amcrate"   class="form-control" placeholder="AMC Rate" required="required" type="text" value="${listofcompetitior.amcrate}">
    
   </div>
 </div>
- 
-</div> 
+</div>
 
 <!-- Success message -->
 
@@ -227,17 +183,16 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
-    <button type="button" class="btn btn-warning" onclick="message();" id="senddata" >Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="submit" class="btn btn-warning" onclick="message();"  >Save<span class="glyphicon glyphicon-send"></span></button>
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>
-
 </fieldset>
 </form:form>
 </div>
-</div>
 
- <script type="text/javascript">
+
+<!--  <script type="text/javascript">
 //for profile page save data
 	$('#senddata').click(function(){
 	
@@ -267,7 +222,7 @@
 	
 		//alert(jsonObj);
 		$.ajax({
-			url: "saveDataCompetitiors",
+			url: "upcompetitior",
 			type: "POST",
 			
 			  data :JSON.stringify(jsonObj),
@@ -358,3 +313,4 @@
 		
 </script>
 
+ -->

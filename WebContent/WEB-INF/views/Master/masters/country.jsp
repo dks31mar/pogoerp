@@ -17,7 +17,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <div class="row">
 
-	<div class="page-heading col-sm-11"
+	<div class="page-heading col-sm-11" 
 		style="background-color: #3C8DBD; left: 20px;  height: 34px;">
 		<span class="glyphicon glyphicon-home"></span> Country
 		 <label
@@ -63,7 +63,7 @@
 </div>
 </div>
 <div id="pop" style="display: none;"></div>
-<div id="searchedRecord"></div>
+<div id="searchedRecord" style = "color: red " align ="center">${notdeleting}</div>
 <div id="body">
 	<table class="responstable" style="margin-left: 22px; ">
 

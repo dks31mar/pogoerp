@@ -144,15 +144,4 @@ public class CommonController {
 	
 	
 
-	/**************************************************** use by shweta *****************************************************/
-	
-
-	@RequestMapping(value="/supplierinvoice",method = RequestMethod.GET)
-	public ModelAndView getsupplierinvoice( @ModelAttribute("command") PorefSupplierDetailBean porefitem,HttpServletRequest request,BindingResult result){
-		System.out.println("in get edit method");
-
-	return new ModelAndView("supplierinvoiceview");
-	}
-	/************************************************** use by shweta ***************************************************/
-
 }

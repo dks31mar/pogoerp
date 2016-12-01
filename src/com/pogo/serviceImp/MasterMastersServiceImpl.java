@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
+import com.pogo.bean.AddActionBean;
+import com.pogo.bean.AddPlanBean;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
@@ -23,6 +25,8 @@ import com.pogo.bean.ServiceProviderBean;
 import com.pogo.bean.StateBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.dao.MasterMastersDao;
+import com.pogo.model.AddAction;
+import com.pogo.model.AddPlan;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
@@ -92,8 +96,29 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		masterMastersdao.editCustomerLevels(customer);
 	}
 	@Override
-	public List<Country> countryList(){
-		return masterMastersdao.countryList();
+	public List<CountryBean> countryList(){
+		
+		List<Country> country=masterMastersdao.countryList();
+
+		List<CountryBean> beans = new ArrayList<CountryBean>();
+		//List<State> state=mast
+			
+			for(Country pro : country){
+				CountryBean bean = new CountryBean();
+				
+				bean.setCountryId(pro.getCountryId());
+				bean.setCountry(pro.getCountry());
+				
+				//State state = new State();
+				
+				
+	
+				
+				beans.add(bean);
+			}
+	
+		
+		return beans;
 	}
 	@Override
 	@Transactional
@@ -118,8 +143,8 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 		Map<String, Object> dd=new HashMap<>();
  		for(Country data: country)
 		{
-			
-			dd.put("countryId",data.getCountryId() );
+			 
+			dd.put("countryId",data.getCountryId());
 			dd.put("country",data.getCountry());
 			
 		}
@@ -729,10 +754,50 @@ public void deleteServiceprovider(int id) {
 	
 	masterMastersdao.deleteserviceprovider(id);
 	
+
+}
+
+
+
+@Override
+public void addActionPlan(AddActionBean poref1) {
+	AddAction action=new AddAction();
+	action.setAction(poref1.getAction());
+	
+	masterMastersdao.addActionPlan(action);
+	
+}
+
+@Override
+public List<AddAction> actionPlanList() {
+	return masterMastersdao.actionPlanList();
+}
+
+
+@Override
+public AddActionBean EditForActionPlan(int id) {
+	// TODO Auto-generated method stub
+	AddAction addaction=masterMastersdao.getplanDataById(id);
+	AddActionBean actionbean= new AddActionBean();
+	actionbean.setAction(addaction.getAction());
+	return actionbean;
+	
+}
+
+@Override
+public void saveAddAction(AddPlanBean planbean) {
+	// TODO Auto-generated method stub
+	AddPlan bean=new AddPlan();
+	bean.setPlan(planbean.getPaln());
+	masterMastersdao.saveAddAction(bean);
+	
+}
+
+
+
 }
 
 
 
 
 
-}

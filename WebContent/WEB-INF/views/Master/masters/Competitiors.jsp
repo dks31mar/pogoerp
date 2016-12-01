@@ -96,13 +96,15 @@
   <input name="middlename"   placeholder="Address" id="address"  class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Designation<span style="color: red;">*</span></label> 
+  
+  <label class="col-md-2 control-label" style="margin-left: -62px;">Phone No</label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="dob"  id="designation" placeholder="Designation"  class="form-control"  type="text">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+  <input name="phone"   class="form-control" id="phone2" placeholder="(845)555-1212" type="text" required="required">
     </div>
-  </div>
+  </div> 
+  
 </div>
 <div class="form-group">
   <label class="col-md-2 control-label" >Mobile No</label> 
@@ -113,13 +115,13 @@
     </div>
   </div>
   
-  <label class="col-md-2 control-label" style="margin-left: -62px;">Phone #</label>  
+  <label class="col-md-2 control-label" style="margin-left: -62px;">Product Brand<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
-  <input name="phone"   class="form-control" id="phone2" placeholder="(845)555-1212" type="text" required="required">
-    </div>
-  </div> 
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+  <input   name="Product" placeholder=" Product Brand" id="productbrand" required="required"  class="form-control"  type="text">
+    </div> 
+  </div>
 </div>
 <div class="form-group"> 
   <label class="col-md-2 control-label">E-Mail</label>
@@ -152,12 +154,18 @@
   </div>
 </div>
 -->
- <label class="col-md-2 control-label" style="margin-left: -62px;">Product Brand<span style="color: red;">*</span></label>  
+ <label class="col-md-2 control-label" style="margin-left: -62px;">Warranty Period</label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input   name="Product" placeholder=" Product Brand" id="product" required="required"  class="form-control"  type="text">
-    </div> 
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="department" class="form-control selectpicker" required="required" id="warrantyPeriod" >
+   <option></option>
+      <option value="availbility">Not available</option>
+	  <option value="1 year">1 year</option>
+     <option value="2 years">2 years</option>
+     <option value="3 years">3 years</option>
+    </select>
+    </div>
   </div>
 </div>
 <div class="form-group"> 
@@ -165,20 +173,19 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input   name="firstname" placeholder="ProductName" id="firstUpper" required="required"  class="form-control"  type="text">
+  <input   name="firstname" placeholder="Product Name" id="productname" required="required"  class="form-control"  type="text">
    
   </div>
 </div>
-<label class="col-md-2 control-label" style="margin-left: -62px;">Warranty Period</label>  
+<label class="col-md-2 control-label" style="margin-left: -62px;">NO of Free AMC<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="department" class="form-control selectpicker" required="required" >
-   <option>---Select Warranty---</option> 
-      <option value="availbility">Not available</option>
-	  <option value="yera entry">1 year</option>
-     <option value="yera entry">2 years</option>
-     <option value="yera entry">3 years</option>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="department" class="form-control selectpicker" required="required" id="freeamc" placeholder="Select Free AMC">
+     <option></option>
+      <option value="1" >1</option>
+      <option value="2">2</option>
+       <option value="More Than 2">More Than 2</option>
     </select>
     </div>
   </div>
@@ -191,32 +198,21 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-doller"></i></span>
-  <input name="price"  class="form-control" placeholder="$122" type="text" required="required">
+  <input name="price"  class="form-control" placeholder="Rupees" type="text" required="required" id ="price">
     </div>
   </div>
-   <label class="col-md-2 control-label" style="margin-left: -62px;">NO of Free AMC<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="department" class="form-control selectpicker" required="required" >
-    <option>--- Select Free AMC---</option> 
-      <option value="" >1</option>
-      <option value="">2</option>
-       <option value="">More Than 2</option>
-    </select>
-    </div>
-  </div>
-</div>
-
-<div class="form-group"> 
+   <div class="form-group"> 
   <label class="col-md-2 control-label">AMC Rate</label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input name="Product Name"   class="form-control" id="Password1" placeholder="AMC Rate" required="required" type="text">
+  <input name="Product Name"   class="form-control" id="rateamc" placeholder="AMC Rate" required="required" type="text">
    
   </div>
 </div>
+</div>
+
+
  
 </div> 
 
@@ -245,27 +241,37 @@
 	 	var contactper =	$('#contactper').val();
 		var address =	$('#address').val();
 	 	var designation=$('#designation').val();
-	  	var phone1    =	$('#phone1').val();
-	  	var phone2=  $('#phone2').val();
-	  	var email1    =	$('#email1').val();  
-     	var email2    =	$('#email2').val();
+	  	var mobileno   =	$('#phone1').val();
+	  	var phoneno=  $('#phone2').val();
+	  	var email1    =	$('#email1').val();  	
       	var faxno    =	$('#faxno').val();
-	   
-		var jsonObj={
+      	var productbrand= $('#productbrand').val();
+      	var productname= $('#productname').val();
+      	var warrantyPeriod=$('#warrantyPeriod').val();
+      	var price=$('#price').val();
+      	var nofofreeamc=$('#freeamc').val();
+      	var Rateamc=$('#rateamc').val();
+	    alert(name+contactper+address+designation+mobileno+phoneno+email1+faxno+productbrand+productname+warrantyPeriod+price+nofofreeamc+Rateamc);
+		
+	    var jsonObj={
 				
-				'compname':name ,
-				'compaddress':address ,
-				'compphone': phone1,
-				'compfax':faxno ,
-				'compemail1': email1,
-				'compcontactperson': contactper,
-				'compcontactdesig': designation,
-				'compemail2':email2 ,
-				'compphone2':phone2 
+	    		'name':name,
+	    		'contactperson':contactper,
+	    		'address':address,
+	    		'designation':designation,
+	    		'mobileno':mobileno,
+	    		'phoneno':phoneno,
+	    		'emailid':email1,
+	    		'productbrand':productbrand,
+	    		'productname':productname,
+	    		'warrentyperiod':warrantyPeriod,
+	    		'price':price,
+	    		'nooffreeamc':nofofreeamc,
+	    		'amcrate':Rateamc
 				} ;
 		 
 	
-		//alert(jsonObj);
+		alert(jsonObj);
 		$.ajax({
 			url: "saveDataCompetitiors",
 			type: "POST",

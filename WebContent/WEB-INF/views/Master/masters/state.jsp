@@ -55,7 +55,7 @@
 </div>
 </div>
 <div id="pop" style="display: none;"></div>
-<div id="searchedRecord"></div>
+<div id="searchedRecord" style = "color: red " align ="center">${notdeleting}</div>
 <div id="body">
 	<table class="responstable" style="margin-left: 22px; ">
 

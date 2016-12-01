@@ -50,6 +50,8 @@ public interface PrinicipalPoService {
 
 	List<ProductAcknowledgementBean> getAckData(String s1, String s2);
 
+	void deleteParticularAck(String s1);
+
 	
 
 

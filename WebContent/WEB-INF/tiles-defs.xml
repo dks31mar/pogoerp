@@ -66,6 +66,7 @@
 			</definition>
 			
 			<definition name="region" extends="baseLayout" >
+			 
 				<put-attribute name="body" value="/WEB-INF/views/Master/reagion.jsp" />
 			</definition>
 			<definition name="newbranch" extends="baseLayout" >
@@ -122,6 +123,17 @@
 			<definition name="competitior" extends="baseLayout" >
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/updateCompetitiors.jsp" />
 			</definition>
+		
+			<definition name="addplanAction" extends="baseLayout" >
+			<put-attribute name="title" value="Add Action Plan"></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addPlanAction.jsp" />
+			</definition>
+			
+			<definition name="addaction" extends="baseLayout" >
+			<put-attribute name="title" value="Add Action "></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addaction.jsp" />
+			</definition>
+			
 			
             		<!-- ************************************************** use by satyendra *************************************************** -->
 			<!-- <definition name="AddPrinicpalPO" extends="baseLayout" >

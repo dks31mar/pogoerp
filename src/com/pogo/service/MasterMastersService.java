@@ -2,6 +2,8 @@ package com.pogo.service;
 
 import java.util.List;
 
+import com.pogo.bean.AddActionBean;
+import com.pogo.bean.AddPlanBean;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
@@ -17,7 +19,7 @@ import com.pogo.bean.StateBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.bean.ZonesBean;
-
+import com.pogo.model.AddAction;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
@@ -34,7 +36,7 @@ public interface MasterMastersService {
 	String getCustomerLevelsById(String id);
 	void editCustomerLevels(CustomerLevelsBean poref1);
 	
-	List<Country> countryList();
+	List<CountryBean> countryList();
 	void addCountry(CountryBean poref1);
 	void deleteCountry(Integer id);
 	String getCountryById(String id);
@@ -108,5 +110,10 @@ public interface MasterMastersService {
 	void deleteServiceprovider(int id);
 	
 
+	List<AddAction> actionPlanList();
+	void addActionPlan(AddActionBean poref1);
+
+	AddActionBean EditForActionPlan(int id);
+	void saveAddAction(AddPlanBean planbean);
 
 }
