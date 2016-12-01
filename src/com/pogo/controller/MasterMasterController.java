@@ -44,6 +44,7 @@ import com.pogo.bean.ServiceProviderBean;
 import com.pogo.bean.StateBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.model.AddAction;
+import com.pogo.model.AddPlan;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
@@ -833,7 +834,7 @@ public class MasterMasterController {
 	}
 	
 	
-	//satyendra method
+	//satyendra list for add action plan
 	@RequestMapping(value="/addplanAction",method=RequestMethod.GET)
 	public ModelAndView getPlanAction(@ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result)
    {
@@ -843,11 +844,11 @@ public class MasterMasterController {
 		list = masterMastersService.actionPlanList();
 		Map<String , Object> model = new HashMap<String,Object>();
 		model.put("actionplanlist", list);
-		//System.out.println("***************************************** inside action plan ****************************");
+		System.out.println("***************************************** inside action plan ****************************");
 	
 		return new ModelAndView("addplanAction",model);
 	}
-	
+	// save for add action paln
 	@RequestMapping(value="addactionplan",method=RequestMethod.POST)
 	@ResponseBody
 	public void addActionPlan(@RequestBody String json,Model model) throws IOException{
@@ -884,5 +885,19 @@ public class MasterMasterController {
 		AddPlanBean pbean = new AddPlanBean();
 
 		masterMastersService.saveAddAction(planbean);
+	}
+	// list for action
+	@RequestMapping(value="/getactionlist",method=RequestMethod.GET)
+	public ModelAndView getActionList(@ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result)
+   {
+		
+		System.out.println("get the paln list");
+		List<AddPlanBean> list = new ArrayList<AddPlanBean>();
+		list = masterMastersService.getActionList();
+		Map<String , Object> model = new HashMap<String,Object>();
+		model.put("actionlist", list);
+		System.out.println("***************************************** inside action plan ****************************");
+	
+		return new ModelAndView("addaction",model);
 	}
 }

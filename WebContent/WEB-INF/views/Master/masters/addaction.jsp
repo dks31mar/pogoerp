@@ -69,8 +69,8 @@
 				 <th style="width: 60px;">Edit</th>
 			    <th style="width: 60px;"> Delete</th>
 			</tr>
-			 <c:if test="${!empty actionplanlist}">
-				<c:forEach items="${actionplanlist}" var="action" varStatus="loop">
+			 <c:if test="${!empty actionlist}">
+				<c:forEach items="${actionlist}" var="action" varStatus="loop">
 
 					<tr>
 						<td>${loop.index+1}</td>

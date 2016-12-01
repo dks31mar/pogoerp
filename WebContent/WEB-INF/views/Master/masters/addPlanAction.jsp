@@ -65,7 +65,7 @@
 		<tbody>
 			<tr>
 				<th style="width: 60px;">S.N.</th>
-				<th data-th="Driver details"><span>Add Plan of Action</span></th>
+				<th data-th="Driver details"><span>Add Plan </span></th>
 				 <th style="width: 60px;">Edit</th>
 			    <th style="width: 60px;"> Delete</th>
 			</tr>

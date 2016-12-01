@@ -117,6 +117,7 @@ public interface MasterMastersDao {
 	void saveAddAction(AddPlan bean);
 
 	State getStateIdByContryId(Integer id);
+	List<AddPlan> getActionList();
 
 
 

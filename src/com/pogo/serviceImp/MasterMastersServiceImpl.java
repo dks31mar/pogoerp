@@ -800,6 +800,20 @@ public void saveAddAction(AddPlanBean planbean) {
 	
 }
 
+@Override
+public List<AddPlanBean> getActionList() {
+	
+	
+	List<AddPlan> addplan=masterMastersdao.getActionList();
+	
+	List<AddPlanBean> bean=new ArrayList<>();
+	
+	
+	
+	return bean;
+	
+}
+
 
 
 }

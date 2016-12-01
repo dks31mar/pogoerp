@@ -20,6 +20,7 @@ import com.pogo.bean.TeamSegmentBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.bean.ZonesBean;
 import com.pogo.model.AddAction;
+import com.pogo.model.AddPlan;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
@@ -115,5 +116,6 @@ public interface MasterMastersService {
 
 	AddActionBean EditForActionPlan(int id);
 	void saveAddAction(AddPlanBean planbean);
+	List<AddPlanBean> getActionList();
 
 }
