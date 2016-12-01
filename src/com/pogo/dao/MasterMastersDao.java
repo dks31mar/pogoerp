@@ -116,15 +116,24 @@ public interface MasterMastersDao {
 
 	State getStateIdByContryId(Integer id);
 
+
 	List<AddAction> getactiondata();
 
 	
 	void saveAddAction(AddAction action);
 	List<AddAction> actionList();
 	List<AddActionBean> ActionList();
+
+	
+
 	List<AddPlan> getActionList();
+
 	AddAction getActionDataById(int id);
 	
+
+	List<CustomerLevels> getCustomerStatusDetailsList();
+
+
 
 
 

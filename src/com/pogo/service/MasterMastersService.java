@@ -97,7 +97,7 @@ public interface MasterMastersService {
 	ServiceProviderBean getServiceProvider(int id);
 	void editSourceProviderbyId(ServiceProviderBean servicepro);
 	List<CountryBean> countryDetails();
-	List<CustomerLevelsBean> getCustomersStatus();
+	List<CustomerLevelsBean> getCustomersStatusList();
 	List<StateBean> getStateByCountryId(int id);
 	List<LocationBean> getLocationDetails();
 
@@ -113,11 +113,15 @@ public interface MasterMastersService {
 
 	List<AddActionBean> findAllAction();
 
+
 	List<AddPlanBean> getActionList();
 	void saveAddAction(AddActionBean actionBean2);
 	
 	void addActionPlan(AddActionBean poref1);
 	AddActionBean getActionById(int id);
+
+	
+
 	
 
 

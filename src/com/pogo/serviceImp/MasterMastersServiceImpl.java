@@ -674,8 +674,8 @@ public List<CountryBean> countryDetails()
 }
 
 @Override
-public List<CustomerLevelsBean> getCustomersStatus() {
-	List<CustomerLevels> cusStatus=masterMastersdao.getCustomerStatusDetails();
+public List<CustomerLevelsBean> getCustomersStatusList() {
+	List<CustomerLevels> cusStatus=masterMastersdao.getCustomerStatusDetailsList();
 	List<CustomerLevelsBean> beans=new ArrayList<CustomerLevelsBean>();
 	for(CustomerLevels status:cusStatus)
 	{
@@ -839,11 +839,18 @@ public AddActionBean getActionById(int id) {
      bean.setId(action.getId());
      
 	return bean;
+
+}
+
+	
+
 }
 
 
 
-}
+
+
+
 
 
 

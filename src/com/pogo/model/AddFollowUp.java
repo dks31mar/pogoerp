@@ -28,8 +28,9 @@ private String followupTimeInMin;
 private String followupTimeOut;
 	@Column(name="followupTimeOut_min")
 	private String followupTimeOutMin;
-@Column(name="action_type")
-private String actionType;
+	@ManyToOne(fetch=FetchType.LAZY)
+@JoinColumn(name="action_type")
+private AddAction actionType;
 @Column(name="contact_person")
 private String contactPerson;
 @Column(name="action_taken")
@@ -40,6 +41,30 @@ private String cusOrganisation;
 private String cusAddress;
 @Column(name="cusAddress")
 private String cusStatus;
+public String getCusOrganisation() {
+	return cusOrganisation;
+}
+public void setCusOrganisation(String cusOrganisation) {
+	this.cusOrganisation = cusOrganisation;
+}
+public String getCusAddress() {
+	return cusAddress;
+}
+public void setCusAddress(String cusAddress) {
+	this.cusAddress = cusAddress;
+}
+public String getCusStatus() {
+	return cusStatus;
+}
+public void setCusStatus(String cusStatus) {
+	this.cusStatus = cusStatus;
+}
+public AddAction getAddAction() {
+	return addAction;
+}
+public void setAddAction(AddAction addAction) {
+	this.addAction = addAction;
+}
 @ManyToOne(fetch=FetchType.LAZY)
 @JoinColumn(name="add_action_id")
 private AddAction addAction;
@@ -67,10 +92,11 @@ public String getFollowupTimeOut() {
 public void setFollowupTimeOut(String followupTimeOut) {
 	this.followupTimeOut = followupTimeOut;
 }
-public String getActionType() {
+
+public AddAction getActionType() {
 	return actionType;
 }
-public void setActionType(String actionType) {
+public void setActionType(AddAction actionType) {
 	this.actionType = actionType;
 }
 public String getActionTaken() {

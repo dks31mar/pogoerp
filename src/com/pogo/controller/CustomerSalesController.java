@@ -52,7 +52,7 @@ public class CustomerSalesController {
 		model.addAttribute("listemp", emp);
 		List<CountryBean> country = masterService.countryDetails();
 		model.addAttribute("countrylist", country);
-		List<CustomerLevelsBean> cusStatus = masterService.getCustomersStatus();
+		List<CustomerLevelsBean> cusStatus = masterService.getCustomersStatusList();
 		model.addAttribute("cusStatus", cusStatus);
 		List<LocationBean> locationlist = masterService.getLocationDetails();
 		model.addAttribute("locList", locationlist);
@@ -98,7 +98,7 @@ public class CustomerSalesController {
 		model.addAttribute("listemp", emp);
 		List<CountryBean> country = masterService.countryDetails();
 		model.addAttribute("countrylist", country);
-		List<CustomerLevelsBean> cusStatus = masterService.getCustomersStatus();
+		List<CustomerLevelsBean> cusStatus = masterService.getCustomersStatusList();
 		model.addAttribute("cusStatus", cusStatus);
 		List<LocationBean> locationlist = masterService.getLocationDetails();
 		model.addAttribute("locList", locationlist);
@@ -156,10 +156,9 @@ public class CustomerSalesController {
 		return "attachfiles";
    }
 	@RequestMapping(value="/getCustomerRecord", method=RequestMethod.POST)
-	public @ResponseBody String getCustomerData(@PathVariable("id") int id,HttpServletRequest request)throws JsonProcessingException
+	public @ResponseBody String getCustomerData(@RequestParam int id,HttpServletRequest request)throws JsonProcessingException
 	{
 		List<CustomerSalesBean> list=customerSalesService.findAllDataById(id);
-		System.out.println(list.size());
 		ObjectMapper map=new ObjectMapper();
 		return map.writeValueAsString(list);
 		
