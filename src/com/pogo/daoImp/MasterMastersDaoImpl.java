@@ -498,6 +498,10 @@ public State getStateIdByContryId(Integer id) {
 	return (State) sessionFactory.getCurrentSession().get(State.class, id);
 
 }
+@Override
+public List<AddAction> getactiondata() {
+	return sessionFactory.getCurrentSession().createCriteria(AddAction.class).list();
+}
 
 
 }

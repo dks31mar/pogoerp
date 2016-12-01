@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.CountryBean;
@@ -138,6 +139,8 @@ public class CustomerSalesController {
 	{
 		List<CustomerSalesBean> salesList = customerSalesService.findAllData();
 		model.addAttribute("salesList", salesList);
+		List<AddActionBean> actionlist=masterService.findAllAction();
+		model.addAttribute("actionList", actionlist);
 		return new ModelAndView("AddFollowupForm");
 	}
 	
@@ -152,7 +155,7 @@ public class CustomerSalesController {
    {
 		return "attachfiles";
    }
-	@RequestMapping(value="/getCustomerRecord/{id}", method=RequestMethod.POST)
+	@RequestMapping(value="/getCustomerRecord", method=RequestMethod.POST)
 	public @ResponseBody String getCustomerData(@PathVariable("id") int id,HttpServletRequest request)throws JsonProcessingException
 	{
 		List<CustomerSalesBean> list=customerSalesService.findAllDataById(id);

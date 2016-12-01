@@ -2,9 +2,12 @@ package com.pogo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,6 +34,15 @@ private String actionType;
 private String contactPerson;
 @Column(name="action_taken")
 private String actionTaken;
+@Column(name="cus_organisation")
+private String cusOrganisation;
+@Column(name="cus_address")
+private String cusAddress;
+@Column(name="cusAddress")
+private String cusStatus;
+@ManyToOne(fetch=FetchType.LAZY)
+@JoinColumn(name="add_action_id")
+private AddAction addAction;
 public Integer getFollowUpId() {
 	return followUpId;
 }

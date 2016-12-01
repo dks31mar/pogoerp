@@ -785,12 +785,27 @@ public AddActionBean EditForActionPlan(int id) {
 }
 
 @Override
+@Transactional
 public void saveAddAction(AddPlanBean planbean) {
 	// TODO Auto-generated method stub
 	AddPlan bean=new AddPlan();
 	bean.setPlan(planbean.getPaln());
 	masterMastersdao.saveAddAction(bean);
 	
+}
+
+@Override
+public List<AddActionBean> findAllAction() {
+	List<AddAction> actionlist=masterMastersdao.getactiondata();
+	List<AddActionBean> actionbean=new ArrayList<AddActionBean>();
+	for(AddAction data:actionlist)
+	{
+		AddActionBean bean=new AddActionBean();
+		bean.setId(data.getId());
+		bean.setAction(data.getAction());
+		actionbean.add(bean);
+	}
+	return actionbean;
 }
 
 

@@ -115,5 +115,6 @@ public interface MasterMastersService {
 
 	AddActionBean EditForActionPlan(int id);
 	void saveAddAction(AddPlanBean planbean);
+	List<AddActionBean> findAllAction();
 
 }

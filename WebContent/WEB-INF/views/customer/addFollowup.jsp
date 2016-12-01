@@ -20,26 +20,31 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
-function getData(id)
+/* function getData(id)
 {
 	alert(id);
-	var url='getCustomerRecord/' + id;
 	$
 	.ajax({
-		url :url,
+		url :getCustomerRecord,
 		type : 'POST',
-		success : function(data,status)
-		{
+		data:
+			{
+			'id':id,
+			}
 			var j=JSON.parse(data);
-			alert(j);
-			
-		},
+			alert(j.toSource);
+			var st='';
+				st += j[0].address;
+				st += j[0].status;
+				
+				
+
 		error : function(error, status) {
-alert("error");
+alert("Not Reachable");
 		}
 		
 	});
-	}
+	} */
 </script>
 
 
@@ -180,10 +185,13 @@ alert("error");
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select   name="actionType"  required="required"  class="form-control selectpicker">
-  <option>---Select Task---</option> 
-      <option value="sales">Phone</option>
-	  <option value="services">Sms</option>
-      <option value="services">E-mail</option>
+  <option value="" selected="selected">--Select Action--</option>
+  <c:if test="${!empty actionList}">
+  <c:forEach items="${actionList}" var="data">
+  <option value="${data.id}">${data.action}</option>
+  </c:forEach>
+  </c:if> 
+      
   </select>
     </div>
   </div>
