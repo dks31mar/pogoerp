@@ -119,8 +119,8 @@ public interface MasterMastersDao {
 	State getStateIdByContryId(Integer id);
 
 	List<AddAction> getactiondata();
-
 	List<AddPlan> getActionList();
+	List<CustomerLevels> getCustomerStatusDetailsList();
 
 
 

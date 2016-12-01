@@ -20,6 +20,7 @@ import com.pogo.dao.MasterMastersDao;
 import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
+import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.service.CustomerSalesService;
 
@@ -33,6 +34,7 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 	private MasterOrganizationDao empDao;
     @Autowired
     private MasterMastersDao masterMasterDao;
+    
 	@Override
 	public void addCustomerSales(CustomerSalesBean customerSalesBean) throws ParseException
 	{
@@ -216,27 +218,36 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	public void addFollowup(AddFollowUpBean addFollowUpBean) {
 		AddFollowUp followUp=new AddFollowUp();
 		followUp.setActionTaken(addFollowUpBean.getActionTaken());
-		followUp.setActionType(addFollowUpBean.getActionType());
 		followUp.setFollowupDate(addFollowUpBean.getFollowupDate());
 		followUp.setFollowupTimeIn(addFollowUpBean.getFollowupTimeIn());
 		followUp.setFollowupTimeOut(addFollowUpBean.getFollowupTimeOut());
 		followUp.setContactPerson(addFollowUpBean.getContactPerson());
 		followUp.setFollowupTimeInMin(addFollowUpBean.getFollowupTimeInMin());
 		followUp.setFollowupTimeOutMin(addFollowUpBean.getFollowupTimeOutMin());
+		followUp.setCusStatus(addFollowUpBean.getCustStatus());
+		followUp.setCusAddress(addFollowUpBean.getCusAddress());
+		followUp.setCusOrganisation(addFollowUpBean.getCusOrganisation());
+		if(addFollowUpBean.getActionId()>0)
+		{
+			//followUp.setAddAction(masterMasterDao.);
+		}
 		customerSalesDao.addfollowup(followUp);
 		
 	}
 	@Override
 	public List<CustomerSalesBean> findAllDataById(int id) {
 		List<CustomerSales> list=customerSalesDao.getsalesListById(id);
+		List<CustomerLevels> cusStatus=masterMasterDao.getCustomerStatusDetails();
 		List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
+		String [] status=cusStatus.toArray(new String[cusStatus.size()]);
 		for(CustomerSales data:list)
 		{
 			CustomerSalesBean salesBean=new CustomerSalesBean();
 			salesBean.setCustomerId(data.getCustomerId());
 			salesBean.setAddress(data.getAddress());
 			salesBean.setStatus(data.getStatus().getStatus());
-			System.out.println("On Service customer"+ data.getAddress()+data.getStatus().getStatus());
+			salesBean.setStatusList(status);
+			//System.out.println("On Service customer"+ data.getAddress()+data.getStatus().getStatus());
 			listbean.add(salesBean);
 		}
 		return listbean;

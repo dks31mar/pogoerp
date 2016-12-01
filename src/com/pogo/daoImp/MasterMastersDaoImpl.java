@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -422,7 +423,7 @@ public List<Country> getCountryDetails() {
 @Override
 public List<CustomerLevels> getCustomerStatusDetails() 
 {
-	return sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).list();
+	return sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).setProjection(Projections.property("status")).list();
 }
 @Override
 public District getDistrictDataById(Integer districtId) {
@@ -506,7 +507,13 @@ public List<AddAction> getactiondata() {
 
 public List<AddPlan> getActionList() {
 	// TODO Auto-generated method stub
-	return (List<AddPlan>) sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();}
+	return (List<AddPlan>) sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();
+	}
+@Override
+public List<CustomerLevels> getCustomerStatusDetailsList() {
+	return sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).list();
+}
+
 
 
 

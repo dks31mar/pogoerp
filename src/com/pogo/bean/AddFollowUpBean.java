@@ -12,6 +12,11 @@ public class AddFollowUpBean
 	private String followupTimeInMin;
 	private String followupTimeOutMin;
 	private String contactPerson;
+	private String action;
+	private int actionId;
+	private String custStatus;
+	private String cusAddress;
+	private String cusOrganisation;
 	public Integer getFollowUpId() {
 		return followUpId;
 	}
@@ -65,6 +70,36 @@ public class AddFollowUpBean
 	}
 	public void setContactPerson(String contactPerson) {
 		this.contactPerson = contactPerson;
+	}
+	public String getAction() {
+		return action;
+	}
+	public void setAction(String action) {
+		this.action = action;
+	}
+	public int getActionId() {
+		return actionId;
+	}
+	public void setActionId(int actionId) {
+		this.actionId = actionId;
+	}
+	public String getCustStatus() {
+		return custStatus;
+	}
+	public void setCustStatus(String custStatus) {
+		this.custStatus = custStatus;
+	}
+	public String getCusAddress() {
+		return cusAddress;
+	}
+	public void setCusAddress(String cusAddress) {
+		this.cusAddress = cusAddress;
+	}
+	public String getCusOrganisation() {
+		return cusOrganisation;
+	}
+	public void setCusOrganisation(String cusOrganisation) {
+		this.cusOrganisation = cusOrganisation;
 	}
 	
 	

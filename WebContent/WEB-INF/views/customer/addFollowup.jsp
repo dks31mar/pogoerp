@@ -15,36 +15,43 @@
 <link rel="stylesheet" type="text/css" href="resources/time/dist/bootstrap-clockpicker.min.css">
 <link rel="stylesheet" type="text/css" href="resources/time/assets/css/github.min.css"> -->
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <script>
-/* function getData(id)
+ function getData(id)
 {
-	alert(id);
-	$
-	.ajax({
-		url :getCustomerRecord,
+	 alert(id);
+	 $('#address').empty();
+	 $('#status').empty();
+	$.ajax({
+		url :'getCustomerRecord',
 		type : 'POST',
-		data:
-			{
+		data:{
 			'id':id,
-			}
-			var j=JSON.parse(data);
-			alert(j.toSource);
+		   },
+		   success : function(data,status)
+		   {
+		   var j=JSON.parse(data);
+		   var statusdata=j[0].statusList;
+		   console.log(statusdata);
 			var st='';
 				st += j[0].address;
 				st += j[0].status;
-				
-				
-
-		error : function(error, status) {
+				$('#address').val(j[0].address);
+				//$('#status').val(j[0].status);
+				$('#status').append($('<option>', {value:j[0].status, text:j[0].status}));
+				for(var v=0;v<=statusdata.length;v++){
+				$('#status').append($('<option>', {value:statusdata[v], text:statusdata[v]}));
+				}
+				},
+		error: function(error, status) 
+		 {
 alert("Not Reachable");
-		}
-		
+		 }
 	});
-	} */
+	} 
 </script>
 
 
@@ -137,7 +144,7 @@ alert("Not Reachable");
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-   <select    class="form-control" name="followupDate" onclick="getData(this.value)" >
+   <select    class="form-control" name="followupDate" onchange="getData(this.value)" >
    <option value="" selected="selected">--Select Customer--</option>
    <c:if test="${!empty salesList}">
    <c:forEach items="${salesList}" var="list">
@@ -154,7 +161,7 @@ alert("Not Reachable");
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-   <input  type="text" value="" class="form-control" name="followupDate" id="followdate"  placeholder="Address" >
+   <input  type="text" class="form-control" name="cusAddress" id="address"  placeholder="Address" >
     </div>
   </div>
   <label class="col-md-2 control-label" >Status<span
@@ -162,9 +169,9 @@ alert("Not Reachable");
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select   name="actionType"  required="required"  class="form-control selectpicker">
-  <option>---Select Status---</option> 
-      <option value="sales">Phone</option>
+  <select   name="custStatus"  required="required" id="status" class="form-control selectpicker">
+  
+      
   </select>
     </div>
   </div>

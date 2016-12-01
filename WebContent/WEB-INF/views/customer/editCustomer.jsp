@@ -16,7 +16,6 @@ function getstateList(id) {
 	$
 			.ajax({
 				url : url,
-
 				type : 'POST',
 				success : function(data, status) {
 					$("#state").empty();
