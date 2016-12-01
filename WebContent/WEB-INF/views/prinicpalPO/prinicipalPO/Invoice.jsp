@@ -248,9 +248,9 @@
 					<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="tpinjpy" id="tpinjpy${loop.index+1}" value="${poref.tpinjpy}" class="form-control"></td>
 					<td align="center" style="right: 4px; position: relative;">&nbsp;<input readonly type="text" style="text-align: center;width: 55px;" name="qty" id="qty${loop.index+1}" class="form-control" value="${poref.qty}"></td>
 					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;" name="totaljpy" id="totaljpy${loop.index+1}" value="${poref.totaljpy}" class="form-control"></td>
-					<td align="center">&nbsp;<button  type="button" style="text-align: center;width: 49px;background-color: #3C8DBC;color: aliceblue" name="customerporefe" id="pendindqty${loop.index+1}" value="${poref.pendingqty}" class="form-control" onclick="getacknowlegdement(${loop.index+1});">${poref.pendingqty}</button></td>
-					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;width: 69px" name="tpinjpy" id="tpinjpy${loop.index+1}" value="" class="form-control"></td>
-					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;width: 69px" name="tpinjpy" id="tpinjpy${loop.index+1}" value="" class="form-control"></td>
+					<td align="center">&nbsp;<button  type="button" style="text-align: center;width: 49px;background-color: #3C8DBC;color: aliceblue" name="pendingqty" id="pendingqty${loop.index+1}" value="${poref.pendingqty}" class="form-control" onclick="getacknowlegdement(${loop.index+1});">${poref.pendingqty}</button></td>
+					<td align="center">&nbsp; <input  type="text" style="text-align: center;width: 69px" name="reciveqty" id="reciveqty${loop.index+1}" value="" class="form-control" onkeyup="getcals(this.value,${loop.index+1});"></td>
+					<td align="center">&nbsp; <input  type="text" style="text-align: center;width: 69px" name="remainingqty" id="remainingqty${loop.index+1}" value="" class="form-control"></td>
 					<td align="center">&nbsp;<div class="checkbox">
           		<label>
             <input type="checkbox" value="" name="savecheck">
@@ -320,5 +320,27 @@ $( function() {
         }
     }
   
+ $(document).ready(function(){
+	 var table = document.getElementById("quotprodtable");
+		var len=table.rows.length-1;
+		var qty;
+		var pending;
+		for(var i=1;i<=len;i++){
+			
+			qty=$('#qty'+i).val();
+			pending=$('#pendingqty'+i).val();
+			if(pending=='0.0'){
+				$('#reciveqty'+i).prop("readonly", true);
+				$('#remainingqty'+i).prop("readonly", true);
+			}
+		}
+ });
  
+ 
+ function getcals(v1,v2){
+	 
+	 $('#remainingqty'+v2).val();
+ }
+ 
+ $('#test').attr('id');
 </script>
