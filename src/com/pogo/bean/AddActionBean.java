@@ -3,6 +3,7 @@ package com.pogo.bean;
 public class AddActionBean {
 	
 	private int id;
+	private String action;
 	public int getId()
 	{
 		return id;
@@ -16,6 +17,6 @@ public class AddActionBean {
 	public void setAction(String action) {
 		this.action = action;
 	}
-	private String action;
+	
 
 }

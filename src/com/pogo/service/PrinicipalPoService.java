@@ -52,6 +52,8 @@ public interface PrinicipalPoService {
 
 	void deleteParticularAck(String s1);
 
+	List<PoRefEntryItemDetailBean> getInvoiceData(String poref);
+
 	
 
 

@@ -20,6 +20,7 @@ import com.pogo.bean.TeamSegmentBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.bean.ZonesBean;
 import com.pogo.model.AddAction;
+import com.pogo.model.AddPlan;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.District;
@@ -96,24 +97,32 @@ public interface MasterMastersService {
 	ServiceProviderBean getServiceProvider(int id);
 	void editSourceProviderbyId(ServiceProviderBean servicepro);
 	List<CountryBean> countryDetails();
-	List<CustomerLevelsBean> getCustomersStatus();
+	List<CustomerLevelsBean> getCustomersStatusList();
 	List<StateBean> getStateByCountryId(int id);
 	List<LocationBean> getLocationDetails();
 
-
-
 	List<DistrictBean> getDistrictByStateIdAndcountryId(int id); // comment by shweta
-
-	
-
 
 	void deleteServiceprovider(int id);
 	
 
-	List<AddAction> actionPlanList();
-	void addActionPlan(AddActionBean poref1);
+	List<AddPlan> actionPlanList();
+	void addActionPlan(AddPlanBean poref1);
 
 	AddActionBean EditForActionPlan(int id);
-	void saveAddAction(AddPlanBean planbean);
+
+	List<AddActionBean> findAllAction();
+
+
+	List<AddPlanBean> getActionList();
+	void saveAddAction(AddActionBean actionBean2);
+	
+	void addActionPlan(AddActionBean poref1);
+	AddActionBean getActionById(int id);
+
+	
+
+	
+
 
 }

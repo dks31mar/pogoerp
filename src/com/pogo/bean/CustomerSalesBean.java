@@ -28,6 +28,16 @@ public class CustomerSalesBean
 	private String  category;
 	private Integer countryId;
 	private String country;
+	private String[] statusList;
+	
+	
+	
+	public String[] getStatusList() {
+		return statusList;
+	}
+	public void setStatusList(String[] statusList) {
+		this.statusList = statusList;
+	}
 	public Integer getCustomerId() {
 		return customerId;
 	}

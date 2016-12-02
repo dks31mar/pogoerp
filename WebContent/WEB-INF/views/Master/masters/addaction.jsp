@@ -35,7 +35,7 @@
   
   
   <div class="col-md-10" align="right" id="dddd1234"><input path="loginname" type="text" class="validate[required] text-input" id="addaction"
-						style="border-radius: 5px;" value="${planname.action}" name="" placeholder="Add Action "
+						style="border-radius: 5px;" value="${actionlist.action}" name="" placeholder="Add Action "
 						maxlength="20" autofocus="autofocus" onclick="stopmoving();"></input></div>
   
   
@@ -69,22 +69,19 @@
 				 <th style="width: 60px;">Edit</th>
 			    <th style="width: 60px;"> Delete</th>
 			</tr>
-			 <c:if test="${!empty actionplanlist}">
-				<c:forEach items="${actionplanlist}" var="action" varStatus="loop">
-
+			 <c:if test="${!empty actionList}">
+				<c:forEach items="${actionList}" var="action" varStatus="loop">
 					<tr>
 						<td>${loop.index+1}</td>
 						<td>${action.action}</td>
-		              
-						 
-						<td><a href="#" onclick="editCur(${action.id})" title="Edit">
-								<span class="glyphicon glyphicon-pencil"></span></a></td>		
+		             
+						<td><a href="#" onclick="editCur(${actionId.id})" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>		
 					 <td style="margin"><a href="deletecustomerso?id=${action.id}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>  
 					</tr>
 
 				</c:forEach>
-			</c:if>  
+			</c:if>   
 
 
 
@@ -125,7 +122,7 @@ $('#saveForm').click(function (){
 		$('#messagediv').show();
 		
 	}else{
-		var jsonObj={'paln':action
+		var jsonObj={'action':action
 		} ;
 	$.ajax({
 			url: "saveaddaction",
@@ -139,7 +136,6 @@ $('#saveForm').click(function (){
 		        },
 			     success: function(resposeJsonObject){
 			    	 $('#openModal').hide();
-			    	 //window.location.currency;
 			    	 window.location.reload();
 		     
 		    }});

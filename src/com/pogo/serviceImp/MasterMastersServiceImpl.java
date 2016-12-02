@@ -674,8 +674,8 @@ public List<CountryBean> countryDetails()
 }
 
 @Override
-public List<CustomerLevelsBean> getCustomersStatus() {
-	List<CustomerLevels> cusStatus=masterMastersdao.getCustomerStatusDetails();
+public List<CustomerLevelsBean> getCustomersStatusList() {
+	List<CustomerLevels> cusStatus=masterMastersdao.getCustomerStatusDetailsList();
 	List<CustomerLevelsBean> beans=new ArrayList<CustomerLevelsBean>();
 	for(CustomerLevels status:cusStatus)
 	{
@@ -735,27 +735,15 @@ public List<DistrictBean> getDistrictByStateIdAndcountryId(int id)
 
 		bean.setDistrict(data.getDistrict());
 		System.out.println("on service" +data.getDistrict());
-
-		bean.setDistrict(data.getDistrict());
 		System.out.println("on service District" +data.getDistrict());
-
 		State state=data.getState();
-
-		Country country=data.getCountry();
-
-		
 		bean.setStatesId(state.getStateId());
-
 		bean.setStateName(state.getState());
 		System.out.println("On Service for district"+state.getState());
-
 		bean.setStatesId(state.getStateId());
 		bean.setCountryName(state.getCountry().getCountry());
 		bean.setCountryId(state.getCountry().getCountryId());
-		
-		
-
-		districtBeans.add(bean);//comment for test
+		districtBeans.add(bean);
 
 	}
 	return districtBeans;
@@ -781,7 +769,7 @@ public void addActionPlan(AddActionBean poref1) {
 }
 
 @Override
-public List<AddAction> actionPlanList() {
+public List<AddPlan> actionPlanList() {
 	return masterMastersdao.actionPlanList();
 }
 
@@ -796,18 +784,73 @@ public AddActionBean EditForActionPlan(int id) {
 	
 }
 
-@Override
+/*@Override
+@Transactional
 public void saveAddAction(AddPlanBean planbean) {
 	// TODO Auto-generated method stub
 	AddPlan bean=new AddPlan();
 	bean.setPlan(planbean.getPaln());
 	masterMastersdao.saveAddAction(bean);
 	
+}*/
+
+@Override
+
+public List<AddActionBean> findAllAction() {
+	List<AddAction> actionlist=masterMastersdao.getactiondata();
+	List<AddActionBean> actionbean=new ArrayList<AddActionBean>();
+	for(AddAction data:actionlist)
+	{
+		AddActionBean bean=new AddActionBean();
+		bean.setId(data.getId());
+		bean.setAction(data.getAction());
+		actionbean.add(bean);
+	}
+	return actionbean;
+}
+public List<AddPlanBean> getActionList() {
+	List<AddPlan> addplan=masterMastersdao.getActionList();
+	List<AddPlanBean> bean=new ArrayList<>();
+  return bean;
+	
+}
+
+@Override
+public void saveAddAction(AddActionBean actionBean2) 
+{
+	AddAction action=new AddAction();
+	action.setAction(actionBean2.getAction());
+	masterMastersdao.saveAddAction(action);
+	
+}
+
+
+@Override
+public void addActionPlan(AddPlanBean poref1) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public AddActionBean getActionById(int id) {
+     AddAction action=masterMastersdao.getActionDataById(id);
+     AddActionBean bean=new AddActionBean();
+     bean.setAction(action.getAction());
+     bean.setId(action.getId());
+     
+	return bean;
+
+}
+
+	
+
 }
 
 
 
-}
+
+
+
 
 
 

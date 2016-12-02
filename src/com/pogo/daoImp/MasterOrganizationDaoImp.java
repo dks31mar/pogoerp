@@ -303,7 +303,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 		sessionFactory.getCurrentSession().save(compti);
 		
 	}
-
+ 
 	@Override
 	public void updateCompetitior(CompetitiorsProfile comp) {
 		//sessionFactory.getCurrentSession().createQuery("UPDATE CompetitiorsProfile set contactperson="+comp.getContactperson()+",set name="+comp.getName()+",set address="+comp.getaddress()+," where compid="+comp.getCompid()).executeUpdate();
