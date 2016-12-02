@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="invoicedetail")
@@ -16,8 +19,7 @@ public class InvoiceDetail implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="invoicedetailid")
 	private Integer invoicedetailid ;
-	@Column(name="invno")
-	private	String invno ;
+	
 	@Column(name="porefno")
 	private String	porefno ;
 	@Column(name="particular")
@@ -28,6 +30,10 @@ public class InvoiceDetail implements Serializable{
 	private double receiveqty ;
 	@Column(name="totalqty")
 	private double totalqty ;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="invno")
+	private InvoiceTab invoicetab;
 	
 	
 	public String getPorefno() {
@@ -42,11 +48,12 @@ public class InvoiceDetail implements Serializable{
 	public void setInvoicedetailid(Integer invoicedetailid) {
 		this.invoicedetailid = invoicedetailid;
 	}
-	public String getInvno() {
-		return invno;
+	
+	public InvoiceTab getInvoicetab() {
+		return invoicetab;
 	}
-	public void setInvno(String invno) {
-		this.invno = invno;
+	public void setInvoicetab(InvoiceTab invoicetab) {
+		this.invoicetab = invoicetab;
 	}
 	public String getParticular() {
 		return particular;
