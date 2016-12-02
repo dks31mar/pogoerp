@@ -681,23 +681,29 @@ public List<UserEmployeeBean> getUserByName(String empName) {
 }
 
 @Override
-public void saveDataCompetitiors(CompetitiorsProfileBean poref) {
+public void saveDataCompetitiors(CompetitiorsProfileBean compti) {
 	
-	CompetitiorsProfile compp=new CompetitiorsProfile();
-	compp.setName(poref.getName());
-	compp.setContactperson(poref.getContactperson());
-	compp.setAddress(poref.getAddress());
-	compp.setDesignation(poref.getDesignation());
-	compp.setMobileno(poref.getMobileno());
-	compp.setPhoneno(poref.getPhoneno());
-	compp.setEmailid(poref.getEmailid());
-    compp.setProductbrand(poref.getProductbrand());
-	compp.setProductname(poref.getProductname());
-	compp.setWarrentyperiod(poref.getWarrentyperiod());
-	compp.setPrice(poref.getPrice());
-	compp.setNooffreeamc(poref.getNooffreeamc());
-	compp.setAmcrate(poref.getAmcrate());
-	regionDao.saveDataCompetitiors(compp);
+	CompetitiorsProfile poref1=new CompetitiorsProfile();
+	
+
+	poref1.setName(compti.getName());
+	poref1.setContactperson(compti.getContactperson());
+	poref1.setAddress(compti.getAddress());
+	poref1.setPhoneno(compti.getPhoneno());
+	poref1.setMobileno(compti.getMobileno());
+	poref1.setProductbrand(compti.getProductbrand());
+	poref1.setEmailid(compti.getEmailid());
+	poref1.setWarrentyperiod(compti.getWarrentyperiod());
+	poref1.setProductname(compti.getProductname());
+	poref1.setNooffreeamc(compti.getNooffreeamc());
+	poref1.setPrice(compti.getPrice());
+	poref1.setAmcrate(compti.getAmcrate());
+	
+	
+	
+	
+	
+	regionDao.saveDataCompetitiors(poref1);
 	
 		
 }
