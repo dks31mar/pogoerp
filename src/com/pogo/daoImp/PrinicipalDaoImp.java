@@ -127,7 +127,7 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	@Override
 	public List<PorefSupplierDetail> getSupplierlist() {
 		
-		return (List<PorefSupplierDetail>) sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class).addOrder(Order.asc("porefdate")).list();
+		return (List<PorefSupplierDetail>) sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class).addOrder(Order.desc("porefdate")).list();
 	}
 
 	@Override

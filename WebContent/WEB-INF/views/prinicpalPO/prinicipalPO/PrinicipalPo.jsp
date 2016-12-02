@@ -85,7 +85,7 @@ System.out.println();
 				</div>
 				<div class="col-sm-9">
 					<input type="text" name="principalname"
-						placeholder="Principal Name" value="YMC Co. Ltd., Japan"
+						placeholder="Principal Name" value="Testing Private Limited"
 						class="form-control" style="display: inline-block;" ReadOnly>
 				</div>
 			</div>
@@ -95,7 +95,7 @@ System.out.println();
 				</div>
 				<div class="col-sm-9">
 					<textarea rows="4" cols="77" name="address"
-						style="border-radius: 5px; background-color: #f2f2f2;" readonly>YMC CO.,LTD. YMC Karasuma-Gojo Building 284 Daigo-cho Karasuma Nishiliru Gojo-dori,Shimogyo -Ku Kyoto 600-8106 Japan"  </textarea>
+						style="border-radius: 5px; background-color: #f2f2f2;" readonly> Testing Private Limited,Bulding No.:XX ,XXXXX </textarea>
 						
 				</div>
 			</div>
@@ -154,7 +154,7 @@ System.out.println();
 								id='tpinjpy' value="" class='form-control' /></td>
 
 							<td align="center" style="right: 4px; position: relative;">&nbsp;
-								<input  type='text' style='text-align: center;' name='qty'
+								<input  type='text' style='text-align: center;' name='qty' onkeypress='return event.charCode >= 48 && event.charCode <= 57'
 								id='qty' class='form-control' value=""/>
 							</td>
 							<td align="center">&nbsp; 
@@ -382,7 +382,7 @@ System.out.println();
 							"<input readonly type='text' value='"+partno+"' name='particulee1'style='overflow: auto; border-radius: 3px; width: 223px;'id='partno"+id+"' class='form-control'/></td>"+
 							"<td style='width: 250px'>&nbsp; <input readonly name='description' id='description"+id+"' class='form-control' style='text-align: center;width: 238px;' value='"+dis+"' ></input></td>"+
 							"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='tpinjpy' id='tpinjpy"+id+"' value='"+tpn+"' class='form-control' /></td>"+
-							"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='qty"+id+"' class='form-control' value='"+qty+"' /></td>"+
+							"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='qty"+id+"' class='form-control' onkeypress='return event.charCode >= 48 && event.charCode <= 57' value='"+qty+"' /></td>"+
 							"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'  /></td>"+
 							"<td align='center'>&nbsp;<input readonly type='text' style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' name='customerporefe' id='customerporefe"+id+"' value='"+custpo+"' class='form-control'/>"+
 							"</td>"+
