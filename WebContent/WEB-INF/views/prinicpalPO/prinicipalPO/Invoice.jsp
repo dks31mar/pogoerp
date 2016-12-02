@@ -310,7 +310,8 @@
 <script>
 
 $( function() {
-    $("#invoicedate").datepicker({dateFormat: 'dd/mm/yy'});
+	$( "#invoicedate" ).datepicker({ minDate: 0,dateFormat: 'dd/mm/yy'});
+   
     
   });
   
@@ -428,27 +429,7 @@ function getcals(v1,v2){
 	});
  
  
- function checkToDayDate(){
-	 
-	 var expireDateStr = $('#invoicedate').val();
-	 alert(expireDateStr);
-	 var expireDateArr = expireDateStr.split("/");
-	 var dd=expireDateArr[0];
-	 var mm=expireDateArr[1];
-	 var yy=expireDateArr[2];
-	
-	 var curr_date = new Date();
-	 var dd1 = curr_date.getDate();
-     var mm1 = curr_date.getMonth()+1; 
-     var yyyy1 = curr_date.getFullYear();
-	 if (dd1 >= dd) {
-	  if(mm1>=mm){
-		  
-	  }
-	 
-	 }
-	 
- } 
+
  
  
  /* function checkToDayDate(){
