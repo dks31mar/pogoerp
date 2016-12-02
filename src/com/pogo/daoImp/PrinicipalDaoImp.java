@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
@@ -21,11 +22,13 @@ import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.dao.PrinicipalDao;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.InvoiceDetail;
+import com.pogo.model.InvoiceTab;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
+import com.pogo.model.ProductStock;
 @Repository("prinicipaldao")
 @SuppressWarnings("unchecked")
 public class PrinicipalDaoImp implements PrinicipalDao{
@@ -124,7 +127,7 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	@Override
 	public List<PorefSupplierDetail> getSupplierlist() {
 		
-		return (List<PorefSupplierDetail>) sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class).list();
+		return (List<PorefSupplierDetail>) sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class).addOrder(Order.asc("porefdate")).list();
 	}
 
 	@Override
@@ -242,6 +245,32 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	public List<InvoiceDetail> getpendyqtyfrominvoice(String porefNo, String particular) {
 		List<InvoiceDetail> pa=sessionFactory.getCurrentSession().createCriteria(InvoiceDetail.class).add(Restrictions.eq("porefno", porefNo)).add(Restrictions.eq("particular", particular)).list();
 		return pa;
+	}
+
+	@Override
+	public void saveinvoicetab(InvoiceTab it) {
+		sessionFactory.getCurrentSession().save(it);
+		
+	}
+
+	@Override
+	public void saveinvoicedetail(InvoiceDetail id) {
+		sessionFactory.getCurrentSession().save(id);
+		
+		
+	}
+
+	@Override
+	public Integer getProidfrompromaster(String particular) {
+		Integer id=(Integer) sessionFactory.getCurrentSession().createCriteria(ProductMaster.class).add(Restrictions.eq("productname", particular)).setProjection(Projections.property("productid")).uniqueResult();
+		return id;
+	}
+
+	@Override
+	public void saveproductstock(ProductStock prostock) {
+		sessionFactory.getCurrentSession().save(prostock);
+		sessionFactory.getCurrentSession().flush();
+		
 	}
 	
 	

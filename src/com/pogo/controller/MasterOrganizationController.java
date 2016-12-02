@@ -450,21 +450,39 @@ public class MasterOrganizationController {
 
 	public ModelAndView AddCompetitiorsProfile(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,
 			HttpServletRequest request, BindingResult result) {
-
+    List<CompetitiorsProfileBean> list = regionService.getcompetitiorList();
+    Map<String , Object> model = new HashMap<String,Object>();
+    model.put("complist", list);
 		// regionService.AddCompetitiorsProfile(poref);
-		return new ModelAndView("competitiorsProfile");
+		return new ModelAndView("competitiorsProfile" , model);
 	}
+	
+	
 
 	@RequestMapping(value = "saveDataCompetitiors", method = RequestMethod.POST)
 	@ResponseBody
 	public void saveDataCompetitiors(@RequestBody String json, Model model) throws IOException {
 		System.out.println("i m in controller Add comptitiorprofile data   \n" + json);
 		ObjectMapper mapper = new ObjectMapper();
+		
 		CompetitiorsProfileBean compti = mapper.readValue(json, CompetitiorsProfileBean.class);
 
 		CompetitiorsProfileBean poref1 = new CompetitiorsProfileBean();
-
-		regionService.saveDataCompetitiors(compti);
+		
+		poref1.setName(compti.getName());
+		poref1.setContactperson(compti.getContactperson());
+		poref1.setAddress(compti.getAddress());
+		poref1.setPhoneno(compti.getPhoneno());
+		poref1.setMobileno(compti.getMobileno());
+		poref1.setProductbrand(compti.getProductbrand());
+		poref1.setEmailid(compti.getEmailid());
+		poref1.setWarrentyperiod(compti.getWarrentyperiod());
+		poref1.setProductname(compti.getProductname());
+		poref1.setNooffreeamc(compti.getNooffreeamc());
+		poref1.setPrice(compti.getPrice());
+		poref1.setAmcrate(compti.getAmcrate());
+		regionService.saveDataCompetitiors(poref1);
+		System.out.println("end of save data");
 	}
 
 	@RequestMapping(value = "/addfeature", method = RequestMethod.GET)

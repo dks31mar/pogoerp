@@ -57,10 +57,36 @@ public class CommonDaoImp implements CommonDao{
 	Iterator itr1=list1.iterator();
 	
 	String CBW=(String) itr.next();
+	String s2=null;
+	String s3=null;
 	String normal=(String)itr1.next();
+	try{
+	if(CBW.contains("CBW")){
+		String data=CBW.split("/")[2];
+		int i=Integer.parseInt(data.split("-")[1]);
+		s2=CBW.split("/")[0]+"/"+CBW.split("/")[1]+"/"+"CBW"+"-"+(i+1);
+	}else {
+		int i=Integer.parseInt(CBW.split("/")[2]);
+		s2=CBW.split("/")[0]+"/"+CBW.split("/")[1]+"/"+"0"+(i+1);
+	}
+}catch(Exception ex){
+		
+	}
+	try{
+	if(normal.contains("CBW")){
+		String data=normal.split("/")[2];
+		int i=Integer.parseInt(data.split("-")[1]);
+		s3=normal.split("/")[0]+"/"+normal.split("/")[1]+"/"+"CBW"+"-"+(i+1);
+	}else {
+		int i=Integer.parseInt(normal.split("/")[2]);
+		s3=normal.split("/")[0]+"/"+normal.split("/")[1]+"/"+"0"+(i+1);
+	}
+	}catch(Exception ex){
+		
+	}
 	HttpSession session=request.getSession();
-	session.setAttribute("normal", normal);
-	session.setAttribute("CBW", CBW);
+	session.setAttribute("normal", s3);
+	session.setAttribute("CBW", s2);
 	
 	}
 	/************************************************** use by shweta ***************************************************/

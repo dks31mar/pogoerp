@@ -27,6 +27,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.pogo.bean.Book;
 import com.pogo.bean.CurrencyBean;
+import com.pogo.bean.InvoiceDetailBean;
+import com.pogo.bean.InvoiceTabBean;
 import com.pogo.bean.JsonArraytoJson;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
@@ -34,6 +36,8 @@ import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.PrinicipalPoPDFBean;
 import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.bean.ProductMasterBean;
+import com.pogo.model.InvoiceDetail;
+import com.pogo.model.InvoiceTab;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.ProductAcknowledgement;
@@ -447,10 +451,6 @@ public void saveAcknowledData(@RequestBody String json,Model model) throws IOExc
 		prinicipalposervice.saveAcknowledData(bean);
 	}
 	
-	
-	
-	
-	
 	/*ObjectMapper mapper=new ObjectMapper();
 	ProductAcknowledgementBean bean=mapper.readValue(json, ProductAcknowledgementBean.class);
 		prinicipalposervice.saveAcknowledData(bean);	*/
@@ -591,6 +591,49 @@ public ModelAndView getsupplierinvoice(@RequestParam("poref") String poref,@Requ
 	m.addAttribute("porefnumber", porefNo);
 return new ModelAndView("supplierinvoiceview",model);
 //return new ModelAndView("supplierinvoiceview");
+}
+
+
+
+@RequestMapping(value="saveinvoiceindb",method=RequestMethod.POST)
+@ResponseBody
+public void saveInvoiceData(@RequestBody String json,Model model) throws IOException{
+	System.out.println(""+json);
+	
+	System.out.println(json);
+	Gson gson=new Gson();
+	JsonArraytoJson [] js=gson.fromJson(json, JsonArraytoJson[].class);
+	System.out.println(js.length);
+	List<String> lst=new ArrayList<String>();
+		for(JsonArraytoJson e:js){
+			System.out.println(e.getName()+"\t\t\t\t<><><><><><><><>\t"+e.getValue());
+			lst.add(e.getValue());
+			}
+	System.out.println(lst.size());
+	String [] meth=lst.toArray(new String[lst.size()]);
+	for(int i=0;i<meth.length;i=i+6){
+		InvoiceTabBean tbean=new InvoiceTabBean();
+		InvoiceDetailBean dbean=new InvoiceDetailBean();
+		
+		
+		tbean.setInvdate(meth[i]);
+		tbean.setInvno(meth[i+1]);
+		tbean.setPorefno(meth[i+2]);
+		dbean.setParticular(meth[i+3]);
+		dbean.setTotalqty(Double.parseDouble(meth[i+4]));
+		dbean.setReceiveqty(Double.parseDouble(meth[i+5]));
+		if(i==0){
+			prinicipalposervice.saveinvoicetab(tbean);
+			prinicipalposervice.saveinvoicedetail(dbean,tbean);
+			prinicipalposervice.saveproductstock(dbean,tbean);
+		}else {
+			prinicipalposervice.saveinvoicedetail(dbean,tbean);
+			prinicipalposervice.saveproductstock(dbean,tbean);
+		}
+		
+	}
+	
+	
 }
 
 

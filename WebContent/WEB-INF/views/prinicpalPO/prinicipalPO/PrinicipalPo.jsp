@@ -15,9 +15,12 @@
 String hh=(String)session.getAttribute("jsonp");
 String norml=(String)session.getAttribute("normal");
 if(norml==null){
-norml="Test/11-10/000";
+norml="Test/11-10/001";
 }
 String cb=(String)session.getAttribute("CBW");
+if(cb==null){
+	cb="Test/11-10/CBW-001";
+}
 /* Integer total=(Integer)session.getAttribute("total"); */
 java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
 java.util.Date date = new java.util.Date();
@@ -181,8 +184,13 @@ System.out.println();
 			
 				<div class="row form-group" style="top: 10px; position: relative;"
 					onclick="">
-					
-					
+					<div class="col-sm-10 form-level" align="right">
+						Total:<font color="#FF0000"></font>
+					</div>
+					<div align="right">
+						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
+							value="${total}" style="width: 15%;" readonly>
+					</div>
 				</div>
 
 				<hr align="left" size="" width="100%"
@@ -194,18 +202,18 @@ System.out.println();
 					<tr>
 						
 						
-						<td>
+						<!-- <td>
 							<button type="button" value="update" onclick="numberingRow();"
 								class="btn btn-success pull-center"
 								style="background-color: #3C8DBC;">Number row</button>
-						</td>
+						</td> -->
 						<td>&nbsp;&nbsp;</td>
 						<td>
 						<button type="button" value="Save" onClick=""
 						class="btn btn-success pull-center" id="savedata445"
 						style="background-color: #3C8DBC;">Save</button>
 						</td>
-						<td class="col-sm-2 form-level">
+						<%-- <td class="col-sm-2 form-level">
 						
 						
 						Total:<font color="#FF0000"></font>
@@ -217,7 +225,7 @@ System.out.println();
 						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
 							value="${total}" style="width: 65%;" readonly>
 					</div>
-						</td>
+						</td> --%>
 						
 					</tr>
 

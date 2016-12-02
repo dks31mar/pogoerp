@@ -13,17 +13,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.pogo.bean.InvoiceDetailBean;
+import com.pogo.bean.InvoiceTabBean;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.dao.PrinicipalDao;
 import com.pogo.model.InvoiceDetail;
+import com.pogo.model.InvoiceTab;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
+import com.pogo.model.ProductStock;
 import com.pogo.service.PrinicipalPoService;
 
 @Service("prinicipalposervice")
@@ -84,7 +88,7 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		
 		PoRefEntryItemDetail porefentry=new PoRefEntryItemDetail();
 		PorefSupplierDetail pore=new PorefSupplierDetail();
-		pore.setPorefno(s2);
+		pore.setPorefno(s);
 		porefentry.setParticular(poRefEntry.getParticular());
 		porefentry.setProductdescription(poRefEntry.getProductdescription());
 		porefentry.setTpinjpy(poRefEntry.getTpinjpy());
@@ -143,7 +147,7 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		}
 		
 		PorefSupplierDetail porefsup=new PorefSupplierDetail();
-		porefsup.setPorefno(s2);
+		porefsup.setPorefno(s);
 		porefsup.setAddress("YMC CO.,LTD. YMC Karasuma-Gojo Building 284 Daigo-cho Karasuma Nishiliru Gojo-dori,Shimogyo -Ku Kyoto 600-8106 Japan");
 		porefsup.setPrincipalname("YMC Co. Ltd., Japan");
 		porefsup.setPorefdate(porefs.getPorefdate());
@@ -422,6 +426,52 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		 	 lst1.add(bean);
 		}
 		return lst1;
+	}
+
+	@Override
+	@Transactional
+	public void saveinvoicetab(InvoiceTabBean tbean) {
+		InvoiceTab it=new InvoiceTab();
+		it.setInvdate(tbean.getInvdate());
+		it.setInvno(tbean.getInvno());
+		it.setPorefno(tbean.getPorefno());
+		prinicipaldao.saveinvoicetab(it);
+	}
+
+	@Override
+	@Transactional
+	public void saveinvoicedetail(InvoiceDetailBean dbean, InvoiceTabBean tbean) {
+		InvoiceDetail id=new InvoiceDetail();
+		InvoiceTab it=new InvoiceTab();
+		it.setInvno(tbean.getInvno());
+		id.setParticular(dbean.getParticular());
+		id.setTotalqty(dbean.getTotalqty());
+		id.setReceiveqty(dbean.getReceiveqty());
+		id.setPorefno(tbean.getPorefno());
+		id.setInvoicetab(it);
+		
+		prinicipaldao.saveinvoicedetail(id);
+		
+		
+	}
+
+	@Override
+	@Transactional
+	public void saveproductstock(InvoiceDetailBean dbean, InvoiceTabBean tbean) {
+		int limit=(int)(dbean.getReceiveqty());
+		Integer proId=prinicipaldao.getProidfrompromaster(dbean.getParticular());
+		ProductStock prostock=null;
+		for(int i=1;i<=limit;i++){
+		prostock=new ProductStock();
+		prostock.setProductname(dbean.getParticular());
+		prostock.setProductid(proId);
+		prostock.setInvno(tbean.getInvno());
+		
+			System.out.println(i+   "                               kkkkkkkkkkkkkkk          "+limit);
+		prinicipaldao.saveproductstock(prostock);
+		}
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>     product iddddd    "+proId);
+		
 	}
 
 	

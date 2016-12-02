@@ -69,8 +69,8 @@
   
 
 <div class="form-group">
-  <label class="col-md-2 control-label"> Name<span
-					style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label"> Name<span style="color: red;">*</span></label>  
+					
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -235,38 +235,50 @@
 
  <script type="text/javascript">
 //for profile page save data
-	$('#senddata').click(function(){
+
+$('#senddata').click(function(){
 	
 	  	var name =	$('#name').val();
 	 	var contactper =	$('#contactper').val();
 		var address =	$('#address').val();
-	 	var designation=$('#designation').val();
-	  	var mobileno   =	$('#phone1').val();
-	  	var phoneno=  $('#phone2').val();
-	  	var email1    =	$('#email1').val();  	
-      	var faxno    =	$('#faxno').val();
-      	var productbrand= $('#productbrand').val();
-      	var productname= $('#productname').val();
-      	var warrantyPeriod=$('#warrantyPeriod').val();
-      	var price=$('#price').val();
-      	var nofofreeamc=$('#freeamc').val();
-      	var Rateamc=$('#rateamc').val();
-	    alert(name+contactper+address+designation+mobileno+phoneno+email1+faxno+productbrand+productname+warrantyPeriod+price+nofofreeamc+Rateamc);
+	 	/* var designation=$('#designation').val(); */
+	 	
+	 	var phoneno=  $('#phone2').val();
+	  	var mobileno   = $('#phone1').val();
+		var productbrand= $('#productbrand').val();
+		
+		
+	  	var email1    =	$('#email1').val();  
+	  	var warrantyPeriod=$('#warrantyPeriod').val();
+	  	var productname= $('#productname').val();
+	  	var nofofreeamc=$('#freeamc').val();
+		var price=$('#price').val();
+		var Rateamc=$('#rateamc').val();
+		
+		
+		/* var faxno    =	$('#faxno').val(); */
+      
+      	
+      	
+      
+      	
+      
+	  //  alert(name+contactper+address+designation+mobileno+phoneno+email1+faxno+productbrand+productname+warrantyPeriod+price+nofofreeamc+Rateamc);
 		
 	    var jsonObj={
 				
 	    		'name':name,
 	    		'contactperson':contactper,
 	    		'address':address,
-	    		'designation':designation,
-	    		'mobileno':mobileno,
+	    		/* 'designation':designation, */
 	    		'phoneno':phoneno,
-	    		'emailid':email1,
+	    		'mobileno':mobileno,
 	    		'productbrand':productbrand,
-	    		'productname':productname,
+	    		'emailid':email1,
 	    		'warrentyperiod':warrantyPeriod,
-	    		'price':price,
+	    		'productname':productname,
 	    		'nooffreeamc':nofofreeamc,
+	    		'price':price,
 	    		'amcrate':Rateamc
 				} ;
 		 
@@ -290,7 +302,7 @@
 	
 	);
 
-	  $( function() {
+	   $( function() {
 		    $("#datepickerDob" ).datepicker();
 		  } );
 
@@ -361,6 +373,8 @@
 		      }
 		      document.getElementById(firstlastupper).value = str;
 		}
+		 
+		
 		
 </script>
 

@@ -300,15 +300,15 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 	}
 
 	public void saveDataCompetitiors(CompetitiorsProfile compti) {
-		sessionFactory.getCurrentSession().flush();
+		
 		sessionFactory.getCurrentSession().save(compti);
-		sessionFactory.getCurrentSession().flush();
+		
 	}
  
 	@Override
 	public void updateCompetitior(CompetitiorsProfile comp) {
 		//sessionFactory.getCurrentSession().createQuery("UPDATE CompetitiorsProfile set contactperson="+comp.getContactperson()+",set name="+comp.getName()+",set address="+comp.getaddress()+," where compid="+comp.getCompid()).executeUpdate();
-		
+		//sessionFactory.getCurrentSession().update(comp);
 
 	}
 

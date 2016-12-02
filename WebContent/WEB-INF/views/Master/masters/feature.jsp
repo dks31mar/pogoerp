@@ -76,7 +76,7 @@
   <td>${list.warrentyperiod}</td>
   <td>${list.amcrate}</td>
   <td>${list.nooffreeamc}</td>
-  <td><a href="editcompetitior?id=${list.compid}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
+  <td><a href="editcompetitior?id=${list.compid}" title="Edit" id="edit`"><span class="glyphicon glyphicon-pencil"></span></a></td>
   <!-- <td><a href="" title="Edit" id=""><span class="glyphicon glyphicon-trash"></span></a></td> -->
  <td style="margin"><a href="deletefeature?id=${list.compid}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td> 
