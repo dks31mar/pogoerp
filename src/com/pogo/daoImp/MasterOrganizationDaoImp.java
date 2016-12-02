@@ -15,6 +15,7 @@ import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
+import com.pogo.model.Department;
 import com.pogo.model.Designation;
 import com.pogo.model.SmsAllocation;
 import com.pogo.model.StateZone;
@@ -436,6 +437,18 @@ System.out.println("delete");
 		
 		sessionFactory.getCurrentSession().createQuery("DELETE FROM  CompetitiorsProfile WHERE id = "+id).executeUpdate();
 		
+	}
+
+	@Override
+	public void saveData(Department dept) {
+		sessionFactory.getCurrentSession().save(dept);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Department> getDatadep() {
+		return sessionFactory.getCurrentSession().createCriteria(Department.class).list();
 	}
 
 }

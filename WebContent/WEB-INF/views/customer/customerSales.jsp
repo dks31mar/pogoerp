@@ -5,10 +5,18 @@
 <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
-
+<!-- calender -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<!-- bootstarp poup -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+  <!-- jquery -->
+  <!-- <link rel="stylesheet" type="text/css" href="resources/css/jquery.dialogbox.css"/>
+<script src="resources/plugins/jQuery/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="resources/js/jquery.dialogBox.js" type="text/javascript"></script> -->
 
  <script type="text/javascript">
  function getstateList(id) {
@@ -72,12 +80,12 @@
 	}
   
 	  $( function() {
-		    $("#enquirydate" ).datepicker();
+		    $("#enquirydate" ).datepicker({dateFormat:'dd-MM-yyyy'});
 		    
 		  } );
 
 		$( function() {
-		    $( "#orderdate").datepicker();
+		    $( "#orderdate").datepicker({dateFormat: 'dd-MM-yyyy'});
 		  } );
 		</script>
 
@@ -91,7 +99,7 @@
 	<div class="page-heading col-sm-11"
 
 		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; " >
-		<span class="glyphicon glyphicon-user"></span> <span> Customer</span>
+		<span class="glyphicon glyphicon-user"></span> <span>Create Customer</span>
 		<label
 			style="margin-left: 540px;"><a 
 			href="getSalesList" style="margin-top: -3px;" class="btn btn-primary"> Sales List </a> </label>
@@ -99,20 +107,75 @@
 	</div>
 	
 </div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Contact Person</h4>
+        </div>
+        <div class="modal-body">
+        <form:form action="" method="" commandName="">
+        <div class="form-group">
+            <label  class="col-md-2 control-label"><strong>  Name</strong><span
+					style="color: red;">*</span></label>
+					<div class="input-group">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input type="text" name="" class="form-control">
+            </div><br>
+            <label class="col-md-2 control-label"><strong>Designation</strong><span
+					style="color: red;">*</span></label>
+			<div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+			<input name="" class="form-control" type="text">
+			</div><br>
+			<label class="col-md-2 control-label"><strong>Department</strong><span
+					style="color: red;">*</span></label>
+			<div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+			<input name="" class="form-control" type="text">
+			</div><br>
+			<label class="col-md-2 control-label"><strong>Email</strong><span
+					style="color: red;">*</span></label>
+			<div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+			<input name="" class="form-control" type="text">
+			</div><br>
+			<label class="col-md-2 control-label"><strong>Phone</strong><span
+					style="color: red;">*</span></label>
+			<div class="input-group">
+             <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+			<input name="" class="form-control" type="text">
+			</div>					
+            </div>
+            <div>
+            
+            <button type="button" class="btn btn-warning" style="margin-left: 586px;">Save</button>
+            </div>
+           
+            </form:form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
 <form:form class="well form-horizontal"  action="saveCustomer" method="POST"  commandName="customerSalesBean" style="width: 1217px;">
 <fieldset>
 
 <!-- Form Name -->
 <legend>Add Customer</legend>
   <div class="form-group">
-  <label class="col-md-2 control-label">Enquiry Date</label>  
+  <label class="col-md-2 control-label">Creation Date</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-  <input   name="creationDate" readonly="readonly" id="enquirydate" placeholder="Select Date" class="form-control"  type="text">
+  <input   name="creationDate" readonly="readonly" id="enquirydate" value="${today}" placeholder="Select Date" class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" >Order Expected In<span
+  <label class="col-md-2 control-label" >Expected Closer<span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
@@ -122,14 +185,14 @@
   </div>
 </div>
  <div class="form-group">
-  <label class="col-md-2 control-label">Organisation<span style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label">Name<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="organisation" placeholder="Organisation Name" required="required"  class="form-control"  type="text">
+  <input   name="organisation" placeholder="Organisation Name"   class="form-control"  type="text">
     </div>
   </div>
-  <label class="col-md-2 control-label" >Organisation Short Name<span style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label" >Alias<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -138,7 +201,7 @@
   </div>
 </div>
 <div class="form-group">
-  <label class="col-md-2 control-label">Initiated By<span
+  <label class="col-md-2 control-label">Created By<span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
@@ -148,10 +211,8 @@
   <c:if test="${!empty listemp}">
   <c:forEach items="${listemp}" var="list">
   <option value="${list.userempid}">${list.loginname}</option>
-  
   </c:forEach>
  </c:if>
-  
   </select>
     </div>
   </div>
@@ -171,14 +232,12 @@
   </div>
 </div>
 
-<!-- Text input-->
-
 <div class="form-group">
   <label class="col-md-2 control-label" >Address</label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input name="address"   placeholder="Address"  class="form-control"  type="text">
+  <textarea name="address"   placeholder="Address"  class="form-control" rows="2" cols="35" ></textarea>
     </div>
   </div>
    <label class="col-md-2 control-label" >Country<span style="color: red;">*</span></label> 
@@ -192,7 +251,6 @@
   <option value="${list.countryId}">${list.country}</option>
   </c:forEach>
   </c:if>
- 
   </select>
     </div>
     </div>
@@ -209,52 +267,35 @@
     </div>
   </div>
 </div>
-</div>
-<div class="form-group">
-  <label class="col-md-2 control-label" >District<span style="color: red;">*</span></label> 
+ <label class="col-md-2 control-label" >District<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <div class="span9" id="districts">
   <select name="districtId"  id="districts"  class="form-control" >
   <option value="">---Select District---</option>
-  
   </select>
     </div>
-    </div>
-  </div>
-  
-  <label class="col-md-2 control-label" >Sub Location<span style="color: red;">*</span></label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="sublocationId" class="form-control selectpicker" required="required">
-  <option value="" selected="selected">---Select Sub Location---</option> 
-  <c:if test="${!empty locList}">
-   <c:forEach items="${locList}" var="list">
-  <option value="${list.locationId}">${list.location}</option>
-  </c:forEach>
-  </c:if>
-  </select>
     </div>
   </div>
 </div>
 <div class="form-group"> 
-  <label class="col-md-2 control-label">Contact Person</label>
+  <label class="col-md-2 control-label">Telephone No.</label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <input name="contactPerson" class="form-control selectpicker" placeholder="Person Name" required="required" type="text">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+    <input name="telephoneNo"  class="form-control selectpicker" placeholder="121-12457" required="required" type="text">
   </div>
 </div>
- <label class="col-md-2 control-label" >Telephone No.<span style="color: red;">*</span></label>  
+ <label class="col-md-2 control-label"> Contact Person<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
-  <input  name="telephoneNo"  class="form-control" placeholder="121-12457" required="required" type="text">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input  name="contactPerson"  class="form-control" placeholder="Person Name" required="required" type="text">
     </div>
-  </div>
+  </div><div><button class="btn btn-success" data-toggle="modal" data-target="#myModal"  title="Add More">+</button></div>
 </div>
+
 <div class="form-group"> 
   <label class="col-md-2 control-label">Email Id</label>
     <div class="col-md-3 selectContainer">

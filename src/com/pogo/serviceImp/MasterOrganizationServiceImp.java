@@ -18,7 +18,7 @@ import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
 
 import com.pogo.bean.CompetitiorsProfileBean;
-
+import com.pogo.bean.DepartmentBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.StatezoneBean;
@@ -29,6 +29,7 @@ import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
+import com.pogo.model.Department;
 import com.pogo.model.Designation;
 import com.pogo.model.SmsAllocation;
 import com.pogo.model.StateZone;
@@ -750,6 +751,27 @@ public List<CompetitiorsProfileBean> getcompetitiorList() {
 @Transactional
 public void deletefeture(int id){
 	regionDao.deletefeture(id);
+}
+@Override
+public void saveDepartment(DepartmentBean dep) 
+{
+	Department dept=new Department();
+	dept.setDepName(dep.getDepName());
+	userEmpdao.saveData(dept);
+	
+}
+@Override
+public List<DepartmentBean> getDepartmentDetails() {
+	List<Department> listdata=userEmpdao.getDatadep();
+	List<DepartmentBean> listbean=new ArrayList<DepartmentBean>();
+	for(Department data:listdata)
+	{
+		DepartmentBean bean=new DepartmentBean();
+		bean.setDepId(data.getDepartmentId());
+		bean.setDepName(data.getDepName());
+		listbean.add(bean);
+	}
+	return listbean;
 }
 	
 }
