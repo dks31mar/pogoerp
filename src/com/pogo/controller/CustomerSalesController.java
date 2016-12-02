@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
@@ -35,6 +36,7 @@ import com.pogo.service.MasterOrganizationService;
 import com.sun.java.swing.plaf.motif.resources.motif;
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -56,6 +58,8 @@ public class CustomerSalesController {
 		model.addAttribute("cusStatus", cusStatus);
 		List<LocationBean> locationlist = masterService.getLocationDetails();
 		model.addAttribute("locList", locationlist);
+		SimpleDateFormat df=new SimpleDateFormat("dd-MM-yyyy");
+		model.addAttribute("today", df.format(new Date()));
 		return "getSales";
 	}
 
@@ -113,11 +117,11 @@ public class CustomerSalesController {
 	}
 
 	@RequestMapping(value = "/addDiaryForEntrySales", method = RequestMethod.GET)
-	public ModelAndView getAddDiaryForEntery(Model model,@RequestParam int id) throws ParseException {
+	public ModelAndView getAddDiaryForEntery(Model model) throws ParseException {
 		 List<UserEmployeeBean> emp = empServive.getUserDetails();
 		model.addAttribute("listemp", emp);
-		CustomerSalesBean salesList = customerSalesService.getCustomerDetailsById(id);
-		model.addAttribute("salesList", salesList);
+		//CustomerSalesBean salesList = customerSalesService.getCustomerDetailsById(id);
+		//model.addAttribute("salesList", salesList);
 		return new ModelAndView("AddDiaryForEntrySales");
 	}
 
@@ -141,6 +145,8 @@ public class CustomerSalesController {
 		model.addAttribute("salesList", salesList);
 		List<AddActionBean> actionlist=masterService.findAllAction();
 		model.addAttribute("actionList", actionlist);
+		SimpleDateFormat df=new SimpleDateFormat("dd-MM-yyyy");
+		model.addAttribute("today", df.format(new Date()));
 		return new ModelAndView("AddFollowupForm");
 	}
 	

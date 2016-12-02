@@ -34,6 +34,7 @@ import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.StatezoneBean;
 import com.ibm.icu.text.Normalizer.Mode;
+import com.pogo.bean.AddActionBean;
 import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
 
@@ -41,7 +42,7 @@ import com.pogo.bean.CompetitiorsProfileBean;
 
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CurrencyBean;
-
+import com.pogo.bean.DepartmentBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ModeOfDispatchBean;
@@ -625,5 +626,23 @@ public class MasterOrganizationController {
 		List<StatezoneBean> list = regionService.getstateData();
 		model.addAttribute("liststates", list);
 		return new ModelAndView("addbranch123");
+	}
+	@RequestMapping(value="/getDepartment" ,method=RequestMethod.GET)
+	public  ModelAndView getdepartment(Model model)
+	{
+		List<DepartmentBean> list=regionService.getDepartmentDetails();
+		model.addAttribute("bean", list);
+		return new ModelAndView("department");
+	}
+	
+	@RequestMapping(value = "savedepartment", method = RequestMethod.POST)
+	@ResponseBody
+	public void savedepartmentdata(@RequestBody String json, Model model) throws IOException {
+		
+		ObjectMapper mapper = new ObjectMapper();
+		DepartmentBean depBean=mapper.readValue(json, DepartmentBean.class);
+		DepartmentBean dep=new DepartmentBean();
+		dep.setDepName(depBean.getDepName());
+		userEmployeeservice.saveDepartment(dep);
 	}
 }

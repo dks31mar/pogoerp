@@ -79,11 +79,7 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			customerSales.setState(null);
 		
 		customerSalesDao.addCutomer(customerSales);
-		if(customerSalesBean.getSublocationId()>0)
-		{
-			customerSales.setLocation(masterMasterDao.getLocations(customerSalesBean.getSublocationId()));
-		}else
-			customerSales.setLocation(null);
+		
 	}
 	@Override
 	public List<CustomerSalesBean> findAllData() {
@@ -229,8 +225,9 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		followUp.setCusOrganisation(addFollowUpBean.getCusOrganisation());
 		if(addFollowUpBean.getActionId()>0)
 		{
-			//followUp.setAddAction(masterMasterDao.getActi);
-		}
+			followUp.setActionType(masterMasterDao.getActionDataById(addFollowUpBean.getActionId()));
+		}else
+			followUp.setActionType(null);
 		customerSalesDao.addfollowup(followUp);
 		
 	}

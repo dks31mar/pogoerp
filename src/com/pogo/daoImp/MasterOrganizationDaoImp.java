@@ -15,6 +15,7 @@ import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
+import com.pogo.model.Department;
 import com.pogo.model.Designation;
 import com.pogo.model.ModeOfDispatch;
 import com.pogo.model.SmsAllocation;
@@ -441,6 +442,7 @@ System.out.println("delete");
 		
 	}
 
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CompetitiorsProfile> getCompetitiorsProfilebyid(String id) {
@@ -459,6 +461,18 @@ System.out.println("delete");
 	public void editCompetitiorsProfile(CompetitiorsProfile profile) {
 		sessionFactory.getCurrentSession().update(profile);
 		
+	}
+	@Override
+	public void saveData(Department dept) {
+		sessionFactory.getCurrentSession().save(dept);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Department> getDatadep() {
+		return sessionFactory.getCurrentSession().createCriteria(Department.class).list();
+
 	}
 
 }

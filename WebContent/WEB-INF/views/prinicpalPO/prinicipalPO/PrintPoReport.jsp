@@ -48,13 +48,13 @@
                 <tr>
                     <td><font size="2">Purchase Order</font></td>
                     <td style="width:700px">&nbsp;</td>
-                    <td style="width: 500px"><font size="2" ><b>YMC INDIA PVT. LTD.</b></font><br>
-                    <font size="2">A-154-155, 1st Floor, Eros Boulevard<br>
+                    <td style="width: 500px"><font size="2" ><b>Testing Private Limited</b></font><br>
+                    <font size="2">A-154-155, 1st Floor<br>
                     Hotel Crown Plaza, Mayur Vihar, Phase-I,<br>
                     New Delhi- 110091<br>
-                    Tel. no:- 011-45041701/601<br>
-                    Purchase Order Fax no:- 011-45041901<br>
-                    Email - sales@ymcindia.com</font></td>
+                    Tel. no:- XXX-XXXXXXXX/XXX<br>
+                    Purchase Order Fax no:- XXX-XXXXXXXX<br>
+                    Email - testing@testing.com</font></td>
                     </tr>
             </table>
             <div><label style="padding-top: 50px"></label></div>
@@ -75,7 +75,7 @@
                  <td colspan="9"><font size="2"><b>To,</b></font></td>
               </tr>   
                <tr>
-                 <td colspan="9"align="left"><font size="2">YMC CO.,LTD. YMC Karasuma-Gojo Building 284 Daigo-cho Karasuma Nishiliru Gojo-dori,Shimogyo -Ku Kyoto 600-8106 Japan</font></td>
+                 <td colspan="9"align="left"><font size="2">Testing Private Limited,Bulding No.:XX ,XXXXX </font></td>
                 </tr>               
                   </table>
                 <div>
@@ -130,7 +130,7 @@
                   <P></p><br>
               <p style="margin-left:3em;"> You are requested to kindly acknowledge the receipt of this order and arrange for a shipment at our Delhi office.
                  .</p><br>
-                 <p style="margin-left:3em;">For YMC India Private Limited</p><br>
+                 <p style="margin-left:3em;">For Testing Private Limited</p><br>
                  <p style="margin-left:3em;">Authorized Signatory</p><br><br>
 
                 <table align="center">
