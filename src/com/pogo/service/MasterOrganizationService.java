@@ -107,6 +107,11 @@ public interface MasterOrganizationService {
 	void deletefeture(int id);
 
 	
+	String getCompetitiorsProfilebyid(String id);
+
+	void editCompetitiorsProfile(CompetitiorsProfileBean poref1);
+
+	
 	
 	
 

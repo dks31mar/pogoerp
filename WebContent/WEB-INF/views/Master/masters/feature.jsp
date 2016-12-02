@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
+   
     <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
     <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -9,14 +9,14 @@
 <script src="/pogoerpdemo/Resources/bootstrap-3.3.6/js/jquery.min.js"></script>
 <script src="/pogoerpdemo/Resources/bootstrap-3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/pogoerpdemo/Resources/font-awesome-4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css"
-	href="resources/css/table.css">
-<link rel="stylesheet" type="text/css"
-	href="${js_url}/css/jquery.dialogbox.css">
-<script src="${js_url}/plugins/jQuery/jquery-1.9.1.min.js"
-	type="text/javascript" charset="utf-8"></script>
-<script src="${js_url}/js/jquery.dialogBox.js" type="text/javascript"
-	charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/table.css">
+	
+<link rel="stylesheet" type="text/css" href="${js_url}/css/jquery.dialogbox.css">
+	
+<script src="${js_url}/plugins/jQuery/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	
+<script src="${js_url}/js/jquery.dialogBox.js" type="text/javascript" charset="utf-8"></script>
+	
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
 
@@ -24,8 +24,10 @@
  </CENTER>
         <div id="pop" style="display: none;"></div>
 <div><c:out value="${id}" /></div>
+
 <div id="body">
 <div>
+<input type="hidden" id="hiddenid"/>
 <div>
 <div class="row" style="margin-top: 15px">
 	<br>
@@ -50,7 +52,7 @@
 
 </div>
 </div> 
-        
+      
        <table class="responstable">
   
   <tbody align='center'>
@@ -76,7 +78,9 @@
   <td>${list.warrentyperiod}</td>
   <td>${list.amcrate}</td>
   <td>${list.nooffreeamc}</td>
-  <td><a href="editcompetitior?id=${list.compid}" title="Edit" id="edit`"><span class="glyphicon glyphicon-pencil"></span></a></td>
+  <%-- <td><a href="#" onclick="editCur(${list.compid})" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td> --%>
+								
+   <td><a href="editcompetitior?id=${list.compid}" title="Edit" id="edit`"><span class="glyphicon glyphicon-pencil"></span></a></td> 
   <!-- <td><a href="" title="Edit" id=""><span class="glyphicon glyphicon-trash"></span></a></td> -->
  <td style="margin"><a href="deletefeature?id=${list.compid}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td> 
@@ -103,5 +107,51 @@
 						<div class="col-sm-7">
 	</div>
 <script>
-
+function editCur(id){
+	alert("hello");
+	
+	//$("#formid").show('show');
+	//$('#EditForm').show();
+	//$("#senddata").hide(); 
+	//$("#msg1").hide();
+$.ajax({
+	
+	url: "getCompetitiorsProfilebyid?compid="+id,
+	type: "POST",
+	
+	     success: function(respose){
+	    	// alert(respose);
+	    	 var data=JSON.parse(respose)
+	    	 
+	    	 var id=data.compid;
+	    	 var name = data.name;
+	    	 var contactper = data.contactperson;
+	    	 var address = data.address;
+	    	 var phoneno = data.phoneno;
+	    	 var mobile= data.mobileno;
+	    	 var productbrand = data.productbrand;
+	    	 var email1 = data.emailid;
+	    	 var warrantyPeriod = data.warrentyperiod;
+	    	 var productname = data.productname;
+	    	 var nooffreeamc = data.nooffreeamc;
+	    	 var price = data.price;
+	    	 var amcrate = data.amcrate;
+	    	 
+	    	// alert("************************"+id);
+	    	 $("#name").val(name);
+	    	 $("#contactper").val(id);
+	    	 $("#address").val(id);
+	    	 $("#phone2").val(id);
+	    	 $("#phone1").val(id);
+	    	 $("#productbrand").val(id);
+	    	 $("#email1").val(id);
+	    	 $("#warrantyPeriod").val(id);
+	    	 $("#productname").val(id);
+	    	 $("#freeamc").val(id);
+	    	 $("#price").val(id);
+	    	 $("#rateamc").val(id);
+	    	
+	    	 
+    }});
+} 
 </script>

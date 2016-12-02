@@ -42,16 +42,29 @@
 
 </div>
 </div> 
-
+ 
 	 
 
 <div class="container"></div>
-    <form:form class="well form-horizontal"  action="upcompetitior" method="POST"  commandName="competitiorsProfileBean"
+    <form:form class="well form-horizontal"   action="upcompetitior" method="POST"  commandName="competitiorsProfileBean" 
     id="" >
+    <input type="hidden" id="hiddenid"/>
     <fieldset>
 <!-- Form Name -->
 <legend>Edit Competitor Profile</legend>
   
+  
+  <div class="form-group">
+  <label class="col-md-2 control-label"> id<span
+					style="color: red;">*</span></label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input readonly  name="compid" placeholder=" Name" id="name" value="${listofcompetitior.compid}" required="required"  class="form-control"  type="text">
+    </div>
+  </div>
+  
+</div>
 
 <div class="form-group">
   <label class="col-md-2 control-label"> Name<span
@@ -59,7 +72,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="name" placeholder=" Name" id="name"value="${listofcompetitior.name}" required="required"  class="form-control"  type="text">
+  <input   name="name" placeholder=" Name" id="name" value="${listofcompetitior.name}" required="required"  class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" style="margin-left: -62px;">Contact Person</label>  
@@ -123,7 +136,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-list" ></i></span>
-    <select name="warrentyperiod" class="form-control selectpicker" required="required" value="${listofcompetitior.warrentyperiod}" >
+    <select name="warrentyperiod" class="form-control selectpicker" required="required" value="${listofcompetitior.warrentyperiod}" id = "warranty">
    <option>---Select Warranty---</option> 
       <option value="availbility">Not available</option>
 	  <option value="yera entry">1 year</option>
@@ -146,7 +159,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="nooffreeamc" class="form-control selectpicker" required="required" value="${listofcompetitior.nooffreeamc}" >
+    <select name="nooffreeamc" class="form-control selectpicker" required="required" value="${listofcompetitior.nooffreeamc}" id = "freeamc">
     <option>--- Select Free AMC---</option> 
       <option value="" >1</option>
       <option value="">2</option>
@@ -163,14 +176,14 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-doller"></i></span>
-  <input name="price"  class="form-control"  type="text" required="required" value="${listofcompetitior.price}" >
+  <input name="price"  class="form-control"  type="text" required="required" value="${listofcompetitior.price}" id = "price" >
     </div>
   </div>
    <label class="col-md-2 control-label">AMC Rate</label>
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-  <input name="amcrate"   class="form-control" placeholder="AMC Rate" required="required" type="text" value="${listofcompetitior.amcrate}">
+  <input name="amcrate"   class="form-control" placeholder="AMC Rate" required="required" type="text" value="${listofcompetitior.amcrate}" id = "amcrate">
    
   </div>
 </div>
@@ -183,134 +196,67 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
-    <button type="submit" class="btn btn-warning" onclick="message();"  >Save<span class="glyphicon glyphicon-send"></span></button>
+    <button type="submit" class="btn btn-warning" onclick="message();" id = "EditForm" >Edit<span class="glyphicon glyphicon-send"></span></button>
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
 </div>
 </fieldset>
-</form:form>
+ </form:form> 
 </div>
 
 
-<!--  <script type="text/javascript">
-//for profile page save data
-	$('#senddata').click(function(){
+  <script type="text/javascript">
+
+
+  $('#EditForm').click(function (){
+  	var id=$("#hiddenid").val();
+  //	var d1w=$("#hiddenid").val();
+  	var name=$('#name').val();
+  	var contactperson = $('#contactper').val();
+  	var address = $('#address').val();
+  	var phoneno = $('#phone2').val();
+  	var mobile = $('#phone1').val();
+  	var email = $('#email1').val();
+  	var warranty = $('#warranty').val();
+  	var productname = $('#firstUpper').val();
+  	var freeamc = $('#freeamc').val();
+  	var price = $('#price').val();
+	var amcrate = $('#amcrate').val();
 	
-	  	var name =	$('#name').val();
-	 	var contactper =	$('#contactper').val();
-		var address =	$('#address').val();
-	 	var designation=$('#designation').val();
-	  	var phone1    =	$('#phone1').val();
-	  	var phone2=  $('#phone2').val();
-	  	var email1    =	$('#email1').val();  
-     	var email2    =	$('#email2').val();
-      	var faxno    =	$('#faxno').val();
-	   
-		var jsonObj={
-				
-				'compname':name ,
-				'compaddress':address ,
-				'compphone': phone1,
-				'compfax':faxno ,
-				'compemail1': email1,
-				'compcontactperson': contactper,
-				'compcontactdesig': designation,
-				'compemail2':email2 ,
-				'compphone2':phone2 
-				} ;
-		 
-	
-		//alert(jsonObj);
-		$.ajax({
-			url: "upcompetitior",
-			type: "POST",
-			
-			  data :JSON.stringify(jsonObj),
-			  cache:false,
-		        beforeSend: function(xhr) {  
-		            xhr.setRequestHeader("Accept", "application/json");  
-		            xhr.setRequestHeader("Content-Type", "application/json");  
-		        },
-			     success: function(resposeJsonObject){
-			    	 window.location.href ="competitiorsProfile";
-		    }});
-		
-   }
-	
-	);
-
-	  $( function() {
-		    $("#datepickerDob" ).datepicker();
-		  } );
-
-		$( function() {
-		    $( "#datepickerjoin").datepicker();
-		  } );
-		
-		
-		
-		function message() {
-			$('#message').dialogBox({
-				type : 'correct', //three type:'normal'(default),'correct','error',
-				width : 250,
-				height : 150,
-				hasMask : true,
-				hasClose : true,
-				autoHide : false,
-				time : '6000',
-				effect : 'fall',
-				title : 'Record',
-				content : 'Data Saved Successfully!!!'
-			});
-
-		}
-		
-		
-		function pass_validation()
-		{
-			var firstpassword=document.forp.Password1.value;  
-			var secondpassword=document.forp.ConfirmPassword.value;  
-
-			if(firstpassword==secondpassword){  
-			return true;  
-			}  
-			else{  
-			alert("RePassword must be Same!!!");
-			document.getElementById("ConfirmPassword").value="";
-			document.getElementById("ConfirmPassword").focus();
-			return false;  
-			}  
-			} 
-		
-
-		function capitalize(firstUpper, str) {
-		      if (str && str.length >= 1)
-		      {       
-		          var firstChar = str.charAt(0);
-		          var remainingStr = str.slice(1);
-		          str = firstChar.toUpperCase() + remainingStr;
-		      }
-		      document.getElementById(firstUpper).value = str;
-		  }
-		function capitalizemiddle(firstUppermiddle, str) {
-		      if (str && str.length >= 1)
-		      {       
-		          var firstChar = str.charAt(0);
-		          var remainingStr = str.slice(1);
-		          str = firstChar.toUpperCase() + remainingStr;
-		      }
-		      document.getElementById(firstUppermiddle).value = str;
-		  }
-		function capitalizelast(firstlastupper, str) {
-		      if (str && str.length >= 1)
-		      {       
-		          var firstChar = str.charAt(0);
-		          var remainingStr = str.slice(1);
-		          str = firstChar.toUpperCase() + remainingStr;
-		      }
-		      document.getElementById(firstlastupper).value = str;
-		}
-		
+  	
+  	
+  	
+  	//alert(d1w);
+  	/* if(addmodeofdispatche == '' ){
+  		$("#msg1").show();
+  	}
+  	else{ */
+  		var jsonObj={'name':name, 'compid':id , 'contactperson':contactperson , 'address':address ,
+  	      'phoneno' : phoneno ,'mobileno' :  mobile , 'emailid': email ,'warrentyperiod': warranty , 		
+  	      'productname' :productname , 'nooffreeamc' :freeamc ,'price': price ,'amcrate':amcrate
+  	} ;
+  		$.ajax({
+  				url: "upcompetitior",
+  				type: "POST",
+  				
+  				  data :JSON.stringify(jsonObj),
+  				  cache:false,
+  			        beforeSend: function(xhr) {  
+  			            xhr.setRequestHeader("Accept", "application/json");  
+  			            xhr.setRequestHeader("Content-Type", "application/json");  
+  			        },
+  				     success: function(resposeJsonObject){
+  				    	 $('#openModal').hide();
+  				    	 //window.location.currency;
+  				    	 window.location.reload();
+  			     //alert("edit");
+  			    }});
+  			
+  	//}
+  	
+  	
+  	
+  });	
 </script>
 
- -->
+ 

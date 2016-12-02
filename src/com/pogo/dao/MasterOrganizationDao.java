@@ -135,6 +135,10 @@ void updateCompetitior(CompetitiorsProfile comp);
 
 	void deletefeture(int id);
 
+	List<CompetitiorsProfile> getCompetitiorsProfilebyid(String id);
+
+	void editCompetitiorsProfile(CompetitiorsProfile profile);
+
 
 
 	
