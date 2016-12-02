@@ -32,7 +32,7 @@ public class InvoiceDetail implements Serializable{
 	private double totalqty ;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="invno")
+	@JoinColumn(name="invno",referencedColumnName="invno")
 	private InvoiceTab invoicetab;
 	
 	

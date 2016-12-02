@@ -311,6 +311,7 @@
 
 $( function() {
     $("#invoicedate").datepicker({dateFormat: 'dd/mm/yy'});
+    
   });
   
   
@@ -320,6 +321,7 @@ $( function() {
         checkboxes = document.getElementsByName('savecheck');
         for(var i=0, n=checkboxes.length;i<n;i++) {
         checkboxes[i].checked = source.checked;
+        che3ckcheckbox();
         }
     }
   
@@ -335,12 +337,34 @@ $( function() {
 			if(pending=='0.0'){
 				$('#reciveqty'+i).prop("readonly", true);
 				$('#remainingqty'+i).prop("readonly", true);
+				$('#savecheck'+i).prop("disabled", true);
+				$('#savecheck'+i).prop("checked", false);
 			}
 		}
  });
  
+ function che3ckcheckbox(){
+	 var table = document.getElementById("quotprodtable");
+		var len=table.rows.length-1;
+		var qty;
+		var pending;
+		for(var i=1;i<=len;i++){
+			
+			qty=$('#qty'+i).val();
+			pending=$('#pendingqty'+i).val();
+			if(pending=='0.0'){
+				$('#reciveqty'+i).prop("readonly", true);
+				$('#remainingqty'+i).prop("readonly", true);
+				$('#savecheck'+i).prop("disabled", true);
+				$('#savecheck'+i).prop("checked", false);
+			}
+ }
  
- function getcals(v1,v2){
+ }	
+		
+		
+		
+function getcals(v1,v2){
 	 var pending=$('#pendingqty'+v2).val();
 	 $('#remainingqty'+v2).val(pending-v1);
  }

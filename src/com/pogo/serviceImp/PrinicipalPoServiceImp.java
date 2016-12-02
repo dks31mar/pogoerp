@@ -27,6 +27,7 @@ import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
+import com.pogo.model.ProductStock;
 import com.pogo.service.PrinicipalPoService;
 
 @Service("prinicipalposervice")
@@ -428,6 +429,7 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 	}
 
 	@Override
+	@Transactional
 	public void saveinvoicetab(InvoiceTabBean tbean) {
 		InvoiceTab it=new InvoiceTab();
 		it.setInvdate(tbean.getInvdate());
@@ -437,11 +439,38 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 	}
 
 	@Override
+	@Transactional
 	public void saveinvoicedetail(InvoiceDetailBean dbean, InvoiceTabBean tbean) {
 		InvoiceDetail id=new InvoiceDetail();
 		InvoiceTab it=new InvoiceTab();
+		it.setInvno(tbean.getInvno());
+		id.setParticular(dbean.getParticular());
+		id.setTotalqty(dbean.getTotalqty());
+		id.setReceiveqty(dbean.getReceiveqty());
+		id.setPorefno(tbean.getPorefno());
+		id.setInvoicetab(it);
+		
+		prinicipaldao.saveinvoicedetail(id);
 		
 		
+	}
+
+	@Override
+	@Transactional
+	public void saveproductstock(InvoiceDetailBean dbean, InvoiceTabBean tbean) {
+		int limit=(int)(dbean.getReceiveqty());
+		Integer proId=prinicipaldao.getProidfrompromaster(dbean.getParticular());
+		ProductStock prostock=null;
+		for(int i=1;i<=limit;i++){
+		prostock=new ProductStock();
+		prostock.setProductname(dbean.getParticular());
+		prostock.setProductid(proId);
+		prostock.setInvno(tbean.getInvno());
+		
+			System.out.println(i+   "                               kkkkkkkkkkkkkkk          "+limit);
+		prinicipaldao.saveproductstock(prostock);
+		}
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>     product iddddd    "+proId);
 		
 	}
 

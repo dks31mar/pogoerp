@@ -611,7 +611,7 @@ public void saveInvoiceData(@RequestBody String json,Model model) throws IOExcep
 			}
 	System.out.println(lst.size());
 	String [] meth=lst.toArray(new String[lst.size()]);
-	for(int i=0;i<meth.length;i=i+5){
+	for(int i=0;i<meth.length;i=i+6){
 		InvoiceTabBean tbean=new InvoiceTabBean();
 		InvoiceDetailBean dbean=new InvoiceDetailBean();
 		
@@ -625,8 +625,10 @@ public void saveInvoiceData(@RequestBody String json,Model model) throws IOExcep
 		if(i==0){
 			prinicipalposervice.saveinvoicetab(tbean);
 			prinicipalposervice.saveinvoicedetail(dbean,tbean);
+			prinicipalposervice.saveproductstock(dbean,tbean);
 		}else {
 			prinicipalposervice.saveinvoicedetail(dbean,tbean);
+			prinicipalposervice.saveproductstock(dbean,tbean);
 		}
 		
 	}

@@ -62,6 +62,8 @@ public interface PrinicipalPoService {
 
 	void saveinvoicedetail(InvoiceDetailBean dbean, InvoiceTabBean tbean);
 
+	void saveproductstock(InvoiceDetailBean dbean, InvoiceTabBean tbean);
+
 	
 
 

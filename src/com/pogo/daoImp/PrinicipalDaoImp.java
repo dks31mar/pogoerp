@@ -28,6 +28,7 @@ import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
+import com.pogo.model.ProductStock;
 @Repository("prinicipaldao")
 @SuppressWarnings("unchecked")
 public class PrinicipalDaoImp implements PrinicipalDao{
@@ -249,6 +250,26 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	@Override
 	public void saveinvoicetab(InvoiceTab it) {
 		sessionFactory.getCurrentSession().save(it);
+		
+	}
+
+	@Override
+	public void saveinvoicedetail(InvoiceDetail id) {
+		sessionFactory.getCurrentSession().save(id);
+		
+		
+	}
+
+	@Override
+	public Integer getProidfrompromaster(String particular) {
+		Integer id=(Integer) sessionFactory.getCurrentSession().createCriteria(ProductMaster.class).add(Restrictions.eq("productname", particular)).setProjection(Projections.property("productid")).uniqueResult();
+		return id;
+	}
+
+	@Override
+	public void saveproductstock(ProductStock prostock) {
+		sessionFactory.getCurrentSession().save(prostock);
+		sessionFactory.getCurrentSession().flush();
 		
 	}
 	
