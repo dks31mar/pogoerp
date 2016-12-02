@@ -3,11 +3,14 @@ package com.pogo.daoImp;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.model.AddDiary;
+import com.pogo.model.AddFollowUp;
 import com.pogo.model.CustomerSales;
 
 
@@ -44,6 +47,18 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao
 	public void saveDiary(AddDiary diary) {
 		sessionFactory.getCurrentSession().save(diary);
 		
+	}
+
+	@Override
+	public void addfollowup(AddFollowUp followUp) {
+		sessionFactory.getCurrentSession().save(followUp);
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CustomerSales> getsalesListById(int id) {
+		return  sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).add(Restrictions.eq("customerId", id)).list();
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -422,7 +423,7 @@ public List<Country> getCountryDetails() {
 @Override
 public List<CustomerLevels> getCustomerStatusDetails() 
 {
-	return sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).list();
+	return sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).setProjection(Projections.property("status")).list();
 }
 @Override
 public District getDistrictDataById(Integer districtId) {
@@ -470,8 +471,8 @@ public void deleteserviceprovider(int id) {
 }
 @Override
 
-public List<AddAction> actionPlanList() {
-	return (List<AddAction>) sessionFactory.getCurrentSession().createCriteria(AddAction.class).list();
+public List<AddPlan> actionPlanList() {
+	return (List<AddPlan>) sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();
 }
 @Override
 public void addActionPlan(AddAction action) {
@@ -485,20 +486,51 @@ public AddAction getplanDataById(int id) {
 
 
 }
-@Override
-public void saveAddAction(AddPlan bean) {
-	sessionFactory.getCurrentSession().flush();
-	sessionFactory.getCurrentSession().save(bean);
-	sessionFactory.getCurrentSession().flush();
-	
-}
+
 @Override
 public State getStateIdByContryId(Integer id) {
 	System.out.println(id);
 	return (State) sessionFactory.getCurrentSession().get(State.class, id);
 
 }
+@Override
 
+public List<AddAction> getactiondata() {
+	return sessionFactory.getCurrentSession().createCriteria(AddAction.class).list();
+}
+
+public List<AddPlan> getActionList() {
+	// TODO Auto-generated method stub
+
+	return (List<AddPlan>) sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();}
+@Override
+public void saveAddAction(AddAction action) {
+	sessionFactory.getCurrentSession().save(action);
+	
+}
+
+@Override
+public List<AddActionBean> ActionList() {
+	return (List<AddActionBean>) sessionFactory.getCurrentSession().createCriteria(AddActionBean.class).list();}
+@Override
+public List<AddAction> actionList() {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+public AddAction getActionDataById(int id) {
+	return (AddAction) sessionFactory.getCurrentSession().get(AddAction.class, id);
+}
+
+	
+@Override
+public List<CustomerLevels> getCustomerStatusDetailsList() {
+	return sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).list();
 
 }
+}
+
+
+
+
 

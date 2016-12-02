@@ -18,6 +18,7 @@ import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.dao.PrinicipalDao;
+import com.pogo.model.InvoiceDetail;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
@@ -305,10 +306,12 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 			String porefNo=e.getPorefnobysupplier().getPorefno();
 			String particular=e.getParticular();
 			double pendingqty=e.getQty();
+			double totolrecive=0.0;
 			try{
 			List<ProductAcknowledgement> proack=	prinicipaldao.getPendindQty(porefNo,particular);
 			for(ProductAcknowledgement pro:proack){
-			pendingqty=pro.getPendingqty();
+				totolrecive+=pro.getReceiveqty();
+				pendingqty=e.getQty()-totolrecive;
 			}
 			bean.setPendingqty(pendingqty);
 			}catch(Exception ex){
@@ -373,6 +376,52 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 	public void deleteParticularAck(String s1) {
 		prinicipaldao.deleteParticularAck(s1);
 		
+	}
+
+	@Override
+	public List<PoRefEntryItemDetailBean> getInvoiceData(String poref) {
+		List<PoRefEntryItemDetail> lst=prinicipaldao.getPoDetailByPorefNo(poref);
+		System.out.println(lst);
+		List<PoRefEntryItemDetailBean> lst1=new ArrayList<>();
+		for(PoRefEntryItemDetail e:lst){
+			PoRefEntryItemDetailBean bean=new PoRefEntryItemDetailBean();
+			String porefNo=e.getPorefnobysupplier().getPorefno();
+			String particular=e.getParticular();
+			double pendingqty=e.getQty();
+			double totolrecive=0.0;
+			try{
+			List<InvoiceDetail> proack=	prinicipaldao.getpendyqtyfrominvoice(porefNo,particular);
+			for(InvoiceDetail pro:proack){
+				totolrecive+=pro.getReceiveqty();
+				pendingqty=e.getQty()-totolrecive;
+			}
+			bean.setPendingqty(pendingqty);
+			}catch(Exception ex){
+				bean.setPendingqty(pendingqty);
+				ex.printStackTrace();
+				
+			}
+			
+			  bean.setPorefentryitemdetailid(e.getPorefentryitemdetailid());
+			  bean.setParticular(e.getParticular());
+		 	  bean.setTpinjpy(e.getTpinjpy());
+		 	  bean.setQty(e.getQty());
+		 	  bean.setTotaljpy(e.getTotaljpy());
+		 	  bean.setTotalinr(e.getTotalinr());
+		 	  bean.setAckdate(e.getAckdate());  
+		 	  bean.setRemarks(e.getRemarks());
+		 	  bean.setPosrno(e.getPosrno());
+		 	  bean.setInvno(e.getInvno());
+		 	  bean.setInvdate(e.getInvdate());
+		 	  
+		 	  bean.setCustomerporefe(e.getCustomerporefe());
+		 	  bean.setProductdescription(e.getProductdescription());
+		 	  bean.setPorefnobysupplier(e.getPorefnobysupplier());
+		 	  System.out.println(e.getParticular());
+		 	  
+		 	 lst1.add(bean);
+		}
+		return lst1;
 	}
 
 	

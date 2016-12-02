@@ -13,11 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.AddDiaryBean;
+import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.AddDiary;
+import com.pogo.model.AddFollowUp;
+import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.service.CustomerSalesService;
 
@@ -31,6 +34,7 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 	private MasterOrganizationDao empDao;
     @Autowired
     private MasterMastersDao masterMasterDao;
+    
 	@Override
 	public void addCustomerSales(CustomerSalesBean customerSalesBean) throws ParseException
 	{
@@ -53,11 +57,11 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			
 		}else
 			customerSales.setInitiatedBy(null);
-		/*if(customerSalesBean.getDistrictId() > 0)
+		if(customerSalesBean.getDistrictId() > 0)
 		{
 			customerSales.setDistrictName(masterMasterDao.getDistrictDataById(customerSalesBean.getDistrictId()));
 		}else
-		customerSales.setDistrictName(null);*/
+		customerSales.setDistrictName(null);
 		if(customerSalesBean.getCountryId()>0){
 			customerSales.setCountry(masterMasterDao.getCountryDataById(customerSalesBean.getCountryId()));
 		}else
@@ -68,13 +72,13 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			System.out.println("On service customerstatus"+masterMasterDao.getCustomerStatusById(customerSalesBean.getCustomerLevelId()));
 		}else
 			customerSales.setStatus(null);
-		/*if(customerSalesBean.getStateId()>0)
+		if(customerSalesBean.getStateId()>0)
 		{
 			customerSales.setState(masterMasterDao.getStatesById(customerSalesBean.getStateId()));
 		}else
 			customerSales.setState(null);
 		
-		customerSalesDao.addCutomer(customerSales);*/
+		customerSalesDao.addCutomer(customerSales);
 		if(customerSalesBean.getSublocationId()>0)
 		{
 			customerSales.setLocation(masterMasterDao.getLocations(customerSalesBean.getSublocationId()));
@@ -95,6 +99,7 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			salebean.setAddress(data.getAddress());
 			salebean.setOrganisation(data.getOrganisation());
 			salebean.setContactPerson(data.getContactPerson());
+			salebean.setAddress(data.getAddress());
 			salebean.setStatus(data.getStatus().getStatus());
 			salesbean.add(salebean);
 		}
@@ -135,6 +140,14 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		{
 			bean.setCustomerLevelId(sales.getStatus().getId());
 		}
+		if(sales.getState()!=null)
+		{
+			bean.setStateId(sales.getState().getStateId());
+		}
+		if(sales.getDistrictName()!=null)
+		{
+			bean.setDistrictId(sales.getDistrictName().getDistrictId());
+		}
 		return bean;
 
 	}
@@ -173,6 +186,15 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 			sales.setLocation(masterMasterDao.getLocations(customerSalesBean.getSublocationId()));
 		}else
 			sales.setLocation(null);
+		if(customerSalesBean.getStateId()>0)
+		{
+			sales.setState(masterMasterDao.getStatesById(customerSalesBean.getStateId()));
+		}else
+			sales.setState(null);
+		if(customerSalesBean.getDistrictId()>0){
+			sales.setDistrictName(masterMasterDao.getDistrictDataById(customerSalesBean.getDistrictId()));
+		}else
+			sales.setDistrictName(null);
 		customerSalesDao.updateCustomer(sales);
 		
 		
@@ -191,6 +213,44 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		diary.setTasktype(addDiaryBean.getTasktype());
 		diary.setEnteryuser(empDao.get(addDiaryBean.getEnteryuserId()));
 		customerSalesDao.saveDiary(diary);
+	}
+	@Override
+	public void addFollowup(AddFollowUpBean addFollowUpBean) {
+		AddFollowUp followUp=new AddFollowUp();
+		followUp.setActionTaken(addFollowUpBean.getActionTaken());
+		followUp.setFollowupDate(addFollowUpBean.getFollowupDate());
+		followUp.setFollowupTimeIn(addFollowUpBean.getFollowupTimeIn());
+		followUp.setFollowupTimeOut(addFollowUpBean.getFollowupTimeOut());
+		followUp.setContactPerson(addFollowUpBean.getContactPerson());
+		followUp.setFollowupTimeInMin(addFollowUpBean.getFollowupTimeInMin());
+		followUp.setFollowupTimeOutMin(addFollowUpBean.getFollowupTimeOutMin());
+		followUp.setCusStatus(addFollowUpBean.getCustStatus());
+		followUp.setCusAddress(addFollowUpBean.getCusAddress());
+		followUp.setCusOrganisation(addFollowUpBean.getCusOrganisation());
+		if(addFollowUpBean.getActionId()>0)
+		{
+			//followUp.setAddAction(masterMasterDao.getActi);
+		}
+		customerSalesDao.addfollowup(followUp);
+		
+	}
+	@Override
+	public List<CustomerSalesBean> findAllDataById(int id) {
+		List<CustomerSales> list=customerSalesDao.getsalesListById(id);
+		List<CustomerLevels> cusStatus=masterMasterDao.getCustomerStatusDetails();
+		List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
+		String [] status=cusStatus.toArray(new String[cusStatus.size()]);
+		for(CustomerSales data:list)
+		{
+			CustomerSalesBean salesBean=new CustomerSalesBean();
+			salesBean.setCustomerId(data.getCustomerId());
+			salesBean.setAddress(data.getAddress());
+			salesBean.setStatus(data.getStatus().getStatus());
+			salesBean.setStatusList(status);
+			//System.out.println("On Service customer"+ data.getAddress()+data.getStatus().getStatus());
+			listbean.add(salesBean);
+		}
+		return listbean;
 	}
 	
 
