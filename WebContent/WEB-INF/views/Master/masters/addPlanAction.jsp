@@ -34,8 +34,8 @@
 <input type="hidden" id="hiddenid"/>
   
   
-  <div class="col-md-10" align="right" id="dddd1234"><input path="loginname" type="text" class="validate[required] text-input" id="addsource"
-						style="border-radius: 5px;" value="${planname.action}" name="" placeholder="Add Plan "
+  <div class="col-md-10" align="right" id="dddd1234"><input path="loginname" type="text" class="validate[required] text-input" id="addplan"
+						style="border-radius: 5px;" value="" name="" placeholder="Add Plan "
 						maxlength="20" autofocus="autofocus" onclick="stopmoving();"></input></div>
   
   
@@ -69,16 +69,16 @@
 				 <th style="width: 60px;">Edit</th>
 			    <th style="width: 60px;"> Delete</th>
 			</tr>
-			 <c:if test="${!empty actionplanlist}">
-				<c:forEach items="${actionplanlist}" var="action" varStatus="loop">
+			 <c:if test="${!empty planList}">
+				<c:forEach items="${planList}" var="action" varStatus="loop">
 
 					<tr>
 						<td>${loop.index+1}</td>
-						<td>${action.action}</td>
+						<td>${action.plan}</td>
 		              
 						 
 						<td><a href="#" onclick="editCur(${action.id})" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>		
-					 <td style="margin"><a href="deletecustomerso?id=${action.id}"><span
+					 <td style="margin"><a href="deleteAddPlan?addplanid=${action.id}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>  
 					</tr>
 
@@ -119,12 +119,13 @@ $('#messagediv').hide();
 
 
 $('#saveForm').click(function (){
-	var action=$('#addsource').val();
-	if(action == ''){
+	var data=$('#addplan').val();
+	alert(data);
+	if(data == ''){
 		$('#messagediv').show();
 		
 	}else{
-		var jsonObj={'action':action
+		var jsonObj={'plan':data
 		} ;
 	$.ajax({
 			url: "addactionplan",
@@ -138,7 +139,7 @@ $('#saveForm').click(function (){
 		        },
 			     success: function(resposeJsonObject){
 			    	 $('#openModal').hide();
-			    	 //window.location.currency;
+			    	 
 			    	 window.location.reload();
 		     
 		    }});
@@ -149,16 +150,16 @@ $('#saveForm').click(function (){
 });
 
 $('#EditForm').click(function (){
-	//var id=$("#hiddenid").val();
-	var action=$('#addsource').val();
+	var id=$("#hiddenid").val();
+	var plan=$('#addplan').val();
 	
-	//var d1w=$("#hiddenid").val();
-	//alert(d1w);
+	var id1w=$("#hiddenid").val();
+	alert(id1w);
 	
 	
-	var jsonObj={'action':action} ;
+	var jsonObj={'plan':plan,'id':id} ;
 $.ajax({
-		url: "editforactionplan",
+		url: "updateForAddPaln",
 		type: "POST",
 		
 		  data :JSON.stringify(jsonObj),
@@ -176,21 +177,22 @@ $.ajax({
 	
 	
 });
+
 function editCur(id){
 	$("#formid").show('show');
 	$('#EditForm').show();
 	$("#saveForm").hide(); 
 $.ajax({
-	url: "getcustomersource?customersourceId="+id,
+	url: "getPlanRecordForEdit?addplanid="+id,
 	type: "POST",
 	
 	     success: function(respose){
 	    	 alert(respose);
 	    	 var data=JSON.parse(respose)
-	    	 var name=data.customersourceId;
-	    	 var id=data.source;
+	    	 var name=data.id;
+	    	 var id=data.plan;
 	    	 alert("************************"+id);
-	    	 $("#addsource").val(id);
+	    	 $("#addplan").val(id);
 	    	 $("#hiddenid").val(name);
 	    	 
     }});

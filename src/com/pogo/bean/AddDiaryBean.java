@@ -13,6 +13,10 @@ public class AddDiaryBean {
 	private String mobileno;
 	private String email;
 	private String objective;
+	private String planName;
+	private int planId;
+	private String degName;
+	private int degId;
 	
 	public String getDate() {
 		return date;
@@ -87,6 +91,30 @@ public class AddDiaryBean {
 	}
 	public void setDiaryId(Integer diaryId) {
 		this.diaryId = diaryId;
+	}
+	public String getPlanName() {
+		return planName;
+	}
+	public void setPlanName(String planName) {
+		this.planName = planName;
+	}
+	public int getPlanId() {
+		return planId;
+	}
+	public void setPlanId(int planId) {
+		this.planId = planId;
+	}
+	public String getDegName() {
+		return degName;
+	}
+	public void setDegName(String degName) {
+		this.degName = degName;
+	}
+	public int getDegId() {
+		return degId;
+	}
+	public void setDegId(int degId) {
+		this.degId = degId;
 	}
 	
 	}

@@ -226,6 +226,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		followUp.setCusStatus(addFollowUpBean.getCustStatus());
 		followUp.setCusAddress(addFollowUpBean.getCusAddress());
 		followUp.setCusOrganisation(addFollowUpBean.getCusOrganisation());
+		followUp.setRemarks(addFollowUpBean.getRemarks());
 		if(addFollowUpBean.getActionId()>0)
 		{
 			followUp.setActionType(masterMasterDao.getActionDataById(addFollowUpBean.getActionId()));

@@ -41,6 +41,8 @@ private String cusOrganisation;
 private String cusAddress;
 @Column(name="cusAddress")
 private String cusStatus;
+@Column(name="remarks")
+private String remarks;
 public String getCusOrganisation() {
 	return cusOrganisation;
 }
@@ -122,6 +124,12 @@ public String getContactPerson() {
 }
 public void setContactPerson(String contactPerson) {
 	this.contactPerson = contactPerson;
+}
+public String getRemarks() {
+	return remarks;
+}
+public void setRemarks(String remarks) {
+	this.remarks = remarks;
 }
 
 }

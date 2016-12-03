@@ -32,6 +32,12 @@ public class AddDiary {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="enteruser")
 	private UserEmployee enteryuser;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="plan_id")
+	private AddPlan planName;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="desg_id")
+	private Designation degName;
 	@Column(name="adress")
     private String address;
 	@Column(name="mobileno")

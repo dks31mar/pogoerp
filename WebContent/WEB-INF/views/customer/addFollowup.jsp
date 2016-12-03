@@ -78,7 +78,7 @@ alert("Not Reachable");
 <div class="row">
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 44px;">
-		<span class="glyphicon glyphicon-file"> </span> <span> Add Activity</span>
+		<span class="glyphicon glyphicon-file"> </span> <span> Add Follow</span>
 		
 </div>
 </div>
@@ -154,6 +154,15 @@ alert("Not Reachable");
    </select> 
     </div>
   </div>
+   <label class="col-md-2 control-label" >Status<span
+					style="color: red;">*</span></label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <select   name="custStatus"  required="required" id="status" class="form-control selectpicker">
+  </select>
+    </div>
+  </div>
   </div> 
   <div class="form-group">
   <label class="col-md-2 control-label">Address<span
@@ -161,18 +170,16 @@ alert("Not Reachable");
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-   <input  type="text" class="form-control" name="cusAddress" id="address"  placeholder="Address" >
+   <textarea   class="form-control" cols="34" rows="4" name="cusAddress" id="address"  placeholder="Address" >
+   </textarea>
     </div>
   </div>
-  <label class="col-md-2 control-label" >Status<span
+ <label class="col-md-2 control-label">Contact Person <span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select   name="custStatus"  required="required" id="status" class="form-control selectpicker">
-  
-      
-  </select>
+   <input name="contactPerson"  class="form-control" type="text">
     </div>
   </div>
 </div>
@@ -295,18 +302,17 @@ alert("Not Reachable");
   <option value="57">57</option>
   <option value="58">58</option>
   <option value="59">59</option>
-  
-  
   </select>
   <!-- <input   name="followupTimeIn" placeholder="Enter Time out" id="clockpicker" required="required"  class="form-control"  type="text"> -->
     </div>
   </div>
-  <label class="col-md-2 control-label">Contact Person <span
+  <label class="col-md-2 control-label">Action Taken <span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-   <input name="contactPerson"  class="form-control" type="text">
+   <textarea rows="2" cols="29" name="actionTaken">
+</textarea>
     </div>
   </div>
 </div>
@@ -408,11 +414,10 @@ alert("Not Reachable");
  <!--  <input name="followupTimeOut" class="form-control selectpicker" placeholder="Select Time In" required="required" type="text" id="datetimepicker"> -->
     </div>
   </div>
-  <label class="col-md-2 control-label">Action Taken <span
-					style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label">Remarks</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
-   <textarea rows="2" cols="35" name="actionTaken">
+   <textarea rows="2" cols="35" name="remarks">
 </textarea>
     </div>
     </div>

@@ -4,7 +4,7 @@ public class AddPlanBean {
 
 	private int id;
 	
-	private  String paln;
+	private  String plan;
 
 	public int getId() {
 		return id;
@@ -14,12 +14,13 @@ public class AddPlanBean {
 		this.id = id;
 	}
 
-	public String getPaln() {
-		return paln;
+	public String getPlan() {
+		return plan;
 	}
 
-	public void setPaln(String paln) {
-		this.paln = paln;
+	public void setPlan(String plan) {
+		this.plan = plan;
 	}
+
 	
 }
