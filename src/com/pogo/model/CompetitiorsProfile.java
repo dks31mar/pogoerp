@@ -14,8 +14,7 @@ public class CompetitiorsProfile {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="compid",columnDefinition="Bigint(12)")
-	private Integer compid;
-	
+	private int compid;
 	@Column(name="name",columnDefinition="varchar(11)")
 	private String name;
 	
@@ -25,14 +24,11 @@ public class CompetitiorsProfile {
 	@Column(name="address",columnDefinition="varchar(100)")
 	private String address;
 	
-	@Column(name="designation",columnDefinition="varchar(100)")
-	private String designation;
-	
 	@Column(name="mobileno",columnDefinition="int(25)")
-	private String mobileno;
+	private Integer mobileno;
 	
 	@Column(name="phoneno",columnDefinition="int(25)")
-    private String phoneno;
+    private Integer phoneno;
     
 	@Column(name="emailid",columnDefinition="varchar(50)")
     private String emailid;
@@ -47,7 +43,7 @@ public class CompetitiorsProfile {
 	private String warrentyperiod;
 	
 	@Column(name="price", columnDefinition="int(10)")
-	private String price;
+	private Integer price;
 	
 	@Column(name="no_of_freeamc" ,columnDefinition="varchar(10)")
 	private String nooffreeamc;
@@ -55,11 +51,12 @@ public class CompetitiorsProfile {
 	@Column(name="amcrate")
     private String amcrate;
 
-	public Integer getCompid() {
+	
+	public int getCompid() {
 		return compid;
 	}
 
-	public void setCompid(Integer compid) {
+	public void setCompid(int compid) {
 		this.compid = compid;
 	}
 
@@ -87,27 +84,21 @@ public class CompetitiorsProfile {
 		this.address = address;
 	}
 
-	public String getDesignation() {
-		return designation;
-	}
+	
 
-	public void setDesignation(String designation) {
-		this.designation = designation;
-	}
-
-	public String getMobileno() {
+	public Integer getMobileno() {
 		return mobileno;
 	}
 
-	public void setMobileno(String mobileno) {
+	public void setMobileno(Integer mobileno) {
 		this.mobileno = mobileno;
 	}
 
-	public String getPhoneno() {
+	public Integer getPhoneno() {
 		return phoneno;
 	}
 
-	public void setPhoneno(String phoneno) {
+	public void setPhoneno(Integer phoneno) {
 		this.phoneno = phoneno;
 	}
 
@@ -143,11 +134,11 @@ public class CompetitiorsProfile {
 		this.warrentyperiod = warrentyperiod;
 	}
 
-	public String getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
@@ -166,6 +157,9 @@ public class CompetitiorsProfile {
 	public void setAmcrate(String amcrate) {
 		this.amcrate = amcrate;
 	}
+
+	
+	
 
 	
 

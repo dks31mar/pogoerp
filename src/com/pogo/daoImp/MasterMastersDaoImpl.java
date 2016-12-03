@@ -14,9 +14,7 @@ import com.pogo.bean.AddActionBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.AddAction;
 import com.pogo.model.AddPlan;
-import com.pogo.model.Branch;
 import com.pogo.model.Country;
-import com.pogo.model.Currency;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
@@ -28,19 +26,19 @@ import com.pogo.model.ModeOfDispatch;
 import com.pogo.model.ServiceProvider;
 
 import com.pogo.model.State;
-
+import com.pogo.model.SupplierMaster;
 import com.pogo.model.TeamSegment;
-import com.pogo.model.UserEmployee;
 
-@SuppressWarnings("unchecked")
+
 
 @Repository("masterMastersdao")
+@SuppressWarnings("unchecked")
 public class MasterMastersDaoImpl  implements  MasterMastersDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 
 	
@@ -113,7 +111,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 
 	
 
-	@SuppressWarnings("unchecked")
+	
 
 	@Override
 	public List<State> stateList(){
@@ -326,13 +324,13 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		List<District> list= district.list();
 		return list;
 	}
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<ModeOfDispatch> getModeOfDispatchList() {
 		
 		return (List<ModeOfDispatch>)sessionFactory.getCurrentSession().createCriteria(ModeOfDispatch.class).list();
 	}
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void addModeOfDispatch( ModeOfDispatch poref1){
 		sessionFactory.getCurrentSession().save(poref1);
@@ -343,7 +341,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		
 	}
 
-@SuppressWarnings("unchecked")
+
 	@Override
  public List<ModeOfDispatch> getModeOfDispatchbyId (String id){
         int f=Integer.parseInt(id);
@@ -373,14 +371,14 @@ public void editModeOfDispatch(ModeOfDispatch modeofdispatch){
 
 
 
-@SuppressWarnings("unchecked")
+
 @Override
 public List<TeamSegment> getTeamSegmentList() {
 	
 	return (List<TeamSegment>)sessionFactory.getCurrentSession().createCriteria(TeamSegment.class).list();
 }
 
-@SuppressWarnings("unchecked")
+
 @Override
 public void addteam( TeamSegment poref1){
 	sessionFactory.getCurrentSession().save(poref1);
@@ -391,7 +389,8 @@ public void deleteteam(int id) {
 	
 }
 
-@SuppressWarnings("unchecked")
+
+
 @Override
 public List<TeamSegment> getTeambyId (String id){
     int f=Integer.parseInt(id);
@@ -500,7 +499,7 @@ public List<AddAction> getactiondata() {
 }
 
 public List<AddPlan> getActionList() {
-	// TODO Auto-generated method stub
+	
 
 	return (List<AddPlan>) sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();}
 @Override
@@ -514,7 +513,7 @@ public List<AddActionBean> ActionList() {
 	return (List<AddActionBean>) sessionFactory.getCurrentSession().createCriteria(AddActionBean.class).list();}
 @Override
 public List<AddAction> actionList() {
-	// TODO Auto-generated method stub
+	
 	return null;
 }
 @Override
@@ -528,6 +527,30 @@ public List<CustomerLevels> getCustomerStatusDetailsList() {
 	return sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).list();
 
 }
+@Override
+public void saveSupplierMaster(SupplierMaster sm) {
+	sessionFactory.getCurrentSession().save(sm);
+}
+@Override
+public List<SupplierMaster> getSupplierMaster() {
+	
+	return sessionFactory.getCurrentSession().createCriteria(SupplierMaster.class).list();
+}
+@Override
+public List<SupplierMaster> getSupmst(String id) {
+	Integer idd=Integer.parseInt(id);
+	return sessionFactory.getCurrentSession().createCriteria(SupplierMaster.class).add(Restrictions.eq("suppliermasterid", idd)).list();
+}
+@Override
+public void editSupplierMaster(SupplierMaster sm) {
+	sessionFactory.getCurrentSession().update(sm);
+}
+@Override
+public void deleteSuppilerMst(int id) {
+	sessionFactory.getCurrentSession().createQuery("DELETE FROM SupplierMaster WHERE suppliermasterid = "+id).executeUpdate();
+}
+
+
 }
 
 

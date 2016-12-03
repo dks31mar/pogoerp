@@ -65,7 +65,7 @@
 				</div>
 				<div class="col-sm-9">
 					<input type="text" name="principalname"
-						placeholder="Principal Name" value="YMC Co. Ltd., Japan"
+						placeholder="Principal Name" value="Testing Private Limited"
 						class="form-control" style="display: inline-block;" ReadOnly>
 				</div>
 			</div>
@@ -75,7 +75,7 @@
 				</div>
 				<div class="col-sm-9">
 					<textarea rows="4" cols="77" name="address"
-						style="border-radius: 5px; background-color: #f2f2f2;" readonly>YMC CO.,LTD. YMC Karasuma-Gojo Building 284 Daigo-cho Karasuma Nishiliru Gojo-dori,Shimogyo -Ku Kyoto 600-8106 Japan"  </textarea>
+						style="border-radius: 5px; background-color: #f2f2f2;" readonly> Testing Private Limited,Bulding No.:XX ,XXXXX </textarea>
 						
 				</div>
 			</div>

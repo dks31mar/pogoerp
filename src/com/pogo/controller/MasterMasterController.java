@@ -42,6 +42,7 @@ import com.pogo.bean.ModeOfDispatchBean;
 import com.pogo.bean.ServiceProviderBean;
 
 import com.pogo.bean.StateBean;
+import com.pogo.bean.SupplierMasterBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.model.AddAction;
 import com.pogo.model.AddPlan;
@@ -51,6 +52,7 @@ import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
+import com.pogo.model.SupplierMaster;
 import com.pogo.service.MasterMastersService;
 @SuppressWarnings("unused")
 @Controller
@@ -941,4 +943,63 @@ public class MasterMasterController {
 	
 		return new ModelAndView("addaction",model);
   	}*/
+	
+	@RequestMapping(value = "/suppliermaster", method = RequestMethod.GET)
+	public ModelAndView supplierMaster(@RequestParam("page") String pagename) {
+		
+		List<SupplierMasterBean> list=new ArrayList<SupplierMasterBean>();
+		list=masterMastersService.getSupplierMaster();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("suppmstlst", list);
+		return new ModelAndView("suppliermasterpage",model);
+	}
+	
+	@RequestMapping(value="savesuppliermaster",method=RequestMethod.POST)
+	@ResponseBody
+	public void saveSupplierMaster(@RequestBody String json,Model model) throws IOException{
+		ObjectMapper mapper=new ObjectMapper();
+		SupplierMasterBean servicepro=mapper.readValue(json, SupplierMasterBean.class);
+		
+		masterMastersService.saveSupplierMaster(servicepro);
+		
+	
+	}
+	
+	@RequestMapping(value = "getsupplierdatabyid", method = RequestMethod.POST)
+	public void getSupplierdatabyId(@RequestParam("id") String id,HttpServletResponse res )throws ParseException  {
+		String curList=masterMastersService.getSupmst(id);
+		System.out.println(curList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(curList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	
+	}
+	
+	@RequestMapping(value="editsuppliermstdata",method=RequestMethod.POST)
+	@ResponseBody
+	public void editSupplierMst(@RequestBody String json,Model model) throws IOException{
+		ObjectMapper mapper=new ObjectMapper();
+		SupplierMasterBean servicepro=mapper.readValue(json, SupplierMasterBean.class);
+		
+		masterMastersService.editSupplierMaster(servicepro);
+		
+	
+	}
+	
+	
+	@RequestMapping(value = "deletesuppliermstdata", method = RequestMethod.GET)
+	public ModelAndView deleteuserCurrencyData(@RequestParam("id") int id) {
+		
+		masterMastersService.deleteSuppilerMst(id);
+		
+		List<SupplierMasterBean> list=new ArrayList<SupplierMasterBean>();
+		list=masterMastersService.getSupplierMaster();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("suppmstlst", list);
+		return new ModelAndView("suppliermasterpage",model);
+	}
 }

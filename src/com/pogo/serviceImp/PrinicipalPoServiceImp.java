@@ -148,8 +148,8 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		
 		PorefSupplierDetail porefsup=new PorefSupplierDetail();
 		porefsup.setPorefno(s);
-		porefsup.setAddress("YMC CO.,LTD. YMC Karasuma-Gojo Building 284 Daigo-cho Karasuma Nishiliru Gojo-dori,Shimogyo -Ku Kyoto 600-8106 Japan");
-		porefsup.setPrincipalname("YMC Co. Ltd., Japan");
+		porefsup.setAddress("Testing Private Limited,Bulding No.:XX ,XXXXX");
+		porefsup.setPrincipalname("Testing Private Limited");
 		porefsup.setPorefdate(porefs.getPorefdate());
 		porefsup.setTotal(porefs.getTotal());
 		prinicipaldao.addPoSupplier(porefsup);
@@ -252,8 +252,8 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		PorefSupplierDetail porefsup=new PorefSupplierDetail();
 		porefsup.setPorefsupplierdetailid(porefgetid.getPorefsupplierdetailid());
 		porefsup.setPorefno(porefs.getPorefno());
-		porefsup.setAddress("YMC CO.,LTD. YMC Karasuma-Gojo Building 284 Daigo-cho Karasuma Nishiliru Gojo-dori,Shimogyo -Ku Kyoto 600-8106 Japan");
-		porefsup.setPrincipalname("YMC Co. Ltd., Japan");
+		porefsup.setAddress("Testing Private Limited,Bulding No.:XX ,XXXXX");
+		porefsup.setPrincipalname("Testing Private Limited");
 		porefsup.setPorefdate(porefs.getPorefdate());
 		porefsup.setTotal(porefs.getTotal());
 		prinicipaldao.updatePoSupplier(porefsup);

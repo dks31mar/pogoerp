@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +95,7 @@ public class CommonDaoImp implements CommonDao{
 	@Override
 	public List<PorefSupplierDetail> viewList(){
 		sessionFactory.getCurrentSession().flush();
-		return (List<PorefSupplierDetail>) sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class).list();
+		return (List<PorefSupplierDetail>) sessionFactory.getCurrentSession().createCriteria(PorefSupplierDetail.class).addOrder(Order.desc("porefdate")).list();
 	}
 	/************************************************** use by shweta ***************************************************/
 }

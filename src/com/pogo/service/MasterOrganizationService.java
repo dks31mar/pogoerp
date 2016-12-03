@@ -111,6 +111,11 @@ public interface MasterOrganizationService {
 	List<DepartmentBean> getDepartmentDetails();
 
 	
+	String getCompetitiorsProfilebyid(String id);
+
+	void editCompetitiorsProfile(CompetitiorsProfileBean poref1);
+
+	
 	
 	
 

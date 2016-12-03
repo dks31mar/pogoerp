@@ -507,7 +507,40 @@ public class MasterOrganizationController {
 		return new ModelAndView("redirect:/addfeature");
 	}
 
-	@RequestMapping(value = "/editcompetitior", method = RequestMethod.GET)
+	@RequestMapping(value = "getCompetitiorsProfilebyid", method = RequestMethod.POST)
+	public void getCompetitiorsProfilebyidbyId(@RequestParam("compid") String id,HttpServletResponse res )throws ParseException  {
+		System.out.println("ID IS \n"+id);
+		
+		String cuList=regionService.getCompetitiorsProfilebyid(id);
+		System.out.println("inside getCompetitiorsProfilebyid method");
+		
+		
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@RequestMapping(value="editgetCompetitiorsProfilebyid",method=RequestMethod.POST)
+	@ResponseBody
+	public void editCompetitiorsProfilebyid(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit CompetitiorsProfilebyid method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		CompetitiorsProfileBean poref=mapper.readValue(json, CompetitiorsProfileBean.class);
+		CompetitiorsProfileBean poref1=new CompetitiorsProfileBean();
+		//poref1.setModeofdispatchId(poref.getModeofdispatchId());
+		//poref1.setModeofdispatch(poref.getModeofdispatch());
+		
+		
+		regionService.editCompetitiorsProfile(poref1);
+		
+	}
+
+@RequestMapping(value = "/editcompetitior", method = RequestMethod.GET)
 	public ModelAndView getcompetitior(@RequestParam int id, Model model) {
 		CompetitiorsProfileBean bean = regionService.getCompititerId(id);
 		model.addAttribute("listofcompetitior", bean);
@@ -517,11 +550,13 @@ public class MasterOrganizationController {
 
 	@RequestMapping(value = "/upcompetitior", method = RequestMethod.POST)
 
-	public ModelAndView updateCompetitior(
-			@ModelAttribute("competitiorsProfileBean") CompetitiorsProfileBean competitiorsProfileBean) {
-		regionService.updateCompetitior(competitiorsProfileBean);
-
-		return new ModelAndView("redirect:/addfeature");
+	public ModelAndView updateCompetitior(@ModelAttribute("competitiorsProfileBean") CompetitiorsProfileBean competitiorsProfileBean,BindingResult result)
+			 {
+		
+		System.out.println(competitiorsProfileBean.getCompid());
+		           regionService.updateCompetitior(competitiorsProfileBean);
+                    System.out.println("update competitior profile");
+		           return new ModelAndView("redirect:/addfeature");
 	}
 
 	@RequestMapping(value = "/permitforsmssend", method = RequestMethod.POST)
