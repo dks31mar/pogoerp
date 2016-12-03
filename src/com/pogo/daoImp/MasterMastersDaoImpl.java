@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pogo.bean.AddActionBean;
+import com.pogo.bean.AddPlanBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.AddAction;
 import com.pogo.model.AddPlan;
@@ -468,23 +469,7 @@ public void deleteserviceprovider(int id) {
 	sessionFactory.getCurrentSession().createQuery("DELETE FROM ServiceProvider WHERE transportationserviceid = "+id).executeUpdate();
 	
 }
-@Override
 
-public List<AddPlan> actionPlanList() {
-	return (List<AddPlan>) sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();
-}
-@Override
-public void addActionPlan(AddAction action) {
-	sessionFactory.getCurrentSession().save(action);
-	
-}
-@Override
-public AddAction getplanDataById(int id) {
-	
-	return (AddAction) sessionFactory.getCurrentSession().get(AddAction.class, id);
-
-
-}
 
 @Override
 public State getStateIdByContryId(Integer id) {
@@ -528,6 +513,59 @@ public List<CustomerLevels> getCustomerStatusDetailsList() {
 
 }
 @Override
+
+public void editforAddAction(AddAction action) {
+	sessionFactory.getCurrentSession().update(action);
+	
+}
+@Override
+public List<AddAction> getActionRecord(String id) {
+	int id1=Integer.parseInt(id);
+	return (List<AddAction>)sessionFactory.getCurrentSession().createCriteria(AddAction.class).add(Restrictions.eq("id", id1)).list();
+}
+@Override
+public void deleteaddAction(int id) {
+	sessionFactory.getCurrentSession().createQuery("DELETE FROM AddAction WHERE id = "+id).executeUpdate();
+	
+}
+@Override
+public void addActionPlan(AddPlan plan) {
+	sessionFactory.getCurrentSession().save(plan);
+}
+@Override
+public List<AddPlanBean> PlanList() {
+	return (List<AddPlanBean>) sessionFactory.getCurrentSession().createCriteria(AddPlanBean.class).list();
+}
+@Override
+public List<AddPlan> getplandata() {
+		return sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();
+}
+@Override
+public List<AddPlan> getplanRecord(String id) {
+	int id1=Integer.parseInt(id);
+	return (List<AddPlan>)sessionFactory.getCurrentSession().createCriteria(AddPlan.class).add(Restrictions.eq("id", id1)).list();
+}
+@Override
+public void updateForAddPaln(AddPlan action) {
+	sessionFactory.getCurrentSession().update(action);
+	
+}
+@Override
+public void deleteAddPlan(AddPlan plan) {
+	sessionFactory.getCurrentSession().createQuery("DELETE FROM AddPlan WHERE id ="+plan.getId()).executeUpdate();
+	//sessionFactory.getCurrentSession().delete(plan);
+	
+}
+@Override
+public List<AddPlan> getPlanata() {
+	return sessionFactory.getCurrentSession().createCriteria(AddPlan.class).list();
+}
+
+@Override
+public AddPlan getplanById(int id) {
+	return (AddPlan) sessionFactory.getCurrentSession().get(AddPlan.class, id);
+}
+
 public void saveSupplierMaster(SupplierMaster sm) {
 	sessionFactory.getCurrentSession().save(sm);
 }
@@ -549,6 +587,7 @@ public void editSupplierMaster(SupplierMaster sm) {
 public void deleteSuppilerMst(int id) {
 	sessionFactory.getCurrentSession().createQuery("DELETE FROM SupplierMaster WHERE suppliermasterid = "+id).executeUpdate();
 }
+
 
 
 }

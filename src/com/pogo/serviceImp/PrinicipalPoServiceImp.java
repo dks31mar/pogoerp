@@ -1,7 +1,9 @@
 package com.pogo.serviceImp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +30,7 @@ import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
 import com.pogo.model.ProductStock;
+import com.pogo.model.SupplierMaster;
 import com.pogo.service.PrinicipalPoService;
 
 @Service("prinicipalposervice")
@@ -148,9 +151,10 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		
 		PorefSupplierDetail porefsup=new PorefSupplierDetail();
 		porefsup.setPorefno(s);
-		porefsup.setAddress("Testing Private Limited,Bulding No.:XX ,XXXXX");
-		porefsup.setPrincipalname("Testing Private Limited");
+		porefsup.setAddress(porefs.getAddress());
+		porefsup.setPrincipalname(porefs.getPrincipalname());
 		porefsup.setPorefdate(porefs.getPorefdate());
+		porefsup.setCurrency(porefs.getCurrency());
 		porefsup.setTotal(porefs.getTotal());
 		prinicipaldao.addPoSupplier(porefsup);
 		
@@ -179,24 +183,26 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		List<PoRefEntryItemDetailBean> lst1=new ArrayList<>();
 		for(PoRefEntryItemDetail e:lst){
 			PoRefEntryItemDetailBean bean=new PoRefEntryItemDetailBean();
-			bean.setPorefentryitemdetailid(e.getPorefentryitemdetailid());
-			  
-		 	  bean.setParticular(e.getParticular());
-		 	  bean.setTpinjpy(e.getTpinjpy());
-		 	  bean.setQty(e.getQty());
-		 	  bean.setTotaljpy(e.getTotaljpy());
-		 	  bean.setTotalinr(e.getTotalinr());
-		 	  bean.setAckdate(e.getAckdate());  
-		 	  bean.setRemarks(e.getRemarks());
-		 	  bean.setPosrno(e.getPosrno());
-		 	  bean.setInvno(e.getInvno());
-		 	  bean.setInvdate(e.getInvdate());
-		 	  bean.setCustomerporefe(e.getCustomerporefe());
-		 	  bean.setProductdescription(e.getProductdescription());
-		 	  bean.setPorefnobysupplier(e.getPorefnobysupplier());
-		 	  System.out.println(e.getParticular());
-		 	
-		 	 lst1.add(bean);
+			
+				  bean.setPorefentryitemdetailid(e.getPorefentryitemdetailid());
+				  
+			 	  bean.setParticular(e.getParticular());
+			 	  bean.setTpinjpy(e.getTpinjpy());
+			 	  bean.setQty(e.getQty());
+			 	  bean.setTotaljpy(e.getTotaljpy());
+			 	  bean.setTotalinr(e.getTotalinr());
+			 	  bean.setAckdate(e.getAckdate());  
+			 	  bean.setRemarks(e.getRemarks());
+			 	  bean.setPosrno(e.getPosrno());
+			 	  bean.setInvno(e.getInvno());
+			 	  bean.setInvdate(e.getInvdate());
+			 	  bean.setCustomerporefe(e.getCustomerporefe());
+			 	  bean.setProductdescription(e.getProductdescription());
+			 	  bean.setPorefnobysupplier(e.getPorefnobysupplier());
+			 	  
+			 	  System.out.println(e.getParticular());
+			 	
+			 	 lst1.add(bean);
 		}
 		return lst1;
 	}
@@ -252,8 +258,8 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		PorefSupplierDetail porefsup=new PorefSupplierDetail();
 		porefsup.setPorefsupplierdetailid(porefgetid.getPorefsupplierdetailid());
 		porefsup.setPorefno(porefs.getPorefno());
-		porefsup.setAddress("Testing Private Limited,Bulding No.:XX ,XXXXX");
-		porefsup.setPrincipalname("Testing Private Limited");
+		porefsup.setAddress(porefs.getAddress());
+		porefsup.setPrincipalname(porefs.getPrincipalname());
 		porefsup.setPorefdate(porefs.getPorefdate());
 		porefsup.setTotal(porefs.getTotal());
 		prinicipaldao.updatePoSupplier(porefsup);
@@ -478,6 +484,30 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		}
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>     product iddddd    "+proId);
 		
+	}
+
+	@Override
+	public String getSupplierDetails() {
+		
+		List<SupplierMaster> partnoList=new ArrayList<SupplierMaster>();
+		partnoList=prinicipaldao.getSupplierDetails();
+		String json = new Gson().toJson(partnoList );
+		System.out.println("((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((");
+		return json;
+	}
+
+	@Override
+	public String getSupplierDetailsByName(String name) {
+		List<SupplierMaster> partnoList=new ArrayList<SupplierMaster>();
+		partnoList=prinicipaldao.getSupplierDetailsByName(name);
+		Map<String, String> map=new HashMap<>();
+		for(SupplierMaster sm:partnoList){
+			map.put("address", sm.getAddress());
+			map.put("currency", sm.getCurrency());
+		}
+		String json = new Gson().toJson(map );
+		System.out.println("((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((");
+		return json;
 	}
 
 	

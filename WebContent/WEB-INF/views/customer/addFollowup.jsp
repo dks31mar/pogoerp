@@ -6,9 +6,17 @@
 	rel="stylesheet" type="text/css" /> 
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
+<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+<script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/displaytag.css" />
+<link rel="stylesheet" type="text/css"
+	href="resources/css/messagebox.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 <!-- <link rel="stylesheet" type="text/css" href="resources/time/assets/css/bootstrap.min.css">
@@ -19,40 +27,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
-<script>
- function getData(id)
-{
-	 alert(id);
-	 $('#address').empty();
-	 $('#status').empty();
-	$.ajax({
-		url :'getCustomerRecord',
-		type : 'POST',
-		data:{
-			'id':id,
-		   },
-		   success : function(data,status)
-		   {
-		   var j=JSON.parse(data);
-		   var statusdata=j[0].statusList;
-		   console.log(statusdata);
-			var st='';
-				st += j[0].address;
-				st += j[0].status;
-				$('#address').val(j[0].address);
-				//$('#status').val(j[0].status);
-				$('#status').append($('<option>', {value:j[0].status, text:j[0].status}));
-				for(var v=0;v<=statusdata.length;v++){
-				$('#status').append($('<option>', {value:statusdata[v], text:statusdata[v]}));
-				}
-				},
-		error: function(error, status) 
-		 {
-alert("Not Reachable");
-		 }
-	});
-	} 
-</script>
 
 
 
@@ -63,11 +37,11 @@ alert("Not Reachable");
 		    
 		  });
   
-  $('.clockpicker').clockpicker({
+  /* $('.clockpicker').clockpicker({
 	    placement: 'top',
 	    align: 'left',
 	    donetext: 'Done'
-	});
+	}); */
 </script>
 <div class="row" style="margin-top: 15px">
 	<br>
@@ -78,7 +52,7 @@ alert("Not Reachable");
 <div class="row">
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 44px;">
-		<span class="glyphicon glyphicon-file"> </span> <span> Add Activity</span>
+		<span class="glyphicon glyphicon-file"> </span> <span> Add Follow</span>
 		
 </div>
 </div>
@@ -144,14 +118,28 @@ alert("Not Reachable");
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-   <select    class="form-control" name="cusOrganisation" oninput="getData(this.value)" >
+  <input type='text' value="" name='customer'
+								style='overflow: auto; border-radius: 3px; width: 223px;'
+								id='autocompletecustomer' class='form-control'
+								/>
+  
+  <%--  <select    class="form-control" name="cusOrganisation" oninput="getData(this.value)" >
    <option value="" selected="selected">--Select Customer--</option>
    <c:if test="${!empty salesList}">
    <c:forEach items="${salesList}" var="list">
    <option value="${list.customerId}">${list.organisation}</option>
    </c:forEach>
    </c:if>
-   </select> 
+   </select>  --%>
+    </div>
+  </div>
+   <label class="col-md-2 control-label" >Status<span
+					style="color: red;">*</span></label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <select   name="custStatus"  required="required" id="status" class="form-control selectpicker">
+  </select>
     </div>
   </div>
   </div> 
@@ -161,18 +149,16 @@ alert("Not Reachable");
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-   <input  type="text" class="form-control" name="cusAddress" id="address"  placeholder="Address" >
+   <textarea   class="form-control" cols="34" rows="4" name="cusAddress" id="address"  placeholder="Address" >
+   </textarea>
     </div>
   </div>
-  <label class="col-md-2 control-label" >Status<span
+ <label class="col-md-2 control-label">Contact Person <span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select   name="custStatus"  required="required" id="status" class="form-control selectpicker">
-  
-      
-  </select>
+   <input name="contactPerson"  class="form-control" type="text">
     </div>
   </div>
 </div>
@@ -295,18 +281,17 @@ alert("Not Reachable");
   <option value="57">57</option>
   <option value="58">58</option>
   <option value="59">59</option>
-  
-  
   </select>
   <!-- <input   name="followupTimeIn" placeholder="Enter Time out" id="clockpicker" required="required"  class="form-control"  type="text"> -->
     </div>
   </div>
-  <label class="col-md-2 control-label">Contact Person <span
+  <label class="col-md-2 control-label">Action Taken <span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-   <input name="contactPerson"  class="form-control" type="text">
+   <textarea rows="2" cols="29" name="actionTaken">
+</textarea>
     </div>
   </div>
 </div>
@@ -408,11 +393,10 @@ alert("Not Reachable");
  <!--  <input name="followupTimeOut" class="form-control selectpicker" placeholder="Select Time In" required="required" type="text" id="datetimepicker"> -->
     </div>
   </div>
-  <label class="col-md-2 control-label">Action Taken <span
-					style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label">Remarks</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
-   <textarea rows="2" cols="35" name="actionTaken">
+   <textarea rows="2" cols="35" name="remarks">
 </textarea>
     </div>
     </div>
@@ -433,5 +417,70 @@ alert("Not Reachable");
 </div>
 
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/messagebox.js"></script>
+<script type="text/javascript" src="resources/js/messagebox.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
+
+   <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+
+
+
+
+<script>
+
+
+
+
+$('#autocompletecustomer').on("click",function(){
+		//var word=$('#autocomplete').val();
+		alert("ddd");
+		//alert($(e.target).val() );	
+			$.ajax({
+				url: "getCustomerRecords", 
+				success: function(result){
+					console.log(result);
+					search1(result);
+					
+    					}
+			});
+	
+});
+
+function search1(result){
+	alert(result);
+	var currencies =jQuery.parseJSON(result);
+	alert(currencies);
+$('#autocompletecustomer').autocomplete({
+    lookup: currencies,
+    onSelect: function (suggestion) {
+    var pro= suggestion.value;
+     /*  $.ajax({
+			url: "getpartdetail?pro="+pro, 
+			success: function(result){
+				for(i=0;i<result.length;i++){
+					var data=result.replace('"','');
+					data=data.replace('"','');
+				}
+			var	productdescription=data.split(',')[0]
+			var cost=data.split(',')[1];
+			var unitcostx=data.split(',')[2];	
+				$('#description'+id).val(productdescription);
+				$('#tpinjpy'+id).val(cost);
+				$('#unitcostx'+id).val(unitcostx)
+	    }}); */
+      
+      
+    }
+  });
+}
+
+
+
+</script>
 
 

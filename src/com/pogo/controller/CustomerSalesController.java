@@ -26,6 +26,7 @@ import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
+import com.pogo.bean.AddPlanBean;
 import com.pogo.bean.ContactBean;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
@@ -36,6 +37,7 @@ import com.pogo.bean.DistrictBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
 import com.pogo.bean.UserEmployeeBean;
+import com.pogo.model.CustomerLevels;
 import com.pogo.service.CustomerSalesService;
 import com.pogo.service.MasterMastersService;
 import com.pogo.service.MasterOrganizationService;
@@ -132,6 +134,13 @@ public class CustomerSalesController {
 		model.addAttribute("listemp", emp);
 		//CustomerSalesBean salesList = customerSalesService.getCustomerDetailsById(id);
 		//model.addAttribute("salesList", salesList);
+		SimpleDateFormat df=new SimpleDateFormat("dd-MMM-yyyy");
+		model.addAttribute("today", df.format(new Date()));
+		List<AddPlanBean> planlist=masterService.PlanList();
+		System.out.println(planlist);
+		model.addAttribute("planlist", planlist);
+		List<DesignationBean> degList=empServive.GetDesignationList();
+		model.addAttribute("designationlist", degList);
 		return new ModelAndView("AddDiaryForEntrySales");
 	}
 
@@ -171,12 +180,30 @@ public class CustomerSalesController {
    {
 		return "attachfiles";
    }
-	@RequestMapping(value="/getCustomerRecord", method=RequestMethod.POST)
-	public @ResponseBody String getCustomerData(@RequestParam int id,HttpServletRequest request)throws JsonProcessingException
+	//for search or oninput in box
+	@RequestMapping(value="/getCustomer",method=RequestMethod.GET)
+	public @ResponseBody String getData(@RequestParam String organisation)throws JsonProcessingException
 	{
-		List<CustomerSalesBean> list=customerSalesService.findAllDataById(id);
-		ObjectMapper map=new ObjectMapper();
-		return map.writeValueAsString(list);
+	List<CustomerSalesBean> listCustomer=customerSalesService.findOrganisation(organisation);
+	ObjectMapper d=new ObjectMapper();
+	return d.writeValueAsString(listCustomer);
+	}
+	@RequestMapping(value="/getCustomerRecords", method=RequestMethod.GET)
+	
+	public  void getCustomerData( HttpServletResponse request)throws JsonProcessingException
+	{
+		String list=customerSalesService.findAllDataById();
+		//List<CustomerSalesBean> listCustomer=customerSalesService.findOrganisation();
+		//System.out.println(listCustomer);
+		
+		 try {
+			 request.getWriter().print(list);
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+		   
+			
 		
 	}
 	

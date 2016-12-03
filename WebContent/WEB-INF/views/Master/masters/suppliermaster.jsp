@@ -19,10 +19,9 @@
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px;  height: 34px;">
-		<span class="glyphicon glyphicon-user"></span>Supplier Msater
- <label
-			 style="margin-left: 250px;margin-top: 8px;"><button 
-			class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Supplier Detail </button>
+		<span class="glyphicon glyphicon-user"></span>Supplier Msaterl
+             <label style="margin-left: 250px;margin-top: 8px;">
+             <button class="btn btn-primary" id="getcountrypopup" style="margin-bottom: -25px;margin-top: -26px;HEIGHT: 28px;margin-left: 561px;"> Add Supplier Detail </button>
      </label>
 			
 </div>
@@ -107,7 +106,7 @@
 						<td>${list.currency}</td>
 		              
 						 
-						<td><a href="#" onclick="editCur(${list.suppliermasterid})" title="Edit">
+						<td><a href="#" onclick="editCur(${list.suppliermasterid});" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>		
 					 	<td style="margin"><a href="deletesuppliermstdata?id=${list.suppliermasterid}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>  

@@ -22,8 +22,10 @@ public interface CustomerSalesDao
 
 	void addfollowup(AddFollowUp followUp);
 
-	List<CustomerSales> getsalesListById(int id);
+	List<CustomerSales> getsalesListById();
 
 	void saveContact(Contact contact);
+
+	List<CustomerSales> getCustomerData(String organisation);
 
 }

@@ -75,8 +75,8 @@
 						<td>${loop.index+1}</td>
 						<td>${action.action}</td>
 		             
-						<td><a href="#" onclick="editCur(${actionId.id})" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>		
-					 <td style="margin"><a href="deletecustomerso?id=${action.id}"><span
+						<td><a href="#" onclick="editCur(${action.id})" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>		
+					 <td style="margin"><a href="deleteaddAction?addActionid=${action.id}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>  
 					</tr>
 
@@ -144,5 +144,51 @@ $('#saveForm').click(function (){
 	
 	
 });
+$('#EditForm').click(function (){
+	var id=$("#hiddenid").val();
+	var action =$('#addaction').val();
+	
+	var idaction=$("#hiddenid").val();
+	alert(idaction);
+	
+	
+	var jsonObj={'action':action,'id':id} ;
+$.ajax({
+		url: "editforAddAction",
+		type: "POST",
+		
+		  data :JSON.stringify(jsonObj),
+		  cache:false,
+	        beforeSend: function(xhr) {  
+	            xhr.setRequestHeader("Accept", "application/json");  
+	            xhr.setRequestHeader("Content-Type", "application/json");  
+	        },
+		     success: function(resposeJsonObject){
+		    	 $('#openModal').hide();
+		    	 //window.location.currency;
+		    	 window.location.reload();
+	     alert("edit");
+	    }});
+	
+});
+function editCur(id){
+	$("#formid").show('show');
+	$('#EditForm').show();
+	$("#saveForm").hide(); 
+$.ajax({
+	url: "getActionRecord?addActionid="+id,
+	type: "POST",
+	
+	     success: function(respose){
+	    	 alert(respose);
+	    	 var data=JSON.parse(respose)
+	    	 var name=data.customersourceId;
+	    	 var id=data.source;
+	    	 alert("************************"+id);
+	    	 $("#addaction").val(id);
+	    	 $("#hiddenid").val(name);
+	    	 
+    }});
+} 
 
 	</script>

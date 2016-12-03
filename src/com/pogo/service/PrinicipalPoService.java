@@ -64,6 +64,10 @@ public interface PrinicipalPoService {
 
 	void saveproductstock(InvoiceDetailBean dbean, InvoiceTabBean tbean);
 
+	String getSupplierDetails();
+
+	String getSupplierDetailsByName(String name);
+
 	
 
 
