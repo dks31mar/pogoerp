@@ -29,7 +29,7 @@ private String followupTimeOut;
 	@Column(name="followupTimeOut_min")
 	private String followupTimeOutMin;
 	@ManyToOne(fetch=FetchType.LAZY)
-@JoinColumn(name="action_type")
+@JoinColumn(name="actionid")
 private AddAction actionType;
 @Column(name="contact_person")
 private String contactPerson;

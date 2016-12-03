@@ -19,7 +19,7 @@ import com.pogo.model.ModeOfDispatch;
 import com.pogo.model.ServiceProvider;
 
 import com.pogo.model.State;
-
+import com.pogo.model.SupplierMaster;
 import com.pogo.model.TeamSegment;
 import com.pogo.model.Unit;
 
@@ -126,6 +126,7 @@ public interface MasterMastersDao {
 	
 
 	List<CustomerLevels> getCustomerStatusDetailsList();
+
 	void editforAddAction(AddAction action);
 	List<AddAction> getActionRecord(String id);
 	void deleteaddAction(int id);
@@ -140,6 +141,13 @@ public interface MasterMastersDao {
 	
 	void deleteAddPlan(AddPlan plan);
 	AddPlan getplanById(int id);
+
+	void saveSupplierMaster(SupplierMaster sm);
+	List<SupplierMaster> getSupplierMaster();
+	List<SupplierMaster> getSupmst(String id);
+	void editSupplierMaster(SupplierMaster sm);
+	void deleteSuppilerMst(int id);
+
 
 	
 

@@ -144,14 +144,14 @@ alert("Not Reachable");
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-   <select    class="form-control" name="followupDate" onchange="getData(this.value)" >
+   <select    class="form-control" name="cusOrganisation" oninput="getData(this.value)" >
    <option value="" selected="selected">--Select Customer--</option>
    <c:if test="${!empty salesList}">
    <c:forEach items="${salesList}" var="list">
    <option value="${list.customerId}">${list.organisation}</option>
    </c:forEach>
    </c:if>
-   </select>
+   </select> 
     </div>
   </div>
   </div> 
@@ -183,7 +183,7 @@ alert("Not Reachable");
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-   <input  type="text"  class="form-control" name="followupDate" id="followdate"  readonly="readonly" placeholder="Select Date" >
+   <input  type="text"  class="form-control" name="followupDate" id="followdate"  value="${today}"   readonly="readonly" placeholder="Select Date" >
     </div>
   </div>
   <label class="col-md-2 control-label" >Action Type<span
@@ -191,7 +191,7 @@ alert("Not Reachable");
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select   name="actionType"  required="required"  class="form-control selectpicker">
+  <select   name="actionId"  required="required"  class="form-control selectpicker">
   <option value="" selected="selected">--Select Action--</option>
   <c:if test="${!empty actionList}">
   <c:forEach items="${actionList}" var="data">

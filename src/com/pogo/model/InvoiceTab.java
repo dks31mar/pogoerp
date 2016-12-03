@@ -14,10 +14,11 @@ import javax.persistence.Table;
 public class InvoiceTab implements Serializable{
 
 	
-	@Id
+	
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="invoicetabid")
 	private Integer invoicetabid ;
+	@Id
 	@Column(name="invno")
 	private String invno ;
 	@Column(name="porefno")

@@ -2,8 +2,8 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
+<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
 
@@ -69,12 +69,13 @@
   
 
 <div class="form-group">
-  <label class="col-md-2 control-label"> Name<span
-					style="color: red;">*</span></label>  
+  <label class="col-md-2 control-label"> Name<span style="color: red;">*</span></label>  
+					
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input   name="" placeholder=" Name" id="name" required="required"  class="form-control"  type="text">
+  <span style="color: red" id="msg1">*This field is required.</span>
     </div>
   </div>
   <label class="col-md-2 control-label" style="margin-left: -62px;">Contact Person</label>  
@@ -82,6 +83,7 @@
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input   name="designation" placeholder="Contact Person"   id="contactper" class="form-control"  type="text">
+  <span style="color: red" id="msg2">*This field is required.</span>
     </div>
   </div>
 </div>
@@ -94,6 +96,7 @@
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input name="middlename"   placeholder="Address" id="address"  class="form-control"  type="text">
+  <span style="color: red" id="msg3">*This field is required.</span>
     </div>
   </div>
   
@@ -102,6 +105,7 @@
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
   <input name="phone"   class="form-control" id="phone2" placeholder="(845)555-1212" type="text" required="required">
+  <span style="color: red" id="msg4">*This field is required.</span>
     </div>
   </div> 
   
@@ -112,6 +116,7 @@
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
   <input name="lastname"   placeholder="Mobile No" id="phone1"  class="form-control"  type="text">
+   <span style="color: red" id="msg5">*This field is required.</span>
     </div>
   </div>
   
@@ -120,6 +125,7 @@
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
   <input   name="Product" placeholder=" Product Brand" id="productbrand" required="required"  class="form-control"  type="text">
+    <span style="color: red" id="msg6">*This field is required.</span>
     </div> 
   </div>
 </div>
@@ -129,7 +135,7 @@
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
   <input  name="eamil"  placeholder="E-Mail Address" class="form-control"id ="email1" required="required" type="email">
-    
+     <span style="color: red" id="msg7">*This field is required.</span>
   
   </div>
 </div>
@@ -165,6 +171,7 @@
      <option value="2 years">2 years</option>
      <option value="3 years">3 years</option>
     </select>
+     <span style="color: red" id="msg8">*This field is required.</span>
     </div>
   </div>
 </div>
@@ -174,7 +181,7 @@
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
   <input   name="firstname" placeholder="Product Name" id="productname" required="required"  class="form-control"  type="text">
-   
+    <span style="color: red" id="msg9">*This field is required.</span>
   </div>
 </div>
 <label class="col-md-2 control-label" style="margin-left: -62px;">NO of Free AMC<span style="color: red;">*</span></label>  
@@ -187,18 +194,20 @@
       <option value="2">2</option>
        <option value="More Than 2">More Than 2</option>
     </select>
+     <span style="color: red" id="msg10">*This field is required.</span>
     </div>
   </div>
 </div> 
 
 <!-- Text input-->
        
-<div class="form-group">
+<!-- <div class="form-group"> -->
   <label class="col-md-2 control-label">Price(Rs.)<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-doller"></i></span>
   <input name="price"  class="form-control" placeholder="Rupees" type="text" required="required" id ="price">
+    <span style="color: red" id="msg11">*This field is required.</span>
     </div>
   </div>
    <div class="form-group"> 
@@ -207,15 +216,15 @@
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
   <input name="Product Name"   class="form-control" id="rateamc" placeholder="AMC Rate" required="required" type="text">
-   
+    <span style="color: red" id="msg12">*This field is required.</span>
   </div>
 </div>
 </div>
 
 
  
-</div> 
-
+<!-- </div> 
+ -->
 <!-- Success message -->
 
 <!-- <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for Register</div> -->
@@ -225,48 +234,97 @@
   <div class="col-md-2" align="center">
     <button type="button" class="btn btn-warning" onclick="message();" id="senddata" >Send <span class="glyphicon glyphicon-send"></span></button>
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
+    
   </div>
 </div>
 
-</fieldset>
+
 </form:form>
 </div>
 </div>
 
  <script type="text/javascript">
 //for profile page save data
-	$('#senddata').click(function(){
+
+$('#msg1').hide();
+$('#msg2').hide();
+$('#msg3').hide();
+$('#msg4').hide();
+$('#msg5').hide();
+$('#msg6').hide();
+$('#msg7').hide();
+$('#msg8').hide();
+$('#msg9').hide();
+$('#msg10').hide();
+$('#msg11').hide();
+$('#msg12').hide();
+
+$('#senddata').click(function(){
+	
+	
 	
 	  	var name =	$('#name').val();
 	 	var contactper =	$('#contactper').val();
 		var address =	$('#address').val();
-	 	var designation=$('#designation').val();
-	  	var mobileno   =	$('#phone1').val();
-	  	var phoneno=  $('#phone2').val();
-	  	var email1    =	$('#email1').val();  	
-      	var faxno    =	$('#faxno').val();
-      	var productbrand= $('#productbrand').val();
-      	var productname= $('#productname').val();
-      	var warrantyPeriod=$('#warrantyPeriod').val();
-      	var price=$('#price').val();
-      	var nofofreeamc=$('#freeamc').val();
-      	var Rateamc=$('#rateamc').val();
-	    alert(name+contactper+address+designation+mobileno+phoneno+email1+faxno+productbrand+productname+warrantyPeriod+price+nofofreeamc+Rateamc);
+	 	
+	 	
+	 	var phoneno=  $('#phone2').val();
+	  	var mobileno   = $('#phone1').val();
+		var productbrand= $('#productbrand').val();
+		
+		
+	  	var email1    =	$('#email1').val();  
+	  	var warrantyPeriod=$('#warrantyPeriod').val();
+	  	var productname= $('#productname').val();
+	  	var nofofreeamc=$('#freeamc').val();
+		var price=$('#price').val();
+		var Rateamc=$('#rateamc').val();
+		
+		if(name == ''){
+			$('#msg1').show('fast');
+		} else if(contactper == ''){
+			$('#msg2').show('fast');
+		}else if(address == ''){
+			$('#msg3').show('fast');
+		}else if(phoneno ==''){
+			$('#msg4').show('fast');
+		}else if(mobileno ==''){
+			$('#msg5').show('fast');
+		}else if(productbrand ==''){
+			$('#msg6').show('fast');
+		}else if(email1 ==''){
+			$('#msg7').show('fast');
+		}else if(warrantyPeriod ==''){
+			$('#msg8').show('fast');
+		}else if(productname ==''){
+			$('#msg9').show('fast');
+		}else if(nofofreeamc ==''){
+			$('#msg10').show('fast');
+		}else if(price ==''){
+			$('#msg11').show('fast');
+		}else if(Rateamc ==''){
+			$('#msg12').show('fast');
+		}
+		
+		else {
+			
+		
+		
 		
 	    var jsonObj={
 				
 	    		'name':name,
 	    		'contactperson':contactper,
 	    		'address':address,
-	    		'designation':designation,
-	    		'mobileno':mobileno,
+	    		/* 'designation':designation, */
 	    		'phoneno':phoneno,
-	    		'emailid':email1,
+	    		'mobileno':mobileno,
 	    		'productbrand':productbrand,
-	    		'productname':productname,
+	    		'emailid':email1,
 	    		'warrentyperiod':warrantyPeriod,
-	    		'price':price,
+	    		'productname':productname,
 	    		'nooffreeamc':nofofreeamc,
+	    		'price':price,
 	    		'amcrate':Rateamc
 				} ;
 		 
@@ -287,10 +345,10 @@
 		    }});
 		
    }
-	
+}
 	);
 
-	  $( function() {
+	   $( function() {
 		    $("#datepickerDob" ).datepicker();
 		  } );
 
@@ -361,6 +419,107 @@
 		      }
 		      document.getElementById(firstlastupper).value = str;
 		}
+		 
 		
+		
+		
+		
+		
+		
+
+		
+		
+		
+
+		
+		
+		
+		
+		
+		 $('#EditForm').click(function (){
+			 
+			 $("#senddata").hide(); 
+			 
+			 
+			 
+		  	var id=$("#hiddenid").val();
+		
+		  	var name =	$('#name').val();
+	 	var contactper =	$('#contactper').val();
+		var address =	$('#address').val();
+	 	
+	 	
+	 	var phoneno=  $('#phone2').val();
+	  	var mobileno   = $('#phone1').val();
+		var productbrand= $('#productbrand').val();
+		
+		
+	  	var email1    =	$('#email1').val();  
+	  	var warrantyPeriod=$('#warrantyPeriod').val();
+	  	var productname= $('#productname').val();
+	  	var nofofreeamc=$('#freeamc').val();
+		var price=$('#price').val();
+		var Rateamc=$('#rateamc').val();
+			
+		  	
+		  	
+		  	
+		  	
+		  		var jsonObj={'compid':id , 'name':name,
+		    		'contactperson':contactper,
+		    		'address':address,
+		    		
+		    		'phoneno':phoneno,
+		    		'mobileno':mobileno,
+		    		'productbrand':productbrand,
+		    		'emailid':email1,
+		    		'warrentyperiod':warrantyPeriod,
+		    		'productname':productname,
+		    		'nooffreeamc':nofofreeamc,
+		    		'price':price,
+		    		'amcrate':Rateamc
+		  	} ;
+		  		$.ajax({
+		  				url: "",
+		  				type: "POST",
+		  				
+		  				  data :JSON.stringify(jsonObj),
+		  				  cache:false,
+		  			        beforeSend: function(xhr) {  
+		  			            xhr.setRequestHeader("Accept", "application/json");  
+		  			            xhr.setRequestHeader("Content-Type", "application/json");  
+		  			        },
+		  				     success: function(resposeJsonObject){
+		  				    	 $('#openModal').hide();
+		  				    	 
+		  				    	 window.location.reload();
+		  			     
+		  			    }});
+		  			
+		  	
+		  	
+		  	
+		  	
+		  }); 		
+		
+		 $('#name,#contactper,#address,#phone2,#phone1,#productbrand,#email1,#warrantyPeriod,#productname,#nofofreeamc,#price,#Rateamc').click(function (){
+			 $('#msg1').hide();
+			 $('#msg2').hide();
+			 $('#msg3').hide();
+			 $('#msg4').hide();
+			 $('#msg5').hide();
+			 $('#msg6').hide();
+			 $('#msg7').hide();
+			 $('#msg8').hide();
+			 $('#msg9').hide();
+			 $('#msg10').hide();
+			 $('#msg11').hide();
+			 $('#msg12').hide();
+			
+			
+		 }); 
+		
+		 
+		 
 </script>
 

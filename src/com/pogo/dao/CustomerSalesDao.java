@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
+import com.pogo.model.Contact;
 import com.pogo.model.CustomerSales;
 
 public interface CustomerSalesDao 
@@ -22,5 +23,7 @@ public interface CustomerSalesDao
 	void addfollowup(AddFollowUp followUp);
 
 	List<CustomerSales> getsalesListById(int id);
+
+	void saveContact(Contact contact);
 
 }

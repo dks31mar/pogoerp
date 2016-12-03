@@ -3,7 +3,9 @@ package com.pogo.serviceImp;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.tomcat.util.buf.UDecoder;
 import org.hibernate.Hibernate;
@@ -12,13 +14,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
 
 import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
 
 import com.pogo.bean.CompetitiorsProfileBean;
-
+import com.pogo.bean.DepartmentBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.StatezoneBean;
@@ -29,7 +32,9 @@ import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
+import com.pogo.model.Department;
 import com.pogo.model.Designation;
+import com.pogo.model.ModeOfDispatch;
 import com.pogo.model.SmsAllocation;
 import com.pogo.model.StateZone;
 import com.pogo.model.UserEmployee;
@@ -239,6 +244,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	    emp.setBranchName(userEmpdao.getBranch(userDTO.getBranchId()));
 		emp.setCompanyName(userEmpdao.getCom(userDTO.getSubcompanyId()));
 		emp.setDesignationName(userEmpdao.getData(userDTO.getDesignationId()));
+		emp.setDepName(userEmpdao.getDep(userDTO.getDepId()));
 		emp.setGender(userDTO.getGender());
 		emp.setPhone(userDTO.getPhone());
 		emp.setUsermobile(userDTO.getUsermobile());
@@ -333,6 +339,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		empbean.setDesignationId(empedit.getDesignationName().getDesignationid());
 		empbean.setBranchId(empedit.getBranchName().getBranchId());
 	    empbean.setSubcompanyId(empedit.getCompanyName().getCompanyinfoid());
+	    empbean.setDepId(empedit.getDepName().getDepartmentId());
 		empbean.setFirstname(empedit.getFirstname());
 		empbean.setLastname(empedit.getLastname());
 		empbean.setDivision(empedit.getDivision());
@@ -373,6 +380,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDesignationName(userEmpdao.getData(userEmployeeBean.getDesignationId()));
 		emp.setBranchName(userEmpdao.getBranch(userEmployeeBean.getBranchId()));
 		emp.setCompanyName(userEmpdao.getCom(userEmployeeBean.getSubcompanyId()));
+		emp.setDepName(userEmpdao.getDep(userEmployeeBean.getDepId()));
 		emp.setGender(userEmployeeBean.getGender());
 		emp.setPhone(userEmployeeBean.getPhone());
 		emp.setUsermobile(userEmployeeBean.getUsermobile());
@@ -540,7 +548,7 @@ public void updateCompetitior(CompetitiorsProfileBean compp) {
 	comp.setName(compp.getName());
 	comp.setContactperson(compp.getContactperson());
 	comp.setAddress(compp.getAddress());
-	comp.setDesignation(compp.getDesignation());
+	//comp.setDesignation(compp.getDesignation());
 	comp.setMobileno(compp.getMobileno());
 	comp.setPhoneno(compp.getPhoneno());
 	comp.setEmailid(compp.getEmailid());
@@ -550,6 +558,10 @@ public void updateCompetitior(CompetitiorsProfileBean compp) {
 	comp.setPrice(compp.getPrice());
 	comp.setNooffreeamc(compp.getNooffreeamc());
 	comp.setAmcrate(compp.getAmcrate());
+	//System.out.println("service impl "); 
+	
+	
+	
 	regionDao.updateCompetitior(comp);
 }
 
@@ -681,23 +693,29 @@ public List<UserEmployeeBean> getUserByName(String empName) {
 }
 
 @Override
-public void saveDataCompetitiors(CompetitiorsProfileBean poref) {
+public void saveDataCompetitiors(CompetitiorsProfileBean compti) {
 	
-	CompetitiorsProfile compp=new CompetitiorsProfile();
-	compp.setName(poref.getName());
-	compp.setContactperson(poref.getContactperson());
-	compp.setAddress(poref.getAddress());
-	compp.setDesignation(poref.getDesignation());
-	compp.setMobileno(poref.getMobileno());
-	compp.setPhoneno(poref.getPhoneno());
-	compp.setEmailid(poref.getEmailid());
-    compp.setProductbrand(poref.getProductbrand());
-	compp.setProductname(poref.getProductname());
-	compp.setWarrentyperiod(poref.getWarrentyperiod());
-	compp.setPrice(poref.getPrice());
-	compp.setNooffreeamc(poref.getNooffreeamc());
-	compp.setAmcrate(poref.getAmcrate());
-	regionDao.saveDataCompetitiors(compp);
+	CompetitiorsProfile poref1=new CompetitiorsProfile();
+	
+
+	poref1.setName(compti.getName());
+	poref1.setContactperson(compti.getContactperson());
+	poref1.setAddress(compti.getAddress());
+	poref1.setPhoneno(compti.getPhoneno());
+	poref1.setMobileno(compti.getMobileno());
+	poref1.setProductbrand(compti.getProductbrand());
+	poref1.setEmailid(compti.getEmailid());
+	poref1.setWarrentyperiod(compti.getWarrentyperiod());
+	poref1.setProductname(compti.getProductname());
+	poref1.setNooffreeamc(compti.getNooffreeamc());
+	poref1.setPrice(compti.getPrice());
+	poref1.setAmcrate(compti.getAmcrate());
+	
+	
+	
+	
+	
+	regionDao.saveDataCompetitiors(poref1);
 	
 		
 }
@@ -709,17 +727,17 @@ public CompetitiorsProfileBean getCompititerId(int id)
 	bean.setName(com.getName());
 	bean.setContactperson(com.getContactperson());
 	bean.setAddress(com.getAddress());
-	bean.setDesignation(com.getDesignation());
+	//bean.setDesignation(com.getDesignation());
 	bean.setMobileno(com.getMobileno());
 	bean.setPhoneno(com.getPhoneno());
 	bean.setEmailid(com.getEmailid());
 	bean.setProductbrand(com.getProductbrand());
 	bean.setProductname(com.getProductname());
-	bean.setWarrentyperiod(com.getWarrentyperiod());
+	//bean.setWarrentyperiod(com.getWarrentyperiod());
 	bean.setPrice(com.getPrice());
-	bean.setNooffreeamc(com.getNooffreeamc());
+	//bean.setNooffreeamc(com.getNooffreeamc());
 	bean.setAmcrate(com.getAmcrate());
-	
+	bean.setCompid(com.getCompid());
 	//System.out.println("On service"+ com.getAddress());
 	
 	return bean;
@@ -750,6 +768,79 @@ public List<CompetitiorsProfileBean> getcompetitiorList() {
 @Transactional
 public void deletefeture(int id){
 	regionDao.deletefeture(id);
+}
+@Override
+
+public String getCompetitiorsProfilebyid(String id) {
+	
+	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@11111111111111");
+	List<CompetitiorsProfile> profile =regionDao.getCompetitiorsProfilebyid(id);
+	Map<String, Object> dd=new HashMap<>();
+	for(CompetitiorsProfile data: profile)
+	{
+		
+		dd.put("compid",data.getCompid() );
+		dd.put("name",data.getName());
+		dd.put("contactperson", data.getContactperson());
+		dd.put("address", data.getAddress());
+		dd.put("mobileno", data.getMobileno());
+		dd.put("phoneno", data.getPhoneno());
+		dd.put("emailid", data.getEmailid());
+		dd.put("productbrand", data.getProductbrand());
+		dd.put("productname", data.getProductname());
+		dd.put("warrentyperiod", data.getWarrentyperiod());
+		dd.put("price", data.getPrice());
+		dd.put("nooffreeamc", data.getNooffreeamc());
+		dd.put("amcrate", data.getAmcrate());
+	}
+	Gson gson=new Gson();
+	
+	String list=	gson.toJson(dd);
+	System.out.println("json object into string >>>>>>>>>>>>>>>>>>>     "+list);	
+		return list;	
+		
+}
+@Override
+@Transactional
+public void editCompetitiorsProfile(CompetitiorsProfileBean poref1) {
+	CompetitiorsProfile profile =new CompetitiorsProfile();
+	profile.setCompid(poref1.getCompid());
+	profile.setName(poref1.getName());
+	profile.setContactperson(poref1.getContactperson());
+	profile.setAddress(poref1.getAddress());
+	profile.setMobileno(poref1.getMobileno());
+	profile.setPhoneno(poref1.getPhoneno());
+	profile.setEmailid(poref1.getEmailid());
+	profile.setProductbrand(poref1.getProductbrand());
+	profile.setProductname(poref1.getProductname());
+	profile.setWarrentyperiod(poref1.getWarrentyperiod());
+	profile.setPrice(poref1.getPrice());
+	profile.setNooffreeamc(poref1.getNooffreeamc());
+	profile.setAmcrate(poref1.getAmcrate());
+	
+	regionDao.editCompetitiorsProfile(profile);
+}
+
+public void saveDepartment(DepartmentBean dep) 
+{
+	Department dept=new Department();
+	dept.setDepName(dep.getDepName());
+	userEmpdao.saveData(dept);
+	
+}
+@Override
+public List<DepartmentBean> getDepartmentDetails() {
+	List<Department> listdata=userEmpdao.getDatadep();
+	List<DepartmentBean> listbean=new ArrayList<DepartmentBean>();
+	for(Department data:listdata)
+	{
+		DepartmentBean bean=new DepartmentBean();
+		bean.setDepId(data.getDepartmentId());
+		bean.setDepName(data.getDepName());
+		listbean.add(bean);
+	}
+	return listbean;
+
 }
 	
 }

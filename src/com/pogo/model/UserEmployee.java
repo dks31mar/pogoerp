@@ -52,13 +52,15 @@ public class UserEmployee
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="subcompany_id")
 	private CompanyProfile companyName;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="dep_id")
+	private Department depName;
 	@Column(name="password")
 	private String password;
 	@Column(name="repassword")
 	private String repassword;
 	@Column(name="email")
 	private String eamil;
-	
 	@Column(name="dob")
 	private String dob;
 	@Column(name="gender")
@@ -230,6 +232,12 @@ public class UserEmployee
 	}
 	public void setEmpStatus(Boolean empStatus) {
 		this.empStatus = empStatus;
+	}
+	public Department getDepName() {
+		return depName;
+	}
+	public void setDepName(Department depName) {
+		this.depName = depName;
 	}
 	
 	

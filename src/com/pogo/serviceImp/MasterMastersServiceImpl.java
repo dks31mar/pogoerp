@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddPlanBean;
 import com.pogo.bean.CountryBean;
+import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
@@ -23,11 +24,13 @@ import com.pogo.bean.ModeOfDispatchBean;
 import com.pogo.bean.ServiceProviderBean;
 
 import com.pogo.bean.StateBean;
+import com.pogo.bean.SupplierMasterBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.AddAction;
 import com.pogo.model.AddPlan;
 import com.pogo.model.Country;
+import com.pogo.model.Currency;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
@@ -39,6 +42,7 @@ import com.pogo.model.ModeOfDispatch;
 import com.pogo.model.ServiceProvider;
 
 import com.pogo.model.State;
+import com.pogo.model.SupplierMaster;
 import com.pogo.model.TeamSegment;
 import com.pogo.service.MasterMastersService;
 
@@ -263,7 +267,7 @@ public class MasterMastersServiceImpl implements MasterMastersService {
    @Override
    @Transactional
    public void editDistrict(DistrictBean poref1){
-	  // System.out.println(""+poref1.getDistrictId());
+	  System.out.println(""+poref1.getDistrictId());
 	   State s=new State();
 	  s.setStateId(Integer.parseInt(poref1.getStateId()));
 	District district=new District();
@@ -759,11 +763,27 @@ public void deleteServiceprovider(int id) {
 
 
 
+/*@Override
+public List<AddPlan> actionPlanList() {
+	return masterMastersdao.actionPlanList();
+}
+
+
+@Override
+public AddActionBean EditForActionPlan(int id) {
+	
+	AddAction addaction=masterMastersdao.getplanDataById(id);
+	AddActionBean actionbean= new AddActionBean();
+	actionbean.setAction(addaction.getAction());
+	return actionbean;
+	
+}*/
+
 
 /*@Override
 @Transactional
 public void saveAddAction(AddPlanBean planbean) {
-	// TODO Auto-generated method stub
+	
 	AddPlan bean=new AddPlan();
 	bean.setPlan(planbean.getPaln());
 	masterMastersdao.saveAddAction(bean);
@@ -805,9 +825,13 @@ public void saveAddAction(AddActionBean actionBean2)
 
 @Override
 public void addActionPlan(AddPlanBean poref1) {
+
 	AddPlan plan=new AddPlan();
 	plan.setPlan(poref1.getPlan());
 	masterMastersdao.addActionPlan(plan);
+
+	
+
 	
 }
 
@@ -823,6 +847,7 @@ public AddActionBean getActionById(int id) {
 }
 
 @Override
+
 @Transactional
 public void editforAddAction(AddActionBean poref1) {
 	AddAction action=new AddAction();
@@ -875,9 +900,73 @@ public List<AddPlanBean> PlanList() {
 		planbean.add(bean);
 	}
 	return planbean;
+}
+public void saveSupplierMaster(SupplierMasterBean servicepro) {
+	SupplierMaster sm=new SupplierMaster();
+	sm.setAddress(servicepro.getAddress());
+	sm.setCurrency(servicepro.getCurrency());
+	sm.setName(servicepro.getName());
+	masterMastersdao.saveSupplierMaster(sm);
+}
+
+@Override
+public List<SupplierMasterBean> getSupplierMaster() {
+	List<SupplierMaster> sm=masterMastersdao.getSupplierMaster();
+	List<SupplierMasterBean> bean=new ArrayList<>();
+	for(SupplierMaster s:sm){
+		SupplierMasterBean sbean=new SupplierMasterBean();
+		sbean.setAddress(s.getAddress());
+		sbean.setCurrency(s.getCurrency());
+		sbean.setName(s.getName());
+		sbean.setSuppliermasterid(s.getSuppliermasterid());
+		bean.add(sbean);
+	}
+	return bean;
+}
+
+@Override
+public String getSupmst(String id) {
+	List<SupplierMaster> sm=masterMastersdao.getSupmst(id);
+	Map<String, Object> dd=new HashMap<>();
+		for(SupplierMaster data: sm)
+	{
+		
+		dd.put("id", data.getSuppliermasterid());
+		dd.put("name", data.getName());
+		dd.put("address",data.getAddress());
+		dd.put("currency",data.getCurrency());
+	}
+		Gson gson=new Gson();
+		
+	String suppliermst=	gson.toJson(dd);
+	
+	return suppliermst;
+}
+
+@Override
+@Transactional
+public void editSupplierMaster(SupplierMasterBean servicepro) {
+	
+	SupplierMaster sm=new SupplierMaster();
+	sm.setAddress(servicepro.getAddress());
+	sm.setCurrency(servicepro.getCurrency());
+	sm.setName(servicepro.getName());
+	sm.setSuppliermasterid(servicepro.getSuppliermasterid());
+	masterMastersdao.editSupplierMaster(sm);
+}
+
+@Override
+@Transactional
+public void deleteSuppilerMst(int id) {
+	
+		masterMastersdao.deleteSuppilerMst(id);
+	
+}
+
+
 	
 
-}
+
 
 @Override
 public String getplanRecord(String id) {

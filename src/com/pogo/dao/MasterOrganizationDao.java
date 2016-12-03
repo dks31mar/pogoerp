@@ -5,6 +5,7 @@ import java.util.List;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
+import com.pogo.model.Department;
 import com.pogo.model.Designation;
 import com.pogo.model.SmsAllocation;
 import com.pogo.model.StateZone;
@@ -134,6 +135,18 @@ void updateCompetitior(CompetitiorsProfile comp);
 	List<CompetitiorsProfile> getCompData();
 
 	void deletefeture(int id);
+
+
+	List<CompetitiorsProfile> getCompetitiorsProfilebyid(String id);
+
+	void editCompetitiorsProfile(CompetitiorsProfile profile);
+
+	void saveData(Department dept);
+
+	List<Department> getDatadep();
+
+
+	Department getDep(Integer depId);
 
 
 

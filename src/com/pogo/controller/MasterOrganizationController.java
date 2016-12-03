@@ -34,6 +34,7 @@ import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.StatezoneBean;
 import com.ibm.icu.text.Normalizer.Mode;
+import com.pogo.bean.AddActionBean;
 import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
 
@@ -41,7 +42,7 @@ import com.pogo.bean.CompetitiorsProfileBean;
 
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CurrencyBean;
-
+import com.pogo.bean.DepartmentBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.ModeOfDispatchBean;
@@ -109,6 +110,8 @@ public class MasterOrganizationController {
 		model.addAttribute("listofComp", comlist);
 		List<BranchBean> branchlist = userEmployeeservice.getBranchList();
 		model.addAttribute("listofBranch", branchlist);
+		List<DepartmentBean> departmentlist=userEmployeeservice.getDepartmentDetails();
+		model.addAttribute("depList", departmentlist);
 
 		// System.out.println("for add emp on controller"+Deglist);
 		return "addUser";
@@ -124,6 +127,8 @@ public class MasterOrganizationController {
 		model.addAttribute("listofBranch", beansBran);
 		List<CompanyProfileBean> beansCom = userEmployeeservice.getCompanyList();
 		model.addAttribute("listofComp", beansCom);
+		List<DepartmentBean> departmentlist=userEmployeeservice.getDepartmentDetails();
+		model.addAttribute("depList", departmentlist);
 		return "editUser";
 	}
 
@@ -449,21 +454,39 @@ public class MasterOrganizationController {
 
 	public ModelAndView AddCompetitiorsProfile(@ModelAttribute("command") PoRefEntryItemDetailBean porefitem,
 			HttpServletRequest request, BindingResult result) {
-
+    List<CompetitiorsProfileBean> list = regionService.getcompetitiorList();
+    Map<String , Object> model = new HashMap<String,Object>();
+    model.put("complist", list);
 		// regionService.AddCompetitiorsProfile(poref);
-		return new ModelAndView("competitiorsProfile");
+		return new ModelAndView("competitiorsProfile" , model);
 	}
+	
+	
 
 	@RequestMapping(value = "saveDataCompetitiors", method = RequestMethod.POST)
 	@ResponseBody
 	public void saveDataCompetitiors(@RequestBody String json, Model model) throws IOException {
 		System.out.println("i m in controller Add comptitiorprofile data   \n" + json);
 		ObjectMapper mapper = new ObjectMapper();
+		
 		CompetitiorsProfileBean compti = mapper.readValue(json, CompetitiorsProfileBean.class);
 
 		CompetitiorsProfileBean poref1 = new CompetitiorsProfileBean();
-
-		regionService.saveDataCompetitiors(compti);
+		
+		poref1.setName(compti.getName());
+		poref1.setContactperson(compti.getContactperson());
+		poref1.setAddress(compti.getAddress());
+		poref1.setPhoneno(compti.getPhoneno());
+		poref1.setMobileno(compti.getMobileno());
+		poref1.setProductbrand(compti.getProductbrand());
+		poref1.setEmailid(compti.getEmailid());
+		poref1.setWarrentyperiod(compti.getWarrentyperiod());
+		poref1.setProductname(compti.getProductname());
+		poref1.setNooffreeamc(compti.getNooffreeamc());
+		poref1.setPrice(compti.getPrice());
+		poref1.setAmcrate(compti.getAmcrate());
+		regionService.saveDataCompetitiors(poref1);
+		System.out.println("end of save data");
 	}
 
 	@RequestMapping(value = "/addfeature", method = RequestMethod.GET)
@@ -484,7 +507,40 @@ public class MasterOrganizationController {
 		return new ModelAndView("redirect:/addfeature");
 	}
 
-	@RequestMapping(value = "/editcompetitior", method = RequestMethod.GET)
+	@RequestMapping(value = "getCompetitiorsProfilebyid", method = RequestMethod.POST)
+	public void getCompetitiorsProfilebyidbyId(@RequestParam("compid") String id,HttpServletResponse res )throws ParseException  {
+		System.out.println("ID IS \n"+id);
+		
+		String cuList=regionService.getCompetitiorsProfilebyid(id);
+		System.out.println("inside getCompetitiorsProfilebyid method");
+		
+		
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(cuList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@RequestMapping(value="editgetCompetitiorsProfilebyid",method=RequestMethod.POST)
+	@ResponseBody
+	public void editCompetitiorsProfilebyid(@RequestBody String json,Model model) throws IOException{
+	System.out.println("inside edit CompetitiorsProfilebyid method   \n"+json);
+		ObjectMapper mapper=new ObjectMapper();
+		CompetitiorsProfileBean poref=mapper.readValue(json, CompetitiorsProfileBean.class);
+		CompetitiorsProfileBean poref1=new CompetitiorsProfileBean();
+		//poref1.setModeofdispatchId(poref.getModeofdispatchId());
+		//poref1.setModeofdispatch(poref.getModeofdispatch());
+		
+		
+		regionService.editCompetitiorsProfile(poref1);
+		
+	}
+
+@RequestMapping(value = "/editcompetitior", method = RequestMethod.GET)
 	public ModelAndView getcompetitior(@RequestParam int id, Model model) {
 		CompetitiorsProfileBean bean = regionService.getCompititerId(id);
 		model.addAttribute("listofcompetitior", bean);
@@ -494,11 +550,13 @@ public class MasterOrganizationController {
 
 	@RequestMapping(value = "/upcompetitior", method = RequestMethod.POST)
 
-	public ModelAndView updateCompetitior(
-			@ModelAttribute("competitiorsProfileBean") CompetitiorsProfileBean competitiorsProfileBean) {
-		regionService.updateCompetitior(competitiorsProfileBean);
-
-		return new ModelAndView("redirect:/addfeature");
+	public ModelAndView updateCompetitior(@ModelAttribute("competitiorsProfileBean") CompetitiorsProfileBean competitiorsProfileBean,BindingResult result)
+			 {
+		
+		System.out.println(competitiorsProfileBean.getCompid());
+		           regionService.updateCompetitior(competitiorsProfileBean);
+                    System.out.println("update competitior profile");
+		           return new ModelAndView("redirect:/addfeature");
 	}
 
 	@RequestMapping(value = "/permitforsmssend", method = RequestMethod.POST)
@@ -572,5 +630,23 @@ public class MasterOrganizationController {
 		List<StatezoneBean> list = regionService.getstateData();
 		model.addAttribute("liststates", list);
 		return new ModelAndView("addbranch123");
+	}
+	@RequestMapping(value="/getDepartment" ,method=RequestMethod.GET)
+	public  ModelAndView getdepartment(Model model)
+	{
+		List<DepartmentBean> list=regionService.getDepartmentDetails();
+		model.addAttribute("bean", list);
+		return new ModelAndView("department");
+	}
+	
+	@RequestMapping(value = "savedepartment", method = RequestMethod.POST)
+	@ResponseBody
+	public void savedepartmentdata(@RequestBody String json, Model model) throws IOException {
+		
+		ObjectMapper mapper = new ObjectMapper();
+		DepartmentBean depBean=mapper.readValue(json, DepartmentBean.class);
+		DepartmentBean dep=new DepartmentBean();
+		dep.setDepName(depBean.getDepName());
+		userEmployeeservice.saveDepartment(dep);
 	}
 }

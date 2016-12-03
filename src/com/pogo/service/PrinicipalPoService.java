@@ -4,10 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.pogo.bean.InvoiceDetailBean;
+import com.pogo.bean.InvoiceTabBean;
 import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.ProductAcknowledgementBean;
 import com.pogo.bean.ProductMasterBean;
+import com.pogo.model.InvoiceDetail;
+import com.pogo.model.InvoiceTab;
 import com.pogo.model.PoRefEntryItemDetail;
 import com.pogo.model.PoRefEntryItemDetailCopy;
 import com.pogo.model.PorefSupplierDetail;
@@ -53,6 +57,12 @@ public interface PrinicipalPoService {
 	void deleteParticularAck(String s1);
 
 	List<PoRefEntryItemDetailBean> getInvoiceData(String poref);
+
+	void saveinvoicetab(InvoiceTabBean tbean);
+
+	void saveinvoicedetail(InvoiceDetailBean dbean, InvoiceTabBean tbean);
+
+	void saveproductstock(InvoiceDetailBean dbean, InvoiceTabBean tbean);
 
 	
 

@@ -10,7 +10,7 @@ import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
 
 import com.pogo.bean.CompetitiorsProfileBean;
-
+import com.pogo.bean.DepartmentBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.StatezoneBean;
@@ -105,6 +105,15 @@ public interface MasterOrganizationService {
 	List<CompetitiorsProfileBean> getcompetitiorList();
 
 	void deletefeture(int id);
+
+	void saveDepartment(DepartmentBean dep);
+
+	List<DepartmentBean> getDepartmentDetails();
+
+	
+	String getCompetitiorsProfilebyid(String id);
+
+	void editCompetitiorsProfile(CompetitiorsProfileBean poref1);
 
 	
 	

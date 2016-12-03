@@ -124,7 +124,7 @@
 				</div>
 				<div class="col-sm-9">
 					<input type="text" name="principalname"
-						placeholder="Principal Name" value="YMC Co. Ltd., Japan"
+						placeholder="Principal Name" value="Testing Private Limited"
 						class="form-control" style="display: inline-block;" ReadOnly>
 				</div>
 			</div>
@@ -134,7 +134,7 @@
 				</div>
 				<div class="col-sm-9">
 					<textarea rows="4" cols="77" name="address"
-						style="border-radius: 5px; background-color: #f2f2f2;" readonly>YMC CO.,LTD. YMC Karasuma-Gojo Building 284 Daigo-cho Karasuma Nishiliru Gojo-dori,Shimogyo -Ku Kyoto 600-8106 Japan"  </textarea>
+						style="border-radius: 5px; background-color: #f2f2f2;" readonly> Testing Private Limited,Bulding No.:XX ,XXXXX </textarea>
 						
 				</div>
 			</div>
@@ -144,9 +144,9 @@
 					Invoice No:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-2">
-					<input type="text" name="principalname"
+					<input type="text" name="InvoiceNo"
 						placeholder="Invoice Number" value=""
-						class="form-control" style="display: inline-block;" ReadOnly>
+						class="form-control" style="display: inline-block;" id="invoiceno">
 				</div>
 
 				<div class="col-sm-2 form-level">
@@ -155,7 +155,7 @@
 				<div class="col-sm-3">
 					<span> 
 						<input type="text" class="form-control" name="dateTodate1"
-						id="invoicedate"  ReadOnly></input>
+						id="invoicedate"  ReadOnly onchange="checkToDayDate();"></input>
 					</span>
 
 				</div>
@@ -197,11 +197,11 @@
 				</div>
 			</div>
 			<hr style="color: black">
-					<div class="row form-group">
+					<!-- <div class="row form-group">
 						<div class="col-sm-7">
 						</div>
-					</div>
-					<table style="width: 100%; bottom: 15px; position: relative; visibility: hidden;" border="0" id="gettrifchecked">
+					</div> -->
+					<table style=" position: relative; visibility: hidden;" border="0" id="gettrifchecked">
 					<tbody>
 					
 					</tbody>
@@ -241,18 +241,19 @@
 						<c:forEach items="${listbyporef}" var="poref" varStatus="loop">
 					
 					<tr>
-					<td style="display: none;"><input type="hidden" name="date" value="${date}" id="getdate${loop.index+1}"> </td>
+					<td style="display: none;"><input type="hidden" name="date" value="" id="getdate${loop.index+1}"> </td>
+					<td style="display: none;"><input type="hidden" name="invoiceno" value="" id="getinvoceno${loop.index+1}"> </td>
 					<td style="display: none;"><input type="hidden" name="porefno" value="${porefnumber}" id="getporefno${loop.index+1}"> </td>
-					<td style="display: none;"><input type="hidden" name="entryitemid" value="${poref.porefentryitemdetailid}" id="getid${loop.index+1}"> </td>
+					<%-- <td style="display: none;"><input type="hidden" name="" value="${poref.porefentryitemdetailid}" id="getid${loop.index+1}"> </td> --%>
 					<td style="right: 5px; position: relative;">&nbsp;<input type="text" style="width: 60px" name="" id="sr${loop.index+1}" value="${loop.index+1}" class="form-control" readonly></td>
 					<td style="left: 2px; position: relative; width: 150px">&nbsp;<input readonly type="text" value="${poref.particular}" name="particulee${loop.index+1}" style="overflow: auto; border-radius: 3px; width: 223px;" id="partno${loop.index+1}" class="form-control"></td>
-					<td style="width: 250px">&nbsp; <input readonly name="description" id="description${loop.index+1}" class="form-control" style="text-align: center;width: 238px;" value="${poref.productdescription}"></td>
-					<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="tpinjpy" id="tpinjpy${loop.index+1}" value="${poref.tpinjpy}" class="form-control"></td>
+					<td style="width: 250px">&nbsp; <input readonly name="" id="description${loop.index+1}" class="form-control" style="text-align: center;width: 238px;" value="${poref.productdescription}"></td>
+					<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="" id="tpinjpy${loop.index+1}" value="${poref.tpinjpy}" class="form-control"></td>
 					<td align="center" style="right: 4px; position: relative;">&nbsp;<input readonly type="text" style="text-align: center;width: 55px;" name="qty" id="qty${loop.index+1}" class="form-control" value="${poref.qty}"></td>
-					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;" name="totaljpy" id="totaljpy${loop.index+1}" value="${poref.totaljpy}" class="form-control"></td>
+					<td align="center">&nbsp; <input readonly type="text" style="text-align: center;" name="" id="totaljpy${loop.index+1}" value="${poref.totaljpy}" class="form-control"></td>
 					<td align="center">&nbsp;<button  type="button" style="text-align: center;width: 49px;background-color: #3C8DBC;color: aliceblue" name="pendingqty" id="pendingqty${loop.index+1}" value="${poref.pendingqty}" class="form-control" onclick="getacknowlegdement(${loop.index+1});">${poref.pendingqty}</button></td>
 					<td align="center">&nbsp; <input  type="text" style="text-align: center;width: 69px" name="reciveqty" id="reciveqty${loop.index+1}" class="form-control" onkeyup="getcals(this.value,${loop.index+1});"></td>
-					<td align="center">&nbsp; <input  type="text" style="text-align: center;width: 69px" name="remainingqty" id="remainingqty${loop.index+1}" class="form-control"></td>
+					<td align="center">&nbsp; <input  type="text" style="text-align: center;width: 69px" name="" id="remainingqty${loop.index+1}" class="form-control"></td>
 					<td align="center">&nbsp;<div class="checkbox">
           		<label>
             <input type="checkbox" value="" name="savecheck" id="savecheck${loop.index+1}">
@@ -260,8 +261,8 @@
             
           		</label>
         </div></td>
-					<td style="display: none;"><input type="hidden" name="grandtotal" value="${gtotal}" id="grandtotal${loop.index+1}"> </td>
-					<td style="display: none;"><input type="hidden" name="date" value="11/21/2016" id="getdate"> </td>
+					<td style="display: none;"><input type="hidden" name="" value="${gtotal}" id="grandtotal${loop.index+1}"> </td>
+					<td style="display: none;"><input type="hidden" name="" value="11/21/2016" id="getdate"> </td>
 					
 					</tr>
 					</c:forEach>
@@ -309,7 +310,9 @@
 <script>
 
 $( function() {
-    $("#invoicedate").datepicker({dateFormat: 'dd/mm/yy'});
+	$( "#invoicedate" ).datepicker({ minDate: 0,dateFormat: 'dd/mm/yy'});
+   
+    
   });
   
   
@@ -319,6 +322,7 @@ $( function() {
         checkboxes = document.getElementsByName('savecheck');
         for(var i=0, n=checkboxes.length;i<n;i++) {
         checkboxes[i].checked = source.checked;
+        che3ckcheckbox();
         }
     }
   
@@ -334,12 +338,34 @@ $( function() {
 			if(pending=='0.0'){
 				$('#reciveqty'+i).prop("readonly", true);
 				$('#remainingqty'+i).prop("readonly", true);
+				$('#savecheck'+i).prop("disabled", true);
+				$('#savecheck'+i).prop("checked", false);
 			}
 		}
  });
  
+ function che3ckcheckbox(){
+	 var table = document.getElementById("quotprodtable");
+		var len=table.rows.length-1;
+		var qty;
+		var pending;
+		for(var i=1;i<=len;i++){
+			
+			qty=$('#qty'+i).val();
+			pending=$('#pendingqty'+i).val();
+			if(pending=='0.0'){
+				$('#reciveqty'+i).prop("readonly", true);
+				$('#remainingqty'+i).prop("readonly", true);
+				$('#savecheck'+i).prop("disabled", true);
+				$('#savecheck'+i).prop("checked", false);
+			}
+ }
  
- function getcals(v1,v2){
+ }	
+		
+		
+		
+function getcals(v1,v2){
 	 var pending=$('#pendingqty'+v2).val();
 	 $('#remainingqty'+v2).val(pending-v1);
  }
@@ -351,8 +377,14 @@ $( function() {
 		for(var n=1;n<=len;n++)
 	{
 			if($('#savecheck'+n).is(':checked')){
+				var poinvoce1=$("#invoiceno").val();
+				
+				var poinvoicedate1=$("#invoicedate").val();
+			
 				var rec=$('#reciveqty'+n).val();
 				var rem=	$('#remainingqty'+n).val();
+				$('#getdate'+n).attr("value",poinvoicedate1);
+				$('#getinvoceno'+n).attr("value",poinvoce1);
 				$('#reciveqty'+n).attr("value",rec);
 				$('#remainingqty'+n).attr("value",rem);
 				var row = $('#savecheck'+n).closest('tr').html();
@@ -365,9 +397,67 @@ $( function() {
 			}
 			
 	 }
-		
+		var ponum=$("#porefno").val();
+		var poinvoce=$("#invoiceno").val();
+		var poinvoicedate=$("#invoicedate").val();
 		var AddressesDataJSON = $("#gettrifchecked").find('input').serializeArray();
 		  console.log(AddressesDataJSON);
-		 alert(JSON.stringify(AddressesDataJSON));
- });
+		 //alert(ponum);
+		 
+		 
+		if(ponum=='' || poinvoce==''){
+			alert("Either Invoice or Invoce Date is not fill, Please Fill It");
+			
+		}else{
+			$.ajax({
+				url: "saveinvoiceindb",
+				type: "POST",
+
+				  data :JSON.stringify(AddressesDataJSON),
+				  cache:false,
+			        beforeSend: function(xhr) {  
+			            xhr.setRequestHeader("Accept", "application/json");  
+			            xhr.setRequestHeader("Content-Type", "application/json");  
+			        },
+				     success: function(resposeJsonObject){
+				    	
+				    	 window.location.href ='supplierinvoice?poref='+ponum+'&page=Invoice';
+			     
+			    }}); 
+		}
+		  
+	});
+ 
+ 
+
+ 
+ 
+ /* function checkToDayDate(){
+	 alert("dddd");
+	 var curr_date = new Date();
+     var dd = curr_date.getDate();
+     var mm = curr_date.getMonth()+1; //January is 0!
+     var yyyy = curr_date.getFullYear();
+     if(dd<10) {
+         dd='0'+dd
+     } 
+
+     if(mm<10) {
+         mm='0'+mm
+     }  
+ var start_date = yyyy+'-'+mm+'-'+dd;
+ var set_date=dd+'/'+mm+'/'+yyyy;
+ var start_date1 = Date.parse(start_date);
+ var end_date = $('#invoicedate').val();
+ var res = end_date.split("/");
+ var end_date = res[2]+'-'+res[1]+'-'+res[0];
+ var end_date1 = Date.parse(end_date);
+  if(start_date1>=end_date1) {
+  }
+ else {
+ alert("Date Should Not Greater Than Current Date!!");
+ document.getElementById("invoicedate").value=set_date; 
+ }
+	 
+ } */
 </script>
