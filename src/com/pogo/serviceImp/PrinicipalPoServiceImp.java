@@ -444,10 +444,16 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		InvoiceDetail id=new InvoiceDetail();
 		InvoiceTab it=new InvoiceTab();
 		it.setInvno(tbean.getInvno());
+		
+		
+		
+		
 		id.setParticular(dbean.getParticular());
 		id.setTotalqty(dbean.getTotalqty());
 		id.setReceiveqty(dbean.getReceiveqty());
 		id.setPorefno(tbean.getPorefno());
+		
+		
 		id.setInvoicetab(it);
 		
 		prinicipaldao.saveinvoicedetail(id);

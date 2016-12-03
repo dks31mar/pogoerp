@@ -1,4 +1,7 @@
 package com.pogo.bean;
+
+import com.pogo.model.Department;
+
 public class ContactBean 
 {
 	private int contactId;
@@ -6,12 +9,20 @@ public class ContactBean
 	private String contemail;
 	private String phone;
 	private String desName;
-	private String deptName;
+	private String deptName1;
 	private int depId;
 	private int desId;
 	private String dob;
 	private String doa;
+	private Department deptName;
 	
+	
+	public String getDeptName1() {
+		return deptName1;
+	}
+	public void setDeptName1(String deptName1) {
+		this.deptName1 = deptName1;
+	}
 	public String getDob() {
 		return dob;
 	}
@@ -56,10 +67,11 @@ public class ContactBean
 	public void setDesName(String desName) {
 		this.desName = desName;
 	}
-	public String getDeptName() {
+	
+	public Department getDeptName() {
 		return deptName;
 	}
-	public void setDeptName(String deptName) {
+	public void setDeptName(Department deptName) {
 		this.deptName = deptName;
 	}
 	public int getDepId() {

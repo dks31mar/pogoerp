@@ -47,12 +47,14 @@ public class LeadGenerationContactController {
 
 	@RequestMapping(value = "/savecontact123" ,method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView savecontact(@RequestBody String json , Model model) throws IOException{
+	public void savecontact(@RequestBody String json , Model model) throws IOException{
 		ObjectMapper mapper = new ObjectMapper();
 		ContactBean bean = mapper.readValue(json, ContactBean.class);
+		System.out.println("value is *********************"+json);
+		
 		//ContactBean bean1 = new ContactBean();
 		contactservice.saveContacts(bean);
-		return new ModelAndView("contact");
+		
 	}
 	
 	
