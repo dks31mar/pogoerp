@@ -6,33 +6,27 @@ public class CompetitiorsProfileBean {
 	private  String contactperson;
 	private  String address;
 	private  String designation;
-	private String mobileno;
-	private  String phoneno;
+	private Integer mobileno;
+	private  Integer phoneno;
 	private String emailid;
 	private  String productbrand;
 	private  String productname;
 	private String warrentyperiod;
-	private String price;
+	private Integer price;
 	private String nooffreeamc;
 	private String amcrate;
+	
 	public int getCompid() {
 		return compid;
 	}
 	public void setCompid(int compid) {
 		this.compid = compid;
 	}
-	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getNooffreeamc() {
-		return nooffreeamc;
-	}
-	public void setNooffreeamc(String nooffreeamc) {
-		this.nooffreeamc = nooffreeamc;
 	}
 	public String getContactperson() {
 		return contactperson;
@@ -52,16 +46,16 @@ public class CompetitiorsProfileBean {
 	public void setDesignation(String designation) {
 		this.designation = designation;
 	}
-	public String getMobileno() {
+	public Integer getMobileno() {
 		return mobileno;
 	}
-	public void setMobileno(String mobilno) {
-		this.mobileno = mobilno;
+	public void setMobileno(Integer mobileno) {
+		this.mobileno = mobileno;
 	}
-	public String getPhoneno() {
+	public Integer getPhoneno() {
 		return phoneno;
 	}
-	public void setPhoneno(String phoneno) {
+	public void setPhoneno(Integer phoneno) {
 		this.phoneno = phoneno;
 	}
 	public String getEmailid() {
@@ -88,13 +82,18 @@ public class CompetitiorsProfileBean {
 	public void setWarrentyperiod(String warrentyperiod) {
 		this.warrentyperiod = warrentyperiod;
 	}
-	public String getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	
+	public String getNooffreeamc() {
+		return nooffreeamc;
+	}
+	public void setNooffreeamc(String nooffreeamc) {
+		this.nooffreeamc = nooffreeamc;
+	}
 	public String getAmcrate() {
 		return amcrate;
 	}

@@ -17,6 +17,7 @@ import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
 import com.pogo.model.Department;
 import com.pogo.model.Designation;
+import com.pogo.model.ModeOfDispatch;
 import com.pogo.model.SmsAllocation;
 import com.pogo.model.StateZone;
 import com.pogo.model.UserEmployee;
@@ -308,7 +309,9 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 	@Override
 	public void updateCompetitior(CompetitiorsProfile comp) {
 		//sessionFactory.getCurrentSession().createQuery("UPDATE CompetitiorsProfile set contactperson="+comp.getContactperson()+",set name="+comp.getName()+",set address="+comp.getaddress()+," where compid="+comp.getCompid()).executeUpdate();
-		//sessionFactory.getCurrentSession().update(comp);
+		sessionFactory.getCurrentSession().update(comp);
+		System.out.println("outside dao impl"); 
+		
 
 	}
 
@@ -439,6 +442,26 @@ System.out.println("delete");
 		
 	}
 
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CompetitiorsProfile> getCompetitiorsProfilebyid(String id) {
+		int f=0;
+		try{
+          f=Integer.parseInt(id);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		
+		return (List<CompetitiorsProfile>) sessionFactory.getCurrentSession().createCriteria(CompetitiorsProfile.class)
+				.add(Restrictions.eq("id", f)).list();
+	}
+
+	@Override
+	public void editCompetitiorsProfile(CompetitiorsProfile profile) {
+		sessionFactory.getCurrentSession().update(profile);
+		
+	}
 	@Override
 	public void saveData(Department dept) {
 		sessionFactory.getCurrentSession().save(dept);
@@ -449,6 +472,7 @@ System.out.println("delete");
 	@Override
 	public List<Department> getDatadep() {
 		return sessionFactory.getCurrentSession().createCriteria(Department.class).list();
+
 	}
 
 }

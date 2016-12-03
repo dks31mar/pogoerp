@@ -136,9 +136,15 @@ void updateCompetitior(CompetitiorsProfile comp);
 
 	void deletefeture(int id);
 
+
+	List<CompetitiorsProfile> getCompetitiorsProfilebyid(String id);
+
+	void editCompetitiorsProfile(CompetitiorsProfile profile);
+
 	void saveData(Department dept);
 
 	List<Department> getDatadep();
+
 
 
 
