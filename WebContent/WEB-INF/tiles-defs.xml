@@ -263,6 +263,12 @@
 			 <put-attribute name="title" value="selectfromsalescalls" />
 			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/selectFromSalesCalls.jsp" />
 			 </definition>
+			 <!-- LeadGenerationontacts -->
+			 <!-- Add Contact -->
+			 <definition name="contact" extends="baseLayout">
+			 <put-attribute name="title" value="selectfromsalescalls" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/contacts.jsp" />
+			 </definition>
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
