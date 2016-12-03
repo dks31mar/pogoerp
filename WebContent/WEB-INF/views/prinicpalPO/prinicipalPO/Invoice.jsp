@@ -197,11 +197,11 @@
 				</div>
 			</div>
 			<hr style="color: black">
-					<div class="row form-group">
+					<!-- <div class="row form-group">
 						<div class="col-sm-7">
 						</div>
-					</div>
-					<table style="width: 100%; bottom: 15px; position: relative; visibility: hidden;" border="0" id="gettrifchecked">
+					</div> -->
+					<table style=" position: relative; visibility: hidden;" border="0" id="gettrifchecked">
 					<tbody>
 					
 					</tbody>
@@ -402,7 +402,7 @@ function getcals(v1,v2){
 		var poinvoicedate=$("#invoicedate").val();
 		var AddressesDataJSON = $("#gettrifchecked").find('input').serializeArray();
 		  console.log(AddressesDataJSON);
-		 alert(ponum);
+		 //alert(ponum);
 		 
 		 
 		if(ponum=='' || poinvoce==''){

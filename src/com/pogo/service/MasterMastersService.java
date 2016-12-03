@@ -5,6 +5,7 @@ import java.util.List;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddPlanBean;
 import com.pogo.bean.CountryBean;
+import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
@@ -15,7 +16,7 @@ import com.pogo.bean.ModeOfDispatchBean;
 import com.pogo.bean.ServiceProviderBean;
 
 import com.pogo.bean.StateBean;
-
+import com.pogo.bean.SupplierMasterBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.bean.UnitBean;
 import com.pogo.bean.ZonesBean;
@@ -27,6 +28,7 @@ import com.pogo.model.District;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 import com.pogo.model.State;
+import com.pogo.model.SupplierMaster;
 
 
 public interface MasterMastersService {
@@ -119,6 +121,12 @@ public interface MasterMastersService {
 	
 	void addActionPlan(AddActionBean poref1);
 	AddActionBean getActionById(int id);
+	void saveSupplierMaster(SupplierMasterBean servicepro);
+	List<SupplierMasterBean> getSupplierMaster();
+	String getSupmst(String id);
+	void editSupplierMaster(SupplierMasterBean servicepro);
+	void deleteSuppilerMst(int id);
+	
 
 	
 
