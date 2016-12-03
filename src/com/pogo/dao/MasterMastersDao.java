@@ -3,6 +3,7 @@ package com.pogo.dao;
 import java.util.List;
 
 import com.pogo.bean.AddActionBean;
+import com.pogo.bean.AddPlanBean;
 import com.pogo.model.AddAction;
 import com.pogo.model.AddPlan;
 import com.pogo.model.Branch;
@@ -106,13 +107,6 @@ public interface MasterMastersDao {
 	void deleteserviceprovider(int id);
 
 	
-	
-	
-	List<AddPlan> actionPlanList();
-	
-	void addActionPlan(AddAction action);
-	
-	AddAction getplanDataById(int id);
 
 	State getStateIdByContryId(Integer id);
 
@@ -132,8 +126,22 @@ public interface MasterMastersDao {
 	
 
 	List<CustomerLevels> getCustomerStatusDetailsList();
+	void editforAddAction(AddAction action);
+	List<AddAction> getActionRecord(String id);
+	void deleteaddAction(int id);
+	
+	void addActionPlan(AddPlan plan);
+	List<AddPlanBean> PlanList();
+	List<AddPlan> getplandata();
+	List<AddPlan> getplanRecord(String id);
+	void updateForAddPaln(AddPlan action);
+	//void deleteAddPlan(int id);
+	List<AddPlan> getPlanata();
+	
+	void deleteAddPlan(AddPlan plan);
+	AddPlan getplanById(int id);
 
-
+	
 
 
 

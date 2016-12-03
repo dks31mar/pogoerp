@@ -105,20 +105,27 @@ public interface MasterMastersService {
 
 	void deleteServiceprovider(int id);
 	
-
-	List<AddPlan> actionPlanList();
-	void addActionPlan(AddPlanBean poref1);
-
-	AddActionBean EditForActionPlan(int id);
+	
 
 	List<AddActionBean> findAllAction();
 
 
-	List<AddPlanBean> getActionList();
+	//List<AddPlanBean> getActionList();
 	void saveAddAction(AddActionBean actionBean2);
 	
-	void addActionPlan(AddActionBean poref1);
+	
 	AddActionBean getActionById(int id);
+	
+	void editforAddAction(AddActionBean poref1);
+	String getActionRecord(String id);
+	List<AddActionBean> getAddActionList();
+	void deleteaddAction(int id);
+	void addActionPlan(AddPlanBean poref1);
+	List<AddPlanBean> PlanList();
+	String getplanRecord(String id);
+	void updateForAddPaln(AddPlanBean planbean);
+	void deleteAddPlan(int id);
+	List<AddPlanBean> findAddPlan();
 
 	
 

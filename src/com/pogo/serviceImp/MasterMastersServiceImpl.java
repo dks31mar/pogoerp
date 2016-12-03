@@ -759,30 +759,6 @@ public void deleteServiceprovider(int id) {
 
 
 
-@Override
-public void addActionPlan(AddActionBean poref1) {
-	AddAction action=new AddAction();
-	action.setAction(poref1.getAction());
-	
-	masterMastersdao.addActionPlan(action);
-	
-}
-
-@Override
-public List<AddPlan> actionPlanList() {
-	return masterMastersdao.actionPlanList();
-}
-
-
-@Override
-public AddActionBean EditForActionPlan(int id) {
-	// TODO Auto-generated method stub
-	AddAction addaction=masterMastersdao.getplanDataById(id);
-	AddActionBean actionbean= new AddActionBean();
-	actionbean.setAction(addaction.getAction());
-	return actionbean;
-	
-}
 
 /*@Override
 @Transactional
@@ -799,6 +775,8 @@ public void saveAddAction(AddPlanBean planbean) {
 public List<AddActionBean> findAllAction() {
 	List<AddAction> actionlist=masterMastersdao.getactiondata();
 	List<AddActionBean> actionbean=new ArrayList<AddActionBean>();
+	
+	
 	for(AddAction data:actionlist)
 	{
 		AddActionBean bean=new AddActionBean();
@@ -827,7 +805,9 @@ public void saveAddAction(AddActionBean actionBean2)
 
 @Override
 public void addActionPlan(AddPlanBean poref1) {
-	// TODO Auto-generated method stub
+	AddPlan plan=new AddPlan();
+	plan.setPlan(poref1.getPlan());
+	masterMastersdao.addActionPlan(plan);
 	
 }
 
@@ -842,10 +822,119 @@ public AddActionBean getActionById(int id) {
 
 }
 
+@Override
+@Transactional
+public void editforAddAction(AddActionBean poref1) {
+	AddAction action=new AddAction();
+	action.setId(poref1.getId());
+	action.setAction(poref1.getAction());
+	
+	masterMastersdao.editforAddAction(action);
+	
+}
+
+@Override
+public String getActionRecord(String id) {
+	List<AddAction> action =masterMastersdao.getActionRecord(id);
+	Map<String, Object> dd=new HashMap<>();
+	for(AddAction data: action)
+	{
+		
+		dd.put("customersourceId",data.getId() );
+		dd.put("source",data.getAction());
+			
+	}
+	Gson gson=new Gson();
+	
+String list=	gson.toJson(dd);
+	
+	return list;
+}
+
+@Override
+public List<AddActionBean> getAddActionList() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public void deleteaddAction(int id) {
+	masterMastersdao.deleteaddAction(id);
+	
+}
+
+@Override
+public List<AddPlanBean> PlanList() {
+	List<AddPlan> planlist=masterMastersdao.getplandata();
+	List<AddPlanBean> planbean=new ArrayList<AddPlanBean>();
+	for(AddPlan data:planlist)
+	{
+		AddPlanBean bean=new AddPlanBean();
+		bean.setId(data.getId());
+		bean.setPlan(data.getPlan());
+		planbean.add(bean);
+	}
+	return planbean;
 	
 
 }
 
+@Override
+public String getplanRecord(String id) {
+	List<AddPlan> plan =masterMastersdao.getplanRecord(id);
+	Map<String, Object> dd=new HashMap<>();
+	for(AddPlan data:plan)
+	{
+		
+		dd.put("id",data.getId());
+		dd.put("plan",data.getPlan());
+		
+		
+	}
+	Gson gson=new Gson();
+	
+String list=	gson.toJson(dd);
+	
+	return list;
+}
+
+@Override
+@Transactional
+public void updateForAddPaln(AddPlanBean planbean) {
+	
+		AddPlan action=new AddPlan();
+		action.setId(planbean.getId());
+		action.setPlan(planbean.getPlan());
+		
+		masterMastersdao.updateForAddPaln(action);
+	
+}
+
+@Override
+public void deleteAddPlan(int id) {
+	AddPlan plan = masterMastersdao.getplanById(id);
+	masterMastersdao.deleteAddPlan(plan);
+	//AddPlan plan= masterMastersdao.deleteAddPlan(id);
+	//masterMastersdao.updateAddPlan(plan);
+	
+}
+
+@Override
+public List<AddPlanBean> findAddPlan() {
+	List<AddPlan> actionlist=masterMastersdao.getPlanata();
+	List<AddPlanBean> actionbean=new ArrayList<AddPlanBean>();
+	
+	
+	for(AddPlan data:actionlist)
+	{
+		AddPlanBean bean=new AddPlanBean();
+		bean.setId(data.getId());
+		bean.setPlan(bean.getPlan());
+		actionbean.add(bean);
+	}
+	return actionbean;
+}
+}
 
 
 

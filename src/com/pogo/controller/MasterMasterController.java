@@ -697,6 +697,7 @@ public class MasterMasterController {
 		}
 		System.out.println("outside get team method");
 	}
+	
 	@RequestMapping(value="editteam",method=RequestMethod.POST)
 	@ResponseBody
 	public void editTeam(@RequestBody String json,Model model) throws IOException{
@@ -722,17 +723,7 @@ public class MasterMasterController {
 		System.out.println("***************************************** inside customersource list ****************************");
 	return new ModelAndView("getCustomerSources",model);
 	}	
-	/*@RequestMapping(value = "deletecustomersource", method = RequestMethod.GET)
-	public ModelAndView deleteCustomerSource(@RequestParam("customersourceId") int id) {
-		List<Customer_Source_Bean> list=new ArrayList<Customer_Source_Bean>();
-		list =	masterMastersService.deleteCustomerSource(id);
-		Map<String, Object> model= new HashMap<String,Object>();
-		
-		model.put("expenseheadList", list );
-		return new ModelAndView("customersourcelist",model);
-		
-		
-	}*/
+	
 	@RequestMapping(value = "deletecustomersource", method = RequestMethod.GET)
 	public ModelAndView deleteCustomerSource(@RequestParam("customersourceId") int id) {
 		masterMastersService.deleteCustomerSource(id);
@@ -740,8 +731,6 @@ public class MasterMasterController {
 		list=masterMastersService.getCustomerSourceList();
 		Map<String, Object> model= new HashMap<String,Object>();
 		model.put("customersourcelist", list);
-		
-			
 		
 		return new ModelAndView("getCustomerSources",model);
 	}
@@ -864,47 +853,66 @@ public class MasterMasterController {
 	
 	}
 	
-/*	
-	//list for add action plan
-	@RequestMapping(value="/addplanAction",method=RequestMethod.GET)
-	public ModelAndView getPlanAction(@ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result)
-   {
-		System.out.println("inside add plan action");
-		List<AddPlan> list = new ArrayList<AddPlan>();
-		list = masterMastersService.actionPlanList();
-		Map<String , Object> model = new HashMap<String,Object>();
-		model.put("actionplanlist", list);
-		System.out.println("***************************************** inside action plan ****************************");
 	
-		return new ModelAndView("addplanAction",model);
+	//call the page and get list for add plan and 
+	@RequestMapping(value="/addplanAction",method=RequestMethod.GET)
+	public ModelAndView getPlanAction(Model model)
+   {
+		List<AddPlanBean> list = new ArrayList<AddPlanBean>();
+		list=masterMastersService.PlanList();
+		//model.addAttribute("actionList",list );
+		model.addAttribute("planList",list );
+		System.out.println("***************** list of plan ********"); 
+	
+		return new ModelAndView("addplanAction");
 	}
-	// save for add action paln
+	
+	// save for  add paln
 	@RequestMapping(value="addactionplan",method=RequestMethod.POST)
 	@ResponseBody
 	public void addActionPlan(@RequestBody String json,Model model) throws IOException{
-	System.out.println("********************inside add Action Plan method **************\n"+json);
+	System.out.println("********************save add Plan method **************\n"+json);
 		ObjectMapper mapper=new ObjectMapper();
 		AddPlanBean poref=mapper.readValue(json, AddPlanBean.class);
 		AddPlanBean poref1=new AddPlanBean();
-		poref1.setPaln(poref.getPaln());
-		
+		poref1.setPlan(poref.getPlan());
 		masterMastersService.addActionPlan(poref1);
 	}
-	@RequestMapping(value="editforactionplan" , method=RequestMethod.POST)
-	public String EditForActionPlan(@RequestParam("id") int id,  Model model) {
-		AddActionBean addobj=masterMastersService.EditForActionPlan(id);
-		model.addAttribute("planname", addobj);
-		
-		return "addplanAction";
+	//for edit the add plan
+	
+	@RequestMapping(value = "getPlanRecordForEdit", method = RequestMethod.POST)
+	public void getPlanRecordForEdit(@RequestParam("addplanid") String id,HttpServletResponse res )throws ParseException  {
+		System.out.println("**********************edit the  add plan    *******************************");
+		System.out.println(id);	
+		String planList=masterMastersService.getplanRecord(id);
+		System.out.println(planList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(planList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 	}
-*/	
-	//call the page for add actrion
+	//update for add paln
+	@RequestMapping(value="updateForAddPaln",method=RequestMethod.POST)
+	@ResponseBody
+	public void updateForAddPaln(@RequestBody String json,Model model) throws IOException{
+	System.out.println("**********************update the add paln     *******************************");
+		ObjectMapper mapper=new ObjectMapper();
+		AddPlanBean planbean=mapper.readValue(json, AddPlanBean.class);
+		
+		masterMastersService.updateForAddPaln(planbean);
+		
+	}
+	
+	
+	
+	//call the page for add action and list of  add action record
 	@RequestMapping(value = "/addaction", method = RequestMethod.GET)
 	public ModelAndView getAction(Model model) {
 		List<AddActionBean> list=masterMastersService.findAllAction();
 		model.addAttribute("actionList",list );
-		//AddActionBean actionBean=masterMastersService.getActionById(id);
-		//model.addAttribute("actionId", actionBean);
 		return new ModelAndView("addaction");
 	}
 	
@@ -919,26 +927,65 @@ public class MasterMasterController {
 		actionBean2.setAction(actionBean.getAction());
 		masterMastersService.saveAddAction(actionBean2);
 	}
+	//for update the  add action
+	@RequestMapping(value="editforAddAction",method=RequestMethod.POST)
+	@ResponseBody
+	public void editforAddAction(@RequestBody String json,Model model) throws IOException{
+	System.out.println("**********************update the action     *******************************");
+		ObjectMapper mapper=new ObjectMapper();
+		AddActionBean addbean=mapper.readValue(json, AddActionBean.class);
+		
+		masterMastersService.editforAddAction(addbean);
+		//model.addAttribute("prolist",  prepareListofBean(prinicipalposervice.proList()));
+
+	}
+	//get(edit) the  add action  
+	@RequestMapping(value = "getActionRecord", method = RequestMethod.POST)
+	public void getActionRecord(@RequestParam("addActionid") String id,HttpServletResponse res )throws ParseException  {
+		System.out.println("**********************edit the action     *******************************");
+		System.out.println(id);
+		
+		String actionList=masterMastersService.getActionRecord(id);
+		System.out.println(actionList);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(actionList);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+
+	}
 	
-	/*// list for action
-	@RequestMapping(value="/getactionlist",method=RequestMethod.GET)
-	public ModelAndView getActionList(@ModelAttribute("command") DistrictBean district,HttpServletRequest request,BindingResult result)
-   {
-		List<AddAction> list = new ArrayList<AddAction>();
-		//list = masterMastersService.actionList();
-		Map<String , Object> model = new HashMap<String,Object>();
-		model.put("actionlist", list);
-		System.out.println("***** inside add action ******");
+	//delete for add paln
+	@RequestMapping(value="deleteAddPlan", method = RequestMethod.GET)
+	public String deleteAddPlan(@RequestParam("addplanid") int id) {
 	
+		System.out.println("//delete for add paln");
+		masterMastersService.deleteAddPlan(id);
+			return "redirect:/addplanAction";
+		
+
+
+		//List<AddPlanBean> list=new ArrayList<AddPlanBean>();
+		//list=masterMastersService.findAddPlan();
+		//Map<String, Object> model= new HashMap<String,Object>();
+		//model.put("planList", list);
+	
+		//return new ModelAndView("addplanAction",model);
+	}
+	
+	// delete for  add action
+	@RequestMapping(value="/deleteaddAction", method = RequestMethod.GET)
+	public ModelAndView deleteaddAction(@RequestParam("addActionid") int id) {
+		masterMastersService.deleteaddAction(id);
+		List<AddActionBean> list=new ArrayList<AddActionBean>();
+		list=masterMastersService.findAllAction();
+		Map<String, Object> model= new HashMap<String,Object>();
+		model.put("actionList", list);
+		
 		return new ModelAndView("addaction",model);
-	}*/
-	/*	System.out.println("get the paln list");
-		List<AddPlanBean> list = new ArrayList<AddPlanBean>();
-		list = masterMastersService.getActionList();
-		Map<String , Object> model = new HashMap<String,Object>();
-		model.put("actionlist", list);
-		System.out.println("***************************************** inside action plan ****************************");
+	}
 	
-		return new ModelAndView("addaction",model);
-  	}*/
+	
 }
