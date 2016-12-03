@@ -451,4 +451,9 @@ System.out.println("delete");
 		return sessionFactory.getCurrentSession().createCriteria(Department.class).list();
 	}
 
+	@Override
+	public Department getDep(Integer depId) {
+		return (Department) sessionFactory.getCurrentSession().get(Department.class, depId);
+	}
+
 }

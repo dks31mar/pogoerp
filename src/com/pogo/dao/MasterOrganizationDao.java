@@ -140,6 +140,8 @@ void updateCompetitior(CompetitiorsProfile comp);
 
 	List<Department> getDatadep();
 
+	Department getDep(Integer depId);
+
 
 
 	

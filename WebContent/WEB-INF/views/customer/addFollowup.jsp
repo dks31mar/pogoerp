@@ -144,14 +144,14 @@ alert("Not Reachable");
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-   <select    class="form-control" name="cusOrganisation" onchange="getData(this.value)" >
+   <select    class="form-control" name="cusOrganisation" oninput="getData(this.value)" >
    <option value="" selected="selected">--Select Customer--</option>
    <c:if test="${!empty salesList}">
    <c:forEach items="${salesList}" var="list">
    <option value="${list.customerId}">${list.organisation}</option>
    </c:forEach>
    </c:if>
-   </select>
+   </select> 
     </div>
   </div>
   </div> 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
+import com.pogo.model.Contact;
 import com.pogo.model.CustomerSales;
 
 
@@ -59,6 +60,12 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao
 	@Override
 	public List<CustomerSales> getsalesListById(int id) {
 		return  sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).add(Restrictions.eq("customerId", id)).list();
+	}
+
+	@Override
+	public void saveContact(Contact contact) {
+		sessionFactory.getCurrentSession().save(contact);
+		
 	}
 
 }

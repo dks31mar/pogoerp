@@ -240,6 +240,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 	    emp.setBranchName(userEmpdao.getBranch(userDTO.getBranchId()));
 		emp.setCompanyName(userEmpdao.getCom(userDTO.getSubcompanyId()));
 		emp.setDesignationName(userEmpdao.getData(userDTO.getDesignationId()));
+		emp.setDepName(userEmpdao.getDep(userDTO.getDepId()));
 		emp.setGender(userDTO.getGender());
 		emp.setPhone(userDTO.getPhone());
 		emp.setUsermobile(userDTO.getUsermobile());
@@ -334,6 +335,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		empbean.setDesignationId(empedit.getDesignationName().getDesignationid());
 		empbean.setBranchId(empedit.getBranchName().getBranchId());
 	    empbean.setSubcompanyId(empedit.getCompanyName().getCompanyinfoid());
+	    empbean.setDepId(empedit.getDepName().getDepartmentId());
 		empbean.setFirstname(empedit.getFirstname());
 		empbean.setLastname(empedit.getLastname());
 		empbean.setDivision(empedit.getDivision());
@@ -374,6 +376,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDesignationName(userEmpdao.getData(userEmployeeBean.getDesignationId()));
 		emp.setBranchName(userEmpdao.getBranch(userEmployeeBean.getBranchId()));
 		emp.setCompanyName(userEmpdao.getCom(userEmployeeBean.getSubcompanyId()));
+		emp.setDepName(userEmpdao.getDep(userEmployeeBean.getDepId()));
 		emp.setGender(userEmployeeBean.getGender());
 		emp.setPhone(userEmployeeBean.getPhone());
 		emp.setUsermobile(userEmployeeBean.getUsermobile());

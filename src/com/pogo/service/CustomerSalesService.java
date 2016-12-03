@@ -7,6 +7,7 @@ import java.util.List;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
+import com.pogo.bean.ContactBean;
 import com.pogo.bean.CustomerSalesBean;
 
 public interface CustomerSalesService 
@@ -26,6 +27,8 @@ public interface CustomerSalesService
 	void addFollowup(AddFollowUpBean addFollowUpBean);
 
 	List<CustomerSalesBean> findAllDataById(int id);
+
+	void addContactPerson(ContactBean contactBean);
 
 
 	
