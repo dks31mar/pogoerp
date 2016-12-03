@@ -110,6 +110,8 @@ public class MasterOrganizationController {
 		model.addAttribute("listofComp", comlist);
 		List<BranchBean> branchlist = userEmployeeservice.getBranchList();
 		model.addAttribute("listofBranch", branchlist);
+		List<DepartmentBean> departmentlist=userEmployeeservice.getDepartmentDetails();
+		model.addAttribute("depList", departmentlist);
 
 		// System.out.println("for add emp on controller"+Deglist);
 		return "addUser";
@@ -125,6 +127,8 @@ public class MasterOrganizationController {
 		model.addAttribute("listofBranch", beansBran);
 		List<CompanyProfileBean> beansCom = userEmployeeservice.getCompanyList();
 		model.addAttribute("listofComp", beansCom);
+		List<DepartmentBean> departmentlist=userEmployeeservice.getDepartmentDetails();
+		model.addAttribute("depList", departmentlist);
 		return "editUser";
 	}
 

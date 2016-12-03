@@ -317,10 +317,16 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="department" class="form-control selectpicker" >
-    <option value="${employee.department}">${employee.department}
+    <select name="depId" class="form-control selectpicker" >
+    <%-- <option value="${employee.depId}">${employee.depname}</option> --%>
+    <c:if test="${!empty depList}">
+    <c:forEach items="${depList}" var="list">
+    <option value="${list.depId}">${list.depName} </option>
+    </c:forEach>
+    </c:if>
+    <%-- <option value="${employee.department}">${employee.department}
       <option value="HR">HR</option>
-	  <option value="DataEntry">Data Entry</option>
+	  <option value="DataEntry">Data Entry</option> --%>
      
     </select>
   </div>

@@ -475,4 +475,10 @@ System.out.println("delete");
 
 	}
 
+	@Override
+	public Department getDep(Integer depId) {
+		return (Department) sessionFactory.getCurrentSession().get(Department.class, depId);
+	}
+
+	
 }

@@ -87,6 +87,57 @@
 		$( function() {
 		    $( "#orderdate").datepicker({dateFormat: 'dd-MM-yyyy'});
 		  } );
+		
+		var i=0;
+		function contactP() 
+		{
+			i=parseInt(i)+parseInt(1);
+			$.ajax({
+				url:'contactPersons',
+				type:'GET',
+				success : function(data) {
+					var f=JSON.parse(data);
+					if(i==1){
+					$.each(f, function(k, v) {
+						$('#departOptions').append('<option value="'+k+'">'+v+'</option>');
+						i=parseInt(i)+parseInt(2);
+					});
+					}
+					
+				},
+				error:function(error,status)
+				{
+					alert("Not Reachable");
+				}
+				
+			});
+		}
+		
+		
+		function contactDesignation() 
+		{
+			i=parseInt(i)+parseInt(1);
+			$.ajax({
+				url:'contactdesignation',
+				type:'GET',
+				success : function(data) {
+					var f=JSON.parse(data);
+					console.log(f.designation);
+					if(i==1){
+					$.each(f, function(k, v) {
+						$('#designationOption').append('<option value="'+k+'">'+v+'</option>');
+						i=parseInt(i)+parseInt(2);
+					});
+					}
+					
+				},
+				error:function(error,status)
+				{
+					alert("Not Reachable");
+				}
+				
+			});
+		}
 		</script>
 
 <div class="row" style="margin-top: 15px">
@@ -115,48 +166,54 @@
           <h4 class="modal-title">Contact Person</h4>
         </div>
         <div class="modal-body">
-        <form:form action="" method="" commandName="">
+        <form:form action="savecontact" method="POST" commandName="contactBean">
         <div class="form-group">
             <label  class="col-md-2 control-label"><strong>  Name</strong><span
 					style="color: red;">*</span></label>
 					<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input type="text" name="" class="form-control">
+            <input type="text" name="contactName" class="form-control">
             </div><br>
             <label class="col-md-2 control-label"><strong>Designation</strong><span
 					style="color: red;">*</span></label>
 			<div class="input-group">
              <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
-			<input name="" class="form-control" type="text">
+			<select name="" class="form-control" id="designationOption">
+			<option value="" >--Select Designation--</option>
+			</select>
 			</div><br>
 			<label class="col-md-2 control-label"><strong>Department</strong><span
 					style="color: red;">*</span></label>
 			<div class="input-group">
              <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
-			<input name="" class="form-control" type="text">
+			<select name="depId" class="form-control" id="departOptions">
+			<option>--Select Department--</option>
+			
+			</select>
 			</div><br>
 			<label class="col-md-2 control-label"><strong>Email</strong><span
 					style="color: red;">*</span></label>
 			<div class="input-group">
              <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
-			<input name="" class="form-control" type="text">
+			<input name="contemail" class="form-control" type="text">
 			</div><br>
 			<label class="col-md-2 control-label"><strong>Phone</strong><span
 					style="color: red;">*</span></label>
 			<div class="input-group">
              <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
-			<input name="" class="form-control" type="text">
+			<input name="phone" class="form-control" type="text">
 			</div>					
             </div>
             <div>
             
-            <button type="button" class="btn btn-warning" style="margin-left: 586px;">Save</button>
+            <button type="submit" class="btn btn-warning" style="margin-left: 406px;">Save</button>
+             <button type="button" class="btn btn-warning" style="margin-left: 20px;" data-dismiss="modal">Close</button>
             </div>
            
             </form:form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+         
         </div>
       </div>
     </div>
@@ -293,7 +350,7 @@
         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input  name="contactPerson"  class="form-control" placeholder="Person Name" required="required" type="text">
     </div>
-  </div><div><button class="btn btn-success" data-toggle="modal" data-target="#myModal"  title="Add More">+</button></div>
+  </div><div><a href="#" onclick="contactP();" class="btn btn-success" data-toggle="modal" data-target="#myModal"  title="Add More">+</a></div>
 </div>
 
 <div class="form-group"> 

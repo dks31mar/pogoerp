@@ -268,7 +268,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-phone-alt"></i></span> <input name="phone"
 								class="form-control" placeholder="0845-555-1212" type="tel"
-								pattern="^\d{4}-\d{3}-\d{4}$" required="required">
+								 required="required">
 						</div>
 					</div>
 				</div>
@@ -279,11 +279,12 @@
 					<div class="col-md-3 selectContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-list"></i></span> <select name="department"
+								class="glyphicon glyphicon-list"></i></span> <select name="depId"
 								class="form-control selectpicker" required="required">
-								<option>---Select Department---</option>
-								<option value="HR">HR</option>
-								<option value="Data Entry">Data Entry</option>
+								<option value="" selected="selected">---Select Department---</option>
+								<c:forEach  items="${depList}" var="data">
+								<option value="${data.depId}">${data.depName}</option>
+								</c:forEach>
 
 							</select>
 						</div>

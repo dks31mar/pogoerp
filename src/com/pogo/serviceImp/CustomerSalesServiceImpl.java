@@ -14,14 +14,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
+import com.pogo.bean.ContactBean;
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
+import com.pogo.model.Contact;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
+import com.pogo.model.Department;
 import com.pogo.service.CustomerSalesService;
 
 @Service("customerSalesService")
@@ -249,6 +252,17 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		}
 		return listbean;
 	}
+	@Override
+	public void addContactPerson(ContactBean contactBean) {
+		Contact contact=new Contact();
+		contact.setContactName(contactBean.getContactName());
+		contact.setContemail(contactBean.getContemail());
+		contact.setPhone(contactBean.getPhone());
+		//contact.setDepName(empDao.getDep(contactBean.getContactId()));
+		customerSalesDao.saveContact(contact);
+		
+	}
+	
 	
 
 	

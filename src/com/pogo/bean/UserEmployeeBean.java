@@ -21,7 +21,8 @@ public class UserEmployeeBean
 
 	private Integer designationId;
 	private String designationName;
-
+    private Integer depId;
+    private String depname;
 	
 	private String password;
 	private String repassword;
@@ -198,6 +199,18 @@ public class UserEmployeeBean
 	}
 	public void setBranchName(String branchName) {
 		this.branchName = branchName;
+	}
+	public Integer getDepId() {
+		return depId;
+	}
+	public void setDepId(Integer depId) {
+		this.depId = depId;
+	}
+	public String getDepname() {
+		return depname;
+	}
+	public void setDepname(String depname) {
+		this.depname = depname;
 	}
 	
 	

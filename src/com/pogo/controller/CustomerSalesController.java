@@ -3,6 +3,8 @@ package com.pogo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,13 +21,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
+import com.pogo.bean.ContactBean;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
+import com.pogo.bean.DepartmentBean;
+import com.pogo.bean.DesignationBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.StateBean;
@@ -35,9 +41,13 @@ import com.pogo.service.MasterMastersService;
 import com.pogo.service.MasterOrganizationService;
 import com.sun.java.swing.plaf.motif.resources.motif;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class CustomerSalesController {
@@ -169,5 +179,58 @@ public class CustomerSalesController {
 		return map.writeValueAsString(list);
 		
 	}
+	
+	@RequestMapping(value="/contactPersons",method=RequestMethod.GET)
+	public void contact(Model model,HttpServletRequest req,HttpServletResponse res)
+	{
+		List<DepartmentBean> list=empServive.getDepartmentDetails();
+		Map<Integer,String> map=new HashMap<>();
+		
+		for(DepartmentBean db:list){
+			map.put(db.getDepId(), db.getDepName());
+		}
+		Gson gson = new Gson(); 
+		String json = gson.toJson(map);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(json);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@RequestMapping(value="/contactdesignation",method=RequestMethod.GET)
+	public void contactDes(Model model,HttpServletRequest req,HttpServletResponse res)
+	{
+		List<DesignationBean> beansDeg = empServive.GetDesignationList();
+		System.out.println(beansDeg);
+		Map<Integer,String> map=new HashMap<>();
+		
+		for(DesignationBean db:beansDeg){
+			map.put(db.getDesignationid(), db.getDesignation());
+			System.out.println(db.getDesignation());
+	
+		}
+		Gson gson = new Gson(); 
+		String json = gson.toJson(map);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(json);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@RequestMapping(value="/savecontact", method=RequestMethod.POST)
+			public String savecontactData(@ModelAttribute("contactBean")ContactBean contactBean)
+			{
+		customerSalesService.addContactPerson(contactBean);
+				
+				return "redirect:/getSales";
+			}
 	
 }

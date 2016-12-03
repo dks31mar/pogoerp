@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pogo.bean.ContactBean;
 import com.pogo.dao.LeadGenerationContactDao;
+import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.Contact;
 import com.pogo.service.LeadGenerationContactService;
 
@@ -15,17 +16,22 @@ import com.pogo.service.LeadGenerationContactService;
 public class LeadGenerationContactServiceImpl implements LeadGenerationContactService {
 
 	@Autowired LeadGenerationContactDao contactdao ;
+	@Autowired
+	private MasterOrganizationDao empDao;
 	
 	@Override
 	@Transactional
 	public void saveContacts(ContactBean bean1) {
 		Contact c = new Contact();
-		c.setConid(bean1.getConid());
-		c.setName(bean1.getName());
-		c.setDepartment(bean1.getDepartment());
-		c.setDesignation(bean1.getDesignation());
+		c.setContactId(bean1.getContactId());
+		c.setContactName(bean1.getContactName());
+		
+		
+		c.setDesName(empDao.getDesgById(bean1.getDesId()));
+		//c.setDepName(empDao.getDep(bean1.getDepId()));
+		//c.setDesName(empDao.getDesgById(bean1.getDesId()));
 		c.setPhone(bean1.getPhone());
-		c.setEmail(bean1.getEmail());
+		c.setContemail(bean1.getContemail());
 		c.setDob(bean1.getDob());
 		c.setDoa(bean1.getDoa());
 		contactdao.saveContacts(c);
