@@ -14,6 +14,7 @@ import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
 import com.pogo.model.ProductStock;
+import com.pogo.model.SupplierMaster;
 
 public interface PrinicipalDao {
 
@@ -72,6 +73,10 @@ public interface PrinicipalDao {
 	Integer getProidfrompromaster(String particular);
 
 	void saveproductstock(ProductStock prostock);
+
+	List<SupplierMaster> getSupplierDetails();
+
+	List<SupplierMaster> getSupplierDetailsByName(String name);
 
 	
 

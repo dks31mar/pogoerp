@@ -91,8 +91,43 @@ public void getProductDetail(@RequestParam("pro") String pro, HttpServletRespons
    
 	}
 
+@RequestMapping(value = "/getsupmstdtl", method = RequestMethod.GET)
+public void getSupplierDetails(HttpServletResponse res) {
 
+	
+	
+	String getpart=prinicipalposervice.getSupplierDetails();
+    System.out.println(getpart);
+    String getpart1=getpart.replaceAll("\\[", "");
+	getpart1=getpart1.replaceAll("\\]", "");
+   System.out.println(getpart1); 
+   try {
+		res.getWriter().print(getpart);
+	} catch (IOException e) {
+		
+		e.printStackTrace();
+	}
+   
+	}
 
+@RequestMapping(value = "/getsupmstdtlbyname", method = RequestMethod.GET)
+public void getSupplierDetailsByName(@RequestParam("name") String name,HttpServletResponse res) {
+
+	
+	
+	String getpart=prinicipalposervice.getSupplierDetailsByName(name);
+    System.out.println(getpart);
+    String getpart1=getpart.replaceAll("\\[", "");
+	getpart1=getpart1.replaceAll("\\]", "");
+   System.out.println(getpart1); 
+   try {
+		res.getWriter().print(getpart);
+	} catch (IOException e) {
+		
+		e.printStackTrace();
+	}
+   
+	}
 @RequestMapping(value = "/savepodetails", method = RequestMethod.POST,consumes="application/json",headers = "content-type=application/x-www-form-urlencoded")
 
 public ModelAndView savePoDetails(@ModelAttribute("productadd")  PoRefEntryItemDetailCopyBean porefitem, HttpServletRequest res,BindingResult result) {
@@ -123,20 +158,23 @@ public void addProductUsingAjax(@RequestBody String json,Model model) throws IOE
 	System.out.println(lst.size());
 	String [] meth=lst.toArray(new String[lst.size()]);
 
-		for(int i=0;i<meth.length;i=i+11){
+		for(int i=0;i<meth.length;i=i+14){
 			
 			PoRefEntryItemDetailBean poref=new PoRefEntryItemDetailBean();
 			PorefSupplierDetailBean porefs=new PorefSupplierDetailBean();
 			
 			porefs.setPorefdate(meth[i]);
 			porefs.setPorefno(meth[i+1]);
-			poref.setParticular(meth[i+2]);
-			poref.setProductdescription(meth[i+3]);
-			poref.setTpinjpy(meth[i+4]);
-			poref.setQty(Double.parseDouble(meth[i+5]));
-			poref.setTotaljpy(Double.parseDouble(meth[i+6]));
-			poref.setCustomerporefe(meth[i+7]);
-			porefs.setTotal(Double.parseDouble(meth[8]));
+			porefs.setPrincipalname(meth[i+2]);
+			porefs.setAddress(meth[i+3]);
+			porefs.setCurrency(meth[i+4]);
+			poref.setParticular(meth[i+5]);
+			poref.setProductdescription(meth[i+6]);
+			poref.setTpinjpy(meth[i+7]);
+			poref.setQty(Double.parseDouble(meth[i+8]));
+			poref.setTotaljpy(Double.parseDouble(meth[i+9]));
+			poref.setCustomerporefe(meth[i+10]);
+			porefs.setTotal(Double.parseDouble(meth[11]));
 			System.out.println();
 			System.out.println(i+"     <<<<<<<<<<<<<<<<<<<<<");
 			
@@ -214,17 +252,26 @@ public ModelAndView getEditPoDetails(@RequestParam("poref") String poref, @Model
 	double total=0.0;
 	String date=null;
 	String porefNo=null;
+	String pname=null;
+	String paddress=null;
+	String currencylable=null;
 	for(PoRefEntryItemDetailBean g:lst){
 		System.out.println(g.getPorefnobysupplier().getTotal());
 		total=g.getPorefnobysupplier().getTotal();
 		date=g.getPorefnobysupplier().getPorefdate();
 		porefNo=g.getPorefnobysupplier().getPorefno();
+		pname=g.getPorefnobysupplier().getPrincipalname();
+		paddress=g.getPorefnobysupplier().getAddress();
+		currencylable=g.getPorefnobysupplier().getCurrency();
 	}
 	Map<String, Object> model = new HashMap<String, Object>();
 	model.put("listbyporef", lst);
 	m.addAttribute("gtotal", total);
 	m.addAttribute("date", date);
 	m.addAttribute("porefnumber", porefNo);
+	m.addAttribute("pname",pname);
+	m.addAttribute("paddress", paddress);
+	m.addAttribute("curlable", currencylable);
 return new ModelAndView("edit",model);
 }
 
@@ -245,7 +292,7 @@ public void updateProductUsingAjax(@RequestBody String json,Model model) throws 
 	System.out.println(lst.size());
 	String [] meth=lst.toArray(new String[lst.size()]);
 
-		for(int i=0;i<meth.length;i=i+12){
+		for(int i=0;i<meth.length;i=i+14){
 			
 			PoRefEntryItemDetailBean poref=new PoRefEntryItemDetailBean();
 			PorefSupplierDetailBean porefs=new PorefSupplierDetailBean();
@@ -257,14 +304,15 @@ public void updateProductUsingAjax(@RequestBody String json,Model model) throws 
 				System.out.println(")()()()()()()()()()()()()()()()()()()()()()()()()()(                     ");
 				poref.setPorefentryitemdetailid(Integer.parseInt(meth[i+2]));
 			}
-			
-			poref.setParticular(meth[i+3]);
-			poref.setProductdescription(meth[i+4]);
-			poref.setTpinjpy(meth[i+5]);
-			poref.setQty(Double.parseDouble(meth[i+6]));
-			poref.setTotaljpy(Double.parseDouble(meth[i+7]));
-			poref.setCustomerporefe(meth[i+8]);
-			porefs.setTotal(Double.parseDouble(meth[9]));
+			porefs.setPrincipalname(meth[i+3]);
+			porefs.setAddress(meth[i+4]);
+			poref.setParticular(meth[i+5]);
+			poref.setProductdescription(meth[i+6]);
+			poref.setTpinjpy(meth[i+7]);
+			poref.setQty(Double.parseDouble(meth[i+8]));
+			poref.setTotaljpy(Double.parseDouble(meth[i+9]));
+			poref.setCustomerporefe(meth[i+10]);
+			porefs.setTotal(Double.parseDouble(meth[11]));
 			System.out.println();
 			System.out.println(i+"     <<<<<<<<<<<<<<<<<<<<<");
 			
@@ -302,17 +350,23 @@ public ModelAndView printPoDetails(@RequestParam("poref") String poref, @ModelAt
 	double total=0.0;
 	String date=null;
 	String porefNo=null;
+	String pname=null;
+	String paddress=null;
 	for(PoRefEntryItemDetailBean g:lst){
 		System.out.println(g.getPorefnobysupplier().getTotal());
 		total=g.getPorefnobysupplier().getTotal();
 		date=g.getPorefnobysupplier().getPorefdate();
 		porefNo=g.getPorefnobysupplier().getPorefno();
+		pname=g.getPorefnobysupplier().getPrincipalname();
+		paddress=g.getPorefnobysupplier().getAddress();
 	}
 	Map<String, Object> model = new HashMap<String, Object>();
 	model.put("listbyporef", lst);
 	m.addAttribute("gtotal", total);
 	m.addAttribute("date", date);
 	m.addAttribute("porefnumber", porefNo);
+	m.addAttribute("pname",pname);
+	m.addAttribute("paddress", paddress);
 return new ModelAndView("print",model);
 }
 private PoRefEntryItemDetailCopyBean prepareProductBean(List<PoRefEntryItemDetailCopy> productEdit) {
@@ -394,17 +448,26 @@ public ModelAndView getacknowledsupplierpo(@RequestParam("poref") String poref,@
 	double total=0.0;
 	String date=null;
 	String porefNo=null;
+	String pname=null;
+	String paddress=null;
+	String currencylable=null;
 	for(PoRefEntryItemDetailBean g:lst){
 		System.out.println(g.getPorefnobysupplier().getTotal());
 		total=g.getPorefnobysupplier().getTotal();
 		date=g.getPorefnobysupplier().getPorefdate();
 		porefNo=g.getPorefnobysupplier().getPorefno();
+		pname=g.getPorefnobysupplier().getPrincipalname();
+		paddress=g.getPorefnobysupplier().getAddress();
+		currencylable=g.getPorefnobysupplier().getCurrency();
 	}
 	Map<String, Object> model = new HashMap<String, Object>();
 	model.put("listbyporef", lst);
 	m.addAttribute("gtotal", total);
 	m.addAttribute("date", date);
 	m.addAttribute("porefnumber", porefNo);
+	m.addAttribute("pname",pname);
+	m.addAttribute("paddress", paddress);
+	m.addAttribute("curlable", currencylable);
 return new ModelAndView("supplierackView",model);
 
 }
@@ -578,17 +641,26 @@ public ModelAndView getsupplierinvoice(@RequestParam("poref") String poref,@Requ
 	double total=0.0;
 	String date=null;
 	String porefNo=null;
+	String pname=null;
+	String paddress=null;
+	String currencylable=null;
 	for(PoRefEntryItemDetailBean g:lst){
 		System.out.println(g.getPorefnobysupplier().getTotal());
 		total=g.getPorefnobysupplier().getTotal();
 		date=g.getPorefnobysupplier().getPorefdate();
 		porefNo=g.getPorefnobysupplier().getPorefno();
+		pname=g.getPorefnobysupplier().getPrincipalname();
+		paddress=g.getPorefnobysupplier().getAddress();
+		currencylable=g.getPorefnobysupplier().getCurrency();
 	}
 	Map<String, Object> model = new HashMap<String, Object>();
 	model.put("listbyporef", lst);
 	m.addAttribute("gtotal", total);
 	m.addAttribute("date", date);
 	m.addAttribute("porefnumber", porefNo);
+	m.addAttribute("pname",pname);
+	m.addAttribute("paddress", paddress);
+	m.addAttribute("curlable", currencylable);
 return new ModelAndView("supplierinvoiceview",model);
 //return new ModelAndView("supplierinvoiceview");
 }

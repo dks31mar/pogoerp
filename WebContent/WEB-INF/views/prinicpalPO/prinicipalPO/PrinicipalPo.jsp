@@ -84,9 +84,9 @@ System.out.println();
 					Principal Name:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-9">
-					<input type="text" name="principalname"
-						placeholder="Principal Name" value="Testing Private Limited"
-						class="form-control" style="display: inline-block;" ReadOnly>
+					<input type="text" name="principalname" id="prinicipalautocom"
+						placeholder="Principal Name" value=""
+						class="form-control" style="display: inline-block;" >
 				</div>
 			</div>
 			<div class="row form-group">
@@ -95,7 +95,7 @@ System.out.println();
 				</div>
 				<div class="col-sm-9">
 					<textarea rows="4" cols="77" name="address"
-						style="border-radius: 5px; background-color: #f2f2f2;" readonly> Testing Private Limited,Bulding No.:XX ,XXXXX </textarea>
+						style="border-radius: 5px; background-color: #f2f2f2;" readonly id="addresstextarea"> </textarea>
 						
 				</div>
 			</div>
@@ -117,11 +117,11 @@ System.out.println();
 									<td align="center" class="col-sm-1 form-level"style="width: 80px">&nbsp;&nbsp;&nbsp;<font size="2" color="white">
 										<label >Description</label></font></td>
 									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label >TP In JPY</label></font></td>
+										<label id="tpinchangelable">TP In JPY</label></font></td>
 									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
 										<label >QTY</label></font></td>
 									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label >Total JPY</label></font></td>
+										<label id="totalchangelable">Total JPY</label></font></td>
 									<td align="center">&nbsp;<font size="2" style="width: 65px"color="white">
 										<label >Customer PO Reference</label></font></td>
 							<%-- <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white"><label path="">Total INR</label></font> --%>
@@ -305,14 +305,17 @@ System.out.println();
 				$('#totaljpy').val('');
 				$('#customerporefe').val('');
 				});
-				$('#autocomplete').on("click",function(){
+				
+				
+				
+		$('#autocomplete').on("click",function(){
 				var word=$('#autocomplete').val();
 		
 		//alert($(e.target).val() );	
 			$.ajax({
 				url: "getpartno?word="+word, 
 				success: function(result){
-					
+					console.log(result);
 					search(result);
 					
 		    }});
@@ -349,6 +352,52 @@ System.out.println();
 		    }
 		  });
 		}
+		$('#prinicipalautocom').on("click",function(){
+			
+	
+
+		$.ajax({
+			url: "getsupmstdtl", 
+			success: function(result){
+				console.log(result);
+			searchsupplierdata(result);
+				
+	    }});
+		
+	});
+		
+		
+		
+		
+		
+		function searchsupplierdata(result){
+			var currencies =jQuery.parseJSON(result);
+			/* alert(currencies); */
+			$('#prinicipalautocom').autocomplete({
+			    lookup: currencies,
+			    onSelect: function (suggestion) {
+			    var name= suggestion.value;
+			    $.ajax({
+						url: "getsupmstdtlbyname?name="+name, 
+						success: function(result){
+						console.log(result);
+						var f=JSON.parse(result);
+						var addres=f.address;
+							
+							
+							 $('#addresstextarea').val(addres);
+							 
+							 
+							 $("#tpinchangelable").text("TP In "+f.currency);
+							 $("#totalchangelable").text("Total "+f.currency);
+							/* $('#tpinjpy').val(cost);
+							$('#unitcostx').val(unitcostx); */
+				    }});
+			      
+			      
+			    }
+			  });
+			}
 		
 		 
 		 $('#addmore').click(function (){
@@ -364,6 +413,10 @@ System.out.println();
 			        $("#addmorepro12").click(function(){
 			        	var id=$('#addprolisttbody').children('tr').length+1;
 			        	var idd=$('#getid1').val();
+			        	var address=$('#addresstextarea').val();
+			        	var temp=$("#totalchangelable").text();
+			        	var pname=$('#prinicipalautocom').val();
+			        
 						var  dis	= $('#description').val();
 						var  partno	=$('#autocomplete').val();
 						var	 tpn	=$('#tpinjpy').val();
@@ -372,10 +425,16 @@ System.out.println();
 						var	 custpo	=$('#customerporefe').val();
 						var poref=$('#porefno').val();
 						var date=$('#datepicker').val();
+						var cur=temp.split(' ')[1];
+						if(address==''||pname==''){
+							alert('Please Fill Prinicpal Name!!!')
+						}else{
 			            var markup = "<tr>"+
-			            "<td style='display: none;'><input type='hidden' name='date"+id+"' value='"+date+"' id='getdate"+id+"'></input> </td>"+
-			            "<td style='display: none;'><input type='hidden' name='porefno' value='"+poref+"' id='getporefno"+id+"'></input> </td>"+
-							"<td style='display: none;'><input type='hidden' name='' value='"+idd+"' id='getid'"+id+"'></input> </td>"+
+				            "<td style='display: none;'><input type='hidden' name='date"+id+"' value='"+date+"' id='getdate"+id+"'></input> </td>"+
+				            "<td style='display: none;'><input type='hidden' name='porefno' value='"+poref+"' id='getporefno"+id+"'></input> </td>"+
+							"<td style='display: none;'><input type='hidden' name='prinicipalName' value='"+pname+"' id='getprinicipalname'"+id+"'></input> </td>"+
+							"<td style='display: none;'><input type='hidden' name='Paddress' value='"+address+"' id='getadress'"+id+"'></input> </td>"+
+							"<td style='display: none;'><input type='hidden' name='currency' value='"+cur+"' id='getcurrencylable'"+id+"'></input> </td>"+
 							"<td style='right: 5px; position: relative;'>&nbsp;"+ 
 							"<input type='text' style='width: 60px' name='' id='sr"+id+"' value='"+id+"' class='form-control' readonly/></td>"+
 							"<td style='left: 2px; position: relative; width: 150px'>&nbsp;"+
@@ -391,6 +450,7 @@ System.out.println();
 							"<td><a class='glyphicon glyphicon-pencil' href='#' onclick='editfields("+(id)+")'></a> | <a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+
 							"</tr>";
 			            $("#addprolisttbody").append(markup);
+						
 			            //id++;
 			            $('#sr').val(id+1);
 			            
@@ -407,6 +467,7 @@ System.out.println();
 						$('#tjpy1').val(d2);
 					var d=$('#tjpy1').val();
 					$('#grandtotal1').val(d);
+						}
 			        });
 			 });
 			
@@ -434,12 +495,14 @@ System.out.println();
 			
 			
 			$("#savedata445").bind("click", function() {
+			var temp=$("#totalchangelable").text();
+			alert(temp);
 				  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
 				  console.log(AddressesDataJSON);
 				 alert(JSON.stringify(AddressesDataJSON));
 				  
 				  
-				 $.ajax({
+			  $.ajax({
 						url: "savedatadb",
 						type: "POST",
 						

@@ -29,6 +29,7 @@ import com.pogo.model.PorefSupplierDetail;
 import com.pogo.model.ProductAcknowledgement;
 import com.pogo.model.ProductMaster;
 import com.pogo.model.ProductStock;
+import com.pogo.model.SupplierMaster;
 @Repository("prinicipaldao")
 @SuppressWarnings("unchecked")
 public class PrinicipalDaoImp implements PrinicipalDao{
@@ -272,6 +273,32 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 		sessionFactory.getCurrentSession().flush();
 		
 	}
+
+	@Override
+	public List<SupplierMaster> getSupplierDetails() {
+		ProjectionList projList=Projections.projectionList();
+		projList.add(Projections.property("name"));
+		/*projList.add(Projections.property("address"));
+		projList.add(Projections.property("currency"));*/
+		Criteria r=	sessionFactory.getCurrentSession().createCriteria(SupplierMaster.class).setProjection(Projections.distinct(projList));
+		List list=r.list();
+		
+		return list;
+	}
+
+	@Override
+	public List<SupplierMaster> getSupplierDetailsByName(String name) {
+		ProjectionList projList=Projections.projectionList();
+		/*projList.add(Projections.property("name"));*/
+		projList.add(Projections.property("address"));
+		projList.add(Projections.property("currency"));
+		Criteria r=	sessionFactory.getCurrentSession().createCriteria(SupplierMaster.class).add(Restrictions.eq("name", name));
+		List<SupplierMaster> list=r.list();
+		
+		return list;
+	}
+
+	
 	
 	
 }

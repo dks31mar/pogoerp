@@ -43,6 +43,9 @@ public class PorefSupplierDetail implements Serializable{
 
  	@Column(name="total",columnDefinition="int(11)")
     private double total;
+ 	
+ 	@Column(name="currency")
+    private String currency;
 
  	@OneToMany(targetEntity=PoRefEntryItemDetail.class,mappedBy="porefnobysupplier",fetch=FetchType.LAZY)
  	private List<PoRefEntryItemDetail> porefnobysupplier;
@@ -52,6 +55,14 @@ public class PorefSupplierDetail implements Serializable{
  	
 	
  	
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
 	public List<PoRefEntryItemDetail> getPorefsupplier() {
 		return porefnobysupplier;
 	}

@@ -124,7 +124,7 @@
 				</div>
 				<div class="col-sm-9">
 					<input type="text" name="principalname"
-						placeholder="Principal Name" value="Testing Private Limited"
+						placeholder="Principal Name" value="${pname}"
 						class="form-control" style="display: inline-block;" ReadOnly>
 				</div>
 			</div>
@@ -134,7 +134,7 @@
 				</div>
 				<div class="col-sm-9">
 					<textarea rows="4" cols="77" name="address"
-						style="border-radius: 5px; background-color: #f2f2f2;" readonly> Testing Private Limited,Bulding No.:XX ,XXXXX </textarea>
+						style="border-radius: 5px; background-color: #f2f2f2;" readonly>${paddress}</textarea>
 						
 				</div>
 			</div>
@@ -217,11 +217,11 @@
 									<td class="col-sm-3 form-level" style="width: 80px"align="center">&nbsp;<font size="2" color="white"><label >Part No</label></font></td>
 									<td align="center" class="col-sm-1 form-level"style="width: 80px">&nbsp;&nbsp;&nbsp;<font size="2" color="white"><label >Description</label></font></td>
 									
-									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white"><label >TP In JPY</label></font></td>
+									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white"><label >TP In ${curlable}</label></font></td>
 									
 									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white"><label >QTY</label></font></td>
 									
-									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white"><label >Total JPY</label></font></td>
+									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white"><label >Total ${curlable}</label></font></td>
 									<td align="center">&nbsp;<font size="2" style="width: 65px"color="white"><label >Pending Qty</label></font></td>
 									<td align="center">&nbsp;<font size="2" style="width: 65px"color="white"><label >Receive Qty</label></font></td>
 									<td align="center">&nbsp;<font size="2" style="width: 65px"color="white"><label >Pending Qty</label></font></td>
