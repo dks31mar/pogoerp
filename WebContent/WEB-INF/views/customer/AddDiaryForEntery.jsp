@@ -14,7 +14,7 @@
 
 <script>
 $( function() {
-    $("#date" ).datepicker();
+    $("#date" ).datepicker({dateFormat: 'dd/mm/yy'});
   });
 $('#datetimepicker').datetimepicker({
 	datepicker:false,
@@ -60,26 +60,7 @@ $('#datetimepicker').datetimepicker({
 
 <!-- Form Name -->
 <legend>New Entry in Diary</legend>
-  <div class="form-group">
-  <label class="col-md-2 control-label">Date</label>  
-  <div class="col-md-3 inputGroupContainer">
-  <div class="input-group">
- <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-   <input  type="text"  class="form-control" name="date" id="date" readonly="readonly" value="${salesList.creationDate}" placeholder="Select Date" >
-    </div>
-  </div>
-  
-  <label class="col-md-2 control-label" >Time<span
-					style="color: red;">*</span></label>  
-  <div class="col-md-3 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-  <input  id="datetimepicker"   placeholder="Enter Time"   name="time" class="form-control" readonly="readonly" type="text">
-    </div>
-  </div>
-</div>
-
- <div class="form-group">
+<div class="form-group">
   <label class="col-md-2 control-label">Customer<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
@@ -96,12 +77,72 @@ $('#datetimepicker').datetimepicker({
   </div>
 </div>
 <div class="form-group">
+  <label class="col-md-2 control-label" >Address</label> 
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+ <textarea rows="4" cols="27" name="address" >
+</textarea>
+    </div>
+  </div>
+  <label class="col-md-2 control-label" >Mobile<span style="color: red;">*</span></label> 
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+     <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+     <input name="mobileno"  class="form-control"   placeholder="8285080678" type="text" required="required">
+    </div>
+  </div>
+</div>
+<div class="form-group"> 
+  <label class="col-md-2 control-label">Email	</label>
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+  <input  name="email"  placeholder="E-Mail Address"  class="form-control"  required="required" type="email">
+  </div>
+</div>
+ <label class="col-md-2 control-label" >Designation<span style="color: red;">*</span></label>  
+    <div class="col-md-3 inputGroupContainer">
+     <div class="input-group">
+     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+ <select name="enteryuserId"  class="form-control">
+ <option value="">--Select Designation--</option>
+  <c:forEach items="${listemp}" var="listemp">
+  <option value="${listemp.userempid}">${listemp.designationName}</option>
+  </c:forEach>
+  </select>
+
+    </div>
+    </div> 
+  </div>
+  <div class="form-group">
+  <label class="col-md-2 control-label">Date</label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+ <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+   <input  type="text"  class="form-control" name="date" id="date"  readonly="readonly" value="${today}" placeholder="Select Date" >
+    </div>
+  </div>
+  
+  <label class="col-md-2 control-label" >Time<span
+					style="color: red;">*</span></label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+  <input  id="datetimepicker"   placeholder="Enter Time"   name="time" class="form-control" readonly="readonly" type="text">
+    </div>
+  </div>
+</div>
+
+ 
+<div class="form-group">
   <label class="col-md-2 control-label">Planner <span
 					style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select name="tasktype" class="form-control selectpicker"  required="required"> 
+  <option value="">--Select Planner</option>
       <option value="appointment">Appointment</option>
 	  <option value="email">E-mail</option>
       <option value="fax">Fax</option>
@@ -117,6 +158,7 @@ $('#datetimepicker').datetimepicker({
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select name="enteryuserId"  class="form-control">
+  <option value="">--Select Plan For--</option>
   <c:forEach items="${listemp}" var="listemp">
   <option value="${listemp.userempid}">${listemp.loginname}</option>
   </c:forEach>
@@ -127,31 +169,10 @@ $('#datetimepicker').datetimepicker({
 
 <!-- Text input-->
 
-<div class="form-group">
-  <label class="col-md-2 control-label" >Mobile</label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="mobileno"  class="form-control"   placeholder="8285080678" type="text" required="required">
-    </div>
-  </div>
-  <label class="col-md-2 control-label" >Address<span style="color: red;">*</span></label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
- <textarea rows="2" cols="33" name="address" >
-</textarea>
-    </div>
-  </div>
-</div>
+
 
 <div class="form-group"> 
-  <label class="col-md-2 control-label">Email	</label>
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="email"  placeholder="E-Mail Address"  class="form-control"  required="required" type="email">
-  </div>
-</div>
+  
  <label class="col-md-2 control-label" >Objective<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
      <div class="input-group">
@@ -160,6 +181,7 @@ $('#datetimepicker').datetimepicker({
     </div>
     </div> 
   </div>
+  
   
 <div class="form-group">
   <label class="col-md-4 control-label"></label>

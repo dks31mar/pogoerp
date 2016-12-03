@@ -17,6 +17,7 @@ public class AddFollowUpBean
 	private String custStatus;
 	private String cusAddress;
 	private String cusOrganisation;
+	private String remarks;
 	public Integer getFollowUpId() {
 		return followUpId;
 	}
@@ -100,6 +101,12 @@ public class AddFollowUpBean
 	}
 	public void setCusOrganisation(String cusOrganisation) {
 		this.cusOrganisation = cusOrganisation;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	
 	

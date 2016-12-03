@@ -26,6 +26,7 @@ import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
+import com.pogo.bean.AddPlanBean;
 import com.pogo.bean.ContactBean;
 import com.pogo.bean.CountryBean;
 import com.pogo.bean.CustomerLevelsBean;
@@ -132,6 +133,9 @@ public class CustomerSalesController {
 		model.addAttribute("listemp", emp);
 		//CustomerSalesBean salesList = customerSalesService.getCustomerDetailsById(id);
 		//model.addAttribute("salesList", salesList);
+		SimpleDateFormat df=new SimpleDateFormat("dd-MMM-yyyy");
+		model.addAttribute("today", df.format(new Date()));
+		//List<AddPlanBean> planlist=masterService.Pl
 		return new ModelAndView("AddDiaryForEntrySales");
 	}
 
