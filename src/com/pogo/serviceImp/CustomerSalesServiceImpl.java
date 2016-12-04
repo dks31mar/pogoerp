@@ -264,7 +264,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		contact.setContactName(contactBean.getContactName());
 		contact.setContemail(contactBean.getContemail());
 		contact.setPhone(contactBean.getPhone());
-		contact.setDepName(empDao.getDep(contactBean.getContactId()));
+		//contact.setDepName(empDao.getDep(contactBean.getContactId()));
 		customerSalesDao.saveContact(contact);
 		
 	}

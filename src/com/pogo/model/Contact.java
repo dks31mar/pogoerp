@@ -2,13 +2,20 @@ package com.pogo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+import javax.persistence.FetchType;
+
+
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
 
 @Entity
 @Table(name="contact")
@@ -17,19 +24,43 @@ public class Contact
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="contactid")
-private int contactId;
+    private int contactId;
 	@Column(name="contactName")
-private String contactName;
+    private String contactName;
 	@Column(name="contact_email")
-private String contemail;
+    private String contemail;
 	@Column(name="phone")
-private String phone;
+    private String phone;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="des_id")
-private Designation desName;
+    private Designation desName;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="dep_name")
-private Department depName;
+    private Department deptName;
+	@Column(name="dob")
+	private String dob;
+	@Column(name="doa")
+	private String doa;
+	
+	
+	
+	
+	
+	public String getDob() {
+		return dob;
+	}
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+	public String getDoa() {
+		return doa;
+	}
+	public void setDoa(String doa) {
+		this.doa = doa;
+	}
+	
+	
+	
 	public int getContactId() {
 		return contactId;
 	}
@@ -60,11 +91,13 @@ private Department depName;
 	public void setDesName(Designation desName) {
 		this.desName = desName;
 	}
-	public Department getDepName() {
-		return depName;
+	public Department getDeptName() {
+		return deptName;
 	}
-	public void setDepName(Department depName) {
-		this.depName = depName;
+	public void setDeptName(Department deptName) {
+		this.deptName = deptName;
 	}
+	
+
 
 }
