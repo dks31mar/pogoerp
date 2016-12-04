@@ -61,15 +61,7 @@ public String getCusStatus() {
 public void setCusStatus(String cusStatus) {
 	this.cusStatus = cusStatus;
 }
-public AddAction getAddAction() {
-	return addAction;
-}
-public void setAddAction(AddAction addAction) {
-	this.addAction = addAction;
-}
-@ManyToOne(fetch=FetchType.LAZY)
-@JoinColumn(name="add_action_id")
-private AddAction addAction;
+
 public Integer getFollowUpId() {
 	return followUpId;
 }
