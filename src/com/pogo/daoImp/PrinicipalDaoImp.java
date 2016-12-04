@@ -56,7 +56,8 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 		projList.add(Projections.property("description"));
 		projList.add(Projections.property("costprice"));
 		projList.add(Projections.property("unitprice"));
-		Criteria r=	sessionFactory.getCurrentSession().createCriteria(ProductMaster.class).add(Restrictions.eq("productname", pm.getProductname())).setProjection(Projections.distinct(projList));
+		Criteria r=	sessionFactory.getCurrentSession().createCriteria(ProductMaster.class)
+				.add(Restrictions.eq("productname", pm.getProductname())).setProjection(Projections.distinct(projList));
 		List list=r.list();
 		
 		return list;

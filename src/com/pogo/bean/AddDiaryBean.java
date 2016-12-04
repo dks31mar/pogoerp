@@ -4,9 +4,10 @@ public class AddDiaryBean {
 	private Integer diaryId;
 	private String date;
 	private String time;
+	private String timemin;
 	private String Organization;
 	private String contacperson;
-	private String tasktype;
+	
 	private int enteryuserId;
 	private String enteryuser;
 	private String address;
@@ -42,12 +43,7 @@ public class AddDiaryBean {
 	public void setContacperson(String contacperson) {
 		this.contacperson = contacperson;
 	}
-	public String getTasktype() {
-		return tasktype;
-	}
-	public void setTasktype(String tasktype) {
-		this.tasktype = tasktype;
-	}
+	
 	public String getEnteryuser() {
 		return enteryuser;
 	}
@@ -115,6 +111,12 @@ public class AddDiaryBean {
 	}
 	public void setDegId(int degId) {
 		this.degId = degId;
+	}
+	public String getTimemin() {
+		return timemin;
+	}
+	public void setTimemin(String timemin) {
+		this.timemin = timemin;
 	}
 	
 	}
