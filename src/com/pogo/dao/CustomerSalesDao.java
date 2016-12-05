@@ -26,4 +26,6 @@ public interface CustomerSalesDao
 
 	void saveContact(Contact contact);
 
+	List<AddDiary> getdiarydata();
+
 }

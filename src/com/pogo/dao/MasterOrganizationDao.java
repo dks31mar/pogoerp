@@ -148,6 +148,12 @@ void updateCompetitior(CompetitiorsProfile comp);
 
 	Department getDep(Integer depId);
 
+	List<Department> getdepartmentRecord(String id);
+
+	void updatefordepartment(Department action);
+
+	
+
 
 
 	

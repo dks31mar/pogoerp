@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pogo.bean.BranchBean;
 import com.pogo.dao.MasterOrganizationDao;
+import com.pogo.model.AddAction;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
@@ -480,4 +481,18 @@ System.out.println("delete");
 		return (Department) sessionFactory.getCurrentSession().get(Department.class, depId);
 	}
 
-}
+	@Override
+	public List<Department> getdepartmentRecord(String id) {
+		int id1=Integer.parseInt(id);
+		return (List<Department>)sessionFactory.getCurrentSession().createCriteria(Department.class).add(Restrictions.eq("id", id1)).list();
+	}
+
+	@Override
+	public void updatefordepartment(Department action) {
+		sessionFactory.getCurrentSession().update(action);
+		
+	}
+	
+	}
+
+

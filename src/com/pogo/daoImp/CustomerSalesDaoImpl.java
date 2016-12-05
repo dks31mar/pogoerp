@@ -68,4 +68,9 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao
 		
 	}
 
+	@Override
+	public List<AddDiary> getdiarydata() {
+		return sessionFactory.getCurrentSession().createCriteria(AddDiary.class).list();
+	}
+
 }

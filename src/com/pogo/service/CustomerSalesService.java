@@ -30,6 +30,8 @@ public interface CustomerSalesService
 
 	void addContactPerson(ContactBean contactBean);
 
+	List<AddDiaryBean> getDiaryList();
+
 
 	
 

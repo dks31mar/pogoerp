@@ -145,4 +145,51 @@ $('#saveForm').click(function (){
 	
 });
 
+$('#EditForm').click(function (){
+	var id=$("#hiddenid").val();
+	var department =$('#department').val();
+	alert(department);
+	var iddepartment=$("#hiddenid").val();
+	//alert(iddepartment);
+	
+	var jsonObj={'depName':department,'departmentId':id} ;
+$.ajax({
+		url: "updatefordepartment",
+		type: "POST",
+		
+		  data :JSON.stringify(jsonObj),
+		  cache:false,
+	        beforeSend: function(xhr) {  
+	            xhr.setRequestHeader("Accept", "application/json");  
+	            xhr.setRequestHeader("Content-Type", "application/json");  
+	        },
+		     success: function(resposeJsonObject){
+		    	 $('#openModal').hide();
+		    	 //window.location.currency;
+		    	 window.location.reload();
+	     alert("edit");
+	    }});
+	
+});
+
+function editCur(id){
+	$("#formid").show('show');
+	$('#EditForm').show();
+	$("#saveForm").hide(); 
+$.ajax({
+	url: "editdepartment?departmentid="+id,
+	type: "POST",
+	
+	     success: function(respose){
+	    	 alert(respose);
+	    	 var data=JSON.parse(respose)
+	    	 var name=data.departmentId;
+	    	 var id=data.department;
+	    	 alert("************************"+id);
+	    	 $("#department").val(id);
+	    	 $("#hiddenid").val(name);
+	    	 
+    }});
+} 
+
 	</script>

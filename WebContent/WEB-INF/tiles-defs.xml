@@ -134,6 +134,12 @@
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addaction.jsp" />
 			</definition>
 			
+			<!--********************Reports***********************************************  -->
+			
+			<definition name="pendingtasks" extends="baseLayout" >
+			<put-attribute name="title" value="Pending Tasks "></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Employee/Reports/pendingTasks.jsp" />
+			</definition>
 			
             		<!-- ************************************************** use by satyendra *************************************************** -->
 			<!-- <definition name="AddPrinicpalPO" extends="baseLayout" >

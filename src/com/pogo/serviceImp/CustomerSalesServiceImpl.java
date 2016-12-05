@@ -262,10 +262,31 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		customerSalesDao.saveContact(contact);
 		
 	}
+	@Override
+	public List<AddDiaryBean> getDiaryList() {
+		List<AddDiary> diarylist=customerSalesDao.getdiarydata();
+		List<AddDiaryBean> diarybean=new ArrayList<AddDiaryBean>();
+		
+		
+		for(AddDiary data:diarylist)
+		{
+			AddDiaryBean bean=new AddDiaryBean();
+			bean.setDate(data.getDate());
+			//bean.setTime(data.getTime());
+			bean.setTasktype(data.getTasktype());
+			bean.setOrganization(data.getOrganizationName());
+			bean.setContacperson(data.getContacperson());
+			bean.setAddress(data.getAddress());
+			bean.setObjective(data.getObjective());
+			diarybean.add(bean);
+		}
+		return diarybean;
+	}
+	}
 	
 	
 
 	
 
 
-}
+
