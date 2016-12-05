@@ -35,7 +35,7 @@ public class Contact
 	@JoinColumn(name="des_id")
     private Designation desName;
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="dep_name")
+	@JoinColumn(name="dep_id")
     private Department deptName;
 	@Column(name="dob")
 	private String dob;
