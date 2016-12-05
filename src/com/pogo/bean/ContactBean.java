@@ -1,7 +1,5 @@
 package com.pogo.bean;
 
-import com.pogo.model.Department;
-
 public class ContactBean 
 {
 	private int contactId;
@@ -14,7 +12,7 @@ public class ContactBean
 	private int desId;
 	private String dob;
 	private String doa;
-	private Department deptName;
+	
 	
 	
 	public String getDeptName1() {
@@ -68,12 +66,7 @@ public class ContactBean
 		this.desName = desName;
 	}
 	
-	public Department getDeptName() {
-		return deptName;
-	}
-	public void setDeptName(Department deptName) {
-		this.deptName = deptName;
-	}
+	
 	public int getDepId() {
 		return depId;
 	}
