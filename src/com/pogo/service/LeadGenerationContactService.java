@@ -13,4 +13,10 @@ public interface LeadGenerationContactService {
 
 	List<ContactBean> getcontactlist();
 
+	void deleteContacts(int id);
+
+	String getContactsDetails(String id);
+
+	void editContactsDetails(ContactBean bean);
+
 }

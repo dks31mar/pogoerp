@@ -17,6 +17,7 @@ import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerSales;
+import com.pogo.model.ProductMaster;
 
 @Repository("customerSalesDao")
 public class CustomerSalesDaoImpl implements CustomerSalesDao {
@@ -86,4 +87,19 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 		
 	}
 
+	
+	
+
+	@Override
+	public List<CustomerSales> getOrganisationname(CustomerSales cs) {
+		// TODO Auto-generated method stub
+		String hint=cs.getOrganisation();
+		hint = hint + "%";
+		Criteria r=	sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).add(Restrictions.like("organisation", hint)).setProjection(Projections.property("organisation"));
+		@SuppressWarnings("unchecked")
+		List<CustomerSales> list=	(List<CustomerSales>)r.list();
+		System.out.println(list);
+		return list;
+		
+	}
 }

@@ -6,6 +6,7 @@ import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerSales;
+import com.pogo.model.ProductMaster;
 
 public interface CustomerSalesDao 
 {
@@ -28,4 +29,6 @@ public interface CustomerSalesDao
 
 	List<CustomerSales> getCustomerData(String organisation);
 
+	
+	List<CustomerSales> getOrganisationname(CustomerSales cs);
 }

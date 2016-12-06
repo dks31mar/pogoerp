@@ -10,6 +10,7 @@ import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.ContactBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
+import com.pogo.bean.ProductMasterBean;
 
 public interface CustomerSalesService 
 {
@@ -33,8 +34,8 @@ public interface CustomerSalesService
 
 	List<CustomerSalesBean> findOrganisation(String organisation);
 
-
-	
+    
+	String getOrganisationname(CustomerSalesBean customerSalesBean);
 
 	
 

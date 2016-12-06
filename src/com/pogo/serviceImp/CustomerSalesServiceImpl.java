@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
@@ -27,6 +28,7 @@ import com.pogo.model.Contact;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.model.Department;
+import com.pogo.model.ProductMaster;
 import com.pogo.service.CustomerSalesService;
 
 @Service("customerSalesService")
@@ -279,6 +281,19 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 			listbean.add(listbeanss);
 		}
 		return listbean;
+	}
+	@Override
+	public String getOrganisationname(CustomerSalesBean customerSalesBean) {
+		CustomerSales cs = new CustomerSales();
+		cs.setOrganisation(customerSalesBean.getOrganisation());
+		List<CustomerSales> orgList=new ArrayList<CustomerSales>();
+		customerSalesDao. getOrganisationname(cs);
+		JsonArray arry = new JsonArray(); 
+		 System.out.println(arry);
+			String json = new Gson().toJson(cs);
+			System.out.println(" service method     \n"+json);
+			return json;
+		
 	}
 	
 	

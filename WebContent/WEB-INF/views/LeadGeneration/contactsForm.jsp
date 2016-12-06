@@ -81,7 +81,7 @@
 							<option value="">-----Select Designation-----</option>
 								<c:if test="${!empty Dlist}">
 							       <c:forEach items="${Dlist}" var="cur" >
-						              <option value="${cur.designationid}">${cur.designation}</option>
+						              <option value="${cur.customerId}">${cur.designation}</option>
 					               </c:forEach>
                                  </c:if>
                           </select>       
@@ -158,7 +158,7 @@
 						<button type="button" id="savecontactForm" class="btn btn-warning">
 							Save<span class="glyphicon glyphicon-send"></span>
 						</button>
-
+<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
 					</div>
 				</div>
 

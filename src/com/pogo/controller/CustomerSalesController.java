@@ -246,7 +246,7 @@ public class CustomerSalesController {
 			PrintWriter writter=res.getWriter();
 			writter.print(json);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		

@@ -1,13 +1,16 @@
 package com.pogo.serviceImp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.gson.Gson;
 import com.pogo.bean.AddEmailListBean;
 import com.pogo.bean.ContactBean;
 import com.pogo.dao.LeadGenerationContactDao;
@@ -54,8 +57,8 @@ public class LeadGenerationContactServiceImpl implements LeadGenerationContactSe
 			bean.setContactName(c.getContactName());
 			System.out.println("@@@@@@@@@@&&&&&&&&&&&&&^^^^^^^^^^^*********");
 			//System.out.println("department list *****************************"+c.getDeptName().getDepName());
-			bean.setDeptName1(c.getDeptName().getDepName());
-			bean.setDesName(c.getDesName().getDesignation());
+			//bean.setDeptName1(c.getDeptName().getDepName());
+			//bean.setDesName(c.getDesName().getDesignation());
 			bean.setDob(c.getDob());
 			list.add(bean);
 			
@@ -65,4 +68,44 @@ public class LeadGenerationContactServiceImpl implements LeadGenerationContactSe
 		return list;
 	}
 
+	@Override
+	public void deleteContacts(int id) {
+		contactdao.deleteContacts(id);
+		
+	}
+
+	@Override
+	public String getContactsDetails(String id) {
+		
+		List<Contact> contacts = contactdao.getContactsDetails(id);
+		Map<String,Object> model = new HashMap<String,Object>();
+		for(Contact list : contacts){
+			model.put("contactId", list.getContactId());
+			model.put("contactName", list.getContactName());
+		//	model.put("deptName1",list.getDeptName1() );
+			//model.put("desName", list.getDesName());
+			model.put("dob", list.getDob());
+			
+			
+		}
+		
+		Gson gson = new Gson();
+		String emaillist = gson.toJson(model);
+		return emaillist;
+	}
+
+	@Override
+	public void editContactsDetails(ContactBean bean) {
+		Contact list = new Contact();
+		list.setContactId(bean.getContactId());
+		list.setContactName(bean.getContactName());
+		//list.setDeptName(bean.getDeptName1());
+		//list.setDesName(bean.getDesName());
+		
+		contactdao.editContactsDetails(list);
+		
+	}
+	
+
+	
 }
