@@ -3,7 +3,9 @@ package com.pogo.serviceImp;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.crypto.CipherInputStream;
 
@@ -27,7 +29,11 @@ import com.pogo.model.Contact;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.model.Department;
+import com.pogo.model.ProductMaster;
+import com.pogo.model.UserEmployee;
 import com.pogo.service.CustomerSalesService;
+
+import sun.java2d.pipe.AATextRenderer;
 
 @Service("customerSalesService")
 @Transactional
@@ -254,6 +260,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		List<CustomerSales> list=customerSalesDao.getsalesListById();
 		//List<CustomerLevels> cusStatus=masterMasterDao.getCustomerStatusDetails();
 		//List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
+		
 		String json = new Gson().toJson(list);
 		
 		return json;
@@ -279,6 +286,55 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 			listbean.add(listbeanss);
 		}
 		return listbean;
+	}
+	public List<AddDiaryBean> getDiaryList() {
+		List<AddDiary> diarylist=customerSalesDao.getdiarydata();
+		List<AddDiaryBean> diarybean=new ArrayList<AddDiaryBean>();
+		
+		
+		for(AddDiary data:diarylist)
+		{
+			AddDiaryBean bean=new AddDiaryBean();
+			bean.setDate(data.getDate());
+			//bean.setTime(data.getTime());
+			//bean.setTasktype(data.getTasktype());
+			bean.setOrganization(data.getOrganizationName());
+			bean.setContacperson(data.getContacperson());
+			bean.setAddress(data.getAddress());
+			bean.setObjective(data.getObjective());
+			diarybean.add(bean);
+		}
+		return diarybean;
+	}
+	@Override
+	public List<AddDiaryBean> getDiaryRecord() {
+		List<AddDiaryBean> bean=new ArrayList<AddDiaryBean>(); 
+		List< UserEmployee> getempname=customerSalesDao.getDatafromDiary();
+		List<AddDiary> getPlan=null;
+		for(UserEmployee data:getempname)
+		{
+			getPlan=customerSalesDao.getPlanByid(data.getUserempid());
+		System.out.println(data.getFirstname()+""+data.getLastname());
+			AddDiaryBean beans=new AddDiaryBean();
+			beans.setEnteryuserId(data.getUserempid());
+			beans.setEnteryuser(data.getFirstname()+" "+data.getLastname());
+			//beans.setPlanName(data.getPlan());
+			bean.add(beans);
+		}
+		return bean;
+	}
+	@Override
+	public String getCustomerdatabyCompanyName(String organization) {
+		
+		List<CustomerSales> getdetail=new ArrayList<CustomerSales>();
+		getdetail=customerSalesDao.getCustomerdatabyCompanyName(organization);
+		Map<String, String> map=new HashMap<>();
+		for(CustomerSales s:getdetail){
+			map.put("address", s.getAddress());
+			map.put("status", s.getStatus().getStatus());
+		}
+		String json = new Gson().toJson(map);
+		return json;
 	}
 	
 	

@@ -36,6 +36,7 @@ import com.pogo.bean.DepartmentBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.DistrictBean;
 import com.pogo.bean.LocationBean;
+import com.pogo.bean.ProductMasterBean;
 import com.pogo.bean.StateBean;
 import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.CustomerLevels;
@@ -48,6 +49,7 @@ import com.sun.java.swing.plaf.motif.resources.motif;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -203,7 +205,6 @@ public class CustomerSalesController {
 	}
 
 	@RequestMapping(value = "/getCustomerRecords", method = RequestMethod.GET)
-
 	public void getCustomerData(HttpServletResponse request) throws JsonProcessingException {
 		String list = customerSalesService.findAllDataById();
 		// List<CustomerSalesBean>
@@ -216,9 +217,27 @@ public class CustomerSalesController {
 
 			e.printStackTrace();
 		}
-
 	}
-
+	
+	@RequestMapping(value = "/getcompanydatabyname", method = RequestMethod.GET)
+	public void getCustomerdatabyCompanyName(@RequestParam("organization") String organization,
+			HttpServletResponse res,ProductMasterBean productmasetr) {
+		
+		String getpart=customerSalesService.getCustomerdatabyCompanyName(organization);
+	    System.out.println(getpart);
+	    String getpart1=getpart.replaceAll("\\[", "");
+		getpart1=getpart1.replaceAll("\\]", "");
+	   System.out.println(getpart1); 
+	   try {
+			res.getWriter().print(getpart);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+	   
+		}	
+	
+	
 	@RequestMapping(value = "/contactPersons", method = RequestMethod.GET)
 	public void contact(Model model, HttpServletRequest req, HttpServletResponse res) {
 		List<DepartmentBean> list = empServive.getDepartmentDetails();

@@ -139,6 +139,7 @@
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select   name="custStatus"  required="required" id="status" class="form-control selectpicker">
+  <option value="" id="status1"></option>
   </select>
     </div>
   </div>
@@ -436,7 +437,7 @@
 
 
 
-$('#autocompletecustomer').on("click",function(){
+ $('#autocompletecustomer').on("click",function(){
 		//var word=$('#autocomplete').val();
 		alert("ddd");
 		//alert($(e.target).val() );	
@@ -458,28 +459,30 @@ function search1(result){
 $('#autocompletecustomer').autocomplete({
     lookup: currencies,
     onSelect: function (suggestion) {
-    var pro= suggestion.value;
-     /*  $.ajax({
-			url: "getpartdetail?pro="+pro, 
+    var company= suggestion.value;
+     $.ajax({
+			url: "getcompanydatabyname?organization="+company, 
 			success: function(result){
-				for(i=0;i<result.length;i++){
-					var data=result.replace('"','');
-					data=data.replace('"','');
-				}
-			var	productdescription=data.split(',')[0]
-			var cost=data.split(',')[1];
-			var unitcostx=data.split(',')[2];	
-				$('#description'+id).val(productdescription);
-				$('#tpinjpy'+id).val(cost);
-				$('#unitcostx'+id).val(unitcostx)
-	    }}); */
+				
+				var data=jQuery.parseJSON(result);
+				var add=data.address;
+				var sta=data.status;
+				console.log(add+'>>>>>>>>>'+sta);
+				
+				$('#address').val(add);
+				$('#status1').text(sta);
+				
+	    }}); 
       
       
     }
   });
 }
 
-
+ 
+ 
+ 
+ 
 
 </script>
 

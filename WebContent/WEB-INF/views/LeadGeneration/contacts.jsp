@@ -210,8 +210,8 @@
 		} else {
 			var jsonObj = {
 				'contactName' : name,
-				'depId' : depId,
-				'desId' : desId,
+				'depId' : department,
+				'desId' : designation,
 				'phone' : phone,
 				'contemail' : email,
 				'dob' : dob,
