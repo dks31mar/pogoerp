@@ -41,6 +41,8 @@ private String cusOrganisation;
 private String cusAddress;
 @Column(name="cusAddress")
 private String cusStatus;
+@Column(name="remarks")
+private String remarks;
 public String getCusOrganisation() {
 	return cusOrganisation;
 }
@@ -59,15 +61,7 @@ public String getCusStatus() {
 public void setCusStatus(String cusStatus) {
 	this.cusStatus = cusStatus;
 }
-public AddAction getAddAction() {
-	return addAction;
-}
-public void setAddAction(AddAction addAction) {
-	this.addAction = addAction;
-}
-@ManyToOne(fetch=FetchType.LAZY)
-@JoinColumn(name="add_action_id")
-private AddAction addAction;
+
 public Integer getFollowUpId() {
 	return followUpId;
 }
@@ -122,6 +116,12 @@ public String getContactPerson() {
 }
 public void setContactPerson(String contactPerson) {
 	this.contactPerson = contactPerson;
+}
+public String getRemarks() {
+	return remarks;
+}
+public void setRemarks(String remarks) {
+	this.remarks = remarks;
 }
 
 }

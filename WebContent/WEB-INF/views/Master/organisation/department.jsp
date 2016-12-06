@@ -75,8 +75,8 @@
 						<td>${loop.index+1}</td>
 						<td>${data.depName}</td>
 		             
-						<td><a href="#" onclick="editCur(${actionId.id})" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>		
-					 <td style="margin"><a href="deletecustomerso?id=${action.id}"><span
+						<td><a href="#" onclick="editCur(${data.depId})" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>		
+					 <td style="margin"><a href="deleteDepartment?departmentid=${data.depId}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>  
 					</tr>
 
@@ -150,9 +150,9 @@ $('#EditForm').click(function (){
 	var department =$('#department').val();
 	alert(department);
 	var iddepartment=$("#hiddenid").val();
-	//alert(iddepartment);
+	alert(iddepartment);
 	
-	var jsonObj={'depName':department,'departmentId':id} ;
+	var jsonObj={'depName':department,'depId':id} ;
 $.ajax({
 		url: "updatefordepartment",
 		type: "POST",
@@ -176,18 +176,19 @@ function editCur(id){
 	$("#formid").show('show');
 	$('#EditForm').show();
 	$("#saveForm").hide(); 
+	alert("getmethod");
 $.ajax({
-	url: "editdepartment?departmentid="+id,
+	url: "editdepartment?depId="+id,
 	type: "POST",
 	
 	     success: function(respose){
 	    	 alert(respose);
 	    	 var data=JSON.parse(respose)
-	    	 var name=data.departmentId;
-	    	 var id=data.department;
+	    	 var name=data.depName;
+	    	 var id=data.depId;
 	    	 alert("************************"+id);
-	    	 $("#department").val(id);
-	    	 $("#hiddenid").val(name);
+	    	 $("#department").val(name);
+	    	 $("#hiddenid").val(id);
 	    	 
     }});
 } 

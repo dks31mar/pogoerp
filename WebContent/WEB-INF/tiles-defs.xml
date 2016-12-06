@@ -140,6 +140,11 @@
 			<put-attribute name="title" value="Pending Tasks "></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/Employee/Reports/pendingTasks.jsp" />
 			</definition>
+			<!--********************	Followups***********************************************  -->
+			<definition name="Followups" extends="baseLayout" >
+			<put-attribute name="title" value="Followups "></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Employee/Reports/followups.jsp" />
+			</definition>
 			
             		<!-- ************************************************** use by satyendra *************************************************** -->
 			<!-- <definition name="AddPrinicpalPO" extends="baseLayout" >
@@ -275,6 +280,12 @@
 			 <definition name="getselectfromsalescalls" extends="baseLayout">
 			 <put-attribute name="title" value="selectfromsalescalls" />
 			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/selectFromSalesCalls.jsp" />
+			 </definition>
+			 <!-- LeadGenerationontacts -->
+			 <!--Contact List -->
+			 <definition name="contact" extends="baseLayout">
+			 <put-attribute name="title" value="Contacts" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/contactsList.jsp" />
 			 </definition>
 		<!-- ************************************************** use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >

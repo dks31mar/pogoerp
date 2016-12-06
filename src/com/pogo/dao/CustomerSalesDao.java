@@ -22,10 +22,14 @@ public interface CustomerSalesDao
 
 	void addfollowup(AddFollowUp followUp);
 
-	List<CustomerSales> getsalesListById(int id);
+	List<CustomerSales> getsalesListById();
 
 	void saveContact(Contact contact);
 
+
 	List<AddDiary> getdiarydata();
+
+	List<CustomerSales> getCustomerData(String organisation);
+
 
 }

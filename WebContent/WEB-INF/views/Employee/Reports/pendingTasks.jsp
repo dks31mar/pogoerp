@@ -23,12 +23,8 @@
 <title>Insert title here</title>
 
 </head>
-</CENTER>
-<div id="pop" style="display: none;"></div>
-<div>
-	<c:out value="${id}" />
-</div>
-<div id="body">
+
+
 	<div>
 		<div>
 			<div class="row" style="margin-top: 15px">
@@ -41,9 +37,7 @@
 
 				<div class="page-heading col-sm-11"
 					style="background-color: #3C8DBD; color: white; left: 20px; height: 64px;">
-					<span class="glyphicon glyphicon-user"></span> Reports</b> <label
-						style="margin-left: 250px; margin-top: 8px;"><a
-						href="#" class="btn btn-primary">Pending Tasks</a> </label>
+					<span class="glyphicon glyphicon-user"></span><span> Reports </span>
 
 				</div>
 
@@ -73,7 +67,7 @@
 							<td>${diary.contacperson}</td>
 							<td></td>
 							<%-- <td>${diary.Organization}</td> --%>
-							<td>${diary.tasktype}</td>
+							<%-- <td>${diary.tasktype}</td> --%>
 							<td></td>
 
 
@@ -88,15 +82,6 @@
 
 	</div>
 
-	</TD>
-	</TD>
-	<TD valign="top">
-	</TR>
-	</TABLE>
+	
 
-
-	<div class="row form-group">
-		<div class="col-sm-7"></div>
-
-
-		</script>
+		

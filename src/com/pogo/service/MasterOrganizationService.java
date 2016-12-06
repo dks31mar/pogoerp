@@ -119,6 +119,8 @@ public interface MasterOrganizationService {
 
 	void updatefordepartment(DepartmentBean addbean);
 
+	void deletedepartment(int id);
+
 
 
 	

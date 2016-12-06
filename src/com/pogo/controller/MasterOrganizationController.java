@@ -654,7 +654,7 @@ public class MasterOrganizationController {
 	//edit for department by satyendra
    @RequestMapping(value="/editdepartment" ,method=RequestMethod.POST)
    @ResponseBody
-   public void editdepartmentdata(@RequestParam("departmentid") String id,HttpServletResponse res )throws ParseException  {
+   public void editdepartmentdata(@RequestParam("depId") String id,HttpServletResponse res )throws ParseException  {
 		System.out.println("**********************edit the department    *******************************");
 		System.out.println(id);
 		
@@ -683,10 +683,18 @@ public class MasterOrganizationController {
 
 	}
 
-	}	
+		
+
+//delete for department
+	@RequestMapping(value="deleteDepartment", method = RequestMethod.GET)
+	public String deletedepartment(@RequestParam("departmentid") int id) {
 	
-
-
+		System.out.println("//delete for department");
+		userEmployeeservice.deletedepartment(id);
+			return "redirect:/getDepartment";
+		
+}
+	}
 
 
 

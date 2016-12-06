@@ -8,7 +8,9 @@ import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.ContactBean;
+import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
+import com.pogo.model.AddDiary;
 
 public interface CustomerSalesService 
 {
@@ -26,11 +28,15 @@ public interface CustomerSalesService
 
 	void addFollowup(AddFollowUpBean addFollowUpBean);
 
-	List<CustomerSalesBean> findAllDataById(int id);
+	String findAllDataById();
 
 	void addContactPerson(ContactBean contactBean);
 
+	List<AddDiary> getdiarydata();
 	List<AddDiaryBean> getDiaryList();
+
+	List<CustomerSalesBean> findOrganisation(String organisation);
+
 
 
 	

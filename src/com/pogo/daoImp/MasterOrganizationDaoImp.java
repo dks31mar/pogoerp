@@ -481,6 +481,8 @@ System.out.println("delete");
 		return (Department) sessionFactory.getCurrentSession().get(Department.class, depId);
 	}
 
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Department> getdepartmentRecord(String id) {
 		int id1=Integer.parseInt(id);
@@ -492,7 +494,21 @@ System.out.println("delete");
 		sessionFactory.getCurrentSession().update(action);
 		
 	}
+
+	@Override
+	public void deletedepartment(Department depart) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM Department WHERE id ="+depart.getDepartmentId()).executeUpdate();
+		
+	}
+
+	@Override
+	public Department getdepartmentbyid(int id) {
+		return (Department) sessionFactory.getCurrentSession().get(Department.class, id);
+	}
 	
 	}
 
+
+
+	
 

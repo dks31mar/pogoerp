@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.ContactBean;
+import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.dao.MasterMastersDao;
@@ -205,12 +207,24 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		diary.setAddress(addDiaryBean.getAddress());
 		diary.setContacperson(addDiaryBean.getContacperson());
 		diary.setDiarytime(addDiaryBean.getTime());
+		diary.setDiarytimemin(addDiaryBean.getTimemin());
 		diary.setEmail(addDiaryBean.getEmail());
 		diary.setMobileno(addDiaryBean.getMobileno());
 		diary.setObjective(addDiaryBean.getObjective());
 		diary.setOrganizationName(addDiaryBean.getOrganization());
-		diary.setTasktype(addDiaryBean.getTasktype());
+		if(addDiaryBean.getEnteryuserId()>0)
+		{
 		diary.setEnteryuser(empDao.get(addDiaryBean.getEnteryuserId()));
+		}else
+			diary.setEnteryuser(null);
+		if(addDiaryBean.getDegId()>0){
+			diary.setDegName(empDao.getData(addDiaryBean.getDegId()));
+		}else
+			diary.setDegName(null);
+		if(addDiaryBean.getPlanId()>0){
+			diary.setPlanName(masterMasterDao.getplanById(addDiaryBean.getPlanId()));
+		}else
+			diary.setPlanName(null);
 		customerSalesDao.saveDiary(diary);
 	}
 	@Override
@@ -226,6 +240,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		followUp.setCusStatus(addFollowUpBean.getCustStatus());
 		followUp.setCusAddress(addFollowUpBean.getCusAddress());
 		followUp.setCusOrganisation(addFollowUpBean.getCusOrganisation());
+		followUp.setRemarks(addFollowUpBean.getRemarks());
 		if(addFollowUpBean.getActionId()>0)
 		{
 			followUp.setActionType(masterMasterDao.getActionDataById(addFollowUpBean.getActionId()));
@@ -235,22 +250,13 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		
 	}
 	@Override
-	public List<CustomerSalesBean> findAllDataById(int id) {
-		List<CustomerSales> list=customerSalesDao.getsalesListById(id);
-		List<CustomerLevels> cusStatus=masterMasterDao.getCustomerStatusDetails();
-		List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
-		String [] status=cusStatus.toArray(new String[cusStatus.size()]);
-		for(CustomerSales data:list)
-		{
-			CustomerSalesBean salesBean=new CustomerSalesBean();
-			salesBean.setCustomerId(data.getCustomerId());
-			salesBean.setAddress(data.getAddress());
-			salesBean.setStatus(data.getStatus().getStatus());
-			salesBean.setStatusList(status);
-			//System.out.println("On Service customer"+ data.getAddress()+data.getStatus().getStatus());
-			listbean.add(salesBean);
-		}
-		return listbean;
+	public String findAllDataById() {
+		List<CustomerSales> list=customerSalesDao.getsalesListById();
+		//List<CustomerLevels> cusStatus=masterMasterDao.getCustomerStatusDetails();
+		//List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
+		String json = new Gson().toJson(list);
+		
+		return json;
 	}
 	@Override
 	public void addContactPerson(ContactBean contactBean) {
@@ -258,11 +264,12 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		contact.setContactName(contactBean.getContactName());
 		contact.setContemail(contactBean.getContemail());
 		contact.setPhone(contactBean.getPhone());
-		contact.setDepName(empDao.getDep(contactBean.getContactId()));
+		//contact.setDepName(empDao.getDep(contactBean.getContactId()));
 		customerSalesDao.saveContact(contact);
 		
 	}
 	@Override
+
 	public List<AddDiaryBean> getDiaryList() {
 		List<AddDiary> diarylist=customerSalesDao.getdiarydata();
 		List<AddDiaryBean> diarybean=new ArrayList<AddDiaryBean>();
@@ -273,7 +280,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 			AddDiaryBean bean=new AddDiaryBean();
 			bean.setDate(data.getDate());
 			//bean.setTime(data.getTime());
-			bean.setTasktype(data.getTasktype());
+			//bean.setTasktype(data.getTasktype());
 			bean.setOrganization(data.getOrganizationName());
 			bean.setContacperson(data.getContacperson());
 			bean.setAddress(data.getAddress());
@@ -282,7 +289,25 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		}
 		return diarybean;
 	}
+
+	public List<CustomerSalesBean> findOrganisation( String organisation) {
+		List<CustomerSales> listbeans= customerSalesDao.getCustomerData(organisation);
+		List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
+		for(CustomerSales data:listbeans)
+		{
+			CustomerSalesBean listbeanss=new CustomerSalesBean();
+			listbeanss.setOrganisation(data.getOrganisation());
+			listbean.add(listbeanss);
+		}
+		return listbean;
+
 	}
+	@Override
+	public List<AddDiary> getdiarydata() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
 	
 	
 

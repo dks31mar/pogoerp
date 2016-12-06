@@ -23,15 +23,21 @@ public class AddDiary {
 	private String date;
 	@Column(name="time")
 	private String diarytime;
+	@Column(name="diarytimemin")
+	private String diarytimemin;
 	@Column(name ="organization_name")
 	private String organizationName;
 	@Column(name="contact_person")
 	private String contacperson;
-	@Column(name="tasktype")
-	private String tasktype;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="enteruser")
 	private UserEmployee enteryuser;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="plan_id")
+	private AddPlan planName;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="desg_id")
+	private Designation degName;
 	@Column(name="adress")
     private String address;
 	@Column(name="mobileno")
@@ -74,12 +80,7 @@ public class AddDiary {
 	public void setContacperson(String contacperson) {
 		this.contacperson = contacperson;
 	}
-	public String getTasktype() {
-		return tasktype;
-	}
-	public void setTasktype(String tasktype) {
-		this.tasktype = tasktype;
-	}
+	
 	public UserEmployee getEnteryuser() {
 		return enteryuser;
 	}
@@ -108,6 +109,24 @@ public class AddDiary {
 	}
 	public String getObjective() {
 		return objective;
+	}
+	public String getDiarytimemin() {
+		return diarytimemin;
+	}
+	public void setDiarytimemin(String diarytimemin) {
+		this.diarytimemin = diarytimemin;
+	}
+	public AddPlan getPlanName() {
+		return planName;
+	}
+	public void setPlanName(AddPlan planName) {
+		this.planName = planName;
+	}
+	public Designation getDegName() {
+		return degName;
+	}
+	public void setDegName(Designation degName) {
+		this.degName = degName;
 	}
 	public void setObjective(String objective) {
 		this.objective = objective;

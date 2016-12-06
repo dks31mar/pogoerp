@@ -851,8 +851,8 @@ public String getdepartmentRecord(String id) {
 	for(Department depa: depart)
 	{
 		
-		dd.put("departmentId",depa.getDepartmentId());
-		dd.put("department",depa.getDepName());
+		dd.put("depId",depa.getDepartmentId());
+		dd.put("depName",depa.getDepName());
 			
 	}
 	Gson gson=new Gson();
@@ -862,6 +862,7 @@ String list=	gson.toJson(dd);
 	return list;
 }
 @Override
+@Transactional
 public void updatefordepartment(DepartmentBean addbean) {
 	
 	Department action=new Department();
@@ -871,6 +872,15 @@ public void updatefordepartment(DepartmentBean addbean) {
 	userEmpdao.updatefordepartment(action);
 	
 
+}
+@Override
+public void deletedepartment(int id) {
+	Department depart = userEmpdao.getdepartmentbyid(id);
+	userEmpdao.deletedepartment(depart);
+	
+	
+
+	
 }
 }
 	
