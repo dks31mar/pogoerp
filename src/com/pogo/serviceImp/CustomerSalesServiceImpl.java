@@ -3,7 +3,9 @@ package com.pogo.serviceImp;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.crypto.CipherInputStream;
 
@@ -27,7 +29,11 @@ import com.pogo.model.Contact;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.model.Department;
+import com.pogo.model.ProductMaster;
+import com.pogo.model.UserEmployee;
 import com.pogo.service.CustomerSalesService;
+
+import sun.java2d.pipe.AATextRenderer;
 
 @Service("customerSalesService")
 @Transactional
@@ -254,6 +260,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		List<CustomerSales> list=customerSalesDao.getsalesListById();
 		//List<CustomerLevels> cusStatus=masterMasterDao.getCustomerStatusDetails();
 		//List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
+		
 		String json = new Gson().toJson(list);
 		
 		return json;
@@ -269,6 +276,28 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		
 	}
 	@Override
+
+	
+
+	public List<CustomerSalesBean> findOrganisation( String organisation) {
+		List<CustomerSales> listbeans= customerSalesDao.getCustomerData(organisation);
+		List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
+		for(CustomerSales data:listbeans)
+		{
+			CustomerSalesBean listbeanss=new CustomerSalesBean();
+			listbeanss.setOrganisation(data.getOrganisation());
+			listbean.add(listbeanss);
+		}
+		return listbean;
+
+	}
+
+	@Override
+	public List<AddDiary> getdiarydata() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	public List<AddDiaryBean> getDiaryList() {
 		List<AddDiary> diarylist=customerSalesDao.getdiarydata();
@@ -289,25 +318,37 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		}
 		return diarybean;
 	}
-
-	public List<CustomerSalesBean> findOrganisation( String organisation) {
-		List<CustomerSales> listbeans= customerSalesDao.getCustomerData(organisation);
-		List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
-		for(CustomerSales data:listbeans)
+	@Override
+	public List<AddDiaryBean> getDiaryRecord() {
+		List<AddDiaryBean> bean=new ArrayList<AddDiaryBean>(); 
+		List< UserEmployee> getempname=customerSalesDao.getDatafromDiary();
+		List<AddDiary> getPlan=null;
+		for(UserEmployee data:getempname)
 		{
-			CustomerSalesBean listbeanss=new CustomerSalesBean();
-			listbeanss.setOrganisation(data.getOrganisation());
-			listbean.add(listbeanss);
+			getPlan=customerSalesDao.getPlanByid(data.getUserempid());
+		System.out.println(data.getFirstname()+""+data.getLastname());
+			AddDiaryBean beans=new AddDiaryBean();
+			beans.setEnteryuserId(data.getUserempid());
+			beans.setEnteryuser(data.getFirstname()+" "+data.getLastname());
+			//beans.setPlanName(data.getPlan());
+			bean.add(beans);
 		}
-		return listbean;
-
+		return bean;
 	}
 	@Override
-	public List<AddDiary> getdiarydata() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getCustomerdatabyCompanyName(String organization) {
+		
+		List<CustomerSales> getdetail=new ArrayList<CustomerSales>();
+		getdetail=customerSalesDao.getCustomerdatabyCompanyName(organization);
+		Map<String, String> map=new HashMap<>();
+		for(CustomerSales s:getdetail){
+			map.put("address", s.getAddress());
+			map.put("status", s.getStatus().getStatus());
+		}
+		String json = new Gson().toJson(map);
+		return json;
 	}
-}
+	}
 	
 	
 

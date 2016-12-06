@@ -422,6 +422,17 @@
 			<put-attribute name="body" value="/WEB-INF/views/Master/organisation/department.jsp" />
 			</definition>
 			
+			<!-- Reports -->
+			<definition name="pendingthings" extends="baseLayout" >
+			<put-attribute name="title" value="Report " />
+			<put-attribute name="body" value="/WEB-INF/views/reports/pendingThingsto.jsp" />
+			</definition>
+			<!-- <definition name="pendingtasks" extends="baseLayout" >
+			<put-attribute name="title" value="Report " />
+			<put-attribute name="body" value="/WEB-INF/views/reports/pendingTasks.jsp" />
+			</definition> -->
+			
+			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >
 			<put-attribute name="title" value="sms permission" />

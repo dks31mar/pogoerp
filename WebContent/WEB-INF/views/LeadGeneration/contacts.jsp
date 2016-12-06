@@ -40,7 +40,7 @@
 <div id="body">
 	<div class="container">
 
-<form:form class="well form-horizontal" name="forp" action="saveuserEmp" method="POST" commandName="userbean" id="validate-form">
+<form:form class="well form-horizontal" name="forp" action="" method="POST" commandName="" id="">
  <fieldset>			
 		<legend> Contacts </legend>	
            <div class="form-group">
@@ -77,7 +77,7 @@
 			  <div class="col-md-3 inputGroupContainer">				
 				 <div class="input-group">				
 					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>			
-						<select class="form-control" id = "designation">		
+						<select class="form-control" id = "designation" name="desId">		
 							<option value="">-----Select Designation-----</option>
 								<c:if test="${!empty Dlist}">
 							       <c:forEach items="${Dlist}" var="cur" >
@@ -178,8 +178,8 @@
 	$('#savecontactForm').click(function() {
 
 		var name = $('#name').val();
-		var department = $('#department').val();
-		var designation = $('#designation').val();
+		var depId = $('#department').val();
+		var desId = $('#designation').val();
 		var phone = $('#phone').val();
 		var email = $('#email').val();
 		var dob = $('#dob').val();
