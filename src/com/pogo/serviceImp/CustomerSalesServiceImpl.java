@@ -276,6 +276,9 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		
 	}
 	@Override
+
+	
+
 	public List<CustomerSalesBean> findOrganisation( String organisation) {
 		List<CustomerSales> listbeans= customerSalesDao.getCustomerData(organisation);
 		List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
@@ -286,7 +289,16 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 			listbean.add(listbeanss);
 		}
 		return listbean;
+
 	}
+
+	@Override
+	public List<AddDiary> getdiarydata() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	public List<AddDiaryBean> getDiaryList() {
 		List<AddDiary> diarylist=customerSalesDao.getdiarydata();
 		List<AddDiaryBean> diarybean=new ArrayList<AddDiaryBean>();
@@ -358,10 +370,11 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		String json = new Gson().toJson(map);
 		return json;
 	}
+	}
 	
 	
 
 	
 
 
-}
+

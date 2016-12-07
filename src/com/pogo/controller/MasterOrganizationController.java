@@ -649,4 +649,58 @@ public class MasterOrganizationController {
 		dep.setDepName(depBean.getDepName());
 		userEmployeeservice.saveDepartment(dep);
 	}
+    
+
+	//edit for department by satyendra
+   @RequestMapping(value="/editdepartment" ,method=RequestMethod.POST)
+   @ResponseBody
+   public void editdepartmentdata(@RequestParam("depId") String id,HttpServletResponse res )throws ParseException  {
+		System.out.println("**********************edit the department    *******************************");
+		System.out.println(id);
+		
+		String departmentlist=userEmployeeservice.getdepartmentRecord(id);
+		System.out.println(departmentlist);
+		try {
+			PrintWriter writter=res.getWriter();
+			writter.print(departmentlist);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+
+   }
+
+//for update the  department
+	@RequestMapping(value="updatefordepartment",method=RequestMethod.POST)
+	@ResponseBody
+	public void updatefordepartment(@RequestBody String json,Model model) throws IOException{
+	System.out.println("**********************update the department     *******************************");
+		ObjectMapper mapper=new ObjectMapper();
+		DepartmentBean addbean=mapper.readValue(json, DepartmentBean.class);
+		
+		userEmployeeservice.updatefordepartment(addbean);
+		
+
+	}
+
+		
+
+//delete for department
+	@RequestMapping(value="deleteDepartment", method = RequestMethod.GET)
+	public String deletedepartment(@RequestParam("departmentid") int id) {
+	
+		System.out.println("//delete for department");
+		userEmployeeservice.deletedepartment(id);
+			return "redirect:/getDepartment";
+		
 }
+	}
+
+
+
+
+
+
+
+
+

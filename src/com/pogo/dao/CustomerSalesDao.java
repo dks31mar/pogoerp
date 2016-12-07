@@ -27,9 +27,10 @@ public interface CustomerSalesDao
 
 	void saveContact(Contact contact);
 
-	List<CustomerSales> getCustomerData(String organisation);
 
 	List<AddDiary> getdiarydata();
+
+	List<CustomerSales> getCustomerData(String organisation);
 
 	List<UserEmployee> getDatafromDiary();
 
