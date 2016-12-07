@@ -10,7 +10,7 @@
 
  function searchEmployee(empName) {
 		//alert("hi");
-		alert(empName);
+		//alert(empName);
 		$("#searchedRecord").empty();
 		$("#body").show();
 		$

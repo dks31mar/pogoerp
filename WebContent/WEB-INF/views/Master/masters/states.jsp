@@ -78,7 +78,7 @@
     <td>${state.stateName}</td>
     <td><a href="getbranchbystate?id=${state.stateId}"  target="_blank">Branches</a></td>
     <td><a href="editstates?id=${state.stateId}&id2=${zoneid}" title="Edit" id=""><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="deleteState?id=${state.stateId}" title="Delete"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
+    <td><a href="deleteState?id=${state.stateId}" title="Delete" Onclick="ConfirmDelete()"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
   </tr>
   
   </c:forEach>
@@ -91,3 +91,15 @@
  
 </body>
 </html>
+<script>
+function ConfirmDelete()
+{
+  var x = confirm("Are you sure you want to delete?");
+  if (x)
+      return true;
+  else
+    return false;
+}
+
+
+</script>

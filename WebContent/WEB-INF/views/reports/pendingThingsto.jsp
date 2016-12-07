@@ -32,7 +32,7 @@
 				<div align="center">
 					<i> </i> <input type="hidden" name="profile" value="0" />
 				</div>
-			</div>
+</div>
 			<div class="row">
 
 				<div class="page-heading col-sm-11"
@@ -81,6 +81,19 @@
 
 			</tbody>
 		</table>
+<<<<<<< HEAD
+=======
+		
+		<div>
+		
+		
+		</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/messagebox.js"></script>
+<script type="text/javascript" src="resources/js/messagebox.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
 	</div>
 
