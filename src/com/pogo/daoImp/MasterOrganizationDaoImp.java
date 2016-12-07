@@ -198,7 +198,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 	@Transactional
 	public List<Designation> findDesignationByPageNo(int i) {
 		return sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
-				.add(Restrictions.eq("active", true)).setMaxResults(5).setFirstResult(i * 5).list();
+				.add(Restrictions.eq("active", true)).list();
 	}
 
 	@SuppressWarnings("unchecked")
