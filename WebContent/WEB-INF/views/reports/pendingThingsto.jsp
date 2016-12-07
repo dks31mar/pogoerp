@@ -19,7 +19,7 @@
 				<div align="center">
 					<i> </i> <input type="hidden" name="profile" value="0" />
 				</div>
-			</div>
+</div>
 			<div class="row">
 
 				<div class="page-heading col-md-11.5"
@@ -79,6 +79,11 @@
 						</tr>
 			</tfoot>
 		</table>
+		
+		<div>
+		
+		
+		</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/js/messagebox.js"></script>
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
