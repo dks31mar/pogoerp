@@ -25,7 +25,9 @@
 				<div class="page-heading col-md-11.5"
 					style="background-color: #3C8DBD; color: white; left: 20px; height:44px;">
 					<span class="glyphicon glyphicon-user" ></span><span>Pending Plan</span>
-					
+					<label
+			style="margin-left: 540px;"><a
+			href="#" style="margin-top: -3px;" class="btn btn-primary">  </a> </label> 
 
 				</div>
 

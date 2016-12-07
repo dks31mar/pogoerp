@@ -151,7 +151,7 @@ public class CustomerSalesController {
 	@RequestMapping(value = "/saveDiaryForEntrySales", method = RequestMethod.POST)
 	public String saveDiaryForEntery(@ModelAttribute("addDiaryBean") AddDiaryBean addDiaryBean) {
 		customerSalesService.savediary(addDiaryBean);
-		return "AddDiaryForEntrySales";
+		return "redirect:/addDiaryForEntrySales";
 	}
 
 	@RequestMapping(value = "/createQuotation", method = RequestMethod.GET)
@@ -175,7 +175,7 @@ public class CustomerSalesController {
 	public String addfollowup(@ModelAttribute("addFollowUpBean") AddFollowUpBean addFollowUpBean,
 			BindingResult result) {
 		customerSalesService.addFollowup(addFollowUpBean);
-		return "AddFollowupForm";
+		return "redirect:addFollowup";
 	}
 
 	@RequestMapping(value = "/attachFiles", method = RequestMethod.GET)
@@ -196,13 +196,7 @@ public class CustomerSalesController {
 
 	}
 
-	// for search or oninput in box
-	@RequestMapping(value = "/getCustomer", method = RequestMethod.GET)
-	public @ResponseBody String getData(@RequestParam String organisation) throws JsonProcessingException {
-		List<CustomerSalesBean> listCustomer = customerSalesService.findOrganisation(organisation);
-		ObjectMapper d = new ObjectMapper();
-		return d.writeValueAsString(listCustomer);
-	}
+	//using autocomplete for search
 
 	@RequestMapping(value = "/getCustomerRecords", method = RequestMethod.GET)
 	public void getCustomerData(HttpServletResponse request) throws JsonProcessingException {
@@ -218,13 +212,12 @@ public class CustomerSalesController {
 			e.printStackTrace();
 		}
 	}
-	
+	//regarding data
 	@RequestMapping(value = "/getcompanydatabyname", method = RequestMethod.GET)
 	public void getCustomerdatabyCompanyName(@RequestParam("organization") String organization,
 			HttpServletResponse res,ProductMasterBean productmasetr) {
 		
 		String getpart=customerSalesService.getCustomerdatabyCompanyName(organization);
-	    System.out.println(getpart);
 	    String getpart1=getpart.replaceAll("\\[", "");
 		getpart1=getpart1.replaceAll("\\]", "");
 	   System.out.println(getpart1); 

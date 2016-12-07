@@ -5,7 +5,7 @@
 <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
@@ -63,7 +63,11 @@ $('#datetimepicker').datetimepicker({
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="Organization"  placeholder="Organization Name" required="required"  class="form-control"  type="text">
+  <input type='text' value="" name='Organization'
+								style='overflow: auto; border-radius: 3px; width: 210px;'
+								id='autocompletecustomer' class='form-control'
+								/>
+  <!-- <input   name="Organization"  placeholder="Organization Name" required="required"  class="form-control"  type="text"> -->
     </div>
   </div>
   <label class="col-md-2 control-label" >Contact Person <span style="color: red;">*</span></label>  
@@ -79,7 +83,7 @@ $('#datetimepicker').datetimepicker({
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
- <textarea rows="4" cols="27" name="address" >
+ <textarea rows="4" cols="27" name="address" id="address">
 </textarea>
     </div>
   </div>
@@ -87,7 +91,7 @@ $('#datetimepicker').datetimepicker({
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
      <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-     <input name="mobileno"  class="form-control"   placeholder="8285080678" type="text" required="required">
+     <input name="mobileno"  class="form-control" id="mob"  placeholder="8285080678" type="text" required="required">
     </div>
   </div>
 </div>
@@ -96,7 +100,7 @@ $('#datetimepicker').datetimepicker({
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="email"  placeholder="E-Mail Address"  class="form-control"  required="required" type="email">
+  <input  name="email"  placeholder="E-Mail Address"  class="form-control" id="email" required="required" type="email">
   </div>
 </div>
  <label class="col-md-2 control-label" >Designation<span style="color: red;">*</span></label>  
@@ -281,7 +285,57 @@ $('#datetimepicker').datetimepicker({
 </form:form>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
 
+<script>
+
+ $('#autocompletecustomer').on("click",function(){
+		//var word=$('#autocomplete').val();
+		alert("ddd");
+		//alert($(e.target).val() );	
+			$.ajax({
+				url: "getCustomerRecords", 
+				success: function(result){
+					console.log(result);
+					search1(result);
+					
+    					}
+			});
+	
+});
+
+function search1(result){
+	//alert(result);
+	var currencies =jQuery.parseJSON(result);
+	//alert(currencies);
+$('#autocompletecustomer').autocomplete({
+    lookup: currencies,
+    onSelect: function (suggestion) {
+    var company= suggestion.value;
+     $.ajax({
+			url: "getcompanydatabyname?organization="+company, 
+			success: function(result){
+				
+				var data=jQuery.parseJSON(result);
+				var add=data.address;
+				var email=data.emailId;
+				var mobile=data.mobileNo;
+				var sta=data.status;
+				console.log(add+'>>>>>>>>>'+sta);
+				$('#address').val(add);
+				$('#email').val(email);
+				$('#mob').val(mobile);
+				
+				
+	    }}); 
+      
+      
+    }
+  });
+}
+</script>
 
 
 
