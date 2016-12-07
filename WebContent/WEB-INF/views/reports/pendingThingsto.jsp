@@ -176,7 +176,7 @@ $(document).ready(function(){
   }
   
   $(document).ready(function(){
-	  $("a").hover(function(){
+	  $("#quotprodtable tr td a").hover(function(){
 	    $(this).css("color","RED");
 	  },function(){
 	    $(this).css("color","");
