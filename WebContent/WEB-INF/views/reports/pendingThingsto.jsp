@@ -81,8 +81,7 @@
 
 			</tbody>
 		</table>
-<<<<<<< HEAD
-=======
+
 		
 		<div>
 		
@@ -93,19 +92,6 @@
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
-
-	</div>
-
-	</TD>
-	</TD>
-	<TD valign="top">
-	</TR>
-	</TABLE>
 
 
-	<div class="row form-group">
-		<div class="col-sm-7"></div>
-
-
-		</script>
+	
