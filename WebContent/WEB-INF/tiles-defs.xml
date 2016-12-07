@@ -66,13 +66,15 @@
 			</definition>
 			
 			<definition name="region" extends="baseLayout" >
-			 
+			 <put-attribute name="title" value="Zones" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/reagion.jsp" />
 			</definition>
 			<definition name="newbranch" extends="baseLayout" >
+			 <put-attribute name="title" value="Branches" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/newbranch.jsp" />
 			</definition>
 			<definition name="addbranch123" extends="baseLayout" >
+			 <put-attribute name="title" value="Add Branches" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/addbranch.jsp" />
 			</definition>
 			<definition name="eastbranch" extends="baseLayout" >
@@ -90,31 +92,40 @@
 				<put-attribute name="body" value="/WEB-INF/views/Master/westbranch.jsp" />
 			</definition>
 			<definition name="editregion" extends="baseLayout" >
+			 <put-attribute name="title" value="Update Zones" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/editregion.jsp" />
 			</definition>
 			 <definition name="addregion" extends="baseLayout">
+			  <put-attribute name="title" value="Add Zones" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addregion.jsp" />
 			</definition>
 			 <definition name="addstates" extends="baseLayout" >
+			 <put-attribute name="title" value=" Add States" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addstates.jsp" />
 			</definition>
 			 <definition name="editstates" extends="baseLayout" >
+			  <put-attribute name="title" value=" Update States" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editstates.jsp" />
 			</definition>
 			<definition name="editbranch" extends="baseLayout" >
+			 <put-attribute name="title" value="Update Branches" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editbranch.jsp" />
 			</definition>
 			 <definition name="addbranches" extends="baseLayout" >
+			  <put-attribute name="title" value="Add Branches" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addbranches.jsp" />
 			</definition>
           <definition name="states" extends="baseLayout" >
+           <put-attribute name="title" value="States" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/states.jsp" />
 			</definition>
 			<definition name="competitiorsProfile" extends="baseLayout" >
+			 <put-attribute name="title" value="Competitiors Profile" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/Competitiors.jsp" />
 			</definition>
 			
 			<definition name="feature" extends="baseLayout" >
+			
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/feature.jsp" />
 			</definition>
 			<definition name="feature" extends="baseLayout" >
@@ -125,12 +136,12 @@
 			</definition>
 		
 			<definition name="addplanAction" extends="baseLayout" >
-			<put-attribute name="title" value="Add plan"></put-attribute>
+			<put-attribute name="title" value="Add plan"/>
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addPlanAction.jsp" />
 			</definition>
 			
 			<definition name="addaction" extends="baseLayout" >
-			<put-attribute name="title" value="Add Action "></put-attribute>
+			<put-attribute name="title" value="Add Action "/>
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addaction.jsp" />
 			</definition>
 			
@@ -413,7 +424,7 @@
 			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >
-			<put-attribute name="title" value="sms permission" />
+			<put-attribute name="title" value="sms permission"/>
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/sms.jsp" />
 			</definition>
 			

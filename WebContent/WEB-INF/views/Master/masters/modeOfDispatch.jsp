@@ -75,7 +75,7 @@
 						 
 		           
 					 <td><a href="#" onclick="editCur(${state.modeofdispatchId})" title="Edit">
-								<span class="glyphicon glyphicon-pencil"></span></a></td>
+								<span class="glyphicon glyphicon-pencil" onclick="return confirm('Are you sure you want to Update?')"></span></a></td>
 								
 						<td style="margin"><a href="deletemodeofdispatch?modeofdispatchId=${state.modeofdispatchId}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td> 
