@@ -310,15 +310,37 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	public List<AddDiaryBean> getDiaryRecord() {
 		List<AddDiaryBean> bean=new ArrayList<AddDiaryBean>(); 
 		List< UserEmployee> getempname=customerSalesDao.getDatafromDiary();
-		List<AddDiary> getPlan=null;
+		//Integer getPlan=null;
 		for(UserEmployee data:getempname)
 		{
-			getPlan=customerSalesDao.getPlanByid(data.getUserempid());
-		System.out.println(data.getFirstname()+""+data.getLastname());
 			AddDiaryBean beans=new AddDiaryBean();
+			//Integer getPlan=customerSalesDao.getPlanByid(data.getUserempid());
+			System.out.println(data.getFirstname()+""+data.getLastname());
+			
 			beans.setEnteryuserId(data.getUserempid());
 			beans.setEnteryuser(data.getFirstname()+" "+data.getLastname());
-			//beans.setPlanName(data.getPlan());
+			
+				
+				beans.setTotalsms(customerSalesDao.getTotalsms(data.getUserempid(),1));
+			
+				System.out.println("2");
+				beans.setTotalappointment(customerSalesDao.getTotalappointment(data.getUserempid(),2));
+			
+				System.out.println("3");
+				beans.setTotalemail(customerSalesDao.getTotalemail(data.getUserempid(),3));
+			
+				System.out.println("4");
+				beans.setTotalphone(customerSalesDao.getTotalphone(data.getUserempid(),4));
+			
+				System.out.println("5");
+				beans.setTotalothers(customerSalesDao.getTotalothers(data.getUserempid(),5));
+			
+				
+				beans.setTotal(customerSalesDao.getTotalsms(data.getUserempid(),1)+customerSalesDao.getTotalappointment(data.getUserempid(),2)
+				+customerSalesDao.getTotalemail(data.getUserempid(),3)+customerSalesDao.getTotalphone(data.getUserempid(),4)+
+				customerSalesDao.getTotalothers(data.getUserempid(),5)
+						);
+			
 			bean.add(beans);
 		}
 		return bean;

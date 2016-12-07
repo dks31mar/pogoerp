@@ -66,12 +66,13 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CustomerSales> getsalesListById() {
-		ProjectionList proList=Projections.projectionList();
+		ProjectionList proList = Projections.projectionList();
 		proList.add(Projections.property("organisation"));
-		//proList.add(Projections.property("customerId"));
-		Criteria r= sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).setProjection(Projections.property("organisation"));
-				
-		List<CustomerSales> list=r.list();
+		// proList.add(Projections.property("customerId"));
+		Criteria r = sessionFactory.getCurrentSession().createCriteria(CustomerSales.class)
+				.setProjection(Projections.property("organisation"));
+
+		List<CustomerSales> list = r.list();
 		return list;
 	}
 
@@ -88,8 +89,9 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 		// return
 		// sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).add(Restrictions.eq("",
 		// value))
-		
+
 	}
+
 	@SuppressWarnings("unchecked")
 	public List<AddDiary> getdiarydata() {
 		return sessionFactory.getCurrentSession().createCriteria(AddDiary.class).list();
@@ -97,46 +99,112 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<UserEmployee> getDatafromDiary() 
-	{
-		List<UserEmployee> d=sessionFactory.getCurrentSession().createCriteria(AddDiary.class).setProjection(Projections.distinct(Projections.property("enteryuser"))).list();
-	
-		List<UserEmployee> getname=new ArrayList<>();
-		
-		for(UserEmployee g:d){
-		UserEmployee s=(UserEmployee) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class).add(Restrictions.eq("userempid", g.getUserempid())).uniqueResult();
-		getname.add(s);
-		
+	public List<UserEmployee> getDatafromDiary() {
+		List<UserEmployee> d = sessionFactory.getCurrentSession().createCriteria(AddDiary.class)
+				.setProjection(Projections.distinct(Projections.property("enteryuser"))).list();
+
+		List<UserEmployee> getname = new ArrayList<>();
+
+		for (UserEmployee g : d) {
+			UserEmployee s = (UserEmployee) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
+					.add(Restrictions.eq("userempid", g.getUserempid())).uniqueResult();
+			getname.add(s);
+
 		}
 		return getname;
-				
+
 	}
 
 	@Override
-	public List<AddDiary> getPlanByid(Integer userempid) {
-		List<AddDiary> d=sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("enteryuser.userempid", userempid)).list();
-		for(AddDiary f:d){
-			System.out.println("Plan id is>>>>>>>>>>>>>>>    "+f.getPlanName().getId());
-		}
-		return null;
+	public Integer getPlanByid(Integer userempid, int id) {
+		// List<Integer>
+		// d=sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("enteryuser.userempid",
+		// userempid)).setProjection(Projections.distinct(Projections.property("planName.id"))).list();
+		int d21 = 0;
+
+		d21 = sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", id))
+				.add(Restrictions.eq("enteryuser.userempid", userempid)).list().size();
+		System.out.println("id is >>>>>>>>>>               " + id + "                      "
+				+ "tottal >>>>>>>>>>>>>>>>>>>       " + d21);
+
+		return d21;
 	}
 
 	@Override
 	public List<CustomerSales> getCustomerdatabyCompanyName(String organization) {
-	CustomerSales s=	(CustomerSales) sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).add(Restrictions.eq("organisation", organization)).uniqueResult();
-	int statusid=s.getStatus().getId();	
-	
-	System.out.println(statusid);
-	
-	Criteria state=sessionFactory.getCurrentSession().createCriteria(CustomerSales.class);
-		Criteria country=state.createCriteria("status");
+		CustomerSales s = (CustomerSales) sessionFactory.getCurrentSession().createCriteria(CustomerSales.class)
+				.add(Restrictions.eq("organisation", organization)).uniqueResult();
+		int statusid = s.getStatus().getId();
+
+		System.out.println(statusid);
+
+		Criteria state = sessionFactory.getCurrentSession().createCriteria(CustomerSales.class);
+		Criteria country = state.createCriteria("status");
 		country.add(Restrictions.eq("id", statusid));
-		List list= state.list();
-				
+		List list = state.list();
+
 		return list;
-		
-		
-		
+
+	}
+
+	@Override
+	public int getTotalsms(Integer userempid, int i) {
+		int d21 = 0;
+
+		d21 = sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", 1))
+				.add(Restrictions.eq("enteryuser.userempid", userempid)).list().size();
+		System.out.println("id is >>>>>>>>>>               " + i + "                      "
+				+ "tottal >>>>>>>>>>>>>>>>>>>       " + d21);
+
+		return d21;
+	}
+
+	@Override
+	public int getTotalappointment(Integer userempid, int i) {
+		int d21 = 0;
+
+		d21 = sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", 2))
+				.add(Restrictions.eq("enteryuser.userempid", userempid)).list().size();
+		System.out.println("id is >>>>>>>>>>               " + i + "                      "
+				+ "tottal >>>>>>>>>>>>>>>>>>>       " + d21);
+
+		return d21;
+	}
+
+	@Override
+	public int getTotalemail(Integer userempid, int i) {
+		int d21 = 0;
+
+		d21 = sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", 3))
+				.add(Restrictions.eq("enteryuser.userempid", userempid)).list().size();
+		System.out.println("id is >>>>>>>>>>               " + i + "                      "
+				+ "tottal >>>>>>>>>>>>>>>>>>>       " + d21);
+
+		return d21;
+	}
+
+	@Override
+	public int getTotalphone(Integer userempid, int i) {
+		int d21 = 0;
+
+		d21 = sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", 4))
+				.add(Restrictions.eq("enteryuser.userempid", userempid)).list().size();
+		System.out.println("id is >>>>>>>>>>               " + i + "                      "
+				+ "tottal >>>>>>>>>>>>>>>>>>>       " + d21);
+
+		return d21;
+	}
+
+	@Override
+	public int getTotalothers(Integer userempid, int i) {
+		int d21 = 0;
+
+		d21 = sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", 5))
+				.add(Restrictions.eq("enteryuser.userempid", userempid)).list().size();
+		System.out.println("id is >>>>>>>>>>               " + i + "                      "
+				+ "tottal >>>>>>>>>>>>>>>>>>>       " + d21);
+
+		return d21;
 	}
 
 }

@@ -33,8 +33,18 @@ public interface CustomerSalesDao
 
 	List<UserEmployee> getDatafromDiary();
 
-	List<AddDiary> getPlanByid(Integer userempid);
+	Integer getPlanByid(Integer userempid, int i);
 
 	List<CustomerSales> getCustomerdatabyCompanyName(String organization);
+
+	int getTotalsms(Integer userempid, int i);
+
+	int getTotalappointment(Integer userempid, int i);
+
+	int getTotalemail(Integer userempid, int i);
+
+	int getTotalphone(Integer userempid, int i);
+
+	int getTotalothers(Integer userempid, int i);
 
 }

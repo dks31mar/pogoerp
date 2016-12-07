@@ -18,7 +18,49 @@ public class AddDiaryBean {
 	private int planId;
 	private String degName;
 	private int degId;
+	private int totalappointment;
+	private int totalsms;
+	private int totalemail;
+	private int totalphone;
+	private int totalothers;
+	private int total;
 	
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public int getTotalothers() {
+		return totalothers;
+	}
+	public void setTotalothers(int totalothers) {
+		this.totalothers = totalothers;
+	}
+	public int getTotalsms() {
+		return totalsms;
+	}
+	public void setTotalsms(int totalsms) {
+		this.totalsms = totalsms;
+	}
+	public int getTotalemail() {
+		return totalemail;
+	}
+	public void setTotalemail(int totalemail) {
+		this.totalemail = totalemail;
+	}
+	public int getTotalphone() {
+		return totalphone;
+	}
+	public void setTotalphone(int totalphone) {
+		this.totalphone = totalphone;
+	}
+	public int getTotalappointment() {
+		return totalappointment;
+	}
+	public void setTotalappointment(int totalappointment) {
+		this.totalappointment = totalappointment;
+	}
 	public String getDate() {
 		return date;
 	}
