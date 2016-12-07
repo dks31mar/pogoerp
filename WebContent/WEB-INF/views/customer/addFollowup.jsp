@@ -117,19 +117,19 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input type='text' value="" name='customer'
-								style='overflow: auto; border-radius: 3px; width: 223px;'
+   <input type='text' value="" name='cusOrganisation'
+								style='overflow: auto; border-radius: 3px; width: 210px;'
 								id='autocompletecustomer' class='form-control'
 								/>
   
-  <%--  <select    class="form-control" name="cusOrganisation" oninput="getData(this.value)" >
+   <%--  <select    class="form-control" name="cusOrganisation" oninput="getData(this.value)" >
    <option value="" selected="selected">--Select Customer--</option>
    <c:if test="${!empty salesList}">
    <c:forEach items="${salesList}" var="list">
    <option value="${list.customerId}">${list.organisation}</option>
    </c:forEach>
    </c:if>
-   </select>  --%>
+   </select> --%>
     </div>
   </div>
    <label class="col-md-2 control-label" >Status<span
@@ -137,8 +137,8 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select   name="custStatus"  required="required" id="status" class="form-control selectpicker">
-  <option value="" id="status1"></option>
+  <select   name="custStatus"    class="form-control selectpicker">
+  <option value="" id="status"></option>
   </select>
     </div>
   </div>
@@ -149,7 +149,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-   <textarea   class="form-control" cols="34" rows="4" name="cusAddress" id="address"  placeholder="Address" >
+   <textarea   class="form-control" cols="29" rows="4" name="cusAddress" id="address"  placeholder="Address" >
    </textarea>
     </div>
   </div>
@@ -469,7 +469,7 @@ $('#autocompletecustomer').autocomplete({
 				console.log(add+'>>>>>>>>>'+sta);
 				
 				$('#address').val(add);
-				$('#status1').text(sta);
+				$('#status').text(sta);
 				
 	    }}); 
       

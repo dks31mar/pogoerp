@@ -35,11 +35,6 @@ public interface CustomerSalesService
 	List<AddDiary> getdiarydata();
 	List<AddDiaryBean> getDiaryList();
 
-	List<CustomerSalesBean> findOrganisation(String organisation);
-
-
-	
-
 	List<AddDiaryBean> getDiaryRecord();
 
 	String getCustomerdatabyCompanyName(String organization);

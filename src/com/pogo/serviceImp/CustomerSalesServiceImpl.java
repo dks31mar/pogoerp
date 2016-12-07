@@ -275,22 +275,11 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		customerSalesDao.saveContact(contact);
 		
 	}
-	@Override
+	
 
 	
 
-	public List<CustomerSalesBean> findOrganisation( String organisation) {
-		List<CustomerSales> listbeans= customerSalesDao.getCustomerData(organisation);
-		List<CustomerSalesBean> listbean=new ArrayList<CustomerSalesBean>();
-		for(CustomerSales data:listbeans)
-		{
-			CustomerSalesBean listbeanss=new CustomerSalesBean();
-			listbeanss.setOrganisation(data.getOrganisation());
-			listbean.add(listbeanss);
-		}
-		return listbean;
-
-	}
+	
 
 	@Override
 	public List<AddDiary> getdiarydata() {
@@ -343,6 +332,8 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		Map<String, String> map=new HashMap<>();
 		for(CustomerSales s:getdetail){
 			map.put("address", s.getAddress());
+			map.put("emailId", s.getEmailId());
+			map.put("mobileNo", s.getMobileNo());
 			map.put("status", s.getStatus().getStatus());
 		}
 		String json = new Gson().toJson(map);

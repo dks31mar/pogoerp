@@ -23,10 +23,6 @@ public class ReportController {
 	     return new ModelAndView("pendingtasks");
 	}	
 	
-	
-	
-	
-	
 	@RequestMapping(value="pendingThingsTo",method = RequestMethod.GET)
 	public String getthingsTo(Model model)
 	{
@@ -35,7 +31,12 @@ public class ReportController {
 	     return "pendingthings";
 	}
 	
-	
+	@RequestMapping(value="followups",method = RequestMethod.GET)
+	public String followUp(Model model)
+	{
+		
+	     return "followups";
+	}
 	
 
 }

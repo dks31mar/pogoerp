@@ -30,7 +30,7 @@ public interface CustomerSalesDao
 
 	List<AddDiary> getdiarydata();
 
-	List<CustomerSales> getCustomerData(String organisation);
+	
 
 	List<UserEmployee> getDatafromDiary();
 

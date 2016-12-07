@@ -81,15 +81,7 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<CustomerSales> getCustomerData(String organisation) {
-		return null;
-		// return
-		// sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).add(Restrictions.eq("",
-		// value))
-		
-	}
+	
 	@SuppressWarnings("unchecked")
 	public List<AddDiary> getdiarydata() {
 		return sessionFactory.getCurrentSession().createCriteria(AddDiary.class).list();
