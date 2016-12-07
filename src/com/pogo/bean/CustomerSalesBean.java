@@ -1,7 +1,5 @@
 package com.pogo.bean;
 
-import java.util.Date;
-
 public class CustomerSalesBean 
 {
 	private Integer customerId;
@@ -178,6 +176,14 @@ public class CustomerSalesBean
 	}
 	public void setSublocationId(Integer sublocationId) {
 		this.sublocationId = sublocationId;
+	}
+	public CustomerSalesBean(Integer customerId, String organisation) {
+		super();
+		this.customerId = customerId;
+		this.organisation = organisation;
+	}
+	public CustomerSalesBean() {
+		super();
 	}
 	
 

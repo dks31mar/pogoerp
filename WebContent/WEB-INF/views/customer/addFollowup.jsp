@@ -91,7 +91,6 @@
 			</div>		
             </div>
             <div>
-            
             <button type="button" class="btn btn-warning" style="margin-left: 586px;">Update</button>
             </div>
            
@@ -118,19 +117,19 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input type='text' value="" name='customer'
-								style='overflow: auto; border-radius: 3px; width: 223px;'
+   <input type='text' value="" name='cusOrganisation'
+								style='overflow: auto; border-radius: 3px; width: 210px;'
 								id='autocompletecustomer' class='form-control'
 								/>
   
-  <%--  <select    class="form-control" name="cusOrganisation" oninput="getData(this.value)" >
+   <%--  <select    class="form-control" name="cusOrganisation" oninput="getData(this.value)" >
    <option value="" selected="selected">--Select Customer--</option>
    <c:if test="${!empty salesList}">
    <c:forEach items="${salesList}" var="list">
    <option value="${list.customerId}">${list.organisation}</option>
    </c:forEach>
    </c:if>
-   </select>  --%>
+   </select> --%>
     </div>
   </div>
    <label class="col-md-2 control-label" >Status<span
@@ -138,7 +137,8 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select   name="custStatus"  required="required" id="status" class="form-control selectpicker">
+  <select   name="custStatus"    class="form-control selectpicker">
+  <option value="" id="status"></option>
   </select>
     </div>
   </div>
@@ -149,7 +149,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-   <textarea   class="form-control" cols="34" rows="4" name="cusAddress" id="address"  placeholder="Address" >
+   <textarea   class="form-control" cols="29" rows="4" name="cusAddress" id="address"  placeholder="Address" >
    </textarea>
     </div>
   </div>
@@ -436,7 +436,7 @@
 
 
 
-$('#autocompletecustomer').on("click",function(){
+ $('#autocompletecustomer').on("click",function(){
 		//var word=$('#autocomplete').val();
 		alert("ddd");
 		//alert($(e.target).val() );	
@@ -458,28 +458,30 @@ function search1(result){
 $('#autocompletecustomer').autocomplete({
     lookup: currencies,
     onSelect: function (suggestion) {
-    var pro= suggestion.value;
-     /*  $.ajax({
-			url: "getpartdetail?pro="+pro, 
+    var company= suggestion.value;
+     $.ajax({
+			url: "getcompanydatabyname?organization="+company, 
 			success: function(result){
-				for(i=0;i<result.length;i++){
-					var data=result.replace('"','');
-					data=data.replace('"','');
-				}
-			var	productdescription=data.split(',')[0]
-			var cost=data.split(',')[1];
-			var unitcostx=data.split(',')[2];	
-				$('#description'+id).val(productdescription);
-				$('#tpinjpy'+id).val(cost);
-				$('#unitcostx'+id).val(unitcostx)
-	    }}); */
+				
+				var data=jQuery.parseJSON(result);
+				var add=data.address;
+				var sta=data.status;
+				console.log(add+'>>>>>>>>>'+sta);
+				
+				$('#address').val(add);
+				$('#status').text(sta);
+				
+	    }}); 
       
       
     }
   });
 }
 
-
+ 
+ 
+ 
+ 
 
 </script>
 

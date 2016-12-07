@@ -73,8 +73,8 @@ try{
 	
 	@Override
 	public Map getLeftMenuData(HttpServletRequest request,int id,PogoMenuOptions pmob) {
-		List<String> optiondescription=sessionFactory.getCurrentSession().createSQLQuery("select sys.optiondescription from sysmenuoptions sys inner join CommunityMenuOptions com ON com.OptionID = sys.OptionID inner join user_option usr ON usr.OptionID = sys.OptionID where sys.ismenu='Y' and usr.EmpID="+id+" and sys.openIn=0 and level=0 order by seqNo").list();
-		List<String> optionID=sessionFactory.getCurrentSession().createSQLQuery("select sys.optionID from sysmenuoptions sys inner join CommunityMenuOptions com ON com.OptionID = sys.OptionID inner join user_option usr ON usr.OptionID = sys.OptionID where sys.ismenu='Y' and usr.EmpID="+id+" and sys.openin=0 and sys.level=0 order by seqNo,optionid").list();
+		List<String> optiondescription=sessionFactory.getCurrentSession().createSQLQuery("select sys.optiondescription from sysmenuoptions sys inner join communitymenuoptions com ON com.OptionID = sys.OptionID inner join user_option usr ON usr.OptionID = sys.OptionID where sys.ismenu='Y' and usr.EmpID="+id+" and sys.openIn=0 and level=0 order by seqNo").list();
+		List<String> optionID=sessionFactory.getCurrentSession().createSQLQuery("select sys.optionID from sysmenuoptions sys inner join communitymenuoptions com ON com.OptionID = sys.OptionID inner join user_option usr ON usr.OptionID = sys.OptionID where sys.ismenu='Y' and usr.EmpID="+id+" and sys.openin=0 and sys.level=0 order by seqNo,optionid").list();
 		System.out.println("alll option idsssss>>>>>>>>>>>>>>>>>>>>>>     "+optionID);
 		List secondLevelMenu=new ArrayList();
 		for(String parentId:optionID){

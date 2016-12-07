@@ -5,140 +5,26 @@
 <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
-<!-- calender -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- calender jquery-->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<!-- calender Bootstrap -->
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-<!-- bootstarp poup -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/> -->
+
   <!-- jquery -->
   <!-- <link rel="stylesheet" type="text/css" href="resources/css/jquery.dialogbox.css"/>
 <script src="resources/plugins/jQuery/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="resources/js/jquery.dialogBox.js" type="text/javascript"></script> -->
 
- <script type="text/javascript">
- function getstateList(id) {
-		var url = 'getstate/' + id;
-		$
-				.ajax({
-					url : url,
+ <!-- bootstarp poup -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-					type : 'POST',
-					success : function(data, status) {
-						$("#state").empty();
-						var st = '<select name="stateId" onchange=getdistrictLists(this.value'
-								
-								+ ') class="form-control select style="width: 100%; height:31%;">'
-								+ '<option value="">-- Select State --</option>';
-						var j = JSON.parse(data);
-						var length = j.length;
-						for (var i = 0; i < length; i++) {
-							st = st + '<option value=' + j[i].stateId + '>'
-									+ j[i].state + '</option>';
 
-						}
-						st = st + '</select>';
-
-						$("#state").append(st);
-
-					},
-					error : function(error, status) {
-
-					}
-				});
-
-	}
- 
-  function getdistrictLists(id) 
- {
-	 var url = 'getdistrictLists/' + id;
-		$
-				.ajax({
-					url : url,
-					type : 'POST',
-					success : function(data, status) {
-						 $("#districts").empty();
-						var st = '<select name="districtId" class="form-control" style="width: 100%;" id="districtId">'
-								+ '<option value="">-- Select District --</option>';
-						var j = JSON.parse(data);
-						var length = j.length;
-						for (var i = 0; i < length; i++) {
-							st = st + '<option value=' + j[i].districtId + '>'
-									+ j[i].district + '</option>';
-
-						}
-						st = st + '</select>';
-
-						$("#districts").append(st);
-
-					},
-					error : function(error, status) {
-					} 
-				}); 
-	}
-  
-	  $( function() {
-		    $("#enquirydate" ).datepicker({dateFormat:'dd-MM-yyyy'});
-		    
-		  } );
-
-		$( function() {
-		    $( "#orderdate").datepicker({dateFormat: 'dd-MM-yyyy'});
-		  } );
-		
-		var i=0;
-		function contactP() 
-		{
-			i=parseInt(i)+parseInt(1);
-			$.ajax({
-				url:'contactPersons',
-				type:'GET',
-				success : function(data) {
-					var f=JSON.parse(data);
-					if(i==1){
-					$.each(f, function(k, v) {
-						$('#departOptions').append('<option value="'+k+'">'+v+'</option>');
-						i=parseInt(i)+parseInt(2);
-					});
-					}
-					
-				},
-				error:function(error,status)
-				{
-					alert("Not Reachable");
-				}
-				
-			});
-		}
-		
-		
-		function contactDesignation() 
-		{
-			i=parseInt(i)+parseInt(1);
-			$.ajax({
-				url:'contactdesignation',
-				type:'GET',
-				success : function(data) {
-					var f=JSON.parse(data);
-					console.log(f.designation);
-					if(i==1){
-					$.each(f, function(k, v) {
-						$('#designationOption').append('<option value="'+k+'">'+v+'</option>');
-						i=parseInt(i)+parseInt(2);
-					});
-					}
-					
-				},
-				error:function(error,status)
-				{
-					alert("Not Reachable");
-				}
-				
-			});
-		}
-		</script>
 
 <div class="row" style="margin-top: 15px">
 	<br>
@@ -178,7 +64,7 @@
 					style="color: red;">*</span></label>
 			<div class="input-group">
              <span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
-			<select name="" class="form-control" id="designationOption">
+			<select name="" class="form-control" id="designationOption" onclick="contactDesignation();">
 			<option value="" >--Select Designation--</option>
 			</select>
 			</div><br>
@@ -415,4 +301,129 @@
 
 </fieldset>
 </form:form>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+});
+ function getstateList(id) {
+		var url = 'getstate/' + id;
+		$
+				.ajax({
+					url : url,
+					type : 'POST',
+					success : function(data, status) {
+						$("#state").empty();
+						var st = '<select name="stateId" onchange=getdistrictLists(this.value'
+								
+								+ ') class="form-control select style="width: 100%; height:31%;">'
+								+ '<option value="">-- Select State --</option>';
+						var j = JSON.parse(data);
+						var length = j.length;
+						for (var i = 0; i < length; i++) {
+							st = st + '<option value=' + j[i].stateId + '>'
+									+ j[i].state + '</option>';
+
+						}
+						st = st + '</select>';
+
+						$("#state").append(st);
+
+					},
+					error : function(error, status) {
+
+					}
+				});
+
+	}
+ 
+  function getdistrictLists(id) 
+ {
+	 var url = 'getdistrictLists/' + id;
+		$
+				.ajax({
+					url : url,
+					type : 'POST',
+					success : function(data, status) {
+						 $("#districts").empty();
+						var st = '<select name="districtId" class="form-control" style="width: 100%;" id="districtId">'
+								+ '<option value="">-- Select District --</option>';
+						var j = JSON.parse(data);
+						var length = j.length;
+						for (var i = 0; i < length; i++) {
+							st = st + '<option value=' + j[i].districtId + '>'
+									+ j[i].district + '</option>';
+
+						}
+						st = st + '</select>';
+
+						$("#districts").append(st);
+
+					},
+					error : function(error, status) {
+					} 
+				}); 
+	}
+  
+	  $( function() {
+		    $("#enquirydate" ).datepicker({dateFormat:'dd-MM-yyyy'});
+		    
+		  } );
+
+		$( function() {
+		    $( "#orderdate").datepicker({dateFormat: 'dd-MM-yyyy'});
+		  } );
+		
+		var i=0;
+		
+		function contactP() 
+		{
+			i=parseInt(i)+parseInt(1);
+			$.ajax({
+				url:'contactPersons',
+				type:'GET',
+				success : function(data) {
+					var f=JSON.parse(data);
+					if(i==1){
+					$.each(f, function(k, v) {
+						$('#departOptions').append('<option value="'+k+'">'+v+'</option>');
+						i=parseInt(i)+parseInt(2);
+					});
+					}
+					
+				},
+				error:function(error,status)
+				{
+					alert("Not Reachable");
+				}
+				
+			});
+		}
+		
+		var j123=1;
+		function contactDesignation() 
+		{
+			i=parseInt(i)+parseInt(1);
+			$.ajax({
+				url:'contactdesignation',
+				type:'GET',
+				success : function(data) {
+					var f1=JSON.parse(data);
+					console.log(f1);
+					if(j123==1){
+					$.each(f1, function(k, v) {
+						console.log("inside");
+						$('#designationOption').append('<option value="'+k+'">'+v+'</option>');
+						j123=parseInt(j123)+parseInt(2);
+					});
+					}
+					
+				},
+				error:function(error,status)
+				{
+					alert("Not Reachable");
+				}
+				
+			});
+		}
+		</script>
 

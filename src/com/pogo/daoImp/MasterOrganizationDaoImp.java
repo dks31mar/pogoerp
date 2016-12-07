@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pogo.bean.BranchBean;
 import com.pogo.dao.MasterOrganizationDao;
+import com.pogo.model.AddAction;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
@@ -197,7 +198,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 	@Transactional
 	public List<Designation> findDesignationByPageNo(int i) {
 		return sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
-				.add(Restrictions.eq("active", true)).setMaxResults(5).setFirstResult(i * 5).list();
+				.add(Restrictions.eq("active", true)).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -480,5 +481,34 @@ System.out.println("delete");
 		return (Department) sessionFactory.getCurrentSession().get(Department.class, depId);
 	}
 
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Department> getdepartmentRecord(String id) {
+		int id1=Integer.parseInt(id);
+		return (List<Department>)sessionFactory.getCurrentSession().createCriteria(Department.class).add(Restrictions.eq("id", id1)).list();
+	}
+
+	@Override
+	public void updatefordepartment(Department action) {
+		sessionFactory.getCurrentSession().update(action);
+		
+	}
+
+	@Override
+	public void deletedepartment(Department depart) {
+		sessionFactory.getCurrentSession().createQuery("DELETE FROM Department WHERE id ="+depart.getDepartmentId()).executeUpdate();
+		
+	}
+
+	@Override
+	public Department getdepartmentbyid(int id) {
+		return (Department) sessionFactory.getCurrentSession().get(Department.class, id);
+	}
 	
-}
+	}
+
+
+
+	
+

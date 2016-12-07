@@ -12,15 +12,15 @@
 <body>
 <div class="container-fluid">
 <tiles:insertAttribute name="header" />
-
+</div>
 <div class="container-fluid" style="background-color: #E6E6E6;">
 				<tiles:insertAttribute name="body" />
 </div>
 
-
-<div>
+<br>
+<div style="background-color: #E6E6E6;">
 <tiles:insertAttribute name="footer" />
 </div>
-</div>
+
 </body>
 </html>

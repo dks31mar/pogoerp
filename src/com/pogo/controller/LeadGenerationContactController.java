@@ -41,7 +41,9 @@ public class LeadGenerationContactController {
 		Map<String , Object> m = new HashMap<String , Object>();
 		System.out.println("list1 is "+list1);
 		m.put("Dlist",list1);
-		//m.put("elist",list);
+		List<ContactBean> contactlist = new ArrayList<ContactBean>();
+		contactlist = contactservice.getcontactlist();
+		m.put("contactlist", contactlist);
 		return new ModelAndView("contact" ,m);
 	}
 

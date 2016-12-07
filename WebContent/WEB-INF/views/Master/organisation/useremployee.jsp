@@ -18,8 +18,9 @@
 
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 
 <script>
 	function fordelete()
@@ -49,6 +50,7 @@
 		//alert(loginname);
 		$("#searchedRecord").empty();
 		$("#body").show();
+		
 		$
 				.ajax({
 
@@ -60,19 +62,19 @@
 					success : function(data) {
 						var obj = JSON.parse(data);
 						var count=0;
-						var content = '<table class="responstable" style="margin-top: 5px;margin-left: 22px; border-radius: 5px;"><thead><tr>'
+						var content = '<table class="responstable" style="margin-top: 5px;margin-left: 22px; border-radius: 5px;" id="searchdatatable"><thead><tr>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">SN</label></th>'
+							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Employee Code</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Employee Name</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Designation</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Branch</label></th>'
-							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Employee Code</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Joining Date</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Edit</label></th>'
 							+ '<th class="corg_th" style="font-size: 13px;"><label for="laborg">Delete</label></th>'
 							
 						if (obj.length == 0) 
 						{
-							content += '<tr><td colspan="8"><font color="red" size="3">No record found.</font></td></tr>';
+							content += '<tr><td colspan="8"><font color="red" size="3" id="norecordid">No record found.</font></td></tr>';
 						} 
 						else
 						{
@@ -85,15 +87,15 @@
 												+ ++count
 												+ '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
+													+ value.empCode
+													+ '</td>';		
+										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.loginname + '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.designationName
 												+ '</td>';
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.branchName
-												+ '</td>';
-										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
-												+ value.empCode
 												+ '</td>';		
 										content += '<td style="font-size: 13px; color:black;" class="corg_th">'
 												+ value.dateofjoining
@@ -111,12 +113,20 @@
 						$("#body").hide();
 					$("#searchedRecord").append(content);
 					
+					var table = document.getElementById("searchdatatable");
+					var len=table.rows.length-1;
+					
+					if($('#norecordid').text()=='No record found.'){
+						$('#totalrecords').text('Total Records:0');
+					}else{
+						$('#totalrecords').text('Total Records:'+len);
+					}
 				},
 				error : function(e) {
 					
 				}
 			});
-
+		
 	}	
 $('#openModal').hide();
 $('#addemp').hide();
@@ -153,24 +163,24 @@ $( function() {
 
 <div class="row">
 
-	<div class="page-heading col-sm-11"
+	<div class="page-heading col-md-11.5"
 		style="background-color: #3C8DBD; left: 20px; height: 64px;">
 		<span class="glyphicon glyphicon-user"></span> Employee Details <label
 			style="margin-left: 250px; margin-top: 8px;"><a
 			href="addUser" class="btn btn-primary"> Add New Employee </a> </label>
 
-		<div class="input-group"
+		<!-- <div class="input-group"
 			style="margin-left: 590px; width: 230px; top: -38px; width: 230px;">
 			<input type="text" placeholder="Search Employee name"
 				class="form-control" oninput="searchEmp(this.value)"><span
 				class="input-group-addon"> <i class="fa fa-search"></i>
 			</span>
-		</div>
+		</div> -->
 
 	</div>
 
 </div>
-<div class="row" style="margin-top: 10px;">
+<%-- <div class="row" style="margin-top: 10px;">
 	<div class="col-md-12">
 
 		<div class="col-md-12 col-sm-12 clearfix" style="text-align: left;">
@@ -178,23 +188,26 @@ $( function() {
 				Records:${totalrecords}</h5>
 		</div>
 	</div>
-</div>
+</div> --%>
+
 <div id="pop" style="display: none;"></div>
 <div id="searchedRecord"></div>
 <div id="body">
-	<table class="responstable" style="margin-left: 22px;">
+	<table class="responstable"  id="mainidtable">
 
-		<tbody>
+		<thead>
 			<tr>
 				<th>S.N.</th>
+				<th>Employee Code</th>
 				<th data-th="Driver details"><span>Employees Name</span></th>
 				<th>Designation</th>
 				<th>Branch</th>
-				<th>Employee Code</th>
 				 <th>Joining Date</th>
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;">Delete</th>
 			</tr>
+			</thead>
+			<tbody>
 			<c:choose>
 				<c:when test="${empty Recordlist}">
 					<div style="color: red; text-align: center;">No Employee
@@ -206,10 +219,10 @@ $( function() {
 
 							<tr>
 								<td>${loop.index+1}</td>  
+								 <td>${user.empCode}</td>
 								<td>${user.loginname}</td>
 								<td>${user.designationName}</td>
 								 <td>${user.branchName}</td>
-								  <td>${user.empCode}</td>
                                  <td>${user.dateofjoining}</td>
 								<td><a href="editUser?id=${user.userempid}" title="Edit">
 										<span class="glyphicon glyphicon-pencil"></span>
@@ -267,7 +280,11 @@ $( function() {
 
 <script type="text/javascript">
 
-
+$(document).ready(function() {
+    $('#mainidtable').DataTable( {
+        "order": [[0, "desc" ]]
+    } );
+} ); 
 var d= $('#chg').text();
 $('#edit12').click(function(){
 	$('#addemp').show();
