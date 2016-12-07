@@ -149,7 +149,7 @@
 			
 			<definition name="pendingtasks" extends="baseLayout" >
 			<put-attribute name="title" value="Pending Tasks "></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/Employee/Reports/pendingTasks.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/reports/pendingTasks.jsp" />
 			</definition>
 			<!--********************	followups***********************************************  -->
 			<definition name="followups" extends="baseLayout" >

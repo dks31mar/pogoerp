@@ -15,20 +15,20 @@ public class ReportController {
 	@Autowired
 	private CustomerSalesService CustomerSalesService;
 
-	@RequestMapping(value="pendingtasks",method = RequestMethod.GET)
+	/*@RequestMapping(value="pendingtasks",method = RequestMethod.GET)
 	public ModelAndView getPendigTasks(Model model){
 		System.out.println("get the diary data as a list on pending page");
 		List<AddDiaryBean> list=CustomerSalesService.getDiaryList();
 		model.addAttribute("diaryList",list );
 	     return new ModelAndView("pendingtasks");
-	}	
-	
-	@RequestMapping(value="pendingThingsTo",method = RequestMethod.GET)
+	}	*/
+	/*pendingThingsTo*/
+	@RequestMapping(value="pendingtasks",method = RequestMethod.GET)
 	public String getthingsTo(Model model)
 	{
 		List<AddDiaryBean> list=CustomerSalesService.getDiaryRecord();
 		model.addAttribute("diarydata",list );
-	     return "pendingthings";
+	     return "pendingtasks";
 	}
 	
 	@RequestMapping(value="followups",method = RequestMethod.GET)
