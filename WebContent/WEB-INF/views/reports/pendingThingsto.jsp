@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link rel="stylesheet" type="text/css" href="resources/css/table.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 <style>
 
 .forum_hover { background-color: #380606 !important; }
@@ -20,7 +22,7 @@
 			</div>
 			<div class="row">
 
-				<div class="page-heading col-sm-11"
+				<div class="page-heading col-md-11.5"
 					style="background-color: #3C8DBD; color: white; left: 20px; height:44px;">
 					<span class="glyphicon glyphicon-user" ></span><span>Pending Plan</span>
 					
@@ -28,9 +30,10 @@
 				</div>
 
 			</div>
+			<br>
 		<table class="responstable"  id="quotprodtable">
 
-			<tbody>
+			<thead>
 				<tr>
 					<th>S.N.</th>
 					<th>Employee</th>
@@ -43,6 +46,8 @@
 
 
 				</tr>
+</thead>
+<tbody>
 				 <c:if test="${!empty diarydata}">
 					<c:forEach items="${diarydata}" var="diarylist" varStatus="loop">
 
@@ -59,7 +64,9 @@
 						</tr>
 
 					</c:forEach>
-				</c:if> 
+				</c:if>
+				</tbody>
+				<tfoot>
 					<tr>
 							<td></td>
 							<td>Total</td>
@@ -70,13 +77,16 @@
 							<td id="" style="text-align: center;"><a href="" id="otherss"></a></td>
 							<td id="" style="text-align: center;"><a href="" id="total12"></a></td>
 						</tr>
-			</tbody>
+			</tfoot>
 		</table>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/js/messagebox.js"></script>
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
 	<script type="text/javascript">
 <!--
 
@@ -171,6 +181,12 @@ $(document).ready(function(){
 	  },function(){
 	    $(this).css("color","");
 	  });
+	  
+	  $('#quotprodtable').DataTable( {
+	        "order": [[0, "desc" ]]
+	    } );
 	});
+  
+  
 </script>
 		

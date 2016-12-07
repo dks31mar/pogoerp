@@ -19,7 +19,8 @@
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 
 <script>
 	function fordelete()
@@ -162,24 +163,24 @@ $( function() {
 
 <div class="row">
 
-	<div class="page-heading col-sm-11"
+	<div class="page-heading col-md-11.5"
 		style="background-color: #3C8DBD; left: 20px; height: 64px;">
 		<span class="glyphicon glyphicon-user"></span> Employee Details <label
 			style="margin-left: 250px; margin-top: 8px;"><a
 			href="addUser" class="btn btn-primary"> Add New Employee </a> </label>
 
-		<div class="input-group"
+		<!-- <div class="input-group"
 			style="margin-left: 590px; width: 230px; top: -38px; width: 230px;">
 			<input type="text" placeholder="Search Employee name"
 				class="form-control" oninput="searchEmp(this.value)"><span
 				class="input-group-addon"> <i class="fa fa-search"></i>
 			</span>
-		</div>
+		</div> -->
 
 	</div>
 
 </div>
-<div class="row" style="margin-top: 10px;">
+<%-- <div class="row" style="margin-top: 10px;">
 	<div class="col-md-12">
 
 		<div class="col-md-12 col-sm-12 clearfix" style="text-align: left;">
@@ -187,14 +188,14 @@ $( function() {
 				Records:${totalrecords}</h5>
 		</div>
 	</div>
-</div>
+</div> --%>
 
 <div id="pop" style="display: none;"></div>
 <div id="searchedRecord"></div>
 <div id="body">
-	<table class="responstable" style="margin-left: 22px;" id="mainidtable">
+	<table class="responstable"  id="mainidtable">
 
-		<tbody>
+		<thead>
 			<tr>
 				<th>S.N.</th>
 				<th>Employee Code</th>
@@ -205,6 +206,8 @@ $( function() {
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;">Delete</th>
 			</tr>
+			</thead>
+			<tbody>
 			<c:choose>
 				<c:when test="${empty Recordlist}">
 					<div style="color: red; text-align: center;">No Employee
@@ -279,9 +282,9 @@ $( function() {
 
 $(document).ready(function() {
     $('#mainidtable').DataTable( {
-        "order": [[2, "desc" ]]
+        "order": [[0, "desc" ]]
     } );
-} );
+} ); 
 var d= $('#chg').text();
 $('#edit12').click(function(){
 	$('#addemp').show();

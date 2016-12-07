@@ -84,15 +84,15 @@ public class MasterOrganizationController {
 	{
 		List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
 		list = userEmployeeservice.getUserDetails();
-		int size = list.size();
+		/*int size = list.size();
 		int result = 0;
 		int rem = size % 5;
 		if (rem > 0)
 			result = (size / 10) + 1;
 		else
-			result = size / 5;
+			result = size / 5;*/
 		model.addAttribute("noOfPage", num);
-		model.addAttribute("totalNoOfPages", result);
+		//model.addAttribute("totalNoOfPages", result);
 		model.addAttribute("Recordlist", list);
 		/*
 		 * model.addAttribute("Recordlist", empDao.findDesignationByPageNo(num -
