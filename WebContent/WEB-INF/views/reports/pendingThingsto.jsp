@@ -35,7 +35,7 @@
 </div>
 			<div class="row">
 
-				<div class="page-heading col-sm-11"
+				<div class="page-heading col-sm-11.5"
 					style="background-color: #3C8DBD; color: white; left: 20px; height: 64px;">
 					<span class="glyphicon glyphicon-user"></span> Reports</b> <label
 						style="margin-left: 250px; margin-top: 8px;"><a
@@ -45,9 +45,12 @@
 
 			</div>
 		</div>
-		<table class="responstable" style="width: 1010px;">
+		<br>
+		<div class="col-sm-12" align="center"><strong>   ${empname}'s Pending Things To Do </strong></div>
+		<br>
+		<table class="responstable" style="width: 100%;">
 
-			<tbody>
+			<thead>
 				<tr>
 					<th>S.N.</th>
 					<th>Date</th>
@@ -56,21 +59,23 @@
 					<th>Doctor Name</th>
 					<th>Task</th>
 					<th>Objective</th>
-
+					<th>Action</th>
 
 				</tr>
+</thead>
+<tbody>
 				<c:if test="${!empty diaryList}">
 					<c:forEach items="${diaryList}" var="diary" varStatus="loop">
 
 						<tr>
 							<td>${loop.index+1}</td>
 							<td>${diary.date}</td>
-							<td></td>
+							<td>${diary.time}</td>
 							<td>${diary.contacperson}</td>
 							<td></td>
-							<%-- <td>${diary.Organization}</td> --%>
-							<%-- <td>${diary.tasktype}</td> --%>
-							<td></td>
+							<td>${diary.planName}</td>
+							<td>${diary.objective}</td>
+							<td><div class='glyphicon glyphicon-pencil'></div></td>
 
 
 
@@ -81,8 +86,8 @@
 
 			</tbody>
 		</table>
-<<<<<<< HEAD
-=======
+
+
 		
 		<div>
 		
@@ -93,7 +98,7 @@
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 
 	</div>
 

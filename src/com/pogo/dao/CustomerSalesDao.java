@@ -28,7 +28,7 @@ public interface CustomerSalesDao
 	void saveContact(Contact contact);
 
 
-	List<AddDiary> getdiarydata();
+	List<AddDiary> getdiarydata(int id, int pid);
 
 	
 
@@ -47,5 +47,9 @@ public interface CustomerSalesDao
 	int getTotalphone(Integer userempid, int i);
 
 	int getTotalothers(Integer userempid, int i);
+
+	AddDiary getDiarybyId(int id);
+
+	void updateDiary(AddDiary addDiary);
 
 }

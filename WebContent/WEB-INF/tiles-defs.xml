@@ -151,6 +151,11 @@
 			<put-attribute name="title" value="Pending Tasks "></put-attribute>
 				<put-attribute name="body" value="/WEB-INF/views/reports/pendingTasks.jsp" />
 			</definition>
+			<definition name="pendingThingsto" extends="baseLayout" >
+			<put-attribute name="title" value="Pending Thinks To "></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/reports/pendingThingsto.jsp" />
+			</definition>
+			 
 			<!--********************	followups***********************************************  -->
 			<definition name="followups" extends="baseLayout" >
 			<put-attribute name="title" value="Followups "></put-attribute>

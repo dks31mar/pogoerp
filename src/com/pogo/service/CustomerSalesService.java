@@ -20,24 +20,17 @@ public interface CustomerSalesService
 	List<CustomerSalesBean> findAllData();
 
 	public CustomerSalesBean getCustomerDetailsById(int id);
-
-
 	void upadtecustomerData(CustomerSalesBean customerSalesBean) throws ParseException;
-
 	void savediary(AddDiaryBean addDiaryBean);
-
 	void addFollowup(AddFollowUpBean addFollowUpBean);
-
 	String findAllDataById();
-
 	void addContactPerson(ContactBean contactBean);
-
 	List<AddDiary> getdiarydata();
-	List<AddDiaryBean> getDiaryList();
-
+	List<AddDiaryBean> getDiaryList(int id, String planId);
 	List<AddDiaryBean> getDiaryRecord();
-
 	String getCustomerdatabyCompanyName(String organization);
+	public AddDiaryBean editdiaryrecord(int id);
+	void updateDiaryData(AddDiaryBean addDiaryBean);
 
 
 	
