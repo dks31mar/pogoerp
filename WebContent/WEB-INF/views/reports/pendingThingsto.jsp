@@ -87,10 +87,7 @@
 			</tbody>
 		</table>
 
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		
 		<div>
 		
