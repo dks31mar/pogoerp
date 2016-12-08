@@ -56,12 +56,12 @@
 						<tr>
 							<td>${loop.index+1}</td>
 							<td>${diarylist.enteryuser}</td>
-							<td id="appoit${loop.index+1}" style="text-align: center;"><a href="">${diarylist.totalappointment }</a></td>
+							<td id="appoit${loop.index+1}" style="text-align: center;"><a href="pendingThingsTo?id=${diarylist.enteryuserId}&planid=2">${diarylist.totalappointment }</a></td>
 							
-							<td id="phon${loop.index+1}" style="text-align: center;"><a href="">${diarylist.totalphone }</a></td>
-							<td id="emal${loop.index+1}" style="text-align: center;"><a href="">${diarylist.totalemail }</a></td>
-							<td id="smss${loop.index+1}" style="text-align: center;" ><a href="">${diarylist.totalsms }</a></td>
-							<td id="otherss${loop.index+1}" style="text-align: center;"><a href="">${diarylist.totalothers }</a></td>
+							<td id="phon${loop.index+1}" style="text-align: center;"><a href="pendingThingsTo?id=${diarylist.enteryuserId}&planid=4">${diarylist.totalphone }</a></td>
+							<td id="emal${loop.index+1}" style="text-align: center;"><a href="pendingThingsTo?id=${diarylist.enteryuserId}&planid=3">${diarylist.totalemail }</a></td>
+							<td id="smss${loop.index+1}" style="text-align: center;" ><a href="pendingThingsTo?id=${diarylist.enteryuserId}&planid=1">${diarylist.totalsms }</a></td>
+							<td id="otherss${loop.index+1}" style="text-align: center;"><a href="pendingThingsTo?id=${diarylist.enteryuserId}&planid=0">${diarylist.totalothers }</a></td>
 							<td id="total12${loop.index+1}" style="text-align: center;"><a href="">${diarylist.total }</a></td>
 						</tr>
 
