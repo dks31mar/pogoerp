@@ -87,7 +87,10 @@
 			</tbody>
 		</table>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		
 		<div>
 		
@@ -100,17 +103,4 @@
 <script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
 
 
-	</div>
-
-	</TD>
-	</TD>
-	<TD valign="top">
-	</TR>
-	</TABLE>
-
-
-	<div class="row form-group">
-		<div class="col-sm-7"></div>
-
-
-		</script>
+	

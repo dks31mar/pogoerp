@@ -188,8 +188,10 @@ public class CustomerSalesController {
 			HttpServletResponse response) throws IOException {
 
 		MultipartFile multipartFile = customerFileUploadBean.getFile();
+		System.out.println("data"+customerFileUploadBean.getFile());
 		CustomersFileUplaod fileUplaod = new CustomersFileUplaod();
 		fileUplaod.setFile(multipartFile.getBytes());
+		System.out.println("hello"+multipartFile.getBytes());
 		fileUplaod.setFileName(multipartFile.getOriginalFilename());
 		fileUplaod.setFileType(multipartFile.getContentType());
 		response.sendRedirect("attachFiles");
