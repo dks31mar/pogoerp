@@ -74,16 +74,16 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="" placeholder=" Name" id="name" required="required"  class="form-control"  type="text">
-  <span style="color: red" id="msg1">*This field is required.</span>
+  <input   name="" placeholder=" Name" id="name" required="required"  class="form-control" pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" type="text">
+  <!--  <span style="color: red" id="msg1">*This field is required.</span>-->
     </div>
   </div>
   <label class="col-md-2 control-label" style="margin-left: -62px;">Contact Person</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="designation" placeholder="Contact Person"   id="contactper" class="form-control"  type="text">
-  <span style="color: red" id="msg2">*This field is required.</span>
+  <input   name="designation" placeholder="Contact Person"   id="contactper" class="form-control" pattern="[a-zA-Z0-9]+" type="text">
+    <!--  <span style="color: red" id="msg2">*This field is required.</span>-->
     </div>
   </div>
 </div>
@@ -96,7 +96,7 @@
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input name="middlename"   placeholder="Address" id="address"  class="form-control"  type="text">
-  <span style="color: red" id="msg3">*This field is required.</span>
+  <!--  <span style="color: red" id="msg3">*This field is required.</span>-->
     </div>
   </div>
   
@@ -105,7 +105,7 @@
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
   <input name="phone"   class="form-control" id="phone2" placeholder="(845)555-1212" type="text" required="required">
-  <span style="color: red" id="msg4">*This field is required.</span>
+  <!--  <span style="color: red" id="msg4">*This field is required.</span>-->
     </div>
   </div> 
   
@@ -115,8 +115,8 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input name="lastname"   placeholder="Mobile No" id="phone1"  class="form-control"  type="text">
-   <span style="color: red" id="msg5">*This field is required.</span>
+  <input name="lastname"   placeholder="Mobile No" id="phone1"  class="form-control" pattern="^\d{1,10}$" type="text">
+   <!-- <span style="color: red" id="msg5">*This field is required.</span> -->
     </div>
   </div>
   
@@ -134,8 +134,8 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="eamil"  placeholder="E-Mail Address" class="form-control"id ="email1" required="required" type="email">
-     <span style="color: red" id="msg7">*This field is required.</span>
+  <input  name="eamil"  placeholder="E-Mail Address" class="form-control"id ="email1" required="required" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" type="email">
+     <!--  <span style="color: red" id="msg7">*This field is required.</span>-->
   
   </div>
 </div>
@@ -171,7 +171,7 @@
      <option value="2 years">2 years</option>
      <option value="3 years">3 years</option>
     </select>
-     <span style="color: red" id="msg8">*This field is required.</span>
+    <!--  <span style="color: red" id="msg8">*This field is required.</span>-->
     </div>
   </div>
 </div>
@@ -181,7 +181,7 @@
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
   <input   name="firstname" placeholder="Product Name" id="productname" required="required"  class="form-control"  type="text">
-    <span style="color: red" id="msg9">*This field is required.</span>
+     <!--<span style="color: red" id="msg9">*This field is required.</span>-->
   </div>
 </div>
 <label class="col-md-2 control-label" style="margin-left: -62px;">NO of Free AMC<span style="color: red;">*</span></label>  
@@ -194,7 +194,7 @@
       <option value="2">2</option>
        <option value="More Than 2">More Than 2</option>
     </select>
-     <span style="color: red" id="msg10">*This field is required.</span>
+      <!--<span style="color: red" id="msg10">*This field is required.</span>-->
     </div>
   </div>
 </div> 
@@ -207,7 +207,7 @@
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-doller"></i></span>
   <input name="price"  class="form-control" placeholder="Rupees" type="text" required="required" id ="price">
-    <span style="color: red" id="msg11">*This field is required.</span>
+   <!--  <span style="color: red" id="msg11">*This field is required.</span>-->
     </div>
   </div>
    <div class="form-group"> 
@@ -216,7 +216,7 @@
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
   <input name="Product Name"   class="form-control" id="rateamc" placeholder="AMC Rate" required="required" type="text">
-    <span style="color: red" id="msg12">*This field is required.</span>
+    <!-- <span style="color: red" id="msg12">*This field is required.</span>-->
   </div>
 </div>
 </div>

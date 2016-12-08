@@ -127,7 +127,7 @@
 			
 			<td><a href="editDesignation?id=${data.designationid}" title="Edit" ><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
-			<td><a href="deleteDesg?designationid=${data.designationid}" title="Delete"><span class="glyphicon glyphicon-trash" style="margin-left: 10px;">
+			<td><a href="deleteDesg?designationid=${data.designationid}" title="Delete"><span class="glyphicon glyphicon-trash" style="margin-left: 10px;"onclick="return confirm('Are you sure you want to delete?')">
 			</span></a></td>
 			</tr>	
 												

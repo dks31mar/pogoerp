@@ -39,12 +39,14 @@
   <div class="col-md-10" align="right"><input path="loginname" type="text" class="validate[required] text-input" id="unitname"
 						style="border-radius: 5px;" value="" name="loginname" placeholder="Enter Unit Name"
 						maxlength="20" autofocus="autofocus"></input>
-						<div id="msg1" align="center"><span style="color: red">*Input Needed</span></div>
+						
 						</div>
   
 </div>
 
-
+<div class="row">
+<div class="col-md-10" align="right"><span style="color: red" id="msg1" >*This field is required.</span></div>
+</div>
 
  <div class="row">
 <div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
@@ -83,7 +85,7 @@
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="#" onclick="deletedata(${unit.unittypeid})"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td>
 					</tr>
 
 				</c:forEach>
@@ -125,14 +127,17 @@ $("#getpopup").click(function(){
 	 $("#unitname").val('');
 	 
 	 $("#hiddenid").val('');
-	
+	 $("#msg1").hide();
 });
 	    });
 $("#formid").hide();
 
 $('#saveForm').click(function (){
 	var unitname=$('#unitname').val();
-	
+	if(unitname == ''){
+		$("#msg1").show('fast');
+	}
+	else{
 	
 	var jsonObj={'unittype':unitname
 	} ;
@@ -151,7 +156,7 @@ $.ajax({
 		    	 //window.location.currency;
 		    	 window.location.reload();
 	     
-	    }});
+	    }});}
 });
 
 
@@ -217,7 +222,8 @@ $.ajax({
 		    	 window.location.reload();
 	    alert("edit");
 	    }});
-	
-	
+});
+$('#unitname').click(function (){
+	 $('#msg1').hide();
 });
 </script>

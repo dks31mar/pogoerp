@@ -86,7 +86,7 @@
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deleteprodet?id=${cur.productid}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td>
 					</tr>
 </c:forEach>
 </c:if>

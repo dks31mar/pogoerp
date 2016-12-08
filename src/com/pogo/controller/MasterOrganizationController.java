@@ -414,7 +414,7 @@ public class MasterOrganizationController {
 		// response.sendRedirect("states");
 	}
 
-	@RequestMapping(value = "/sms", method = RequestMethod.GET)
+	@RequestMapping(value = "sms", method = RequestMethod.GET)
 	public ModelAndView getSmsAllocation(@ModelAttribute("command") SmsAllocationBean sms, HttpServletRequest request,
 			BindingResult result) throws ParseException {
 		System.out.println("inside sms  method");

@@ -59,7 +59,7 @@
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control"  type="hidden">
-  <input value="${zones.zonesname}" name="zonesname"  placeholder="Name" id="transportname"  class="form-control"  type="text">
+  <input value="${zones.zonesname}" name="zonesname"  placeholder="Name" id="transportname"  class="form-control" pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" type="text">
     </div>
   </div>
   
@@ -68,7 +68,7 @@
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input value="${zones.zonesid}"  name="zonesid" placeholder="Region Name" id="zoneid"  class="form-control"  type="hidden">
-  <input value="${zones.zonesname}" name="zonesname"  placeholder="Contact person name" id="contactperson"  class="form-control"  type="text">
+  <input value="${zones.zonesname}" name="zonesname"  placeholder="Contact person name" id="contactperson"  class="form-control" pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" type="text">
     </div>
   </div>
 </div>
@@ -77,7 +77,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input value="${zones.zonesphone}"  class="form-control" placeholder="8285080678" type="text"  id="mobileno" required="required">
+  <input value="${zones.zonesphone}"  class="form-control" placeholder="8285080678" type="text"  pattern="^\d{1,10}$" id="mobileno" required="required">
     </div>
  
 </div>
@@ -124,7 +124,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control"  id="email" required="required" type="text">
+  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control"  id="email" required="required" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" type="text">
     </div>
   </div>
  
