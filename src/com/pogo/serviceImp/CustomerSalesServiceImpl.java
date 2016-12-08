@@ -103,7 +103,7 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			CustomerSalesBean salebean=new CustomerSalesBean();
 			salebean.setCustomerId(data.getCustomerId());
 			salebean.setCreationDate(data.getCreationDate());
-		//	salebean.setInitiatedBy(data.getInitiatedBy().getFirstname()+""+data.getInitiatedBy().getLastname());
+		
 			salebean.setAddress(data.getAddress());
 			salebean.setOrganisation(data.getOrganisation());
 			salebean.setContactPerson(data.getContactPerson());
