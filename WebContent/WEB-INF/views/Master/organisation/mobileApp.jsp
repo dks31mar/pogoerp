@@ -231,10 +231,10 @@
 	</table>
 	</div>
 	</div>
-<<<<<<< HEAD
-<!--  	
-<diV>Export Option:
-=======
+
+  	
+
+
 	<script>
 	$(document).ready(function() {
 	    $('#mainidtable').DataTable( {
@@ -251,7 +251,7 @@
 <<<<<<< HEAD
 </diV>
 -->
-=======
-</diV> -->
 
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+ 
+
+

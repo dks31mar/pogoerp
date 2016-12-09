@@ -38,8 +38,13 @@
 				<div class="page-heading col-sm-11.5"
 					style="background-color: #3C8DBD; color: white; left: 20px; height: 44px;">
 					<span class="glyphicon glyphicon-user"></span> Reports</b> <label
+
 						><a
 						href="#" class="">Pending Tasks</a> </label>
+
+						style="margin-left: 250px; margin-top: 8px;"><a
+						href="pendingtasks" class="btn btn-primary">Pending Tasks</a> </label>
+
 
 				</div>
 
@@ -75,9 +80,8 @@
 							<td></td>
 							<td>${diary.planName}</td>
 							<td>${diary.objective}</td>
-							<td><div class='glyphicon glyphicon-pencil'></div></td>
-
-
+							<td><a href="editdiary?id=${diary.diaryId}&empid=${empid}&planid=${planid}" title="Edit">
+							<span class="glyphicon glyphicon-pencil"></span></a></td> 
 
 						</tr>
 

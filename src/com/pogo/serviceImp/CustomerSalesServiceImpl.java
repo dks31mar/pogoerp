@@ -106,11 +106,7 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			CustomerSalesBean salebean=new CustomerSalesBean();
 			salebean.setCustomerId(data.getCustomerId());
 			salebean.setCreationDate(data.getCreationDate());
-
-			salebean.setInitiatedBy(data.getInitiatedBy().getFirstname());
-
-		
-
+			salebean.setInitiatedBy(data.getInitiatedBy().getFirstname()+" " +data.getInitiatedBy().getLastname());
 			salebean.setAddress(data.getAddress());
 			salebean.setOrganisation(data.getOrganisation());
 			salebean.setContactPerson(data.getContactPerson());
@@ -287,11 +283,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		customerSalesDao.saveContact(contact);
 		
 	}
-	
 
-	
-
-	
 
 	@Override
 	public List<AddDiary> getdiarydata() {
@@ -365,14 +357,28 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	{
 		AddDiary diary=customerSalesDao.getDiarybyId(id);
 		AddDiaryBean diarybean=new AddDiaryBean();
+		diarybean.setDiaryId(diary.getDiaryId());
+		diarybean.setOrganization(diary.getOrganizationName());
 		diarybean.setAddress(diary.getAddress());
 		diarybean.setContacperson(diary.getContacperson());
 		diarybean.setDate(diary.getDate());
 		diarybean.setTime(diary.getDiarytime());
-		diarybean.setTimemin(diary.getDiarytime());
+		diarybean.setTimemin(diary.getDiarytimemin());
 		diarybean.setObjective(diary.getObjective());
+		diarybean.setMobileno(diary.getMobileno());
+		diarybean.setEmail(diary.getEmail());
+		if(diary.getDegName()!=null)
+		{
+			diarybean.setDegId(diary.getDegName().getDesignationid());
+			//diarybean.setDegName(diary.getDegName().getDesignation());
+		}
 		if(diary.getPlanName()!=null){
+			diarybean.setPlanName(diary.getPlanName().getPlan());
 		diarybean.setPlanId(diary.getPlanName().getId());
+		}
+		if(diary.getEnteryuser()!=null)
+		{
+			diarybean.setEnteryuserId(diary.getEnteryuser().getUserempid());
 		}
 		return diarybean;
 	}
@@ -380,16 +386,31 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	public void updateDiaryData(AddDiaryBean addDiaryBean) 
 	{
 		AddDiary addDiary=new AddDiary();
+		addDiary.setDiaryId(addDiaryBean.getDiaryId());
+		addDiary.setOrganizationName(addDiaryBean.getOrganization());
 		addDiary.setAddress(addDiaryBean.getAddress());
 		addDiary.setContacperson(addDiaryBean.getContacperson());
 		addDiary.setDiarytime(addDiaryBean.getTime());
 		addDiary.setDiarytimemin(addDiaryBean.getTimemin());
 		addDiary.setObjective(addDiaryBean.getObjective());
+		addDiary.setEmail(addDiaryBean.getEmail());
+		addDiary.setMobileno(addDiaryBean.getMobileno());
 		addDiary.setDate(addDiaryBean.getDate());
 		if(addDiaryBean.getPlanId()>0){
+			//addDiary.setPlanName(masterMasterDao.getplanById(addDiaryBean.getPlanName()));
 			addDiary.setPlanName(masterMasterDao.getplanById(addDiaryBean.getPlanId()));
 	     }else
 	    	 addDiary.setPlanName(null);
+		if(addDiaryBean.getDegId()>0)
+		{
+			addDiary.setDegName(empDao.getData(addDiaryBean.getDegId()));
+		}else
+			addDiary.setDegName(null);
+		if(addDiaryBean.getEnteryuserId()>0)
+		{
+			addDiary.setEnteryuser(empDao.get(addDiaryBean.getEnteryuserId()));
+		}else
+			addDiary.setEnteryuser(null);
 		customerSalesDao.updateDiary(addDiary);
 	}
 	@Override
@@ -406,6 +427,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		for(AddDiary data:diarylist)
 		{
 			AddDiaryBean bean=new AddDiaryBean();
+			bean.setDiaryId(data.getDiaryId());;
 			bean.setDate(data.getDate());
 			bean.setContacperson(data.getContacperson());
 			bean.setTime(data.getDiarytime()+":"+data.getDiarytimemin());
