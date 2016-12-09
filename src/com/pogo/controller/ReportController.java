@@ -1,5 +1,14 @@
 package com.pogo.controller;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
 import com.pogo.model.AddFollowUp;
@@ -28,7 +39,10 @@ public class ReportController {
 		for(AddDiaryBean d:list){
 			empname=d.getEnteryuser();
 		}
+		if(id!=0)
 		model.addAttribute("empname", empname);
+		else
+			model.addAttribute("empname", "All");
 	     return new ModelAndView("pendingThingsto");
 	}
 	@RequestMapping(value="/editdiary",method=RequestMethod.GET)
@@ -61,5 +75,27 @@ public class ReportController {
 	     return "followups";
 	}
 	
-
+	@RequestMapping(value="getfollowuplistbyuserid",method = RequestMethod.GET)
+	@ResponseBody
+	public void followUpListByUserId(@RequestParam("id") String id,@RequestParam("sdate") String sdate,@RequestParam("edate") String edate,Model model,HttpServletResponse res) throws IOException
+	{
+		List<AddFollowUpBean> listbean=CustomerSalesService.followUpListByUserId(id,sdate,edate);
+		System.out.println(listbean.size());
+		List<String> dates=new ArrayList<>();
+		Iterator<AddFollowUpBean> itr=listbean.iterator();
+		while (itr.hasNext()) {
+			AddFollowUpBean addFollowUpBean = (AddFollowUpBean) itr.next();
+			dates.add(addFollowUpBean.getFollowupDate());
+		}		
+		Set<String> unique = new HashSet<String>(dates);
+		String json="";
+		for(String bean:unique){
+			json+=bean + ": " + Collections.frequency(dates, bean)+",";
+			
+		}
+		System.out.println(json);
+		json = json.replaceAll(",$", "");
+		PrintWriter w=res.getWriter();
+		w.print(json);
+	}
 }

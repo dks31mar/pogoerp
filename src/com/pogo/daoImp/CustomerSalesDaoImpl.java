@@ -5,25 +5,20 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.itextpdf.text.pdf.hyphenation.TernaryTree.Iterator;
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerSales;
 import com.pogo.model.CustomersFileUplaod;
-import com.pogo.model.ProductMaster;
-import com.pogo.model.State;
 import com.pogo.model.UserEmployee;
-
+@SuppressWarnings({"unchecked","rawtypes"})
 @Repository("customerSalesDao")
 public class CustomerSalesDaoImpl implements CustomerSalesDao {
 	@Autowired
@@ -35,7 +30,7 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<CustomerSales> getsalesList() {
 		return sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).list();
@@ -64,7 +59,7 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<CustomerSales> getsalesListById() {
 		ProjectionList proList = Projections.projectionList();
@@ -82,20 +77,20 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 		sessionFactory.getCurrentSession().save(contact);
 
 	}
-
-
-	
-
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<AddDiary> getdiarydata(int id,int pid) {
-		return (List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", pid)).add(Restrictions.eq("enteryuser.userempid", id)).list();
+		List<AddDiary> list=null;
+		if (pid!=0) {
+			list=(List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", pid)).add(Restrictions.eq("enteryuser.userempid", id)).list();
+		} else {
+			list=(List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("enteryuser.userempid", id)).list();
+		}
+		return list;
 				
 				
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public List<UserEmployee> getDatafromDiary() {
 		List<UserEmployee> d = sessionFactory.getCurrentSession().createCriteria(AddDiary.class)
@@ -139,6 +134,7 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 		Criteria state = sessionFactory.getCurrentSession().createCriteria(CustomerSales.class);
 		Criteria country = state.createCriteria("status");
 		country.add(Restrictions.eq("id", statusid));
+		
 		List list = state.list();
 
 		return list;
@@ -220,5 +216,30 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 		
 	}
 
+	@Override
+	public List<AddDiary> getdiarydata1(int pid) {
+	List<AddDiary>	list=(List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", pid)).list();
+		return list;
+	}
+
+	
+	@Override
+	public List<AddFollowUp> getfollowUpUserId(String id,String sdate,String edate) {
+		
+		return sessionFactory.getCurrentSession().createCriteria(AddFollowUp.class).add(Restrictions.gt("followupDate", sdate))
+				.add(Restrictions.lt("followupDate", edate)).setProjection(Projections.projectionList()
+						.add(Projections.groupProperty("userEmp.userempid")))
+				.list();
+	}
+	@Override
+	public List<AddFollowUp> followUpListByUserId(Object id,String sdate,String edate) {
+		
+		return sessionFactory.getCurrentSession()
+				.createCriteria(AddFollowUp.class)
+				.add(Restrictions.eq("userEmp.userempid", id))
+				.add(Restrictions.gt("followupDate", sdate))
+				.add(Restrictions.lt("followupDate", edate))
+				.list();
+	}
 	
 }

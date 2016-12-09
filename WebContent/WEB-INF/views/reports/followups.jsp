@@ -139,7 +139,13 @@ $('#getcalendarbydays').click(function(){
 	$('#calendartable').prepend('<thead></thead>');
 	$('#calendartable').find('thead').append(markup);
 	$('#calendartable').find('thead').append('<th>Total</th><th>Average</th>');
-	
+	$.ajax({
+		url: "getfollowuplistbyuserid?id=1&sdate="+sdate+"&edate="+ldate, 
+		success: function(result){
+			console.log(result);
+			//search(result);
+			
+    }});
 	});
 
 

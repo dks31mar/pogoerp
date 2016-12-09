@@ -4,6 +4,7 @@ package com.pogo.serviceImp;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import javax.crypto.CipherInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
@@ -258,6 +260,10 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 			followUp.setActionType(masterMasterDao.getActionDataById(addFollowUpBean.getActionId()));
 		}else
 			followUp.setActionType(null);
+		if(addFollowUpBean.getUserEmpId()>0)
+		{
+			followUp.setUserEmp(empDao.get(addFollowUpBean.getUserEmpId()));
+		}
 		customerSalesDao.addfollowup(followUp);
 		
 	}
@@ -389,7 +395,13 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	@Override
 	public List<AddDiaryBean> getDiaryList(int id, String planId) {
 		int pid=Integer.parseInt(planId);
-		List<AddDiary> diarylist=customerSalesDao.getdiarydata(id,pid);
+		List<AddDiary> diarylist=null;
+		if(id!=0){
+		diarylist=customerSalesDao.getdiarydata(id,pid);
+		
+		}else {
+			diarylist=customerSalesDao.getdiarydata1(pid);
+		}
 		List<AddDiaryBean> diarybean=new ArrayList<AddDiaryBean>();
 		for(AddDiary data:diarylist)
 		{
@@ -414,6 +426,30 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		}
 	
 		return diarybean;
+	}
+	@Override
+	public List<AddFollowUpBean> followUpListByUserId(String id,String sdate,String edate) {
+		List<AddFollowUp> list=customerSalesDao.getfollowUpUserId(id,sdate,edate);
+		Object [] s1=(Object[]) list.toArray();
+		List<AddFollowUpBean> b=new ArrayList<>();
+		for(Object s:s1){
+			List<AddFollowUp> list2=customerSalesDao.followUpListByUserId(s,sdate,edate);
+			for(AddFollowUp afoll:list2){
+				AddFollowUpBean bean=new AddFollowUpBean();
+				bean.setFollowUpId(afoll.getFollowUpId());
+				bean.setFollowupDate(afoll.getFollowupDate());
+				bean.setEmpname(afoll.getUserEmp().getFirstname()+" "+afoll.getUserEmp().getLastname());
+				b.add(bean);
+				System.out.println(afoll.getUserEmp().getFirstname());
+			}
+		
+		}
+		
+		String res=StringUtils.collectionToCommaDelimitedString(b);
+			
+		System.out.println(res);
+		
+		return b;
 	}
 	
 	

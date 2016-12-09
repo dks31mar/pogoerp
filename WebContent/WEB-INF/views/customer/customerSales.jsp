@@ -399,21 +399,22 @@ $(document).ready(function(){
 			});
 		}
 		
-		var j123=1;
+		
 		function contactDesignation() 
 		{
-			i=parseInt(i)+parseInt(1);
+			console.log(i);
+			//i=parseInt(i)+parseInt(1);
 			$.ajax({
 				url:'contactdesignation',
 				type:'GET',
 				success : function(data) {
 					var f1=JSON.parse(data);
 					console.log(f1);
-					if(j123==1){
+					if(i==7){
 					$.each(f1, function(k, v) {
 						console.log("inside");
 						$('#designationOption').append('<option value="'+k+'">'+v+'</option>');
-						j123=parseInt(j123)+parseInt(2);
+						i=parseInt(i)+parseInt(2);
 					});
 					}
 					

@@ -393,6 +393,24 @@
  <!--  <input name="followupTimeOut" class="form-control selectpicker" placeholder="Select Time In" required="required" type="text" id="datetimepicker"> -->
     </div>
   </div>
+   <label class="col-md-2 control-label" >Employee<span
+					style="color: red;">*</span></label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <select   name="userEmpId"  required="required"  class="form-control selectpicker">
+  <option value="" selected="selected">--Select Employee--</option>
+  <c:if test="${!empty actionList}">
+  <c:forEach items="${actionList}" var="data">
+  <option value="${data.id}">${data.action}</option>
+  </c:forEach>
+  </c:if> 
+      
+  </select>
+    </div>
+  </div>
+  </div>
+  <div class="form-group">
   <label class="col-md-2 control-label">Remarks</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">

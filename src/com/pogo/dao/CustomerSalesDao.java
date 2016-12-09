@@ -56,5 +56,13 @@ public interface CustomerSalesDao
 
 	void updateDiary(AddDiary addDiary);
 
+	List<AddDiary> getdiarydata1(int pid);
+
+	List<AddFollowUp> getfollowUpUserId(String id, String sdate, String edate);
+
+	List<AddFollowUp> followUpListByUserId(Object s, String sdate, String edate);
+
+	
+
 
 }

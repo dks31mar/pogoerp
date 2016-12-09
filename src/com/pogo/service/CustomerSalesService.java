@@ -35,6 +35,8 @@ public interface CustomerSalesService
 
 	void saveFiles(CustomersFileUplaod fileUplaod);
 
+	List<AddFollowUpBean> followUpListByUserId(String id, String sdate, String edate);
+
 
 	
 
