@@ -183,7 +183,7 @@ public class CustomerSalesController {
 		return "attachfiles";
 	}
 
-	@RequestMapping(value = "/filUplaod", method = RequestMethod.POST)
+	@RequestMapping(value = "/fileUplaod", method = RequestMethod.POST)
 	public void filesave(@ModelAttribute("customerFile") CustomerFileUploadBean customerFileUploadBean,
 			HttpServletResponse response) throws IOException {
 
@@ -194,6 +194,7 @@ public class CustomerSalesController {
 		System.out.println("hello"+multipartFile.getBytes());
 		fileUplaod.setFileName(multipartFile.getOriginalFilename());
 		fileUplaod.setFileType(multipartFile.getContentType());
+		customerSalesService.saveFiles(fileUplaod);
 		response.sendRedirect("attachFiles");
 
 	}

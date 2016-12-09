@@ -443,10 +443,10 @@
 			<put-attribute name="title" value="Report " />
 			<put-attribute name="body" value="/WEB-INF/views/reports/pendingThingsto.jsp" />
 			</definition>
-			<!-- <definition name="pendingtasks" extends="baseLayout" >
+			 <definition name="editdiary" extends="baseLayout" >
 			<put-attribute name="title" value="Report " />
-			<put-attribute name="body" value="/WEB-INF/views/reports/pendingTasks.jsp" />
-			</definition> -->
+			<put-attribute name="body" value="/WEB-INF/views/reports/updateDiary.jsp" />
+			</definition> 
 			
 			
 			<!-- Permission for SMS -->

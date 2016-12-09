@@ -19,6 +19,7 @@ import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerSales;
+import com.pogo.model.CustomersFileUplaod;
 import com.pogo.model.ProductMaster;
 import com.pogo.model.State;
 import com.pogo.model.UserEmployee;
@@ -203,6 +204,11 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 	}
 
 	@Override
+
+	public void savefiles(CustomersFileUplaod fileUplaod) {
+		sessionFactory.getCurrentSession().save(fileUplaod);
+	}
+	@Override
 	public AddDiary getDiarybyId(int id) {
 		return (AddDiary) sessionFactory.getCurrentSession().get(AddDiary.class, id);
 	}
@@ -210,6 +216,7 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 	@Override
 	public void updateDiary(AddDiary addDiary) {
 		sessionFactory.getCurrentSession().update(addDiary);
+
 		
 	}
 

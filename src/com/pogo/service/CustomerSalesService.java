@@ -11,6 +11,7 @@ import com.pogo.bean.ContactBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.model.AddDiary;
+import com.pogo.model.CustomersFileUplaod;
 
 public interface CustomerSalesService 
 {
@@ -31,6 +32,8 @@ public interface CustomerSalesService
 	String getCustomerdatabyCompanyName(String organization);
 	public AddDiaryBean editdiaryrecord(int id);
 	void updateDiaryData(AddDiaryBean addDiaryBean);
+
+	void saveFiles(CustomersFileUplaod fileUplaod);
 
 
 	
