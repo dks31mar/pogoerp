@@ -28,6 +28,7 @@ import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
+import com.pogo.model.CustomersFileUplaod;
 import com.pogo.model.Department;
 import com.pogo.model.ProductMaster;
 import com.pogo.model.UserEmployee;
@@ -102,7 +103,7 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			CustomerSalesBean salebean=new CustomerSalesBean();
 			salebean.setCustomerId(data.getCustomerId());
 			salebean.setCreationDate(data.getCreationDate());
-			//salebean.setAcmanager(data.getInitiatedBy().getFirstname());
+			salebean.setInitiatedBy(data.getInitiatedBy().getFirstname());
 			salebean.setAddress(data.getAddress());
 			salebean.setOrganisation(data.getOrganisation());
 			salebean.setContactPerson(data.getContactPerson());
@@ -360,6 +361,12 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		}
 		String json = new Gson().toJson(map);
 		return json;
+	}
+	@Override
+	public void saveFiles(CustomersFileUplaod fileUplaod) 
+	{
+		customerSalesDao.savefiles(fileUplaod);
+		
 	}
 	}
 	

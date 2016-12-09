@@ -15,14 +15,21 @@
 
 <script>
 $( function() {
-    $("#followdatestart").datepicker({dateFormat: 'dd-mm-yy'});
+    $("#followdatestart").datepicker({dateFormat: 'dd/mm/yy'
+    	
+    });
     
   });
 $( function() {
-    $("#followdateend").datepicker({dateFormat: 'dd-mm-yy'});
+    $("#followdateend").datepicker({dateFormat: 'dd/mm/yy'});
     
   });
 </script>
+
+<%
+java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
+java.util.Date date = new java.util.Date(); 
+%>
 <div class="row" style="margin-top: 15px">
 	<br>
 	<div align="center">
@@ -47,7 +54,7 @@ $( function() {
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-   <input  class="form-control" name="" id="followdatestart" value="${today}" placeholder="Select Starting Date" readonly>
+   <input  class="form-control" name="" id="followdatestart" value="<%=dateFormat.format(date) %>" placeholder="Select Starting Date" readonly>
     </div>
   </div>
   
@@ -57,60 +64,83 @@ $( function() {
    <input name=""  class="form-control" type="text" id="followdateend" placeholder="Select Ending Date" readonly>
     </div>
   </div>
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+ 
+ <button type="button" class="btn btn-success" id="getcalendarbydays">Send</button>
+    </div>
+  </div>
 </div>
 </div>
-       <table class="responstable">
+<table class="responstable" id="calendartable" style="width:98%;align:center">
   
-  <tbody>
-  <tr>
-    <th>S.N.</th>
-    <th data-th="Driver details"><span>A/c Manager</span></th>
-    <th>Sun</th>
-    <th>Mon</th>
-    <th>Tue</th>
-    <th>Wed</th>
-    <th>Thu</th>
-    <th>Fri</th>
-    <th>Sat</th>
-    <th>Sun</th>
-   <th>Mon</th>
-    <th>Tue</th>
-    <th>Wed</th>
-    <th>Thu</th>
-    <th>Fri</th>
-    <th>Sat</th>
-     <th>Sun</th>
-   
-  </tr>
-    <%-- <c:if test="${!empty branchList}">
-	<c:forEach items="${branchList}" var="branch" varStatus="loop">
-	
-  <tr>
-    <td>${loop.index+1}</td>
-    <td>${branch.zonesname}</td>
-   <td><a href="states?id=${branch.zonesid}" target="_blank">States</a></td>
-    <td><a href="Editregion?id=${branch.zonesid}" title="Edit" id="validate"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="deleteRegion?id=${branch.zonesid}" title="Delete"  Onclick="ConfirmDelete()"><span class="glyphicon glyphicon-trash"  id="delete" ></span></a></td>
-  </tr>
-   
-  </c:forEach>
-  </c:if> --%>
-  
-</tbody>
+ 
 </table>
-        
-</div>
 
 
 <script>
-function ConfirmDelete()
-{
-  var x = confirm("Are you sure you want to delete?");
-  if (x)
-      return true;
-  else
-    return false;
+
+
+function parseDate(str) {
+    var mdy = str.split('/');
+    return new Date(mdy[2], mdy[1]-1, mdy[0]);
 }
+
+function daydiff(first, second) {
+    return Math.round((second-first)/(1000*60*60*24));
+}
+
+function checkLeapYear(yy){
+	return ((yy % 100 === 0) ? (yy % 400 === 0) : (yy % 4 === 0));
+}
+$('#getcalendarbydays').click(function(){
+	$('#calendartable').html('');
+	var sdate=$('#followdatestart').val();
+	var ldate=$('#followdateend').val();
+	var sres = sdate.split("/");
+	var lres = ldate.split("/");
+	var weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+    var monthAt31=["1","3","5","7","8","10","12"];
+    var monthAt30=["4","6","9","11"];
+    var a = new Date(sres[1]+'/'+sres[0]+'/'+sres[2]);
+    var dayinnum=a.getDay();
+    var d=a.getDate();
+    var day= weekday[a.getDay()];
+	var totaldays=daydiff(parseDate($('#followdatestart').val()), parseDate($('#followdateend').val()));
+	
+	
+	alert("total number of column creted "+totaldays);
+	var markup='<th>S.No.</th><th>Employee Name</th>';
+	for(var i=0;i<=totaldays;i++){
+		markup += "<th>"+weekday[dayinnum]+"<br>"+d+"</th>";
+		if(weekday[dayinnum]=="Sat"){
+			
+			dayinnum=parseInt(0);
+		}else{
+			dayinnum=parseInt(dayinnum)+parseInt(1);
+		}
+		/* alert((jQuery.inArray( sres[2], monthAt31) && d!=31));
+		alert((jQuery.inArray( sres[2], monthAt30) && d!=30));
+		alert((sres[2]=='2' && d!=28)); */
+		//alert(sres[2]);
+		if((monthAt31.includes(sres[1]) && d==31)){
+			d=1;
+		
+		}else if((monthAt30.includes(sres[1]) && d==30)){
+			d=1;
+		}else if( (sres[2]=='2' && d==28)){
+			d=1;
+		}else{
+			d++;
+		}
+		
+		
+	}
+	$('#calendartable').prepend('<thead></thead>');
+	$('#calendartable').find('thead').append(markup);
+	$('#calendartable').find('thead').append('<th>Total</th><th>Average</th>');
+	
+	});
 
 
 </script>

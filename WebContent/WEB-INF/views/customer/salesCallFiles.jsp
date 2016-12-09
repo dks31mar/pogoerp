@@ -39,7 +39,7 @@ $(document).on('change', '.file', function(){
 								</div>
 							</div> -->
 							
-							<div class="panel-body">
+							<%-- <div class="panel-body">
 				<form:form id="formID" action="filUplaod"
 					commandName="customerFile" method="POST" enctype="multipart/form-data"
 					class="form-horizontal form-groups-bordered validate"
@@ -90,10 +90,10 @@ $(document).on('change', '.file', function(){
 					</div>
 					</form:form>
 			</div>
-
-<%-- <div class="container" style="margin-top: 25px;">
-  <form:form  action="filUplaod"
-					commandName="customerFile" method="post" enctype="multipart/form-data"
+ --%>
+ <div class="container" style="margin-top: 25px;">
+  <form:form  action="fileUplaod"
+					commandName="customerFile" method="POST" enctype="multipart/form-data"
 					class="form-horizontal form-groups-bordered validate"
 					novalidate="novalidate">
 					
@@ -138,6 +138,6 @@ $(document).on('change', '.file', function(){
   </div> 
   </form:form>
 </div><br><br>
- --%>
+ 
 
 

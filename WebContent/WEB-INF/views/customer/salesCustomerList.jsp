@@ -73,7 +73,7 @@
   <td>${salesdetails.address}</td>
   <td>${salesdetails.contactPerson}</td>
   <td>${salesdetails.status}</td>
-  <td>${salesdetails.acmanager}</td>
+  <td>${salesdetails.initiatedBy}</td>
   <td><a href="editcustomer?id=${salesdetails.customerId}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a> <span>&nbsp;</span>
   <button type="button"  onclick="putIdAtPlanner(${salesdetails.customerId})" title="More Action" data-toggle="modal" data-target="#myModal"><i class="fa fa-th" aria-hidden="true"></i></button></td>
   </tr>

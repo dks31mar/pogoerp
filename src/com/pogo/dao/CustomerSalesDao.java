@@ -6,6 +6,7 @@ import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerSales;
+import com.pogo.model.CustomersFileUplaod;
 import com.pogo.model.UserEmployee;
 
 public interface CustomerSalesDao 
@@ -47,5 +48,7 @@ public interface CustomerSalesDao
 	int getTotalphone(Integer userempid, int i);
 
 	int getTotalothers(Integer userempid, int i);
+
+	void savefiles(CustomersFileUplaod fileUplaod);
 
 }

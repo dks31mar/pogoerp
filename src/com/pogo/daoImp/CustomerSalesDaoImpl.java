@@ -19,6 +19,7 @@ import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerSales;
+import com.pogo.model.CustomersFileUplaod;
 import com.pogo.model.ProductMaster;
 import com.pogo.model.State;
 import com.pogo.model.UserEmployee;
@@ -199,6 +200,12 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 				+ "tottal >>>>>>>>>>>>>>>>>>>       " + d21);
 
 		return d21;
+	}
+
+	@Override
+	public void savefiles(CustomersFileUplaod fileUplaod) {
+		sessionFactory.getCurrentSession().save(fileUplaod);
+		
 	}
 
 	

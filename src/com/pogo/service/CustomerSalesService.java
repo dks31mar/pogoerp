@@ -11,6 +11,7 @@ import com.pogo.bean.ContactBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.model.AddDiary;
+import com.pogo.model.CustomersFileUplaod;
 
 public interface CustomerSalesService 
 {
@@ -38,6 +39,8 @@ public interface CustomerSalesService
 	List<AddDiaryBean> getDiaryRecord();
 
 	String getCustomerdatabyCompanyName(String organization);
+
+	void saveFiles(CustomersFileUplaod fileUplaod);
 
 
 	

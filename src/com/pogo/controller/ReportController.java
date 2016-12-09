@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.pogo.bean.AddDiaryBean;
+import com.pogo.bean.AddFollowUpBean;
+import com.pogo.model.AddFollowUp;
 import com.pogo.service.CustomerSalesService;
 @Controller
 public class ReportController {
@@ -34,7 +36,8 @@ public class ReportController {
 	@RequestMapping(value="followups",method = RequestMethod.GET)
 	public String followUp(Model model)
 	{
-		
+		//List<AddFollowUpBean> listbean=CustomerSalesService.getFollowUpRecord();
+		//model.addAttribute("followupdata", listbean);
 	     return "followups";
 	}
 	
