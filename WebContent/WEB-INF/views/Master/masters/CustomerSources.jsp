@@ -80,7 +80,7 @@
 						<td><a href="#" onclick="editCur(${customersource.customersourceId})" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>		
 					 <td style="margin"><a href="deletecustomersource?customersourceId=${customersource.customersourceId}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>  
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td>  
 					</tr>
 
 				</c:forEach>

@@ -109,7 +109,7 @@
 						<td><a href="#" onclick="editCur(${list.suppliermasterid});" title="Edit">
 								<span class="glyphicon glyphicon-pencil"></span></a></td>		
 					 	<td style="margin"><a href="deletesuppliermstdata?id=${list.suppliermasterid}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>  
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td>  
 					</tr>
 
 				</c:forEach>

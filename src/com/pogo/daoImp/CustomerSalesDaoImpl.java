@@ -88,8 +88,11 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 
 	@SuppressWarnings("unchecked")
-	public List<AddDiary> getdiarydata() {
-		return sessionFactory.getCurrentSession().createCriteria(AddDiary.class).list();
+	@Override
+	public List<AddDiary> getdiarydata(int id,int pid) {
+		return (List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", pid)).add(Restrictions.eq("enteryuser.userempid", id)).list();
+				
+				
 	}
 
 	@SuppressWarnings("unchecked")
@@ -196,15 +199,24 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 		d21 = sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", 5))
 				.add(Restrictions.eq("enteryuser.userempid", userempid)).list().size();
-		System.out.println("id is >>>>>>>>>>               " + i + "                      "
-				+ "tottal >>>>>>>>>>>>>>>>>>>       " + d21);
 
 		return d21;
 	}
 
 	@Override
+
 	public void savefiles(CustomersFileUplaod fileUplaod) {
 		sessionFactory.getCurrentSession().save(fileUplaod);
+	}
+	@Override
+	public AddDiary getDiarybyId(int id) {
+		return (AddDiary) sessionFactory.getCurrentSession().get(AddDiary.class, id);
+	}
+
+	@Override
+	public void updateDiary(AddDiary addDiary) {
+		sessionFactory.getCurrentSession().update(addDiary);
+
 		
 	}
 

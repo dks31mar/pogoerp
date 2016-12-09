@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.ContactBean;
@@ -103,7 +104,11 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 			CustomerSalesBean salebean=new CustomerSalesBean();
 			salebean.setCustomerId(data.getCustomerId());
 			salebean.setCreationDate(data.getCreationDate());
+
 			salebean.setInitiatedBy(data.getInitiatedBy().getFirstname());
+
+		
+
 			salebean.setAddress(data.getAddress());
 			salebean.setOrganisation(data.getOrganisation());
 			salebean.setContactPerson(data.getContactPerson());
@@ -289,25 +294,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	}
 
 
-	public List<AddDiaryBean> getDiaryList() {
-		List<AddDiary> diarylist=customerSalesDao.getdiarydata();
-		List<AddDiaryBean> diarybean=new ArrayList<AddDiaryBean>();
-		
-		
-		for(AddDiary data:diarylist)
-		{
-			AddDiaryBean bean=new AddDiaryBean();
-			bean.setDate(data.getDate());
-			//bean.setTime(data.getTime());
-			//bean.setTasktype(data.getTasktype());
-			bean.setOrganization(data.getOrganizationName());
-			bean.setContacperson(data.getContacperson());
-			bean.setAddress(data.getAddress());
-			bean.setObjective(data.getObjective());
-			diarybean.add(bean);
-		}
-		return diarybean;
-	}
+	
 	@Override
 	public List<AddDiaryBean> getDiaryRecord() {
 		List<AddDiaryBean> bean=new ArrayList<AddDiaryBean>(); 
@@ -321,8 +308,6 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 			
 			beans.setEnteryuserId(data.getUserempid());
 			beans.setEnteryuser(data.getFirstname()+" "+data.getLastname());
-			
-				
 				beans.setTotalsms(customerSalesDao.getTotalsms(data.getUserempid(),1));
 			
 				System.out.println("2");
@@ -363,11 +348,76 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		return json;
 	}
 	@Override
+
 	public void saveFiles(CustomersFileUplaod fileUplaod) 
 	{
 		customerSalesDao.savefiles(fileUplaod);
 		
 	}
+
+	public AddDiaryBean editdiaryrecord(int id) 
+	{
+		AddDiary diary=customerSalesDao.getDiarybyId(id);
+		AddDiaryBean diarybean=new AddDiaryBean();
+		diarybean.setAddress(diary.getAddress());
+		diarybean.setContacperson(diary.getContacperson());
+		diarybean.setDate(diary.getDate());
+		diarybean.setTime(diary.getDiarytime());
+		diarybean.setTimemin(diary.getDiarytime());
+		diarybean.setObjective(diary.getObjective());
+		if(diary.getPlanName()!=null){
+		diarybean.setPlanId(diary.getPlanName().getId());
+		}
+		return diarybean;
+	}
+	@Override
+	public void updateDiaryData(AddDiaryBean addDiaryBean) 
+	{
+		AddDiary addDiary=new AddDiary();
+		addDiary.setAddress(addDiaryBean.getAddress());
+		addDiary.setContacperson(addDiaryBean.getContacperson());
+		addDiary.setDiarytime(addDiaryBean.getTime());
+		addDiary.setDiarytimemin(addDiaryBean.getTimemin());
+		addDiary.setObjective(addDiaryBean.getObjective());
+		addDiary.setDate(addDiaryBean.getDate());
+		if(addDiaryBean.getPlanId()>0){
+			addDiary.setPlanName(masterMasterDao.getplanById(addDiaryBean.getPlanId()));
+	     }else
+	    	 addDiary.setPlanName(null);
+		customerSalesDao.updateDiary(addDiary);
+	}
+	@Override
+	public List<AddDiaryBean> getDiaryList(int id, String planId) {
+		int pid=Integer.parseInt(planId);
+		List<AddDiary> diarylist=customerSalesDao.getdiarydata(id,pid);
+		List<AddDiaryBean> diarybean=new ArrayList<AddDiaryBean>();
+		for(AddDiary data:diarylist)
+		{
+			AddDiaryBean bean=new AddDiaryBean();
+			bean.setDate(data.getDate());
+			bean.setContacperson(data.getContacperson());
+			bean.setTime(data.getDiarytime()+":"+data.getDiarytimemin());
+			bean.setObjective(data.getObjective());
+			bean.setPlanName(data.getPlanName().getPlan());
+			bean.setEnteryuser(data.getEnteryuser().getFirstname()+" "+data.getEnteryuser().getLastname());
+			/*bean.setDiaryId(data.getDiaryId());
+			//bean.setTime(data.getTime());
+			//
+			bean.setOrganization(data.getOrganizationName());
+			
+			bean.setAddress(data.getAddress());
+			*/
+			//diarybean.add(bean);
+			//bean.setDiaryId(diarylist.);
+			//return bean;
+			diarybean.add(bean);
+		}
+	
+		return diarybean;
+	}
+	
+	
+
 	}
 	
 	

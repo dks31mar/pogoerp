@@ -48,7 +48,9 @@
 				<div class="col-md-11" align="right"><button style="margin-left: 300px; margin-top: -31px;" type="button"
 				class="btn btn-primary" id="EditForm">Edit</button></div>
 </div> 
-
+<div class="row">
+<div class="col-md-10" align="right"><span style="color: red" id="msg1" >*This field is required.</span></div>
+</div>
 
 </div>
 </div>
@@ -77,7 +79,7 @@
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deleteteam?teamid=${state.teamid}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> 
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td> 
 								
 					</tr>
 
@@ -105,14 +107,17 @@ $("#getcountrypopup").click(function(){
 	 $("#addstate").val('');
 	 
 	 $("#hiddenid").val('');
-	
+	 $("#msg1").hide();
 });
 	    });
 $("#formid").hide();
 
 $('#saveForm').click(function (){
 	var team=$('#addteam').val();
-	
+	if(team == ''){
+		$("#msg1").show('fast');
+	}
+	else{
 	var jsonObj={'team':team
 	} ;
 $.ajax({
@@ -130,7 +135,7 @@ $.ajax({
 		    	 //window.location.currency;
 		    	 window.location.reload();
 	     
-	    }});
+	    }});}
 });
 function editCur(id){
 	$("#formid").show('show');
@@ -177,6 +182,12 @@ $.ajax({
 		    	 window.location.reload();
 	     //alert("edit");
 	    }});
+	
+	
+});
+$('#addteam').click(function (){
+	 $('#msg1').hide();
+	 
 	
 	
 });

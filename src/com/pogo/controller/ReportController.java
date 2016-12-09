@@ -4,8 +4,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
@@ -17,14 +19,32 @@ public class ReportController {
 	@Autowired
 	private CustomerSalesService CustomerSalesService;
 
-	/*@RequestMapping(value="pendingtasks",method = RequestMethod.GET)
-	public ModelAndView getPendigTasks(Model model){
-		System.out.println("get the diary data as a list on pending page");
-		List<AddDiaryBean> list=CustomerSalesService.getDiaryList();
+	@RequestMapping(value="pendingThingsTo",method = RequestMethod.GET)
+	public ModelAndView getPendigTasks(Model model,@RequestParam int id,@RequestParam("planid") String planId)
+	{
+		List<AddDiaryBean> list=CustomerSalesService.getDiaryList(id,planId);
 		model.addAttribute("diaryList",list );
-	     return new ModelAndView("pendingtasks");
-	}	*/
-	/*pendingThingsTo*/
+		String empname=null;
+		for(AddDiaryBean d:list){
+			empname=d.getEnteryuser();
+		}
+		model.addAttribute("empname", empname);
+	     return new ModelAndView("pendingThingsto");
+	}
+	@RequestMapping(value="/editdiary",method=RequestMethod.GET)
+	public String getdata(Model model,@RequestParam int id)
+	{
+		model.addAttribute("diarydata", CustomerSalesService.editdiaryrecord(id));
+		return "editdiary";
+	}
+	@RequestMapping(value="updatediary",method=RequestMethod.POST)
+	public String diaryData(@ModelAttribute("addDiaryBean") AddDiaryBean addDiaryBean)
+	{
+		CustomerSalesService.updateDiaryData(addDiaryBean);
+		return "redirect:/pendingThingsTo";
+		
+	}
+	
 	@RequestMapping(value="pendingtasks",method = RequestMethod.GET)
 	public String getthingsTo(Model model)
 	{

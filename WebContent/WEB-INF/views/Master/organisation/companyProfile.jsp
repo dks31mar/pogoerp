@@ -40,7 +40,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="companyinfoname" id="firstlastupper" placeholder="Name"   class="form-control"  type="text">
+  <input   name="companyinfoname" id="firstlastupper" placeholder="Name" pattern="[a-zA-Z]+"  class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" style="margin-left: -62px;">Contact Person<span
@@ -48,7 +48,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="companyinfocontactperson" id="capitalizelast"  placeholder="Enter Contect Person"    required="required"  class="form-control"  type="text">
+  <input   name="companyinfocontactperson" id="capitalizelast" pattern="[a-zA-Z]+" placeholder="Enter Contect Person"    required="required"  class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -57,7 +57,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-  <input   name="companyinfocontactno" placeholder="Contact No" required="required"  class="form-control"  type="text">
+  <input   name="companyinfocontactno" placeholder="Contact No" required="required" pattern="^\d{1,10}$" class="form-control"  id="contactno" type="text">
     </div>
   </div>
   
@@ -86,7 +86,8 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="companyinfoemail"  placeholder="E-Mail Address" class="form-control" required="required" type="email">
+  <input  name="companyinfoemail"  placeholder="E-Mail Address" class="form-control" required="required" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
+  type="email">
     </div>
   </div>
 </div>
@@ -186,6 +187,29 @@
 		      }
 		      document.getElementById(firstUppermiddle).value = str;
 		  }
-		
+		/*
+		//Validation: allow only alphabets
+		$('#firstlastupper').keypress(function (e) {
+        var regex = new RegExp("^[a-zA-Z]+$");
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(str)) {
+            return true;
+        }
+        else
+        {
+        e.preventDefault();
+        alert('Please Enter Alphabate');
+        return false;
+        }
+    });
+		  //for mobile no
+		 $('input[name="number"]').keyup(function(e)
+                                {
+  if (/\D/g.test(this.value))
+  {
+    // Filter non-digits from input value.
+    this.value = this.value.replace(/\D/g, '');
+  }
+});*/
 </script>
 

@@ -84,7 +84,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input type="text"
 								class="form-control" name="dateofjoining" id="datepickerjoin"
-								readonly="readonly" placeholder="Select Date">
+								readonly="readonly"  pattern="[a-zA-Z]+" placeholder="Select Date">
 						</div>
 					</div>
 				</div>

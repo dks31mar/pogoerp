@@ -51,7 +51,7 @@
 						<td style="display: none;">${sms.userempid}</td>
 						<td>${loop.index+1}</td>
 						<td>${sms.firstname} ${sms.lastname}</td>
-						<td>${sms.designation}</td>
+						<td>${sms.designationName}</td>
 						<td><div class="checkbox checkbox-primary">
                         <input id="checkbox_${sms.userempid}" type="checkbox">
                         <label for="checkbox_${sms.userempid}">

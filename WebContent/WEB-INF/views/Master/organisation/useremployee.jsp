@@ -151,14 +151,10 @@ $( function() {
 
 	</script>
 </head>
-<div class="row" style="margin-top: 15px">
-	<br>
-	<div align="center">
-		<i>
-			<h3></h3>
-		</i> <input type="hidden" name="profile" value="0" />
-	</div>
-</div>
+<div class="row" style="margin-top: 5px;">
+	
+	
+</div><br>
 
 
 <div class="row">
@@ -245,7 +241,7 @@ $( function() {
 </div>
 
 
-<div class="row form-group">
+<%-- <div class="row form-group">
 	<div class="col-sm-7"></div>
 </div>
 <div class="row" align="center">
@@ -276,13 +272,13 @@ $( function() {
 			</ul>
 		</div>
 	</div>
-</div>
+</div> --%>
 
 <script type="text/javascript">
 
 $(document).ready(function() {
     $('#mainidtable').DataTable( {
-        "order": [[0, "desc" ]]
+        "order": [[0, "asc" ]]
     } );
 } ); 
 var d= $('#chg').text();
