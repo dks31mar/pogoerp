@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.util.List;
 
-
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -108,25 +109,14 @@ public class ReportController {
 	
 	@RequestMapping(value="getfollowuplistbyuserid",method = RequestMethod.GET)
 	@ResponseBody
-	public void followUpListByUserId(@RequestParam("id") String id,@RequestParam("sdate") String sdate,@RequestParam("edate") String edate,Model model,HttpServletResponse res) throws IOException
+	public void followUpListByUserId(@RequestParam("sdate") String sdate,@RequestParam("edate") String edate,Model model,HttpServletResponse res) throws IOException
 	{
-		List<AddFollowUpBean> listbean=CustomerSalesService.followUpListByUserId(id,sdate,edate);
-		System.out.println(listbean.size());
-		List<String> dates=new ArrayList<>();
-		Iterator<AddFollowUpBean> itr=listbean.iterator();
-		while (itr.hasNext()) {
-			AddFollowUpBean addFollowUpBean = (AddFollowUpBean) itr.next();
-			dates.add(addFollowUpBean.getFollowupDate());
-		}		
-		Set<String> unique = new HashSet<String>(dates);
-		String json="";
-		for(String bean:unique){
-			json+=bean + ": " + Collections.frequency(dates, bean)+",";
-			
-		}
-		System.out.println(json);
-		json = json.replaceAll(",$", "");
+		JSONArray listbean=CustomerSalesService.followUpListByUserId(sdate,edate);
+		
+
+		System.out.println(listbean);
+		//json = json.replaceAll(",$", "");
 		PrintWriter w=res.getWriter();
-		w.print(json);
+		w.print(listbean);
 	}
 }

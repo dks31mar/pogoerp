@@ -54,7 +54,7 @@ java.util.Date date = new java.util.Date();
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-   <input  class="form-control" name="" id="followdatestart" value="<%=dateFormat.format(date) %>" placeholder="Select Starting Date" readonly>
+   <input  class="form-control" name="" id="followdatestart" value="" placeholder="Select Starting Date" readonly>
     </div>
   </div>
   
@@ -67,7 +67,7 @@ java.util.Date date = new java.util.Date();
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  
- <button type="button" class="btn btn-success" id="getcalendarbydays">Send</button>
+ <button type="button" class="btn btn-success" id="getcalendarbydays">Search</button>
     </div>
   </div>
 </div>
@@ -138,14 +138,54 @@ $('#getcalendarbydays').click(function(){
 	}
 	$('#calendartable').prepend('<thead></thead>');
 	$('#calendartable').find('thead').append(markup);
-	$('#calendartable').find('thead').append('<th>Total</th><th>Average</th>');
+	$('#calendartable').find('thead').append('<th>Total</th>');
 	$.ajax({
-		url: "getfollowuplistbyuserid?id=1&sdate="+sdate+"&edate="+ldate, 
+		url: "getfollowuplistbyuserid?sdate="+sdate+"&edate="+ldate, 
 		success: function(result){
-			console.log(result);
-			//search(result);
 			
-    }});
+			console.log(result);
+			var data1 =jQuery.parseJSON(result);
+			console.log(data1.length);
+			var index12=01;
+			for(var j=0;j<data1.length;j++){
+				var d1=a.getDate();
+				var name=data1[j];
+				var date=name.NoOfcount;
+				datedata=date.split(',');
+				console.log(datedata.length);
+			
+				var markup1='<tbody><tr id='+j+'>';
+				markup1+="<td>"+index12+"</td>";
+				markup1+="<td>"+name.name+"</td>";
+				for(var i=0;i<=totaldays;i++){
+						markup1+="<td class="+d1+">0</td>";
+						
+						if((monthAt31.includes(sres[1]) && d==31)){
+							d1=1;
+						
+						}else if((monthAt30.includes(sres[1]) && d==30)){
+							d1=1;
+						}else if( (sres[2]=='2' && d==28)){
+							d1=1;
+						}else{
+							d1++;
+						}
+					}
+					markup1+="<td class=total></td></tr></tbody>";
+					
+					$('#calendartable').append(markup1);
+					var totalrate=0;
+					for(var k=0;k<datedata.length;k++){
+						var datesplitby=datedata[k].split(':');
+						totalrate+= Number(parseInt(datesplitby[1]));
+						$('#'+j+' .'+datesplitby[0]).text(datesplitby[1]);
+						$('#'+j+' .total').text(totalrate);
+					}
+					index12++;
+				}
+		
+    }
+	});
 	});
 
 

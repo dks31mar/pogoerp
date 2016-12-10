@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -224,21 +225,21 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 	
 	@Override
-	public List<AddFollowUp> getfollowUpUserId(String id,String sdate,String edate) {
+	public List<AddFollowUp> getfollowUpUserId(String sdate,String edate) {
 		
-		return sessionFactory.getCurrentSession().createCriteria(AddFollowUp.class).add(Restrictions.gt("followupDate", sdate))
-				.add(Restrictions.lt("followupDate", edate)).setProjection(Projections.projectionList()
+		return sessionFactory.getCurrentSession().createCriteria(AddFollowUp.class)
+				.add(Restrictions.between("followupDate", sdate, edate))
+				.setProjection(Projections.projectionList()
 						.add(Projections.groupProperty("userEmp.userempid")))
 				.list();
 	}
 	@Override
 	public List<AddFollowUp> followUpListByUserId(Object id,String sdate,String edate) {
-		
+		int id1=(int) id;
 		return sessionFactory.getCurrentSession()
 				.createCriteria(AddFollowUp.class)
-				.add(Restrictions.eq("userEmp.userempid", id))
-				.add(Restrictions.gt("followupDate", sdate))
-				.add(Restrictions.lt("followupDate", edate))
+				.add(Restrictions.eq("userEmp.userempid", id1))
+				.add(Restrictions.between("followupDate", sdate, edate)).addOrder(Order.asc("followupDate"))
 				.list();
 	}
 	

@@ -4,6 +4,9 @@ package com.pogo.service;
 import java.text.ParseException;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
@@ -35,7 +38,7 @@ public interface CustomerSalesService
 
 	void saveFiles(CustomersFileUplaod fileUplaod);
 
-	List<AddFollowUpBean> followUpListByUserId(String id, String sdate, String edate);
+	JSONArray followUpListByUserId(String id, String sdate);
 
 
 	

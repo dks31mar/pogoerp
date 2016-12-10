@@ -3,25 +3,25 @@ package com.pogo.serviceImp;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
-import javax.crypto.CipherInputStream;
-
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
-
 import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.ContactBean;
-import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.dao.MasterMastersDao;
@@ -29,15 +29,10 @@ import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
-import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.model.CustomersFileUplaod;
-import com.pogo.model.Department;
-import com.pogo.model.ProductMaster;
 import com.pogo.model.UserEmployee;
 import com.pogo.service.CustomerSalesService;
-
-import sun.java2d.pipe.AATextRenderer;
 
 @Service("customerSalesService")
 @Transactional
@@ -450,28 +445,57 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		return diarybean;
 	}
 	@Override
-	public List<AddFollowUpBean> followUpListByUserId(String id,String sdate,String edate) {
-		List<AddFollowUp> list=customerSalesDao.getfollowUpUserId(id,sdate,edate);
+	@Transactional
+	public JSONArray followUpListByUserId(String sdate,String edate) {
+		List<AddFollowUp> list=customerSalesDao.getfollowUpUserId(sdate,edate);
 		Object [] s1=(Object[]) list.toArray();
-		List<AddFollowUpBean> b=new ArrayList<>();
+		System.out.println(s1.length);
+		
+		JSONArray jsonarr=new JSONArray();
+	
 		for(Object s:s1){
+			System.out.println(s);
+			
+			JSONObject jsonobj=new JSONObject();
+			List<AddFollowUpBean> b=new ArrayList<>();
 			List<AddFollowUp> list2=customerSalesDao.followUpListByUserId(s,sdate,edate);
 			for(AddFollowUp afoll:list2){
+				System.out.println(afoll.getFollowupDate());
+				jsonobj.put("name", afoll.getUserEmp().getFirstname()+" "+afoll.getUserEmp().getLastname());
+				jsonobj.put("followupid", afoll.getFollowUpId());
+				jsonobj.put("Userempid", afoll.getUserEmp().getUserempid());
 				AddFollowUpBean bean=new AddFollowUpBean();
 				bean.setFollowUpId(afoll.getFollowUpId());
 				bean.setFollowupDate(afoll.getFollowupDate());
-				bean.setEmpname(afoll.getUserEmp().getFirstname()+" "+afoll.getUserEmp().getLastname());
 				b.add(bean);
-				System.out.println(afoll.getUserEmp().getFirstname());
 			}
+			List<String> dates=new ArrayList<>();
+			Iterator<AddFollowUpBean> itr=b.iterator();
+			while (itr.hasNext()) {
+				AddFollowUpBean addFollowUpBean = (AddFollowUpBean) itr.next();
+				dates.add(addFollowUpBean.getFollowupDate());
+				System.out.println(">>>>>>>>>>>>      "+addFollowUpBean.getFollowupDate());
+			}		
+			TreeSet<String> unique = new TreeSet<String>(dates);
+			String json="";
+			String splitdate="";
+			for(String bean1:unique){
+				splitdate=bean1.split("/")[0].replaceFirst("^0+(?!$)", "");
+				json+=splitdate + ": " + Collections.frequency(dates, bean1)+",";
+				
+			}
+			
+			json = json.replaceAll(",$", "");
+			jsonobj.put("NoOfcount",json);
+			jsonarr.put(jsonobj);
 		
 		}
 		
-		String res=StringUtils.collectionToCommaDelimitedString(b);
-			
-		System.out.println(res);
 		
-		return b;
+			
+	System.out.println(jsonarr);
+		
+		return jsonarr;
 	}
 	
 	
