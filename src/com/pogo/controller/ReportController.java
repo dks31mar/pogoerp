@@ -119,4 +119,29 @@ public class ReportController {
 		PrintWriter w=res.getWriter();
 		w.print(listbean);
 	}
+	
+	
+	/*@RequestMapping(value="followupsreportpage",method = RequestMethod.GET)
+	@ResponseBody
+	public void getfollowupReportPage(@RequestParam("datedif") String dateDif,Model model,@RequestParam("sdate") String sdate,@RequestParam("edate") String edate,HttpServletResponse res) throws IOException
+	{
+		System.out.println(dateDif);
+		String desginCode	= CustomerSalesService.followUpListByUserId(sdate,edate,dateDif);
+		//desginCode="<th></th>";
+		PrintWriter w=res.getWriter();
+		w.print(desginCode);
+	}*/
+	
+	@RequestMapping(value="getfollowupbyuseridndate",method = RequestMethod.GET)
+	
+	public String getfollowuplistbydatenid(@RequestParam("empid") String empid,Model model,@RequestParam("sdate") String sdate,@RequestParam("edate") String edate,@RequestParam("day") String day,HttpServletResponse res) throws IOException
+	{
+		//System.out.println(dateDif);
+		List<AddFollowUpBean> desginCode	= CustomerSalesService.getfollowuplistbydatenid(sdate,edate,empid,day);
+		//desginCode="<th></th>";
+		model.addAttribute("followlist",desginCode);
+		return "followupbydatenid";
+	}
+	
+	
 }

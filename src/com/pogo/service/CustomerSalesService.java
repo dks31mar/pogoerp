@@ -40,6 +40,10 @@ public interface CustomerSalesService
 
 	JSONArray followUpListByUserId(String id, String sdate);
 
+	List<AddFollowUpBean> getfollowuplistbydatenid(String sdate, String edate, String empid, String day);
+
+	
+
 
 	
 

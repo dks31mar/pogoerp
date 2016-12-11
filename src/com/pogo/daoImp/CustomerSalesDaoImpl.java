@@ -12,6 +12,8 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
@@ -236,11 +238,36 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 	@Override
 	public List<AddFollowUp> followUpListByUserId(Object id,String sdate,String edate) {
 		int id1=(int) id;
+		
 		return sessionFactory.getCurrentSession()
 				.createCriteria(AddFollowUp.class)
 				.add(Restrictions.eq("userEmp.userempid", id1))
 				.add(Restrictions.between("followupDate", sdate, edate)).addOrder(Order.asc("followupDate"))
 				.list();
 	}
-	
+	@Override
+	@Transactional
+	public List<AddFollowUp> followUpListByUserId1(String id,String sdate,String edate,String day) {
+		int id1=Integer.parseInt( id);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                    day         "+day);
+		List<AddFollowUp> list=new ArrayList<>();
+		if(day.equals("00/00/0000")){
+			System.out.println("if");
+			list=	sessionFactory.getCurrentSession()
+					.createCriteria(AddFollowUp.class)
+					.add(Restrictions.eq("userEmp.userempid", id1))
+					.add(Restrictions.between("followupDate", sdate, edate)).addOrder(Order.asc("followupDate"))
+					.list();
+			
+		}else{
+			System.out.println("else");
+			list=	sessionFactory.getCurrentSession()
+			.createCriteria(AddFollowUp.class)
+			.add(Restrictions.eq("userEmp.userempid", id1))
+			.add(Restrictions.like("followupDate", "%"+day))
+			.list();
+		
+		}
+		return list;
+	}
 }

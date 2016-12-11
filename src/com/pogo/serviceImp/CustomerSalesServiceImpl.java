@@ -1,9 +1,13 @@
 package com.pogo.serviceImp;
 
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -470,10 +474,13 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 				b.add(bean);
 			}
 			List<String> dates=new ArrayList<>();
+			List<Object> datenids=new ArrayList<>();
 			Iterator<AddFollowUpBean> itr=b.iterator();
 			while (itr.hasNext()) {
 				AddFollowUpBean addFollowUpBean = (AddFollowUpBean) itr.next();
 				dates.add(addFollowUpBean.getFollowupDate());
+				datenids.add(addFollowUpBean.getFollowupDate());
+				datenids.add(Integer.toString(addFollowUpBean.getFollowUpId()));
 				System.out.println(">>>>>>>>>>>>      "+addFollowUpBean.getFollowupDate());
 			}		
 			TreeSet<String> unique = new TreeSet<String>(dates);
@@ -497,10 +504,34 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		
 		return jsonarr;
 	}
+	@Override
+	@Transactional
+	public List<AddFollowUpBean> getfollowuplistbydatenid(String sdate, String edate, String empid,String day) {
+		List<AddFollowUp> list2=customerSalesDao.followUpListByUserId1(empid,sdate,edate,day);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>          Size      "+list2.size());
+		List<AddFollowUpBean> b=new ArrayList<>();
+		
+		for(AddFollowUp afoll:list2){
+			System.out.println(afoll.getFollowupDate());
+			
+			AddFollowUpBean bean=new AddFollowUpBean();
+			bean.setFollowUpId(afoll.getFollowUpId());
+			bean.setFollowupDate(afoll.getFollowupDate());
+			bean.setCusOrganisation(afoll.getCusOrganisation());
+			bean.setFollowupTimeIn(afoll.getFollowupTimeIn()+":"+afoll.getFollowupTimeInMin());
+			bean.setFollowupTimeOut(afoll.getFollowupTimeOut()+":"+afoll.getFollowupTimeOutMin());
+			bean.setContactPerson(afoll.getContactPerson());
+			bean.setCustStatus(afoll.getCusStatus());
+			bean.setRemarks(afoll.getRemarks());
+			
+			b.add(bean);
+		}
+		return b;
+	}
 	
 	
 
-	}
+}
 	
 	
 

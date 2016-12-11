@@ -62,6 +62,8 @@ public interface CustomerSalesDao
 
 	List<AddFollowUp> followUpListByUserId(Object s, String sdate, String edate);
 
+	List<AddFollowUp> followUpListByUserId1(String empid, String sdate, String edate, String day);
+
 	
 
 
