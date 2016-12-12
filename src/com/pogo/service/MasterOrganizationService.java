@@ -121,6 +121,11 @@ public interface MasterOrganizationService {
 
 	void deletedepartment(int id);
 
+	public String verifyLogin(String login);
+
+	 public String verifyEmail(String email);
+
+
 
 
 	

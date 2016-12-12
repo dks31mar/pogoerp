@@ -251,7 +251,7 @@ $('#datetimepicker').datetimepicker({
   <select name="enteryuserId"  class="form-control">
   <option value="">--Select Plan For--</option>
   <c:forEach items="${listemp}" var="listemp">
-  <option value="${listemp.userempid}">${listemp.loginname}</option>
+  <option value="${listemp.userempid}">${listemp.firstname} ${listemp.middlename} ${listemp.lastname}</option>
   </c:forEach>
   </select>
     </div>

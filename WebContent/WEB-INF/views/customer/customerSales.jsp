@@ -132,8 +132,10 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="organisation" placeholder="Organisation Name"   class="form-control"  type="text">
+   <div id="errors">
+  <input   name="organisation" placeholder="Organisation Name" id="organisation"  class="form-control"  type="text" onblur="verifyOrganisation();">
     </div>
+  </div>
   </div>
   <label class="col-md-2 control-label" >Alias<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
@@ -153,7 +155,7 @@
   <option value="" selected="selected">----Select Employee----</option>
   <c:if test="${!empty listemp}">
   <c:forEach items="${listemp}" var="list">
-  <option value="${list.userempid}">${list.loginname}</option>
+  <option value="${list.userempid}">${list.firstname} ${list.middlename} ${list.lastname}</option>
   </c:forEach>
  </c:if>
   </select>
@@ -167,7 +169,7 @@
    <option value="" selected="selected">----Select Role----</option>
   <c:if test="${!empty listemp}">
   <c:forEach items="${listemp}" var="List">
-  <option value="${List.userempid}">${List.firstname}</option>
+  <option value="${List.userempid}">${List.firstname} ${List.middlename} ${List.lastname}</option>
   </c:forEach>
   </c:if>
   </select>
@@ -294,9 +296,11 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
+  <div id="submitbutton">
     <button type="submit" class="btn btn-warning" onclick="message();" >Send <span class="glyphicon glyphicon-send"></span></button>
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
+</div>
 </div>
 
 </fieldset>
@@ -424,6 +428,37 @@ $(document).ready(function(){
 				}
 				
 			});
+		}
+		
+		function verifyOrganisation() {
+			var organisation = $("#organisation").val();
+			alert(organisation);
+			var flag = true;
+			$.ajax({
+						type : "POST",
+						url : 'verifyCust',
+						data : {
+							'organisation' : organisation,
+						},
+						success : function(data) {
+							var obj = JSON.parse(data);
+							//alert(obj.toSource());
+							if (obj == "no") 
+							{
+								$("#submitbutton").show();
+							}
+							else {
+								alert("This Organisation already Exist!!!");
+								$("#submitbutton").hide();
+							}
+						},
+						error : function(e) {
+							
+						}
+					});
+			
+			return (flag);
+
 		}
 		</script>
 

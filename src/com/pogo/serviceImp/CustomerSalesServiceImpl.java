@@ -1,6 +1,7 @@
 package com.pogo.serviceImp;
 
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import javax.crypto.CipherInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
@@ -19,6 +21,7 @@ import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.ContactBean;
+import com.pogo.bean.CustomerFileUploadBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.dao.CustomerSalesDao;
@@ -236,7 +239,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		customerSalesDao.saveDiary(diary);
 	}
 	@Override
-	public void addFollowup(AddFollowUpBean addFollowUpBean) {
+	public void addFollowup(AddFollowUpBean addFollowUpBean) throws IOException {
 		AddFollowUp followUp=new AddFollowUp();
 		followUp.setActionTaken(addFollowUpBean.getActionTaken());
 		followUp.setFollowupDate(addFollowUpBean.getFollowupDate());
@@ -252,9 +255,21 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		if(addFollowUpBean.getActionId()>0)
 		{
 			followUp.setActionType(masterMasterDao.getActionDataById(addFollowUpBean.getActionId()));
-		}else
+		}else{
 			followUp.setActionType(null);
-		customerSalesDao.addfollowup(followUp);
+		}
+		int id=customerSalesDao.addfollowup(followUp);
+		MultipartFile multipartFile = addFollowUpBean.getFile();
+		if(multipartFile.isEmpty()!=true){
+			CustomersFileUplaod fileUplaod = new CustomersFileUplaod();
+			fileUplaod.setFollowupId(id);
+			fileUplaod.setFile(multipartFile.getBytes());
+			fileUplaod.setFileName(multipartFile.getOriginalFilename());
+			fileUplaod.setFileType(multipartFile.getContentType());
+			customerSalesDao.savefiles(fileUplaod);
+		}
+		
+		
 		
 	}
 	@Override
@@ -331,6 +346,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		getdetail=customerSalesDao.getCustomerdatabyCompanyName(organization);
 		Map<String, String> map=new HashMap<>();
 		for(CustomerSales s:getdetail){
+			map.put("custid", ""+s.getCustomerId());
 			map.put("address", s.getAddress());
 			map.put("emailId", s.getEmailId());
 			map.put("mobileNo", s.getMobileNo());
@@ -421,11 +437,12 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 			bean.setTime(data.getDiarytime()+":"+data.getDiarytimemin());
 			bean.setObjective(data.getObjective());
 			bean.setPlanName(data.getPlanName().getPlan());
+			bean.setOrganization(data.getOrganizationName());
 			bean.setEnteryuser(data.getEnteryuser().getFirstname()+" "+data.getEnteryuser().getLastname());
 			/*bean.setDiaryId(data.getDiaryId());
 			//bean.setTime(data.getTime());
 			//
-			bean.setOrganization(data.getOrganizationName());
+			
 			
 			bean.setAddress(data.getAddress());
 			*/
@@ -436,6 +453,45 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		}
 	
 		return diarybean;
+	}
+	@Override
+	public List<CustomerFileUploadBean> getFollowupFilesList() {
+		List<CustomersFileUplaod> filedata=customerSalesDao.getdatafromfiles();
+				List<CustomerFileUploadBean> beans=new ArrayList<CustomerFileUploadBean>();
+		for(CustomersFileUplaod data:filedata)
+		{
+			CustomerFileUploadBean beansddata =new CustomerFileUploadBean();
+			beansddata.setCusfileId(data.getCusfileId());
+			beansddata.setFollowupId(data.getFollowupId());
+			beansddata.setOganisationName(customerSalesDao.getorgName(data.getFollowupId()));
+			beansddata.setFileName(data.getFileName());
+			beansddata.setFileType(data.getFileType());
+			beans.add(beansddata);
+		}
+		return beans;
+	}
+	@Override
+	public CustomersFileUplaod downloadDataById(int id) 
+	{
+		return customerSalesDao.getfilesDataBy(id);
+		 
+	}
+	@Override
+	public void DeletefileById(int id) {
+	CustomersFileUplaod files=customerSalesDao.getfilesDataBy(id);
+	customerSalesDao.delateFilesData(files);
+		
+	}
+	@Override
+	public String verifyOrg(String organisation) {
+		String result="yes";
+		CustomerSales sales= customerSalesDao.verifyOrg(organisation);
+		if(sales==null)
+		{
+			result="no";
+		}
+				
+		return result;
 	}
 	
 	

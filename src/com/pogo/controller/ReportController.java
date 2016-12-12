@@ -45,7 +45,8 @@ public class ReportController {
 	     return new ModelAndView("pendingThingsto");
 	}
 	@RequestMapping(value="/editdiary",method=RequestMethod.GET)
-	public String getdata(Model model,@RequestParam("id") int Dairyid,@RequestParam("empid") int id,@RequestParam("planid") String planId) throws ParseException
+	public String getdata(Model model,@RequestParam("id") int Dairyid,@RequestParam("empid") 
+	int id,@RequestParam("planid") String planId) throws ParseException
 	{
 		model.addAttribute("diarydata", CustomerSalesService.editdiaryrecord(Dairyid));
 		List<UserEmployeeBean> emp = empServive.getUserDetails();

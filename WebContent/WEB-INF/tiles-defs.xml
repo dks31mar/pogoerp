@@ -344,11 +344,6 @@
 				<put-attribute name="body" value="/WEB-INF/views/Master/product/addproduct.jsp" />
 			</definition>
 			
-			
-			
-			
-			
-			
 			<!-- Employees -->
        		
 			<definition name="getuseremp" extends="baseLayout" >
@@ -429,8 +424,8 @@
 			</definition>
 			
 			<definition name="attachfiles" extends="baseLayout" >
-			<put-attribute name="title" value="Attach Files " />
-			<put-attribute name="body" value="/WEB-INF/views/customer/salesCallFiles.jsp" />
+			<put-attribute name="title" value="Attach Files List" />
+			<put-attribute name="body" value="/WEB-INF/views/customer/followupAttachList.jsp" />
 			</definition>
 			
 			<definition name="department" extends="baseLayout" >
@@ -447,7 +442,7 @@
 			<put-attribute name="title" value="Report " />
 			<put-attribute name="body" value="/WEB-INF/views/reports/updateDiary.jsp" />
 			</definition> 
-			
+			 
 			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >

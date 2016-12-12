@@ -39,10 +39,14 @@ private String actionTaken;
 private String cusOrganisation;
 @Column(name="cus_address")
 private String cusAddress;
-@Column(name="cusAddress")
+@Column(name="cusStatus")
 private String cusStatus;
 @Column(name="remarks")
 private String remarks;
+
+
+
+
 public String getCusOrganisation() {
 	return cusOrganisation;
 }

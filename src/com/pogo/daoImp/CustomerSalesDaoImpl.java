@@ -59,8 +59,10 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 	}
 
 	@Override
-	public void addfollowup(AddFollowUp followUp) {
+	public int addfollowup(AddFollowUp followUp) {
 		sessionFactory.getCurrentSession().save(followUp);
+		
+		return followUp.getFollowUpId();
 
 	}
 
@@ -90,7 +92,8 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<AddDiary> getdiarydata(int id,int pid) {
-		return (List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", pid)).add(Restrictions.eq("enteryuser.userempid", id)).list();
+		return (List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class)
+				.add(Restrictions.eq("planName.id", pid)).add(Restrictions.eq("enteryuser.userempid", id)).list();
 				
 				
 	}
@@ -216,9 +219,41 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 	@Override
 	public void updateDiary(AddDiary addDiary) {
 		sessionFactory.getCurrentSession().update(addDiary);
+	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CustomersFileUplaod> getdatafromfiles() {
+		return sessionFactory.getCurrentSession().createCriteria(CustomersFileUplaod.class).list();
+	}
+
+	@Override
+	public CustomersFileUplaod getfilesDataBy(int id) {
+		return (CustomersFileUplaod) sessionFactory.getCurrentSession().get(CustomersFileUplaod.class, id);
 		
 	}
+
+	@Override
+	public void delateFilesData(CustomersFileUplaod files) {
+		sessionFactory.getCurrentSession().delete(files);
+		
+	}
+
+	@Override
+	public CustomerSales verifyOrg(String organisation) {
+		return (CustomerSales) sessionFactory.getCurrentSession().createCriteria(CustomerSales.class)
+				.add(Restrictions.eq("organisation",organisation)).uniqueResult();
+	}
+
+	@Override
+	public String getorgName(Integer followupId) {
+		
+		String name=(String)sessionFactory.getCurrentSession().createCriteria(AddFollowUp.class).add(Restrictions.eq("followUpId", followupId))
+				.setProjection(Projections.property("cusOrganisation")).uniqueResult();
+		return name;
+	}
+
+	
 
 	
 }

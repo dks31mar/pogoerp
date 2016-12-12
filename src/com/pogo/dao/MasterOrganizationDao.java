@@ -156,6 +156,10 @@ void updateCompetitior(CompetitiorsProfile comp);
 
 	Department getdepartmentbyid(int id);
 
+	UserEmployee verifyLogin(String login);
+
+	UserEmployee verifyEmail(String email);
+
 	
 
 
