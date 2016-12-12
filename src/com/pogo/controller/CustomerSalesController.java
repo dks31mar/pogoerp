@@ -106,8 +106,8 @@ public class CustomerSalesController {
 	}
 
 	@RequestMapping(value = "/getSalesList", method = RequestMethod.GET)
-	public String getSalesList(Model model) {
-		List<CustomerSalesBean> salesList = customerSalesService.findAllData();
+	public String getSalesList(@RequestParam("id") String id,Model model) {
+		List<CustomerSalesBean> salesList = customerSalesService.findAllData(id);
 		model.addAttribute("salesList", salesList);
 		return "getSalesList";
 	}
@@ -163,8 +163,14 @@ public class CustomerSalesController {
 
 	@RequestMapping(value = "/addFollowup", method = RequestMethod.GET)
 	public ModelAndView AddFollowup(Model model) {
+
 		//List<CustomerSalesBean> salesList = customerSalesService.findAllData();
 		//model.addAttribute("salesList", salesList);
+
+		String s="all";
+		List<CustomerSalesBean> salesList = customerSalesService.findAllData(s);
+		model.addAttribute("salesList", salesList);
+
 		List<AddActionBean> actionlist = masterService.findAllAction();
 		model.addAttribute("actionList", actionlist);
 		List<CustomerLevelsBean> cusStatus = masterService.getCustomersStatusList();
@@ -176,8 +182,10 @@ public class CustomerSalesController {
 
 	@RequestMapping(value = "/savefollowup", method = RequestMethod.POST)
 	public String addfollowup(@ModelAttribute("addFollowUpBean") AddFollowUpBean addFollowUpBean,
+
 			BindingResult result) throws IOException {
 		customerSalesService.addFollowup(addFollowUpBean);
+
 		return "redirect:addFollowup";
 	}
 

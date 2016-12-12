@@ -37,9 +37,18 @@
 
 				<div class="page-heading col-sm-11.5"
 					style="background-color: #3C8DBD; color: white; left: 20px; height: 44px;">
-					<span class="glyphicon glyphicon-user" style="margin-left: 24px;"></span> <strong>Reports</strong> <label
-						style="margin-left: 250px; margin-top: 8px;"><a
-						href="pendingtasks" class="btn btn-info">Pending Tasks</a> </label>
+
+					<span class="glyphicon glyphicon-user" style="margin-left: 24px;"></span> <strong>Reports</strong> 
+
+					<span class="glyphicon glyphicon-user"></span> Reports</b> 
+					<label><a href="#" class="">Pending Tasks</a> </label>
+
+
+						<a href="pendingtasks" class="btn btn-info">Pending Tasks</a> </label>
+
+						
+
+
 
 				</div>
 

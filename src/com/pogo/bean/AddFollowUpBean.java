@@ -1,6 +1,10 @@
 package com.pogo.bean;
 
+
 import org.springframework.web.multipart.MultipartFile;
+
+import com.pogo.model.UserEmployee;
+
 
 public class AddFollowUpBean 
 {
@@ -16,16 +20,36 @@ public class AddFollowUpBean
 	private String contactPerson;
 	private String action;
 	private int actionId;
+	private int userEmpId;
+	private String userEmp;
 	private String custStatus;
 	private String cusAddress;
 	private String cusOrganisation;
 	private String remarks;
+
 	
 	private Integer cusfileId;
 	private MultipartFile file;
 	private String fileName;
 	private String fileType;
 	
+
+	private UserEmployee useremp;
+	private String empname;
+	
+	public String getEmpname() {
+		return empname;
+	}
+	public void setEmpname(String empname) {
+		this.empname = empname;
+	}
+	public UserEmployee getUseremp() {
+		return useremp;
+	}
+	public void setUseremp(UserEmployee useremp) {
+		this.useremp = useremp;
+	}
+
 	public Integer getFollowUpId() {
 		return followUpId;
 	}
@@ -116,6 +140,7 @@ public class AddFollowUpBean
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+
 	public MultipartFile getFile() {
 		return file;
 	}
@@ -139,6 +164,19 @@ public class AddFollowUpBean
 	}
 	public void setCusfileId(Integer cusfileId) {
 		this.cusfileId = cusfileId;
+	}
+	public int getUserEmpId() {
+		return userEmpId;
+	}
+	public void setUserEmpId(int userEmpId) {
+		this.userEmpId = userEmpId;
+	}
+	public String getUserEmp() {
+		return userEmp;
+	}
+	public void setUserEmp(String userEmp) {
+		this.userEmp = userEmp;
+
 	}
 	
 	

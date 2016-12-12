@@ -1,28 +1,44 @@
 package com.pogo.serviceImp;
 
 
+
 import java.io.IOException;
+
+import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
-import javax.crypto.CipherInputStream;
-
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.web.multipart.MultipartFile;
+
 
 import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.ContactBean;
+
 import com.pogo.bean.CustomerFileUploadBean;
 import com.pogo.bean.CustomerLevelsBean;
+
+
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.dao.MasterMastersDao;
@@ -33,12 +49,8 @@ import com.pogo.model.Contact;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.model.CustomersFileUplaod;
-import com.pogo.model.Department;
-import com.pogo.model.ProductMaster;
 import com.pogo.model.UserEmployee;
 import com.pogo.service.CustomerSalesService;
-
-import sun.java2d.pipe.AATextRenderer;
 
 @Service("customerSalesService")
 @Transactional
@@ -98,8 +110,8 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 		
 	}
 	@Override
-	public List<CustomerSalesBean> findAllData() {
-		List<CustomerSales> sales=customerSalesDao.getsalesList();
+	public List<CustomerSalesBean> findAllData(String id) {
+		List<CustomerSales> sales=customerSalesDao.getsalesList(id);
 		List<CustomerSalesBean> salesbean=new ArrayList<CustomerSalesBean>();
 		for(CustomerSales data:sales)
 		{
@@ -257,6 +269,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 			followUp.setActionType(masterMasterDao.getActionDataById(addFollowUpBean.getActionId()));
 		}else{
 			followUp.setActionType(null);
+
 		}
 		int id=customerSalesDao.addfollowup(followUp);
 		MultipartFile multipartFile = addFollowUpBean.getFile();
@@ -270,6 +283,13 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		}
 		
 		
+
+		if(addFollowUpBean.getUserEmpId()>0)
+		{
+			followUp.setUserEmp(empDao.get(addFollowUpBean.getUserEmpId()));
+		}
+		customerSalesDao.addfollowup(followUp);
+
 		
 	}
 	@Override
@@ -426,7 +446,13 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	@Override
 	public List<AddDiaryBean> getDiaryList(int id, String planId) {
 		int pid=Integer.parseInt(planId);
-		List<AddDiary> diarylist=customerSalesDao.getdiarydata(id,pid);
+		List<AddDiary> diarylist=null;
+		if(id!=0){
+		diarylist=customerSalesDao.getdiarydata(id,pid);
+		
+		}else {
+			diarylist=customerSalesDao.getdiarydata1(pid);
+		}
 		List<AddDiaryBean> diarybean=new ArrayList<AddDiaryBean>();
 		for(AddDiary data:diarylist)
 		{
@@ -455,6 +481,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		return diarybean;
 	}
 	@Override
+
 	public List<CustomerFileUploadBean> getFollowupFilesList() {
 		List<CustomersFileUplaod> filedata=customerSalesDao.getdatafromfiles();
 				List<CustomerFileUploadBean> beans=new ArrayList<CustomerFileUploadBean>();
@@ -493,10 +520,164 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 				
 		return result;
 	}
+	@Transactional
+	public JSONArray followUpListByUserId(String sdate,String edate) {
+		List<AddFollowUp> list=customerSalesDao.getfollowUpUserId(sdate,edate);
+		Object [] s1=(Object[]) list.toArray();
+		System.out.println(s1.length);
+		
+		JSONArray jsonarr=new JSONArray();
+	
+		for(Object s:s1){
+			System.out.println(s);
+			
+			JSONObject jsonobj=new JSONObject();
+			List<AddFollowUpBean> b=new ArrayList<>();
+			List<AddFollowUp> list2=customerSalesDao.followUpListByUserId(s,sdate,edate);
+			for(AddFollowUp afoll:list2){
+				System.out.println(afoll.getFollowupDate());
+				jsonobj.put("name", afoll.getUserEmp().getFirstname()+" "+afoll.getUserEmp().getLastname());
+				jsonobj.put("followupid", afoll.getFollowUpId());
+				jsonobj.put("Userempid", afoll.getUserEmp().getUserempid());
+				AddFollowUpBean bean=new AddFollowUpBean();
+				bean.setFollowUpId(afoll.getFollowUpId());
+				bean.setFollowupDate(afoll.getFollowupDate());
+				b.add(bean);
+			}
+			List<String> dates=new ArrayList<>();
+			List<Object> datenids=new ArrayList<>();
+			Iterator<AddFollowUpBean> itr=b.iterator();
+			while (itr.hasNext()) {
+				AddFollowUpBean addFollowUpBean = (AddFollowUpBean) itr.next();
+				dates.add(addFollowUpBean.getFollowupDate());
+				datenids.add(addFollowUpBean.getFollowupDate());
+				datenids.add(Integer.toString(addFollowUpBean.getFollowUpId()));
+				System.out.println(">>>>>>>>>>>>      "+addFollowUpBean.getFollowupDate());
+			}		
+			TreeSet<String> unique = new TreeSet<String>(dates);
+			String json="";
+			String splitdate="";
+			for(String bean1:unique){
+				splitdate=bean1.split("/")[0].replaceFirst("^0+(?!$)", "");
+				json+=splitdate + ": " + Collections.frequency(dates, bean1)+",";
+				
+			}
+			
+			json = json.replaceAll(",$", "");
+			jsonobj.put("NoOfcount",json);
+			jsonarr.put(jsonobj);
+		
+		}
+		
+		
+			
+	System.out.println(jsonarr);
+		
+		return jsonarr;
+	}
+	@Override
+	@Transactional
+	public List<AddFollowUpBean> getfollowuplistbydatenid(String sdate, String edate, String empid,String day) {
+		List<AddFollowUp> list2=customerSalesDao.followUpListByUserId1(empid,sdate,edate,day);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>          Size      "+list2.size());
+		List<AddFollowUpBean> b=new ArrayList<>();
+		
+		for(AddFollowUp afoll:list2){
+			System.out.println(afoll.getFollowupDate());
+			
+			AddFollowUpBean bean=new AddFollowUpBean();
+			bean.setFollowUpId(afoll.getFollowUpId());
+			bean.setFollowupDate(afoll.getFollowupDate());
+			bean.setCusOrganisation(afoll.getCusOrganisation());
+			bean.setFollowupTimeIn(afoll.getFollowupTimeIn()+":"+afoll.getFollowupTimeInMin());
+			bean.setFollowupTimeOut(afoll.getFollowupTimeOut()+":"+afoll.getFollowupTimeOutMin());
+			bean.setContactPerson(afoll.getContactPerson());
+			bean.setCustStatus(afoll.getCusStatus());
+			bean.setRemarks(afoll.getRemarks());
+			
+			b.add(bean);
+		}
+		return b;
+	}
+	@Override
+	public String getfollowuplistbydatenid1(String sdate, String edate, String empid, String day) {
+		List<AddFollowUp> list2=customerSalesDao.followUpListByUserId1(empid,sdate,edate,day);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>          Size      "+list2.size());
+		String content="";
+		List<AddFollowUpBean> b=new ArrayList<>();
+		int i=1;
+		
+		if(!list2.isEmpty()){
+			content="<table id='unstyled' border=1><thead>"+
+					  "<tr>"+
+						    "<th>S.N.</th>"+
+						    "<th><span>Follow up Date</span></th>"+
+						    "<th>In Time</th>"+
+						    "<th>Out Time</th>"+
+						    "<th>Hours of metting(HOM)</th>"+
+					     	"<th> Customer</th>"+
+					      	"<th>Contact Person</th>"+
+					      	"<th> Status</th>"+
+					        "<th> Follow up Type</th>"+
+					        "<th> Remark</th>"+
+					        "<th> Next Followup Date</th>"+
+					          
+					  "</tr>"+
+					  "</thead>";
+							content+="<tbody>";
+							for(AddFollowUp afoll:list2){
+								content+="<tr>";
+								content+="<td>"+i+++"</td>";
+								content+="<td>"+afoll.getFollowupDate()+"</td>";
+								content+="<td>"+afoll.getFollowupTimeIn()+":"+afoll.getFollowupTimeInMin()+"</td>";
+								content+="<td>"+afoll.getFollowupTimeOut()+":"+afoll.getFollowupTimeOutMin()+"</td>";
+								content+="<td></td>";
+								content+="<td>"+afoll.getCusOrganisation()+"</td>";
+								content+="<td>"+afoll.getContactPerson()+"</td>";
+								
+								content+="<td>"+afoll.getCusStatus()+"</td>";
+								content+="<td></td>";
+								content+="<td>"+afoll.getRemarks()+"</td>";
+								content+="<td></td>";
+								System.out.println(afoll.getFollowupDate());
+								
+								AddFollowUpBean bean=new AddFollowUpBean();
+								bean.setFollowUpId(afoll.getFollowUpId());
+								bean.setFollowupDate(afoll.getFollowupDate());
+								bean.setCusOrganisation(afoll.getCusOrganisation());
+								bean.setFollowupTimeIn(afoll.getFollowupTimeIn()+":"+afoll.getFollowupTimeInMin());
+								bean.setFollowupTimeOut(afoll.getFollowupTimeOut()+":"+afoll.getFollowupTimeOutMin());
+								bean.setContactPerson(afoll.getContactPerson());
+								bean.setCustStatus(afoll.getCusStatus());
+								bean.setRemarks(afoll.getRemarks());
+								content+="</tr>";
+								b.add(bean);
+							}
+							content+="</tbody>";
+							content+="</table>";
+		}else{
+			content+="<h2>No Record Found</h2>";
+		}
+		
+		
+		return content;
+	}
+	@Override
+	public Map<String, String> findocountofstatus() {
+		List<CustomerLevels> list=customerSalesDao.getlistcustomerlevel();
+		Map<String, String> map=new HashMap<>();
+		for(CustomerLevels sl:list){
+			int totalcount=customerSalesDao.getcountcustomerlevel(sl);
+			map.put(sl.getStatus(), Integer.toString(totalcount));
+		}
+		System.out.println(map);
+		return map;
+
+	}
 	
 	
 
-	}
+}
 	
 	
 
