@@ -38,7 +38,7 @@ public class LoginController {
 		System.out.println(userBean.getUserName());
 		if(loginService.isValid(userBean,request)){
 			HttpSession session=request.getSession();
-			session.setAttribute("username",name);
+			
 			int id=(int)session.getAttribute("userid");
 			Map<String, Object> getLeftMenuList=new HashMap<String, Object>();
 			getLeftMenuList=loginService.getLeftMenu(request,id,pmob);

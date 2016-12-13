@@ -23,6 +23,7 @@ import com.pogo.dao.LoginDao;
 import com.pogo.model.CompanyPogoOptions;
 import com.pogo.model.PogoMenuOptions;
 import com.pogo.model.User;
+import com.pogo.model.UserEmployee;
 import com.pogo.model.UserOption;
 @Repository("loginDao")
 @SuppressWarnings({ "unused", "rawtypes" ,"unchecked"})
@@ -35,18 +36,25 @@ public class LoginDaoImp implements LoginDao{
 	public boolean isValidUser(User userBean,HttpServletRequest request) {
 		int userId=0;
 		
-			
-		Criteria q=	sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("userName", userBean.getUserName())).add(Restrictions.eq("password", userBean.getPassword()));
+			Criteria w=sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
+					.add(Restrictions.disjunction()
+							.add(Restrictions.or(Restrictions.eq("loginname", userBean.getUserName()), Restrictions.eq("eamil", userBean.getUserName()))))
+					.add(Restrictions.eq("password", userBean.getPassword()));
+		Criteria q=	sessionFactory.getCurrentSession().createCriteria(User.class)
+				.add(Restrictions.eq("userName", userBean.getUserName()))
+				.add(Restrictions.eq("password", userBean.getPassword()));
 		
 		//Query q=sessionFactory.getCurrentSession().createQuery("Select id from User where userName='"+userBean.getUserName()+"' and password='"+userBean.getPassword()+"'");
 
 try{
-	User u=(User)q.uniqueResult();
-	System.out.println(u.getId());
+	UserEmployee u=(UserEmployee)w.uniqueResult();
+	System.out.println(u.getUsermobile());
+	String name=u.getFirstname()+" "+u.getLastname();
 //		userId=0;
-	userId=u.getId();
+	userId=u.getUserempid();
 	HttpSession session=request.getSession();
 	session.setAttribute("userid", userId);
+	session.setAttribute("username",name);
 	System.out.println(userId);
 	if(userId>0){
 		
@@ -58,18 +66,8 @@ try{
 }
 		
 
-
-		User u=(User)q.uniqueResult();
-		userId=u.getId();
-		HttpSession session=request.getSession();
-		session.setAttribute("userid", userId);
-		System.out.println(userId);
-		if(userId>0){
-			
-			return true;
-		}
-		return false;
-	}
+return false;
+}
 	
 	@Override
 	public Map getLeftMenuData(HttpServletRequest request,int id,PogoMenuOptions pmob) {
