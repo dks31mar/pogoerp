@@ -66,13 +66,15 @@
 			</definition>
 			
 			<definition name="region" extends="baseLayout" >
-			 
+			 <put-attribute name="title" value="Zones" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/reagion.jsp" />
 			</definition>
 			<definition name="newbranch" extends="baseLayout" >
+			 <put-attribute name="title" value="Branches" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/newbranch.jsp" />
 			</definition>
 			<definition name="addbranch123" extends="baseLayout" >
+			 <put-attribute name="title" value="Add Branches" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/addbranch.jsp" />
 			</definition>
 			<definition name="eastbranch" extends="baseLayout" >
@@ -90,31 +92,40 @@
 				<put-attribute name="body" value="/WEB-INF/views/Master/westbranch.jsp" />
 			</definition>
 			<definition name="editregion" extends="baseLayout" >
+			 <put-attribute name="title" value="Update Zones" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/editregion.jsp" />
 			</definition>
 			 <definition name="addregion" extends="baseLayout">
+			  <put-attribute name="title" value="Add Zones" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addregion.jsp" />
 			</definition>
 			 <definition name="addstates" extends="baseLayout" >
+			 <put-attribute name="title" value=" Add States" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addstates.jsp" />
 			</definition>
 			 <definition name="editstates" extends="baseLayout" >
+			  <put-attribute name="title" value=" Update States" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editstates.jsp" />
 			</definition>
 			<definition name="editbranch" extends="baseLayout" >
+			 <put-attribute name="title" value="Update Branches" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/editbranch.jsp" />
 			</definition>
 			 <definition name="addbranches" extends="baseLayout" >
+			  <put-attribute name="title" value="Add Branches" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addbranches.jsp" />
 			</definition>
           <definition name="states" extends="baseLayout" >
+           <put-attribute name="title" value="States" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/states.jsp" />
 			</definition>
 			<definition name="competitiorsProfile" extends="baseLayout" >
+			 <put-attribute name="title" value="Competitiors Profile" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/Competitiors.jsp" />
 			</definition>
 			
 			<definition name="feature" extends="baseLayout" >
+			
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/feature.jsp" />
 			</definition>
 			<definition name="feature" extends="baseLayout" >
@@ -125,12 +136,12 @@
 			</definition>
 		
 			<definition name="addplanAction" extends="baseLayout" >
-			<put-attribute name="title" value="Add plan"></put-attribute>
+			<put-attribute name="title" value="Add plan"/>
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addPlanAction.jsp" />
 			</definition>
 			
 			<definition name="addaction" extends="baseLayout" >
-			<put-attribute name="title" value="Add Action "></put-attribute>
+			<put-attribute name="title" value="Add Action "/>
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addaction.jsp" />
 			</definition>
 			
@@ -138,12 +149,17 @@
 			
 			<definition name="pendingtasks" extends="baseLayout" >
 			<put-attribute name="title" value="Pending Tasks "></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/Employee/Reports/pendingTasks.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/reports/pendingTasks.jsp" />
 			</definition>
-			<!--********************	Followups***********************************************  -->
-			<definition name="Followups" extends="baseLayout" >
+			<definition name="pendingThingsto" extends="baseLayout" >
+			<put-attribute name="title" value="Pending Thinks To "></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/reports/pendingThingsto.jsp" />
+			</definition>
+			 
+			<!--********************	followups***********************************************  -->
+			<definition name="followups" extends="baseLayout" >
 			<put-attribute name="title" value="Followups "></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/Employee/Reports/followups.jsp" />
+				<put-attribute name="body" value="/WEB-INF/views/reports/followups.jsp" />
 			</definition>
 			
             		<!-- ************************************************** use by satyendra *************************************************** -->
@@ -349,11 +365,6 @@
 				<put-attribute name="body" value="/WEB-INF/views/Master/product/addproduct.jsp" />
 			</definition>
 			
-			
-			
-			
-			
-			
 			<!-- Employees -->
        		
 			<definition name="getuseremp" extends="baseLayout" >
@@ -434,8 +445,8 @@
 			</definition>
 			
 			<definition name="attachfiles" extends="baseLayout" >
-			<put-attribute name="title" value="Attach Files " />
-			<put-attribute name="body" value="/WEB-INF/views/customer/salesCallFiles.jsp" />
+			<put-attribute name="title" value="Attach Files List" />
+			<put-attribute name="body" value="/WEB-INF/views/customer/followupAttachList.jsp" />
 			</definition>
 			
 			<definition name="department" extends="baseLayout" >
@@ -448,15 +459,15 @@
 			<put-attribute name="title" value="Report " />
 			<put-attribute name="body" value="/WEB-INF/views/reports/pendingThingsto.jsp" />
 			</definition>
-			<!-- <definition name="pendingtasks" extends="baseLayout" >
+			 <definition name="editdiary" extends="baseLayout" >
 			<put-attribute name="title" value="Report " />
-			<put-attribute name="body" value="/WEB-INF/views/reports/pendingTasks.jsp" />
-			</definition> -->
-			
+			<put-attribute name="body" value="/WEB-INF/views/reports/updateDiary.jsp" />
+			</definition> 
+			 
 			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >
-			<put-attribute name="title" value="sms permission" />
+			<put-attribute name="title" value="sms permission"/>
 				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/sms.jsp" />
 			</definition>
 			
@@ -481,5 +492,16 @@
 			<definition name="editproductdata" extends="baseLayout" >
 			<put-attribute name="title" value="Srevice Provider" />
 				<put-attribute name="body" value="/WEB-INF/views/Master/product/editproduct.jsp" />
+			</definition>
+			
+			
+			<definition name="followupbydatenid" extends="baseLayout" >
+			<put-attribute name="title" value="Follow Up Report" />
+				<put-attribute name="body" value="/WEB-INF/views/reports/followupreport.jsp" />
+			</definition>
+			
+			<definition name="salesFunnel" extends="baseLayout" >
+			<put-attribute name="title" value="Follow Up Report" />
+				<put-attribute name="body" value="/WEB-INF/views/reports/salesfunnel.jsp" />
 			</definition>
 	      </tiles-definitions>

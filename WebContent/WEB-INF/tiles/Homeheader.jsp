@@ -34,7 +34,7 @@ if(name==null){
 	response.sendRedirect("LoginPage.jsp");
 }
 %>
-	<div class="wrapper">
+	<div class="wrapper" >
 
 		<header class="main-header"> <!-- Logo --> <a href="homepage"
 			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span

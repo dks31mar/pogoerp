@@ -6,6 +6,11 @@
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/table.css" rel="stylesheet" type="text/css" />
 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+
 <script type="text/javascript">
 		function designData(designation) {
 			$.ajax({
@@ -31,8 +36,15 @@
 			
 		}
 		
-		
-	</script>							
+		$(document).ready(function() {
+		    $('#mainidtable').DataTable( {
+		        "order": [[0, "asc" ]]
+		    } );
+		} );
+	</script>
+	<div class="row" style="margin-top: 10px;">
+	
+</div><br>							
 <div class="row">
 
 	<div class="page-heading col-sm-11"
@@ -50,7 +62,7 @@
 </div>
 
 </div>
-<div class="container">
+<div class="container" id="mainidtable">
 
     <form:form class="well form-horizontal"  action="saveDesignation" method="POST"  commandName="designationbean"
     id="" >
@@ -127,7 +139,7 @@
 			
 			<td><a href="editDesignation?id=${data.designationid}" title="Edit" ><span
 								class="glyphicon glyphicon-pencil"></span></a></td>
-			<td><a href="deleteDesg?designationid=${data.designationid}" title="Delete"><span class="glyphicon glyphicon-trash" style="margin-left: 10px;">
+			<td><a href="deleteDesg?designationid=${data.designationid}" title="Delete"><span class="glyphicon glyphicon-trash" style="margin-left: 10px;"onclick="return confirm('Are you sure you want to delete?')">
 			</span></a></td>
 			</tr>	
 												

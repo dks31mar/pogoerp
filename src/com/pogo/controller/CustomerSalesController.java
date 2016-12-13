@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -23,6 +25,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+import com.itextpdf.text.pdf.codec.Base64.OutputStream;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
@@ -104,8 +108,8 @@ public class CustomerSalesController {
 	}
 
 	@RequestMapping(value = "/getSalesList", method = RequestMethod.GET)
-	public String getSalesList(Model model) {
-		List<CustomerSalesBean> salesList = customerSalesService.findAllData();
+	public String getSalesList(@RequestParam("id") String id,Model model) {
+		List<CustomerSalesBean> salesList = customerSalesService.findAllData(id);
 		model.addAttribute("salesList", salesList);
 		return "getSalesList";
 	}
@@ -141,7 +145,6 @@ public class CustomerSalesController {
 		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
 		model.addAttribute("today", df.format(new Date()));
 		List<AddPlanBean> planlist = masterService.PlanList();
-		System.out.println(planlist);
 		model.addAttribute("planlist", planlist);
 		List<DesignationBean> degList = empServive.GetDesignationList();
 		model.addAttribute("designationlist", degList);
@@ -151,7 +154,7 @@ public class CustomerSalesController {
 	@RequestMapping(value = "/saveDiaryForEntrySales", method = RequestMethod.POST)
 	public String saveDiaryForEntery(@ModelAttribute("addDiaryBean") AddDiaryBean addDiaryBean) {
 		customerSalesService.savediary(addDiaryBean);
-		return "AddDiaryForEntrySales";
+		return "redirect:/addDiaryForEntrySales";
 	}
 
 	@RequestMapping(value = "/createQuotation", method = RequestMethod.GET)
@@ -162,39 +165,76 @@ public class CustomerSalesController {
 
 	@RequestMapping(value = "/addFollowup", method = RequestMethod.GET)
 	public ModelAndView AddFollowup(Model model) {
-		List<CustomerSalesBean> salesList = customerSalesService.findAllData();
+
+		//List<CustomerSalesBean> salesList = customerSalesService.findAllData();
+		//model.addAttribute("salesList", salesList);
+
+		String s="all";
+		List<CustomerSalesBean> salesList = customerSalesService.findAllData(s);
 		model.addAttribute("salesList", salesList);
+
 		List<AddActionBean> actionlist = masterService.findAllAction();
 		model.addAttribute("actionList", actionlist);
+		List<CustomerLevelsBean> cusStatus = masterService.getCustomersStatusList();
+		model.addAttribute("cusStatus", cusStatus);
 		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		model.addAttribute("today", df.format(new Date()));
 		return new ModelAndView("AddFollowupForm");
 	}
 
 	@RequestMapping(value = "/savefollowup", method = RequestMethod.POST)
-	public String addfollowup(@ModelAttribute("addFollowUpBean") AddFollowUpBean addFollowUpBean,
-			BindingResult result) {
-		customerSalesService.addFollowup(addFollowUpBean);
-		return "AddFollowupForm";
+	public String addfollowup(@ModelAttribute("addFollowUpBean") AddFollowUpBean addFollowUpBean,HttpServletRequest request,
+			BindingResult result) throws IOException {
+		HttpSession session=request.getSession();
+		try {
+			int userid=(int) session.getAttribute("userid");
+			System.out.println(userid);
+			customerSalesService.addFollowup(addFollowUpBean,userid);
+			return "redirect:addFollowup";
+		} catch (Exception e) {
+			return "redirect:/LoginPage.jsp";
+		}
+		
+		
+
+		
 	}
 
 	@RequestMapping(value = "/attachFiles", method = RequestMethod.GET)
-	public String attachFiles() {
+	public String attachFiles(Model model)
+ {
+		List<CustomerFileUploadBean> fileList=customerSalesService.getFollowupFilesList();
+		model.addAttribute("filesList", fileList);
 		return "attachfiles";
 	}
+	
+	 @RequestMapping(value={"download-files"}, method={RequestMethod.GET})
+	    public void DownloadFile(@RequestParam int id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	        CustomersFileUplaod file = customerSalesService.downloadDataById(id);
+	        response.setContentType(file.getFileType());
+	        response.setContentLength(file.getFile().length);
+	        response.setHeader("ContentDisposition", "attachment:filename=\"" + file.getFileName() + "\"%s\"");
+	        FileCopyUtils.copy((byte[])file.getFile(),response.getOutputStream());
+	        response.sendRedirect("attachFiles");
+	    }
+	 @RequestMapping(value={"delete-file"}, method={RequestMethod.GET})
+	    public void DeleteFile(@RequestParam int id, HttpServletResponse response) throws IOException {
+		 customerSalesService.DeletefileById(id);
+	        response.sendRedirect("attachFiles");
+	    }
 
-	@RequestMapping(value = "/filUplaod", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/fileUplaod", method = RequestMethod.POST)
 	public void filesave(@ModelAttribute("customerFile") CustomerFileUploadBean customerFileUploadBean,
 			HttpServletResponse response) throws IOException {
-
 		MultipartFile multipartFile = customerFileUploadBean.getFile();
 		CustomersFileUplaod fileUplaod = new CustomersFileUplaod();
 		fileUplaod.setFile(multipartFile.getBytes());
 		fileUplaod.setFileName(multipartFile.getOriginalFilename());
 		fileUplaod.setFileType(multipartFile.getContentType());
+		customerSalesService.saveFiles(fileUplaod);
 		response.sendRedirect("attachFiles");
 
-	}
+	}*/
 
 	/*// for search or oninput in box
 	@RequestMapping(value = "/getCustomer", method = RequestMethod.GET)
@@ -204,6 +244,9 @@ public class CustomerSalesController {
 		return d.writeValueAsString(listCustomer);
 	}*/
 /*search by autocomplete list*/
+
+	//using autocomplete for search
+
 	@RequestMapping(value = "/getCustomerRecords", method = RequestMethod.GET)
 	public void getCustomerData(HttpServletResponse request) throws JsonProcessingException {
 		String list = customerSalesService.findAllDataById();
@@ -219,13 +262,20 @@ public class CustomerSalesController {
 			e.printStackTrace();
 		}
 	}
+
 	/*input data in input box then related data over show*/
+
+	//regarding data
+
 	@RequestMapping(value = "/getcompanydatabyname", method = RequestMethod.GET)
 	public void getCustomerdatabyCompanyName(@RequestParam("organization") String organization,
 			HttpServletResponse res,ProductMasterBean productmasetr) {
 		
 		String getpart=customerSalesService.getCustomerdatabyCompanyName(organization);
+
 	    
+
+
 	    String getpart1=getpart.replaceAll("\\[", "");
 		getpart1=getpart1.replaceAll("\\]", "");
 	System.out.println(getpart1);
@@ -288,6 +338,14 @@ public class CustomerSalesController {
 		customerSalesService.addContactPerson(contactBean);
 
 		return "redirect:/getSales";
+	}
+	@ResponseBody
+	@RequestMapping(value="/verifyCust",method=RequestMethod.POST)
+	public  String verifycustomer(@RequestParam String organisation) throws JsonProcessingException
+	{
+		String result=customerSalesService.verifyOrg(organisation);
+		return new ObjectMapper().writeValueAsString(result);
+		
 	}
 
 }

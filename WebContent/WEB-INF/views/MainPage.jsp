@@ -1519,5 +1519,17 @@ if(null==iduser){
 	<script src="resources/dist/js/pages/dashboard2.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="resources/dist/js/demo.js"></script>
+	
+	<script type="text/javascript">
+	/* window.onload = setupRefresh;
+
+	function setupRefresh() {
+	  setTimeout("refreshPage();", 1000);
+	}
+	function refreshPage() {
+	   window.location = location.href;
+	} */
+	
+	</script>
 </body>
 </html>

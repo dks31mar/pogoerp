@@ -36,7 +36,7 @@ $('#datetimepicker').datetimepicker({
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
-		<span class="glyphicon glyphicon-user"></span>New Entry in Diary</span>
+		<span class="glyphicon glyphicon-user"></span><span> New Entry in Diary</span>
 		<label
 			 style="margin-left: 250px;margin-top: 8px;"><a href="#"
 			class="btn btn-primary"> View Diary Entries</a>
@@ -51,19 +51,28 @@ $('#datetimepicker').datetimepicker({
 
 <div class="container">
 
-    <form:form class="well form-horizontal" name="forp" action="saveDiaryForEntrySales" method="POST"  commandName="addDiaryBean"
-    id="" >
+    <form:form class="well form-horizontal" name="forp" action="updatediary?empid=${empid}&planid=${planid}" method="POST"  commandName="addDiaryBean">
+   
    
 <fieldset>
 
 <!-- Form Name -->
-<legend>New Entry in Diary</legend>
+<legend>Update Diary</legend>
 <div class="form-group">
   <label class="col-md-2 control-label">Customer<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input type='text' value="" name='Organization'
+  <input type='text' value="${diarydata.diaryId}"class="form-control" name="diaryId" readonly="readonly"/>
+								</div>
+								</div>
+								</div>
+ <div class="form-group">
+  <label class="col-md-2 control-label">Customer<span style="color: red;">*</span></label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input type='text' value="${diarydata.organization}" name=Organization
 								style='overflow: auto; border-radius: 3px; width: 210px;'
 								id='autocompletecustomer' class='form-control'
 								/>
@@ -74,7 +83,7 @@ $('#datetimepicker').datetimepicker({
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  type="text"  class="form-control" name="contacperson"  placeholder="Contact Person Name" type="text" >
+  <input  type="text"  class="form-control" name="contacperson" value="${diarydata.contacperson}" placeholder="Contact Person Name" type="text" >
     </div> 
   </div>
 </div>
@@ -83,15 +92,15 @@ $('#datetimepicker').datetimepicker({
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
- <textarea rows="4" cols="27" name="address" id="address">
-</textarea>
+ <input type="text"  name="address" id="address"  style="height: 106px;" class="form-control" value="${diarydata.address}">
+
     </div>
   </div>
   <label class="col-md-2 control-label" >Mobile<span style="color: red;">*</span></label> 
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
      <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-     <input name="mobileno"  class="form-control" id="mob"  placeholder="8285080678" type="text" required="required">
+     <input name="mobileno"  class="form-control" id="mob" value="${diarydata.mobileno}" placeholder="8285080678" type="text" required="required">
     </div>
   </div>
 </div>
@@ -100,7 +109,7 @@ $('#datetimepicker').datetimepicker({
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  name="email"  placeholder="E-Mail Address"  class="form-control" id="email" required="required" type="email">
+  <input  name="email"  placeholder="E-Mail Address"  class="form-control" id="email" value="${diarydata.email}" required="required" type="email">
   </div>
 </div>
  <label class="col-md-2 control-label" >Designation<span style="color: red;">*</span></label>  
@@ -108,7 +117,6 @@ $('#datetimepicker').datetimepicker({
      <div class="input-group">
      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
  <select name="degId"  class="form-control">
- <option value="">--Select Designation--</option>
  <c:if test="${!empty designationlist}">
   <c:forEach items="${designationlist}" var="listdeg">
   <option value="${listdeg.designationid}">${listdeg.designation}</option>
@@ -124,7 +132,7 @@ $('#datetimepicker').datetimepicker({
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-   <input  type="text"  class="form-control" name="date" id="date"  readonly="readonly" value="${today}" placeholder="Select Date" >
+   <input  type="text"  class="form-control" name="date" id="date"  readonly="readonly" value="${diarydata.date}" placeholder="Select Date" >
     </div>
   </div>
   
@@ -133,7 +141,8 @@ $('#datetimepicker').datetimepicker({
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-  <select name="time" class="form-control" style="width: 65px;" required="required">
+  <select name="time" class="form-control" style="width: 65px;"  required="required">
+  <option>${diarydata.time}</option>
   <option value="0">00</option>
   <option value="1">01</option>
   <option value="2">02</option>
@@ -160,6 +169,7 @@ $('#datetimepicker').datetimepicker({
   <option value="23">23</option>
   </select>
   <select name="timemin" class="form-control" style="width: 65px;" required="required">
+  <option >${diarydata.timemin}</option>
    <option value="0">00</option>
   <option value="1">01</option>
   <option value="2">02</option>
@@ -233,14 +243,12 @@ $('#datetimepicker').datetimepicker({
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select name="planId" class="form-control selectpicker"  required="required"> 
-  <option value="">--Select Planner--</option>
+  <option value="${diarydata.planId}"> ${diarydata.planName }</option>
       <c:if test="${!empty planlist}">
       <c:forEach items="${planlist}" var="data">
       <option value="${data.id}">${data.plan}</option>
       </c:forEach>
       </c:if>
-	 
-
     </select>
     </div>
   </div>
@@ -249,9 +257,8 @@ $('#datetimepicker').datetimepicker({
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select name="enteryuserId"  class="form-control">
-  <option value="">--Select Plan For--</option>
   <c:forEach items="${listemp}" var="listemp">
-  <option value="${listemp.userempid}">${listemp.firstname} ${listemp.middlename} ${listemp.lastname}</option>
+  <option value="${listemp.userempid}">${listemp.loginname}</option>
   </c:forEach>
   </select>
     </div>
@@ -265,12 +272,12 @@ $('#datetimepicker').datetimepicker({
  <label class="col-md-2 control-label" >Objective<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
      <div class="input-group">
- <textarea rows="2" cols="33" name="objective">
-</textarea>
+     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+ <input  name="objective" type="text" class="form-control" style="height: 106px;" value="${diarydata.objective}"> 
     </div>
     </div> 
   </div>
-  
+   
   
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
@@ -279,7 +286,7 @@ $('#datetimepicker').datetimepicker({
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
     
   </div>
-</div>
+</div> 
  
 </fieldset>
 </form:form>
@@ -293,7 +300,6 @@ $('#datetimepicker').datetimepicker({
 
  $('#autocompletecustomer').on("click",function(){
 		//var word=$('#autocomplete').val();
-		alert("ddd");
 		//alert($(e.target).val() );	
 			$.ajax({
 				url: "getCustomerRecords", 

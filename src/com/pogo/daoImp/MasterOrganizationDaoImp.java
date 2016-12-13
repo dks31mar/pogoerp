@@ -198,7 +198,7 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 	@Transactional
 	public List<Designation> findDesignationByPageNo(int i) {
 		return sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
-				.add(Restrictions.eq("active", true)).setMaxResults(5).setFirstResult(i * 5).list();
+				.add(Restrictions.eq("active", true)).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -504,6 +504,20 @@ System.out.println("delete");
 	@Override
 	public Department getdepartmentbyid(int id) {
 		return (Department) sessionFactory.getCurrentSession().get(Department.class, id);
+	}
+
+	@Override
+	public UserEmployee verifyLogin(String login) {
+		System.out.println("for login"+login);
+		return (UserEmployee) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
+				.add(Restrictions.eq("loginname", login)).uniqueResult();
+	}
+
+	@Override
+	public UserEmployee verifyEmail(String email) {
+		System.out.println("for email"+email);
+		return (UserEmployee) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
+				.add(Restrictions.eq("eamil", email)).uniqueResult();
 	}
 	
 	}

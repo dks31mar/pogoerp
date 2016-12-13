@@ -59,14 +59,14 @@
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <input value="${zones.zonesid}"  name="zonesid" placeholder="Zone Name" id="zoneid"  class="form-control" required="required" type="hidden">
-  <input value="${zones.zonesname}" name="zonesname"  placeholder="Zone Name" id="regionname" required="required"  class="form-control"  type="text" oninput="funcal();">
+  <input value="${zones.zonesname}" name="zonesname"  placeholder="Zone Name" pattern="[a-zA-Z]+" id="regionname" required="required"  pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" class="form-control"  type="text" oninput="funcal();">
     </div>
   </div>
  <label class="col-md-2 control-label" style="margin-left: -62px;">E-Mail Id<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control"  id="emailid" required="required" type="email" oninput="funcal();">
+  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" id="emailid" required="required" type="email" 	pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" oninput="funcal();">
     </div>
   </div> 
 </div>
@@ -75,7 +75,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input value="${zones.zonesphone}"  class="form-control" placeholder="8285080678" type="text" required="required" id="mobileno" required="required" oninput="funcal();">
+  <input value="${zones.zonesphone}"  class="form-control" placeholder="8285080678" type="text" pattern="^\d{1,10}$" required="required" id="mobileno" required="required" oninput="funcal();">
     </div>
  
 </div>
@@ -128,7 +128,7 @@
 </div>
 </div>
 
- <script type="text/javascript">
+       <script type="text/javascript">
 
 	  $( function() {
 		    $("#datepickerDob" ).datepicker();

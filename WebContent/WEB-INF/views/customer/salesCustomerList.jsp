@@ -12,8 +12,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 
-
+<div class="row" style="margin-top: 5px;">
+</div><br>
 <div class="row">
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white; " >
@@ -34,7 +40,7 @@
         </div>
         <div class="modal-body">
            <div><a  id="plannerbuttonid"><strong>Planner</strong></a></div>
-            <div><a href="createQuotation"><strong>Quotation</strong></a></div>
+           <div><a href="getSales"><strong> Add Customer</strong></a></div>
              <div><a href="addFollowup"><strong> Add Activities</strong></a></div>
         </div>
         <div class="modal-footer">
@@ -44,7 +50,7 @@
     </div>
   </div>
 
-<table class="responstable">
+<table class="responstable" id="mainidtable">
        
   
   <tbody align='center'>
@@ -73,7 +79,7 @@
   <td>${salesdetails.address}</td>
   <td>${salesdetails.contactPerson}</td>
   <td>${salesdetails.status}</td>
-  <td>${salesdetails.acmanager}</td>
+  <td>${salesdetails.initiatedBy}</td>
   <td><a href="editcustomer?id=${salesdetails.customerId}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a> <span>&nbsp;</span>
   <button type="button"  onclick="putIdAtPlanner(${salesdetails.customerId})" title="More Action" data-toggle="modal" data-target="#myModal"><i class="fa fa-th" aria-hidden="true"></i></button></td>
   </tr>
@@ -90,6 +96,10 @@ function putIdAtPlanner(id){
 	$("#plannerbuttonid").attr("href","addDiaryForEntrySales?id="+id);
 }
 
-
+$(document).ready(function() {
+    $('#mainidtable').DataTable( {
+        "order": [[0, "asc" ]]
+    } );
+} );
 </script>
   

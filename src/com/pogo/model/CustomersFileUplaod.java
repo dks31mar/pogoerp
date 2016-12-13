@@ -19,6 +19,13 @@ public class CustomersFileUplaod implements Serializable
 	private byte[] file;
 	private String fileName;
 	private String fileType;
+	private Integer followupId;
+	public Integer getFollowupId() {
+		return followupId;
+	}
+	public void setFollowupId(Integer followupId) {
+		this.followupId = followupId;
+	}
 	public Integer getCusfileId() {
 		return cusfileId;
 	}

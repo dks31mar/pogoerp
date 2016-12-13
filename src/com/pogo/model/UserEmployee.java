@@ -75,6 +75,8 @@ public class UserEmployee
 	private String deviceno;
 	@Column(name="empStatus")
 	private Boolean empStatus;
+	@Column(name="user_profile")
+	private String userProfile;
 	@Column(name="active")
 	private Boolean active;
 	
@@ -121,8 +123,6 @@ public class UserEmployee
 	public void setRegion(String region) {
 		this.region = region;
 	}
-	
-	
 	public String getPassword() {
 		return password;
 	}
@@ -238,6 +238,12 @@ public class UserEmployee
 	}
 	public void setDepName(Department depName) {
 		this.depName = depName;
+	}
+	public String getUserProfile() {
+		return userProfile;
+	}
+	public void setUserProfile(String userProfile) {
+		this.userProfile = userProfile;
 	}
 	
 	

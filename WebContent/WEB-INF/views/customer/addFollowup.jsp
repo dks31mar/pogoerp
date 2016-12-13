@@ -53,6 +53,11 @@
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 44px;">
 		<span class="glyphicon glyphicon-file"> </span> <span> Add Follow</span>
+		<label
+			 style="margin-left: 250px;margin-top: 0px;"><a href="attachFiles"
+			class="btn btn-success"><strong> Documents List</strong></a>
+			
+     </label>
 		
 </div>
 </div>
@@ -106,7 +111,10 @@
 
 <div class="container" style= "margin-left: 1px; width: 1227px;">
 
-    <form:form class="well form-horizontal"  action="savefollowup" method="POST"  commandName="addFollowUpBean">
+    <form:form class="well form-horizontal"  action="savefollowup" method="POST"  commandName="addFollowUpBean"
+    enctype="multipart/form-data" >
+					
+					
 <fieldset>
 
 <!-- Form Name -->
@@ -117,19 +125,19 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input type='text' value="" name='customer'
-								style='overflow: auto; border-radius: 3px; width: 223px;'
+   <input type='text' value="" name='cusOrganisation'
+								style='overflow: auto; border-radius: 3px; width: 210px;'
 								id='autocompletecustomer' class='form-control'
 								/>
   
-  <%--  <select    class="form-control" name="cusOrganisation" oninput="getData(this.value)" >
+   <%--  <select    class="form-control" name="cusOrganisation" oninput="getData(this.value)" >
    <option value="" selected="selected">--Select Customer--</option>
    <c:if test="${!empty salesList}">
    <c:forEach items="${salesList}" var="list">
    <option value="${list.customerId}">${list.organisation}</option>
    </c:forEach>
    </c:if>
-   </select>  --%>
+   </select> --%>
     </div>
   </div>
    <label class="col-md-2 control-label" >Status<span
@@ -137,8 +145,11 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select   name="custStatus"  required="required" id="status" class="form-control selectpicker">
-  <option value="" id="status1"></option>
+  <select   name="cusStatus"    class="form-control selectpicker">
+   <option value="" id="status"></option>
+  <c:forEach items="${cusStatus}" var="list">
+  <option value="${list.id}">${list.status}</option>
+  </c:forEach>
   </select>
     </div>
   </div>
@@ -149,7 +160,7 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
  <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-   <textarea   class="form-control" cols="34" rows="4" name="cusAddress" id="address"  placeholder="Address" >
+   <textarea   class="form-control" cols="29" rows="4" name="cusAddress" id="address"  placeholder="Address" >
    </textarea>
     </div>
   </div>
@@ -393,6 +404,24 @@
  <!--  <input name="followupTimeOut" class="form-control selectpicker" placeholder="Select Time In" required="required" type="text" id="datetimepicker"> -->
     </div>
   </div>
+  <%--  <label class="col-md-2 control-label" >Employee<span
+					style="color: red;">*</span></label>  
+  <div class="col-md-3 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <select   name="userEmpId"    class="form-control selectpicker">
+  <option value="" selected="selected">--Select Employee--</option>
+  <c:if test="${!empty actionList}">
+  <c:forEach items="${actionList}" var="data">
+  <option value="${data.id}">${data.action}</option>
+  </c:forEach>
+  </c:if> 
+      
+  </select> 
+    </div>
+  </div>--%>
+  </div>
+  <div class="form-group">
   <label class="col-md-2 control-label">Remarks</label>  
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
@@ -401,7 +430,17 @@
     </div>
     </div>
   </div>
-  <div style="margin-left:20px;" ><a href="attachFiles" class="btn btn-success">Followup Attachment</a>
+  <!-- File attachment -->
+  <div id="showfile">
+   <div class="form-group" align="center">
+        <input  type="file" name="file">
+  </div>
+  <div class="form-group" align="center">
+        <input  type="file" name="file">
+    </div>
+  </div>
+  
+  <div style="margin-left:20px;" ><a href="#" onclick="fileAttachment();return false;" class="btn btn-success">Followup Attachment</a>
   <!-- <button type="button"  title="Change Status" class="btn btn-success" data-toggle="modal" data-target="#myModal">Change Customer Status</button> -->
 
 <div class="form-group">
@@ -433,12 +472,9 @@
 
 <script>
 
-
-
-
  $('#autocompletecustomer').on("click",function(){
 		//var word=$('#autocomplete').val();
-		alert("ddd");
+		
 		//alert($(e.target).val() );	
 			$.ajax({
 				url: "getCustomerRecords", 
@@ -452,9 +488,9 @@
 });
 
 function search1(result){
-	alert(result);
+	
 	var currencies =jQuery.parseJSON(result);
-	alert(currencies);
+	
 $('#autocompletecustomer').autocomplete({
     lookup: currencies,
     onSelect: function (suggestion) {
@@ -466,10 +502,9 @@ $('#autocompletecustomer').autocomplete({
 				var data=jQuery.parseJSON(result);
 				var add=data.address;
 				var sta=data.status;
-				console.log(add+'>>>>>>>>>'+sta);
-				
 				$('#address').val(add);
-				$('#status1').text(sta);
+				$('#status').text(sta);
+				$('#status').attr('value',sta);
 				
 	    }}); 
       
@@ -477,8 +512,13 @@ $('#autocompletecustomer').autocomplete({
     }
   });
 }
-
- 
+$("#showfile").hide();
+ function fileAttachment()
+ {
+	 
+	 $("#showfile").toggle('slow');
+	 
+ }
  
  
  

@@ -53,7 +53,7 @@
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="zonesname"   placeholder="Region Name"  value="${getregion.zonesname}" class="form-control"  type="text">
+  <input name="zonesname"   placeholder="Region Name"  value="${getregion.zonesname}" class="form-control"  pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" type="text">
     </div>
   </div>
   

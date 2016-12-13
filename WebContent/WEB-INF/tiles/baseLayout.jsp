@@ -10,17 +10,17 @@
 <title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid" >
 <tiles:insertAttribute name="header" />
-
-<div class="container-fluid" style="background-color: #E6E6E6;">
+</div>
+<div class="container-fluid" style="background-color: #E6E6E6;" >
 				<tiles:insertAttribute name="body" />
 </div>
 
-
-<div>
+<br>
+<div style="background-color: #E6E6E6;">
 <tiles:insertAttribute name="footer" />
 </div>
-</div>
+
 </body>
 </html>

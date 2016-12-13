@@ -19,7 +19,7 @@ public class HomePageDaoImp implements HomePageDao{
 	@Override
 	public List getMenuOfSubMenu(int id,String menuName) {
 		
-		List<String> optionId=sessionFactory.getCurrentSession().createSQLQuery("select sys.optionID from sysmenuoptions sys inner join CommunityMenuOptions com ON com.OptionID = sys.OptionID inner join user_option usr ON usr.OptionID = sys.OptionID where sys.ismenu='Y' and usr.EmpID="+id+" and sys.openin=1 and sys.level=1 AND sys.optiondescription='"+menuName+"' order by seqNo,optionid").list();
+		List<String> optionId=sessionFactory.getCurrentSession().createSQLQuery("select sys.optionID from sysmenuoptions sys inner join communitymenuoptions com ON com.OptionID = sys.OptionID inner join user_option usr ON usr.OptionID = sys.OptionID where sys.ismenu='Y' and usr.EmpID="+id+" and sys.openin=1 and sys.level=1 AND sys.optiondescription='"+menuName+"' order by seqNo,optionid").list();
 		String parentId="0";
 		Iterator itr=optionId.iterator();
 		parentId=(String) itr.next();
@@ -30,7 +30,7 @@ public class HomePageDaoImp implements HomePageDao{
 	}
 	@Override
 	public List<SubMenuBean> getSubMenuDetails(int id, String menuName) {
-		List<String> optionId=sessionFactory.getCurrentSession().createSQLQuery("select sys.optionID from sysmenuoptions sys inner join CommunityMenuOptions com ON com.OptionID = sys.OptionID inner join user_option usr ON usr.OptionID = sys.OptionID where sys.ismenu='Y' and usr.EmpID="+id+" and sys.openin=1 and sys.level=1 AND sys.optiondescription='"+menuName+"' order by seqNo,optionid").list();
+		List<String> optionId=sessionFactory.getCurrentSession().createSQLQuery("select sys.optionID from sysmenuoptions sys inner join communitymenuoptions com ON com.OptionID = sys.OptionID inner join user_option usr ON usr.OptionID = sys.OptionID where sys.ismenu='Y' and usr.EmpID="+id+" and sys.openin=1 and sys.level=1 AND sys.optiondescription='"+menuName+"' order by seqNo,optionid").list();
 		System.out.println(optionId.size());
 		String parentId="0";
 		Iterator itr=optionId.iterator();

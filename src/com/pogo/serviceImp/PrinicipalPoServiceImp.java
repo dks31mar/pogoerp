@@ -184,8 +184,7 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 		for(PoRefEntryItemDetail e:lst){
 			PoRefEntryItemDetailBean bean=new PoRefEntryItemDetailBean();
 			
-				  bean.setPorefentryitemdetailid(e.getPorefentryitemdetailid());
-				  
+				  bean.setPorefentryitemdetailid(e.getPorefentryitemdetailid());	  
 			 	  bean.setParticular(e.getParticular());
 			 	  bean.setTpinjpy(e.getTpinjpy());
 			 	  bean.setQty(e.getQty());
