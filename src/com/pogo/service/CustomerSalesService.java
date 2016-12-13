@@ -29,7 +29,7 @@ public interface CustomerSalesService
 	public CustomerSalesBean getCustomerDetailsById(int id);
 	void upadtecustomerData(CustomerSalesBean customerSalesBean) throws ParseException;
 	void savediary(AddDiaryBean addDiaryBean);
-	void addFollowup(AddFollowUpBean addFollowUpBean) throws IOException;
+	void addFollowup(AddFollowUpBean addFollowUpBean, int userid) throws IOException;
 	String findAllDataById();
 	void addContactPerson(ContactBean contactBean);
 	List<AddDiary> getdiarydata();

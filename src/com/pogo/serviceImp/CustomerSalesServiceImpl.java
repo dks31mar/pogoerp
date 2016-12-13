@@ -251,8 +251,10 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		customerSalesDao.saveDiary(diary);
 	}
 	@Override
-	public void addFollowup(AddFollowUpBean addFollowUpBean) throws IOException {
+	public void addFollowup(AddFollowUpBean addFollowUpBean,int userid) throws IOException {
 		AddFollowUp followUp=new AddFollowUp();
+		UserEmployee e=new UserEmployee();
+		e.setUserempid(userid);
 		followUp.setActionTaken(addFollowUpBean.getActionTaken());
 		followUp.setFollowupDate(addFollowUpBean.getFollowupDate());
 		followUp.setFollowupTimeIn(addFollowUpBean.getFollowupTimeIn());
@@ -264,6 +266,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		followUp.setCusAddress(addFollowUpBean.getCusAddress());
 		followUp.setCusOrganisation(addFollowUpBean.getCusOrganisation());
 		followUp.setRemarks(addFollowUpBean.getRemarks());
+		followUp.setUserEmp(e);
 		if(addFollowUpBean.getActionId()>0)
 		{
 			followUp.setActionType(masterMasterDao.getActionDataById(addFollowUpBean.getActionId()));

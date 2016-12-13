@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.itextpdf.text.pdf.codec.Base64.OutputStream;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
@@ -181,12 +183,21 @@ public class CustomerSalesController {
 	}
 
 	@RequestMapping(value = "/savefollowup", method = RequestMethod.POST)
-	public String addfollowup(@ModelAttribute("addFollowUpBean") AddFollowUpBean addFollowUpBean,
-
+	public String addfollowup(@ModelAttribute("addFollowUpBean") AddFollowUpBean addFollowUpBean,HttpServletRequest request,
 			BindingResult result) throws IOException {
-		customerSalesService.addFollowup(addFollowUpBean);
+		HttpSession session=request.getSession();
+		try {
+			int userid=(int) session.getAttribute("userid");
+			System.out.println(userid);
+			customerSalesService.addFollowup(addFollowUpBean,userid);
+			return "redirect:addFollowup";
+		} catch (Exception e) {
+			return "redirect:/LoginPage.jsp";
+		}
+		
+		
 
-		return "redirect:addFollowup";
+		
 	}
 
 	@RequestMapping(value = "/attachFiles", method = RequestMethod.GET)
