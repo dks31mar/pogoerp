@@ -299,11 +299,32 @@
 			 </definition>
 			 <!-- LeadGenerationontacts -->
 			 <!--Contact List -->
-			 <definition name="contact" extends="baseLayout">
-			 <put-attribute name="title" value="Contacts" />
+			 <definition name="getcontactlist" extends="baseLayout">
+			 <put-attribute name="title" value="Contactlist" />
 			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/contactsList.jsp" />
 			 </definition>
-		<!-- ************************************************** use by shweta *************************************************** -->	
+			 <!-- Contact form  -->
+			 <definition name="getcontactform" extends="baseLayout">
+			 <put-attribute name="title" value="Contact" />
+			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/contactsForm.jsp" />
+			 </definition>
+			 <!-- Diary -->
+			 <!-- Expense Entry -->
+			 <definition name="expenseentry" extends="baseLayout">
+			 <put-attribute name="title" value="ExpenseEntry" />
+			 <put-attribute name="body" value="/WEB-INF/views/Diary/expenseEntery.jsp" />
+			 </definition>
+			 <!-- ExpenseReport -->
+			  <definition name="expensereport" extends="baseLayout">
+			 <put-attribute name="title" value="ExpenseReport" />
+			 <put-attribute name="body" value="/WEB-INF/views/Diary/expenseReport.jsp" />
+			 </definition>
+			 <!--ExpenseReportDetails  -->
+			 <definition name="expensereportdetails" extends = "baseLayout">
+			 <put-attribute name="title" value = "ExpenseReportDetails"></put-attribute>
+			 <put-attribute name="body" value = "/WEB-INF/views/Diary/expenseReportDetails.jsp"></put-attribute>
+			 </definition>
+		<!-- ************************************************* use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
 			<put-attribute name="body" value="/WEB-INF/views/Master/product/producthead.jsp" />

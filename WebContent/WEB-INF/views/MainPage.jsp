@@ -146,6 +146,7 @@ $.ajax({
 	<%
 String name=(String)session.getAttribute("username");
 Integer iduser=(Integer)session.getAttribute("userid");
+session.setMaxInactiveInterval(1800);
 if(null==iduser){
 	response.sendRedirect("LoginPage.jsp");
 }
@@ -1521,14 +1522,14 @@ if(null==iduser){
 	<script src="resources/dist/js/demo.js"></script>
 	
 	<script type="text/javascript">
-	/* window.onload = setupRefresh;
+	window.onload = setupRefresh;
 
 	function setupRefresh() {
-	  setTimeout("refreshPage();", 1000);
+	  setTimeout("refreshPage();", 100000);
 	}
 	function refreshPage() {
-	   window.location = location.href;
-	} */
+	   window.location =  window.location.href = "homepage";
+	} 
 	
 	</script>
 </body>

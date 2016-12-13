@@ -7,8 +7,15 @@ import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
+
+
+import com.pogo.model.ProductMaster;
+
+
 import com.pogo.model.CustomersFileUplaod;
+
 import com.pogo.model.UserEmployee;
+
 
 public interface CustomerSalesDao 
 {
@@ -30,11 +37,20 @@ public interface CustomerSalesDao
 	void saveContact(Contact contact);
 	List<AddDiary> getdiarydata(int id, int pid);
 
+
+	
+	List<CustomerSales> getOrganisationname(CustomerSales cs);
+
 	List<UserEmployee> getDatafromDiary();
 
 	Integer getPlanByid(Integer userempid, int i);
 
 	List<CustomerSales> getCustomerdatabyCompanyName(String organization);
+
+
+	List<CustomerSales> getCustomerdatabyCompanyName(int id);
+
+
 
 	int getTotalsms(Integer userempid, int i);
 
@@ -80,6 +96,7 @@ public interface CustomerSalesDao
 
 
 	
+
 
 
 }

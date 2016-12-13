@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
@@ -45,8 +46,15 @@ import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
+
+import com.pogo.model.Department;
+import com.pogo.model.ProductMaster;
+
+
 import com.pogo.model.CustomersFileUplaod;
+
 import com.pogo.model.UserEmployee;
+
 import com.pogo.service.CustomerSalesService;
 
 @Service("customerSalesService")
@@ -315,6 +323,21 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 
 
 	@Override
+	public String getOrganisationname(CustomerSalesBean customerSalesBean) {
+		CustomerSales cs = new CustomerSales();
+		cs.setOrganisation(customerSalesBean.getOrganisation());
+		List<CustomerSales> orgList=new ArrayList<CustomerSales>();
+		customerSalesDao. getOrganisationname(cs);
+		JsonArray arry = new JsonArray(); 
+		 System.out.println(arry);
+			String json = new Gson().toJson(cs);
+			System.out.println(" service method     \n"+json);
+			return json;
+		
+	}
+
+
+	@Override
 	public List<AddDiary> getdiarydata() {
 		// TODO Auto-generated method stub
 		return null;
@@ -366,7 +389,11 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		getdetail=customerSalesDao.getCustomerdatabyCompanyName(organization);
 		Map<String, String> map=new HashMap<>();
 		for(CustomerSales s:getdetail){
+
+			
+
 			map.put("custid", ""+s.getCustomerId());
+
 			map.put("address", s.getAddress());
 			map.put("emailId", s.getEmailId());
 			map.put("mobileNo", s.getMobileNo());
@@ -376,6 +403,21 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		return json;
 	}
 	@Override
+
+	public String getCustomerdatabyCompanyName(int id) {
+		List<CustomerSales> getdetail=new ArrayList<CustomerSales>();
+		getdetail=customerSalesDao.getCustomerdatabyCompanyName(id);
+		Map<String, String> map=new HashMap<>();
+		for(CustomerSales s:getdetail){
+			map.put("organisation", s.getOrganisation());
+			map.put("address", s.getAddress());
+			map.put("status", s.getStatus().getStatus());
+		}
+		String json = new Gson().toJson(map);
+		return json;
+		
+	}
+
 
 	public void saveFiles(CustomersFileUplaod fileUplaod) 
 	{
@@ -519,7 +561,11 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		}
 				
 		return result;
+
 	}
+
+
+
 	@Transactional
 	public JSONArray followUpListByUserId(String sdate,String edate) {
 		List<AddFollowUp> list=customerSalesDao.getfollowUpUserId(sdate,edate);
@@ -678,6 +724,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	
 
 }
+
 	
 	
 

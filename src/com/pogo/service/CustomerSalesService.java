@@ -16,8 +16,15 @@ import com.pogo.bean.ContactBean;
 import com.pogo.bean.CustomerFileUploadBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
+
+import com.pogo.bean.ProductMasterBean;
+
 import com.pogo.model.AddDiary;
+
+
+
 import com.pogo.model.CustomersFileUplaod;
+
 
 public interface CustomerSalesService 
 {
@@ -61,8 +68,10 @@ public interface CustomerSalesService
 	
 
 
+    
+	String getOrganisationname(CustomerSalesBean customerSalesBean);
 
-	
+	String getCustomerdatabyCompanyName(int id);
 
 	
 

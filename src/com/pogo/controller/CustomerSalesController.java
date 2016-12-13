@@ -236,6 +236,15 @@ public class CustomerSalesController {
 
 	}*/
 
+	/*// for search or oninput in box
+	@RequestMapping(value = "/getCustomer", method = RequestMethod.GET)
+	public @ResponseBody String getData(@RequestParam String organisation) throws JsonProcessingException {
+		List<CustomerSalesBean> listCustomer = customerSalesService.findOrganisation(organisation);
+		ObjectMapper d = new ObjectMapper();
+		return d.writeValueAsString(listCustomer);
+	}*/
+/*search by autocomplete list*/
+
 	//using autocomplete for search
 
 	@RequestMapping(value = "/getCustomerRecords", method = RequestMethod.GET)
@@ -244,7 +253,8 @@ public class CustomerSalesController {
 		// List<CustomerSalesBean>
 		// listCustomer=customerSalesService.findOrganisation();
 		// System.out.println(listCustomer);
-
+     System.out.println(list); 
+     
 		try {
 			request.getWriter().print(list);
 		} catch (IOException e) {
@@ -252,15 +262,24 @@ public class CustomerSalesController {
 			e.printStackTrace();
 		}
 	}
+
+	/*input data in input box then related data over show*/
+
 	//regarding data
+
 	@RequestMapping(value = "/getcompanydatabyname", method = RequestMethod.GET)
 	public void getCustomerdatabyCompanyName(@RequestParam("organization") String organization,
 			HttpServletResponse res,ProductMasterBean productmasetr) {
 		
 		String getpart=customerSalesService.getCustomerdatabyCompanyName(organization);
+
+	    
+
+
 	    String getpart1=getpart.replaceAll("\\[", "");
 		getpart1=getpart1.replaceAll("\\]", "");
-	   System.out.println(getpart1); 
+	System.out.println(getpart1);
+	   
 	   try {
 			res.getWriter().print(getpart);
 		} catch (IOException e) {
@@ -308,7 +327,7 @@ public class CustomerSalesController {
 			PrintWriter writter = res.getWriter();
 			writter.print(json);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 

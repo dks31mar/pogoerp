@@ -1,6 +1,7 @@
 package com.pogo.serviceImp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,7 @@ import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
+import com.pogo.bean.ExpenseEntryBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
 import com.pogo.bean.ModeOfDispatchBean;
@@ -32,8 +34,10 @@ import com.pogo.model.AddPlan;
 import com.pogo.model.Country;
 import com.pogo.model.Currency;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.CustomerSales;
 import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseEntry;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 
@@ -389,6 +393,34 @@ public void editExpenseHeader(ExpenseMasterBean poref1){
 	expensemaster.setUnit(poref1.getUnit());
 	masterMastersdao.editExpenseHeader(expensemaster);
 }
+
+
+@Override
+public String getUnitByExpense(String unit) {
+	System.out.println(unit);
+	List<ExpenseMaster> getdetail=new ArrayList<ExpenseMaster>();
+	getdetail=masterMastersdao.getUnitByExpense(unit);
+	System.out.println("expense details  "+getdetail);
+	Map<String, String> map=new HashMap<>();
+	for(ExpenseMaster s:getdetail){
+		//map.put("expensetype", s.getExpensetype());
+		map.put("unit",String.valueOf(s.getUnit()));
+	}
+	String json = new Gson().toJson(map);
+	return json;
+	
+	
+}
+
+@Override
+public String expenseListAuto() {
+	List<ExpenseMaster> list=masterMastersdao.getExpenseListById();
+	String json = new Gson().toJson(list);
+	
+	return json;
+}
+
+
 
 @Override
 public List<CustomerSourceBean> getCustomerSourceList(){
@@ -1023,6 +1055,61 @@ public List<AddPlanBean> findAddPlan() {
 	}
 	return actionbean;
 }
+
+@Override
+public void saveExpenseEntry(ExpenseEntryBean bean) {
+	ExpenseEntry e=new ExpenseEntry();
+	e.setExpentryid(bean.getExpentryid());
+	e.setOrgnisation(bean.getOrgnisation());
+	e.setCrdate(bean.getCrdate());
+	e.setOrgAddress(bean.getOrgAddress());
+	e.setDate(bean.getDate());
+	e.setExpname(bean.getExpname());
+	e.setDescription(bean.getDescription());
+	e.setUnit(bean.getUnit());
+	e.setUnit_expense(bean.getUnit_expense());
+	e.setTotal(bean.getTotal());
+	e.setGrandtotal(bean.getGrandtotal());
+	masterMastersdao.saveExpenseEntry(e);	
+	
+}
+
+@Override
+public List<ExpenseEntryBean> getExpenseReportList() {
+	List<ExpenseEntry> list1 = masterMastersdao.getExpenseReportList();
+	List<ExpenseEntryBean> list2 = new ArrayList<ExpenseEntryBean>();
+	for(ExpenseEntry list : list1 ){
+		ExpenseEntryBean data = new ExpenseEntryBean();
+		data.setExpentryid(list.getExpentryid());
+		data.setCrdate(list.getCrdate());
+		data.setOrgnisation(list.getOrgnisation());
+		data.setDescription(list.getDescription());
+		data.setExpname(list.getExpname());
+		data.setUnit_expense(list.getUnit_expense());
+		data.setTotal(list.getTotal());
+		data.setGrandtotal(list.getGrandtotal());
+		list2.add(data);
+	}
+	return list2;
+}
+
+@Override
+public List<ExpenseEntryBean> getExpenseReportListByDate(String sdate , String edate) {
+	List<ExpenseEntry> list1 = masterMastersdao.getExpenseReportListByDate(sdate, edate);
+	List<ExpenseEntryBean> list2 = new ArrayList<ExpenseEntryBean>();
+	for(ExpenseEntry list : list1){
+		ExpenseEntryBean data = new ExpenseEntryBean();
+		data.setExpentryid(list.getExpentryid());
+		data.setGrandtotal(list.getGrandtotal());
+		data.setCrdate(list.getCrdate());
+		list2.add(data);
+	}
+	return list2;
+}
+
+
+
+
 }
 
 

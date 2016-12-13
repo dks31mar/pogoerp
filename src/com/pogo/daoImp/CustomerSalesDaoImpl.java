@@ -20,9 +20,21 @@ import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
+
+import com.pogo.model.ProductMaster;
+
+
+import com.pogo.model.State;
+
 import com.pogo.model.CustomersFileUplaod;
+
 import com.pogo.model.UserEmployee;
+
+
+
+
 @SuppressWarnings({"unchecked","rawtypes"})
+
 @Repository("customerSalesDao")
 public class CustomerSalesDaoImpl implements CustomerSalesDao {
 	@Autowired
@@ -90,24 +102,36 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 		sessionFactory.getCurrentSession().save(contact);
 
 	}
-	@Override
-	public List<AddDiary> getdiarydata(int id,int pid) {
-
-		
-
-		List<AddDiary> list=null;
-		if (pid!=0) {
-			list=(List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", pid)).add(Restrictions.eq("enteryuser.userempid", id)).list();
-		} else {
-			list=(List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("enteryuser.userempid", id)).list();
-		}
-		return list;
-
-				
-				
+	
+	@SuppressWarnings("unchecked")
+	public List<AddDiary> getdiarydata() {
+		return sessionFactory.getCurrentSession().createCriteria(AddDiary.class).list();
 	}
 
+
 	
+	
+
+	@Override
+	public List<CustomerSales> getOrganisationname(CustomerSales cs) {
+		// TODO Auto-generated method stub
+		String hint=cs.getOrganisation();
+		hint = hint + "%";
+		Criteria r=	sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).add(Restrictions.like("organisation", hint)).setProjection(Projections.property("organisation"));
+		@SuppressWarnings("unchecked")
+		List<CustomerSales> list=	(List<CustomerSales>)r.list();
+		System.out.println(list);
+		return list;
+		
+	}
+
+
+
+
+	@SuppressWarnings("unchecked")
+
+	
+
 	@Override
 	public List<UserEmployee> getDatafromDiary() {
 		List<UserEmployee> d = sessionFactory.getCurrentSession().createCriteria(AddDiary.class)
@@ -142,14 +166,20 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 	@Override
 	public List<CustomerSales> getCustomerdatabyCompanyName(String organization) {
-		CustomerSales s = (CustomerSales) sessionFactory.getCurrentSession().createCriteria(CustomerSales.class)
-				.add(Restrictions.eq("organisation", organization)).uniqueResult();
-		int statusid = s.getStatus().getId();
 
-		System.out.println(statusid);
+	CustomerSales s=	(CustomerSales) sessionFactory.getCurrentSession().createCriteria(CustomerSales.class)
+			.add(Restrictions.eq("organisation", organization)).uniqueResult();
+	System.out.println("*********************************customer sales list ***************************"+s);
+	int statusid=s.getStatus().getId();	
+	
+	System.out.println(statusid);
+	
+	Criteria state=sessionFactory.getCurrentSession().createCriteria(CustomerSales.class);
+		Criteria country=state.createCriteria("status");
 
-		Criteria state = sessionFactory.getCurrentSession().createCriteria(CustomerSales.class);
-		Criteria country = state.createCriteria("status");
+		
+
+
 		country.add(Restrictions.eq("id", statusid));
 		
 		List list = state.list();
@@ -243,6 +273,13 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 		
 	}
 
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CustomerSales> getCustomerdatabyCompanyName(int id) {
+		return sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).list();
+		
+	}
 	@Override
 
 	public void delateFilesData(CustomersFileUplaod files) {
@@ -262,9 +299,12 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 		String name=(String)sessionFactory.getCurrentSession().createCriteria(AddFollowUp.class).add(Restrictions.eq("followUpId", followupId))
 				.setProjection(Projections.property("cusOrganisation")).uniqueResult();
 		return name;
+
 	}
 
 	
+
+
 
 	public List<AddDiary> getdiarydata1(int pid) {
 	List<AddDiary>	list=(List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", pid)).list();
@@ -331,4 +371,12 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 		
 		return sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).add(Restrictions.eq("status.id", sl.getId())).list().size();
 	}
+
+
+	@Override
+	public List<AddDiary> getdiarydata(int id, int pid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

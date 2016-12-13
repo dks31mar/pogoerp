@@ -1,5 +1,6 @@
 package com.pogo.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.pogo.bean.AddActionBean;
@@ -9,6 +10,7 @@ import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
+import com.pogo.bean.ExpenseEntryBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
 
@@ -69,8 +71,8 @@ public interface MasterMastersService {
 	void deleteExpenceserheader(int id);
     String getExpenceheaderById(String id);
 	void editExpenseHeader(ExpenseMasterBean poref1);
-
-	
+	String getUnitByExpense(String expense );
+	String expenseListAuto();
 
 	List<DistrictBean> districtListbystateid(String stateid);
 	
@@ -135,6 +137,16 @@ public interface MasterMastersService {
 	String getSupmst(String id);
 	void editSupplierMaster(SupplierMasterBean servicepro);
 	void deleteSuppilerMst(int id);
+	
+	
+	void saveExpenseEntry(ExpenseEntryBean poref);
+	
+	List<ExpenseEntryBean> getExpenseReportList();
+	
+	List<ExpenseEntryBean> getExpenseReportListByDate(String sdate , String edate);
+	
+	
+	
 	
 
 
