@@ -505,6 +505,20 @@ System.out.println("delete");
 	public Department getdepartmentbyid(int id) {
 		return (Department) sessionFactory.getCurrentSession().get(Department.class, id);
 	}
+
+	@Override
+	public UserEmployee verifyLogin(String login) {
+		System.out.println("for login"+login);
+		return (UserEmployee) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
+				.add(Restrictions.eq("loginname", login)).uniqueResult();
+	}
+
+	@Override
+	public UserEmployee verifyEmail(String email) {
+		System.out.println("for email"+email);
+		return (UserEmployee) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
+				.add(Restrictions.eq("eamil", email)).uniqueResult();
+	}
 	
 	}
 

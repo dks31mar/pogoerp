@@ -36,7 +36,7 @@ $('#datetimepicker').datetimepicker({
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
-		<span class="glyphicon glyphicon-user"></span>New Entry in Diary</span>
+		<span class="glyphicon glyphicon-user"></span><span> New Entry in Diary</span>
 		<label
 			 style="margin-left: 250px;margin-top: 8px;"><a href="#"
 			class="btn btn-primary"> View Diary Entries</a>

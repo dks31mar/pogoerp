@@ -216,7 +216,7 @@ $( function() {
 							<tr>
 								<td>${loop.index+1}</td>  
 								 <td>${user.empCode}</td>
-								<td>${user.loginname}</td>
+								<td>${user.firstname} ${user.middlename} ${user.lastname}</td>
 								<td>${user.designationName}</td>
 								 <td>${user.branchName}</td>
                                  <td>${user.dateofjoining}</td>

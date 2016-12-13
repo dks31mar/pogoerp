@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -23,6 +24,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.ibm.icu.text.SimpleDateFormat;
+import com.itextpdf.text.pdf.codec.Base64.OutputStream;
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
@@ -141,7 +143,6 @@ public class CustomerSalesController {
 		SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
 		model.addAttribute("today", df.format(new Date()));
 		List<AddPlanBean> planlist = masterService.PlanList();
-		System.out.println(planlist);
 		model.addAttribute("planlist", planlist);
 		List<DesignationBean> degList = empServive.GetDesignationList();
 		model.addAttribute("designationlist", degList);
@@ -162,11 +163,18 @@ public class CustomerSalesController {
 
 	@RequestMapping(value = "/addFollowup", method = RequestMethod.GET)
 	public ModelAndView AddFollowup(Model model) {
+
+		//List<CustomerSalesBean> salesList = customerSalesService.findAllData();
+		//model.addAttribute("salesList", salesList);
+
 		String s="all";
 		List<CustomerSalesBean> salesList = customerSalesService.findAllData(s);
 		model.addAttribute("salesList", salesList);
+
 		List<AddActionBean> actionlist = masterService.findAllAction();
 		model.addAttribute("actionList", actionlist);
+		List<CustomerLevelsBean> cusStatus = masterService.getCustomersStatusList();
+		model.addAttribute("cusStatus", cusStatus);
 		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		model.addAttribute("today", df.format(new Date()));
 		return new ModelAndView("AddFollowupForm");
@@ -174,32 +182,48 @@ public class CustomerSalesController {
 
 	@RequestMapping(value = "/savefollowup", method = RequestMethod.POST)
 	public String addfollowup(@ModelAttribute("addFollowUpBean") AddFollowUpBean addFollowUpBean,
-			BindingResult result) {
-		System.out.println(addFollowUpBean.getCustStatus());
-		//customerSalesService.addFollowup(addFollowUpBean);
+
+			BindingResult result) throws IOException {
+		customerSalesService.addFollowup(addFollowUpBean);
+
 		return "redirect:addFollowup";
 	}
 
 	@RequestMapping(value = "/attachFiles", method = RequestMethod.GET)
-	public String attachFiles() {
+	public String attachFiles(Model model)
+ {
+		List<CustomerFileUploadBean> fileList=customerSalesService.getFollowupFilesList();
+		model.addAttribute("filesList", fileList);
 		return "attachfiles";
 	}
+	
+	 @RequestMapping(value={"download-files"}, method={RequestMethod.GET})
+	    public void DownloadFile(@RequestParam int id, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	        CustomersFileUplaod file = customerSalesService.downloadDataById(id);
+	        response.setContentType(file.getFileType());
+	        response.setContentLength(file.getFile().length);
+	        response.setHeader("ContentDisposition", "attachment:filename=\"" + file.getFileName() + "\"%s\"");
+	        FileCopyUtils.copy((byte[])file.getFile(),response.getOutputStream());
+	        response.sendRedirect("attachFiles");
+	    }
+	 @RequestMapping(value={"delete-file"}, method={RequestMethod.GET})
+	    public void DeleteFile(@RequestParam int id, HttpServletResponse response) throws IOException {
+		 customerSalesService.DeletefileById(id);
+	        response.sendRedirect("attachFiles");
+	    }
 
-	@RequestMapping(value = "/fileUplaod", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/fileUplaod", method = RequestMethod.POST)
 	public void filesave(@ModelAttribute("customerFile") CustomerFileUploadBean customerFileUploadBean,
 			HttpServletResponse response) throws IOException {
-
 		MultipartFile multipartFile = customerFileUploadBean.getFile();
-		System.out.println("data"+customerFileUploadBean.getFile());
 		CustomersFileUplaod fileUplaod = new CustomersFileUplaod();
 		fileUplaod.setFile(multipartFile.getBytes());
-		System.out.println("hello"+multipartFile.getBytes());
 		fileUplaod.setFileName(multipartFile.getOriginalFilename());
 		fileUplaod.setFileType(multipartFile.getContentType());
 		customerSalesService.saveFiles(fileUplaod);
 		response.sendRedirect("attachFiles");
 
-	}
+	}*/
 
 	//using autocomplete for search
 
@@ -284,6 +308,14 @@ public class CustomerSalesController {
 		customerSalesService.addContactPerson(contactBean);
 
 		return "redirect:/getSales";
+	}
+	@ResponseBody
+	@RequestMapping(value="/verifyCust",method=RequestMethod.POST)
+	public  String verifycustomer(@RequestParam String organisation) throws JsonProcessingException
+	{
+		String result=customerSalesService.verifyOrg(organisation);
+		return new ObjectMapper().writeValueAsString(result);
+		
 	}
 
 }

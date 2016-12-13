@@ -29,6 +29,7 @@ public class AddFollowUp
 	@Column(name="followupTimeOut_min")
 	private String followupTimeOutMin;
 	@ManyToOne(fetch=FetchType.LAZY)
+
 	@JoinColumn(name="actionid")
 	private AddAction actionType;
 	@Column(name="contact_person")
@@ -39,6 +40,7 @@ public class AddFollowUp
 	private String cusOrganisation;
 	@Column(name="cus_address")
 	private String cusAddress;
+
 
 
 	@Column(name="cusStatus")

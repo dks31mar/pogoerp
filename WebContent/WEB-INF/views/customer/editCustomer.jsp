@@ -70,7 +70,36 @@ function getdistrictLists(id)
 			}); 
 }
 
+function verifyOrganisation() {
+	var organisation = $("#organisation").val();
+	//alert(organisation);
+	var flag = true;
+	$.ajax({
+				type : "POST",
+				url : 'verifyCust',
+				data : {
+					'organisation' : organisation,
+				},
+				success : function(data) {
+					var obj = JSON.parse(data);
+					//alert(obj.toSource());
+					if (obj == "no") 
+					{
+						$("#submitbutton").show();
+					}
+					else {
+						alert("This Organisation already Exist!!!");
+						$("#submitbutton").hide();
+					}
+				},
+				error : function(e) {
+					
+				}
+			});
+	
+	return (flag);
 
+}
 
 
 
@@ -139,7 +168,7 @@ $( function() {
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="organisation" value="${editcustomers.organisation}"  placeholder="User Name" required="required"  class="form-control"  type="text">
+  <input   name="organisation" value="${editcustomers.organisation}" id="organisation" onblur="verifyOrganisation();" placeholder="User Name" required="required"  class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" >Organisation Short Name<span style="color: red;">*</span></label>  
@@ -156,9 +185,9 @@ $( function() {
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select   name="empId"  value="" placeholder="Employee Name"  required="required"  class="form-control" >
+  <select   name="empId"   placeholder="Employee Name"  required="required"  class="form-control" >
   <c:forEach items="${listemp}" var="list">
-  <option value="${list.userempid}">${list.loginname}</option>
+  <option value="${list.userempid}">${list.firstname} ${list.middlename} ${list.lastname}</option>
   </c:forEach>
   </select>
     </div>
@@ -169,7 +198,7 @@ $( function() {
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
   <select name="acmanager"  placeholder="Manger"   class="form-control"  >
   <c:forEach items="${listemp}" var="List">
-  <option value="${List.userempid}">${List.firstname}</option>
+  <option value="${List.userempid}">${List.firstname} ${List.middlename} ${List.lastname} </option>
   </c:forEach>
   </select>
     </div>
@@ -183,7 +212,7 @@ $( function() {
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="address"  value="${editcustomers.address}"  placeholder="Address"   class="form-control"  type="text">
+  <input name="address"  value="${editcustomers.address}"  placeholder="Address" style="height: 106px;"  class="form-control"  type="text">
     </div>
   </div>
   <label class="col-md-2 control-label" >Country<span style="color: red;">*</span></label> 
@@ -303,8 +332,10 @@ $( function() {
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
+   <div id="submitbutton">
     <button type="submit" class="btn btn-warning" onclick="message();">Send <span class="glyphicon glyphicon-send"></span></button>
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
+    </div>
   </div>
 </div>
 

@@ -23,16 +23,12 @@ public interface CustomerSalesDao
 
 	void saveDiary(AddDiary diary);
 
-	void addfollowup(AddFollowUp followUp);
+	int addfollowup(AddFollowUp followUp);
 
 	List<CustomerSales> getsalesListById();
 
 	void saveContact(Contact contact);
-
-
 	List<AddDiary> getdiarydata(int id, int pid);
-
-	
 
 	List<UserEmployee> getDatafromDiary();
 
@@ -57,6 +53,19 @@ public interface CustomerSalesDao
 
 	void updateDiary(AddDiary addDiary);
 
+
+	List<CustomersFileUplaod> getdatafromfiles();
+
+	CustomersFileUplaod getfilesDataBy(int id);
+
+	void delateFilesData(CustomersFileUplaod files);
+
+	public CustomerSales verifyOrg(String organisation);
+
+	String getorgName(Integer followupId);
+
+	
+
 	List<AddDiary> getdiarydata1(int pid);
 
 	List<AddFollowUp> getfollowUpUserId(String id, String sdate);
@@ -68,6 +77,7 @@ public interface CustomerSalesDao
 	List<CustomerLevels> getlistcustomerlevel();
 
 	int getcountcustomerlevel(CustomerLevels sl);
+
 
 	
 
