@@ -1,5 +1,6 @@
 package com.pogo.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.pogo.bean.AddActionBean;
@@ -10,6 +11,7 @@ import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseEntry;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 
@@ -61,8 +63,10 @@ public interface MasterMastersDao {
 	 void deleteExpenceserheader(int id);
 	 List<ExpenseMaster> getExpenceserheaderById (String id);
 	 void editExpenseHeader(ExpenseMaster poref1);
-
-	
+	 List<ExpenseMaster> getUnitByExpense(String unit);
+	 List<ExpenseMaster> getExpenseListById();
+	 
+	 
 	
 	List<District> getdistrictlistbystateid(String stateid);
 	List<State> getstatelistbycountryid(String cuntryid);
@@ -145,6 +149,13 @@ public interface MasterMastersDao {
 	List<SupplierMaster> getSupmst(String id);
 	void editSupplierMaster(SupplierMaster sm);
 	void deleteSuppilerMst(int id);
+	
+	void saveExpenseEntry(ExpenseEntry e);
+	List<ExpenseEntry> getExpenseReportList();
+	
+	List<ExpenseEntry> getExpenseReportListByDate(String sdate , String edate);
+	
+	
 
 
 	

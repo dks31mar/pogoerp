@@ -29,6 +29,7 @@ import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
 
 import com.pogo.dao.MasterOrganizationDao;
+import com.pogo.model.AddAction;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
@@ -842,8 +843,48 @@ public List<DepartmentBean> getDepartmentDetails() {
 	return listbean;
 
 }
+
+@Override
+public String getdepartmentRecord(String id) {
+	List<Department> depart =userEmpdao.getdepartmentRecord(id);
+	Map<String, Object> dd=new HashMap<>();
+	for(Department depa: depart)
+	{
+		
+		dd.put("depId",depa.getDepartmentId());
+		dd.put("depName",depa.getDepName());
+			
+	}
+	Gson gson=new Gson();
+	
+String list=	gson.toJson(dd);
+	
+	return list;
+}
+@Override
+@Transactional
+public void updatefordepartment(DepartmentBean addbean) {
+	
+	Department action=new Department();
+	action.setDepartmentId(addbean.getDepId());
+	action.setDepName(addbean.getDepName());
+	
+	userEmpdao.updatefordepartment(action);
+	
+
+}
+@Override
+public void deletedepartment(int id) {
+	Department depart = userEmpdao.getdepartmentbyid(id);
+	userEmpdao.deletedepartment(depart);
+	
+	
+
 	
 }
+}
+	
+
 
 	
 	

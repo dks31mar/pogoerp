@@ -6,7 +6,11 @@ import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
 import com.pogo.model.CustomerSales;
+
 import com.pogo.model.ProductMaster;
+
+import com.pogo.model.UserEmployee;
+
 
 public interface CustomerSalesDao 
 {
@@ -27,8 +31,22 @@ public interface CustomerSalesDao
 
 	void saveContact(Contact contact);
 
+
+	List<AddDiary> getdiarydata();
+
 	List<CustomerSales> getCustomerData(String organisation);
+
 
 	
 	List<CustomerSales> getOrganisationname(CustomerSales cs);
+
+	List<UserEmployee> getDatafromDiary();
+
+	List<AddDiary> getPlanByid(Integer userempid);
+
+	List<CustomerSales> getCustomerdatabyCompanyName(String organization);
+
+	List<CustomerSales> getCustomerdatabyCompanyName(int id);
+
+
 }

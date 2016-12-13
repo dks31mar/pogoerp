@@ -5,7 +5,7 @@ import java.text.ParseException;
 
 import java.util.List;
 
-
+import com.pogo.bean.AddActionBean;
 import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
 
@@ -114,6 +114,16 @@ public interface MasterOrganizationService {
 	String getCompetitiorsProfilebyid(String id);
 
 	void editCompetitiorsProfile(CompetitiorsProfileBean poref1);
+
+	String getdepartmentRecord(String id);
+
+	void updatefordepartment(DepartmentBean addbean);
+
+	void deletedepartment(int id);
+
+
+
+	
 
 	
 	

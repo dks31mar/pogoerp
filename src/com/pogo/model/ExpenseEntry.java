@@ -17,24 +17,38 @@ public class ExpenseEntry {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int expentryid;
 	
+	@Column(name = "orgnisation")
+	private String orgnisation;
+	
 	@Column(name = "creation_date")
 	private String crdate;
+	
+	@Column(name = "orgAddress")
+	private String orgAddress;
 	
 	@Column(name = "date")
 	private String date;
 	
+	@Column(name = "expname")
+	private String expname;
+	
 	@Column(name= "description")
 	private String description;
+	
+	@Column(name = "unit")
+	private Integer unit;
 	
 	@Column(name="unit_expense")
 	private String unit_expense;
 	
-	@Column(name = "total")
-	private Integer total;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="organisation")
-    private CustomerSales customersales ;
+	@Column(name = "total")
+	private double total;
+	
+	@Column(name = "grandtotal")
+	private Integer grandtotal;
+	
+	
 	
 	public int getExpentryid() {
 		return expentryid;
@@ -42,6 +56,14 @@ public class ExpenseEntry {
 
 	public void setExpentryid(int expentryid) {
 		this.expentryid = expentryid;
+	}
+
+	public String getOrgnisation() {
+		return orgnisation;
+	}
+
+	public void setOrgnisation(String orgnisation) {
+		this.orgnisation = orgnisation;
 	}
 
 	public String getCrdate() {
@@ -52,12 +74,28 @@ public class ExpenseEntry {
 		this.crdate = crdate;
 	}
 
+	public String getOrgAddress() {
+		return orgAddress;
+	}
+
+	public void setOrgAddress(String orgAddress) {
+		this.orgAddress = orgAddress;
+	}
+
 	public String getDate() {
 		return date;
 	}
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public String getExpname() {
+		return expname;
+	}
+
+	public void setExpname(String expname) {
+		this.expname = expname;
 	}
 
 	public String getDescription() {
@@ -68,6 +106,14 @@ public class ExpenseEntry {
 		this.description = description;
 	}
 
+	public Integer getUnit() {
+		return unit;
+	}
+
+	public void setUnit(Integer unit) {
+		this.unit = unit;
+	}
+
 	public String getUnit_expense() {
 		return unit_expense;
 	}
@@ -76,21 +122,28 @@ public class ExpenseEntry {
 		this.unit_expense = unit_expense;
 	}
 
-	public Integer getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(Integer total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 
-	public CustomerSales getCustomersales() {
-		return customersales;
+	public Integer getGrandtotal() {
+		return grandtotal;
 	}
 
-	public void setCustomersales(CustomerSales customersales) {
-		this.customersales = customersales;
+	public void setGrandtotal(Integer grandtotal) {
+		this.grandtotal = grandtotal;
 	}
+
+	
+	
+	
+	
+
+	
 
 	
 	

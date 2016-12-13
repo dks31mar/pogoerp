@@ -10,7 +10,11 @@ import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.ContactBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSalesBean;
+
 import com.pogo.bean.ProductMasterBean;
+
+import com.pogo.model.AddDiary;
+
 
 public interface CustomerSalesService 
 {
@@ -32,10 +36,22 @@ public interface CustomerSalesService
 
 	void addContactPerson(ContactBean contactBean);
 
+	List<AddDiary> getdiarydata();
+	List<AddDiaryBean> getDiaryList();
+
 	List<CustomerSalesBean> findOrganisation(String organisation);
+
+
+	
+
+	List<AddDiaryBean> getDiaryRecord();
+
+	String getCustomerdatabyCompanyName(String organization);
 
     
 	String getOrganisationname(CustomerSalesBean customerSalesBean);
+
+	String getCustomerdatabyCompanyName(int id);
 
 	
 

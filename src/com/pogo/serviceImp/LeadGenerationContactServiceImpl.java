@@ -31,18 +31,27 @@ public class LeadGenerationContactServiceImpl implements LeadGenerationContactSe
 	@Override
 	@Transactional
 	public void saveContacts(ContactBean bean1) {
-		
+
+
 		
 		Contact c = new Contact();
 		c.setContactId(bean1.getContactId());
 		c.setContactName(bean1.getContactName());
-		c.setDesName(userEmpdao.getDesgById(bean1.getDesId()));
+
 		c.setDeptName(userEmpdao.getDep(bean1.getDepId()));
+		c.setDesName(userEmpdao.getDesgById(bean1.getDesId()));
+		
+
+		
+
 		c.setPhone(bean1.getPhone());
 		c.setContemail(bean1.getContemail());
 		c.setDob(bean1.getDob());
 		c.setDoa(bean1.getDoa());
+
+
 		
+
 		contactdao.saveContacts(c);
 		
 	}
@@ -57,8 +66,13 @@ public class LeadGenerationContactServiceImpl implements LeadGenerationContactSe
 			bean.setContactName(c.getContactName());
 			System.out.println("@@@@@@@@@@&&&&&&&&&&&&&^^^^^^^^^^^*********");
 			//System.out.println("department list *****************************"+c.getDeptName().getDepName());
+
 			//bean.setDeptName1(c.getDeptName().getDepName());
 			//bean.setDesName(c.getDesName().getDesignation());
+
+			bean.setDeptName1(c.getDeptName().getDepName());
+		//bean.setDesName(c.getDesName().getDesignation());
+
 			bean.setDob(c.getDob());
 			list.add(bean);
 			

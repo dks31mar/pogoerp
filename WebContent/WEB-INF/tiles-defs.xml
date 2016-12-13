@@ -134,6 +134,17 @@
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addaction.jsp" />
 			</definition>
 			
+			<!--********************Reports***********************************************  -->
+			
+			<definition name="pendingtasks" extends="baseLayout" >
+			<put-attribute name="title" value="Pending Tasks "></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Employee/Reports/pendingTasks.jsp" />
+			</definition>
+			<!--********************	Followups***********************************************  -->
+			<definition name="Followups" extends="baseLayout" >
+			<put-attribute name="title" value="Followups "></put-attribute>
+				<put-attribute name="body" value="/WEB-INF/views/Employee/Reports/followups.jsp" />
+			</definition>
 			
             		<!-- ************************************************** use by satyendra *************************************************** -->
 			<!-- <definition name="AddPrinicpalPO" extends="baseLayout" >
@@ -287,6 +298,16 @@
 			 <put-attribute name="title" value="ExpenseEntry" />
 			 <put-attribute name="body" value="/WEB-INF/views/Diary/expenseEntery.jsp" />
 			 </definition>
+			 <!-- ExpenseReport -->
+			  <definition name="expensereport" extends="baseLayout">
+			 <put-attribute name="title" value="ExpenseReport" />
+			 <put-attribute name="body" value="/WEB-INF/views/Diary/expenseReport.jsp" />
+			 </definition>
+			 <!--ExpenseReportDetails  -->
+			 <definition name="expensereportdetails" extends = "baseLayout">
+			 <put-attribute name="title" value = "ExpenseReportDetails"></put-attribute>
+			 <put-attribute name="body" value = "/WEB-INF/views/Diary/expenseReportDetails.jsp"></put-attribute>
+			 </definition>
 		<!-- ************************************************* use by shweta *************************************************** -->	
 			<definition name="productheadpage" extends="baseLayout" >
 			 <put-attribute name="title" value="Product Head"></put-attribute>
@@ -421,6 +442,17 @@
 			<put-attribute name="title" value="Department " />
 			<put-attribute name="body" value="/WEB-INF/views/Master/organisation/department.jsp" />
 			</definition>
+			
+			<!-- Reports -->
+			<definition name="pendingthings" extends="baseLayout" >
+			<put-attribute name="title" value="Report " />
+			<put-attribute name="body" value="/WEB-INF/views/reports/pendingThingsto.jsp" />
+			</definition>
+			<!-- <definition name="pendingtasks" extends="baseLayout" >
+			<put-attribute name="title" value="Report " />
+			<put-attribute name="body" value="/WEB-INF/views/reports/pendingTasks.jsp" />
+			</definition> -->
+			
 			
 			<!-- Permission for SMS -->
 			<definition name="getsms" extends="baseLayout" >

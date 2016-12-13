@@ -173,9 +173,9 @@ System.out.println();
 							<td>
 								<input type="hidden" style="text-align:center;" name="unitcost" id="unitcostx" value="" class="form-control"  ></td>
 							<td>
-							<td align="center">&nbsp; <input type="button" value='+'
+							<td align="center" style="background-color: #E6E6E6;">&nbsp; <input type="button" value='+'
 							 id='addmorepro12' class='btn btn-success pull-right' data-toggle='tooltip'
-								title='Add More Product'/>
+								title='Add More Product' />
 					</tr>
 					
 					</table>
@@ -449,7 +449,7 @@ System.out.println();
 							"<td><a class='glyphicon glyphicon-pencil' href='#' onclick='editfields("+(id)+")'></a> | <a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+
 							"</tr>";
 			            $("#addprolisttbody").append(markup);
-						
+						alert(markup);
 			            //id++;
 			            $('#sr').val(id+1);
 			            
