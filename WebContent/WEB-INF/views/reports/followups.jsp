@@ -15,12 +15,13 @@
 <style>
 #unstyled {
 }
+.popover .arrow {
+    left: 90px !important; /* or 45% etc */
+}
 .popover {
- 
- 
-  max-width: 1000px;
- 
- 
+ 	position:fixed;
+	max-width: 800px;
+ 	margin-left: -45%
 }
 </style>
 <script>
@@ -281,11 +282,10 @@ function getdatabyidanddatedif(id,sdate,ldate,day){
 
 }
 function get_popover_placement(pop, dom_el) {
-    var width = window.innerWidth;
-    if (width<500) return 'bottom';
-    var left_pos = $(dom_el).offset().left;
-    if (width - left_pos > 100) return 'left';
-    return 'left';
+	$('.popover').css('top',parseInt($('.popover').css('top')) + 22 + 'px')
+      
+            return "bottom";
+        
   }
 
 

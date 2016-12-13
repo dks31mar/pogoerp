@@ -586,7 +586,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 							content+="</tbody>";
 							content+="</table>";
 		}else{
-			content+="<h2>No Record Found</h2>";
+			content+="<h2>No Follow Up Found</h2>";
 		}
 		
 		
