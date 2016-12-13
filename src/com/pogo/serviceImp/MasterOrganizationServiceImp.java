@@ -254,7 +254,16 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDepartment(userDTO.getDepartment());
 		emp.setEmpCode(userDTO.getEmpCode());
 		emp.setMiddlename(userDTO.getMiddlename());
-		//emp.setUserProfile(userDTO.getUserProfile());
+		if(userDTO.getUserProfile().getSize()>0)
+		{
+			emp.setUserProfile(userDTO.getUserProfile().getOriginalFilename());
+		}
+		else
+		{
+			emp.setUserProfile("useremp.png");
+		}
+		
+		emp.setUserProfile(userDTO.getProfile());
 		emp.setActive(true);
 		emp.setEmpStatus(true);
 		userEmpdao.addUser(emp);

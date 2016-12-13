@@ -143,8 +143,9 @@ public class MasterOrganizationController {
 				inputStream =file.getInputStream();
 				outputStream = new FileOutputStream(request.getSession()
 						.getServletContext().getRealPath("/")
-						+ "/image/empProfile/" + file.getOriginalFilename());
-
+						+ "C://Users//system1//git//pogoerp//SpringHibernateApp//image//empProfile" + file.getOriginalFilename());
+				//git\pogoerp/SpringHibernateApp
+				//[[https://github.com/username/repository/blob/master/img/octocat.png|alt=octocat]]
 				int readBytes = 0;
 				byte[] buffer = new byte[8192];
 				while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {

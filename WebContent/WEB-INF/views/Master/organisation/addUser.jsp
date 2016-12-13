@@ -2,19 +2,21 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
+<!-- <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" /> -->
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- <script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script> -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
-
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 <!-- <link rel="stylesheet" type="text/css"
@@ -28,9 +30,12 @@
 #success_message {
 	display: Edited;
 }
+
+
+
 </style>
 
-
+ 
 
 
 <div id="message" style="display: none;"></div>
@@ -44,6 +49,22 @@
 				<!-- Form Name -->
 				<legend>Add Employee</legend>
 				
+				<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h6 class="modal-title">Upload Profile</h6>
+        </div>
+        <div class="modal-body">
+           <div><input type="file" name="userProfile"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 				
 				 <div class="span6" style="margin-top: -5px; margin-left: 0px; width: 100px;">
 		<div class="block">
@@ -52,9 +73,11 @@
 					<div class="span3"></div>
 					<div class="span9" style="float: right:;">
 						<div class="span3" style="width: 100px; height: 50px;">
-							<img src="resources/image/empProfile/Businessman-48.png" accept="image/*"
-								style="width: 44px; height: 44px;">
+							<img src="resources/image/empProfile/useremp.png" accept="image/*"
+								style="width: 44px; height: 44px;" id="uploadimg" title="Upload New Image">
+								
 						</div>
+						
 					</div>
 				</div>
 
@@ -513,6 +536,8 @@
 		return (flag);
 
 	}
-
+$('#uploadimg').on('click',function(){
+	$('#myModal').modal('show'); 
+});
 </script>
 

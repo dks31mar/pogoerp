@@ -36,9 +36,6 @@ import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.ContactBean;
 
 import com.pogo.bean.CustomerFileUploadBean;
-import com.pogo.bean.CustomerLevelsBean;
-
-
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.dao.MasterMastersDao;
