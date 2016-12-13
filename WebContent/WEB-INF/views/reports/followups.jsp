@@ -10,9 +10,19 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 </head>    
-
+<style>
+#unstyled {
+}
+.popover {
+ 
+ 
+  max-width: 1000px;
+ 
+ 
+}
+</style>
 <script>
 $( function() {
     $("#followdatestart").datepicker({dateFormat: 'dd/mm/yy'
@@ -74,12 +84,12 @@ java.util.Date date = new java.util.Date();
   </div>
 </div>
 </div>
-<table class="responstable" id="calendartable" style="width:98%;align:center">
+<table class="responstable" id="calendartable" style="width:98%;align:center" >
   
  
 </table>
 
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
 
 
@@ -186,7 +196,7 @@ $('#followdateend').change(function(){
 					markup1+="<td>"+name.name+"</td>";
 					for(var i=0;i<=totaldays;i++){
 						var day=""+d1+"/"+d2+"/"+d3+"";
-							markup1+="<td class="+d1+" align=center><a href=getfollowupbyuseridndate?sdate="+sdate+"&edate="+ldate+"&empid="+empid+"&day="+day+" target=_blank>0</a></td>";
+							markup1+="<td class="+d1+" align=center><a data-toggle='popover' href=# onmouseover=getdatabyidanddatedif("+empid+",'"+sdate+"','"+ldate+"','"+day+"');return false;>0</a></td>";
 							
 							if((monthAt31.includes(sres[1]) && d1==31)){
 								d1=1;
@@ -205,7 +215,7 @@ $('#followdateend').change(function(){
 								d3++;
 							}
 						}
-						markup1+="<td class=total align=center><a href=getfollowupbyuseridndate?sdate="+sdate+"&edate="+ldate+"&empid="+empid+"&day=00/00/0000 target=_blank></a></td></tr></tbody>";
+						markup1+="<td class=total align=center><a href=# data-toggle='popover' onmouseover=getdatabyidanddatedif("+empid+",'"+sdate+"','"+ldate+"','00/00/0000');return false; ></a></td></tr></tbody>";
 						
 						$('#calendartable').append(markup1);
 						var totalrate=0;
@@ -240,17 +250,44 @@ $('#followdateend').change(function(){
 	}
 	});
  
-function getdatabyidanddatedif(id,sdate,ldate,classname){
+function getdatabyidanddatedif(id,sdate,ldate,day){
+	$('[data-toggle="popover"]').popover('destroy');
 	
-	
-	$.ajax({
-		url: "getfollowupbyuseridndate?sdate="+sdate+"&edate="+ldate+"&empid="+id, 
-		success: function(result){
+	$('[data-toggle="popover"]').popover({
+			container: 'body',
+		      title : 'User Report <a href="#" class="close" data-dismiss="alert">×</a>',
+		      content : function(result){
+		    	  var div_id =  "tmp-id-" + $.now();
+		        	$.ajax({
+		        		url: "getfollowupbyuseridndate1?sdate="+sdate+"&edate="+ldate+"&empid="+id+"&day="+day,
+		        		type:"GET",
+		        		success: function(response){ 
+		        			$('#'+div_id).html(response);
+		        			
+		        		}
+		        		});
+		        	return '<div id="'+ div_id +'">Loading...</div>';
+		        	
+		        },
+		        trigger: 'onclick',
+		        html : true,
+		        placement: get_popover_placement
 		
-		}
-			
-	});  
-	
+		/* $('#unstyled').css("", "");
+		    $(document).on("click", ".popover .close" , function(){
+		        $(this).parents(".popover").popover('hide');
+		    }); */
+		});	
+
 }
+function get_popover_placement(pop, dom_el) {
+    var width = window.innerWidth;
+    if (width<500) return 'bottom';
+    var left_pos = $(dom_el).offset().left;
+    if (width - left_pos > 100) return 'left';
+    return 'left';
+  }
+
+
 
 </script>

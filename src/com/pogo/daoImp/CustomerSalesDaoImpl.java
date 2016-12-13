@@ -18,6 +18,7 @@ import com.pogo.dao.CustomerSalesDao;
 import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
+import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.model.CustomersFileUplaod;
 import com.pogo.model.UserEmployee;
@@ -35,8 +36,15 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 	
 	@Override
-	public List<CustomerSales> getsalesList() {
-		return sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).list();
+	public List<CustomerSales> getsalesList(String id) {
+		if(id.equals("all")){
+			return sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).list();
+		}else{
+			
+		int id1=(int)	sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).add(Restrictions.eq("status", id)).setProjection(Projections.property("id")).uniqueResult();
+			return sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).add(Restrictions.eq("status.id", id1)).list();
+		}
+		
 	}
 
 	@Override
@@ -261,7 +269,7 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 			
 		}else{
 			System.out.println("else");
-			list=	sessionFactory.getCurrentSession()
+			list=sessionFactory.getCurrentSession()
 			.createCriteria(AddFollowUp.class)
 			.add(Restrictions.eq("userEmp.userempid", id1))
 			.add(Restrictions.like("followupDate", "%"+day))
@@ -269,5 +277,19 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 		
 		}
 		return list;
+	}
+
+
+	@Override
+	public List<CustomerLevels> getlistcustomerlevel() {
+		
+		return sessionFactory.getCurrentSession().createCriteria(CustomerLevels.class).list();
+	}
+
+
+	@Override
+	public int getcountcustomerlevel(CustomerLevels sl) {
+		
+		return sessionFactory.getCurrentSession().createCriteria(CustomerSales.class).add(Restrictions.eq("status.id", sl.getId())).list().size();
 	}
 }

@@ -10,10 +10,10 @@
 <title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid" >
 <tiles:insertAttribute name="header" />
 </div>
-<div class="container-fluid" style="background-color: #E6E6E6;">
+<div class="container-fluid" style="background-color: #E6E6E6;" >
 				<tiles:insertAttribute name="body" />
 </div>
 

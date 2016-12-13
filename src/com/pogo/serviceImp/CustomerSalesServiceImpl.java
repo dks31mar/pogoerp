@@ -33,6 +33,7 @@ import com.pogo.dao.MasterOrganizationDao;
 import com.pogo.model.AddDiary;
 import com.pogo.model.AddFollowUp;
 import com.pogo.model.Contact;
+import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.model.CustomersFileUplaod;
 import com.pogo.model.UserEmployee;
@@ -96,8 +97,8 @@ public class CustomerSalesServiceImpl implements CustomerSalesService
 		
 	}
 	@Override
-	public List<CustomerSalesBean> findAllData() {
-		List<CustomerSales> sales=customerSalesDao.getsalesList();
+	public List<CustomerSalesBean> findAllData(String id) {
+		List<CustomerSales> sales=customerSalesDao.getsalesList(id);
 		List<CustomerSalesBean> salesbean=new ArrayList<CustomerSalesBean>();
 		for(CustomerSales data:sales)
 		{
@@ -527,6 +528,80 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 			b.add(bean);
 		}
 		return b;
+	}
+	@Override
+	public String getfollowuplistbydatenid1(String sdate, String edate, String empid, String day) {
+		List<AddFollowUp> list2=customerSalesDao.followUpListByUserId1(empid,sdate,edate,day);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>          Size      "+list2.size());
+		String content="";
+		List<AddFollowUpBean> b=new ArrayList<>();
+		int i=1;
+		
+		if(!list2.isEmpty()){
+			content="<table id='unstyled' border=1><thead>"+
+					  "<tr>"+
+						    "<th>S.N.</th>"+
+						    "<th><span>Follow up Date</span></th>"+
+						    "<th>In Time</th>"+
+						    "<th>Out Time</th>"+
+						    "<th>Hours of metting(HOM)</th>"+
+					     	"<th> Customer</th>"+
+					      	"<th>Contact Person</th>"+
+					      	"<th> Status</th>"+
+					        "<th> Follow up Type</th>"+
+					        "<th> Remark</th>"+
+					        "<th> Next Followup Date</th>"+
+					          
+					  "</tr>"+
+					  "</thead>";
+							content+="<tbody>";
+							for(AddFollowUp afoll:list2){
+								content+="<tr>";
+								content+="<td>"+i+++"</td>";
+								content+="<td>"+afoll.getFollowupDate()+"</td>";
+								content+="<td>"+afoll.getFollowupTimeIn()+":"+afoll.getFollowupTimeInMin()+"</td>";
+								content+="<td>"+afoll.getFollowupTimeOut()+":"+afoll.getFollowupTimeOutMin()+"</td>";
+								content+="<td></td>";
+								content+="<td>"+afoll.getCusOrganisation()+"</td>";
+								content+="<td>"+afoll.getContactPerson()+"</td>";
+								
+								content+="<td>"+afoll.getCusStatus()+"</td>";
+								content+="<td></td>";
+								content+="<td>"+afoll.getRemarks()+"</td>";
+								content+="<td></td>";
+								System.out.println(afoll.getFollowupDate());
+								
+								AddFollowUpBean bean=new AddFollowUpBean();
+								bean.setFollowUpId(afoll.getFollowUpId());
+								bean.setFollowupDate(afoll.getFollowupDate());
+								bean.setCusOrganisation(afoll.getCusOrganisation());
+								bean.setFollowupTimeIn(afoll.getFollowupTimeIn()+":"+afoll.getFollowupTimeInMin());
+								bean.setFollowupTimeOut(afoll.getFollowupTimeOut()+":"+afoll.getFollowupTimeOutMin());
+								bean.setContactPerson(afoll.getContactPerson());
+								bean.setCustStatus(afoll.getCusStatus());
+								bean.setRemarks(afoll.getRemarks());
+								content+="</tr>";
+								b.add(bean);
+							}
+							content+="</tbody>";
+							content+="</table>";
+		}else{
+			content+="<h2>No Record Found</h2>";
+		}
+		
+		
+		return content;
+	}
+	@Override
+	public Map<String, String> findocountofstatus() {
+		List<CustomerLevels> list=customerSalesDao.getlistcustomerlevel();
+		Map<String, String> map=new HashMap<>();
+		for(CustomerLevels sl:list){
+			int totalcount=customerSalesDao.getcountcustomerlevel(sl);
+			map.put(sl.getStatus(), Integer.toString(totalcount));
+		}
+		System.out.println(map);
+		return map;
 	}
 	
 	

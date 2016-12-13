@@ -3,6 +3,7 @@ package com.pogo.service;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,7 +22,7 @@ public interface CustomerSalesService
 
 	void addCustomerSales(CustomerSalesBean customerSalesBean)throws ParseException;
 
-	List<CustomerSalesBean> findAllData();
+	List<CustomerSalesBean> findAllData(String id);
 
 	public CustomerSalesBean getCustomerDetailsById(int id);
 	void upadtecustomerData(CustomerSalesBean customerSalesBean) throws ParseException;
@@ -41,6 +42,10 @@ public interface CustomerSalesService
 	JSONArray followUpListByUserId(String id, String sdate);
 
 	List<AddFollowUpBean> getfollowuplistbydatenid(String sdate, String edate, String empid, String day);
+
+	String getfollowuplistbydatenid1(String sdate, String edate, String empid, String day);
+
+	Map<String, String> findocountofstatus();
 
 	
 

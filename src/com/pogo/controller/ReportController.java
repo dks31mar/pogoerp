@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.pogo.bean.AddDiaryBean;
 import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.AddPlanBean;
+import com.pogo.bean.CustomerSalesBean;
 import com.pogo.bean.DesignationBean;
 import com.pogo.bean.UserEmployeeBean;
 
@@ -121,16 +123,22 @@ public class ReportController {
 	}
 	
 	
-	/*@RequestMapping(value="followupsreportpage",method = RequestMethod.GET)
+	@RequestMapping(value="getfollowupbyuseridndate1",method = RequestMethod.GET)
 	@ResponseBody
-	public void getfollowupReportPage(@RequestParam("datedif") String dateDif,Model model,@RequestParam("sdate") String sdate,@RequestParam("edate") String edate,HttpServletResponse res) throws IOException
+	public void getfollowupbyuseridndate1(@RequestParam("empid") String empid,Model model,@RequestParam("sdate") String sdate,@RequestParam("edate") String edate,@RequestParam("day") String day,HttpServletResponse res) throws IOException
 	{
-		System.out.println(dateDif);
+		
+		System.out.println(empid+"          "+sdate+"            "+edate+"                  "+"                  "+day);
+		//List<AddFollowUpBean> desginCode	= CustomerSalesService.getfollowuplistbydatenid1(sdate,edate,empid,day);
+		String desginCode	= CustomerSalesService.getfollowuplistbydatenid1(sdate,edate,empid,day);
+		PrintWriter w=res.getWriter();
+		w.print(desginCode);
+		/*System.out.println(dateDif);
 		String desginCode	= CustomerSalesService.followUpListByUserId(sdate,edate,dateDif);
 		//desginCode="<th></th>";
 		PrintWriter w=res.getWriter();
-		w.print(desginCode);
-	}*/
+		w.print(desginCode);*/
+	}
 	
 	@RequestMapping(value="getfollowupbyuseridndate",method = RequestMethod.GET)
 	
@@ -142,6 +150,12 @@ public class ReportController {
 		model.addAttribute("followlist",desginCode);
 		return "followupbydatenid";
 	}
-	
+	@RequestMapping(value="/salesFunnel",method = RequestMethod.GET)
+	public ModelAndView salesFunnel(Model model){
+	Map<String, String> list= CustomerSalesService.findocountofstatus();
+	model.addAttribute("customerdata",list );
+	return new ModelAndView("salesFunnel");
+			
+}
 	
 }
