@@ -39,13 +39,7 @@ public class LoginDaoImp implements LoginDao{
 			Criteria w=sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
 					.add(Restrictions.disjunction()
 							.add(Restrictions.or(Restrictions.eq("loginname", userBean.getUserName()), Restrictions.eq("eamil", userBean.getUserName()))))
-					.add(Restrictions.eq("password", userBean.getPassword()));
-		Criteria q=	sessionFactory.getCurrentSession().createCriteria(User.class)
-				.add(Restrictions.eq("userName", userBean.getUserName()))
-				.add(Restrictions.eq("password", userBean.getPassword()));
-		
-		//Query q=sessionFactory.getCurrentSession().createQuery("Select id from User where userName='"+userBean.getUserName()+"' and password='"+userBean.getPassword()+"'");
-
+					.add(Restrictions.eq("password", userBean.getPassword())).add(Restrictions.eq("active", true));
 try{
 	UserEmployee u=(UserEmployee)w.uniqueResult();
 	System.out.println(u.getUsermobile());
