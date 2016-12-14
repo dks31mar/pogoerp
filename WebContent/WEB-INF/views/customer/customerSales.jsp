@@ -6,7 +6,7 @@
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <!-- calender jquery-->
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<!-- calender Bootstrap -->
@@ -21,7 +21,7 @@
 
  <!-- bootstarp poup -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
@@ -132,8 +132,10 @@
   <div class="col-md-3 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="organisation" placeholder="Organisation Name"   class="form-control"  type="text">
+   <div id="errors">
+  <input   name="organisation" placeholder="Organisation Name" id="organisation"  class="form-control"  type="text" onblur="verifyOrganisation();">
     </div>
+  </div>
   </div>
   <label class="col-md-2 control-label" >Alias<span style="color: red;">*</span></label>  
   <div class="col-md-3 inputGroupContainer">
@@ -153,7 +155,7 @@
   <option value="" selected="selected">----Select Employee----</option>
   <c:if test="${!empty listemp}">
   <c:forEach items="${listemp}" var="list">
-  <option value="${list.userempid}">${list.loginname}</option>
+  <option value="${list.userempid}">${list.firstname} ${list.middlename} ${list.lastname}</option>
   </c:forEach>
  </c:if>
   </select>
@@ -167,7 +169,7 @@
    <option value="" selected="selected">----Select Role----</option>
   <c:if test="${!empty listemp}">
   <c:forEach items="${listemp}" var="List">
-  <option value="${List.userempid}">${List.firstname}</option>
+  <option value="${List.userempid}">${List.firstname} ${List.middlename} ${List.lastname}</option>
   </c:forEach>
   </c:if>
   </select>
@@ -294,9 +296,11 @@
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
   <div class="col-md-2" align="center">
+  <div id="submitbutton">
     <button type="submit" class="btn btn-warning" onclick="message();" >Send <span class="glyphicon glyphicon-send"></span></button>
     <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
   </div>
+</div>
 </div>
 
 </fieldset>
@@ -399,21 +403,22 @@ $(document).ready(function(){
 			});
 		}
 		
-		var j123=1;
+		
 		function contactDesignation() 
 		{
-			i=parseInt(i)+parseInt(1);
+			console.log(i);
+			//i=parseInt(i)+parseInt(1);
 			$.ajax({
 				url:'contactdesignation',
 				type:'GET',
 				success : function(data) {
 					var f1=JSON.parse(data);
 					console.log(f1);
-					if(j123==1){
+					if(i==7){
 					$.each(f1, function(k, v) {
 						console.log("inside");
 						$('#designationOption').append('<option value="'+k+'">'+v+'</option>');
-						j123=parseInt(j123)+parseInt(2);
+						i=parseInt(i)+parseInt(2);
 					});
 					}
 					
@@ -424,6 +429,37 @@ $(document).ready(function(){
 				}
 				
 			});
+		}
+		
+		function verifyOrganisation() {
+			var organisation = $("#organisation").val();
+			alert(organisation);
+			var flag = true;
+			$.ajax({
+						type : "POST",
+						url : 'verifyCust',
+						data : {
+							'organisation' : organisation,
+						},
+						success : function(data) {
+							var obj = JSON.parse(data);
+							//alert(obj.toSource());
+							if (obj == "no") 
+							{
+								$("#submitbutton").show();
+							}
+							else {
+								alert("This Organisation already Exist!!!");
+								$("#submitbutton").hide();
+							}
+						},
+						error : function(e) {
+							
+						}
+					});
+			
+			return (flag);
+
 		}
 		</script>
 

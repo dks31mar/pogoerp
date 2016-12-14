@@ -1,9 +1,12 @@
 package com.pogo.daoImp;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +20,10 @@ import com.pogo.model.AddAction;
 import com.pogo.model.AddPlan;
 import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
+import com.pogo.model.CustomerSales;
 import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseEntry;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
 
@@ -248,7 +253,7 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 		}
 
 
-	@Override
+	   @Override
 
 		public List<ExpenseMaster> expenseheadList(){
 			
@@ -281,7 +286,35 @@ public class MasterMastersDaoImpl  implements  MasterMastersDao {
 			//
 		}
 
+	
+	 @Override
+	 public List<ExpenseMaster> getExpenseListById() {
+		 
+				ProjectionList proList=Projections.projectionList();
+				proList.add(Projections.property("expensehead"));
+				//proList.add(Projections.property("customerId"));
+				Criteria r= sessionFactory.getCurrentSession().createCriteria(ExpenseMaster.class).setProjection(Projections.property("expensehead"));
+						
+				List<ExpenseMaster> list=r.list();
+				return list;
+			
+	 }
 	 
+	 
+	 
+	 @Override
+	 public List<ExpenseMaster> getUnitByExpense(String unit) 
+	 {
+		 return (List<ExpenseMaster>) sessionFactory.getCurrentSession().createCriteria(ExpenseMaster.class)
+				 .add(Restrictions.eq("expensehead", unit)).list();
+		
+		/* ExpenseMaster e= (ExpenseMaster) sessionFactory.getCurrentSession().createCriteria(ExpenseMaster.class)
+				 .add(Restrictions.eq("expensehead", unit)).uniqueResult();
+	 	System.out.println("***************************inside expenese master list********************************"+e);
+		 return (List<ExpenseMaster>) e;*/
+	 }
+	 
+	
 	 @Override
 		public List<CustomerSource> getCustomerSourceList(){
 			
@@ -587,6 +620,31 @@ public void editSupplierMaster(SupplierMaster sm) {
 public void deleteSuppilerMst(int id) {
 	sessionFactory.getCurrentSession().createQuery("DELETE FROM SupplierMaster WHERE suppliermasterid = "+id).executeUpdate();
 }
+
+
+
+@Override
+ public void saveExpenseEntry(ExpenseEntry e)
+{
+	sessionFactory.getCurrentSession().save(e);
+}
+@Override
+public List<ExpenseEntry> getExpenseReportList() {
+	return (List<ExpenseEntry>)sessionFactory.getCurrentSession().createCriteria(ExpenseEntry.class).list();
+}
+@Override
+public List<ExpenseEntry> getExpenseReportListByDate(String sdate , String edate) {
+	return sessionFactory.getCurrentSession()
+	.createCriteria(ExpenseEntry.class)
+	//.add(Restrictions.eq("userEmp.userempid", id1))
+	.add(Restrictions.between("crdate", sdate, edate)).addOrder(Order.asc("crdate"))
+	.list();
+	
+}
+
+
+
+
 
 
 

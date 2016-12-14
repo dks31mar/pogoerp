@@ -587,7 +587,7 @@ public class MasterMasterController {
 	
 	
 	@RequestMapping(value="/modeofdispatch",method = RequestMethod.GET)
-	public ModelAndView getTransportationMode( @ModelAttribute("command") ExpenseMasterBean expense,HttpServletRequest request){
+	public ModelAndView getTransportationMode( @ModelAttribute("command") ModeOfDispatchBean bean,HttpServletRequest request){
 		System.out.println("inside mode of dispatch method");
 		List<ModeOfDispatchBean> list = new ArrayList<ModeOfDispatchBean>();
 		list = masterMastersService.getModeOfDispatchList();

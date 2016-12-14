@@ -21,7 +21,6 @@
 <title>Insert title here</title>
 
 </head>    
-
  </CENTER>
         <div id="pop" style="display: none;"></div>
 <div><c:out value="${id}" /></div>
@@ -40,7 +39,15 @@
 
 	<div class="page-heading col-sm-11"
 		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
-		<span class="glyphicon glyphicon-user"></span> 	Sales Funnel Report </b>		
+		<span class="glyphicon glyphicon-user"></span> 	Followups Reports	
+</b>
+		 <label
+			 style="margin-left: 250px;margin-top: 8px;"><a href="getzonepage"
+			class="btn btn-primary">Add Followups Reports	
+</a>
+			
+     </label>
+  		
 </div>
 
 </div>
@@ -48,27 +55,43 @@
         
        <table class="responstable">
   
-  <tbody><tr>
-    <th>S.N.</th>
-    <th data-th="Driver details"><span>	Funnel Stage</span></th>
-    <th>No. of Doctors</th>
-     <th>Value</th>
-   <!--  <th>Edit</th>
-    <th>Delete</th> -->
-  </tr>
-   <c:if test="${!empty branchList}">
-	<c:forEach items="${branchList}" var="sales" varStatus="loop">
-	
+  <thead>
   <tr>
-    <td>${loop.index+1}</td>
-    <td>${sales.funnel}</td>
-   <td><a href="#" target="_blank"></a></td>
-   <td><a href="#" target="_blank"></a></td>
+	    <th>S.N.</th>
+	    <th data-th="Driver details"><span>Follow up Date</span></th>
+	    <th>In Time</th>
+	    <th>Out Time</th>
+	    <th>Hours of metting(HOM)</th>
+     	<th> Customer</th>
+      	<th>Contact Person</th>
+      	<th> Status</th>
+        <th> Follow up Type</th>
+        <th> Remark</th>
+        <th> Next Followup Date</th>
+          
   </tr>
- 
+  </thead>
+  <tbody>
+<c:if test="${!empty followlist}">
+	<c:forEach items="${followlist}" var="list" varStatus="loop">
+	 
+  <tr>
+    	<td>${loop.index+1}</td>
+    	<td>${list.followupDate}</td>
+   		<td>${list.followupTimeIn}</td>
+    	<td>${list.followupTimeOut}</td>
+    	<td></td>
+     	<td>${list.cusOrganisation}</td>
+      	<td>${list.contactPerson}</td>
+       	<td></td>
+        <td></td>
+        <td>${list.remarks}</td>
+        <td></td>
+  </tr>
+   
   </c:forEach>
   </c:if>
-
+  
 </tbody></table>
         
 </div>
@@ -84,60 +107,3 @@
 <div class="row form-group">
 						<div class="col-sm-7">
 	</div>
-
-<div id="body">
-<div>
-<div>
-<div class="row" style="margin-top: 15px">
-	<br>
-	<div align="center">
-		<i>
-			
-		</i> <input type="hidden" name="profile" value="0" />
-	</div>
-</div>
-<div class="row">
-
-	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
-		<span class="glyphicon glyphicon-user"></span> 	Sales Funnel Report </b>
-		 <label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="#"
-			class="btn btn-info">	<strong> Sales Funnel</strong></a>
-			
-     </label>
-  		
-</div>
-
-</div>
-</div> 
-        
-       <table class="responstable">
-  
-  <tbody><tr>
-    <th>S.N.</th>
-    <th data-th="Driver details"><span>	Funnel Stage</span></th>
-    <th>No. of Doctors</th>
-     
-   <!--  <th>Edit</th>
-    <th>Delete</th> -->
-  </tr>
-   <c:if test="${!empty customerdata}">
-	<c:forEach items="${customerdata}" var="itemrow" varStatus="loop">
-	
-  <tr>
-    <td>${loop.index+1}</td>
-    <td>${itemrow.key}</td>
-   <td><a href="getSalesList?id=${itemrow.key}">${itemrow.value}</a></td>
-  
-  </tr>
- 
-  </c:forEach>
-  </c:if>
-
-</tbody></table>
-        
-</div>
-</div>
-
-

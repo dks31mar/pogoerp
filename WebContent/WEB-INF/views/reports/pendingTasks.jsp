@@ -25,9 +25,7 @@
 				<div class="page-heading col-md-11.5"
 					style="background-color: #3C8DBD; color: white; left: 20px; height:44px;">
 					<span class="glyphicon glyphicon-user" ></span><span>Pending Plan</span>
-					<label
-			style="margin-left: 540px;"><a
-			href="#" style="margin-top: -3px;" class="btn btn-primary">  </a> </label> 
+					
 
 				</div>
 
@@ -62,7 +60,7 @@
 							<td id="emal${loop.index+1}" style="text-align: center;"><a href="pendingThingsTo?id=${diarylist.enteryuserId}&planid=3">${diarylist.totalemail }</a></td>
 							<td id="smss${loop.index+1}" style="text-align: center;" ><a href="pendingThingsTo?id=${diarylist.enteryuserId}&planid=1">${diarylist.totalsms }</a></td>
 							<td id="otherss${loop.index+1}" style="text-align: center;"><a href="pendingThingsTo?id=${diarylist.enteryuserId}&planid=0">${diarylist.totalothers }</a></td>
-							<td id="total12${loop.index+1}" style="text-align: center;"><a href="">${diarylist.total }</a></td>
+							<td id="total12${loop.index+1}" style="text-align: center;"><a href="pendingThingsTo?id=${diarylist.enteryuserId}&planid=0">${diarylist.total }</a></td>
 						</tr>
 
 					</c:forEach>
@@ -72,12 +70,12 @@
 					<tr>
 							<td></td>
 							<td>Total</td>
-							<td style="text-align: center;"><a href="" id="appoit"></a></td>
-							<td id="" style="text-align: center;"><a href="" id="phon"></a></td>
-							<td id="" style="text-align: center;"><a href="" id="emal"></a></td>
-							<td id="" style="text-align: center;"><a href="" id="smss"></a></td>
+							<td style="text-align: center;"><a href="pendingThingsTo?id=0&planid=2" id="appoit"></a></td>
+							<td id="" style="text-align: center;"><a href="pendingThingsTo?id=0&planid=4" id="phon"></a></td>
+							<td id="" style="text-align: center;"><a href="pendingThingsTo?id=0&planid=3" id="emal"></a></td>
+							<td id="" style="text-align: center;"><a href="pendingThingsTo?id=0&planid=1" id="smss"></a></td>
 							<td id="" style="text-align: center;"><a href="" id="otherss"></a></td>
-							<td id="" style="text-align: center;"><a href="" id="total12"></a></td>
+							<td id="" style="text-align: center;"><a href="pendingThingsTo?id=${diarylist.enteryuserId}&planid=" id="total12"></a></td>
 						</tr>
 			</tfoot>
 		</table>
@@ -185,7 +183,11 @@ $(document).ready(function(){
 	  });
 	  
 	  $('#quotprodtable').DataTable( {
-	        "order": [[0, "desc" ]]
+
+	        "order": [[0, "asc" ]],
+	        bFilter: false, 
+	        bInfo: false
+
 	    } );
 	});
   

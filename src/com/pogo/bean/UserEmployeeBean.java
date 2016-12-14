@@ -2,6 +2,8 @@ package com.pogo.bean;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class UserEmployeeBean 
 {
 	private Integer userempid;
@@ -35,6 +37,8 @@ public class UserEmployeeBean
 	private String usermobile;
 	private String deviceno;
 	private Boolean empStatus;
+	private MultipartFile userProfile;
+	private String profile;
 	
 	public String getDeviceno() {
 		return deviceno;
@@ -211,6 +215,18 @@ public class UserEmployeeBean
 	}
 	public void setDepname(String depname) {
 		this.depname = depname;
+	}
+	public MultipartFile getUserProfile() {
+		return userProfile;
+	}
+	public void setUserProfile(MultipartFile userProfile) {
+		this.userProfile = userProfile;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 	
 	

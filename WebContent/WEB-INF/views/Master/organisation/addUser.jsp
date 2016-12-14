@@ -2,19 +2,21 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
+<!-- <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" /> -->
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
 
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!-- <script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script> -->
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
-
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 <!-- <link rel="stylesheet" type="text/css"
@@ -28,22 +30,62 @@
 #success_message {
 	display: Edited;
 }
+
+
+
 </style>
 
-
+ 
 
 
 <div id="message" style="display: none;"></div>
 <div id="body">
 	<div class="container">
-
-		<form:form class="well form-horizontal" name="forp"
+		<form:form class="well form-horizontal" name="forp" enctype="multipart/form-data"
 			action="saveuserEmp" method="POST" commandName="userbean" id="myForm">
 
 			<fieldset>
 
 				<!-- Form Name -->
 				<legend>Add Employee</legend>
+				
+				<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h6 class="modal-title">Upload Profile</h6>
+        </div>
+        <div class="modal-body">
+           <div><input type="file" name="userProfile"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+				
+				 <div class="span6" style="margin-top: -5px; margin-left: 0px; width: 100px;">
+		<div class="block">
+			<div class="data-fluid">
+				<div class="row-form" style="float: right:;">
+					<div class="span3"></div>
+					<div class="span9" style="float: right:;">
+						<div class="span3" style="width: 100px; height: 50px;">
+							<img src="resources/image/empProfile/useremp.png" accept="image/*"
+								style="width: 44px; height: 44px;" id="uploadimg" title="Upload New Image">
+								
+						</div>
+						
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div> 
 				<div class="form-group">
 					<label class="col-md-2 control-label">Employee Id</label>
 					<div class="col-md-3 inputGroupContainer">
@@ -73,8 +115,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="loginname"
-								placeholder="User Name" required="required" pattern="[a-zA-Z]+"
-								class="form-control" type="text">
+								placeholder="User Name" required="required" pattern="[a-zA-Z]+" id="username"
+								class="form-control" type="text" onblur="verifyLoginName();">
 						</div>
 					</div>
 					<label class="col-md-2 control-label">Joining Date<span
@@ -190,7 +232,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-envelope"></i></span> <input name="eamil"
-								placeholder="E-Mail Address"
+								placeholder="E-Mail Address" onblur="verifyEmail();" id="email"
 								pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
 								class="form-control" required="required" type="email">
 						</div>
@@ -285,10 +327,16 @@
 								<c:forEach  items="${depList}" var="data">
 								<option value="${data.depId}">${data.depName}</option>
 								</c:forEach>
-
 							</select>
 						</div>
 					</div>
+					<!-- <div class="form-group">
+					<label class="col-md-2 control-label">Employee Profile<span
+						style="color: red;">*</span></label>
+						<div class="col-md-2 selectContainer">
+                   <input  type="file" name="file" class="fileupload fileupload-new">
+                   </div>
+  					</div> -->
 				</div>
 				<!-- Text input-->
 				<div class="form-group">
@@ -323,6 +371,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-2" align="center">
+					<div id="submitbutton">
 						<button type="submit" class="btn btn-warning" onclick="message();">
 							Send <span class="glyphicon glyphicon-send"></span>
 						</button>
@@ -330,6 +379,7 @@
 							onclick="history.back();">
 							Back <span class="glyphicon glyphicon-send"></span>
 						</button>
+						</div>
 					</div>
 				</div>
 
@@ -422,5 +472,72 @@
 		}
 		document.getElementById(firstlastupper).value = str;
 	}
+	
+	function verifyLoginName() {
+		var loginname = $("#username").val();
+		alert(loginname);
+		var flag = true;
+		$.ajax({
+					type : "POST",
+					url : 'verifyloginname',
+					data : {
+						'login' : loginname,
+					},
+					success : function(data) {
+						var obj = JSON.parse(data);
+						//alert(obj.toSource());
+						if (obj == "no") 
+						{
+							$("#submitbutton").show();
+						}
+						else {
+							alert("This Loginname already Exist!!!");
+							$('input[name=loginname]').focus();
+							$("#submitbutton").hide();
+						}
+					},
+					error : function(e) {
+						
+					}
+				});
+		
+		return (flag);
+
+	}
+	
+	function verifyEmail() {
+		var email = $("#email").val();
+		alert(email);
+		var flag = true;
+		$.ajax({
+					type : "POST",
+					url : 'verifyemail',
+					data : {
+						'eamil' :  email,
+					},
+					success : function(data) {
+						var obj = JSON.parse(data);
+						//alert(obj.toSource());
+						if (obj == "no") 
+						{
+							$("#submitbutton").show();
+						}
+						else {
+							alert("This Email already Exist!!!");
+							$('input[name=email]').focus();
+							$("#submitbutton").hide();
+						}
+					},
+					error : function(e) {
+						
+					}
+				});
+		
+		return (flag);
+
+	}
+$('#uploadimg').on('click',function(){
+	$('#myModal').modal('show'); 
+});
 </script>
 

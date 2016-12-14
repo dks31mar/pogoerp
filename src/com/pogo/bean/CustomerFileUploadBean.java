@@ -7,6 +7,8 @@ public class CustomerFileUploadBean {
 	private MultipartFile file;
 	private String fileName;
 	private String fileType;
+	private Integer followupId;
+	private String oganisationName;
 	public Integer getCusfileId() {
 		return cusfileId;
 	}
@@ -31,6 +33,18 @@ public class CustomerFileUploadBean {
 	}
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
+	}
+	public Integer getFollowupId() {
+		return followupId;
+	}
+	public void setFollowupId(Integer followupId) {
+		this.followupId = followupId;
+	}
+	public String getOganisationName() {
+		return oganisationName;
+	}
+	public void setOganisationName(String oganisationName) {
+		this.oganisationName = oganisationName;
 	}
 	
 

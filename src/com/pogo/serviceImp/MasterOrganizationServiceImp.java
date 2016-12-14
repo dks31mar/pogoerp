@@ -33,6 +33,7 @@ import com.pogo.model.AddAction;
 import com.pogo.model.Branch;
 import com.pogo.model.CompanyProfile;
 import com.pogo.model.CompetitiorsProfile;
+import com.pogo.model.CustomerSales;
 import com.pogo.model.Department;
 import com.pogo.model.Designation;
 import com.pogo.model.ModeOfDispatch;
@@ -227,9 +228,9 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		
 	}
 	@Override
-	public void adduserEmp(UserEmployeeBean userDTO) throws ParseException 
+	public void adduserEmp(UserEmployeeBean userDTO,String path) throws ParseException 
 	{
-		
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       service method                       "+path);
 		SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd-yyyy");
 		//SimpleDateFormat df=new SimpleDateFormat("MMM-dd-yyyy");
 		UserEmployee emp=new UserEmployee();
@@ -254,6 +255,9 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDepartment(userDTO.getDepartment());
 		emp.setEmpCode(userDTO.getEmpCode());
 		emp.setMiddlename(userDTO.getMiddlename());
+		emp.setUserProfile(path);
+		
+		
 		emp.setActive(true);
 		emp.setEmpStatus(true);
 		userEmpdao.addUser(emp);
@@ -271,7 +275,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		{
 			UserEmployeeBean data=new UserEmployeeBean();
 			data.setUserempid(list.getUserempid());
-			data.setLoginname(list.getLoginname());
+		//	data.setLoginname(list.getLoginname());
 
 			data.setFirstname(list.getFirstname() +""+list.getMiddlename()+""+ list.getLastname() );
 			data.setDeviceno(list.getDeviceno());
@@ -882,6 +886,29 @@ public void deletedepartment(int id) {
 
 	
 }
+@Override
+public String verifyLogin(String login) {
+	String result="yes";
+	UserEmployee user=userEmpdao.verifyLogin(login);
+	if(user==null)
+	{
+		result="no";
+	}	
+	return result;
+}
+@Override
+public String verifyEmail(String email) {
+	String result="yes";
+	UserEmployee user=userEmpdao.verifyEmail(email);
+	if(user==null)
+	{
+		result="no";
+	}	
+	return result;
+}
+
+	
+
 }
 	
 

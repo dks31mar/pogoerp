@@ -7,10 +7,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.annotation.JsonFormat.Value;
@@ -34,6 +41,7 @@ import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.SmsAllocationBean;
 import com.pogo.bean.StatezoneBean;
 import com.ibm.icu.text.Normalizer.Mode;
+
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.BranchBean;
 import com.pogo.bean.CompanyProfileBean;
@@ -75,30 +83,22 @@ public class MasterOrganizationController {
 	private MasterOrganizationService userEmployeeservice;
 	@Autowired
 	private MasterOrganizationDao empDao;
-
+@Autowired
+ServletContext context;
 	/* Employee */
 	@RequestMapping(value = "/getuseremp", method = RequestMethod.GET)
-	public ModelAndView getUserEmpl(Model model,
-			@RequestParam(value = "num", defaultValue = "0", required = false) int num) throws ParseException
+	public ModelAndView getUserEmpl(Model model)
+			 throws ParseException
 
 	{
 		List<UserEmployeeBean> list = new ArrayList<UserEmployeeBean>();
 		list = userEmployeeservice.getUserDetails();
-		/*int size = list.size();
-		int result = 0;
-		int rem = size % 5;
-		if (rem > 0)
-			result = (size / 10) + 1;
-		else
-			result = size / 5;*/
-		model.addAttribute("noOfPage", num);
-		//model.addAttribute("totalNoOfPages", result);
 		model.addAttribute("Recordlist", list);
-		/*
-		 * model.addAttribute("Recordlist", empDao.findDesignationByPageNo(num -
-		 * 1));
-		 */
-		model.addAttribute("totalrecords", list.size());
+		
+		//  model.addAttribute("Recordlist", empDao.findDesignationByPageNo(num -
+		 // 1));
+		 
+		//model.addAttribute("totalrecords", list.size());
 		return new ModelAndView("getuseremp");
 	}
 
@@ -134,14 +134,66 @@ public class MasterOrganizationController {
 
 	// for add employee
 	@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST)
-	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO, BindingResult result)
-			throws ParseException {
-		userEmployeeservice.adduserEmp(userDTO);
+	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO, 
+			HttpServletRequest request,HttpServletResponse response ,BindingResult result)
+			throws ParseException, IOException {
+		
+	String loginame=userDTO.getLoginname();
+	String empcode=	userDTO.getEmpCode();
+		System.out.println(loginame+" "+empcode);
+		
+		String path=context.getRealPath("/");
+		System.out.println(path);
+		
+		/*if (userDTO.getUserProfile().getSize() > 0) {
+			MultipartFile file = userDTO.getUserProfile();
+			String fileext=FilenameUtils.getExtension("/path/to/file/"+file.getOriginalFilename());
+			String type = file.getContentType().split("/")[0];
+			InputStream inputStream = null;
+			OutputStream outputStream = null;
+			path=request.getSession().getServletContext().getRealPath("/")+"resources\\image\\empProfile\\abc."+fileext;
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                       "+path);
+			if (type.equalsIgnoreCase("image")) {
+				inputStream =file.getInputStream();
+				outputStream = new FileOutputStream(path);
+				//git\pogoerp/SpringHibernateApp
+				//[[https://github.com/username/repository/blob/master/img/octocat.png|alt=octocat]]
+				int readBytes = 0;
+				byte[] buffer = new byte[8192];
+				while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
+
+					outputStream.write(buffer, 0, readBytes);
+				}
+				outputStream.close();
+				inputStream.close();
+				//userEmployeeservice.adduserEmp(userDTO,path);
+			}
+			
+		}else{
+			//userEmployeeservice.adduserEmp(userDTO,path);
+		}*/
 		return "redirect:getuseremp";
 		// return new ModelAndView("getuseremp") ;
 
 	}
+	@ResponseBody
+	@RequestMapping(value="/verifyloginname",method=RequestMethod.POST)
+	public  String verifylogin(@RequestParam String login) throws JsonProcessingException
+	{
+		String result=userEmployeeservice.verifyLogin(login);
+		return new ObjectMapper().writeValueAsString(result);
+		
+	}
+	@ResponseBody
+	@RequestMapping(value="/verifyemail",method=RequestMethod.POST)
+	public  String verifyemail(@RequestParam String email) throws JsonProcessingException
+	{
+		String result=userEmployeeservice.verifyEmail(email);
+		return new ObjectMapper().writeValueAsString(result);
+		
+	}
 
+	
 	@RequestMapping(value = "/update-employee", method = RequestMethod.POST)
 	public String updateEmployee(@ModelAttribute("employeebean") UserEmployeeBean userEmployeeBean,
 			BindingResult result) throws ParseException {
