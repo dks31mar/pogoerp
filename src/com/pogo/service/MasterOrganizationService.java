@@ -37,7 +37,7 @@ public interface MasterOrganizationService {
 	void addStates(StatezoneBean statezoneBean);
 	public BranchBean getbranchById(int id);
 	void addCompany(CompanyProfile company);
-	void adduserEmp(UserEmployeeBean userDTO)throws ParseException;
+	void adduserEmp(UserEmployeeBean userDTO, String path)throws ParseException;
 	StatezoneBean getSatesById(int id);
 	void updateBranch(BranchBean branchBean,int id, int id2);
 

@@ -46,9 +46,11 @@ try{
 	String name=u.getFirstname()+" "+u.getLastname();
 //		userId=0;
 	userId=u.getUserempid();
+	String userImg=u.getUserProfile();
 	HttpSession session=request.getSession();
 	session.setAttribute("userid", userId);
 	session.setAttribute("username",name);
+	session.setAttribute("userProImg",userImg);
 	System.out.println(userId);
 	if(userId>0){
 		
