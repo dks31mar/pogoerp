@@ -28,6 +28,7 @@ import com.pogo.bean.ServiceProviderBean;
 import com.pogo.bean.StateBean;
 import com.pogo.bean.SupplierMasterBean;
 import com.pogo.bean.TeamSegmentBean;
+import com.pogo.bean.UserEmployeeBean;
 import com.pogo.dao.MasterMastersDao;
 import com.pogo.model.AddAction;
 import com.pogo.model.AddPlan;
@@ -48,6 +49,7 @@ import com.pogo.model.ServiceProvider;
 import com.pogo.model.State;
 import com.pogo.model.SupplierMaster;
 import com.pogo.model.TeamSegment;
+import com.pogo.model.UserEmployee;
 import com.pogo.service.MasterMastersService;
 
 @Service("masterMastersService")
@@ -1105,6 +1107,36 @@ public List<ExpenseEntryBean> getExpenseReportListByDate(String sdate , String e
 		list2.add(data);
 	}
 	return list2;
+}
+
+@Override
+public List<UserEmployeeBean> getAccountManagerList() {
+	List<UserEmployee> accountmanagerlist = masterMastersdao.getAccountManagerList();
+	List<UserEmployeeBean> aclist = new ArrayList<UserEmployeeBean>();
+	for(UserEmployee list : accountmanagerlist){
+		UserEmployeeBean data = new UserEmployeeBean();
+		data.setUserempid(list.getUserempid());
+		data.setFirstname(list.getFirstname());
+		data.setLastname(list.getLastname());
+		aclist.add(data);
+	}
+	
+	return aclist;
+}
+
+@Override
+public List<UserEmployeeBean> accountManagerListBySelect(String manager) {
+	List<UserEmployee> accountmanagerlist = masterMastersdao.getAccountManagerList(manager);
+	List<UserEmployeeBean> aclist = new ArrayList<UserEmployeeBean>();
+	for(UserEmployee list : accountmanagerlist){
+		UserEmployeeBean data = new UserEmployeeBean();
+		data.setUserempid(list.getUserempid());
+		data.setFirstname(list.getFirstname());
+		data.setLastname(list.getLastname());
+		aclist.add(data);
+	}
+	
+	return aclist;
 }
 
 

@@ -22,6 +22,7 @@ import com.pogo.model.ServiceProvider;
 import com.pogo.model.State;
 import com.pogo.model.SupplierMaster;
 import com.pogo.model.TeamSegment;
+import com.pogo.model.UserEmployee;
 
 
 
@@ -154,6 +155,10 @@ public interface MasterMastersDao {
 	List<ExpenseEntry> getExpenseReportList();
 	
 	List<ExpenseEntry> getExpenseReportListByDate(String sdate , String edate);
+	
+	List<UserEmployee> getAccountManagerList();
+	
+	List<UserEmployee> getAccountManagerList(String manager);
 	
 	
 

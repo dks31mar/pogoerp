@@ -21,6 +21,7 @@ import com.pogo.bean.StateBean;
 import com.pogo.bean.SupplierMasterBean;
 import com.pogo.bean.TeamSegmentBean;
 import com.pogo.bean.UnitBean;
+import com.pogo.bean.UserEmployeeBean;
 import com.pogo.bean.ZonesBean;
 import com.pogo.model.AddAction;
 import com.pogo.model.AddPlan;
@@ -146,6 +147,10 @@ public interface MasterMastersService {
 	List<ExpenseEntryBean> getExpenseReportListByDate(String sdate , String edate);
 	
 	
+
+	List<UserEmployeeBean> getAccountManagerList();
+	
+	List<UserEmployeeBean> accountManagerListBySelect(String manager);
 	
 	
 

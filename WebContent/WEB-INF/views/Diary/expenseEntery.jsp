@@ -288,7 +288,7 @@ $( function() {
   
   
 
-	 $('#save').click(function (){
+	/*  $('#save').click(function (){
 		
 		var orgname =$('#autocomplete').val();
 		var credate =$('#creationdate').val();
@@ -339,7 +339,7 @@ $( function() {
 		
 	});
 	
-	 
+	  */
 	$(document).ready(function(){
 		 var id=$('#addprolisttbody').children('tr').length;
 		 $('#date').val(id+1);
@@ -370,7 +370,7 @@ $( function() {
 					
 	            var markup = "<tr>"+
 	           
-		            "<td style='display: none;'><input type='hidden' name='date"+id+"' value='date"+date+"' id='"+date+"'></input> </td>"+
+		            "<td style='display: none;'><input type='hidden' name='date' value='date"+date+"' id='"+date+"'></input> </td>"+
 		           
 		          /*   "<td style='display: none;'><input type='hidden' name='cname' value='"+poref+"' id='"+id+"'></input> </td>"+ */
 		            
@@ -384,15 +384,15 @@ $( function() {
 					"<input type='text' style='width: 60px' name='' id='date"+id+"' value='"+id+"' class='form-control' readonly/></td>"+
 					 
 					"<td style='left: 2px; position: relative; width: 150px'>&nbsp;"+
-					"<input readonly type='text' value='"+partno+"' name='particulee1'style='overflow: auto; border-radius: 3px; width: 223px;'id='expenseauto"+id+"' class='form-control'/></td>"+
+					"<input readonly type='text' value='"+partno+"' name='natureofexpense'style='overflow: auto; border-radius: 3px; width: 223px;'id='expenseauto"+id+"' class='form-control'/></td>"+
 					
 					"<td style='width: 250px'>&nbsp; <input readonly name='description' id='description"+id+"' class='form-control' style='text-align: center;width: 238px; text-transform: capitalize;' value='"+dis+"' ></input></td>"+
 					
-					"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='tpinjpy' id='unittype"+id+"' value='"+tpn+"' class='form-control' /></td>"+
+					"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='unittype' id='unittype"+id+"' value='"+tpn+"' class='form-control' /></td>"+
 					
-					"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='mul"+id+"' class='form-control' onkeypress='return event.charCode >= 48 && event.charCode <= 57' value='"+qty+"' /></td>"+
+					"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='unitexpense' id='mul"+id+"' class='form-control' onkeypress='return event.charCode >= 48 && event.charCode <= 57' value='"+qty+"' /></td>"+
 					
-					"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='total"+id+"' value='"+totjpy+"' class='form-control'   /></td>"+
+					"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='total' id='total"+id+"' value='"+totjpy+"' class='form-control'   /></td>"+
 					
 					"<td style='display: none;'><input type='hidden' name='grandtotal' value='' id='gtotal"+id+"'></input> </td>"+"<td style='display: none;'><input type='hidden' name='date' value='"+date+"' id='getdate"+id+"'></input> </td>"+
 					/* "<td> <input type='button' value='-'  id=''  class='btn btn-info pull-right'  data-toggle='tooltip'title='Delete' onclick = 'deletethisrow(id)' id='+(id)+' /> </td>" */
@@ -527,6 +527,7 @@ $( function() {
 	 }  */
 	 
 	function deletethisrow(id){
+		 
 		alert("delete");
 		 $("#"+id).parents("tr").remove();
 	id=$('#addprolisttbody').children('tr').length;
@@ -534,11 +535,12 @@ $( function() {
 	 for (i=0;i<id ; i++){
 		 
 	 }
+	 
 }
 	
 	 
 	
-	  /* $("#save").bind("click", function() {
+	 $("#save").bind("click", function() {
 			var temp=$("#total").text();
 			alert(temp);
 				  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
@@ -565,7 +567,7 @@ $( function() {
 					    }
 					}); 
 				});
-	 */
+	 
 	  
 	
 </script>
