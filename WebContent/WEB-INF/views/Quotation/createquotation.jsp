@@ -43,11 +43,7 @@ System.out.println();
 				style="background-color: #3C8DBC; left: 10px">
 				<span class="glyphicon glyphicon-copy"></span> Create Quotation
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<label
-			 style="margin-left: 250px;margin-top: 8px;"><a href="salesFunnel"
-			class="btn btn-primary">sales funnel</a>
-			
-     </label>
+				
 				
 				
 			</div>
