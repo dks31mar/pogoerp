@@ -49,7 +49,9 @@
 				class="btn btn-primary" id="EditForm">Edit</button></div>
 </div> 
 
-
+<div class="row">
+<div class="col-md-10" align="right"><span style="color: red" id="msg1" >*This field is required.</span></div>
+</div>
 </div>
 </div>
 
@@ -78,7 +80,7 @@
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deleteproducthead?id=${product.productheadid}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;"onclick="return confirm('Are you sure you want to delete?')"></span></a></td>
 					</tr>
 
 				</c:forEach>
@@ -118,7 +120,7 @@
 		 $("#unitname").val('');
 		 
 		 $("#hiddenid").val('');
-		
+		 $("#msg1").hide();
 	});
 
 	
@@ -127,7 +129,10 @@
 	
 	$('#saveForm').click(function (){
 		var unitname=$('#unitname').val();
-		
+		if(unitname == ''){
+			$("#msg1").show('fast');
+		}
+		else{
 		
 		var jsonObj={'productheadname':unitname
 		} ;
@@ -147,6 +152,7 @@
 			    	 window.location.reload();
 		     
 		    }});
+		}
 	});
 
 	
@@ -157,7 +163,7 @@
 		var currencyname=$('#unitname').val();
 		
 		var d1w=$("#hiddenid").val();
-		alert(d1w);
+		//alert(d1w);
 		
 		
 		var jsonObj={'productheadname':currencyname,'productheadid':id} ;
@@ -175,7 +181,7 @@
 			    	 $('#openModal').hide();
 			    	 //window.location.currency;
 			    	 window.location.reload();
-		 alert("edit"); 
+		// alert("edit"); 
 		    }});
 		
 		
@@ -202,6 +208,10 @@
 		    	 $("#hiddenid").val(id);
 		    	
 	    }});
-	} 
 	
+	} 
+	$('#unitname').click(function (){
+		 $('#msg1').hide();
+		 
+	});
 	</script>

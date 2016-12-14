@@ -403,6 +403,12 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	
 		return diarybean;
 	}
+	@Override
+	public List<CustomerSalesBean> findlistRecord() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 	
 	}

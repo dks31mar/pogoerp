@@ -40,6 +40,7 @@
 				<put-attribute name="body" value="/WEB-INF/views/prinicpalPO/prinicipalPO/PoSummary.jsp" />
 			</definition>
 			
+			
 			<!-- ************************************************** used by satyendra *************************************************** -->
 			
 			<definition name="AppUser" extends="baseLayout" >
@@ -144,6 +145,37 @@
 			<put-attribute name="title" value="Add Action "/>
 				<put-attribute name="body" value="/WEB-INF/views/Master/masters/addaction.jsp" />
 			</definition>
+			
+			<definition name="salesFunnel" extends="baseLayout" >
+			<put-attribute name="title" value="sales funnel "/>
+				<put-attribute name="body" value="/WEB-INF/views/reports/salesfunnel.jsp" />
+			</definition>
+				<!--********************Invoice***********************************************  -->
+			<definition name="viewinvoice" extends="baseLayout">
+			<put-attribute name="title" value="View Invoice"/>
+			<put-attribute name="body" value="/WEB-INF/views/invoice/viewinvoice.jsp"/>
+			</definition>
+			
+				<!--********************quotation***********************************************  -->
+			
+			<definition name="quotation" extends="baseLayout">
+			<put-attribute name="tilte" value="create quotition"/>
+			<put-attribute name="body" value="/WEB-INF/views/Quotation/createquotation.jsp"/>
+				</definition>
+				
+			<definition name="viewQuotation" extends="baseLayout">
+			<put-attribute name="title" value="View Quotation"/>
+			<put-attribute name="body" value="/WEB-INF/views/Quotation/editviewquotation.jsp"/>
+			</definition>
+			
+			<!--********************customer po***********************************************  -->
+			<definition name="createOrder" extends="baseLayout">
+			<put-attribute name="title" value="create Order"/>
+			<put-attribute name="body" value="/WEB-INF/views/Quotation/ createorder.jsp"/>
+			</definition>
+			
+		
+			
 			
 			<!--********************Reports***********************************************  -->
 			

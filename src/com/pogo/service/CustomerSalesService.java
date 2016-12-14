@@ -32,6 +32,10 @@ public interface CustomerSalesService
 	public AddDiaryBean editdiaryrecord(int id);
 	void updateDiaryData(AddDiaryBean addDiaryBean);
 
+	List<CustomerSalesBean> findlistRecord();
+
+
+
 
 	
 

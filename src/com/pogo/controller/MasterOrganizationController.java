@@ -166,7 +166,7 @@ public class MasterOrganizationController {
 	}
 
 	/****** Designation *******/
-	@RequestMapping(value = "/getdesignation", method = RequestMethod.GET)
+	@RequestMapping(value = "getdesignation", method = RequestMethod.GET)
 	public ModelAndView getUserEmp(Model model) {
 		List<DesignationBean> list = new ArrayList<DesignationBean>();
 		list = userEmployeeservice.getDesignation();

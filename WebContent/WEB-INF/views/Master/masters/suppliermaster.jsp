@@ -165,10 +165,13 @@ $('#saveForm').click(function (){
 		$('#msg1').show('slow');
 		
 	}else if(address==''){
+		
 		$('#msg2').show('slow');
-	}else if(currency==''){
+	}
+	else if(currency==''){
 		$('#msg3').show('slow');
-	}else 
+	}
+	else 
 	{
 		var jsonObj=
 		{
@@ -205,7 +208,7 @@ $('#EditForm').click(function (){
 	var address=$('#supadr').val();
 	var currency=$('#supcur').val();
 	var d1w=$("#hiddenid").val();
-	alert(d1w);
+	//alert(d1w);
 	
 	
 	var jsonObj=
@@ -229,7 +232,7 @@ $.ajax({
 		    	 $('#openModal').hide();
 		    	 //window.location.currency;
 		    	window.location.href = "suppliermaster?page=suppliermaster";
-	     alert("edit");
+	    // alert("edit");
 	    }});
 	
 	
@@ -243,7 +246,7 @@ $.ajax({
 	type: "POST",
 	
 	     success: function(respose){
-	    	 alert(respose);
+	    	// alert(respose);
 	    	 var data=JSON.parse(respose)
 	    	 var name=data.name;
 	    	 var address=data.address;

@@ -368,7 +368,7 @@ function getacknowlegdement(id){
 				    	content1+= '<td style="display: none;">&nbsp;<input  type="text" style="text-align: center;width: 99px;background-color: #3C8DBC;color: aliceblue" name="pendingqty" id="pendindqty" value="'+value.pendingqty+'" class="form-control"/></td>'; 
 				    	content1+='<td class="col-sm-4 form-level"><input type="text" class="form-control" name="recivedate" id="datepicker'+id12+'"  value="'+value.expdate+'" ReadOnly></input></td>';
 						content1+='<td class="col-sm-4 form-level"><input type="text" name="reciveqty" id="reciveqty" class="form-control" value="'+value.receiveqty+'" onkeyup="valdiatelimit(this.value)" style="width: 35%;"></td>';
-						content1+='<td class="col-sm-4 form-level"><a class="glyphicon glyphicon-plus" href="#" onclick="addfildes('+id12+');return false;"></a> | <a class="glyphicon glyphicon-remove" href="#" onclick="deletethisrow('+id12+'),deleteackbyid('+value.productacknowledgementid+');return false;" id='+id12+'></a></td>';
+						content1+='<td class="col-sm-4 form-level"><a class="glyphicon glyphicon-plus" title="Add the Row" href="#" onclick="addfildes('+id12+');return false;"></a> | <a class="glyphicon glyphicon-remove" title="Remove this Row" href="#" onclick="deletethisrow('+id12+'),deleteackbyid('+value.productacknowledgementid+');return false;" id='+id12+'></a></td>';
 						content1+='</tr>';
 						id12++;
 							
@@ -420,7 +420,7 @@ function addfildes(id){
  	content1 += '<td style="display: none;">&nbsp;<input  type="text" style="text-align: center;width: 99px;background-color: #3C8DBC;color: aliceblue" name="pendingqty" id="pendindqty" value="'+pqty+'" class="form-control"/></td>'; 
  	content1+='<td class="col-sm-4 form-level"><input type="text" class="form-control" name="recivedate" id="datepicker'+id123+'"  value="" ReadOnly></input></td>';
 	content1+='<td class="col-sm-4 form-level"><input type="text" name="reciveqty" id="reciveqty" class="form-control" onkeyup="valdiatelimit(this.value)" value="" style="width: 35%;"></td>';
-	content1+='<td class="col-sm-4 form-level"><a class="glyphicon glyphicon-plus" href="#" onclick="addfildes('+id+');return false;"></a> | <a class="glyphicon glyphicon-remove" href="#" onclick="deletethisrow('+id123+'); return false;" id='+id123+'></a></td>';
+	content1+='<td class="col-sm-4 form-level"><a class="glyphicon glyphicon-plus" title="Add the Row" href="#" onclick="addfildes('+id+');return false;"></a> | <a class="glyphicon glyphicon-remove" title="Remove the Row" href="#" onclick="deletethisrow('+id123+'); return false;" id='+id123+'></a></td>';
 			
 			content1+='</tr>';
 		

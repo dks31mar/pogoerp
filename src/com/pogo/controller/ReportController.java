@@ -1,15 +1,21 @@
 package com.pogo.controller;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.pogo.bean.AddDiaryBean;
+import com.pogo.bean.CustomerSalesBean;
+import com.pogo.bean.PoRefEntryItemDetailBean;
+import com.pogo.dao.CustomerSalesDao;
 import com.pogo.service.CustomerSalesService;
 @Controller
 public class ReportController {
@@ -58,5 +64,12 @@ public class ReportController {
 	     return "followups";
 	}
 	
+	@RequestMapping(value="/salesFunnel",method = RequestMethod.GET)
+	public ModelAndView salesFunnel(Model model){
+	List<CustomerSalesBean> list= CustomerSalesService.findlistRecord();
+	model.addAttribute("customerdata",list );
+	return new ModelAndView("salesFunnel");
+			
+}
 
 }

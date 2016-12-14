@@ -862,6 +862,7 @@ public class MasterMasterController {
    {
 		List<AddPlanBean> list = new ArrayList<AddPlanBean>();
 		list=masterMastersService.PlanList();
+		//System.out.println(list.size());
 		//model.addAttribute("actionList",list );
 		model.addAttribute("planList",list );
 		System.out.println("***************** list of plan ********"); 
