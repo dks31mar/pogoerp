@@ -69,7 +69,7 @@ text-align: center;
 </div>
 <table style="width: 100%; bottom: 15px; position: relative;" border="0" id="quotprodtable">
 	
-	<thead>
+	<thead id=hidethisthird1>
 		<tr bgcolor="#3C8DBC">
 		<td style="display: none;"><label>id</label> </td>
 			<td align="center">&nbsp;<font size="2" style="width: 65px"
@@ -98,6 +98,28 @@ text-align: center;
 
 
 <table>
+<thead id=hidethisthird>
+		<tr bgcolor="#3C8DBC">
+		<td style="display: none;"><label>id</label> </td>
+			<td align="center">&nbsp;<font size="2" style="width: 65px"
+				color="white"><label>S.No.</label></font></td>
+			<td align="center">&nbsp;<font size="2" style="width: 65px"
+				color="white"><label>Nature of Expense</label><font
+					color="#FF0000">*</font></font></td>
+			<td align="center">&nbsp;<font size="2" style="width: 65px"
+				color="white"><label>Description</label></font></td>
+
+			<td align="center">&nbsp;<font size="2" style="width: 80px"
+				color="white"><label id="">Unit Type</label><font
+					color="#FF0000">*</font></font></td>
+			<td align="center">&nbsp;<font size="2" style="width: 80px"
+				color="white"><label>Units/Expenses</label><font
+					color="#FF0000">*</font></font></td>
+			<td align="center">&nbsp;<font size="2" style="width: 80px"
+				color="white"><label id=""> Total </label></font></td>
+
+		</tr>
+	</thead>
 	<tr>
 	<td style="display: none;"><input type="hidden" value="" id="getid1"></input> </td>
 	
@@ -150,6 +172,7 @@ text-align: center;
 	<tr>
 	 <td>&nbsp;&nbsp;</td>
 	 <td><button type="button" value="Save" onClick="" class="btn btn-success pull-center" id="save" style="background-color: #3C8DBC;">Save</button></td>
+	 <td>&nbsp;&nbsp;</td>
 	 <td><button type="button" value="close" onClick="window.close()" class="btn btn-success pull-center" id="close" style="background-color: #3C8DBC;">Close</button></td>
 	 </tr>
 </table>
@@ -345,8 +368,9 @@ $( function() {
 		 $('#date').val(id+1);
 	        $("#addmorepro12").click(function(){
 	        	
-	        	
-	        	alert("in add");
+	        	$('#hidethisthird1').show();
+	        	$('#hidethisthird').hide();
+	        	//alert("in add");
 	        	var id=$('#addprolisttbody').children('tr').length+1;
 	        	var idd=$('#getid1').val();
 	        	var address=$('#address').val();
@@ -407,7 +431,7 @@ $( function() {
 					
 					"</tr>";
 	            $("#addprolisttbody").append(markup);
-				alert(markup)
+				//alert(markup)
 	            //id++;
 	            $('#date').val(id+1);
 	            
@@ -535,10 +559,18 @@ $( function() {
 	 for (i=0;i<id ; i++){
 		 
 	 }
+<<<<<<< HEAD
 	 
+=======
+	 if(id==0){
+		 $('#hidethisthird1').hide();
+		 $('#hidethisthird').show();
+	 }
+	 //alert(id);
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 }
 	
-	 
+	 $('#hidethisthird1').hide();
 	
 	 $("#save").bind("click", function() {
 			var temp=$("#total").text();

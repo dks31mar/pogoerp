@@ -232,7 +232,11 @@
 	</div>
 	</div>
 
+
+ 	
+
   	
+
 
 
 	<script>
@@ -242,16 +246,25 @@
 	    } );
 	} ); 
 	</script>
+
+
 <!-- <diV>Export Option:
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 <td><a href="#">CSV</a></td>
 <td><a href="#">Excel</a></td>
 <td><a href="#">XML</a></td>
 <td><a href="#">PDF</a></td>
-<<<<<<< HEAD
+
 </diV>
 -->
 
  
+
+
+
+
+
+
+
 
 

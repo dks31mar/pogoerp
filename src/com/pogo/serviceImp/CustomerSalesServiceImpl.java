@@ -37,9 +37,6 @@ import com.pogo.bean.AddFollowUpBean;
 import com.pogo.bean.ContactBean;
 
 import com.pogo.bean.CustomerFileUploadBean;
-import com.pogo.bean.CustomerLevelsBean;
-
-
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.dao.CustomerSalesDao;
 import com.pogo.dao.MasterMastersDao;
@@ -527,6 +524,15 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	}
 	@Override
 
+	public List<CustomerSalesBean> findlistRecord() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+
+
 	public List<CustomerFileUploadBean> getFollowupFilesList() {
 		List<CustomersFileUplaod> filedata=customerSalesDao.getdatafromfiles();
 				List<CustomerFileUploadBean> beans=new ArrayList<CustomerFileUploadBean>();
@@ -564,6 +570,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		}
 				
 		return result;
+
 
 	}
 

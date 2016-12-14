@@ -228,8 +228,9 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		
 	}
 	@Override
-	public void adduserEmp(UserEmployeeBean userDTO) throws ParseException 
+	public void adduserEmp(UserEmployeeBean userDTO,String path) throws ParseException 
 	{
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       service method                       "+path);
 		SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd-yyyy");
 		//SimpleDateFormat df=new SimpleDateFormat("MMM-dd-yyyy");
 		UserEmployee emp=new UserEmployee();
@@ -254,7 +255,9 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDepartment(userDTO.getDepartment());
 		emp.setEmpCode(userDTO.getEmpCode());
 		emp.setMiddlename(userDTO.getMiddlename());
-		//emp.setUserProfile(userDTO.getUserProfile());
+		emp.setUserProfile(path);
+		
+		
 		emp.setActive(true);
 		emp.setEmpStatus(true);
 		userEmpdao.addUser(emp);

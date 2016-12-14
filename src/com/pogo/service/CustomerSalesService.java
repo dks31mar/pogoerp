@@ -46,6 +46,12 @@ public interface CustomerSalesService
 	public AddDiaryBean editdiaryrecord(int id);
 	void updateDiaryData(AddDiaryBean addDiaryBean);
 
+
+	List<CustomerSalesBean> findlistRecord();
+
+
+
+
 	void saveFiles(CustomersFileUplaod fileUplaod);
 
 
@@ -64,6 +70,7 @@ public interface CustomerSalesService
 	String getfollowuplistbydatenid1(String sdate, String edate, String empid, String day);
 
 	Map<String, String> findocountofstatus();
+
 
 	
 

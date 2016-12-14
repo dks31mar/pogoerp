@@ -27,7 +27,7 @@
 								var content = '<option value="">Select</option>';
 								for ( var i = 0; i < data2.length; i++) {
 									content += '<option value='+data2[i]+'>'+data2[i]+ '</option>';
-									//alert(i);
+									
 								}
 								$("#designation").append(content); 
 							

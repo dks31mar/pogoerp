@@ -167,7 +167,7 @@
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deletecurrency?id=${cur.currencyid}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;"onclick="return confirm('Are you sure you want to delete?')"></span></a></td>
 					</tr>
 </c:forEach>
 </c:if>
@@ -225,15 +225,16 @@ $('#savecurrencyForm').click(function (){
 	var currencyrate=$('#currencyrate').val();
 	
 	if(currencyname==''){
-		$('#msg1').show('fast');
+		$('#msg1').show('slow');
 		
-	}else if(currencysymbol==''){
-		$('#msg2').show('fast');
+	}
+	else if(currencysymbol==''){
+		$('#msg2').show('slow');
 	}
 	else {
 		
 		
-	}
+	
 	var jsonObj={'currencysymbol':currencysymbol,
 			'currencyname':currencyname, 'currencytype':currencytype };
 	
@@ -255,7 +256,7 @@ $.ajax({
 	     
 		     }});
 	
-	
+	}
 });
 
 $(document).ready(

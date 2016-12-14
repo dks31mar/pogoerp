@@ -11,9 +11,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,7 +83,8 @@ public class MasterOrganizationController {
 	private MasterOrganizationService userEmployeeservice;
 	@Autowired
 	private MasterOrganizationDao empDao;
-
+@Autowired
+ServletContext context;
 	/* Employee */
 	@RequestMapping(value = "/getuseremp", method = RequestMethod.GET)
 	public ModelAndView getUserEmpl(Model model)
@@ -133,18 +137,27 @@ public class MasterOrganizationController {
 	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO, 
 			HttpServletRequest request,HttpServletResponse response ,BindingResult result)
 			throws ParseException, IOException {
-		userEmployeeservice.adduserEmp(userDTO);
-		if (userDTO.getUserProfile().getSize() > 0) {
+		
+	String loginame=userDTO.getLoginname();
+	String empcode=	userDTO.getEmpCode();
+		System.out.println(loginame+" "+empcode);
+		
+		String path=context.getRealPath("/");
+		System.out.println(path);
+		
+		/*if (userDTO.getUserProfile().getSize() > 0) {
 			MultipartFile file = userDTO.getUserProfile();
+			String fileext=FilenameUtils.getExtension("/path/to/file/"+file.getOriginalFilename());
 			String type = file.getContentType().split("/")[0];
 			InputStream inputStream = null;
 			OutputStream outputStream = null;
+			path=request.getSession().getServletContext().getRealPath("/")+"resources\\image\\empProfile\\abc."+fileext;
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                       "+path);
 			if (type.equalsIgnoreCase("image")) {
 				inputStream =file.getInputStream();
-				outputStream = new FileOutputStream(request.getSession()
-						.getServletContext().getRealPath("/")
-						+ "/image/empProfile/" + file.getOriginalFilename());
-
+				outputStream = new FileOutputStream(path);
+				//git\pogoerp/SpringHibernateApp
+				//[[https://github.com/username/repository/blob/master/img/octocat.png|alt=octocat]]
 				int readBytes = 0;
 				byte[] buffer = new byte[8192];
 				while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
@@ -153,8 +166,12 @@ public class MasterOrganizationController {
 				}
 				outputStream.close();
 				inputStream.close();
+				//userEmployeeservice.adduserEmp(userDTO,path);
 			}
-		}
+			
+		}else{
+			//userEmployeeservice.adduserEmp(userDTO,path);
+		}*/
 		return "redirect:getuseremp";
 		// return new ModelAndView("getuseremp") ;
 
@@ -201,7 +218,7 @@ public class MasterOrganizationController {
 	}
 
 	/****** Designation *******/
-	@RequestMapping(value = "/getdesignation", method = RequestMethod.GET)
+	@RequestMapping(value = "getdesignation", method = RequestMethod.GET)
 	public ModelAndView getUserEmp(Model model) {
 		List<DesignationBean> list = new ArrayList<DesignationBean>();
 		list = userEmployeeservice.getDesignation();

@@ -135,7 +135,9 @@ $.ajax({
 		    	 //window.location.currency;
 		    	 window.location.reload();
 	     
-	    }});}
+	    }});
+	    
+	}
 });
 function editCur(id){
 	$("#formid").show('show');

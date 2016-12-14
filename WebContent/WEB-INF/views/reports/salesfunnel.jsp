@@ -21,6 +21,70 @@
 <title>Insert title here</title>
 
 </head>    
+
+ </CENTER>
+        <div id="pop" style="display: none;"></div>
+<div><c:out value="${id}" /></div>
+<div id="body">
+<div>
+<div>
+<div class="row" style="margin-top: 15px">
+	<br>
+	<div align="center">
+		<i>
+			
+		</i> <input type="hidden" name="profile" value="0" />
+	</div>
+</div>
+<div class="row">
+
+	<div class="page-heading col-sm-11"
+		style="background-color: #3C8DBD; color:white; left: 20px;  height: 64px;">
+		<span class="glyphicon glyphicon-user"></span> 	Sales Funnel Report </b>		
+</div>
+
+</div>
+</div> 
+        
+       <table class="responstable">
+  
+  <tbody><tr>
+    <th>S.N.</th>
+    <th data-th="Driver details"><span>	Funnel Stage</span></th>
+    <th>No. of Doctors</th>
+     <th>Value</th>
+   <!--  <th>Edit</th>
+    <th>Delete</th> -->
+  </tr>
+   <c:if test="${!empty branchList}">
+	<c:forEach items="${branchList}" var="sales" varStatus="loop">
+	
+  <tr>
+    <td>${loop.index+1}</td>
+    <td>${sales.funnel}</td>
+   <td><a href="#" target="_blank"></a></td>
+   <td><a href="#" target="_blank"></a></td>
+  </tr>
+ 
+  </c:forEach>
+  </c:if>
+
+</tbody></table>
+        
+</div>
+
+</TD>
+    </TD>
+    <TD valign="top">
+      
+  </TR>
+</TABLE>
+
+                    
+<div class="row form-group">
+						<div class="col-sm-7">
+	</div>
+
 <div id="body">
 <div>
 <div>
@@ -75,4 +139,5 @@
         
 </div>
 </div>
+
 

@@ -65,7 +65,7 @@ System.out.println();
 				<div class="col-sm-4">
 					<input type="text" name="porefno" placeholder="PO Reference No."
 						onkeyup="myFunction()" id="porefno" size="150" value="${porefnumber}"
-						class="form-control" />
+						class="form-control"  />
 				</div>
 
 				<div class="col-sm-1 form-level">
@@ -362,12 +362,13 @@ System.out.println();
 					 
 					 $('#addmore').click(function (){
 						 $('#mainForm').show();
+						 calculation();
 					 });
 					 
 					 
 						$('#addmore').click(function(){
 							$('#addmorerows').show();
-							
+							calculation();
 						});
 						
 						 $(document).ready(function(){
@@ -402,12 +403,12 @@ System.out.println();
 										"<td style='width: 250px'>&nbsp; <input readonly name='description' id='description"+id+"' class='form-control' style='text-align: center;width: 238px;' value='"+dis+"' ></input></td>"+
 										"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='tpinjpy' id='tpinjpy"+id+"' value='"+tpn+"' class='form-control' /></td>"+
 										"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='qty"+id+"' class='form-control' value='"+qty+"' /></td>"+
-										"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'  /></td>"+
+										"<td align='center'>&nbsp; <input readonly onchange='caltotalagain();' type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'  /></td>"+
 										"<td align='center'>&nbsp;<input readonly type='text' style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' name='customerporefe' id='customerporefe"+id+"' value='"+custpo+"' class='form-control'/>"+
 										"</td>"+
 										"<td style='display: none;'><input type='hidden' name='grandtotal' value='' id='grandtotal"+id+"'></input> </td>"+"<td style='display: none;'><input type='hidden' name='date' value='"+date+"' id='getdate"+id+"'></input> </td>"+
 										"<td><input type='hidden' style='text-align:center;' name='unitcost' id='' value='split' class='form-control'  ></td>"+
-										"<td><a class='glyphicon glyphicon-pencil' href='#' onclick='editfields("+(id)+")'></a> | <a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+
+										"<td><a class='glyphicon glyphicon-pencil' title='Edit This Row' href='#' onclick='editfields("+(id)+")'></a> | <a class='glyphicon glyphicon-remove'  title='Remove This Row' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+
 										"</tr>";
 						            $("#addprolisttbody").append(markup);
 						            //id++;
@@ -475,6 +476,7 @@ System.out.println();
 						}
 						
 						$("#savedata445").bind("click", function() {
+							calculation();
 							 var d=$('#tjpy1').val();
 								$('#grandtotal1').val(d);
 							  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
@@ -500,8 +502,12 @@ System.out.println();
 								}); 
 							});
 						
-						
+						function caltotalagain(){
+							alert("d");
+							calculation();
+						}
 							function editfields(id){
+								calculation();
 								var d=$('#totaljpy'+id).val();
 								$('#partno'+id).attr("readonly", false);
 								$('#qty'+id).attr("readonly", false); 
@@ -525,7 +531,7 @@ System.out.println();
 								var grandtotl=	$('#tjpy1').val();
 									$('#grandtotal1').val(grandtotl);
 									for(var n=0;n<100;n++){
-										
+										calculation();
 									}
 									calculation();
 								});
@@ -536,7 +542,7 @@ System.out.println();
 										url: "getpartno?word="+word, 
 										success: function(result){
 											search1(result);
-											
+											calculation();
 								    }});
 									
 								});
@@ -562,6 +568,7 @@ System.out.println();
 												$('#unitcostx'+id).val(unitcostx);
 												$('#totaljpy'+id).val('');
 												$('#qty'+id).val('');
+												calculation();
 									    }});
 								      
 								      
@@ -581,6 +588,7 @@ System.out.println();
 									// alert(t1);
 								 }
 								$('#tjpy1').val(t1);
+								//alert(nan)
 							}
 							
 							

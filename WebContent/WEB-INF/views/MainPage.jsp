@@ -144,11 +144,26 @@ $.ajax({
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<%
-String name=(String)session.getAttribute("username");
-Integer iduser=(Integer)session.getAttribute("userid");
-if(null==iduser){
-	response.sendRedirect("LoginPage.jsp");
-}
+	String name=null;
+	Integer iduser=null;
+	String userImg=null;
+	try{
+		name=(String)session.getAttribute("username");
+		iduser=(Integer)session.getAttribute("userid");
+		userImg=(String)session.getAttribute("userProImg");
+		userImg=userImg.split("resources")[1];
+		session.setMaxInactiveInterval(1800);
+		if(name==null || iduser==null || userImg==null){
+			response.sendRedirect("LoginPage.jsp");
+		}
+	}catch(Exception e){
+		response.sendRedirect("LoginPage.jsp");
+		if(name==null || iduser==null || userImg==null){
+			response.sendRedirect("LoginPage.jsp");
+		}
+	}
+
+
 %>
 	<div class="wrapper">
 
@@ -339,7 +354,7 @@ if(null==iduser){
 				<!-- User Account: style can be found in dropdown.less -->
 				<li class="dropdown user user-menu"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"> <img
-						src="resources/dist/img/user2-160x160.jpg" class="user-image"
+						src="resources<%=userImg%>" class="user-image"
 						alt="User Image"> <span class="hidden-xs"><%=name %></span>
 				</a>
 					<ul class="dropdown-menu">
@@ -387,10 +402,14 @@ if(null==iduser){
 		</nav> </header>
 		<!-- Left side column. contains the logo and sidebar -->
 		<aside class="main-sidebar"> <!-- sidebar: style can be found in sidebar.less -->
-		<section class="sidebar"> <!-- Sidebar user panel -->
+		<section class="sidebar"> 
+		
+		
+		
+		<!-- Sidebar user panel -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<img src="resources/dist/img/user2-160x160.jpg" class="img-circle"
+				<img src="resources<%=userImg%>" class="img-circle"
 					alt="User Image">
 			</div>
 			<div class="pull-left info">
@@ -1521,14 +1540,14 @@ if(null==iduser){
 	<script src="resources/dist/js/demo.js"></script>
 	
 	<script type="text/javascript">
-	/* window.onload = setupRefresh;
+	window.onload = setupRefresh;
 
 	function setupRefresh() {
-	  setTimeout("refreshPage();", 1000);
+	  setTimeout("refreshPage();", 100000);
 	}
 	function refreshPage() {
-	   window.location = location.href;
-	} */
+	   window.location =  window.location.href = "homepage";
+	} 
 	
 	</script>
 </body>
