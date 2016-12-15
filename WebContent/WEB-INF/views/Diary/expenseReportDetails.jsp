@@ -31,7 +31,7 @@
 <div class="row">
 	<div class="page-heading col-sm-11" id=""
 		style=" text-align:'center' background-color: #3C8DBC; left: 10px ">
-		<span class="fa fa-money"></span><strong>Expense Report Details of <%=name %> </strong>
+		<span class="fa fa-money"></span><strong style=" text-align:'center' ;">Expense Report Details of <%=name %> </strong>
 		
 	</div>
 </div>
@@ -80,7 +80,7 @@
 	</table>
 
 </div>
-<div class="row form-group" style="top: 10px; position: relative;"
+<!-- <div class="row form-group" style="top: 10px; position: relative;"
 					onclick="">
 					<div class="col-sm-10 form-level" align="right">
 						Total:<font color="#FF0000"></font>
@@ -89,5 +89,5 @@
 						<input type="text" name="gtotal" id="gtotal" class="form-control"
 							value="" style="width: 15%;" readonly>
 					</div>
-				</div>
+				</div> -->
  

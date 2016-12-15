@@ -43,13 +43,22 @@ public class ExpenseEntry {
 	
 	
 	@Column(name = "total")
-	private double total;
+	private Integer total;
 	
 	@Column(name = "grandtotal")
 	private Integer grandtotal;
 	
+	@Column(name = "managerid")
+	private Integer managerid;
 	
-	
+	public Integer getManagerid() {
+		return managerid;
+	}
+
+	public void setManagerid(Integer managerid) {
+		this.managerid = managerid;
+	}
+
 	public int getExpentryid() {
 		return expentryid;
 	}
@@ -122,11 +131,11 @@ public class ExpenseEntry {
 		this.unit_expense = unit_expense;
 	}
 
-	public double getTotal() {
+	public Integer getTotal() {
 		return total;
 	}
 
-	public void setTotal(double total) {
+	public void setTotal(Integer total) {
 		this.total = total;
 	}
 

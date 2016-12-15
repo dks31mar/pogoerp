@@ -22,15 +22,28 @@ public class ExpenseEntryBean {
 	
     private String unit_expense;
 	
-    private double total;
+    private Integer total;
     
     private Integer grandtotal;
     
-    public int getExpentryid() {
+    private Integer managerid;
+    
+    public int getManagerid() {
+		return managerid;
+	}
+
+	public void setManagerid(int managerid) {
+		this.managerid = managerid;
+	}
+
+	
+    
+    
+    public Integer getExpentryid() {
 		return expentryid;
 	}
 
-	public void setExpentryid(int expentryid) {
+	public void setExpentryid(Integer expentryid) {
 		this.expentryid = expentryid;
 	}
 
@@ -98,11 +111,11 @@ public class ExpenseEntryBean {
 		this.unit_expense = unit_expense;
 	}
 
-	public double getTotal() {
+	public Integer getTotal() {
 		return total;
 	}
 
-	public void setTotal(double total) {
+	public void setTotal(Integer total) {
 		this.total = total;
 	}
 

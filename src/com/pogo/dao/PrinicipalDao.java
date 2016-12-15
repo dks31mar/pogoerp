@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pogo.bean.ProductAcknowledgementBean;
+import com.pogo.bean.ProductMasterBean;
 import com.pogo.model.InvoiceDetail;
 import com.pogo.model.InvoiceTab;
 import com.pogo.model.PoRefEntryItemDetail;
@@ -20,7 +21,7 @@ public interface PrinicipalDao {
 
 	List<ProductMaster> getPartNo(ProductMaster pm);
 
-	List<ProductMaster> getproductDetail(ProductMaster pm);
+	List<ProductMasterBean> getproductDetail(ProductMaster pm);
 
 	void addPoDetails(PoRefEntryItemDetail poRefEntry);
 

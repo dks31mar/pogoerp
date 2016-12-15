@@ -34,6 +34,7 @@ import com.pogo.model.ServiceProvider;
 import com.pogo.model.State;
 import com.pogo.model.SupplierMaster;
 import com.pogo.model.TeamSegment;
+import com.pogo.model.UserEmployee;
 
 
 
@@ -640,6 +641,19 @@ public List<ExpenseEntry> getExpenseReportListByDate(String sdate , String edate
 	.add(Restrictions.between("crdate", sdate, edate)).addOrder(Order.asc("crdate"))
 	.list();
 	
+}
+@Override
+public List<UserEmployee> getAccountManagerList() {
+	
+	return sessionFactory.getCurrentSession().createCriteria(UserEmployee.class).list();
+}
+@Override
+public List<UserEmployee> getAccountManagerList(String manager) {
+	
+	return sessionFactory.getCurrentSession()
+			.createCriteria(UserEmployee.class)
+			.add(Restrictions.eq("firstname", manager)).addOrder(Order.asc("firstname"))
+			.list();
 }
 
 

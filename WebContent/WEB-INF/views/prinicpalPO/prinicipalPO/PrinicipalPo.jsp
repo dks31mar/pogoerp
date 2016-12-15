@@ -268,7 +268,8 @@ System.out.println();
 		}); */
 		
 		$('#qty').keyup(function(){
-			var qty=$('#qty').val();
+			//var qty=$('#qty').val();
+			var qty = parseInt($('#qty').val()) || 0;
 			var unit=$('#unitcostx').val();
 			var jpy=$('#tpinjpy').val();
 			var total=parseInt(qty) * parseInt(jpy);
@@ -441,12 +442,12 @@ System.out.println();
 							"<td style='width: 250px'>&nbsp; <input readonly name='description' id='description"+id+"' class='form-control' style='text-align: center;width: 238px;' value='"+dis+"' ></input></td>"+
 							"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='tpinjpy' id='tpinjpy"+id+"' value='"+tpn+"' class='form-control' /></td>"+
 							"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='qty"+id+"' class='form-control' onkeypress='return event.charCode >= 48 && event.charCode <= 57' value='"+qty+"' /></td>"+
-							"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'  /></td>"+
+							"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='totaljpy' id='totaljpy"+id+"' value='"+totjpy+"' class='form-control'   onchange='caltotalagain();' /></td>"+
 							"<td align='center'>&nbsp;<input readonly type='text' style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' name='customerporefe' id='customerporefe"+id+"' value='"+custpo+"' class='form-control'/>"+
 							"</td>"+
 							"<td style='display: none;'><input type='hidden' name='grandtotal' value='' id='grandtotal"+id+"'></input> </td>"+"<td style='display: none;'><input type='hidden' name='date' value='"+date+"' id='getdate"+id+"'></input> </td>"+
 							"<td><input type='hidden' style='text-align:center;' name='unitcost' id='' value='split' class='form-control'  ></td>"+
-							"<td><a class='glyphicon glyphicon-pencil' href='#' onclick='editfields("+(id)+")'></a> | <a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+
+							"<td><a class='glyphicon glyphicon-pencil' title='Edit This Row' href='#' onclick='editfields("+(id)+")'></a> |<a class='glyphicon glyphicon-remove' title='Remove This Row' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+
 							"</tr>";
 			            $("#addprolisttbody").append(markup);
 						alert(markup);
@@ -466,6 +467,12 @@ System.out.println();
 						$('#tjpy1').val(d2);
 					var d=$('#tjpy1').val();
 					$('#grandtotal1').val(d);
+					$('#autocomplete').val('');
+					$('#description').val('');
+					$('#tpinjpy').val('');
+					$('#qty').val('');
+					$('#totaljpy').val('');
+					$('#customerporefe').val('');
 						}
 			        });
 			 });
@@ -491,16 +498,34 @@ System.out.println();
 					 
 				 }
 			}
+			function caltotalagain(){
+				alert("d");
+				calculation();
+			}
+			
+			
+			
+			function calculation(){
+				var id=$('#addprolisttbody').children('tr').length;
+				var t1=0;
+				for(var i=1;i<=id ; i=i+1){
+					
+					t1+= Number($('#totaljpy'+i).val());
+				 }
+				$('#tjpy1').val(t1);
+			}
+			
+			
 			
 			
 			$("#savedata445").bind("click", function() {
 			var temp=$("#totalchangelable").text();
-			alert(temp);
+			
 				  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
 				  console.log(AddressesDataJSON);
-				 alert(JSON.stringify(AddressesDataJSON));
+	
 				  
-				  
+				 calculation();
 			  $.ajax({
 						url: "savedatadb",
 						type: "POST",
@@ -542,8 +567,10 @@ System.out.println();
 						var d2=$('#totaljpy'+id).val();
 						var d3=$('#tjpy1').val();
 						$('#tjpy1').val(parseInt((d3), 10)+parseInt((d2), 10));
+						calculation();
 					var grandtotl=	$('#tjpy1').val();
 						$('#grandtotal1').val(grandtotl);
+						calculation();
 					});
 					
 					$('#partno'+id).click(function(){
@@ -558,7 +585,7 @@ System.out.println();
 					});
 					
 					function search1(result){
-						alert(result);
+						//alert(result);
 						var currencies =jQuery.parseJSON(result);
 						alert(currencies);
 					$('#partno'+id).autocomplete({
@@ -578,6 +605,7 @@ System.out.println();
 									$('#description'+id).val(productdescription);
 									$('#tpinjpy'+id).val(cost);
 									$('#unitcostx'+id).val(unitcostx)
+									calculation();
 						    }});
 					      
 					      
@@ -592,8 +620,8 @@ System.out.println();
 				alert("fff");
 				var w=parseInt(1);
 				for(var ids=1;ids<=id;ids++){
-					alert("ggg");
-					alert(i);
+					//alert("ggg");
+					//alert(i);
 					$('#sr'+ids).val(ids);
 					w++;
 				}

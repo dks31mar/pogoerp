@@ -525,6 +525,15 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 	}
 	@Override
 
+	public List<CustomerSalesBean> findlistRecord() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+
+
 	public List<CustomerFileUploadBean> getFollowupFilesList() {
 		List<CustomersFileUplaod> filedata=customerSalesDao.getdatafromfiles();
 				List<CustomerFileUploadBean> beans=new ArrayList<CustomerFileUploadBean>();
@@ -562,6 +571,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		}
 				
 		return result;
+
 
 	}
 

@@ -276,7 +276,7 @@ $('#addcountry').autocomplete({
 	
     lookup: finalArray,
     onSelect: function (suggestion) {
-   alert(suggestion.value);
+  // alert(suggestion.value);
    if(suggestion.value=='Others'){
 	   
 	   $("#others").show("fast");

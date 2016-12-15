@@ -24,12 +24,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.itextpdf.text.log.SysoCounter;
 import com.pogo.bean.CustomerSalesBean;
 import com.pogo.bean.ExpenseEntryBean;
+import com.pogo.bean.JsonArraytoJson;
+import com.pogo.bean.PoRefEntryItemDetailBean;
 import com.pogo.bean.PoRefEntryItemDetailCopyBean;
+import com.pogo.bean.PorefSupplierDetailBean;
 import com.pogo.bean.ProductMasterBean;
 import com.pogo.bean.TeamSegmentBean;
+import com.pogo.bean.UserEmployeeBean;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.service.CustomerSalesService;
 import com.pogo.service.MasterMastersService;
@@ -115,7 +120,7 @@ System.out.println(getpart1);
 			}
 		   }
 	
-	@RequestMapping(value="saveexpenseentry",method=RequestMethod.POST)
+	/*@RequestMapping(value="saveexpenseentry",method=RequestMethod.POST)
 	@ResponseBody
 	public void addTeam(@RequestBody String json,Model model ,  HttpServletRequest res) throws IOException{
 		
@@ -124,7 +129,7 @@ System.out.println(getpart1);
 		ExpenseEntryBean poref=mapper.readValue(json, ExpenseEntryBean.class);
 		
 		masterservice.saveExpenseEntry(poref);
-	}
+	}*/
 	
 	@RequestMapping(value = "getexpensereport" , method = RequestMethod.GET )
     public ModelAndView getExpenseReport(HttpServletRequest reuest ){
@@ -133,20 +138,31 @@ System.out.println(getpart1);
 		list = masterservice.getExpenseReportList();
 		Map<String , Object > model = new HashMap<String , Object>();
 		model.put("listofexpensereport",list );
+		List<UserEmployeeBean> accountmanagerlist = new ArrayList<UserEmployeeBean>();
+		accountmanagerlist = masterservice.getAccountManagerList();
+		model.put("listofaccountmanager",accountmanagerlist );
 		return new ModelAndView("expensereport",model);
 	}
 	
 	@RequestMapping(value = "/saveexpensereport", method = RequestMethod.POST,consumes="application/json",headers = "content-type=application/x-www-form-urlencoded")
 
-	public ModelAndView saveExpenseReport(@RequestParam("startdate") String sdate,@RequestParam("enddate") String edate ,@ModelAttribute("command")  ExpenseEntryBean expense, HttpServletRequest res,BindingResult result) {
+	public ModelAndView saveExpenseReport(@RequestParam("startdate") String sdate,@RequestParam("enddate") String edate ,@RequestParam ("selectmanager") String manager,@ModelAttribute("command")  ExpenseEntryBean expense, HttpServletRequest res,BindingResult result) {
 		
 		
 		System.out.println("start date **************" +sdate);
+		System.out.println("start date **************" +manager);
+		List<UserEmployeeBean> accountmanagerlist = new ArrayList<UserEmployeeBean>();
+		accountmanagerlist = masterservice.getAccountManagerList();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("listofaccountmanager",accountmanagerlist );
 		List<ExpenseEntryBean> list = new ArrayList<ExpenseEntryBean>();
 		list = masterservice.getExpenseReportListByDate(sdate , edate);
-		Map<String, Object> model = new HashMap<String, Object>();
+		
 		model.put("listofexpensereport",list );
 		System.out.println("expense detail list**************"+list);
+		List<UserEmployeeBean> accountmanagerlist12 = new ArrayList<UserEmployeeBean>();
+		accountmanagerlist12 = masterservice.accountManagerListBySelect(manager);
+		model.put("listofaccountmanager",accountmanagerlist12 );
 		return new ModelAndView("expensereport", model);
 
 	}
@@ -158,6 +174,7 @@ public ModelAndView getExpenseReportDetails(HttpServletRequest reuest){
 	model.put("listofexpensereport",list );
 	return new ModelAndView("expensereportdetails",model);
 }
+
 }
 
 
