@@ -1,6 +1,8 @@
 package com.pogo.bean;
 
 
+import java.util.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pogo.model.UserEmployee;
@@ -26,12 +28,11 @@ public class AddFollowUpBean
 	private String cusAddress;
 	private String cusOrganisation;
 	private String remarks;
-
-	
 	private Integer cusfileId;
 	private MultipartFile file;
 	private String fileName;
 	private String fileType;
+	
 	
 
 	private UserEmployee useremp;
@@ -178,6 +179,7 @@ public class AddFollowUpBean
 		this.userEmp = userEmp;
 
 	}
+	
 	
 	
 }

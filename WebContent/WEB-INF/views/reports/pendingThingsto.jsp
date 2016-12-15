@@ -13,13 +13,14 @@
 <link rel="stylesheet"
 	href="/pogoerpdemo/Resources/font-awesome-4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="resources/css/table.css">
-<link rel="stylesheet" type="text/css"
+
+<%-- <link rel="stylesheet" type="text/css"
 	href="${js_url}/css/jquery.dialogbox.css">
 <script src="${js_url}/plugins/jQuery/jquery-1.9.1.min.js"
 	type="text/javascript" charset="utf-8"></script>
 <script src="${js_url}/js/jquery.dialogBox.js" type="text/javascript"
-	charset="utf-8"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	charset="utf-8"></script> --%>
+
 
 
 </head>
@@ -39,16 +40,8 @@
 					style="background-color: #3C8DBD; color: white; left: 20px; height: 44px;">
 
 					<span class="glyphicon glyphicon-user" style="margin-left: 24px;"></span> <strong>Reports</strong> 
-
-					<span class="glyphicon glyphicon-user"></span> Reports</b> 
-					<label><a href="#" class="">Pending Tasks</a> </label>
-
-
-						<a href="pendingtasks" class="btn btn-info">Pending Tasks</a> </label>
-
-						
-
-
+ 
+					<label><a href="pendingtasks" style="margin-left: 317px; margin-top: 5px;" class="btn btn-info">Pending Tasks</a> </label>
 
 				</div>
 

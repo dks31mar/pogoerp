@@ -18,7 +18,7 @@
 <script src="${js_url}/js/jquery.dialogBox.js" type="text/javascript"
 	charset="utf-8"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+
 
 </head>    
  </CENTER>

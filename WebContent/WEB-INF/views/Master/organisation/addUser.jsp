@@ -7,12 +7,18 @@
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
 
+ <!-- <script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>  -->
+	
+	<!-- calender jquery-->
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
+	
 <!-- <script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.11.3.min.js"></script> -->
-<script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" /> -->
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
@@ -148,7 +154,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <select
-								name="designationId" placeholder="Manger" class="form-control">
+								name="designationId" placeholder="Manger" required="required" class="form-control">
 								<option value="" selected="selected">----Select
 									Role----</option>
 								<c:forEach items="${listofDeg}" var="designationList">
@@ -475,7 +481,7 @@
 	
 	function verifyLoginName() {
 		var loginname = $("#username").val();
-		alert(loginname);
+		//alert(loginname);
 		var flag = true;
 		$.ajax({
 					type : "POST",

@@ -269,6 +269,7 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		followUp.setFollowupTimeOutMin(addFollowUpBean.getFollowupTimeOutMin());
 		followUp.setCusStatus(addFollowUpBean.getCustStatus());
 		followUp.setCusAddress(addFollowUpBean.getCusAddress());
+		followUp.setCreatedAt(new Date());
 		followUp.setCusOrganisation(addFollowUpBean.getCusOrganisation());
 		followUp.setRemarks(addFollowUpBean.getRemarks());
 		followUp.setUserEmp(e);

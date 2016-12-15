@@ -463,6 +463,11 @@
 			<put-attribute name="title" value="Report " />
 			<put-attribute name="body" value="/WEB-INF/views/reports/updateDiary.jsp" />
 			</definition> 
+			<!-- CustomerPo -->
+			 <definition name="getCustomerPo" extends="baseLayout" >
+			<put-attribute name="title" value="Customer Po " />
+			<put-attribute name="body" value="/WEB-INF/views/customerPo/createCustomerPo.jsp" />
+			</definition> 
 			 
 			
 			<!-- Permission for SMS -->

@@ -4,17 +4,15 @@
 <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script> -->
 
+<!-- calender jquery-->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">  
 
-
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	
 	<script type="text/javascript">
@@ -92,7 +90,7 @@
 					return false;
 				}
 			}
-		
+			
 	</script>
 		
 <style>
@@ -118,6 +116,46 @@
 <legend>Edit Employee</legend>
 
 <!-- Text input-->
+
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h6 class="modal-title">Upload Profile</h6>
+        </div>
+        <div class="modal-body">
+           <div><input type="file" name="userProfile"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+				
+				 <div class="span6" style="margin-top: -5px; margin-left: 0px; width: 100px;">
+		<div class="block">
+			<div class="data-fluid">
+				<div class="row-form" style="float: right:;">
+					<div class="span3"></div>
+					<div class="span9" style="float: right:;">
+						<div class="span3" style="width: 100px; height: 50px;">
+							<img src="image/empProfile/${employee.profile}" accept="image/*"
+								style="width: 44px; height: 44px;" id="uploadimg123" title="Upload New Image">
+								
+						</div>
+						
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div> 
+
  <div class="form-group">
   <label class="col-md-2 control-label">Employee Id</label>  
   <div class="col-md-3 inputGroupContainer">
@@ -370,3 +408,11 @@
     
 </body>
 </html>
+<script>
+$(document).ready(function(){
+	$('#uploadimg123').on('click',function(){
+		$('#myModal').modal('show'); 
+	});
+});
+
+</script>

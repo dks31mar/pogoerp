@@ -375,8 +375,8 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 	@Override
 	public List<AddDiary> getdiarydata(int id, int pid) {
-		// TODO Auto-generated method stub
-		return null;
+		List<AddDiary>	list=(List<AddDiary>) sessionFactory.getCurrentSession().createCriteria(AddDiary.class).add(Restrictions.eq("planName.id", pid)).add(Restrictions.eq("enteryuser.userempid", id)).list();
+		return list;
 	}
 
 }

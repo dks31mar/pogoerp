@@ -126,7 +126,8 @@ public class ReportController {
 	
 	@RequestMapping(value="getfollowupbyuseridndate1",method = RequestMethod.GET)
 	@ResponseBody
-	public void getfollowupbyuseridndate1(@RequestParam("empid") String empid,Model model,@RequestParam("sdate") String sdate,@RequestParam("edate") String edate,@RequestParam("day") String day,HttpServletResponse res) throws IOException
+	public void getfollowupbyuseridndate1(@RequestParam("empid") String empid,Model model,@RequestParam("sdate")
+	String sdate,@RequestParam("edate") String edate,@RequestParam("day") String day,HttpServletResponse res) throws IOException
 	{
 		
 		System.out.println(empid+"          "+sdate+"            "+edate+"                  "+"                  "+day);
