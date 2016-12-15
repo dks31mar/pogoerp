@@ -559,15 +559,15 @@ $( function() {
 	 for (i=0;i<id ; i++){
 		 
 	 }
-<<<<<<< HEAD
+
 	 
-=======
+
 	 if(id==0){
 		 $('#hidethisthird1').hide();
 		 $('#hidethisthird').show();
 	 }
 	 //alert(id);
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 }
 	
 	 $('#hidethisthird1').hide();

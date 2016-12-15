@@ -74,22 +74,22 @@ java.util.Date date = new java.util.Date();
     <th>Customer Name</th>
     <th>Address</th>
   </tr>
-  <!--  
-  <c:if test="${!empty branchList}">
-	<c:forEach items="${branchList}" var="branch" varStatus="loop">
-	-->
+  
+  <c:if test="${!empty list}">
+	<c:forEach items="${list}" var="list1" varStatus="loop">
+	
   <tr>
     <td>${loop.index+1}</td>
+    <td>${list1.qorefno}</td>
+   <td>${list1.qodate}</td>
     <td></td>
-   <td></td>
-    <td></a></td>
-    <td></td>
-    <td></td>
+    <td>${list1.custname}</td>
+    <td>${list1.address}</td>
   </tr>
-  <!--  
+
   </c:forEach>
   </c:if>
-  -->
+ 
 </tbody></table>
 		
  <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>

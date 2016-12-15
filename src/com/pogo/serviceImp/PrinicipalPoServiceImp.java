@@ -65,7 +65,7 @@ public class PrinicipalPoServiceImp implements PrinicipalPoService{
 	public String getproductDetail(ProductMasterBean productmasetr) {
 		ProductMaster pm=new ProductMaster();
 		pm.setProductname(productmasetr.getProductname());
-		List<ProductMaster> partnoList=new ArrayList<ProductMaster>();
+		List<ProductMasterBean> partnoList=new ArrayList<ProductMasterBean>();
 		partnoList=prinicipaldao.getproductDetail(pm);
 		String json = new Gson().toJson(partnoList );
 		System.out.println("((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((");

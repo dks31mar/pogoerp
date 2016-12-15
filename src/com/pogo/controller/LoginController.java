@@ -41,7 +41,7 @@ public class LoginController {
 			Map<String, Object> getLeftMenuList=new HashMap<String, Object>();
 			getLeftMenuList=loginService.getLeftMenu(request,id,pmob);
 			List<String> getLeftMenuList1=new ArrayList<String>();
-			 ModelAndView model = new ModelAndView("MainPage");
+			 ModelAndView model = new ModelAndView("redirect:/homepage");
 			 model.addObject("lists", getLeftMenuList);
 			 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&      "+getLeftMenuList);
 			 System.out.println("submenu>>>>>>>>>>>>>>>>>>>>>>               "+getLeftMenuList1);
@@ -56,10 +56,10 @@ public class LoginController {
 	public ModelAndView homePage(HttpServletRequest request,PogoMenuOptions pmob) {
 		ModelAndView model=null;
 		Map<String, Object> getLeftMenuList=new HashMap<String, Object>();
+		HttpSession session=request.getSession();
 		int id=0;
 		try{
-		HttpSession session=request.getSession();
-		id=(int)session.getAttribute("userid");
+			id=(int)session.getAttribute("userid");
 		
 		getLeftMenuList=loginService.getLeftMenu(request,id,pmob);
 		

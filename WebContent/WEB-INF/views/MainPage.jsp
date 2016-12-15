@@ -156,6 +156,7 @@ $.ajax({
 		if(name==null || iduser==null || userImg==null){
 			response.sendRedirect("LoginPage.jsp");
 		}
+	
 	}catch(Exception e){
 		response.sendRedirect("LoginPage.jsp");
 		if(name==null || iduser==null || userImg==null){
