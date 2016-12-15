@@ -48,7 +48,9 @@ System.out.println();
 			<div class="page-heading col-sm-11" id="createpo"
 				style="background-color: #3C8DBC; left: 10px">
 				<span class="glyphicon glyphicon-copy"></span> Create Quotation
-				
+
+		
+
 				
 				
 				

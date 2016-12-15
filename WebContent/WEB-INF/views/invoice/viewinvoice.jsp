@@ -70,12 +70,12 @@ System.out.println();
 						
 				</div>
 
-				<div class="col-sm-1 form-level">
-			Invoice Date::<font color="#FF0000">*</font>
+				<div class="col-sm-2 form-level">
+			Invoice Date:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-3">
 					<span> <input type="text" class="form-control" name="Invoicedate:" placeholder="Invoice Date:"
-						 id="CusLocid"  size="100" ></input>
+						 id="invoiceid"  size="100"  readonly></input>
 						</span>
 
 				</div>
@@ -85,23 +85,23 @@ System.out.println();
 			
 			<div class="row form-group">
 				<div class="col-sm-3 form-level">
-				Buyer's Order No.:<font color="#FF0000">*</font>
+				Buyer's Order No:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-4">
 					<span> <input type="text" class="form-control" name="buyerOrderno" placeholder=" Buyer's Order No."
-						 id="Orderid"  size="120" ></input>
+						 id="buyerid"  size="120" ></input>
 						  
 						</span>
 						
 				</div>
 				
-					<div class="col-sm-1 form-level">
-				Order Date::<font color="#FF0000">*</font>
+					<div class="col-sm-2 form-level">
+				Order Date:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" name="Invoiceno" placeholder="Invoice No"
+					<input type="text" name="Orderdate" placeholder="Order Date"
 						onkeyup="" id="customerid"  value=""
-						class="form-control">
+						class="form-control" readonly>
 						
 				</div>
 			</div>
@@ -112,18 +112,17 @@ System.out.println();
 			Dispatch Doc No.:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-4">
-					<select type="text" name="Quotationno" id="Quotationid" size="1"
+					<input type="text" name="Quotationno" id="Quotationid" size="1"
 						placeholder="Quotation no" 
 						class="form-control" >
-						<option>select quotation no</option>
-						</select>
+						
 						</div>
 						
-					<div class="col-sm-1 form-level">
-				Delivery Date:<font color="#FF0000">*</font>
+					<div class="col-sm-2 form-level">
+			Dispatch through:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" name="Invoiceno" placeholder="Invoice No"
+					<input type="text" name="dispatchthrough" placeholder="Dispatch through"
 						onkeyup="" id="customerid"  value=""
 						class="form-control">
 						
@@ -131,23 +130,15 @@ System.out.println();
 			</div>
 			<div class="row form-group">
         	<div class="col-sm-3 form-level" >
-				Order Value:<font color="#FF0000">*</font>
+				Terms of Delivery:<font color="#FF0000">*</font>
 				</div>
-				<div class="col-sm-2">
-				<span> <input type="text" class="form-control" name="dateTodate" 	placeholder="Order Date"
-						id="datepicker" value="${date}" ReadOnly title="DD/MM/YYYY"></input>
-					</span>
-					
-				</div>
-
-				<div class="col-sm-3 form-level">
-			Dispatch Value:<font color="#FF0000">*</font>
-				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					<input type="text" name="OrderReceiveDate"
-						placeholder="Order Receive Date" value=""
+						placeholder="Terms of Delivery" value=""
 						class="form-control" style="display: inline-block;" id="receivedate">
 						</div>
+
+				
 			</div>
 			
 			
@@ -164,29 +155,29 @@ System.out.println();
 									<td class="col-sm-1 form-level" style="width: 10px">&nbsp;
 										<font size="2" color="white">
 										<label>S.No.</label></font></td>
-									<td class="col-sm-3 form-level" style="width: 80px"align="center">&nbsp;<font size="2" color="white">
-										<label >Part No</label></font></td>
-										<td class="col-sm-3 form-level" style="width: 80px"align="center">&nbsp;<font size="2" color="white">
-										<label >Product Type</label></font></td>
-										
-									<td align="center" class="col-sm-1 form-level"style="width: 80px">&nbsp;&nbsp;&nbsp;<font size="2" color="white">
+										<td align="center" class="col-sm-1 form-level"style="width: 80px">&nbsp;&nbsp;&nbsp;<font size="2" color="white">
 										<label >Description</label></font></td>
+									   <td class="col-sm-3 form-level" style="width: 80px"align="center">&nbsp;<font size="2" color="white">
+										<label >Part No</label></font></td>
+										<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
+										<label >QTY</label></font></td>
+										<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
+										<label id="unitprice">Unit price</label></font></td>
+										
+										<td class="col-sm-3 form-level" style="width: 80px"align="center">&nbsp;<font size="2" color="white">
+										<label > Dispatch Qty</label></font></td>
+										
+									
 									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label id="tpinchangelable">Stock Qty</label></font></td>
+										<label id="tpinchangelable">Pending Qty</label></font></td>
 								
-									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label id="unitprice">Unit price</label></font></td>	
+										
 										
 								   <td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label id="dis">Disc%</label></font></td>
+										<label id="dis">Order Amount</label></font></td>
 									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label id="netprice">Net price</label></font></td>
-									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label >QTY</label></font></td>
-									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label id="amount">Amount</label></font></td>	
-										<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label id="amount">Delivery</label></font></td>	
+										<label id="netprice">Dispatch Amount</label></font></td>
+									
 										<td align="center">&nbsp;<div class="checkbox">
 										<label>
                                      
