@@ -137,50 +137,38 @@ ServletContext context;
 	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO, 
 			HttpServletRequest request,HttpServletResponse response ,BindingResult result)
 			throws ParseException, IOException {
-		
-	String loginame=userDTO.getLoginname();
-	String empcode=	userDTO.getEmpCode();
-		System.out.println(loginame+" "+empcode);
-		
-		String path=context.getRealPath("/");
-		System.out.println(path);
-		
-		/*if (userDTO.getUserProfile().getSize() > 0) {
-			MultipartFile file = userDTO.getUserProfile();
-			String fileext=FilenameUtils.getExtension("/path/to/file/"+file.getOriginalFilename());
-			String type = file.getContentType().split("/")[0];
-			InputStream inputStream = null;
-			OutputStream outputStream = null;
-			path=request.getSession().getServletContext().getRealPath("/")+"resources\\image\\empProfile\\abc."+fileext;
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                       "+path);
-			if (type.equalsIgnoreCase("image")) {
-				inputStream =file.getInputStream();
-				outputStream = new FileOutputStream(path);
-				//git\pogoerp/SpringHibernateApp
-				//[[https://github.com/username/repository/blob/master/img/octocat.png|alt=octocat]]
-				int readBytes = 0;
-				byte[] buffer = new byte[8192];
-				while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
-
-					outputStream.write(buffer, 0, readBytes);
-				}
-				outputStream.close();
-				inputStream.close();
-				//userEmployeeservice.adduserEmp(userDTO,path);
-			}
-			
-		}else{
-			//userEmployeeservice.adduserEmp(userDTO,path);
-		}*/
-		return "redirect:getuseremp";
-		// return new ModelAndView("getuseremp") ;
-
-	}
+		     String fileName = "emp.png";
+	        if (userDTO.getUserProfile().getSize() > 0) {
+	            MultipartFile file = userDTO.getUserProfile();
+	            fileName = file.getOriginalFilename();
+	            String type = file.getContentType().split("/")[0];
+	            InputStream inputStream = null;
+	            FileOutputStream outputStream = null;
+	            if (type.equalsIgnoreCase("image")) {
+	                inputStream = file.getInputStream();
+	                outputStream = new FileOutputStream(String.valueOf(request.getSession()
+	                		.getServletContext().getRealPath("/")) + "image/empProfile/" + fileName);
+	               /* System.out.println(String.valueOf(request.getSession().getServletContext().getRealPath("/")) + "image/empProfile/" + fileName);*/
+	                int readBytes = 0;
+	                byte[] buffer = new byte[8192];
+	                while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
+	                    outputStream.write(buffer, 0, readBytes);
+	                }
+	                outputStream.close();
+	                inputStream.close();
+	                userEmployeeservice.adduserEmp(userDTO, fileName);
+	            }
+	        } else {
+	            userEmployeeservice.adduserEmp(userDTO, fileName);
+	        }
+	        return "redirect:getuseremp";
+	    }
 	@ResponseBody
 	@RequestMapping(value="/verifyloginname",method=RequestMethod.POST)
 	public  String verifylogin(@RequestParam String login) throws JsonProcessingException
 	{
 		String result=userEmployeeservice.verifyLogin(login);
+		System.out.println(result);
 		return new ObjectMapper().writeValueAsString(result);
 		
 	}
@@ -196,8 +184,36 @@ ServletContext context;
 	
 	@RequestMapping(value = "/update-employee", method = RequestMethod.POST)
 	public String updateEmployee(@ModelAttribute("employeebean") UserEmployeeBean userEmployeeBean,
-			BindingResult result) throws ParseException {
-		userEmployeeservice.updateEmployee(userEmployeeBean);
+			BindingResult result,HttpServletRequest request) throws ParseException, IOException 
+	
+	{
+		if(userEmployeeBean.getUserProfile()==null)
+		{
+		
+		}else
+		if (userEmployeeBean.getUserProfile().getSize() > 0
+				&& userEmployeeBean.getUserProfile() != null) {
+			MultipartFile file = userEmployeeBean.getUserProfile();
+			String type = file.getContentType().split("/")[0];
+			InputStream inputStream = null;
+			OutputStream outputStream = null;
+			if (type.equalsIgnoreCase("image")) {
+				inputStream = file.getInputStream();
+				outputStream = new FileOutputStream(request.getSession()
+						.getServletContext().getRealPath("/")
+						+ "/image/empProfile/" + file.getOriginalFilename());
+
+				int readBytes = 0;
+				byte[] buffer = new byte[8192];
+				while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
+
+					outputStream.write(buffer, 0, readBytes);
+				}
+				outputStream.close();
+				inputStream.close();
+				userEmployeeservice.updateEmployee(userEmployeeBean);
+		}
+	}
 		return "redirect:/getuseremp";
 
 	}
@@ -231,11 +247,9 @@ ServletContext context;
 	}
 
 	@RequestMapping(value = "show-designation", method = RequestMethod.POST)
-
 	@ResponseBody
-	public void getData(@RequestBody String json, Model model) throws IOException {
-
-		System.out.println(json);
+	public void getData(@RequestBody String json, Model model) throws IOException 
+	{
 		ObjectMapper mapper = new ObjectMapper();
 		DesignationBean degbean = mapper.readValue(json, DesignationBean.class);
 		DesignationBean des = new DesignationBean();

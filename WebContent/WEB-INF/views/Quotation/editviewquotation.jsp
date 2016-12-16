@@ -53,6 +53,7 @@ java.util.Date date = new java.util.Date();
 
 
 <div class="row" style="margin-top: 15px">
+
 	<br>
 	<div align="center">
 		<i>
@@ -75,32 +76,50 @@ java.util.Date date = new java.util.Date();
 	</div>
 </div>
 
-<table class="responstable">
-	<tbody>
-		<tr>
-			<th>S.N.</th>
-			<th data-th="Driver details"><span> Ref.No</span></th>
-			<th>Date</th>
-			<th>Order Ref</th>
-			<th>Customer Name</th>
-			<th>Address</th>
-		</tr>
-		<!--  
-  <c:if test="${!empty branchList}">
-	<c:forEach items="${branchList}" var="branch" varStatus="loop">
-	-->
-		<tr>
-			<td>${loop.index+1}</td>
-			<td></td>
-			<td></td>
-			<td></a></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<!--  
+
+	 
+
+			
+
+		
+		<div class="row">
+		<div class="page-heading col-sm-11" style="background-color: #3C8DBC; left: 10px">
+			<span class="glyphicon glyphicon-user"></span> Quotation Details 	
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="ason"  type="radio" name="potype"checked="checked"> As On
+					 <input id="period" type="radio" name="potype" />Period
+					 
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "hide1">From:<input type="text" style="color: black;" id="datepicker1" value="<%=dateFormat.format(date) %>" ReadOnly></span> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id = "hide2">To: <input type="text" style = "color:black" id="datepicker2" value="<%=dateFormat.format(date) %>" ReadOnly></span> 
+						 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Search" style="color: black;"/>
+						</div>
+			</div>
+		   
+		    <table class="responstable">
+  <tbody><tr>
+    <th>S.N.</th>
+    <th data-th="Driver details"><span> Ref.No</span></th>
+    <th>Date</th>
+    <th>Order Ref</th>
+    <th>Customer Name</th>
+    <th>Address</th>
+  </tr>
+  
+  <c:if test="${!empty list}">
+	<c:forEach items="${list}" var="list1" varStatus="loop">
+	
+  <tr>
+    <td>${loop.index+1}</td>
+    <td><a href="getquotationlistbyid?qporef=${list1.qorefno}&qpoid=${list1.poquotationdetailid}" target="_blank">${list1.qorefno}</a></td>
+   <td>${list1.qodate}</td>
+    <td></td>
+    <td>${list1.custname}</td>
+    <td>${list1.address}</td>
+  </tr>
+
+
   </c:forEach>
   </c:if>
-  -->
+
 	</tbody>
 </table>
 
@@ -109,6 +128,16 @@ java.util.Date date = new java.util.Date();
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
+
+ 
+</tbody></table>
+		
+ <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
+   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
+		<script>
+
 		$("#hide1").hide();
 		$( function() {
 		    $( "#datepicker1" ).datepicker({dateFormat: 'dd/mm/yy'});

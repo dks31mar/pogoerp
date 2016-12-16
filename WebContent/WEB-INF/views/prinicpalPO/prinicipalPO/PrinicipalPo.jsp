@@ -505,24 +505,28 @@ System.out.println();
 				alert("d");
 				calculation();
 			}
+			
+			
+			
 			function calculation(){
 				var id=$('#addprolisttbody').children('tr').length;
-				//alert(id)
 				var t1=0;
 				for(var i=1;i<=id ; i=i+1){
 					
 					t1+= Number($('#totaljpy'+i).val());
-					// alert(t1);
 				 }
 				$('#tjpy1').val(t1);
-				//alert(nan)
 			}
+			
+			
+			
+			
 			$("#savedata445").bind("click", function() {
 			var temp=$("#totalchangelable").text();
-			//alert(temp);
+			
 				  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
 				  console.log(AddressesDataJSON);
-				 //alert(JSON.stringify(AddressesDataJSON));
+	
 				  
 				 calculation();
 			  $.ajax({
@@ -566,6 +570,7 @@ System.out.println();
 						var d2=$('#totaljpy'+id).val();
 						var d3=$('#tjpy1').val();
 						$('#tjpy1').val(parseInt((d3), 10)+parseInt((d2), 10));
+						calculation();
 					var grandtotl=	$('#tjpy1').val();
 						$('#grandtotal1').val(grandtotl);
 						calculation();

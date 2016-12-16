@@ -4,8 +4,7 @@
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css"
-	href="resources/css/displaytag.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/displaytag.css" />
 <link rel="stylesheet" type="text/css"
 	href="resources/css/messagebox.css" />
 <link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
@@ -35,26 +34,20 @@ java.util.Date date = new java.util.Date();
 System.out.println();
 %>
 <form method="POST" action="">
-	<div class="row" style="margin-top: 15px">
-		<br>
-		<div align="center">
-			<i> </i> <input type="hidden" name="profile" value="0" />
+		<div class="row" style="margin-top: 15px">
+			<br>
+			<div align="center">
+				<i>
+				
+				</i> <input type="hidden" name="profile" value="0" />
+			</div>
 		</div>
-	</div>
 
-	<div class="row">
-
-
-		<div class="page-heading col-sm-11" id="createpo"
-			style="background-color: #3C8DBC; left: 10px">
-			<span class="glyphicon glyphicon-copy"></span> Create Quotation
-
-
-
+		<div class="row">
 
 			<div class="page-heading col-sm-11" id="createpo"
 				style="background-color: #3C8DBC; left: 10px">
-				<span class="glyphicon glyphicon-copy"></span> Create Quotation
+				<span class="glyphicon glyphicon-copy"></span> Edit Quotation
 
 		
 
@@ -62,10 +55,8 @@ System.out.println();
 				
 				
 			</div>
-
 		</div>
-	</div>
-	<!--  
+<!--  
 		<div class="row" id="editpo">
 			<div class="page-heading col-sm-11"
 				style="background-color: #3C8DBC; left: 10px">
@@ -77,16 +68,12 @@ System.out.println();
 	<div style="border: 1px solid #CCCCCC; padding: 7px; width: 93%">
 		<div class="row form-group">
 
-
-			<div class="col-sm-3 form-level">
-				Customer Name:<font color="#FF0000">*</font>
-
 				<div class="col-sm-3 form-level">
 					Customer Name:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" name="Refno" placeholder="Customer Name"
-						 id="autocompletecustomer"  ></input>
+						 id="autocompletecustomer" value="${customername}"></input>
 				</div>
 
 				<div class="col-sm-1 form-level">
@@ -94,70 +81,55 @@ System.out.println();
 				</div>
 				<div class="col-sm-3">
 					<span> <input type="text" class="form-control" name="Refno" placeholder="Reference No."
-						 id="Refno"  size="100" ></input>
+						 id="Refno"  size="100" value="${poref1}"></input>
 						</span>
 
 				</div>
-
 			</div>
-			<div class="col-sm-4">
-				<select type="text" name="customername" placeholder="" onkeyup=""
-					id="customerid" value="" class="form-control">
-					<option>Select Customer Name</option>
-				</select>
-			</div>
-
-			<div class="col-sm-1 form-level">
-				Ref No:<font color="#FF0000">*</font>
-			</div>
-			<div class="col-sm-3">
-				<span> <input type="text" class="form-control" name="Refno"
-					placeholder="Reference No." id="Refno" size="100"></input>
-				</span>
-
-			</div>
-		</div>
-		<div>
-
-
+			<div>
+	
+			
 			<div class="row form-group">
 				<div class="col-sm-3 form-level">
 					TO:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-3">
 					<textarea rows="4" cols="50" name="address" placeholder="address"
-						style="border-radius: 5px; background-color: #f2f2f2;" readonly
-						id="addresstextarea"> </textarea>
-
+						style="border-radius: 5px; background-color: #f2f2f2;" readonly id="addresstextarea">${adress}</textarea>
+						
 				</div>
 			</div>
+			
+			
 
-
-
-		</div>
-		<div class="row form-group">
-			<div class="col-sm-3 form-level">
-				E-mail id:<font color="#FF0000">*</font>
-			</div>
-			<div class="col-sm-4">
-				<input type="text" name="emailsid" id="emailid" size="50"
-					placeholder="Email address" class="form-control">
-			</div>
-		</div>
-		<div>
+			  </div>
 			<div class="row form-group">
 				<div class="col-sm-3 form-level">
-					Date:<font color="#FF0000">*</font>
+				E-mail id:<font color="#FF0000">*</font>
+				</div>
+				<div class="col-sm-4">
+					<input type="text" name="emailsid" id="emailid" size="50"
+						placeholder="Email address" value="${email}"
+						class="form-control" >
+				</div>
+			</div>
+			<div class="row form-group">
+        	<div class="col-sm-3 form-level" >
+				Date:<font color="#FF0000">*</font>
+				</div>
+				<div class="col-sm-2">
+				<span> <input type="text" class="form-control" name="dateTodate"
+						id="datepicker" value="${date}" ReadOnly title="DD/MM/YYYY"></input>
+					</span>
+					
+				</div>
+
+				<div class="col-sm-3 form-level">
+				Validity Days:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-3">
-
-					<span> <input type="text" class="form-control"
-						name="dateTodate" id="datepicker" value="${date}" ReadOnly
-						title="DD/MM/YYYY"></input>
-					</span>
-
 					<input type="text" name="Validitydays"
-						placeholder="Validity days" value=""
+						placeholder="Validity days" value="${days}"
 						class="form-control" style="display: inline-block;" id="validityid">
 						</div>
 			</div>
@@ -170,7 +142,7 @@ System.out.println();
 					</div>
 				
 					<table style="width: 100%; bottom: 15px; position: relative;" border="0" id="quotprodtable">
-					<thead id=hidethisthird1>
+					<thead>
 						<tr bgcolor="#3C8DBC">
 							<td style="display: none;"><label>id</label> </td>
 									<td class="col-sm-1 form-level" style="width: 10px">&nbsp;
@@ -206,12 +178,52 @@ System.out.println();
 					</thead>
 					<tbody id="addprolisttbody">
 					
+					<c:if test="${!empty list}">
+						<c:forEach items="${list}" var="poref" varStatus="loop">
+					
+			<tr>
+           <td style="display: none;"><input type="hidden" value="${poref.poquotationitemdetailid}" id="getid${loop.index+1}" name="id"></input> </td>
+           <td style="right: 5px; position: relative;">&nbsp; <input readonly type="text" style="width: 60px" name="" id="sr${loop.index+1}" value="${loop.index+1}" class="form-control"/></td>
+           <td style="left: 2px; position: relative; width: 150px">&nbsp;<input readonly type="text" value="${poref.partno}" name="particulee1" style="overflow: auto; border-radius: 3px; width: 223px; "id="autocomplete${loop.index+1}" class="form-control"/></td>
+           <td style="width: 250px">&nbsp; <input readonly name="" id="description${loop.index+1}" class="form-control" style="text-align: center;width: 238px;" value="${list2[loop.index]}" ></input></td>
+           <td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="" id="stockqty${loop.index+1}" value="" class="form-control" /></td>
+           <td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="unitprice" id="unitperit${loop.index+1}" value="${poref.utprice}" class="form-control" /></td>
+           <td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="disc" id="disc${loop.index+1}" value="${poref.disc}" class="form-control" /></td>
+           <td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="netprice" id="netprc${loop.index+1}" value="${poref.netprice}" class="form-control" /></td>
+           <td align="center" style="right: 4px; position: relative;">&nbsp;<input readonly type="text" style="text-align: center;" name="qty" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="qty${loop.index+1}" class="form-control" value="${poref.qty}"/></td>
+           <td align="center">&nbsp;<input readonly type="text" style="text-align: center;" name="totaljpy" id="totaljpy${loop.index+1}" value="${poref.total}" class="form-control"  /></td>
+           <td align="center">&nbsp; <input readonly type="text" style="text-align: center;width: 132px;" onkeyup="this.value=value.toUpperCase();" name="customerporefe" id="customerporefe${loop.index+1}" value="${poref.delivery}" class="form-control"/></td>
+           <td><input type="hidden" style="text-align:center;" name="customername" id="customername${loop.index+1}" value="${customername}" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="refnumber" id="refnum${loop.index+1}" value="${poref1}" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="address" id="adress${loop.index+1}" value="${adress}" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="email" id="eamil${loop.index+1}" value="${email}" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="date" id="date${loop.index+1}" value="${date}" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="validays" id="valdays${loop.index+1}" value="${days}" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="grandtotal" id="grandtotal${loop.index+1}" value="${total}" class="form-control"  ></td>
+           
+           
+           <td><input type="hidden" style="text-align:center;" name="terma" id="terma${loop.index+1}" value="" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="termb" id="termb${loop.index+1}" value="" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="termc" id="termc${loop.index+1}" value="" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="termd" id="termd${loop.index+1}" value="" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="terme" id="terme${loop.index+1}" value="" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="termf" id="termf${loop.index+1}" value="" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="termg" id="termg${loop.index+1}" value="" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="termh" id="termh${loop.index+1}" value="" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="termi" id="termi${loop.index+1}" value="" class="form-control"  ></td>
+           <td><input type="hidden" style="text-align:center;" name="termj" id="termj${loop.index+1}" value="" class="form-control"  ></td>
+           <td><a class='glyphicon glyphicon-pencil' href='#' onclick='editfields(${loop.index+1});return false'></a><a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow(${loop.index+1});return false;' id="${loop.index+1}"></a></td>
+           </tr>
+           
+           
+           </c:forEach>
+           </c:if>
 					</tbody>
 					</table>
 					
 					<table>
 					
-					<thead id=hidethisthird>
+				<%-- 	<thead id=hidethisthird>
 						<tr bgcolor="#3C8DBC">
 							<td style="display: none;"><label>id</label> </td>
 									<td class="col-sm-1 form-level" style="width: 10px">&nbsp;
@@ -241,10 +253,10 @@ System.out.println();
 										<label id="totalchangelable">Total JPY</label></font></td>-->
 									<!--  <td align="center">&nbsp;<font size="2" style="width: 65px"color="white">
 										<label >Customer PO Reference</label></font></td>-->
-							<%-- <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white"><label path="">Total INR</label></font> --%>
+							<td align="center"> &nbsp;<font size="2" style="width: 80px" color="white"><label path="">Total INR</label></font>
 					
 					</tr>
-					</thead>
+					</thead> --%>
 					
 					<tr>
 					<td style="display: none;"><input type="hidden" value="" id="getid1"></input> </td>
@@ -286,9 +298,6 @@ System.out.println();
 								style='text-align: center;' name='totaljpy' id='totaljpy' value=""
 								class='form-control'  /></td>
 
-
-
-
 							<td align="center">&nbsp; 
 							
 							<input type='text'
@@ -317,169 +326,12 @@ System.out.println();
 						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
 							value="${total}" style="width: 15%;" readonly>
 					</div>
-
 				</div>
 
-				<div class="col-sm-3 form-level">
-					Validity Days:<font color="#FF0000">*</font>
-				</div>
-				<div class="col-sm-3">
-					<input type="text" name="Validitydays" placeholder="Validity days"
-						value="" class="form-control" style="display: inline-block;"
-						id="validityid">
-				</div>
-			</div>
-		</div>
+				<hr align="left" size="" width="100%"
+					style="background-color: #3C8DBC;height: 1px; " />
 
-		<hr style="color: black">
-		<div class="row form-group">
-			<div class="col-sm-7"></div>
-		</div>
-
-
-		<table style="width: 100%; bottom: 15px; position: relative;"
-			border="0" id="quotprodtable">
-			<thead>
-				<tr bgcolor="#3C8DBC">
-					<td style="display: none;"><label>id</label></td>
-					<td class="col-sm-1 form-level" style="width: 10px"><font
-						size="2" color="white"> <label>S.No.</label></font></td>
-					<td class="col-sm-3 form-level" style="width: 80px" align="center"><font
-						size="2" color="white"> <label>Part No</label></font></td>
-					<td align="center" class="col-sm-1 form-level" style="width: 80px"><font
-						size="2" color="white"> <label>Description</label></font></td>
-					<td align="center"><font size="2" style="width: 80px"
-						color="white"> <label id="tpinchangelable">Stock
-								Qty</label></font></td>
-
-					<td align="center"><font size="2" style="width: 80px"
-						color="white"> <label id="unitprice">Unit price</label></font></td>
-
-					<td align="center"><font size="2" style="width: 80px"
-						color="white"> <label id="dis">Disc%</label></font></td>
-					<td align="center"><font size="2" style="width: 80px"
-						color="white"> <label id="netprice">Net price</label></font></td>
-					<td align="center"><font size="2" style="width: 80px"
-						color="white"> <label>QTY</label></font></td>
-					<td align="center"><font size="2" style="width: 80px"
-						color="white"> <label id="amount">Amount</label></font></td>
-					<td align="center"><font size="2" style="width: 80px"
-						color="white"> <label id="amount">Delivery</label></font></td>
-					<!--  <td align="center"><font size="2" style="width: 80px"color="white">
-										<label id="totalchangelable">Total JPY</label></font></td>-->
-					<!--  <td align="center"><font size="2" style="width: 65px"color="white">
-										<label >Customer PO Reference</label></font></td>-->
-					<%-- <td align="center"> <font size="2" style="width: 80px" color="white"><label path="">Total INR</label></font> --%>
-
-				</tr>
-			</thead>
-			<tbody id="addprolisttbody">
-
-			</tbody>
-		</table>
-
-		<table>
-			<thead>
-				<tr>
-					<td style="display: none;"><input type="hidden" value=""
-						id="getid1"></input></td>
-					<td style="right: 5px; position: relative;"><input type='text'
-						style='width: 60px' name='posrno' id='sr' value=""
-						class='form-control' /></td>
-					<td style="left: 2px; position: relative; width: 150px"><input
-						type='text' value="" name='particulee1'
-						style='overflow: auto; border-radius: 3px; width: 223px;'
-						id='autocomplete' class='form-control' /></td>
-					<td style="width: 250px"><input name='description'
-						id='description' class='form-control'
-						style="text-align: center; width: 238px;" value=""></input></td>
-
-					<td style="right: 7px; position: relative;"><input type='text'
-						style='text-align: center;' name='stockqty' id='stockqty' value=""
-						class='form-control' /></td>
-
-					<td style="right: 7px; position: relative;"><input type='text'
-						style='text-align: center;' name='unitprice' id='unitprice'
-						value="" class='form-control' /></td>
-
-					<td style="right: 7px; position: relative;"><input type='text'
-						style='text-align: center;' name='disc' id='disc' value=""
-						class='form-control' /></td>
-
-					<td style="right: 7px; position: relative;"><input type='text'
-						style='text-align: center;' name='netprice' id='netprice' value=""
-						class='form-control' /></td>
-
-					<td align="center" style="right: 4px; position: relative;"><input
-						type='text' style='text-align: center;' name='qty'
-						onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-						id='qty' class='form-control' value="" /></td>
-					<td align="center"><input type='text'
-						style='text-align: center;' name='totaljpy' id='totaljpy' value=""
-						class='form-control' /></td>
-
-					<td align="center"><input type='text'
-						style='text-align: center; width: 132px;'
-						onkeyup='this.value=value.toUpperCase();' name='customerporefe'
-						id='customerporefe' value="" class='form-control' /></td>
-					<td><input type="hidden" style="text-align: center;"
-						name="unitcost" id="unitcostx" value="" class="form-control"></td>
-					<td>
-					<td align="center"><input type="button" value='+'
-						id='addmorepro12' class='btn btn-success pull-right'
-						data-toggle='tooltip' title='Add More Product' />
-				</tr>
-			</thead>
-		</table>
-</form>
-
-
-<div class="row form-group" style="top: 10px; position: relative;"
-	onclick="">
-	<div class="col-sm-10 form-level" align="right">
-		Total:<font color="#FF0000"></font>
-	</div>
-	<div align="right">
-		<input type="text" name="tjpy1" id="tjpy1" class="form-control"
-			value="${total}" style="width: 15%;" readonly>
-	</div>
-</div>
-
-<hr align="left" size="" width="100%"
-	style="background-color: #3C8DBC; height: 1px;" />
-
-<div align="center">
-
-	<table>
-		<tr>
-
-
-			<!-- <td>
-							<button type="button" value="update" onclick="numberingRow();"
-								class="btn btn-success pull-center"
-								style="background-color: #3C8DBC;">Number row</button>
-						</td> -->
-			<td></td>
-			<td>
-				<button type="button" value="Save" onClick=""
-					class="btn btn-success pull-center" id=""
-					style="background-color: #3C8DBC;">Save</button>
-			</td>
-			<%-- <td class="col-sm-2 form-level">
-						
-						
-						Total:<font color="#FF0000"></font>
-					
-						</td>
-						<td>
-						
-						<div align="right">
-						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
-							value="${total}" style="width: 65%;" readonly>
-					</div>
-						</td> --%>
-
-		</tr>
+				<div align="center">
 
 					<table>
 					<tr>
@@ -499,22 +351,21 @@ System.out.println();
 					</tr>
 
 
-
-	</table>
-
+					</table>
 
 
 
-	<!-- <button type="button" value="AddMore" onClick="productdetail();"
+					
+					<!-- <button type="button" value="AddMore" onClick="productdetail();"
 						class="btn btn-success pull-right"
 						style="background-color: #3C8DBC;">Add More</button> -->
 
 
-</div>
+				</div>
 
-</div>
-
-</div>
+			</div>
+	
+	</div>
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -524,16 +375,16 @@ System.out.println();
           <h4 class="modal-title" id="termstext">Write Terms</h4>
         </div>
         <div class="modal-body">
-       	<input class="form-control input-lg" id="terma" type="text">
-       	<input class="form-control input-lg" id="termb" type="text">
-       	<input class="form-control input-lg" id="termc" type="text">
-       	<input class="form-control input-lg" id="termd" type="text">
-       	<input class="form-control input-lg" id="terme" type="text">
-       	<input class="form-control input-lg" id="termf" type="text">
-       	<input class="form-control input-lg" id="termg" type="text">
-       	<input class="form-control input-lg" id="termh" type="text">
-       	<input class="form-control input-lg" id="termi" type="text">
-       	<input class="form-control input-lg" id="termj" type="text">
+       	<input class="form-control input-lg" id="terma" type="text" value="${term1 }">
+       	<input class="form-control input-lg" id="termb" type="text" value="${term2 }">
+       	<input class="form-control input-lg" id="termc" type="text" value="${term3 }">
+       	<input class="form-control input-lg" id="termd" type="text" value="${term4 }">
+       	<input class="form-control input-lg" id="terme" type="text" value="${term5 }">
+       	<input class="form-control input-lg" id="termf" type="text" value="${term6 }">
+       	<input class="form-control input-lg" id="termg" type="text" value="${term7 }">
+       	<input class="form-control input-lg" id="termh" type="text" value="${term8 }">
+       	<input class="form-control input-lg" id="termi" type="text" value="${term9 }">
+       	<input class="form-control input-lg" id="termj" type="text" value="${term10 }">
         </div>
         <div class="modal-footer" style="background-color: white;">
          <button type="button" class="btn btn-success" style="background-color: #3C8DBC;" data-dismiss="modal">Send</button>
@@ -596,7 +447,7 @@ $(document).ready(function(){
 
 			
            var markup = '<tr>'+
-           '<td style="display: none;"><input type="hidden" value="" id="getid1"></input> </td>'+
+           '<td style="display: none;"><input type="hidden" value="" id="getid1" name="id"></input> </td>'+
            '<td style="right: 5px; position: relative;">&nbsp; <input readonly type="text" style="width: 60px" name="" id="sr'+id+'" value="'+id+'" class="form-control"/></td>'+
            '<td style="left: 2px; position: relative; width: 150px">&nbsp;<input readonly type="text" value="'+word+'" name="particulee1" style="overflow: auto; border-radius: 3px; width: 223px; "id="autocomplete'+id+'" class="form-control"/></td>'+
            '<td style="width: 250px">&nbsp; <input readonly name="" id="description'+id+'" class="form-control" style="text-align: center;width: 238px;" value="'+dis+'" ></input></td>'+
@@ -891,7 +742,7 @@ $( function() {
     $("#datepicker" ).datepicker({dateFormat:'dd/mm/yy'}).datepicker("setDate", new Date());
   });
   
-  $('#validityid').val('30 Days');
+ 
 
 
 $('#hidethisthird1').hide();
@@ -901,9 +752,7 @@ function calculation(){
 	var t1=0;
 	for(var i=1;i<=id ; i=i+1){
 		t1+= Number($('#totaljpy'+i).val());
-		
 	}
-	console.log(t1);
 	$('#tjpy1').val(t1);
 	
 }
@@ -934,11 +783,8 @@ $("#savedata445").bind("click", function() {
 	 inputTrems();
 		  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
 		  console.log(AddressesDataJSON);
-
-		  
-		 
-	  $.ajax({
-				url: "savequotation",
+	$.ajax({
+				url: "updatequotation",
 				type: "POST",
 				
 				  data :JSON.stringify(AddressesDataJSON),
@@ -951,7 +797,7 @@ $("#savedata445").bind("click", function() {
 				    	 
 				    	 //location.reload();
 				    	 alert('saved!!!');
-				    	 window.location.href = "quotation";
+				    	// window.location.href = "quotation";
 			    }
 			}); 
 		});

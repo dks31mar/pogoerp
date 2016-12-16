@@ -13,13 +13,14 @@
 <link rel="stylesheet"
 	href="/pogoerpdemo/Resources/font-awesome-4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="resources/css/table.css">
-<link rel="stylesheet" type="text/css"
+
+<%-- <link rel="stylesheet" type="text/css"
 	href="${js_url}/css/jquery.dialogbox.css">
 <script src="${js_url}/plugins/jQuery/jquery-1.9.1.min.js"
 	type="text/javascript" charset="utf-8"></script>
 <script src="${js_url}/js/jquery.dialogBox.js" type="text/javascript"
-	charset="utf-8"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	charset="utf-8"></script> --%>
+
 
 
 </head>
@@ -27,10 +28,31 @@
 
 <div>
 	<div>
+
 		<div class="row" style="margin-top: 15px">
 			<br>
 			<div align="center">
 				<i> </i> <input type="hidden" name="profile" value="0" />
+
+		<div>
+			<div class="row" style="margin-top: 15px">
+				<br>
+				<div align="center">
+					<i> </i> <input type="hidden" name="profile" value="0" />
+				</div>
+</div>
+			<div class="row">
+
+				<div class="page-heading col-sm-11.5"
+					style="background-color: #3C8DBD; color: white; left: 20px; height: 44px;">
+
+					<span class="glyphicon glyphicon-user" style="margin-left: 24px;"></span> <strong>Reports</strong> 
+ 
+					<label><a href="pendingtasks" style="margin-left: 317px; margin-top: 5px;" class="btn btn-info">Pending Tasks</a> </label>
+
+				</div>
+
+
 			</div>
 		</div>
 		<div class="row">
