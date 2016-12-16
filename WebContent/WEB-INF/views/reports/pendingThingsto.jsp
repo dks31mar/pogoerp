@@ -40,13 +40,14 @@
 				<div align="center">
 					<i> </i> <input type="hidden" name="profile" value="0" />
 				</div>
+				</div>
 </div>
 			<div class="row">
 
 				<div class="page-heading col-sm-11.5"
 					style="background-color: #3C8DBD; color: white; left: 20px; height: 44px;">
 
-					<span class="glyphicon glyphicon-user" style="margin-left: 24px;"></span> <strong>Reports</strong> 
+					<span class="glyphicon glyphicon-user" style="margin-left: 0px;"></span> <strong>Reports</strong> 
  
 					<label><a href="pendingtasks" style="margin-left: 317px; margin-top: 5px;" class="btn btn-info">Pending Tasks</a> </label>
 
@@ -55,23 +56,7 @@
 
 			</div>
 		</div>
-		<div class="row">
-
-			<div class="page-heading col-sm-11.5"
-				style="background-color: #3C8DBD; color: white; left: 20px; height: 44px;">
-
-				<span class="glyphicon glyphicon-user" style="margin-left: 24px;"></span>
-				<strong>Reports</strong> <span class="glyphicon glyphicon-user"></span>
-				Reports</b> <label><a href="#" class="">Pending Tasks</a> </label> <a
-					href="pendingtasks" class="btn btn-info">Pending Tasks</a> </label>
-
-
-
-
-
-			</div>
-
-		</div>
+		
 	</div>
 	<br>
 	<div class="col-sm-12" align="center">
