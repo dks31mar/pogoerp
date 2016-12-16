@@ -515,9 +515,9 @@ public class MasterMasterController {
 				//System.out.println(bean);
 				bean.setExpensemasterId(pro.getExpensemasterId());
 				bean.setExpensehead(pro.getExpensehead());
-				bean.setExpensetype(pro.getExpensetype());
-				bean.setExlimit(pro.getExlimit());
-				bean.setUnit(pro.getUnit());
+				
+				bean.setRates(pro.getRates());
+				
 				
 				beans.add(bean);
 			}
@@ -532,10 +532,11 @@ public class MasterMasterController {
 		ExpenseMasterBean poref=mapper.readValue(json, ExpenseMasterBean.class);
 		ExpenseMasterBean poref1=new ExpenseMasterBean();
 		poref1.setExpensehead(poref.getExpensehead());
-		poref1.setExpensetype(poref.getExpensetype());
-		poref1.setExlimit(poref.getExlimit());
-		poref1.setUnit(poref.getUnit());
+		
+		poref1.setRates(poref.getRates());
+		
 		masterMastersService.addExpensehead(poref1);
+		
 	}
 	
 	@RequestMapping(value = "deleteexpenseheader", method = RequestMethod.GET)
@@ -576,9 +577,9 @@ public class MasterMasterController {
 		ExpenseMasterBean poref1=new ExpenseMasterBean();
 		poref1.setExpensemasterId(poref.getExpensemasterId());
 		poref1.setExpensehead(poref.getExpensehead());
-		poref1.setExpensetype(poref.getExpensetype());
-		poref1.setExlimit(poref.getExlimit());
-		poref1.setUnit(poref.getUnit());
+		
+		poref1.setRates(poref.getRates());
+		
 		
 		masterMastersService.editExpenseHeader(poref1);
 		

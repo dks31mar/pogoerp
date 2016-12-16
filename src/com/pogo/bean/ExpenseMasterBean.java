@@ -3,14 +3,11 @@ package com.pogo.bean;
 public class ExpenseMasterBean{
 	private Integer expensemasterId;
 	
-	private String expensehead;
+    private String expensehead;
 	
-	private String expensetype;
-	
-	private Integer unit;
-	
-	private Integer exlimit;
+	private double rates;
 
+	
 	public Integer getExpensemasterId() {
 		return expensemasterId;
 	}
@@ -27,30 +24,17 @@ public class ExpenseMasterBean{
 		this.expensehead = expensehead;
 	}
 
-	public String getExpensetype() {
-		return expensetype;
+	public double getRates() {
+		return rates;
 	}
 
-	public void setExpensetype(String expensetype) {
-		this.expensetype = expensetype;
+	public void setRates(double rates) {
+		this.rates = rates;
 	}
 
-	public Integer getUnit() {
-		return unit;
-	}
-
-	public void setUnit(Integer unit) {
-		this.unit = unit;
-	}
-
-	public Integer getExlimit() {
-		return exlimit;
-	}
-
-	public void setExlimit(Integer exlimit) {
-		this.exlimit = exlimit;
-	}
 	
+	
+
 	
 
 }

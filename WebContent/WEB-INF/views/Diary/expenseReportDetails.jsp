@@ -44,8 +44,8 @@
 				<th style="width: 60px;">Date</th>
 				 <th style="width: 60px;">Customer</th>
 				 <th style="width: 60px;">Description</th>
-				  <th style="width: 60px;">Nature of Expense</th>
-				   <th style="width: 60px;">Units/Expense</th>
+				  <th style="width: 60px;">Expense Head</th>
+				   <th style="width: 60px;">Qty</th>
 				    <th style="width: 60px;">Total</th>
 			    
 			</tr>
@@ -63,7 +63,7 @@
 						
 						<td>${expense.expname}</td>
 						
-						<td>${expense.unit_expense}</td>
+						<td>${expense.qty}</td>
 						
 						<td>${expense.total}</td>
 		           
