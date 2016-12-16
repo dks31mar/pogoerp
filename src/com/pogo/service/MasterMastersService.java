@@ -10,6 +10,7 @@ import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
+import com.pogo.bean.ExpenseDetailsBean;
 import com.pogo.bean.ExpenseEntryBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
@@ -142,7 +143,9 @@ public interface MasterMastersService {
 	
 	void saveExpenseEntry(ExpenseEntryBean poref);
 	
-	List<ExpenseEntryBean> getExpenseReportList();
+	void saveExpenseDetails(ExpenseDetailsBean details);
+	
+	List<ExpenseEntryBean> getExpenseReportList(int id);
 	
 	List<ExpenseEntryBean> getExpenseReportListByDate(String sdate , String edate);
 	

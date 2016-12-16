@@ -11,6 +11,7 @@ import com.pogo.model.Country;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseDetails;
 import com.pogo.model.ExpenseEntry;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
@@ -152,13 +153,15 @@ public interface MasterMastersDao {
 	void deleteSuppilerMst(int id);
 	
 	void saveExpenseEntry(ExpenseEntry e);
-	List<ExpenseEntry> getExpenseReportList();
+	List<ExpenseEntry> getExpenseReportList(int id);
 	
 	List<ExpenseEntry> getExpenseReportListByDate(String sdate , String edate);
 	
 	List<UserEmployee> getAccountManagerList();
 	
 	List<UserEmployee> getAccountManagerList(String manager);
+	
+	void saveExpenseDetails(ExpenseDetails d);
 	
 	
 

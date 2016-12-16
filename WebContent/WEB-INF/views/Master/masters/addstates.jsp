@@ -7,65 +7,74 @@
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 
 
 
- <!-- <link rel="stylesheet" type="text/css"
+<!-- <link rel="stylesheet" type="text/css"
 	href="resources/css/jquery.dialogbox.css" />
     <script src="resources/plugins/jQuery/jquery-1.9.1.min.js"
 	type="text/javascript"></script> -->
-	
-   
+
+
 
 <style>
-
-#success_message{ display: Edited;}
+#success_message {
+	display: Edited;
+}
 </style>
 
 
 
-	 
+
 <div id="message" style="display: none;"></div>
 <div id="body">
-<div class="container">
+	<div class="container">
 
-    <form:form class="well form-horizontal"  action="saveStates" method="POST"  commandName="statebean"
-    id="" >
-   
-<fieldset>
+		<form:form class="well form-horizontal" action="saveStates"
+			method="POST" commandName="statebean" id="">
 
-<!-- Form Name -->
-<legend>Add States</legend>
-  
+			<fieldset>
 
-<div class="form-group">
-  <label class="col-md-2 control-label" >States Name</label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="stateName" placeholder="State Name"    id ="statename" class="form-control"  type="text">
-  
-    </div>
-  </div>
-  
-  <label class="col-md-2 control-label" style="margin-left: -62px;">RegionHead<span style="color: red;">*</span></label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <select name="stateId" class="form-control selectpicker"  id="regionhead" >
-  <option value="" selected="selected">----Select Region----</option>
-  <c:forEach items="${zonesList}" var="list">
-  <option value="${list.zonesid}">${list.zonesname}</option>
-  </c:forEach>
-  </select>
-    </div>
-  </div>
-</div>
-<%-- <div class="form-group">
+				<!-- Form Name -->
+				<legend>Add States</legend>
+
+
+				<div class="form-group">
+					<label class="col-md-2 control-label">States Name</label>
+					<div class="col-md-3 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input name="stateName"
+								placeholder="State Name" id="statename" class="form-control"
+								type="text">
+
+						</div>
+					</div>
+
+					<label class="col-md-2 control-label" style="margin-left: -62px;">RegionHead<span
+						style="color: red;">*</span></label>
+					<div class="col-md-3 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <select name="stateId"
+								class="form-control selectpicker" id="regionhead">
+								<option value="" selected="selected">----Select
+									Region----</option>
+								<c:forEach items="${zonesList}" var="list">
+									<option value="${list.zonesid}">${list.zonesname}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>
+				</div>
+				<%-- <div class="form-group">
   <label class="col-md-2 control-label">Mobile No #<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
@@ -104,25 +113,30 @@
     </div>
   </div>
 </div> --%>
-<!-- Success message -->
+				<!-- Success message -->
 
-<!-- <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for Register</div> -->
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label"></label>
-  <div class="col-md-2" align="center">
-    <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
-    
-    <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
-  </div>
+				<!-- <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for Register</div> -->
+				<!-- Button -->
+				<div class="form-group">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-2" align="center">
+						<button type="submit" class="btn btn-warning">
+							Send <span class="glyphicon glyphicon-send"></span>
+						</button>
+
+						<button type="button" class="btn btn-warning"
+							onclick="history.back();">
+							Back <span class="glyphicon glyphicon-send"></span>
+						</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form:form>
+	</div>
 </div>
 
-</fieldset>
-</form:form>
-</div>
-</div>
-
- <!-- <script type="text/javascript">
+<!-- <script type="text/javascript">
 
 	  $( function() {
 		    $("#datepickerDob" ).datepicker();
@@ -196,7 +210,7 @@
 		      document.getElementById(firstlastupper).value = str;
 		  }
 		-->
-	<!-- <script type="text/javascript">
+<!-- <script type="text/javascript">
 	
 		$('#senddata').click(function(){
 			

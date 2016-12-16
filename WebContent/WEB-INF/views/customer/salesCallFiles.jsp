@@ -14,21 +14,20 @@ $(document).on('change', '.file', function(){
 
 <div class="row" style="margin-top: 15px">
 	<br>
-	<div align="center">
-	
-	</div>
+	<div align="center"></div>
 </div>
 <div class="row">
 	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; left: 20px; height: 44px;  color: white; ">
-		<span class="glyphicon glyphicon-file"></span> <span>Attach Files</span>
-</div>
+		style="background-color: #3C8DBD; left: 20px; height: 44px; color: white;">
+		<span class="glyphicon glyphicon-file"></span> <span>Attach
+			Files</span>
+	</div>
 </div>
 
 <style>
 .file {
-  visibility: hidden;
-  position: absolute;
+	visibility: hidden;
+	position: absolute;
 }
 </style>
 
@@ -38,8 +37,8 @@ $(document).on('change', '.file', function(){
 									<input type="submit" class="btn btn-info"  value="Upload">
 								</div>
 							</div> -->
-							
-							<%-- <div class="panel-body">
+
+<%-- <div class="panel-body">
 				<form:form id="formID" action="filUplaod"
 					commandName="customerFile" method="POST" enctype="multipart/form-data"
 					class="form-horizontal form-groups-bordered validate"
@@ -91,53 +90,67 @@ $(document).on('change', '.file', function(){
 					</form:form>
 			</div>
  --%>
- <div class="container" style="margin-top: 25px;">
-  <form:form  action="fileUplaod"
-					commandName="customerFile" method="POST" enctype="multipart/form-data"
-					class="form-horizontal form-groups-bordered validate"
-					novalidate="novalidate">
-					
-   <div class="form-group">
-    <input type="file" name="file" class="file">
-    <div class="input-group col-xs-8">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-      <input type="text" class="form-control input-sm" name="file" disabled placeholder="Upload Image">
-      <span class="input-group-btn">
-        <button class="browse btn btn-primary input-sm" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
-      </span>&nbsp;&nbsp;
-     <span class="input-group-btn">
-      <button class="browse btn btn-success input-sm" type="submit"><i class="glyphicon glyphicon-upload"></i> Upload</button>
-      </span>
-    </div>
-  </div>
-  <div class="form-group">
-    <input type="file" name="file" class="file">
-    <div class="input-group col-xs-8">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-      <input type="text" class="form-control input-sm" name="file" disabled placeholder="Upload Image">
-      <span class="input-group-btn">
-        <button class="browse btn btn-primary input-sm" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
-      </span>&nbsp;&nbsp;
-      <span class="input-group-btn">
-      <button class="browse btn btn-success input-sm" type="submit"><i class="glyphicon glyphicon-upload"></i> Upload</button>
-      </span>
-    </div>
-  </div>
-  <div class="form-group">
-    <input type="file" name="file" class="file">
-    <div class="input-group col-xs-8">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-      <input type="text" class="form-control input-sm" name="file" disabled placeholder="Upload Image">
-      <span class="input-group-btn">
-        <button class="browse btn btn-primary input-sm" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
-      </span>&nbsp;&nbsp;
-      <span class="input-group-btn">
-      <button class="browse btn btn-success input-sm" type="submit"><i class="glyphicon glyphicon-upload"></i> Upload</button>
-      </span>
-    </div>
-  </div> 
-  </form:form>
-</div><br><br>
- 
+<div class="container" style="margin-top: 25px;">
+	<form:form action="fileUplaod" commandName="customerFile" method="POST"
+		enctype="multipart/form-data"
+		class="form-horizontal form-groups-bordered validate"
+		novalidate="novalidate">
+
+		<div class="form-group">
+			<input type="file" name="file" class="file">
+			<div class="input-group col-xs-8">
+				<span class="input-group-addon"><i
+					class="glyphicon glyphicon-picture"></i></span> <input type="text"
+					class="form-control input-sm" name="file" disabled
+					placeholder="Upload Image"> <span class="input-group-btn">
+					<button class="browse btn btn-primary input-sm" type="button">
+						<i class="glyphicon glyphicon-search"></i> Browse
+					</button>
+				</span>&nbsp;&nbsp; <span class="input-group-btn">
+					<button class="browse btn btn-success input-sm" type="submit">
+						<i class="glyphicon glyphicon-upload"></i> Upload
+					</button>
+				</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="file" name="file" class="file">
+			<div class="input-group col-xs-8">
+				<span class="input-group-addon"><i
+					class="glyphicon glyphicon-picture"></i></span> <input type="text"
+					class="form-control input-sm" name="file" disabled
+					placeholder="Upload Image"> <span class="input-group-btn">
+					<button class="browse btn btn-primary input-sm" type="button">
+						<i class="glyphicon glyphicon-search"></i> Browse
+					</button>
+				</span>&nbsp;&nbsp; <span class="input-group-btn">
+					<button class="browse btn btn-success input-sm" type="submit">
+						<i class="glyphicon glyphicon-upload"></i> Upload
+					</button>
+				</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="file" name="file" class="file">
+			<div class="input-group col-xs-8">
+				<span class="input-group-addon"><i
+					class="glyphicon glyphicon-picture"></i></span> <input type="text"
+					class="form-control input-sm" name="file" disabled
+					placeholder="Upload Image"> <span class="input-group-btn">
+					<button class="browse btn btn-primary input-sm" type="button">
+						<i class="glyphicon glyphicon-search"></i> Browse
+					</button>
+				</span>&nbsp;&nbsp; <span class="input-group-btn">
+					<button class="browse btn btn-success input-sm" type="submit">
+						<i class="glyphicon glyphicon-upload"></i> Upload
+					</button>
+				</span>
+			</div>
+		</div>
+	</form:form>
+</div>
+<br>
+<br>
+
 
 

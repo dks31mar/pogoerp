@@ -1,20 +1,24 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="resources/css/displaytag.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="resources/css/messagebox.css" />
+<link rel="stylesheet" type="text/css"
+	href="resources/css/displaytag.css" />
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/messagebox.css" />
 <link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
 <link rel="stylesheet" type="text/css" href="resources/css/view.css" />
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- 
-    <script src="<c:url value="/resources/js/jquery.1.10.2.min.js" />"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="<c:url value="/resources/js/jquery.1.10.2.min.js" />"></script>
 
 <!-- call region -->
-<link rel="stylesheet" type="text/css"
-	href="resources/css/table.css">
+<link rel="stylesheet" type="text/css" href="resources/css/table.css">
 <title>Insert title here</title>
 
 </head>
@@ -27,31 +31,26 @@
 
 
 
-<h2>Modal Example</h2>
+	<h2>Modal Example</h2>
 
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
+	<!-- Trigger/Open The Modal -->
+	<button id="myBtn">Open Modal</button>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">×</span>
-   <form>
-  Region Name:<input type="text" name="firstname"><br>
-  
-  Phone No:<input type="text" name="phone"><br>
-   
-  Fax No:<input type="text" name="fax"><br>
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">×</span>
+			<form>
+				Region Name:<input type="text" name="firstname"><br>
 
-  EmailId:<input type="text" name="fax"><br>
-
-  
-  Region Head Name:<input type="text" name="headname"><br>
-
-  Region Address:<input type="text" name="headname"><br>
-</form>
+				Phone No:<input type="text" name="phone"><br> Fax No:<input
+					type="text" name="fax"><br> EmailId:<input type="text"
+					name="fax"><br> Region Head Name:<input type="text"
+					name="headname"><br> Region Address:<input type="text"
+					name="headname"><br>
+			</form>
 
 
 
@@ -63,19 +62,16 @@
 
 
 
-<style type="text/css">
-            .contentwrap
-            {
-                         
-                overflow: auto;
-            }
- 
-            .wordwrap
-            {
-                word-wrap:break-word;		
-            }
-        </style>
-<script>
+			<style type="text/css">
+.contentwrap {
+	overflow: auto;
+}
+
+.wordwrap {
+	word-wrap: break-word;
+}
+</style>
+			<script>
     var globalDomain='pogoerpdemo'  ;
 function  textWrap()
             {	
@@ -115,21 +111,23 @@ if(testobj!=null  && parent.getObj(testobj)!=null){
 		  document.onmouseover =hideMenuforFrame;
         
 </script>
-<script>
+			<script>
 var globalDomainMap='pogoerpdemo'  ;
-</script> 
+</script>
 
 
-  
-  
-  
-    
-<HTML>
+
+
+
+
+			<HTML>
 <HEAD>
 <TITLE>pogoerpdemo</TITLE>
-<LINK REL="stylesheet" HREF="/pogoerpdemo/script/SearchCriteriaStyles.css" TYPE="text/css">
+<LINK REL="stylesheet"
+	HREF="/pogoerpdemo/script/SearchCriteriaStyles.css" TYPE="text/css">
 
-<link href="/pogoerpdemo/script/stylesheet2.css" rel="stylesheet" type="text/css">
+<link href="/pogoerpdemo/script/stylesheet2.css" rel="stylesheet"
+	type="text/css">
 
 
 <SCRIPT language="JavaScript" TYPE="text/JavaScript">
@@ -182,7 +180,8 @@ function calcHeight2()
 }
 //-->
 </Script>
-<script src="/pogoerpdemo/script/RowHandlers.js" language="javascript" type="text/javascript"></script>
+<script src="/pogoerpdemo/script/RowHandlers.js" language="javascript"
+	type="text/javascript"></script>
 <SCRIPT TYPE="text/javascript" LANGUAGE="javascript">
 /*
 					Sharad 6/Nov/08
@@ -205,14 +204,15 @@ addRowHandlers('row', 'rowMouseOver', 'none','id', 0);
 
 					window.onerror = handleError;
 // End -->
-</SCRIPT>    
+</SCRIPT>
 </HEAD>
 
-         <BODY LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0" BGCOLOR="#FFFFFF"  onClick="calcHeight2()">
+<BODY LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"
+	BGCOLOR="#FFFFFF" onClick="calcHeight2()">
 
 
 
-<!--<DIV id="prepage" style="position:absolute; font-family:arial; font-size:16; left:0px; top:0px; background-color:white; layer-background-color:white;"> 
+	<!--<DIV id="prepage" style="position:absolute; font-family:arial; font-size:16; left:0px; top:0px; background-color:white; layer-background-color:white;"> 
 	<script>
 		document.write("<img src='/pogoerpdemo/images/loading.gif' border=0>&nbsp;&nbsp;<B>Loading ... ... Please wait!</B> <input type='text' id='focus' name='focus' readonly style='border:none' >");
 	</script>        
@@ -220,31 +220,26 @@ addRowHandlers('row', 'rowMouseOver', 'none','id', 0);
 
 
 
-<script>
+	<script>
     try{
     //document.getElementById('focus').focus(); }catch(e){alert(e);}
 </script>
 
 
- 
-<CENTER CLASS="errorMessageSmall">
-	
- </CENTER>
+
+	<CENTER CLASS="errorMessageSmall"></CENTER>
 
 
- <table width="98%" border="0" cellspacing="1" cellpadding="0" align="center">
-  <tr> 
-      <TD ALIGN="left" CLASS="topHeaderText2" WIDTH="40%" > 
-              
-                         
-            
-          </TD>
-  </tr>
-</table>
-<TABLE width="98%" border="0" align="center" cellspacing="0" cellpadding="1">
-  <TR>
-    <TD valign="top">
-      
+	<table width="98%" border="0" cellspacing="1" cellpadding="0"
+		align="center">
+		<tr>
+			<TD ALIGN="left" CLASS="topHeaderText2" WIDTH="40%"></TD>
+		</tr>
+	</table>
+	<TABLE width="98%" border="0" align="center" cellspacing="0"
+		cellpadding="1">
+		<TR>
+			<TD valign="top">
 
 
 
@@ -262,19 +257,16 @@ addRowHandlers('row', 'rowMouseOver', 'none','id', 0);
 
 
 
-<style type="text/css">
-            .contentwrap
-            {
-                         
-                overflow: auto;
-            }
- 
-            .wordwrap
-            {
-                word-wrap:break-word;		
-            }
-        </style>
-<script>
+
+				<style type="text/css">
+.contentwrap {
+	overflow: auto;
+}
+
+.wordwrap {
+	word-wrap: break-word;
+}
+</style> <script>
     var globalDomain='pogoerpdemo'  ;
 function  textWrap()
             {	
@@ -293,9 +285,8 @@ function  textWrap()
 				
             }
 
-</script>
-<!--5/nov/2008 script added by sachin for hiding menu after clicking on frma body-->
-<script>
+</script> <!--5/nov/2008 script added by sachin for hiding menu after clicking on frma body-->
+				<script>
 
 function hideMenuforFrame(){
 try{
@@ -328,22 +319,24 @@ if(testobj!=null  && parent.getObj(testobj)!=null){
 
 
 
-<HTML>
+				<HTML>
 <HEAD>
 <TITLE>pogoerpdemo</TITLE>
-<LINK REL="stylesheet" HREF="/pogoerpdemo/script/SearchCriteriaStyles.css" TYPE="text/css">
+<LINK REL="stylesheet"
+	HREF="/pogoerpdemo/script/SearchCriteriaStyles.css" TYPE="text/css">
 
 
 
-		
 
 
-	
 
-<link href="/pogoerpdemo/script/stylesheet2.css" rel="stylesheet" type="text/css">
-	
 
-  
+
+<link href="/pogoerpdemo/script/stylesheet2.css" rel="stylesheet"
+	type="text/css">
+
+
+
 
 
 <SCRIPT language="JavaScript" TYPE="text/JavaScript">
@@ -406,11 +399,12 @@ function calcHeight2()
 </script>
 </HEAD>
 
- <BODY LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0" BGCOLOR="#FFFFFF" onClick="calcHeight2()";>
+<BODY LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"
+	BGCOLOR="#FFFFFF" onClick="calcHeight2()";>
 
-  
 
-<SCRIPT language="JavaScript">
+
+	<SCRIPT language="JavaScript">
 <!--
 function ValidateForm()
 {
@@ -430,93 +424,108 @@ function confirmDelete(){
 	}
 //-->
 </SCRIPT>
-<TABLE WIDTH="375" BORDER="0" CELLSPACING="1" CELLPADDING="0" ALIGN="center">
-    <FORM NAME="RegionList" METHOD="post" ACTION="RegionMain.jsp?operation=ADDNEW">
-         
-        
-        
-	
- </CENTER>
-        
-        
-       <table class="responstable">
-  
-  <tbody><tr>
-    <th>S.N.</th>
-    <th data-th="Driver details"><span>Branch</span></th>
-    <th>Phone No</th>
-    <th>Fax No</th>
-    <th>Product Detail</th>
-    <th>Edit</th>
-    <th>Delete</th>
-  </tr>
-  
-  <tr>
-    <td>1</td>
-   <td><a href="#">Bhopal</a></td>
-   <td></td>
-   <td></td>
-    <td></td>
-   <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-  </tr>
-  
-  <tr>
-    <td>2</td>
-    
-    <td><a href="#">Gwalear</a></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-  </tr>
-  </tr>
-  
-  <tr>
-    <td>3</td>
-    <td><a href="#">Delhi</a></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-  </tr>
-  </tr>
-  
-  <tr>
-    <td>4</td>
-    <td><a href="#">gurgaon</a></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-  </tr>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td><a href="#">Branches</a></td>
-    <td></td>
-     <td></td>
-    <td></td>
-   <td><a href="#" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
-    <td><a href="#" title="Delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-  </tr>
-  </tr>
-  
-</tbody></table>
-        
-</FORM></table></TD>
-    </TD>
-    <TD valign="top">
-      
-  </TR>
-</TABLE>
+	<TABLE WIDTH="375" BORDER="0" CELLSPACING="1" CELLPADDING="0"
+		ALIGN="center">
+		<FORM NAME="RegionList" METHOD="post"
+			ACTION="RegionMain.jsp?operation=ADDNEW">
 
-                    
+
+
+
+			</CENTER>
+
+
+			<table class="responstable">
+
+				<tbody>
+					<tr>
+						<th>S.N.</th>
+						<th data-th="Driver details"><span>Branch</span></th>
+						<th>Phone No</th>
+						<th>Fax No</th>
+						<th>Product Detail</th>
+						<th>Edit</th>
+						<th>Delete</th>
+					</tr>
+
+					<tr>
+						<td>1</td>
+						<td><a href="#">Bhopal</a></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><a href="#" title="Edit"><span
+								class="glyphicon glyphicon-pencil"></span></a></td>
+						<td><a href="#" title="Delete"><span
+								class="glyphicon glyphicon-trash"></span></a></td>
+					</tr>
+
+					<tr>
+						<td>2</td>
+
+						<td><a href="#">Gwalear</a></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><a href="#" title="Edit"><span
+								class="glyphicon glyphicon-pencil"></span></a></td>
+						<td><a href="#" title="Delete"><span
+								class="glyphicon glyphicon-trash"></span></a></td>
+					</tr>
+					</tr>
+
+					<tr>
+						<td>3</td>
+						<td><a href="#">Delhi</a></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><a href="#" title="Edit"><span
+								class="glyphicon glyphicon-pencil"></span></a></td>
+						<td><a href="#" title="Delete"><span
+								class="glyphicon glyphicon-trash"></span></a></td>
+					</tr>
+					</tr>
+
+					<tr>
+						<td>4</td>
+						<td><a href="#">gurgaon</a></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><a href="#" title="Edit"><span
+								class="glyphicon glyphicon-pencil"></span></a></td>
+						<td><a href="#" title="Delete"><span
+								class="glyphicon glyphicon-trash"></span></a></td>
+					</tr>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td><a href="#">Branches</a></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><a href="#" title="Edit"><span
+								class="glyphicon glyphicon-pencil"></span></a></td>
+						<td><a href="#" title="Delete"><span
+								class="glyphicon glyphicon-trash"></span></a></td>
+					</tr>
+					</tr>
+
+				</tbody>
+			</table>
+
+		</FORM>
+	</table>
+			</TD>
+			</TD>
+			<TD valign="top">
+		</TR>
+	</TABLE>
+
+
 
 
 
 </body>
-</html>
+			</html>

@@ -29,11 +29,12 @@ public class QuotationController {
 	 
 	 @RequestMapping(value="quotation",method=RequestMethod.GET)
 	 public ModelAndView quotation() {
-		 return  new ModelAndView("quotation");
-		 
+
+		 return  new ModelAndView("quotation");	 
+		}
+	  
+
 		
-	}
-	 
 	 
 	 @RequestMapping(value="savequotation",method=RequestMethod.POST)
 	 @ResponseBody
@@ -99,6 +100,7 @@ public class QuotationController {
 		 return  new ModelAndView("createOrder");
 	 }
 	 
+
 	 @RequestMapping(value="/viewQuotation", method=RequestMethod.GET)
 	 public ModelAndView  viewQuotation(Model model)
 	 {
@@ -221,6 +223,7 @@ public class QuotationController {
 	 			if(i==0){
 					System.out.println("inside if    "+i);
 					quotationservice.updateQPoDtail(poqd);
+					quotationservice.deleteAllQPoItemDtail(poqd,poqid);
 					quotationservice.updateQPoItemDtail(poqd,poqid);
 					
 				}else{

@@ -18,6 +18,9 @@ java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
 java.util.Date date = new java.util.Date();
 System.out.println();
 %>
+<% Integer iduser=(Integer)session.getAttribute("userid"); %>
+
+
 <style>
 input {
 text-align: center;
@@ -29,6 +32,9 @@ text-align: center;
 		<input type="hidden" name="profile" value="0" />
 	</div>
 </div>
+
+<input type="hidden" id="sessionid" value="<%=iduser %>"/>
+
 <div class="row">
 	<div class="page-heading col-sm-11" id=""
 		style="background-color: #3C8DBC; left: 10px">
@@ -42,7 +48,8 @@ text-align: center;
 		</div>
 		<div class="col-sm-3">
 			<input  type='text' value="" name='particulee1' 
-				style='overflow: auto; text-align: left;' id="autocomplete" class='form-control' />
+				style='overflow: auto; text-align: left;' id="autocomplete" class='form-control' required/>
+				<span style="color: red" id="msg1">*This field is required.</span>
 		</div>
 		<div class="col-sm-2 form-level">
 			Creation Date<font color="#FF0000">*</font>
@@ -51,11 +58,12 @@ text-align: center;
 			<span> <input type="text" class="form-control"
 				name="dateTodate" id="creationdate" style='text-align: left;'
 				value="<%=dateFormat.format(date) %>" ReadOnly></input></span>
+				<span style="color: red" id="msg2">*This field is required.</span>
 		</div>
 	</div>
 	<div class="row form-group">
 		<div class="col-sm-3 form-level">
-			Address<font color="#FF0000">*</font>
+			Address
 		</div>
 		<div class="col-sm-9">
 			<textarea rows="4" cols="77" name="address"
@@ -75,19 +83,22 @@ text-align: center;
 			<td align="center">&nbsp;<font size="2" style="width: 65px"
 				color="white"><label>S.No.</label></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 65px"
-				color="white"><label>Nature of Expense</label><font
+				color="white"><label>Date</label></font></td>
+				
+			<td align="center">&nbsp;<font size="2" style="width: 65px"
+				color="white"><label>Expense Head</label><font
 					color="#FF0000">*</font></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 65px"
 				color="white"><label>Description</label></font></td>
 
 			<td align="center">&nbsp;<font size="2" style="width: 80px"
-				color="white"><label id="">Unit Type</label><font
+				color="white"><label id="">Rates</label><font
 					color="#FF0000">*</font></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 80px"
-				color="white"><label>Units/Expenses</label><font
+				color="white"><label>Qty</label><font
 					color="#FF0000">*</font></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 80px"
-				color="white"><label id=""> Total </label></font></td>
+				color="white"><label id="">Total</label></font></td>
 
 		</tr>
 	</thead>
@@ -103,17 +114,21 @@ text-align: center;
 		<td style="display: none;"><label>id</label> </td>
 			<td align="center">&nbsp;<font size="2" style="width: 65px"
 				color="white"><label>S.No.</label></font></td>
+			
 			<td align="center">&nbsp;<font size="2" style="width: 65px"
-				color="white"><label>Nature of Expense</label><font
+				color="white"><label>Date</label></font></td>	
+				
+			<td align="center">&nbsp;<font size="2" style="width: 65px"
+				color="white"><label>Expense Head</label><font
 					color="#FF0000">*</font></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 65px"
 				color="white"><label>Description</label></font></td>
 
 			<td align="center">&nbsp;<font size="2" style="width: 80px"
-				color="white"><label id="">Unit Type</label><font
+				color="white"><label id="">Rates</label><font
 					color="#FF0000">*</font></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 80px"
-				color="white"><label>Units/Expenses</label><font
+				color="white"><label>Qty</label><font
 					color="#FF0000">*</font></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 80px"
 				color="white"><label id=""> Total </label></font></td>
@@ -121,11 +136,14 @@ text-align: center;
 		</tr>
 	</thead>
 	<tr>
-	<td style="display: none;"><input type="hidden" value="" id="getid1"></input> </td>
+	<td style="display: none;"><input type="hidden" value="" id="getid1" required></input> </td>
 	
 	<td style="right: 5px; position: relative;">&nbsp; 
 					<input type='text' style='width: 60px' name='posrno' id='date'
 								value="" class='form-control'/></td>
+				<td style="right: 5px; position: relative;">&nbsp; 
+					<input type='text' style='width: 60px' name='' id='exdate'
+								value="<%=dateFormat.format(date) %>" class='form-control'/></td>				
 								<td style="left: 2px; position: relative; width: 150px">&nbsp;
 								<input type='text' value="" name='particulee1'
 								style='overflow: auto; border-radius: 3px; width: 223px;'
@@ -139,9 +157,9 @@ text-align: center;
 			
 		
 		
-	 <td style="right: 7px; position: relative;">&nbsp;<input type='text' style='text-align: center;' name='' id='unittype' value="" class='form-control' /></td> 					
-		<td align="center" style="right: 4px; position: relative;">&nbsp; <input  type='text' style='text-align: center;' name='' onkeypress='return event.charCode >= 48 && event.charCode <= 57' id='mul' class='form-control' value=""/></td>		 
-		<td style="width: 250px">&nbsp; <input name='description' id='total' class='form-control'style="text-align: center;width: 238px; text-transform: uppercase;" value="" ></input></td>			 
+	 <td style="right: 7px; position: relative;">&nbsp;<input type='text' style='text-align: center;' name='' id='unittype' value="" class='form-control' readonly/></td> 					
+		<td align="center" style="right: 4px; position: relative;">&nbsp; <input  type='text' style='text-align: center;' name='' onkeypress='return event.charCode >= 48 && event.charCode <= 57' id='mul' class='form-control' value="" /></td>		 
+		<td style="width: 250px">&nbsp; <input name='description' id='total' class='form-control'style="text-align: center;width: 238px; text-transform: uppercase;" value="" readonly></input></td>			 
 		
 		<td align="center">&nbsp; <input type="button" value='+'
 							 id='addmorepro12' class='btn btn-info pull-right' data-toggle='tooltip'
@@ -221,9 +239,31 @@ $( function() {
   } );	
   
   
+$( function() {
+    $( "#exdate" ).datepicker({dateFormat: 'dd/mm/yy'});
+  } ); 
  
-	 
+$( function() {
+    $( "#exdate+id+" ).datepicker({dateFormat: 'dd/mm/yy'});
+  } );	 
 	
+ $(document).ready(function(){
+	 var d;
+		var d1;
+		var d2 = 0;
+		var d3=$('#gtotal').val();
+		 var id=$('#addprolisttbody').children('tr').length;
+		for(var i=1;i<=id;i++){
+		d=$('#total'+i).val();
+		
+		d1=parseInt((d), 10);
+		d2=parseInt((d1), 10)+parseInt((d3), 10);
+		}
+		$('#gtotal').val(d2);
+	
+	
+});
+   
   
   $('#autocomplete').on("click",function(){
 	 // alert("list");
@@ -296,9 +336,9 @@ $( function() {
 						var data=jQuery.parseJSON(result);
 						console.log(data);
 						// alert(data.unit);
-						var unit = data.unit;
+						var rates = data.rates;
 						//alert("unit");
-						$('#unittype').val(unit);
+						$('#unittype').val(rates);
 			    }});
 		      
 		      
@@ -376,7 +416,7 @@ $( function() {
 	        	var address=$('#address').val();
 	        	var temp=$("#total").text();
 	        	var pname=$('#autocomplete').val();
-	            var date = $('#date').val();
+	            var expdate = $('#exdate').val();
 				var  dis	= $('#description').val();
 				var  partno	=$('#expenseauto').val();
 				var	 tpn	=$('#unittype').val();
@@ -393,41 +433,47 @@ $( function() {
 				}else{ */
 					
 	            var markup = "<tr>"+
-	           
-		            "<td style='display: none;'><input type='hidden' name='date' value='date"+date+"' id='"+date+"'></input> </td>"+
+	            "<td style='display: none;'><input type='hidden' name='orgname' value='"+pname+"' id='getprinicipalname'"+id+"'></input> </td>"+
+		         "<td style='display: none;'><input type='hidden' name='date' value='"+date+"' id='"+date+"'></input> </td>"+
 		           
 		          /*   "<td style='display: none;'><input type='hidden' name='cname' value='"+poref+"' id='"+id+"'></input> </td>"+ */
 		            
-		            "<td style='display: none;'><input type='hidden' name='orgname' value='"+pname+"' id='getprinicipalname'"+id+"'></input> </td>"+
 		            
-		            "<td style='display: none;'><input type='hidden' name='address' value='"+address+"' id='getadress'"+id+"'></input> </td>"+
+		            
+		         /*  "<td style='display: none;'><input type='hidden' name='address' value='"+address+"' id='getadress'"+id+"'></input> </td>"+  */
 		            
 		           /*  "<td style='display: none;'><input type='hidden' name='currency' value='"+cur+"' id='getcurrencylable'"+id+"'></input> </td>"+ */
 		           
 		            "<td style='right: 5px; position: relative;'>&nbsp;"+ 
 					"<input type='text' style='width: 60px' name='' id='date"+id+"' value='"+id+"' class='form-control' readonly/></td>"+
-					 
+					
+					"<td style = 'right: 5px; position: relative;'>&nbsp;"+"<input type='text' style='width: 60px' name='expdate' id='exdate"+id+"' value='"+expdate+"' class='form-control' readonly/></td>"+ 
+					
 					"<td style='left: 2px; position: relative; width: 150px'>&nbsp;"+
 					"<input readonly type='text' value='"+partno+"' name='natureofexpense'style='overflow: auto; border-radius: 3px; width: 223px;'id='expenseauto"+id+"' class='form-control'/></td>"+
 					
 					"<td style='width: 250px'>&nbsp; <input readonly name='description' id='description"+id+"' class='form-control' style='text-align: center;width: 238px; text-transform: capitalize;' value='"+dis+"' ></input></td>"+
 					
-					"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='unittype' id='unittype"+id+"' value='"+tpn+"' class='form-control' /></td>"+
+					"<td style='right: 7px; position: relative;'>&nbsp; <input readonly type='text' style='text-align: center;' name='rates' id='unittype"+id+"' value='"+tpn+"' class='form-control' /></td>"+
 					
-					"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='unitexpense' id='mul"+id+"' class='form-control' onkeypress='return event.charCode >= 48 && event.charCode <= 57' value='"+qty+"' /></td>"+
+					"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='mul"+id+"' class='form-control' onkeypress='return event.charCode >= 48 && event.charCode <= 57' value='"+qty+"' /></td>"+
 					
 					"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='total' id='total"+id+"' value='"+totjpy+"' class='form-control'   /></td>"+
 					
-					"<td style='display: none;'><input type='hidden' name='grandtotal' value='' id='gtotal"+id+"'></input> </td>"+"<td style='display: none;'><input type='hidden' name='date' value='"+date+"' id='getdate"+id+"'></input> </td>"+
-					/* "<td> <input type='button' value='-'  id=''  class='btn btn-info pull-right'  data-toggle='tooltip'title='Delete' onclick = 'deletethisrow(id)' id='+(id)+' /> </td>" */
+					/* "<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='grandtotal' id='gtotal"+id+"' value='"+totjpy+"' class='form-control'   /></td>"+ */
 					
+					"<td style='display: none;'><input type='hidden' name='userid' value='<%=iduser %>' id=''></input> </td>"+
+					
+					
+					/* "<td> <input type='button' value='-'  id=''  class='btn btn-info pull-right'  data-toggle='tooltip'title='Delete' onclick = 'deletethisrow(id)' id='+(id)+' /> </td>" */
+					"<td style='display: none;'><input type='hidden' name='grandtotal' value='"+gtotal+"' id='grandtotal"+id+"'></input> </td>"+
 						"<td><a class='glyphicon glyphicon-pencil' href='#' onclick='editfields("+(id)+")'></a> | <a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+ 	
 					 /*  "<td><a class='glyphicon glyphicon-pencil' href='#' onclick='editfields("+(id)+")'></a> | <a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+")' id="+(id)+"></a></td>"+  */
 					/* "<td align='center'>&nbsp;<input readonly type='text' style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' name='customerporefe' id='customerporefe"+id+"' value='"+custpo+"' class='form-control'/>"+
 					"</td>"+ */
 					//alert("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 					
-					 "<td><input type='hidden' style='text-align:center;' name='unitcost' id='' value='split' class='form-control'  ></td>"+ 
+					  
 					
 					"</tr>";
 	            $("#addprolisttbody").append(markup);
@@ -488,7 +534,7 @@ $( function() {
 				var d3=$('#gtotal').val();
 				$('#gtotal').val(parseInt((d3), 10)+parseInt((d2), 10));
 			var grandtotl=	$('#gtotal').val();
-				$('#gtotal').val(grandtotl);
+				$('#gtotal1').val(grandtotl);
 			});
 			
 			$('#expenseauto'+id).click(function(){
@@ -518,9 +564,9 @@ $( function() {
 							var data=jQuery.parseJSON(result);
 							console.log(data);
 							// alert(data.unit);
-							var unit = data.unit;
+							var rates = data.rates;
 							//alert("unit");
-							$('#unittype'+id).val(unit);
+							$('#unittype'+id).val(rates);
 				    }});
 			      
 			      
@@ -575,6 +621,20 @@ $( function() {
 	 $("#save").bind("click", function() {
 			var temp=$("#total").text();
 			alert(temp);
+			alert("<%=iduser %>");
+			var orgname =$('#autocomplete').val(); 
+			 var credate =$('#creationdate').val();
+			 var expname =$('#expenseauto').val();
+			 var unit =$('#unittype').val();
+		    var unitexpense =$('#mul').val();
+		    if(orgname == ''){ 
+		    	$("#msg1").show('fast');
+		    }else if(credate == ''){
+		    	$("#msg2").show('fast');
+		    	
+		    }else if(expname == ''){
+		    	$("#msg3").show('fast')
+		    }
 				  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
 				  console.log(AddressesDataJSON);
 				 alert(JSON.stringify(AddressesDataJSON));
@@ -601,6 +661,20 @@ $( function() {
 				});
 	 
 	  
+	 
+	 function calculation(){
+			var id=$('#addprolisttbody').children('tr').length;
+			//alert(id)
+			var t1=0;
+			for(var i=1;i<=id ; i=i+1){
+				
+				t1+= Number($('#total'+i).val());
+				// alert(t1);
+			 }
+			$('#gtotal').val(t1);
+			//alert(nan)
+		}
+	
 	
 </script>
 

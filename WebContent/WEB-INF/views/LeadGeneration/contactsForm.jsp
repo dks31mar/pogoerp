@@ -7,26 +7,33 @@
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-	
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-	
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-	
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	
+<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-	
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-	
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
-	
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
 
 <div class="row" style="margin-top: 15px">
 	<br>
@@ -40,55 +47,73 @@
 <div id="body">
 	<div class="container">
 
-<form:form class="well form-horizontal" name="forp" action="saveuserEmp" method="POST" commandName="userbean" id="validate-form">
- <fieldset>			
-		<legend> Contacts </legend>	
-           <div class="form-group">
-			  <label class="col-md-2 control-label">Name<span style="color: red;">*</span></label>
-                 <div class="col-md-3 inputGroupContainer">
-				    <div class="input-group">
-				      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				         <input name="" id="name" placeholder="Enter Name" class="form-control" type="text" required="required">
-					       <div id="msg0" align="center"><span style="color: red">*Input Needed</span></div>
-						</div>
-					  </div>
-						
-			<label class="col-md-2 control-label" style="">Email<span style="color: red;">*</span></label>
-			  	<div class="col-md-3 inputGroupContainer">
-			  	  	<div class="input-group">		
-					   <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>		
-						  <input name="designation" placeholder="Enter Email" class="form-control" type="email" id="email">		
-							 <div id="msg1" align="center"><span style="color: red">*Input Needed</span></div>
+		<form:form class="well form-horizontal" name="forp"
+			action="saveuserEmp" method="POST" commandName="userbean"
+			id="validate-form">
+			<fieldset>
+				<legend> Contacts </legend>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Name<span
+						style="color: red;">*</span></label>
+					<div class="col-md-3 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input name="" id="name"
+								placeholder="Enter Name" class="form-control" type="text"
+								required="required">
+							<div id="msg0" align="center">
+								<span style="color: red">*Input Needed</span>
 							</div>
-						 </div>	
-					</div>	
-						
-	<div class="form-group">
-	      <label class="col-md-2 control-label" style="">Phone<span style="color: red;">*</span></label>
-			 <div class="col-md-3 inputGroupContainer">			
-	    		<div class="input-group">
-                   <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
-					   <input name="designation" placeholder="Enter phone" class="form-control" type="text" id="phone">
-					      <div id="msg2" align="center"><span style="color: red">*Input Needed</span></div>
 						</div>
 					</div>
-					
-			<label class="col-md-2 control-label">Designation<span style="color: red;">*</span></label>	
-			  <div class="col-md-3 inputGroupContainer">				
-				 <div class="input-group">				
-					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>			
-						<select class="form-control" id = "designation">		
-							<option value="">-----Select Designation-----</option>
+
+					<label class="col-md-2 control-label" style="">Email<span
+						style="color: red;">*</span></label>
+					<div class="col-md-3 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-envelope"></i></span> <input
+								name="designation" placeholder="Enter Email"
+								class="form-control" type="email" id="email">
+							<div id="msg1" align="center">
+								<span style="color: red">*Input Needed</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label" style="">Phone<span
+						style="color: red;">*</span></label>
+					<div class="col-md-3 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-phone-alt"></i></span> <input
+								name="designation" placeholder="Enter phone"
+								class="form-control" type="text" id="phone">
+							<div id="msg2" align="center">
+								<span style="color: red">*Input Needed</span>
+							</div>
+						</div>
+					</div>
+
+					<label class="col-md-2 control-label">Designation<span
+						style="color: red;">*</span></label>
+					<div class="col-md-3 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <select
+								class="form-control" id="designation">
+								<option value="">-----Select Designation-----</option>
 								<c:if test="${!empty Dlist}">
-							       <c:forEach items="${Dlist}" var="cur" >
-						              <option value="${cur.customerId}">${cur.designation}</option>
-					               </c:forEach>
-                                 </c:if>
-                          </select>       
-                                      <div id="msg3" align="center">
-                        </div>
-				 </div>
-			</div>
+									<c:forEach items="${Dlist}" var="cur">
+										<option value="${cur.customerId}">${cur.designation}</option>
+									</c:forEach>
+								</c:if>
+							</select>
+							<div id="msg3" align="center"></div>
+						</div>
+					</div>
 
 				</div>
 
@@ -99,9 +124,8 @@
 					<div class="col-md-3 inputGroupContainer">
 						<div class="input-group">
 							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span>
-							
-							<select class="form-control selectpicker" id = "department">
+								class="glyphicon glyphicon-user"></i></span> <select
+								class="form-control selectpicker" id="department">
 								<option value="">-----Select Department-----</option>
 								<c:if test="${!empty depList}">
 									<c:forEach items="${depList}" var="depList">
@@ -151,14 +175,17 @@
 
 
 
-				
+
 				<div class="form-group">
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-2" align="center">
 						<button type="button" id="savecontactForm" class="btn btn-warning">
 							Save<span class="glyphicon glyphicon-send"></span>
 						</button>
-<button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
+						<button type="button" class="btn btn-warning"
+							onclick="history.back();">
+							Back <span class="glyphicon glyphicon-send"></span>
+						</button>
 					</div>
 				</div>
 

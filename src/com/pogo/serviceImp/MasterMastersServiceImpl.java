@@ -18,6 +18,7 @@ import com.pogo.bean.CurrencyBean;
 import com.pogo.bean.CustomerLevelsBean;
 import com.pogo.bean.CustomerSourceBean;
 import com.pogo.bean.DistrictBean;
+import com.pogo.bean.ExpenseDetailsBean;
 import com.pogo.bean.ExpenseEntryBean;
 import com.pogo.bean.ExpenseMasterBean;
 import com.pogo.bean.LocationBean;
@@ -38,6 +39,7 @@ import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseDetails;
 import com.pogo.model.ExpenseEntry;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
@@ -350,9 +352,9 @@ public class MasterMastersServiceImpl implements MasterMastersService {
 public void addExpensehead(ExpenseMasterBean poref1) {
 	ExpenseMaster expensehead=new ExpenseMaster();
 	expensehead.setExpensehead(poref1.getExpensehead());
-	expensehead.setExpensetype(poref1.getExpensetype());
-	expensehead.setExlimit(poref1.getExlimit());
-	expensehead.setUnit(poref1.getUnit());
+	
+	expensehead.setRates(poref1.getRates());
+	
 	
 	masterMastersdao.addExpensehead(expensehead);
 	
@@ -371,9 +373,9 @@ public String getExpenceheaderById(String id){
 		
 		dd.put("expensemasterId",data.getExpensemasterId() );
 		dd.put("expensehead",data.getExpensehead());
-		dd.put("expensetype",data.getExpensetype() );
-		dd.put("unit",data.getUnit() );
-		dd.put("exlimit",data.getExlimit() );
+		
+		
+		dd.put("rates",data.getRates() );
 		
 		
 		
@@ -390,9 +392,9 @@ public void editExpenseHeader(ExpenseMasterBean poref1){
 	ExpenseMaster expensemaster=new ExpenseMaster();
 	expensemaster.setExpensemasterId(poref1.getExpensemasterId());
 	expensemaster.setExpensehead(poref1.getExpensehead());
-	expensemaster.setExpensetype(poref1.getExpensetype());
-	expensemaster.setExlimit(poref1.getExlimit());
-	expensemaster.setUnit(poref1.getUnit());
+	
+	expensemaster.setRates(poref1.getRates());
+	
 	masterMastersdao.editExpenseHeader(expensemaster);
 }
 
@@ -406,7 +408,7 @@ public String getUnitByExpense(String unit) {
 	Map<String, String> map=new HashMap<>();
 	for(ExpenseMaster s:getdetail){
 		//map.put("expensetype", s.getExpensetype());
-		map.put("unit",String.valueOf(s.getUnit()));
+		map.put("rates",String.valueOf(s.getRates()));
 	}
 	String json = new Gson().toJson(map);
 	return json;
@@ -1059,26 +1061,48 @@ public List<AddPlanBean> findAddPlan() {
 }
 
 @Override
+@Transactional
 public void saveExpenseEntry(ExpenseEntryBean bean) {
+	
+	UserEmployee useremp = new UserEmployee();
+	useremp.setUserempid(bean.getUserid());
+	
 	ExpenseEntry e=new ExpenseEntry();
 	e.setExpentryid(bean.getExpentryid());
-	e.setOrgnisation(bean.getOrgnisation());
 	e.setCrdate(bean.getCrdate());
-	e.setOrgAddress(bean.getOrgAddress());
-	e.setDate(bean.getDate());
-	e.setExpname(bean.getExpname());
-	e.setDescription(bean.getDescription());
-	e.setUnit(bean.getUnit());
-	e.setUnit_expense(bean.getUnit_expense());
-	e.setTotal(bean.getTotal());
+	
+	e.setOrgnisation(bean.getOrgnisation());
+	
+	
+	
+	
+	
+	//e.setUserid(bean.getUserid());
+	e.setUseremp(useremp);
 	e.setGrandtotal(bean.getGrandtotal());
 	masterMastersdao.saveExpenseEntry(e);	
 	
 }
 
 @Override
-public List<ExpenseEntryBean> getExpenseReportList() {
-	List<ExpenseEntry> list1 = masterMastersdao.getExpenseReportList();
+public void saveExpenseDetails(ExpenseDetailsBean details) {
+	
+	ExpenseDetails d = new ExpenseDetails();
+	
+	d.setExpensedetailsid(details.getExpensedetailsid());
+	d.setExpensedate(details.getExpensedate());
+	d.setExphead(details.getExphead());
+	d.setDiscription(details.getDiscription());
+	d.setRates(details.getRates());
+	d.setQty(details.getQty());
+	d.setTotal(details.getTotal());
+	masterMastersdao.saveExpenseDetails(d);	
+	
+}
+
+/*@Override
+public List<ExpenseEntryBean> getExpenseReportList(int id) {
+	List<ExpenseEntry> list1 = masterMastersdao.getExpenseReportList(id);
 	List<ExpenseEntryBean> list2 = new ArrayList<ExpenseEntryBean>();
 	for(ExpenseEntry list : list1 ){
 		ExpenseEntryBean data = new ExpenseEntryBean();
@@ -1087,13 +1111,17 @@ public List<ExpenseEntryBean> getExpenseReportList() {
 		data.setOrgnisation(list.getOrgnisation());
 		data.setDescription(list.getDescription());
 		data.setExpname(list.getExpname());
-		data.setUnit_expense(list.getUnit_expense());
+		data.setQty(list.getQty());
 		data.setTotal(list.getTotal());
 		data.setGrandtotal(list.getGrandtotal());
+		data.setUserid(list.getUseremp().getUserempid());
+		data.setUserid(list.getUseremp().getFirstname());
+		data.setUserid(list.getUseremp().getLastname());
+		//System.out.println("userlist service impl *************************************"+list.getUserid());
 		list2.add(data);
 	}
 	return list2;
-}
+}*/
 
 @Override
 public List<ExpenseEntryBean> getExpenseReportListByDate(String sdate , String edate) {
@@ -1137,6 +1165,14 @@ public List<UserEmployeeBean> accountManagerListBySelect(String manager) {
 	}
 	
 	return aclist;
+}
+
+
+
+@Override
+public List<ExpenseEntryBean> getExpenseReportList(int id) {
+	// TODO Auto-generated method stub
+	return null;
 }
 
 

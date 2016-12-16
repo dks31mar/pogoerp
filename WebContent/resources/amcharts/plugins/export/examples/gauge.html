@@ -1,32 +1,34 @@
 <html>
-    <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-		<script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
-		<script src="http://www.amcharts.com/lib/3/gauge.js"></script>
+<script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="http://www.amcharts.com/lib/3/gauge.js"></script>
 
-		<!-- Export plugin includes and styles -->
-		<script src="../export.js"></script>
-		<link  type="text/css" href="../export.css" rel="stylesheet">
+<!-- Export plugin includes and styles -->
+<script src="../export.js"></script>
+<link type="text/css" href="../export.css" rel="stylesheet">
 
-		<style>
-		body, html {
-			height: 100%;
-			padding: 0;
-			margin: 0;
-			overflow: hidden;
-			font-size: 11px;
-			font-family: Verdana;
-		}
-		#chartdiv {
-			width: 100%;
-			height: 100%;
-		}
-		</style>
+<style>
+body, html {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	font-size: 11px;
+	font-family: Verdana;
+}
 
-		<script type="text/javascript">
+#chartdiv {
+	width: 100%;
+	height: 100%;
+}
+</style>
+
+<script type="text/javascript">
 			var chart = AmCharts.makeChart( "chartdiv", {
 				"type": "gauge",
 				"titles": [ {
@@ -70,8 +72,8 @@
 				chart.axes[ 0 ].setBottomText( value + " km/h" );
 			}
 		</script>
-	</head>
-	<body>
-		<div id="chartdiv"></div>
-	</body>
+</head>
+<body>
+	<div id="chartdiv"></div>
+</body>
 </html>

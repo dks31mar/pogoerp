@@ -1,27 +1,30 @@
 
-    <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-    <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-<link rel="stylesheet" type="text/css"
-	href="resources/css/table.css">
+<link rel="stylesheet" type="text/css" href="resources/css/table.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-</head>    
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+</head>
 <style>
 #unstyled {
+	
 }
+
 .popover .arrow {
-    left: 90px !important; /* or 45% etc */
+	left: 90px !important; /* or 45% etc */
 }
+
 .popover {
- 	position:fixed;
+	position: fixed;
 	max-width: 800px;
- 	margin-left: -45%
+	margin-left: -45%
 }
 </style>
 <script>
@@ -44,53 +47,59 @@ java.util.Date date = new java.util.Date();
 <div class="row" style="margin-top: 15px">
 	<br>
 	<div align="center">
-		<i>
-			
-		</i> <input type="hidden" name="profile" value="0" />
+		<i> </i> <input type="hidden" name="profile" value="0" />
 	</div>
 </div>
 <div class="row">
 
 	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; color:white; left: 20px;  height: 24px;">
-		<span class="glyphicon glyphicon-briefcase"></span> <span> Followup Reports</span>
-		 
-  		
-</div>
+		style="background-color: #3C8DBD; color: white; left: 20px; height: 24px;">
+		<span class="glyphicon glyphicon-briefcase"></span> <span>
+			Followup Reports</span>
 
-</div><br>
+
+	</div>
+
+</div>
+<br>
 
 
 <div class="container">
-<div class="form-group">
-    
-  <div class="col-md-3 inputGroupContainer">
-  <div class="input-group">
- <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-   <input  class="form-control" name="" id="followdatestart" value="" placeholder="Select Starting Date" readonly>
-    </div>
-  </div>
-  
-  <div class="col-md-3 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-   <input name=""  class="form-control" type="text" id="followdateend" placeholder="Select Ending Date" readonly>
-    </div>
-  </div>
-  <div class="col-md-3 inputGroupContainer">
-  <div class="input-group">
- 
-<!--  <button type="button" class="btn btn-success" id="getcalendarbydays">Search</button> -->
-    </div>
-  </div>
+	<div class="form-group">
+
+		<div class="col-md-3 inputGroupContainer">
+			<div class="input-group">
+				<span class="input-group-addon"><i
+					class="glyphicon glyphicon-calendar"></i></span> <input
+					class="form-control" name="" id="followdatestart" value=""
+					placeholder="Select Starting Date" readonly>
+			</div>
+		</div>
+
+		<div class="col-md-3 inputGroupContainer">
+			<div class="input-group">
+				<span class="input-group-addon"><i
+					class="glyphicon glyphicon-calendar"></i></span> <input name=""
+					class="form-control" type="text" id="followdateend"
+					placeholder="Select Ending Date" readonly>
+			</div>
+		</div>
+		<div class="col-md-3 inputGroupContainer">
+			<div class="input-group">
+
+				<!--  <button type="button" class="btn btn-success" id="getcalendarbydays">Search</button> -->
+			</div>
+		</div>
+	</div>
 </div>
-</div>
-<table class="responstable" id="calendartable" style="width:98%;align:center" >
-  
- 
+<table class="responstable" id="calendartable"
+	style="width: 98%; align: center">
+
+
 </table>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
 
 
