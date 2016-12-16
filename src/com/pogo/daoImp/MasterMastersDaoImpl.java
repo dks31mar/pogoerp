@@ -23,6 +23,7 @@ import com.pogo.model.CustomerLevels;
 import com.pogo.model.CustomerSales;
 import com.pogo.model.CustomerSource;
 import com.pogo.model.District;
+import com.pogo.model.ExpenseDetails;
 import com.pogo.model.ExpenseEntry;
 import com.pogo.model.ExpenseMaster;
 import com.pogo.model.Location;
@@ -630,8 +631,8 @@ public void deleteSuppilerMst(int id) {
 	sessionFactory.getCurrentSession().save(e);
 }
 @Override
-public List<ExpenseEntry> getExpenseReportList() {
-	return (List<ExpenseEntry>)sessionFactory.getCurrentSession().createCriteria(ExpenseEntry.class).list();
+public List<ExpenseEntry> getExpenseReportList(int id) {
+	return (List<ExpenseEntry>)sessionFactory.getCurrentSession().createCriteria(ExpenseEntry.class).add(Restrictions.eq("useremp.userempid", id)).list();
 }
 @Override
 public List<ExpenseEntry> getExpenseReportListByDate(String sdate , String edate) {
@@ -654,6 +655,12 @@ public List<UserEmployee> getAccountManagerList(String manager) {
 			.createCriteria(UserEmployee.class)
 			.add(Restrictions.eq("firstname", manager)).addOrder(Order.asc("firstname"))
 			.list();
+}
+@Override
+public void saveExpenseDetails(ExpenseDetails d) {
+    
+	   sessionFactory.getCurrentSession().save(d);
+	
 }
 
 

@@ -16,44 +16,45 @@ public class ExpenseMaster implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="expensemasterId",columnDefinition="bigint(11)")
 	private Integer expensemasterId;
+	
+
 	@Column(name="expensehead",columnDefinition="varchar(255)")
 	private String expensehead;
-	@Column(name="expensetype",columnDefinition="varchar(255)")
-	private String expensetype;
-	@Column(name="unit",columnDefinition="bigint(11)")
-	private Integer unit;
-	@Column(name="exlimit",columnDefinition="bigint(11)")
-	private Integer exlimit;
+	
+	
+	@Column(name="rates",columnDefinition="bigint(11)")
+	private double rates;
+	
 	public Integer getExpensemasterId() {
 		return expensemasterId;
 	}
+
+
 	public void setExpensemasterId(Integer expensemasterId) {
 		this.expensemasterId = expensemasterId;
 	}
+
+
 	public String getExpensehead() {
 		return expensehead;
 	}
+
+
 	public void setExpensehead(String expensehead) {
 		this.expensehead = expensehead;
 	}
-	public String getExpensetype() {
-		return expensetype;
+
+
+	public double getRates() {
+		return rates;
 	}
-	public void setExpensetype(String expensetype) {
-		this.expensetype = expensetype;
+
+
+	public void setRates(double rates) {
+		this.rates = rates;
 	}
-	public Integer getUnit() {
-		return unit;
-	}
-	public void setUnit(Integer unit) {
-		this.unit = unit;
-	}
-	public Integer getExlimit() {
-		return exlimit;
-	}
-	public void setExlimit(Integer exlimit) {
-		this.exlimit = exlimit;
-	}
+
+
 	
 	
 	

@@ -33,6 +33,7 @@ String name=(String)session.getAttribute("username");
 java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
 java.util.Date date = new java.util.Date();
 %>
+<%--  <input type="hidden" id="userid" value="${userid}"/>   --%>
 <div class="row" style="margin-top: 15px">
 	<br>
 	<div align="center">
@@ -47,6 +48,31 @@ java.util.Date date = new java.util.Date();
 			<div class="col-sm-2">
 				<span class="fa fa-money"></span> Expense Report
 			</div>
+<<<<<<< HEAD
+			<div  class="col-sm-6" > <input id="ason"
+				type="radio" name="potype" checked="checked"> As On
+				
+				
+			<input	id="period" type="radio" name="potype" />Period <span id="hide1">From:<input
+				type="text" style="color: black;" id="datepicker1" name="startdate"
+				value="<%=dateFormat.format(date) %>" ReadOnly></span> <span
+				id="hide2">To: <input type="text" style="color: black"
+				id="datepicker2" name="enddate"
+				value="<%=dateFormat.format(date) %>" ReadOnly></span>
+</div>
+<div  class="col-sm-3" >
+			<select name="selectmanager" class="form-control selectpicker"><option
+					value="" style="color: black;">-----Select A/c Manager
+					-----</option>
+				<c:if test="${!empty listofaccountmanager}">
+					<c:forEach items="${listofaccountmanager}" var="cur"
+						varStatus="loop">
+						<option value="${cur.userempid}" style="color: black;">${cur.firstname}
+							${cur.lastname}</option>
+					</c:forEach>
+				</c:if>
+			</select>
+=======
 			<div class="col-sm-6">
 				<input id="ason" type="radio" name="potype" checked="checked">
 				As On <input id="period" type="radio" name="potype" />Period <span
@@ -69,6 +95,7 @@ java.util.Date date = new java.util.Date();
 						</c:forEach>
 					</c:if>
 				</select>
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 			</div>
 			<input type="submit" value="Search" name="command"
 				style="color: black;" />
@@ -83,15 +110,28 @@ java.util.Date date = new java.util.Date();
 						<th style="width: 60px;">S.N.</th>
 						<th data-th="Driver details"><span> A/c Manager </span></th>
 
+<<<<<<< HEAD
+				</tr>
+				 <c:if test="${!empty listofexpensereport}">
+					<c:forEach items="${listofexpensereport}" var="expense"
+						varStatus="loop">
+=======
 						<th style="width: 60px;">Total</th>
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
 					</tr>
 					<c:if test="${!empty listofexpensereport}">
 						<c:forEach items="${listofexpensereport}" var="expense"
 							varStatus="loop">
 
+<<<<<<< HEAD
+                          <td>${expense.userid}</td>  
+                            
+						<%-- <td><%=name %></td>  --%>
+=======
 							<tr>
 								<td>${loop.index+1}</td>
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
 								<td><%=name %></td>
 
@@ -101,8 +141,13 @@ java.util.Date date = new java.util.Date();
 
 							</tr>
 
+<<<<<<< HEAD
+					</c:forEach>
+				</c:if> 
+=======
 						</c:forEach>
 					</c:if>
+>>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
 
 
