@@ -1065,7 +1065,7 @@ public List<AddPlanBean> findAddPlan() {
 public void saveExpenseEntry(ExpenseEntryBean bean) {
 	
 	UserEmployee useremp = new UserEmployee();
-	useremp.setUserempid(bean.getUserid());
+	useremp.setUserempid(bean.getUserempid());
 	
 	ExpenseEntry e=new ExpenseEntry();
 	e.setExpentryid(bean.getExpentryid());
@@ -1100,7 +1100,7 @@ public void saveExpenseDetails(ExpenseDetailsBean details) {
 	
 }
 
-/*@Override
+@Override
 public List<ExpenseEntryBean> getExpenseReportList(int id) {
 	List<ExpenseEntry> list1 = masterMastersdao.getExpenseReportList(id);
 	List<ExpenseEntryBean> list2 = new ArrayList<ExpenseEntryBean>();
@@ -1109,19 +1109,20 @@ public List<ExpenseEntryBean> getExpenseReportList(int id) {
 		data.setExpentryid(list.getExpentryid());
 		data.setCrdate(list.getCrdate());
 		data.setOrgnisation(list.getOrgnisation());
-		data.setDescription(list.getDescription());
-		data.setExpname(list.getExpname());
-		data.setQty(list.getQty());
-		data.setTotal(list.getTotal());
+		data.setEmpname(list.getUseremp().getFirstname()+" "+list.getUseremp().getLastname());
+		
+		
+		
 		data.setGrandtotal(list.getGrandtotal());
-		data.setUserid(list.getUseremp().getUserempid());
-		data.setUserid(list.getUseremp().getFirstname());
-		data.setUserid(list.getUseremp().getLastname());
+		
+		data.setUserempid(list.getUseremp().getUserempid());
+		/*data.setUserid(list.getUseremp().getFirstname());
+		data.setUserid(list.getUseremp().getLastname());*/
 		//System.out.println("userlist service impl *************************************"+list.getUserid());
 		list2.add(data);
 	}
 	return list2;
-}*/
+}
 
 @Override
 public List<ExpenseEntryBean> getExpenseReportListByDate(String sdate , String edate) {
@@ -1144,7 +1145,7 @@ public List<UserEmployeeBean> getAccountManagerList() {
 	for(UserEmployee list : accountmanagerlist){
 		UserEmployeeBean data = new UserEmployeeBean();
 		data.setUserempid(list.getUserempid());
-		data.setFirstname(list.getFirstname());
+		data.setFirstname(list.getFirstname()+" "+list.getLastname());
 		data.setLastname(list.getLastname());
 		aclist.add(data);
 	}
@@ -1169,11 +1170,8 @@ public List<UserEmployeeBean> accountManagerListBySelect(String manager) {
 
 
 
-@Override
-public List<ExpenseEntryBean> getExpenseReportList(int id) {
-	// TODO Auto-generated method stub
-	return null;
-}
+
+
 
 
 

@@ -45,9 +45,10 @@ java.util.Date date = new java.util.Date();
 	<div class="row">
 		<div class="page-heading col-sm-11" id=""
 			style="background-color: #3C8DBC; left: 10px">
-			<div  class="col-sm-2" >
-			<span class="fa fa-money"></span> Expense Report
+			<div class="col-sm-2">
+				<span class="fa fa-money"></span> Expense Report
 			</div>
+
 			<div  class="col-sm-6" > <input id="ason"
 				type="radio" name="potype" checked="checked"> As On
 				
@@ -63,57 +64,96 @@ java.util.Date date = new java.util.Date();
 			<select name="selectmanager" class="form-control selectpicker"><option
 					value="" style="color: black;">-----Select A/c Manager
 					-----</option>
-			 <c:if test="${!empty listofaccountmanager}">
+				<c:if test="${!empty listofaccountmanager}">
 					<c:forEach items="${listofaccountmanager}" var="cur"
 						varStatus="loop">
 						<option value="${cur.userempid}" style="color: black;">${cur.firstname}
 							${cur.lastname}</option>
 					</c:forEach>
-				</c:if> 
+				</c:if>
 			</select>
+
+			<div class="col-sm-6">
+				<input id="ason" type="radio" name="potype" checked="checked">
+				As On <input id="period" type="radio" name="potype" />Period <span
+					id="hide1">From:<input type="text" style="color: black;"
+					id="datepicker1" name="startdate"
+					value="<%=dateFormat.format(date) %>" ReadOnly></span> <span
+					id="hide2">To: <input type="text" style="color: black"
+					id="datepicker2" name="enddate"
+					value="<%=dateFormat.format(date) %>" ReadOnly></span> A/c Manager
+			</div>
+			<div class="col-sm-3">
+				<select name="selectmanager" class="form-control selectpicker"><option
+						value="" style="color: black;">-----Select A/c Manager
+						-----</option>
+					<c:if test="${!empty listofaccountmanager}">
+						<c:forEach items="${listofaccountmanager}" var="cur"
+							varStatus="loop">
+							<option value="${cur.userempid}" style="color: black;">${cur.firstname}
+								${cur.lastname}</option>
+						</c:forEach>
+					</c:if>
+				</select>
+
 			</div>
 			<input type="submit" value="Search" name="command"
 				style="color: black;" />
-		
-	</div>
 
-	<div class="row" id="body">
-		<table class="responstable" style="margin-left: 22px;">
+		</div>
 
-			<tbody>
-				<tr>
-					<th style="width: 60px;">S.N.</th>
-					<th data-th="Driver details"><span> A/c Manager </span></th>
+		<div class="row" id="body">
+			<table class="responstable" style="margin-left: 22px;">
 
-					<th style="width: 60px;">Total</th>
+				<tbody>
+					<tr>
+						<th style="width: 60px;">S.N.</th>
+						<th data-th="Driver details"><span> A/c Manager </span></th>
+
 
 				</tr>
 				 <c:if test="${!empty listofexpensereport}">
 					<c:forEach items="${listofexpensereport}" var="expense"
 						varStatus="loop">
 
-						<tr>
-							<td>${loop.index+1}</td>
+						<th style="width: 60px;">Total</th>
 
-                           <td>${expense.empname}</td>   
+
+					</tr>
+					<c:if test="${!empty listofexpensereport}">
+						<c:forEach items="${listofexpensereport}" var="expense"
+							varStatus="loop">
+
+
+                          <td>${expense.userid}</td>  
                             
 						<%-- <td><%=name %></td>  --%>
 
-							<td><a href="expensereportdetails">${expense.grandtotal}</a></td>
+							<tr>
+								<td>${loop.index+1}</td>
+
+
+								<td><%=name %></td>
+
+								<td><a href="expensereportdetails">${expense.grandtotal}</a></td>
 
 
 
-						</tr>
+							</tr>
 
 					</c:forEach>
 				</c:if> 
 
+						</c:forEach>
+					</c:if>
 
 
-			</tbody>
-		</table>
 
-	</div>
+
+				</tbody>
+			</table>
+
+		</div>
 </form:form>
 <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

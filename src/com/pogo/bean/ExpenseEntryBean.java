@@ -16,9 +16,28 @@ public class ExpenseEntryBean {
 	
 	private Double grandtotal;
 	    
-	private Integer userid;
+	private Integer userempid;
+	
+	private String empname;
+	
     
-    public Integer getOrgnisationid() {
+    public String getEmpname() {
+		return empname;
+	}
+
+	public void setEmpname(String empname) {
+		this.empname = empname;
+	}
+
+	public Integer getUserempid() {
+		return userempid;
+	}
+
+	public void setUserempid(Integer userempid) {
+		this.userempid = userempid;
+	}
+
+	public Integer getOrgnisationid() {
 		return orgnisationid;
 	}
 
@@ -82,13 +101,7 @@ public class ExpenseEntryBean {
 		this.grandtotal = grandtotal;
 	}
 
-	public Integer getUserid() {
-		return userid;
-	}
-
-	public void setUserid(Integer userid) {
-		this.userid = userid;
-	}
+	
 	/*public String getOrgAddress() {
 		return orgAddress;
 	}

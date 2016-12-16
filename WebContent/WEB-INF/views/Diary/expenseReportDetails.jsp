@@ -51,21 +51,21 @@
 			<tr>
 				<th style="width: 60px;">S.N.</th>
 				<th style="width: 60px;">Date</th>
-<<<<<<< HEAD
+
 				 <th style="width: 60px;">Customer</th>
 				 <th style="width: 60px;">Description</th>
 				  <th style="width: 60px;">Expense Head</th>
 				   <th style="width: 60px;">Qty</th>
 				    <th style="width: 60px;">Total</th>
 			    
-=======
+
 				<th style="width: 60px;">Customer</th>
 				<th style="width: 60px;">Description</th>
 				<th style="width: 60px;">Nature of Expense</th>
 				<th style="width: 60px;">Units/Expense</th>
 				<th style="width: 60px;">Total</th>
 
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 			</tr>
 			<c:if test="${!empty listofexpensereport}">
 				<c:forEach items="${listofexpensereport}" var="expense"
@@ -81,15 +81,15 @@
 						<td>${expense.description}</td>
 
 						<td>${expense.expname}</td>
-<<<<<<< HEAD
+
 						
 						<td>${expense.qty}</td>
 						
-=======
+
 
 						<td>${expense.unit_expense}</td>
 
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
+
 						<td>${expense.total}</td>
 
 

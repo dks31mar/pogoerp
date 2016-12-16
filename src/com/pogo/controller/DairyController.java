@@ -141,9 +141,13 @@ System.out.println(getpart1);
 		
 	 HttpSession session=res.getSession();
 	Integer id=(int) session.getAttribute("userid");
+	String username=(String) session.getAttribute("username");
+	
 	//System.out.println("id is **************" +id);
+	System.out.println("username is **************" +username);
+	
 		List<ExpenseEntryBean> list = new ArrayList<ExpenseEntryBean>();
-		//list = masterservice.getExpenseReportList(id);
+		list = masterservice.getExpenseReportList(id);
 		Map<String , Object > model = new HashMap<String , Object>();
 		//model.put("userempid",id);
 		model.put("listofexpensereport",list );
@@ -199,7 +203,7 @@ public void saveExpense(@RequestBody String json,String id,Model model) throws I
 	System.out.println(lst.size());
 	String [] meth=lst.toArray(new String[lst.size()]);
 
-		for(int i=0;i<meth.length;i=i+14){
+		for(int i=0;i<meth.length;i=i+10){
 			
 			ExpenseEntryBean expense=new ExpenseEntryBean();
 			ExpenseDetailsBean details = new ExpenseDetailsBean(); 
@@ -211,45 +215,28 @@ public void saveExpense(@RequestBody String json,String id,Model model) throws I
 			details.setExpensedate(meth[i+2]);
 			details.setExphead(meth[i+3]);
 			details.setDiscription(meth[i+4]);
-			try{
-				details.setRates(Double.parseDouble(meth[i+5]));
-				}catch(NumberFormatException ex){
-					System.out.println(ex);
-				}
-			//details.setRates(Double.parseDouble(meth[i+5]));
-			try{
-				details.setQty(Integer.parseInt(meth[i+6]));
-				}catch(NumberFormatException ex){
-					System.out.println(ex);
-				}
-			try{
-				details.setTotal(Double.parseDouble(meth[i+7]));
-				}catch(NumberFormatException ex){
-					System.out.println(ex);
-				}
-			
-			/*try{
-				expense.setGrandtotal(Double.parseDouble(meth[i+8]));
-				}catch(NumberFormatException ex){
-					System.out.println(ex);
-				}*/
-			try{
-				expense.setUserid(Integer.parseInt(meth[i+8]));
-				}catch(NumberFormatException ex){
-					System.out.println(ex);
-				}
-			
-			try{
-				expense.setGrandtotal(Double.parseDouble(meth[9]));
-				}catch(NumberFormatException ex){
-					System.out.println(ex);
-				}
+			details.setRates(Double.parseDouble(meth[i+5]));
+			details.setQty(Integer.parseInt(meth[i+6]));
+			details.setTotal(Double.parseDouble(meth[i+7]));
+			expense.setUserempid(Integer.parseInt(meth[i+8]));
+			expense.setGrandtotal(Double.parseDouble(meth[9]));
+				
 			System.out.println();
 			System.out.println(i+"     <<<<<<<<<<<<<<<<<<<<<");
-			System.out.println("user id is *********************"+expense.getUserid());
+			System.out.println("user id is *********************"+expense.getUserempid());
 			
+			if(i==0){
+				System.out.println("inside if    "+i);
 				masterservice.saveExpenseEntry(expense);
 				masterservice.saveExpenseDetails(details);
+				
+			}else{
+				masterservice.saveExpenseDetails(details);
+				}	
+			
+			
+			
+			
 				
 				
 			}

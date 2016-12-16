@@ -4,7 +4,7 @@
 	rel="stylesheet" type="text/css" />
 
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
-<script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
+ <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="resources/css/displaytag.css" />
 <link rel="stylesheet" type="text/css"
@@ -23,7 +23,7 @@ System.out.println();
 
 <style>
 input {
-	text-align: center;
+text-align: center;
 }
 </style>
 <div class="row" style="margin-top: 15px">
@@ -47,15 +47,9 @@ input {
 			Customer name<font color="#FF0000">*</font>
 		</div>
 		<div class="col-sm-3">
-<<<<<<< HEAD
 			<input  type='text' value="" name='particulee1' 
 				style='overflow: auto; text-align: left;' id="autocomplete" class='form-control' required/>
 				<span style="color: red" id="msg1">*This field is required.</span>
-=======
-			<input type='text' value="" name='particulee1'
-				style='overflow: auto; text-align: left;' id="autocomplete"
-				class='form-control' />
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 		</div>
 		<div class="col-sm-2 form-level">
 			Creation Date<font color="#FF0000">*</font>
@@ -73,12 +67,10 @@ input {
 		</div>
 		<div class="col-sm-9">
 			<textarea rows="4" cols="77" name="address"
-				style="border-radius: 5px; background-color: #f2f2f2; text-align: left;"
-				id="addr" ReadOnly> </textarea>
+				style="border-radius: 5px; background-color: #f2f2f2; text-align: left;"  id="addr" ReadOnly> </textarea>
 		</div>
 	</div>
 
-<<<<<<< HEAD
 <hr style="color: black">
 <div class="row form-group">
 	<div class="col-sm-7"></div>
@@ -98,16 +90,7 @@ input {
 					color="#FF0000">*</font></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 65px"
 				color="white"><label>Description</label></font></td>
-=======
-	<hr style="color: black">
-	<div class="row form-group">
-		<div class="col-sm-7"></div>
-	</div>
-	<table style="width: 100%; bottom: 15px; position: relative;"
-		border="0" id="quotprodtable">
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
-<<<<<<< HEAD
 			<td align="center">&nbsp;<font size="2" style="width: 80px"
 				color="white"><label id="">Rates</label><font
 					color="#FF0000">*</font></font></td>
@@ -116,37 +99,15 @@ input {
 					color="#FF0000">*</font></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 80px"
 				color="white"><label id="">Total</label></font></td>
-=======
-		<thead id=hidethisthird1>
-			<tr bgcolor="#3C8DBC">
-				<td style="display: none;"><label>id</label></td>
-				<td align="center">&nbsp;<font size="2" style="width: 65px"
-					color="white"><label>S.No.</label></font></td>
-				<td align="center">&nbsp;<font size="2" style="width: 65px"
-					color="white"><label>Nature of Expense</label><font
-						color="#FF0000">*</font></font></td>
-				<td align="center">&nbsp;<font size="2" style="width: 65px"
-					color="white"><label>Description</label></font></td>
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
-				<td align="center">&nbsp;<font size="2" style="width: 80px"
-					color="white"><label id="">Unit Type</label><font
-						color="#FF0000">*</font></font></td>
-				<td align="center">&nbsp;<font size="2" style="width: 80px"
-					color="white"><label>Units/Expenses</label><font
-						color="#FF0000">*</font></font></td>
-				<td align="center">&nbsp;<font size="2" style="width: 80px"
-					color="white"><label id=""> Total </label></font></td>
-
-			</tr>
-		</thead>
-		<tbody id="addprolisttbody">
-
-		</tbody>
-	</table>
+		</tr>
+	</thead>
+	<tbody id="addprolisttbody">
+	
+	</tbody>
+</table>
 
 
-<<<<<<< HEAD
 <table>
 <thead id=hidethisthird>
 		<tr bgcolor="#3C8DBC">
@@ -162,21 +123,7 @@ input {
 					color="#FF0000">*</font></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 65px"
 				color="white"><label>Description</label></font></td>
-=======
-	<table>
-		<thead id=hidethisthird>
-			<tr bgcolor="#3C8DBC">
-				<td style="display: none;"><label>id</label></td>
-				<td align="center">&nbsp;<font size="2" style="width: 65px"
-					color="white"><label>S.No.</label></font></td>
-				<td align="center">&nbsp;<font size="2" style="width: 65px"
-					color="white"><label>Nature of Expense</label><font
-						color="#FF0000">*</font></font></td>
-				<td align="center">&nbsp;<font size="2" style="width: 65px"
-					color="white"><label>Description</label></font></td>
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
-<<<<<<< HEAD
 			<td align="center">&nbsp;<font size="2" style="width: 80px"
 				color="white"><label id="">Rates</label><font
 					color="#FF0000">*</font></font></td>
@@ -185,18 +132,7 @@ input {
 					color="#FF0000">*</font></font></td>
 			<td align="center">&nbsp;<font size="2" style="width: 80px"
 				color="white"><label id=""> Total </label></font></td>
-=======
-				<td align="center">&nbsp;<font size="2" style="width: 80px"
-					color="white"><label id="">Unit Type</label><font
-						color="#FF0000">*</font></font></td>
-				<td align="center">&nbsp;<font size="2" style="width: 80px"
-					color="white"><label>Units/Expenses</label><font
-						color="#FF0000">*</font></font></td>
-				<td align="center">&nbsp;<font size="2" style="width: 80px"
-					color="white"><label id=""> Total </label></font></td>
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
-<<<<<<< HEAD
 		</tr>
 	</thead>
 	<tr>
@@ -205,7 +141,6 @@ input {
 	<td style="right: 5px; position: relative;">&nbsp; 
 					<input type='text' style='width: 60px' name='posrno' id='date'
 								value="" class='form-control'/></td>
-								
 				<td style="right: 5px; position: relative;">&nbsp; 
 					<input type='text' style='width: 60px' name='' id='exdate'
 								value="<%=dateFormat.format(date) %>" class='form-control'/></td>				
@@ -213,35 +148,19 @@ input {
 								<input type='text' value="" name='particulee1'
 								style='overflow: auto; border-radius: 3px; width: 223px;'
 								id='expenseauto' class='form-control'
-								/>
+								/><span style="color: red" id="msg3">*This field is required.</span>
 							</td>
 							
-=======
-			</tr>
-		</thead>
-		<tr>
-			<td style="display: none;"><input type="hidden" value=""
-				id="getid1"></input></td>
-
-			<td style="right: 5px; position: relative;">&nbsp; <input
-				type='text' style='width: 60px' name='posrno' id='date' value=""
-				class='form-control' /></td>
-			<td style="left: 2px; position: relative; width: 150px">&nbsp; <input
-				type='text' value="" name='particulee1'
-				style='overflow: auto; border-radius: 3px; width: 223px;'
-				id='expenseauto' class='form-control' />
-			</td>
-
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 			<td style="width: 250px">&nbsp; <input name='description'
-<<<<<<< HEAD
 									id='description' class='form-control'
 									style="text-align: center;width: 238px; text-transform: capitalize;' " value="" ></input></td>				
 			
 		
 		
-	 <td style="right: 7px; position: relative;">&nbsp;<input type='text' style='text-align: center;' name='' id='unittype' value="" class='form-control' readonly/></td> 					
-		<td align="center" style="right: 4px; position: relative;">&nbsp; <input  type='text' style='text-align: center;' name='' onkeypress='return event.charCode >= 48 && event.charCode <= 57' id='mul' class='form-control' value="" /></td>		 
+	 <td style="right: 7px; position: relative;">&nbsp;<input type='text' style='text-align: center;' name='' id='unittype' value="" class='form-control' /></td> 					
+		<td align="center" style="right: 4px; position: relative;">&nbsp; <input  type='text' style='text-align: center;' name='' onkeypress='return event.charCode >= 48 && event.charCode <= 57' id='mul' class='form-control' value="" />
+		<span style="color: red" id="msg5">*This field is required.</span>
+		</td>		 
 		<td style="width: 250px">&nbsp; <input name='description' id='total' class='form-control'style="text-align: center;width: 238px; text-transform: uppercase;" value="" readonly></input></td>			 
 		
 		<td align="center">&nbsp; <input type="button" value='+'
@@ -251,60 +170,33 @@ input {
 
 		
 		
-=======
-				id='description' class='form-control'
-				style="text-align: center; width: 238px; text-transform: capitalize;' "
-				value=""></input></td>
->>>>>>> branch 'master' of https://github.com/dks31mar/pogoerp.git
 
 
+	</tr>
+</table>
 
-			<td style="right: 7px; position: relative;">&nbsp;<input
-				type='text' style='text-align: center;' name='' id='unittype'
-				value="" class='form-control' /></td>
-			<td align="center" style="right: 4px; position: relative;">&nbsp;
-				<input type='text' style='text-align: center;' name=''
-				onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-				id='mul' class='form-control' value="" />
-			</td>
-			<td style="width: 250px">&nbsp; <input name='description'
-				id='total' class='form-control'
-				style="text-align: center; width: 238px; text-transform: uppercase;"
-				value=""></input></td>
+<div class="row form-group" style="top: 10px; position: relative;"
+					onclick="">
+					<div class="col-sm-10 form-level" align="right">
+						Total:<font color="#FF0000"></font>
+					</div>
+					<div align="right">
+						<input type="text" name="gtotal" id="gtotal" class="form-control"
+							value="${total}" style="width: 15%;" readonly>
+					</div>
+				</div>
 
-			<td align="center">&nbsp; <input type="button" value='+'
-				id='addmorepro12' class='btn btn-info pull-right'
-				data-toggle='tooltip' title='Add More Expense' />
-		</tr>
-	</table>
-
-	<div class="row form-group" style="top: 10px; position: relative;"
-		onclick="">
-		<div class="col-sm-10 form-level" align="right">
-			Total:<font color="#FF0000"></font>
-		</div>
-		<div align="right">
-			<input type="text" name="gtotal" id="gtotal" class="form-control"
-				value="" style="width: 15%;" readonly>
-		</div>
-	</div>
-
-	<hr align="left" size="" width="100%"
-		style="background-color: #3C8DBC; height: 1px;" />
-	<div align="center">
-		<table>
-			<tr>
-				<td>&nbsp;&nbsp;</td>
-				<td><button type="button" value="Save" onClick=""
-						class="btn btn-success pull-center" id="save"
-						style="background-color: #3C8DBC;">Save</button></td>
-				<td>&nbsp;&nbsp;</td>
-				<td><button type="button" value="close"
-						onClick="window.close()" class="btn btn-success pull-center"
-						id="close" style="background-color: #3C8DBC;">Close</button></td>
-			</tr>
-		</table>
-	</div>
+<hr align="left" size="" width="100%" style="background-color: #3C8DBC;height: 1px; " />
+<div align="center">
+<table>
+	<tr>
+	 <td>&nbsp;&nbsp;</td>
+	 <td><button type="button" value="Save" onClick="" class="btn btn-success pull-center" id="save" style="background-color: #3C8DBC;">Save</button></td>
+	 <td>&nbsp;&nbsp;</td>
+	 <td><button type="button" value="close" onClick="window.close()" class="btn btn-success pull-center" id="close" style="background-color: #3C8DBC;">Close</button></td>
+	 </tr>
+</table>
+</div>
 </div>
 
 <script
@@ -328,21 +220,45 @@ $(document).ready(function(){
 $("#mul").keyup(function () {
 	 /*  $('#unit/expense').keyup(function(){ */
 		 // alert("hello");
-	 
-			var unitexpense=$('#mul').val();
+	        
+	       var qty = parseInt($('#mul').val()) || 0;
+			//var unitexpense=$('#mul').val();
 			//alert(unitexpense);
 			//var unit=$('#unitcostx').val();
 			var unittype =$('#unittype').val();
+			
 			//alert(unittype);
-			var total1=parseInt(unitexpense) * parseInt(unittype);
+			var total=parseInt(qty) * parseInt(unittype);
 			//alert(total1);
-			$('#total').val(total1);
+			$('#total').val(total);
 			
 			//alert(total1);
 		});
-
+		$('#qty').keyup(function(){
+			//var qty=$('#qty').val();
+			var qty = parseInt($('#qty').val()) || 0;
+			var unit=$('#unitcostx').val();
+			var jpy=$('#tpinjpy').val();
+			var total=parseInt(qty) * parseInt(jpy);
+			$('#totaljpy').val(total);
+			
+			//alert(qty);
+		});
 		
-
+		
+		
+		/* $('#gtotal').keyup(function(){
+			//var qty=$('#qty').val();
+			//var gtotal = 0;
+			var total = $('#total').val();
+			var gtotal=$('#gtotal').val();
+			
+			var total1 = parseInt((total), 10)+parseInt((gtotal), 10);
+			$('#totaljpy').val(total1);
+			
+			//alert(qty);
+		}); */
+		
 
 $( function() {
     $( "#creationdate" ).datepicker({dateFormat: 'dd/mm/yy'});
@@ -357,22 +273,13 @@ $( function() {
     $( "#exdate+id+" ).datepicker({dateFormat: 'dd/mm/yy'});
   } );	 
 	
- $(document).ready(function(){
-	 var d;
-		var d1;
-		var d2 = 0;
-		var d3=$('#gtotal').val();
-		 var id=$('#addprolisttbody').children('tr').length;
-		for(var i=1;i<=id;i++){
-		d=$('#total'+i).val();
-		
-		d1=parseInt((d), 10);
-		d2=parseInt((d1), 10)+parseInt((d3), 10);
-		}
-		$('#gtotal').val(d2);
-	
-	
-});
+/* $('#gtotal').keyup(function(){
+	var grandtotal = $("#gtotal").val();
+	var total = $("#total").val();
+	 if(isNaN(grandtotal)){
+		 $('#gtotal').val(total);
+	} 
+	}); */
    
   
   $('#autocomplete').on("click",function(){
@@ -403,7 +310,7 @@ $( function() {
 					success: function(result){
 						var data=jQuery.parseJSON(result);
 						console.log(data);
-						 alert(data.address);
+						// alert(data.address);
 						var address = data.address;
 						//alert("address");
 						$('#addr').text(address);
@@ -538,9 +445,9 @@ $( function() {
 				var date=$('#creationdate').val();
 				//var cur=temp.split(' ')[1];
 			//	alert("**************111111111111111************");
-				/* if(address==''||pname==''){
-					alert('Please Fill Prinicpal Name!!!')
-				}else{ */
+				 if(address==''||pname==''){
+					alert('Please Fill Customer Name!!!')
+				}else{  
 					
 	            var markup = "<tr>"+
 	            "<td style='display: none;'><input type='hidden' name='orgname' value='"+pname+"' id='getprinicipalname'"+id+"'></input> </td>"+
@@ -568,7 +475,7 @@ $( function() {
 					
 					"<td align='center' style='right: 4px; position: relative;'>&nbsp;<input readonly type='text' style='text-align: center;' name='qty' id='mul"+id+"' class='form-control' onkeypress='return event.charCode >= 48 && event.charCode <= 57' value='"+qty+"' /></td>"+
 					
-					"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='total' id='total"+id+"' value='"+totjpy+"' class='form-control'   /></td>"+
+					"<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='total' id='total"+id+"' value='"+totjpy+"' class='form-control'  onchange='caltotalagain();  /></td>"+
 					
 					/* "<td align='center'>&nbsp; <input readonly type='text' style='text-align: center;' name='grandtotal' id='gtotal"+id+"' value='"+totjpy+"' class='form-control'   /></td>"+ */
 					
@@ -594,14 +501,32 @@ $( function() {
 	            var d;
 				var d1;
 				var d2=0;
+				
 				 var id=$('#addprolisttbody').children('tr').length;
 				for(var i=1;i<=id;i++){
-				d=$('#total'+i).val();
+					var total = $("#total").val();
+					if(total == ''){
+						d=$('#total'+i).val();
+						
+						d1=parseInt((d), 10);
+						d2=(parseInt((d1), 10)+parseInt((d2), 10));
+						var d2 = parseInt($(this).val()) || 0;	
+					}
 				
-				d1=parseInt((d), 10);
-				d2=parseInt((d1), 10)+parseInt((d2), 10);
+					else{
+						d=$('#total'+i).val();
+						
+						d1=parseInt((d), 10);
+						d2=(parseInt((d1), 10)+parseInt((d2), 10));
+					}
+				
+				
+			
+				
 				}
 				$('#gtotal').val(d2);
+				var d=$('#gtotal').val();
+				$('#grandtotal1').val(d);
 			/* var d=$('#gtotal').val();
 			$('#grandtotal1').val(d); */
 			
@@ -614,7 +539,7 @@ $( function() {
 			
 			
 				}
-	       /*  } */);
+	         }  );
 	 });
 	
 	
@@ -643,9 +568,25 @@ $( function() {
 				var d2=$('#total'+id).val();
 				var d3=$('#gtotal').val();
 				$('#gtotal').val(parseInt((d3), 10)+parseInt((d2), 10));
+				calculation();
 			var grandtotl=	$('#gtotal').val();
-				$('#gtotal1').val(grandtotl);
+				$('#grandtotal1').val(grandtotl);
+				calculation();
 			});
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			$('#expenseauto'+id).click(function(){
 				var word=$('#expenseauto'+id).val();
@@ -727,12 +668,17 @@ $( function() {
 }
 	
 	 $('#hidethisthird1').hide();
-	
+	 $("#msg1").hide();
+	 $("#msg2").hide();
+	 $("#msg3").hide();
+	 $("#msg4").hide();
+	 $("#msg5").hide();
+	 
 	 $("#save").bind("click", function() {
-			var temp=$("#total").text();
-			alert(temp);
-			alert("<%=iduser %>");
-			var orgname =$('#autocomplete').val(); 
+		 var temp=$("#total").text();
+			//alert(temp);
+			
+			/* var orgname =$('#autocomplete').val(); 
 			 var credate =$('#creationdate').val();
 			 var expname =$('#expenseauto').val();
 			 var unit =$('#unittype').val();
@@ -740,20 +686,24 @@ $( function() {
 		    if(orgname == ''){ 
 		    	$("#msg1").show('fast');
 		    }else if(credate == ''){
-		    	$("#msg2").show('fast');
+		    	$("#msg2").show('fast'); */
 		    	
-		    }else if(expname == ''){
-		    	$("#msg3").show('fast');
-		    }else if(unit == ''){
-		    	$("#msg4").show('fast');
-		    }else if(unitexpense == ''){
-		    	$("#msg5").show('fast');
-		    }else{
-		    	 var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
-				  console.log(AddressesDataJSON);
-				 alert(JSON.stringify(AddressesDataJSON));
+		    /* else if(expname == ''){
+		    	$("#msg3").show('fast')
+		    }else if (unit == ''){
+		    	$("#msg4").show('fast')
+		    }else if (unitexpense == ''){
+		    	$("#msg5").show('fast')
+		    } */
+		    
+		   
+		    	
+		    	
+				  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
+			 console.log(AddressesDataJSON);
+			 alert(JSON.stringify(AddressesDataJSON));
 				  
-				  
+				   //calculation();
 			  $.ajax({
 						url: "saveexpenseentry",
 						type: "POST",
@@ -771,13 +721,23 @@ $( function() {
 						    	// window.location.href = "getaddpo";
 						    	 window.location.reload();
 					    }
-					}); 
-		    }
-		    
-				 
+					});
+		
 				});
 	 
-	  
+	
+	 $("#autocomplete,#creationdate,#expenseauto,#unittype,#mul").click(function(){
+			
+		
+		 $("#msg1").hide();
+		 $("#msg2").hide();
+		 $("#msg3").hide();
+		 $("#msg4").hide();
+		 $("#msg5").hide();
+		
+		
+	});
+	 
 	 
 	 function calculation(){
 			var id=$('#addprolisttbody').children('tr').length;
@@ -792,7 +752,11 @@ $( function() {
 			//alert(nan)
 		}
 	
-	
+	 function caltotalagain(){
+			alert("d");
+			calculation();
+		}
+		
 </script>
 
 
