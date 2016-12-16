@@ -18,7 +18,8 @@
 
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 
@@ -151,10 +152,8 @@ $( function() {
 
 	</script>
 </head>
-<div class="row" style="margin-top: 5px;">
-	
-	
-</div><br>
+<div class="row" style="margin-top: 5px;"></div>
+<br>
 
 
 <div class="row">
@@ -189,7 +188,7 @@ $( function() {
 <div id="pop" style="display: none;"></div>
 <div id="searchedRecord"></div>
 <div id="body">
-	<table class="responstable"  id="mainidtable">
+	<table class="responstable" id="mainidtable">
 
 		<thead>
 			<tr>
@@ -198,12 +197,12 @@ $( function() {
 				<th data-th="Driver details"><span>Employees Name</span></th>
 				<th>Designation</th>
 				<th>Branch</th>
-				 <th>Joining Date</th>
+				<th>Joining Date</th>
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;">Delete</th>
 			</tr>
-			</thead>
-			<tbody>
+		</thead>
+		<tbody>
 			<c:choose>
 				<c:when test="${empty Recordlist}">
 					<div style="color: red; text-align: center;">No Employee
@@ -214,18 +213,18 @@ $( function() {
 						<c:forEach items="${Recordlist}" var="user" varStatus="loop">
 
 							<tr>
-								<td>${loop.index+1}</td>  
-								 <td>${user.empCode}</td>
-								<td>${user.firstname} ${user.middlename} ${user.lastname}</td>
+								<td>${loop.index+1}</td>
+								<td>${user.empCode}</td>
+								<td>${user.firstname}${user.middlename} ${user.lastname}</td>
 								<td>${user.designationName}</td>
-								 <td>${user.branchName}</td>
-                                 <td>${user.dateofjoining}</td>
+								<td>${user.branchName}</td>
+								<td>${user.dateofjoining}</td>
 								<td><a href="editUser?id=${user.userempid}" title="Edit">
 										<span class="glyphicon glyphicon-pencil"></span>
 								</a></td>
 								<td style=""><a href="#"
 									onclick="deletUser(${user.userempid})"> <span
-									class="glyphicon glyphicon-trash" style="margin-left:19px;"></span></a></td>
+										class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td>
 
 							</tr>
 

@@ -10,47 +10,57 @@
 
 <div class="container">
 
-    <form:form class="well form-horizontal"  action="updatebranch?id=${branch.branchId}&stateid=${stateId}" method="POST"  commandName="branchBean" >
-   
-   
-<fieldset>
+	<form:form class="well form-horizontal"
+		action="updatebranch?id=${branch.branchId}&stateid=${stateId}"
+		method="POST" commandName="branchBean">
 
-<!-- Form Name -->
-<legend>Edit Branches</legend>
-<div class="form-group">
-  <label class="col-md-2 control-label" >Branch Name</label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="branchId" value="${branch.branchId}" readonly="readonly"  class="form-control"  type="text">
-  
-    </div>
-  </div>
-  
-</div>
 
-<div class="form-group">
-  <label class="col-md-2 control-label" >Branch Name</label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input name="branchname" value="${branch.branchname}"  class="form-control"  type="text">
-  
-    </div>
-  </div>
-  
-</div>
+		<fieldset>
 
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label"></label>
-  <div class="col-md-2" align="center">
-    <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
-    
-    <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
-  </div>
-</div>
+			<!-- Form Name -->
+			<legend>Edit Branches</legend>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Branch Name</label>
+				<div class="col-md-3 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input name="branchId"
+							value="${branch.branchId}" readonly="readonly"
+							class="form-control" type="text">
 
-</fieldset>
-</form:form>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Branch Name</label>
+				<div class="col-md-3 inputGroupContainer">
+					<div class="input-group">
+						<span class="input-group-addon"><i
+							class="glyphicon glyphicon-user"></i></span> <input name="branchname"
+							value="${branch.branchname}" class="form-control" type="text">
+
+					</div>
+				</div>
+
+			</div>
+
+			<!-- Button -->
+			<div class="form-group">
+				<label class="col-md-4 control-label"></label>
+				<div class="col-md-2" align="center">
+					<button type="submit" class="btn btn-warning">
+						Send <span class="glyphicon glyphicon-send"></span>
+					</button>
+
+					<button type="button" class="btn btn-warning"
+						onclick="history.back();">
+						Back <span class="glyphicon glyphicon-send"></span>
+					</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form:form>
 </div>

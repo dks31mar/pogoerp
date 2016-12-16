@@ -11,10 +11,14 @@ public class InvoiceController {
  @RequestMapping(value="viewInvoice", method=RequestMethod.GET)
  public  ModelAndView viewInvoice()
   {
-
-	 return  new ModelAndView("viewinvoice");
+ return  new ModelAndView("viewinvoice");
 
   }
+ @RequestMapping(value="pendinginvoice",method=RequestMethod.GET)
+ public ModelAndView pendungInvoice()
+ {
+	 return new ModelAndView("pendinginvoice");
+ }
 }
 
 

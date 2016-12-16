@@ -10,16 +10,9 @@ public class QuotationController {
 
 	 @RequestMapping(value="quotation",method=RequestMethod.GET)
 	 public ModelAndView quotation() {
-		 return  new ModelAndView("quotation");
-		 
-		
-	}
-	 @RequestMapping(value="createOrder", method=RequestMethod.GET)
-	 public ModelAndView  CreateOrder()
-	 {
-		 return  new ModelAndView("createOrder");
-	 }
-	 
+		 return  new ModelAndView("quotation");	 
+		}
+	  
 	 @RequestMapping(value="/viewQuotation", method=RequestMethod.GET)
 	 public ModelAndView  viewQuotation()
 	 {

@@ -1,14 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%>
- <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-  <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-	<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/table.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="resources/css/jquery.dialogbox.css" />
-<link rel="stylesheet" type="text/css" href="resources/css/tableview.css" />
-<script src="resources/plugins/jQuery/jquery-1.9.1.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css"
+	href="resources/css/jquery.dialogbox.css" />
+<link rel="stylesheet" type="text/css"
+	href="resources/css/tableview.css" />
+<script src="resources/plugins/jQuery/jquery-1.9.1.min.js"
+	type="text/javascript"></script>
 <script src="resources/js/jquery.dialogBox.js" type="text/javascript"></script>
-<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"  rel="stylesheet" type="text/css" />
-   
+<link
+	href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
+	rel="stylesheet" type="text/css" />
+
 
 
 <div class="row" style="margin-top: 15px">
@@ -26,9 +33,12 @@
 
 
 	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; left: 20px;  height: 34px;">
-		<span class=""></span> Contacts
-		<label style="margin-left: 250px;margin-top: 8px;"> <a href="getcontact" class="btn btn-primary" style="margin-bottom: -25px;margin-top: -22px;HEIGHT: 28px;margin-left:361px;"> Add Contacts </a></label> 
+		style="background-color: #3C8DBD; left: 20px; height: 34px;">
+		<span class=""></span> Contacts <label
+			style="margin-left: 250px; margin-top: 8px;"> <a
+			href="getcontact" class="btn btn-primary"
+			style="margin-bottom: -25px; margin-top: -22px; HEIGHT: 28px; margin-left: 361px;">
+				Add Contacts </a></label>
 	</div>
 
 </div>
@@ -37,7 +47,7 @@
 
 
 <div id="body">
-	<table class="responstable" style="margin-left: 22px; ">
+	<table class="responstable" style="margin-left: 22px;">
 
 		<tbody>
 			<tr>
@@ -47,30 +57,33 @@
 				<th>Designation</th>
 				<th>Date of birth</th>
 				<th style="width: 60px;">Edit</th>
-				<th style="width: 60px;"> Delete</th>
+				<th style="width: 60px;">Delete</th>
 			</tr>
-			
+
 			<c:if test="${!empty contactlist}">
 				<c:forEach items="${contactlist}" var="con" varStatus="loop">
-			
-			<tr>
-						
-								<td>${loop.index+1}</td>
-								<td>${con.contactName}</td>
-								 <td>${con.depId}</td>
-								<td>${con.desName}</td> 
-								<td>${con.dob}</td>
-							
-						
-								 <td><a href="getcontactsdetails?contactId=${con.contactId}" title="Edit" align="center" >
-								<span class="glyphicon glyphicon-pencil"></span></a></td>
-								
-						<td style="margin"><a href="deletecontact?contactId=${con.contactId}"><span
-								class="glyphicon glyphicon-trash" style="margin-left: 19px;" onclick="return confirm('Are you sure you want to delete?')"></span></a></td> 
+
+					<tr>
+
+						<td>${loop.index+1}</td>
+						<td>${con.contactName}</td>
+						<td>${con.depId}</td>
+						<td>${con.desName}</td>
+						<td>${con.dob}</td>
+
+
+						<td><a href="getcontactsdetails?contactId=${con.contactId}"
+							title="Edit" align="center"> <span
+								class="glyphicon glyphicon-pencil"></span></a></td>
+
+						<td style=""><a
+							href="deletecontact?contactId=${con.contactId}"><span
+								class="glyphicon glyphicon-trash" style="margin-left: 19px;"
+								onclick="return confirm('Are you sure you want to delete?')"></span></a></td>
 					</tr>
-</c:forEach>
-</c:if>
-				
+				</c:forEach>
+			</c:if>
+
 
 
 		</tbody>
@@ -84,9 +97,15 @@
 
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js"
+	type="text/javascript"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
 <script>
 
 function editCur(id){
@@ -117,13 +136,16 @@ $.ajax({
 } 
 
 
-</script>	
+</script>
 
-	<div class="page-heading col-sm-11"
-		style="background-color: #3C8DBD; left: 20px;  height: 41px;">
-		<span class=""></span> Contacts
-		<label style="margin-left: 250px;margin-top: 8px;"> <a href="getcontact" class="btn btn-primary" style="margin-bottom: -25px;margin-top: -22px;HEIGHT: 28px;margin-left:361px;"> Add Contacts </a></label> 
-	</div>
+<div class="page-heading col-sm-11"
+	style="background-color: #3C8DBD; left: 20px; height: 41px;">
+	<span class=""></span> Contacts <label
+		style="margin-left: 250px; margin-top: 8px;"> <a
+		href="getcontact" class="btn btn-primary"
+		style="margin-bottom: -25px; margin-top: -22px; HEIGHT: 28px; margin-left: 361px;">
+			Add Contacts </a></label>
+</div>
 
 </div>
 
@@ -131,7 +153,7 @@ $.ajax({
 <div id="pop" style="display: none;"></div>
 
 <div id="body">
-	<table class="responstable" style="margin-left: 22px; ">
+	<table class="responstable" style="margin-left: 22px;">
 
 		<tbody>
 			<tr>
@@ -141,30 +163,30 @@ $.ajax({
 				<th>Designation</th>
 				<th>Date of birth</th>
 				<th style="width: 60px;">Edit</th>
-				<th style="width: 60px;"> Delete</th>
+				<th style="width: 60px;">Delete</th>
 			</tr>
-			
+
 			<c:if test="${!empty contactlist}">
 				<c:forEach items="${contactlist}" var="con" varStatus="loop">
-			
-			<tr>
-						
-								<td>${loop.index+1}</td>
-								<td>${con.contactName}</td>
-								 <td>${con.deptName1}</td>
-								<td>${con.desName}</td> 
-								<td>${con.dob}</td>
-							
-						
-								<%-- <td><a href="editproductdata?id=${cur.productid}" title="Edit" align="center" >
+
+					<tr>
+
+						<td>${loop.index+1}</td>
+						<td>${con.contactName}</td>
+						<td>${con.deptName1}</td>
+						<td>${con.desName}</td>
+						<td>${con.dob}</td>
+
+
+						<%-- <td><a href="editproductdata?id=${cur.productid}" title="Edit" align="center" >
 								<span class="glyphicon glyphicon-pencil"></span></a></td>
 								
 						<td style="margin"><a href="deleteprodet?id=${cur.productid}"><span
 								class="glyphicon glyphicon-trash" style="margin-left: 19px;"></span></a></td> --%>
 					</tr>
-</c:forEach>
-</c:if>
-				
+				</c:forEach>
+			</c:if>
+
 
 
 		</tbody>
@@ -177,9 +199,15 @@ $.ajax({
 
 
 <script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
-	<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js"
+	type="text/javascript"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+
 </script>

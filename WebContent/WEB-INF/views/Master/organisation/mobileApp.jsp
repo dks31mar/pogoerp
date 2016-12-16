@@ -6,10 +6,11 @@
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/table.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script
+	src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
- <script type="text/javascript">
+<script type="text/javascript">
 
   function searchEmployee(empName) {
 		//alert("hi");
@@ -151,24 +152,24 @@
 		
  */
 		</script>
-		<div class="row" style="margin-top: 10px;">
-	
-</div><br>
+<div class="row" style="margin-top: 10px;"></div>
+<br>
 
 <div class="row">
 
 	<div class="page-heading col-sm-11.5"
-		style="background-color: #3C8DBD; left: 20px;" >
-		<span class="glyphicon glyphicon-phone"></span><span> Mobile Apps Registration</span>
-			 <!-- <div class="input-group" style="margin-left: 590px; width: 130px; top: -14px;
+		style="background-color: #3C8DBD; left: 20px;">
+		<span class="glyphicon glyphicon-phone"></span><span> Mobile
+			Apps Registration</span>
+		<!-- <div class="input-group" style="margin-left: 590px; width: 130px; top: -14px;
 			 width: 230px;"><input type="text"  
 			placeholder="Search Employee name"  class="form-control" oninput="searchEmployee(this.value)"><span class="input-group-addon">
         <i class="fa fa-search"></i>
     </span></div>  -->
-			
+
+	</div>
 </div>
-</div>
-					<%-- <div class="row" style="margin-top: 10px;">
+<%-- <div class="row" style="margin-top: 10px;">
 					<div class="col-md-12">
 
 						<div class="col-md-12 col-sm-12 clearfix"
@@ -178,68 +179,68 @@
 						</div>
 						</div>
 						</div> --%>
-<div id="some"></div>						
-<div id="all">						
-<div id="searchedRecord"></div>
-<div id="body">
-<table class="responstable"  id="mainidtable">
+<div id="some"></div>
+<div id="all">
+	<div id="searchedRecord"></div>
+	<div id="body">
+		<table class="responstable" id="mainidtable">
 
-		<tbody>
-			<tr>
-				<th>S.N.</th>
-				<th data-th="Driver details"><span>Employees Name</span></th>
-				<th>Designation</th>
-				<th>Device No</th>
-				<th>Status</th>
-				<th>Apps Approval</th>
-			</tr>
-			<c:choose>
-											<c:when test="${empty emplDetails}">
-											
-												<div style="color: red; text-align: center;clear:both;">No Employee
-													Record in the List</div>
-													
-											</c:when>
-											<c:otherwise>
-	       <c:if test="${!empty emplDetails}">
-				<c:forEach items="${emplDetails}" var="emp" varStatus="loop">
+			<tbody>
+				<tr>
+					<th>S.N.</th>
+					<th data-th="Driver details"><span>Employees Name</span></th>
+					<th>Designation</th>
+					<th>Device No</th>
+					<th>Status</th>
+					<th>Apps Approval</th>
+				</tr>
+				<c:choose>
+					<c:when test="${empty emplDetails}">
 
-					<tr>
-						<td>${loop.index+1}</td>
-						 <td>${emp.firstname}</td>
-						  <td>${emp.designationName}</td> 
-						 <td>${emp.deviceno}</td>
-						  <td class=""><c:if test="${ emp.empStatus}">
-						  <img alt="" src="resources/image/greens.gif">
-						  </c:if>
-						  <c:if test="${ !emp.empStatus}">
-						  <img alt="" src="resources/image/reds.gif">
-						  </c:if></td>
-						  
-						 <td><a href="updateEmp?id=${emp.userempid}" class="btn btn-success">Approved</a></td>
-						 
-						 </tr>
-						 </c:forEach>
-						 </c:if>
+						<div style="color: red; text-align: center; clear: both;">No
+							Employee Record in the List</div>
+
+					</c:when>
+					<c:otherwise>
+						<c:if test="${!empty emplDetails}">
+							<c:forEach items="${emplDetails}" var="emp" varStatus="loop">
+
+								<tr>
+									<td>${loop.index+1}</td>
+									<td>${emp.firstname}</td>
+									<td>${emp.designationName}</td>
+									<td>${emp.deviceno}</td>
+									<td class=""><c:if test="${ emp.empStatus}">
+											<img alt="" src="resources/image/greens.gif">
+										</c:if> <c:if test="${ !emp.empStatus}">
+											<img alt="" src="resources/image/reds.gif">
+										</c:if></td>
+
+									<td><a href="updateEmp?id=${emp.userempid}"
+										class="btn btn-success">Approved</a></td>
+
+								</tr>
+							</c:forEach>
+						</c:if>
 					</c:otherwise>
-					</c:choose>
+				</c:choose>
 
-				
-		</tbody>
-		
-		
-	</table>
+
+			</tbody>
+
+
+		</table>
 	</div>
-	</div>
-
-
- 	
-
-  	
+</div>
 
 
 
-	<script>
+
+
+
+
+
+<script>
 	$(document).ready(function() {
 	    $('#mainidtable').DataTable( {
 	        "order": [[0, "asc" ]]
@@ -258,7 +259,7 @@
 </diV>
 -->
 
- 
+
 
 
 
