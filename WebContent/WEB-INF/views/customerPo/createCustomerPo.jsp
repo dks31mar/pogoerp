@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<%
+<%-- <%
 //HttpSession session=request.getSession();
 //String hh=(String)session.getAttribute("jsonp");
 String norml=(String)session.getAttribute("normal");
@@ -26,7 +26,7 @@ if(cb==null){
 java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
 java.util.Date date = new java.util.Date();
 System.out.println();
-%>
+%> --%>
 <form method="POST" action="">
 		<div class="row" style="margin-top: 15px">
 			<br>
