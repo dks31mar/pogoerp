@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Table(name="customerSalesPo")
 public class CustomerSalesPo 
 {
-	
+
 	@Id
 private int customerPoId;
 private String custmerOderNo;
