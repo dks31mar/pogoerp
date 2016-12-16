@@ -1,12 +1,14 @@
 package com.pogo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="customerSalesPo")
 public class CustomerSalesPo 
 {
+	@Id
 private int customerPoId;
 private String custmerOderNo;
 private String customerName;

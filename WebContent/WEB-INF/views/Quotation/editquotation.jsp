@@ -783,10 +783,7 @@ $("#savedata445").bind("click", function() {
 	 inputTrems();
 		  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
 		  console.log(AddressesDataJSON);
-
-		  
-		 
-	  $.ajax({
+	$.ajax({
 				url: "updatequotation",
 				type: "POST",
 				
