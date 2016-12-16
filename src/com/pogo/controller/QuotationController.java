@@ -223,6 +223,7 @@ public class QuotationController {
 	 			if(i==0){
 					System.out.println("inside if    "+i);
 					quotationservice.updateQPoDtail(poqd);
+					quotationservice.deleteAllQPoItemDtail(poqd,poqid);
 					quotationservice.updateQPoItemDtail(poqd,poqid);
 					
 				}else{

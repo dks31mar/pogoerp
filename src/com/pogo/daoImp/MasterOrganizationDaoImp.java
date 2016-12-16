@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -114,9 +115,10 @@ public class MasterOrganizationDaoImp implements MasterOrganizationDao {
 	}
 
 	@Override
+	@Transactional
 	public void updateEmp(UserEmployee emp) {
 		sessionFactory.getCurrentSession().update(emp);
-		sessionFactory.getCurrentSession().flush();
+		//sessionFactory.getCurrentSession().flush();
 
 	}
 
@@ -518,6 +520,12 @@ System.out.println("delete");
 		System.out.println("for email"+email);
 		return (UserEmployee) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class)
 				.add(Restrictions.eq("eamil", email)).uniqueResult();
+	}
+
+	@Override
+	public String getProfilePic(Integer userempid) {
+		
+		return (String) sessionFactory.getCurrentSession().createCriteria(UserEmployee.class).add(Restrictions.eq("userempid", userempid)).setProjection(Projections.property("userProfile")).uniqueResult();
 	}
 	
 	}

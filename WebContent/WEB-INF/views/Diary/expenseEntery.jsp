@@ -182,7 +182,11 @@ text-align: center;
 					</div>
 					<div align="right">
 						<input type="text" name="gtotal" id="gtotal" class="form-control"
+
 							value="${total}" style="width: 15%;" readonly>
+
+							value="" style="width: 15%;" readonly>
+
 					</div>
 				</div>
 
@@ -688,6 +692,7 @@ $( function() {
 		    }else if(credate == ''){
 		    	$("#msg2").show('fast'); */
 		    	
+
 		    /* else if(expname == ''){
 		    	$("#msg3").show('fast')
 		    }else if (unit == ''){
@@ -702,7 +707,7 @@ $( function() {
 				  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
 			 console.log(AddressesDataJSON);
 			 alert(JSON.stringify(AddressesDataJSON));
-				  
+
 				   //calculation();
 			  $.ajax({
 						url: "saveexpenseentry",
@@ -721,12 +726,16 @@ $( function() {
 						    	// window.location.href = "getaddpo";
 						    	 window.location.reload();
 					    }
+
 					});
 		
-				});
+
+					}); 
+
+				
 	 
 	
-	 $("#autocomplete,#creationdate,#expenseauto,#unittype,#mul").click(function(){
+	 /* $("#autocomplete,#creationdate,#expenseauto,#unittype,#mul").click(function(){
 			
 		
 		 $("#msg1").hide();
@@ -736,7 +745,7 @@ $( function() {
 		 $("#msg5").hide();
 		
 		
-	});
+	}); */
 	 
 	 
 	 function calculation(){

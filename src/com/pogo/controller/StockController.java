@@ -26,9 +26,12 @@ public class StockController {
 	 {
 		 return  new ModelAndView("addseriallotno");
 	 }
+//list of stock from productstock 
 @RequestMapping(value="viewstock", method=RequestMethod.GET)
-	 public ModelAndView  viewstock()
+	 public ModelAndView  viewstockList()
 	 {
+	
+	
 		 return  new ModelAndView("viewstock");
 	 }
 

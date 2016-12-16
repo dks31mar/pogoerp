@@ -117,16 +117,17 @@
 <body>
 
 
-	<!-- <div class="bootstrap-iso"> -->
+	
 	<div class="container">
 
-		<form:form class="well form-horizontal" action="update-employee"
-			name="forp" method="POST" commandName="employeebean" id="">
 
-			<%--  <form:hidden path="userempid"/> --%>
-
-
-			<fieldset>
+    <form:form class="well form-horizontal" action="update-employee" name="forp" method="POST" commandName="employeebean"
+     enctype="multipart/form-data">
+   
+   <%--  <form:hidden path="userempid"/> --%>
+   
+<!-- Form Name -->
+				<legend>Edit Employee</legend>
 
 <!-- Text input-->
 
@@ -169,27 +170,9 @@
 
 	</div> 
 
- <div class="form-group">
-  <label class="col-md-2 control-label">Employee Id</label>  
-  <div class="col-md-3 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  value="${employee.userempid}" name="userempid"  readonly="readonly"  class="form-control"  type="text">
-    </div>
-  </div>
-  <label class="col-md-2 control-label" >Employee Code<span
-					style="color: red;">*</span></label>  
-  <div class="col-md-3 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input   name="empCode"  value="${employee.empCode}" class="form-control" required="required" placeholder="A1243"  type="text">
-    </div>
-  </div>
-</div>
 
 
-				<!-- Form Name -->
-				<legend>Edit Employee</legend>
+				
 
 				<!-- Text input-->
 				<div class="form-group">
@@ -442,55 +425,49 @@
 								<%-- <option value="${employee.department}">${employee.department}
       <option value="HR">HR</option>
 	  <option value="DataEntry">Data Entry</option> --%>
+     
+    </select>
+  </div>
+</div>
+</div>
+<!-- Text input-->
+<div class="form-group"> 
+  <label class="col-md-2 control-label">Gender</label>
+    <div class="col-md-3 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="gender" class="form-control selectpicker" value="${employee.gender}">
+      <option value="Male">Male</option>
+      <option value="female">female</option>
+    </select>
+  </div>
+  </div>
+  
+   <label class="col-md-2 control-label" >Address<span
+					style="color: red;">*</span></label>  
+    <div class="col-md-3 inputGroupContainer">
+    <div class="input-group" style="width: 215px;height: 70px;" >
+        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+  <input  type="text" class="form-control" style="width: 215px;height: 70px;" name="address" value="${employee.address}" required="required" placeholder="Address">
+    </div>
+  </div>
+</div>
+<!-- Success message -->
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-2" align="center">
+    <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+    <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
+  </div>
+</div>
 
-							</select>
-						</div>
-					</div>
-				</div>
-				<!-- Text input-->
-				<div class="form-group">
-					<label class="col-md-2 control-label">Gender</label>
-					<div class="col-md-3 selectContainer">
-						<div class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-list"></i></span> <select name="gender"
-								class="form-control selectpicker">
-								<option value="${employee.gender}">${employee.gender}
-								<option value="Male">Male</option>
-								<option value="female">female</option>
-							</select>
-						</div>
-					</div>
-					<label class="col-md-2 control-label">Address<span
-						style="color: red;">*</span></label>
-					<div class="col-md-3 inputGroupContainer">
-						<div class="input-group" style="width: 215px; height: 70px;">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-home"></i></span> <input type="text"
-								class="form-control" style="width: 215px; height: 70px;"
-								name="address" value="${employee.address}" required="required"
-								placeholder="Address">
-						</div>
-					</div>
-				</div>
-				<!-- Success message -->
-				<!-- Button -->
-				<div class="form-group">
-					<label class="col-md-4 control-label"></label>
-					<div class="col-md-2" align="center">
-						<button type="submit" class="btn btn-warning">
-							Send <span class="glyphicon glyphicon-send"></span>
-						</button>
-						<button type="button" class="btn btn-warning"
-							onclick="history.back();">
-							Back <span class="glyphicon glyphicon-send"></span>
-						</button>
-					</div>
-				</div>
 
-			</fieldset>
+</fieldset>
 		</form:form>
 	</div>
+
+			
 
 </body>
 </html>
