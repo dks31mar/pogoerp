@@ -80,7 +80,7 @@ java.util.Date date = new java.util.Date();
 	
   <tr>
     <td>${loop.index+1}</td>
-    <td>${list1.qorefno}</td>
+    <td><a href="getquotationlistbyid?qporef=${list1.qorefno}&qpoid=${list1.poquotationdetailid}" target="_blank">${list1.qorefno}</a></td>
    <td>${list1.qodate}</td>
     <td></td>
     <td>${list1.custname}</td>

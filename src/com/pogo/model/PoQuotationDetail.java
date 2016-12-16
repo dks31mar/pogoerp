@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class PoQuotationDetail
 {
 		  @GeneratedValue(strategy=GenerationType.AUTO)
-		  @Column(name="")
+		  @Column(name="poquotationdetailid")
 		  private Integer poquotationdetailid;
 		  @Column(name="custname")
 		  private String custname;

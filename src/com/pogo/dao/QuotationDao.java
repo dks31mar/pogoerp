@@ -14,4 +14,14 @@ public interface QuotationDao {
 
 	List<PoQuotationDetail> viewQuotation();
 
+	List<PoQuotationItemDetail> getQuotationByref(String qporef);
+
+	String getproductdesbypro(String partno);
+
+	void updateQPoItemDtail(PoQuotationItemDetail pqidd);
+
+	void updateQPoDtail(PoQuotationDetail pqd);
+
+	Integer getqupodetailid(String qorefno);
+
 }

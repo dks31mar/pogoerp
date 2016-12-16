@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.pogo.bean.PoQuotationDetailBean;
 import com.pogo.bean.PoQuotationItemDetailBean;
+import com.pogo.model.PoQuotationItemDetail;
 
 public interface QuotationService {
 
@@ -12,5 +13,13 @@ public interface QuotationService {
 	void addQPoItemDtail(PoQuotationDetailBean poqd, PoQuotationItemDetailBean poqid);
 
 	List<PoQuotationDetailBean> viewQuotation();
+
+	List<PoQuotationItemDetailBean> getQuotationByref(String qporef);
+
+	String getproductdesbypro(String partno);
+
+	void updateQPoDtail(PoQuotationDetailBean poqd);
+
+	void updateQPoItemDtail(PoQuotationDetailBean poqd, PoQuotationItemDetailBean poqid);
 
 }

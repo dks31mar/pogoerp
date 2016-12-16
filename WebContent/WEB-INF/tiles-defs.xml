@@ -162,6 +162,10 @@
 			<put-attribute name="tilte" value="create quotition"/>
 			<put-attribute name="body" value="/WEB-INF/views/Quotation/createquotation.jsp"/>
 				</definition>
+				<definition name="getquotaionbyid" extends="baseLayout">
+			<put-attribute name="tilte" value="create quotition"/>
+			<put-attribute name="body" value="/WEB-INF/views/Quotation/editquotation.jsp"/>
+				</definition>
 				
 			<definition name="viewQuotation" extends="baseLayout">
 			<put-attribute name="title" value="View Quotation"/>
