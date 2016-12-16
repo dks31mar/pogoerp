@@ -3,7 +3,27 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
-       <tiles-definitions>
+
+<tiles-definitions>
+	<definition name="baseLayout" template="/WEB-INF/tiles/baseLayout.jsp">
+		<put-attribute name="title" value="Template" />
+		<put-attribute name="header" value="/WEB-INF/tiles/Homeheader.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/body.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	<definition name="add" template="/WEB-INF/views/addEmployee.jsp">
+	</definition>
+	<definition name="logout" template="/WEB-INF/views/LoginPage.jsp">
+	</definition>
+	<definition name="print"
+		template="/WEB-INF/views/prinicpalPO/prinicipalPO/PrintPoReport.jsp">
+	</definition>
+	<definition name="employeesList" template="/WEB-INF/views/employeesList.jsp">
+	</definition>
+	<definition name="addEmployee" template="/WEB-INF/views/addEmployee.jsp">
+	</definition>
+
+
        		<definition name="baseLayout" template="/WEB-INF/tiles/baseLayout.jsp">
        			<put-attribute name="title" value="Template" />
 				<put-attribute name="header" value="/WEB-INF/tiles/Homeheader.jsp" />
@@ -162,6 +182,10 @@
 			<put-attribute name="tilte" value="create quotition"/>
 			<put-attribute name="body" value="/WEB-INF/views/Quotation/createquotation.jsp"/>
 				</definition>
+				<definition name="getquotaionbyid" extends="baseLayout">
+			<put-attribute name="tilte" value="create quotition"/>
+			<put-attribute name="body" value="/WEB-INF/views/Quotation/editquotation.jsp"/>
+				</definition>
 				
 			<definition name="viewQuotation" extends="baseLayout">
 			<put-attribute name="title" value="View Quotation"/>
@@ -287,188 +311,656 @@
 			 <put-attribute name="body" value="/WEB-INF/views/Master/masters/CustomerSources.jsp" />
 			 </definition>
 
-            <!-- Lead Generation -->
-            <!-- New Mail Campaign -->
-             <definition name="getemaillist" extends="baseLayout" >
-			 <put-attribute name="title" value="newemaillist" />
-			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/newMailCampaign.jsp" />
-			 </definition>
-			 <!-- Add Email -->
-			 <definition name="addemaillist" extends="baseLayout" >
-			 <put-attribute name="title" value="newemaillist" />
-			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/addEmailList.jsp" />
-			 </definition>
 
-			 <!-- Add Address -->
-			 <definition name="getaddress" extends="baseLayout" >
-			 <put-attribute name="title" value="addaddress" />
-			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/addAddress.jsp" />
-			 </definition>
-			 <!-- import csv file -->
-			 <definition name="getcsvfile" extends="baseLayout">
-			 <put-attribute name="title" value="importcsvfile" />
-			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/importCsvFile.jsp" />
-			 </definition>
+	<definition name="MainPage" template="/WEB-INF/views/MainPage.jsp">
+	</definition>
+	<definition name="test" template="/WEB-INF/views/test.jsp">
+	</definition>
+
+
+	<definition name="AddPrinicpalPO" extends="baseLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/prinicpalPO/prinicipalPO/PrinicipalPo.jsp" />
+	</definition>
+	<definition name="savepro" extends="baseLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/prinicpalPO/prinicipalPO/PrinicipalPo.jsp" />
+	</definition>
+
+
+
+	<definition name="posummary" extends="baseLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/prinicpalPO/prinicipalPO/PoSummary.jsp" />
+	</definition>
+
+
+	<!-- ************************************************** used by satyendra 
+		*************************************************** -->
+
+	<definition name="AppUser" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/Master/appUser.jsp" />
+	</definition>
+	<definition name="branches" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/Master/branch.jsp" />
+	</definition>
+
+	<definition name="email" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/Master/email.jsp" />
+	</definition>
+
+
+	<definition name="sms" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/Master/sms.jsp" />
+	</definition>
+
+	<definition name="employee" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/Master/employee.jsp" />
+	</definition>
+	<definition name="import" extends="baseLayout">
+		<put-attribute name="body" value="/WEB-INF/views/Master/Import.jsp" />
+	</definition>
+
+	<definition name="region" extends="baseLayout">
+		<put-attribute name="title" value="Zones" />
+		<put-attribute name="body" value="/WEB-INF/views/Master/reagion.jsp" />
+	</definition>
+	<definition name="newbranch" extends="baseLayout">
+		<put-attribute name="title" value="Branches" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/newbranch.jsp" />
+	</definition>
+	<definition name="addbranch123" extends="baseLayout">
+		<put-attribute name="title" value="Add Branches" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/addbranch.jsp" />
+	</definition>
+	<definition name="eastbranch" extends="baseLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/eastbranch.jsp" />
+	</definition>
+
+	<definition name="northbranch" extends="baseLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/northbranch.jsp" />
+	</definition>
+
+	<definition name="southbranch" extends="baseLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/southbranch.jsp" />
+	</definition>
+	<definition name="westbranch" extends="baseLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/westbranch.jsp" />
+	</definition>
+	<definition name="editregion" extends="baseLayout">
+		<put-attribute name="title" value="Update Zones" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/editregion.jsp" />
+	</definition>
+	<definition name="addregion" extends="baseLayout">
+		<put-attribute name="title" value="Add Zones" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/addregion.jsp" />
+	</definition>
+	<definition name="addstates" extends="baseLayout">
+		<put-attribute name="title" value=" Add States" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/addstates.jsp" />
+	</definition>
+	<definition name="editstates" extends="baseLayout">
+		<put-attribute name="title" value=" Update States" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/editstates.jsp" />
+	</definition>
+	<definition name="editbranch" extends="baseLayout">
+		<put-attribute name="title" value="Update Branches" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/editbranch.jsp" />
+	</definition>
+	<definition name="addbranches" extends="baseLayout">
+		<put-attribute name="title" value="Add Branches" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/addbranches.jsp" />
+	</definition>
+	<definition name="states" extends="baseLayout">
+		<put-attribute name="title" value="States" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/states.jsp" />
+	</definition>
+	<definition name="competitiorsProfile" extends="baseLayout">
+		<put-attribute name="title" value="Competitiors Profile" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/Competitiors.jsp" />
+	</definition>
+
+	<definition name="feature" extends="baseLayout">
+
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/feature.jsp" />
+	</definition>
+	<definition name="feature" extends="baseLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/feature.jsp" />
+	</definition>
+	<definition name="competitior" extends="baseLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/updateCompetitiors.jsp" />
+	</definition>
+
+	<definition name="addplanAction" extends="baseLayout">
+		<put-attribute name="title" value="Add plan" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/addPlanAction.jsp" />
+	</definition>
+
+	<definition name="addaction" extends="baseLayout">
+		<put-attribute name="title" value="Add Action " />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/addaction.jsp" />
+	</definition>
+
+	<definition name="salesFunnel" extends="baseLayout">
+		<put-attribute name="title" value="sales funnel " />
+		<put-attribute name="body"
+			value="/WEB-INF/views/reports/salesfunnel.jsp" />
+	</definition>
+	<!--********************Invoice*********************************************** -->
+	<definition name="viewinvoice" extends="baseLayout">
+		<put-attribute name="title" value="View Invoice" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/invoice/viewinvoice.jsp" />
+	</definition>
+	<definition name="pendinginvoice" extends="baseLayout">
+		<put-attribute name="title" value="Pending Invoice" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/invoice/pendinginvoice.jsp" />
+	</definition>
+
+	<!--********************quotation*********************************************** -->
+
+	<definition name="quotation" extends="baseLayout">
+		<put-attribute name="tilte" value="create quotition" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Quotation/createquotation.jsp" />
+	</definition>
+
+	<definition name="viewQuotation" extends="baseLayout">
+		<put-attribute name="title" value="View Quotation" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Quotation/editviewquotation.jsp" />
+	</definition>
+
+	<!--********************customer po*********************************************** -->
+	<definition name="createOrder" extends="baseLayout">
+		<put-attribute name="title" value="create Order" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customerpo/ createorder.jsp" />
+	</definition>
+
+	<definition name="vieworder" extends="baseLayout">
+		<put-attribute name="title" value="View Order" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customerpo/vieworder.jsp" />
+	</definition>
+	<!--******************** collection*********************************************** -->
+
+	<definition name="addcollection" extends="baseLayout">
+		<put-attribute name="title" value="ADD Collection" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/collection/addcollection.jsp" />
+	</definition>
+	<definition name="pendinlist" extends="baseLayout">
+		<put-attribute name="title" value="Pendingorder list" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/collection/pendingorderlist.jsp" />
+	</definition>
+	<!--********************stock*********************************************** -->
+	<definition name="addseriallotno" extends="baseLayout">
+		<put-attribute name="title" value="Addserial lotno" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/stock/ addseriallotno.jsp" />
+	</definition>
+	<definition name="stockdetails" extends="baseLayout">
+		<put-attribute name="title" value="view stock" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/stock/stockdetails.jsp" />
+	</definition>
+
+	<definition name="stockinvoicedetails" extends="baseLayout">
+		<put-attribute name="title" value="view invoice stock" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/stock/stockinvoicedetails.jsp" />
+	</definition>
+
+
+	<definition name="viewstock" extends="baseLayout">
+		<put-attribute name="title" value="view stock" />
+		<put-attribute name="body" value="/WEB-INF/views/stock/viewstock.jsp" />
+	</definition>
+
+	<!--********************Reports*********************************************** -->
+
+	<definition name="pendingtasks" extends="baseLayout">
+		<put-attribute name="title" value="Pending Tasks "></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/reports/pendingTasks.jsp" />
+	</definition>
+	<definition name="pendingThingsto" extends="baseLayout">
+		<put-attribute name="title" value="Pending Thinks To "></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/reports/pendingThingsto.jsp" />
+	</definition>
+
+	<!--******************** followups*********************************************** -->
+	<definition name="followups" extends="baseLayout">
+		<put-attribute name="title" value="Followups "></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/reports/followups.jsp" />
+	</definition>
+
+	<!-- ************************************************** use by satyendra 
+		*************************************************** -->
+	<!-- <definition name="AddPrinicpalPO" extends="baseLayout" > <put-attribute 
+		name="body" value="/WEB-INF/views/test.jsp" /> </definition> -->
+
+	<!-- ************************************************** use by shweta *************************************************** -->
+	<!-- View Po -->
+	<definition name="viewpo" extends="baseLayout">
+		<put-attribute name="title" value="view"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/prinicpalPO/prinicipalPO/viewPo.jsp" />
+	</definition>
+
+	<!-- Edit -->
+	<definition name="edit" extends="baseLayout">
+		<put-attribute name="title" value="editpo"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/prinicpalPO/prinicipalPO/EditPo.jsp" />
+	</definition>
+
+	<!-- SupplierInvoiceView -->
+	<definition name="supplierinvoiceview" extends="baseLayout">
+		<put-attribute name="title" value="supplierinvoice"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/prinicpalPO/prinicipalPO/Invoice.jsp" />
+	</definition>
+
+	<!-- AcknowledgementView -->
+	<definition name="acknowledgementView" extends="baseLayout">
+		<put-attribute name="title" value="acknowledgement"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/prinicpalPO/prinicipalPO/Ack.jsp" />
+	</definition>
+
+	<!-- SupplierAcknowledgementView -->
+	<definition name="supplierackView" extends="baseLayout">
+		<put-attribute name="title" value="supplierack"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/prinicpalPO/prinicipalPO/Acksupplier.jsp" />
+	</definition>
+
+	<!-- Master masters pages -->
+
+
+	<!-- CustomerLevel -->
+	<definition name="getcustomerlevel" extends="baseLayout">
+		<put-attribute name="title" value="customerLevels"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/customerLevelsjsp.jsp" />
+	</definition>
+	<!-- Country -->
+	<definition name="getcountry" extends="baseLayout">
+		<put-attribute name="title" value="country"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/country.jsp" />
+	</definition>
+	<!-- State -->
+	<definition name="getstate" extends="baseLayout">
+		<put-attribute name="title" value="state"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/state.jsp" />
+	</definition>
+	<!-- District -->
+	<definition name="getdistrict" extends="baseLayout">
+		<put-attribute name="title" value="district"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/district.jsp" />
+	</definition>
+	<!-- Location -->
+	<definition name="getlocation" extends="baseLayout">
+		<put-attribute name="title" value="location"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/location.jsp" />
+	</definition>
+	<!-- Expense Master -->
+	<definition name="getexpensemaster" extends="baseLayout">
+		<put-attribute name="title" value="expensemaster"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/expensemaster.jsp" />
+	</definition>
+	<!-- Mode of dispatch -->
+	<definition name="getmodeofdispatch" extends="baseLayout">
+		<put-attribute name="title" value="modeofdispatch"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/modeOfDispatch.jsp" />
+	</definition>
+	<!-- Team Segment -->
+	<definition name="getteamsegment" extends="baseLayout">
+		<put-attribute name="title" value="teamsegment"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/teamsegment.jsp" />
+	</definition>
+
+	<definition name="suppliermasterpage" extends="baseLayout">
+		<put-attribute name="title" value="Supplier Master"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/suppliermaster.jsp" />
+	</definition>
+
+
+	<!-- CustomerSources -->
+	<definition name="getCustomerSources" extends="baseLayout">
+		<put-attribute name="title" value="CustomerSources" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/CustomerSources.jsp" />
+	</definition>
+
+	<!-- Lead Generation -->
+	<!-- New Mail Campaign -->
+	<definition name="getemaillist" extends="baseLayout">
+		<put-attribute name="title" value="newemaillist" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/LeadGeneration/newMailCampaign.jsp" />
+	</definition>
+	<!-- Add Email -->
+	<definition name="addemaillist" extends="baseLayout">
+		<put-attribute name="title" value="newemaillist" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/LeadGeneration/addEmailList.jsp" />
+	</definition>
+
+	<!-- Add Address -->
+	<definition name="getaddress" extends="baseLayout">
+		<put-attribute name="title" value="addaddress" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/LeadGeneration/addAddress.jsp" />
+	</definition>
+	<!-- import csv file -->
+	<definition name="getcsvfile" extends="baseLayout">
+		<put-attribute name="title" value="importcsvfile" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/LeadGeneration/importCsvFile.jsp" />
+	</definition>
             <!-- ViewEditDelete -->
-            <definition name="getViewEditDelete" extends="baseLayout">
-			 <put-attribute name="title" value="vieweditdelete" />
-			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/viewEditDelete.jsp" />
-			 </definition>
-            <!-- SelectfromSalesCall -->
-            <definition name="getmailinglist" extends="baseLayout">
-			 <put-attribute name="title" value="selectfromsalescalls" />
-			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/selectMailinglist.jsp" />
-			 </definition>
-			 <!-- SelectFromContacts -->
-			 <definition name="getselectfromcontacts" extends="baseLayout">
-			 <put-attribute name="title" value="selectfromsalescalls" />
-			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/selectFromContacts.jsp" />
-			 </definition>
-			 <!--SelectFromSalesCalls  -->
-			 <definition name="getselectfromsalescalls" extends="baseLayout">
-			 <put-attribute name="title" value="selectfromsalescalls" />
-			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/selectFromSalesCalls.jsp" />
-			 </definition>
-			 <!-- LeadGenerationontacts -->
-			 <!--Contact List -->
-			 <definition name="getcontactlist" extends="baseLayout">
-			 <put-attribute name="title" value="Contactlist" />
-			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/contactsList.jsp" />
-			 </definition>
-			 <!-- Contact form  -->
-			 <definition name="getcontactform" extends="baseLayout">
-			 <put-attribute name="title" value="Contact" />
-			 <put-attribute name="body" value="/WEB-INF/views/LeadGeneration/contactsForm.jsp" />
-			 </definition>
-			 <!-- Diary -->
-			 <!-- Expense Entry -->
-			 <definition name="expenseentry" extends="baseLayout">
-			 <put-attribute name="title" value="ExpenseEntry" />
-			 <put-attribute name="body" value="/WEB-INF/views/Diary/expenseEntery.jsp" />
-			 </definition>
-			 <!-- ExpenseReport -->
-			  <definition name="expensereport" extends="baseLayout">
-			 <put-attribute name="title" value="ExpenseReport" />
-			 <put-attribute name="body" value="/WEB-INF/views/Diary/expenseReport.jsp" />
-			 </definition>
-			 <!--ExpenseReportDetails  -->
-			 <definition name="expensereportdetails" extends = "baseLayout">
-			 <put-attribute name="title" value = "ExpenseReportDetails"></put-attribute>
-			 <put-attribute name="body" value = "/WEB-INF/views/Diary/expenseReportDetails.jsp"></put-attribute>
-			 </definition>
-		<!-- ************************************************* use by shweta *************************************************** -->	
-			<definition name="productheadpage" extends="baseLayout" >
-			 <put-attribute name="title" value="Product Head"></put-attribute>
-			<put-attribute name="body" value="/WEB-INF/views/Master/product/producthead.jsp" />
-			</definition>
-			
-			
-			<definition name="productsubheadpage" extends="baseLayout" >
-			 <put-attribute name="title" value="Product Sub Head"></put-attribute>
-			<put-attribute name="body" value="/WEB-INF/views/Master/product/productsubhead.jsp" />
-			</definition>
-			
-			<!-- Master product pages currency-->
-	      <definition name="currency" extends="baseLayout" >
-	      <put-attribute name="title" value="Add Currency"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/Master/product/currency.jsp" />
-			</definition>
-			
-			<!-- Master product pages unit-->
-	      <definition name="getunit" extends="baseLayout" >
-	      <put-attribute name="title" value="Units"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/Master/product/units.jsp" />
-			</definition>
-			
-			
-			<definition name="appregis" extends="baseLayout" >
-	      <put-attribute name="title" value="App"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileappregistration.jsp" />
-			</definition>
-			
-			<definition name="promaster" extends="baseLayout" >
-	      <put-attribute name="title" value="Product Master"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/Master/product/productmaster.jsp" />
-			</definition>
-			
-			
-			 <definition name="getaddproductpage" extends="baseLayout" >
-	      <put-attribute name="title" value="Add Product"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/Master/product/addproduct.jsp" />
-			</definition>
-			
-			<!-- Employees -->
-       		
-			<definition name="getuseremp" extends="baseLayout" >
-			<put-attribute name="title" value="Employee" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/useremployee.jsp" />
-			</definition>
-			<definition name="editUser" extends="baseLayout" >
-			<put-attribute name="title" value="Edit Employee" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/editUser.jsp" />
-			</definition>
-			<definition name="addUser" extends="baseLayout" >
-			<put-attribute name="title" value="Add Employee" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/addUser.jsp" />
-			</definition>
-			
-			<definition name="testMap" extends="baseLayout" >
-			<put-attribute name="title" value="Add Employee" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/TestJsp.jsp" />
-			</definition>
-			<!-- Role -->
-			
-       		<definition name="designation" extends="baseLayout" >
-			<put-attribute name="title" value="Add Designation" />
-			<put-attribute name="body" value="/WEB-INF/views/Master/organisation/designationHome.jsp" />
-			</definition>
-			<definition name="editDesignation" extends="baseLayout" >
-			<put-attribute name="title" value="Edit Designation" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/editDesignation.jsp" />
-			</definition>
-			<definition name="Profile" extends="baseLayout" >
-				<put-attribute name="title" value="Company Info"></put-attribute>
-				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/companyProfile.jsp" />
-			</definition>
-			<!-- Profile -->
-			<definition name="profile" extends="baseLayout" >
-			<put-attribute name="title" value="Add Profile" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/companyprofile.jsp" />
-			</definition>
-       		
-       		
-       		<!-- Mobile App Registration -->
-       		
-       		<definition name="mobileApp" extends="baseLayout" >
-			<put-attribute name="title" value="Mobile App" />
-				<put-attribute name="body" value="/WEB-INF/views/Master/organisation/mobileApp.jsp" />
-			</definition>
-			<!-- Customer Sales Enquiry Call -->
-			
+	<definition name="getViewEditDelete" extends="baseLayout">
+		<put-attribute name="title" value="vieweditdelete" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/LeadGeneration/viewEditDelete.jsp" />
+	</definition>
+	<!-- SelectfromSalesCall -->
+	<definition name="getmailinglist" extends="baseLayout">
+		<put-attribute name="title" value="selectfromsalescalls" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/LeadGeneration/selectMailinglist.jsp" />
+	</definition>
+	<!-- SelectFromContacts -->
+	<definition name="getselectfromcontacts" extends="baseLayout">
+		<put-attribute name="title" value="selectfromsalescalls" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/LeadGeneration/selectFromContacts.jsp" />
+	</definition>
+	<!--SelectFromSalesCalls -->
+	<definition name="getselectfromsalescalls" extends="baseLayout">
+		<put-attribute name="title" value="selectfromsalescalls" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/LeadGeneration/selectFromSalesCalls.jsp" />
+	</definition>
+	<!-- LeadGenerationontacts -->
+	<!--Contact List -->
+	<definition name="getcontactlist" extends="baseLayout">
+		<put-attribute name="title" value="Contactlist" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/LeadGeneration/contactsList.jsp" />
+	</definition>
+	<!-- Contact form -->
+	<definition name="getcontactform" extends="baseLayout">
+		<put-attribute name="title" value="Contact" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/LeadGeneration/contactsForm.jsp" />
+	</definition>
+	<!-- Diary -->
+	<!-- Expense Entry -->
+	<definition name="expenseentry" extends="baseLayout">
+		<put-attribute name="title" value="ExpenseEntry" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Diary/expenseEntery.jsp" />
+	</definition>
+	<!-- ExpenseReport -->
+	<definition name="expensereport" extends="baseLayout">
+		<put-attribute name="title" value="ExpenseReport" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Diary/expenseReport.jsp" />
+	</definition>
+	<!--ExpenseReportDetails -->
+	<definition name="expensereportdetails" extends="baseLayout">
+		<put-attribute name="title" value="ExpenseReportDetails"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Diary/expenseReportDetails.jsp"></put-attribute>
+	</definition>
+		<!-- ************************************************* use by shweta *************************************************** -->
+	<definition name="productheadpage" extends="baseLayout">
+		<put-attribute name="title" value="Product Head"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/product/producthead.jsp" />
+	</definition>
 
-			<definition name="getSales" extends="baseLayout" >
-			<put-attribute name="title" value="Customer" />
-				<put-attribute name="body" value="/WEB-INF/views/customer/customerSales.jsp" />
-			</definition>
-			<definition name="getSalesList" extends="baseLayout" >
-			<put-attribute name="title" value="Customer List" />
-				<put-attribute name="body" value="/WEB-INF/views/customer/salesCustomerList.jsp" />
-			</definition>
 
-			<definition name="AddDiaryForEntrySales" extends="baseLayout" >
-			<put-attribute name="title" value="Add Diary" />
-			<put-attribute name="body" value="/WEB-INF/views/customer/AddDiaryForEntery.jsp" />
-			</definition>
+	<definition name="productsubheadpage" extends="baseLayout">
+		<put-attribute name="title" value="Product Sub Head"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/product/productsubhead.jsp" />
+	</definition>
 
-			<definition name="CreateQuotationForm" extends="baseLayout" >
-			<put-attribute name="title" value="Create Quotation" />
-			<put-attribute name="body" value="/WEB-INF/views/customer/createQuotation.jsp" />
-			</definition>
-			
-			<definition name="AddFollowupForm" extends="baseLayout" >
-			<put-attribute name="title" value="Add Followup " />
-			<put-attribute name="body" value="/WEB-INF/views/customer/addFollowup.jsp" />
-			</definition>
+	<!-- Master product pages currency -->
+	<definition name="currency" extends="baseLayout">
+		<put-attribute name="title" value="Add Currency"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/product/currency.jsp" />
+	</definition>
+
+	<!-- Master product pages unit -->
+	<definition name="getunit" extends="baseLayout">
+		<put-attribute name="title" value="Units"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/product/units.jsp" />
+	</definition>
+
+
+	<definition name="appregis" extends="baseLayout">
+		<put-attribute name="title" value="App"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/mobileappregistration.jsp" />
+	</definition>
+
+	<definition name="promaster" extends="baseLayout">
+		<put-attribute name="title" value="Product Master"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/product/productmaster.jsp" />
+	</definition>
+
+
+	<definition name="getaddproductpage" extends="baseLayout">
+		<put-attribute name="title" value="Add Product"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/product/addproduct.jsp" />
+	</definition>
+
+	<!-- Employees -->
+
+	<definition name="getuseremp" extends="baseLayout">
+		<put-attribute name="title" value="Employee" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/useremployee.jsp" />
+	</definition>
+	<definition name="editUser" extends="baseLayout">
+		<put-attribute name="title" value="Edit Employee" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/editUser.jsp" />
+	</definition>
+	<definition name="addUser" extends="baseLayout">
+		<put-attribute name="title" value="Add Employee" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/addUser.jsp" />
+	</definition>
+
+	<definition name="testMap" extends="baseLayout">
+		<put-attribute name="title" value="Add Employee" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/TestJsp.jsp" />
+	</definition>
+	<!-- Role -->
+
+	<definition name="designation" extends="baseLayout">
+		<put-attribute name="title" value="Add Designation" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/designationHome.jsp" />
+	</definition>
+	<definition name="editDesignation" extends="baseLayout">
+		<put-attribute name="title" value="Edit Designation" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/editDesignation.jsp" />
+	</definition>
+	<definition name="Profile" extends="baseLayout">
+		<put-attribute name="title" value="Company Info"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/companyProfile.jsp" />
+	</definition>
+	<!-- Profile -->
+	<definition name="profile" extends="baseLayout">
+		<put-attribute name="title" value="Add Profile" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/companyprofile.jsp" />
+	</definition>
+
+
+	<!-- Mobile App Registration -->
+
+	<definition name="mobileApp" extends="baseLayout">
+		<put-attribute name="title" value="Mobile App" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/mobileApp.jsp" />
+	</definition>
+	<!-- Customer Sales Enquiry Call -->
+
+
+	<definition name="getSales" extends="baseLayout">
+		<put-attribute name="title" value="Customer" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/customerSales.jsp" />
+	</definition>
+	<definition name="getSalesList" extends="baseLayout">
+		<put-attribute name="title" value="Customer List" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/salesCustomerList.jsp" />
+	</definition>
+
+	<definition name="AddDiaryForEntrySales" extends="baseLayout">
+		<put-attribute name="title" value="Add Diary" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/AddDiaryForEntery.jsp" />
+	</definition>
+
+
+	<definition name="CreateQuotationForm" extends="baseLayout">
+		<put-attribute name="title" value="Create Quotation" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/createQuotation.jsp" />
+	</definition>
+
+	<definition name="AddFollowupForm" extends="baseLayout">
+		<put-attribute name="title" value="Add Followup " />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/addFollowup.jsp" />
+	</definition>
+
+	<definition name="editcustomer" extends="baseLayout">
+		<put-attribute name="title" value="Edit Customer " />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/editCustomer.jsp" />
+	</definition>
+	<definition name="attachfiles" extends="baseLayout">
+		<put-attribute name="title" value="Attach Files List" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/customer/followupAttachList.jsp" />
+	</definition>
+
+	<definition name="department" extends="baseLayout">
+		<put-attribute name="title" value="Department " />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/department.jsp" />
+	</definition>
+
+	<!-- Reports -->
+	<definition name="pendingthings" extends="baseLayout">
+		<put-attribute name="title" value="Report " />
+		<put-attribute name="body"
+			value="/WEB-INF/views/reports/pendingThingsto.jsp" />
+	</definition>
+	<definition name="editdiary" extends="baseLayout">
+		<put-attribute name="title" value="Report " />
+		<put-attribute name="body"
+			value="/WEB-INF/views/reports/updateDiary.jsp" />
+	</definition>
+
+
+	<!-- Permission for SMS -->
+	<definition name="getsms" extends="baseLayout">
+		<put-attribute name="title" value="sms permission" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/organisation/sms.jsp" />
+	</definition>
+
+
+	<definition name="getserviceprovider" extends="baseLayout">
+		<put-attribute name="title" value="Srevice Provider" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/DispatchServiceProvider.jsp" />
+	</definition>
+
+	<definition name="getaddserviceprovider" extends="baseLayout">
+		<put-attribute name="title" value="Srevice Provider" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/addservice.jsp" />
+	</definition>
+
+
+	<definition name="editserviceprovider" extends="baseLayout">
+		<put-attribute name="title" value="Srevice Provider" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/masters/editservice.jsp" />
+	</definition>
+
+
+	<definition name="editproductdata" extends="baseLayout">
+		<put-attribute name="title" value="Srevice Provider" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/Master/product/editproduct.jsp" />
+	</definition>
+
+
+	<definition name="followupbydatenid" extends="baseLayout">
+		<put-attribute name="title" value="Follow Up Report" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/reports/followupreport.jsp" />
+	</definition>
+
+	<definition name="salesFunnel" extends="baseLayout">
+		<put-attribute name="title" value="Follow Up Report" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/reports/salesfunnel.jsp" />
+	</definition>
+
 
 				
             <definition name="editcustomer" extends="baseLayout" >
@@ -494,6 +986,11 @@
 			 <definition name="editdiary" extends="baseLayout" >
 			<put-attribute name="title" value="Report " />
 			<put-attribute name="body" value="/WEB-INF/views/reports/updateDiary.jsp" />
+			</definition> 
+			<!-- CustomerPo -->
+			 <definition name="getCustomerPo" extends="baseLayout" >
+			<put-attribute name="title" value="Customer Po " />
+			<put-attribute name="body" value="/WEB-INF/views/customerPo/createCustomerPo.jsp" />
 			</definition> 
 			 
 			
@@ -537,3 +1034,4 @@
 				<put-attribute name="body" value="/WEB-INF/views/reports/salesfunnel.jsp" />
 			</definition>
 	      </tiles-definitions>
+

@@ -228,9 +228,13 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		
 	}
 	@Override
-	public void adduserEmp(UserEmployeeBean userDTO,String path) throws ParseException 
+
+	public void adduserEmp(UserEmployeeBean userDTO,String anem) throws ParseException 
+
+
+
 	{
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>       service method                       "+path);
+		
 		SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd-yyyy");
 		//SimpleDateFormat df=new SimpleDateFormat("MMM-dd-yyyy");
 		UserEmployee emp=new UserEmployee();
@@ -255,9 +259,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDepartment(userDTO.getDepartment());
 		emp.setEmpCode(userDTO.getEmpCode());
 		emp.setMiddlename(userDTO.getMiddlename());
-		emp.setUserProfile(path);
-		
-		
+		emp.setUserProfile(anem);
 		emp.setActive(true);
 		emp.setEmpStatus(true);
 		userEmpdao.addUser(emp);
@@ -287,6 +289,8 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 			//String date2=date1.split("00:00:00:0")[0];
 			//data.setDateofjoining(dateformat.parse(date2));
 			data.setDateofjoining(list.getDateofjoining());
+			//data.setProfile(list.getUserProfile());
+			data.setProfile(list.getUserProfile());
 			data.setFirstname(list.getFirstname());
 			data.setMiddlename(list.getMiddlename());
 			data.setLastname(list.getLastname());
@@ -356,7 +360,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		empbean.setGender(empedit.getGender());
 		empbean.setUsermobile(empedit.getUsermobile());
 		empbean.setPhone(empedit.getPhone());
-		
+		empbean.setProfile(empedit.getUserProfile());
 		empbean.setPassword(empedit.getPassword());
 		empbean.setRepassword(empedit.getRepassword());
 		empbean.setMiddlename(empedit.getMiddlename());
@@ -394,6 +398,15 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDepartment(userEmployeeBean.getDepartment());
 		emp.setMiddlename(userEmployeeBean.getMiddlename());
 		emp.setEmpCode(userEmployeeBean.getEmpCode());
+		//if(userEmployeeBean.getUserProfile().getSize() > 0
+		//  && userEmployeeBean.getUserProfile() !=null)
+		  //{
+			emp.setUserProfile(userEmployeeBean.getUserProfile().getOriginalFilename());
+		 // }
+		// else 
+		// { 
+			// emp.setUserProfile(userEmployeeBean.getProfile()); 
+			// }
 		emp.setActive(true);
 		emp.setEmpStatus(true);
 		userEmpdao.updateEmp(emp);

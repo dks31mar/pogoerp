@@ -7,42 +7,46 @@
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 
 
 
- <!-- <link rel="stylesheet" type="text/css"
+<!-- <link rel="stylesheet" type="text/css"
 	href="resources/css/jquery.dialogbox.css" />
     <script src="resources/plugins/jQuery/jquery-1.9.1.min.js"
 	type="text/javascript"></script> -->
-	
-   
+
+
 
 <style>
-
-#success_message{ display: Edited;}
+#success_message {
+	display: Edited;
+}
 </style>
 
 
 
-	 
+
 <div id="message" style="display: none;"></div>
 <div id="body">
-<div class="container">
+	<div class="container">
 
-    <form:form class="well form-horizontal" name="forp" action="" method="POST"  commandName="regionEdit"
-    id="" >
-   
-<fieldset>
+		<form:form class="well form-horizontal" name="forp" action=""
+			method="POST" commandName="regionEdit" id="">
 
-<!-- Form Name -->
-<legend>Add Zones</legend>
-  
-<!-- Text input-->
-<%--
+			<fieldset>
+
+				<!-- Form Name -->
+				<legend>Add Zones</legend>
+
+				<!-- Text input-->
+				<%--
 <div class="form-group">
   <label class="col-md-2 control-label" >Region Id</label> 
     <div class="col-md-3 inputGroupContainer">
@@ -52,56 +56,85 @@
     </div>
   </div>
   --%>
-  <span style="color: red;text-align: center;text-transform: uppercase;" id="messagespan">please fill blank or (*) fileds</span>
-<div class="form-group">
-  <label class="col-md-2 control-label" >Zone Name</label> 
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input value="${zones.zonesid}"  name="zonesid" placeholder="Zone Name" id="zoneid"  class="form-control" required="required" type="hidden">
-  <input value="${zones.zonesname}" name="zonesname"  placeholder="Zone Name" pattern="[a-zA-Z]+" id="regionname" required="required"  pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" class="form-control"  type="text" oninput="funcal();">
-    </div>
-  </div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">E-Mail Id<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-  <input  value="${zones.zonesmail}"  placeholder="E-Mail Address" class="form-control" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" id="emailid" required="required" type="email" 	pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" oninput="funcal();">
-    </div>
-  </div> 
-</div>
-<div class="form-group">
-  <label class="col-md-2 control-label">Mobile No #<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-  <input value="${zones.zonesphone}"  class="form-control" placeholder="8285080678" type="text" pattern="^\d{1,10}$" required="required" id="mobileno" required="required" oninput="funcal();">
-    </div>
- 
-</div>
- <label class="col-md-2 control-label" style="margin-left: -62px;">Zone Address<span style="color: red;">*</span></label>  
-    <div class="col-md-3 inputGroupContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-   <input  value="${zones.zones}"  placeholder="Zones Address" class="form-control"  id="regadress" required="required" type="address" oninput="funcal();">
-    </div>
-  </div>
-</div>
+				<span
+					style="color: red; text-align: center; text-transform: uppercase;"
+					id="messagespan">please fill blank or (*) fileds</span>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Zone Name</label>
+					<div class="col-md-3 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-user"></i></span> <input
+								value="${zones.zonesid}" name="zonesid" placeholder="Zone Name"
+								id="zoneid" class="form-control" required="required"
+								type="hidden"> <input value="${zones.zonesname}"
+								name="zonesname" placeholder="Zone Name" pattern="[a-zA-Z]+"
+								id="regionname" required="required"
+								pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" class="form-control"
+								type="text" oninput="funcal();">
+						</div>
+					</div>
+					<label class="col-md-2 control-label" style="margin-left: -62px;">E-Mail
+						Id<span style="color: red;">*</span>
+					</label>
+					<div class="col-md-3 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-envelope"></i></span> <input
+								value="${zones.zonesmail}" placeholder="E-Mail Address"
+								class="form-control"
+								pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
+								id="emailid" required="required" type="email"
+								pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
+								oninput="funcal();">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">Mobile No #<span
+						style="color: red;">*</span></label>
+					<div class="col-md-3 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-earphone"></i></span> <input
+								value="${zones.zonesphone}" class="form-control"
+								placeholder="8285080678" type="text" pattern="^\d{1,10}$"
+								required="required" id="mobileno" required="required"
+								oninput="funcal();">
+						</div>
+
+					</div>
+					<label class="col-md-2 control-label" style="margin-left: -62px;">Zone
+						Address<span style="color: red;">*</span>
+					</label>
+					<div class="col-md-3 inputGroupContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-home"></i></span> <input
+								value="${zones.zones}" placeholder="Zones Address"
+								class="form-control" id="regadress" required="required"
+								type="address" oninput="funcal();">
+						</div>
+					</div>
+				</div>
 
 
-<!-- Text input-->
+				<!-- Text input-->
 
-<!-- Text input-->
-<div class="form-group"> 
-  <label class="col-md-2 control-label">Fax No</label>
-    <div class="col-md-3 selectContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-        <input  value="${zones.zonesfax}"  placeholder="Fax No" class="form-control"   id="fax" required="required" type="fax" oninput="funcal();">
-   
-  </div>
-  </div>
-  <!--  
+				<!-- Text input-->
+				<div class="form-group">
+					<label class="col-md-2 control-label">Fax No</label>
+					<div class="col-md-3 selectContainer">
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="glyphicon glyphicon-envelope"></i></span> <input
+								value="${zones.zonesfax}" placeholder="Fax No"
+								class="form-control" id="fax" required="required" type="fax"
+								oninput="funcal();">
+
+						</div>
+					</div>
+					<!--  
    <label class="col-md-2 control-label" style="margin-left: -62px;">Zone Address<span style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
     <div class="input-group">
@@ -109,26 +142,31 @@
    <input  value="${zones.zonesmail}"  placeholder="Zones Address" class="form-control"  id="address" required="required" type="address" oninput="funcal();">
     </div>
   </div>-->
-</div>
-<!-- Success message -->
+				</div>
+				<!-- Success message -->
 
-<!-- <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for Register</div> -->
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label"></label>
-  <div class="col-md-2" align="center">
-    <button type="button" class="btn btn-warning" id="senddata">Send <span class="glyphicon glyphicon-send"></span></button>
-    
-    <button type="button" class="btn btn-warning" onclick="history.back();">Back <span class="glyphicon glyphicon-send"></span></button>
-  </div>
+				<!-- <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for Register</div> -->
+				<!-- Button -->
+				<div class="form-group">
+					<label class="col-md-4 control-label"></label>
+					<div class="col-md-2" align="center">
+						<button type="button" class="btn btn-warning" id="senddata">
+							Send <span class="glyphicon glyphicon-send"></span>
+						</button>
+
+						<button type="button" class="btn btn-warning"
+							onclick="history.back();">
+							Back <span class="glyphicon glyphicon-send"></span>
+						</button>
+					</div>
+				</div>
+
+			</fieldset>
+		</form:form>
+	</div>
 </div>
 
-</fieldset>
-</form:form>
-</div>
-</div>
-
-       <script type="text/javascript">
+<script type="text/javascript">
 
 	  $( function() {
 		    $("#datepickerDob" ).datepicker();

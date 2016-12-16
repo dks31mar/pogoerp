@@ -4,7 +4,8 @@
 	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="resources/css/displaytag.css" />
+<link rel="stylesheet" type="text/css"
+	href="resources/css/displaytag.css" />
 <link rel="stylesheet" type="text/css"
 	href="resources/css/messagebox.css" />
 <link rel="stylesheet" type="text/css" href="resources/css/autocom.css" />
@@ -27,193 +28,193 @@ java.util.Date date = new java.util.Date();
 System.out.println();
 %>
 <form method="POST" action="savepodetails">
-		<div class="row" style="margin-top: 15px">
-			<br>
-			<div align="center">
-				<i>
-				
-				</i> <input type="hidden" name="profile" value="0" />
-			</div>
+	<div class="row" style="margin-top: 15px">
+		<br>
+		<div align="center">
+			<i> </i> <input type="hidden" name="profile" value="0" />
 		</div>
+	</div>
 
-		<div class="row">
+	<div class="row">
 
-			<div class="page-heading col-sm-11" id="createpo"
-				style="background-color: #3C8DBC; left: 10px">
-				<span class="glyphicon glyphicon-copy"></span> Create PO
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="normal" type="radio"
-					name="potype" checked />Normal <input id="CBW" type="radio"
-					name="potype" />CBW
-				
-			</div>
+		<div class="page-heading col-sm-11" id="createpo"
+			style="background-color: #3C8DBC; left: 10px">
+			<span class="glyphicon glyphicon-copy"></span> Create PO
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id="normal" type="radio"
+				name="potype" checked />Normal <input id="CBW" type="radio"
+				name="potype" />CBW
+
 		</div>
+	</div>
 
-		<div class="row" id="editpo">
-			<div class="page-heading col-sm-11"
-				style="background-color: #3C8DBC; left: 10px">
-				<span class="glyphicon glyphicon-copy"></span> Edit PO
-			</div>
+	<div class="row" id="editpo">
+		<div class="page-heading col-sm-11"
+			style="background-color: #3C8DBC; left: 10px">
+			<span class="glyphicon glyphicon-copy"></span> Edit PO
 		</div>
-		
-		
+	</div>
+
+
 	<div style="border: 1px solid #CCCCCC; padding: 7px; width: 93%">
 		<div class="row form-group">
 
-				<div class="col-sm-3 form-level">
-					PO Reference No:<font color="#FF0000">*</font>
-				</div>
-				<div class="col-sm-4">
-					<input type="text" name="porefno" placeholder="PO Reference No."
-						onkeyup="myFunction()" id="porefno" size="150" value="<%=norml %>"
-						class="form-control" />
-				</div>
-
-				<div class="col-sm-1 form-level">
-					Date:<font color="#FF0000">*</font>
-				</div>
-				<div class="col-sm-2">
-					<span> <input type="text" class="form-control" name="dateTodate"
-						id="datepicker" value="<%=dateFormat.format(date) %>" ReadOnly></input>
-						
-					</span>
-
-				</div>
+			<div class="col-sm-3 form-level">
+				PO Reference No:<font color="#FF0000">*</font>
 			</div>
-			<div class="row form-group">
-				<div class="col-sm-3 form-level">
-					Principal Name:<font color="#FF0000">*</font>
-				</div>
-				<div class="col-sm-9">
-					<input type="text" name="principalname" id="prinicipalautocom"
-						placeholder="Principal Name" value=""
-						class="form-control" style="display: inline-block;" >
-				</div>
+			<div class="col-sm-4">
+				<input type="text" name="porefno" placeholder="PO Reference No."
+					onkeyup="myFunction()" id="porefno" size="150" value="<%=norml %>"
+					class="form-control" />
 			</div>
-			<div class="row form-group">
-				<div class="col-sm-3 form-level">
-					Address:<font color="#FF0000">*</font>
-				</div>
-				<div class="col-sm-9">
-					<textarea rows="4" cols="77" name="address"
-						style="border-radius: 5px; background-color: #f2f2f2;" readonly id="addresstextarea"> </textarea>
-						
-				</div>
+
+			<div class="col-sm-1 form-level">
+				Date:<font color="#FF0000">*</font>
 			</div>
-			<hr style="color: black">
-					<div class="row form-group">
-						<div class="col-sm-7">
-						</div>
-					</div>
-				
-					<table style="width: 100%; bottom: 15px; position: relative;" border="0" id="quotprodtable">
-					<thead>
-						<tr bgcolor="#3C8DBC">
-							<td style="display: none;"><label>id</label> </td>
-									<td class="col-sm-1 form-level" style="width: 10px">&nbsp;
-										<font size="2" color="white">
-										<label>S.No.</label></font></td>
-									<td class="col-sm-3 form-level" style="width: 80px"align="center">&nbsp;<font size="2" color="white">
-										<label >Part No</label></font></td>
-									<td align="center" class="col-sm-1 form-level"style="width: 80px">&nbsp;&nbsp;&nbsp;<font size="2" color="white">
-										<label >Description</label></font></td>
-									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label id="tpinchangelable">TP In JPY</label></font></td>
-									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label >QTY</label></font></td>
-									<td align="center">&nbsp;<font size="2" style="width: 80px"color="white">
-										<label id="totalchangelable">Total JPY</label></font></td>
-									<td align="center">&nbsp;<font size="2" style="width: 65px"color="white">
-										<label >Customer PO Reference</label></font></td>
-							<%-- <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white"><label path="">Total INR</label></font> --%>
-					
-					</tr>
-					</thead>
-					<tbody id="addprolisttbody">
-					
-					</tbody>
-					</table>
-					
-					<table>
-					<tr>
-					<td style="display: none;"><input type="hidden" value="" id="getid1"></input> </td>
-					<td style="right: 5px; position: relative;">&nbsp; 
-					<input type='text' style='width: 60px' name='posrno' id='sr'
-								value="" class='form-control'/></td>
-							<td style="left: 2px; position: relative; width: 150px">&nbsp;
-								<input type='text' value="" name='particulee1'
-								style='overflow: auto; border-radius: 3px; width: 223px;'
-								id='autocomplete' class='form-control'
-								/>
-							</td>
-							<td style="width: 250px">&nbsp; <input name='description'
-									id='description' class='form-control'
-									style="text-align: center;width: 238px;" value="" ></input></td>
-							
-							<td style="right: 7px; position: relative;">&nbsp; <input
-								type='text' style='text-align: center;' name='tpinjpy' 
-								id='tpinjpy' value="" class='form-control' /></td>
+			<div class="col-sm-2">
+				<span> <input type="text" class="form-control"
+					name="dateTodate" id="datepicker"
+					value="<%=dateFormat.format(date) %>" ReadOnly></input>
 
-							<td align="center" style="right: 4px; position: relative;">&nbsp;
-								<input  type='text' style='text-align: center;' name='qty' onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-								id='qty' class='form-control' value=""/>
-							</td>
-							<td align="center">&nbsp; 
-							<input  type='text'
-								style='text-align: center;' name='totaljpy' id='totaljpy' value=""
-								class='form-control'  /></td>
+				</span>
 
-							<td align="center">&nbsp; 
-							
-							<input type='text'
-								style='text-align: center;width: 132px;' onkeyup='this.value=value.toUpperCase();' 
-								name='customerporefe' id='customerporefe' value=""
-								class='form-control'/>
-								
-							</td>
-							<td>
-								<input type="hidden" style="text-align:center;" name="unitcost" id="unitcostx" value="" class="form-control"  ></td>
-							<td>
-							<td align="center" style="background-color: #E6E6E6;">&nbsp; <input type="button" value='+'
-							 id='addmorepro12' class='btn btn-success pull-right' data-toggle='tooltip'
-								title='Add More Product' />
-					</tr>
-					
-					</table>
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="col-sm-3 form-level">
+				Principal Name:<font color="#FF0000">*</font>
+			</div>
+			<div class="col-sm-9">
+				<input type="text" name="principalname" id="prinicipalautocom"
+					placeholder="Principal Name" value="" class="form-control"
+					style="display: inline-block;">
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="col-sm-3 form-level">
+				Address:<font color="#FF0000">*</font>
+			</div>
+			<div class="col-sm-9">
+				<textarea rows="4" cols="77" name="address"
+					style="border-radius: 5px; background-color: #f2f2f2;" readonly
+					id="addresstextarea"> </textarea>
+
+			</div>
+		</div>
+		<hr style="color: black">
+		<div class="row form-group">
+			<div class="col-sm-7"></div>
+		</div>
+
+		<table style="width: 100%; bottom: 15px; position: relative;"
+			border="0" id="quotprodtable">
+			<thead>
+				<tr bgcolor="#3C8DBC">
+					<td style="display: none;"><label>id</label></td>
+					<td class="col-sm-1 form-level" style="width: 10px">&nbsp; <font
+						size="2" color="white"> <label>S.No.</label></font></td>
+					<td class="col-sm-3 form-level" style="width: 80px" align="center">&nbsp;<font
+						size="2" color="white"> <label>Part No</label></font></td>
+					<td align="center" class="col-sm-1 form-level" style="width: 80px">&nbsp;&nbsp;&nbsp;<font
+						size="2" color="white"> <label>Description</label></font></td>
+					<td align="center">&nbsp;<font size="2" style="width: 80px"
+						color="white"> <label id="tpinchangelable">TP In
+								JPY</label></font></td>
+					<td align="center">&nbsp;<font size="2" style="width: 80px"
+						color="white"> <label>QTY</label></font></td>
+					<td align="center">&nbsp;<font size="2" style="width: 80px"
+						color="white"> <label id="totalchangelable">Total
+								JPY</label></font></td>
+					<td align="center">&nbsp;<font size="2" style="width: 65px"
+						color="white"> <label>Customer PO Reference</label></font></td>
+					<%-- <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white"><label path="">Total INR</label></font> --%>
+
+				</tr>
+			</thead>
+			<tbody id="addprolisttbody">
+
+			</tbody>
+		</table>
+
+		<table>
+			<tr>
+				<td style="display: none;"><input type="hidden" value=""
+					id="getid1"></input></td>
+				<td style="right: 5px; position: relative;">&nbsp; <input
+					type='text' style='width: 60px' name='posrno' id='sr' value=""
+					class='form-control' /></td>
+				<td style="left: 2px; position: relative; width: 150px">&nbsp;
+					<input type='text' value="" name='particulee1'
+					style='overflow: auto; border-radius: 3px; width: 223px;'
+					id='autocomplete' class='form-control' />
+				</td>
+				<td style="width: 250px">&nbsp; <input name='description'
+					id='description' class='form-control'
+					style="text-align: center; width: 238px;" value=""></input></td>
+
+				<td style="right: 7px; position: relative;">&nbsp; <input
+					type='text' style='text-align: center;' name='tpinjpy' id='tpinjpy'
+					value="" class='form-control' /></td>
+
+				<td align="center" style="right: 4px; position: relative;">&nbsp;
+					<input type='text' style='text-align: center;' name='qty'
+					onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+					id='qty' class='form-control' value="" />
+				</td>
+				<td align="center">&nbsp; <input type='text'
+					style='text-align: center;' name='totaljpy' id='totaljpy' value=""
+					class='form-control' /></td>
+
+				<td align="center">&nbsp; <input type='text'
+					style='text-align: center; width: 132px;'
+					onkeyup='this.value=value.toUpperCase();' name='customerporefe'
+					id='customerporefe' value="" class='form-control' />
+
+				</td>
+				<td><input type="hidden" style="text-align: center;"
+					name="unitcost" id="unitcostx" value="" class="form-control"></td>
+				<td>
+				<td align="center" style="background-color: #E6E6E6;">&nbsp; <input
+					type="button" value='+' id='addmorepro12'
+					class='btn btn-success pull-right' data-toggle='tooltip'
+					title='Add More Product' />
+			</tr>
+
+		</table>
 </form>
 
-			
-				<div class="row form-group" style="top: 10px; position: relative;"
-					onclick="">
-					<div class="col-sm-10 form-level" align="right">
-						Total:<font color="#FF0000"></font>
-					</div>
-					<div align="right">
-						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
-							value="${total}" style="width: 15%;" readonly>
-					</div>
-				</div>
 
-				<hr align="left" size="" width="100%"
-					style="background-color: #3C8DBC;height: 1px; " />
+<div class="row form-group" style="top: 10px; position: relative;"
+	onclick="">
+	<div class="col-sm-10 form-level" align="right">
+		Total:<font color="#FF0000"></font>
+	</div>
+	<div align="right">
+		<input type="text" name="tjpy1" id="tjpy1" class="form-control"
+			value="${total}" style="width: 15%;" readonly>
+	</div>
+</div>
 
-				<div align="center">
+<hr align="left" size="" width="100%"
+	style="background-color: #3C8DBC; height: 1px;" />
 
-					<table>
-					<tr>
-						
-						
-						<!-- <td>
+<div align="center">
+
+	<table>
+		<tr>
+
+
+			<!-- <td>
 							<button type="button" value="update" onclick="numberingRow();"
 								class="btn btn-success pull-center"
 								style="background-color: #3C8DBC;">Number row</button>
 						</td> -->
-						<td>&nbsp;&nbsp;</td>
-						<td>
-						<button type="button" value="Save" onClick=""
-						class="btn btn-success pull-center" id="savedata445"
-						style="background-color: #3C8DBC;">Save</button>
-						</td>
-						<%-- <td class="col-sm-2 form-level">
+			<td>&nbsp;&nbsp;</td>
+			<td>
+				<button type="button" value="Save" onClick=""
+					class="btn btn-success pull-center" id="savedata445"
+					style="background-color: #3C8DBC;">Save</button>
+			</td>
+			<%-- <td class="col-sm-2 form-level">
 						
 						
 						Total:<font color="#FF0000"></font>
@@ -226,31 +227,33 @@ System.out.println();
 							value="${total}" style="width: 65%;" readonly>
 					</div>
 						</td> --%>
-						
-					</tr>
+
+		</tr>
 
 
-					</table>
+	</table>
 
 
 
-					
-					<!-- <button type="button" value="AddMore" onClick="productdetail();"
+
+	<!-- <button type="button" value="AddMore" onClick="productdetail();"
 						class="btn btn-success pull-right"
 						style="background-color: #3C8DBC;">Add More</button> -->
 
 
-				</div>
+</div>
 
-			</div>
-	
-	</div>
+</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</div>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="resources/js/messagebox.js"></script>
 <script type="text/javascript" src="resources/js/messagebox.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
+<script type="text/javascript"
+	src="resources/js/jquery.autocomplete.min.js"></script>
 
 
 <script>
@@ -502,24 +505,28 @@ System.out.println();
 				alert("d");
 				calculation();
 			}
+			
+			
+			
 			function calculation(){
 				var id=$('#addprolisttbody').children('tr').length;
-				//alert(id)
 				var t1=0;
 				for(var i=1;i<=id ; i=i+1){
 					
 					t1+= Number($('#totaljpy'+i).val());
-					// alert(t1);
 				 }
 				$('#tjpy1').val(t1);
-				//alert(nan)
 			}
+			
+			
+			
+			
 			$("#savedata445").bind("click", function() {
 			var temp=$("#totalchangelable").text();
-			//alert(temp);
+			
 				  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
 				  console.log(AddressesDataJSON);
-				 //alert(JSON.stringify(AddressesDataJSON));
+	
 				  
 				 calculation();
 			  $.ajax({
@@ -563,6 +570,7 @@ System.out.println();
 						var d2=$('#totaljpy'+id).val();
 						var d3=$('#tjpy1').val();
 						$('#tjpy1').val(parseInt((d3), 10)+parseInt((d2), 10));
+						calculation();
 					var grandtotl=	$('#tjpy1').val();
 						$('#grandtotal1').val(grandtotl);
 						calculation();

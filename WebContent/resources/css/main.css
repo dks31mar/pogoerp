@@ -1,20 +1,31 @@
 .page-heading {
-    padding: 5px;
-    background-color: #3C8DBC !important;
-    color: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    margin:5px 0;
-   
+	padding: 5px;
+	background-color: #3C8DBC !important;
+	color: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	margin: 5px 0;
 }
+
 .page-sub-heading {
-    
-    padding: 5px;
-    background-color: #F7F7F7;
-    color: #454545;
-    border: 1px solid #CCCCCC;
-    margin:5px 0 0 0;
+	padding: 5px;
+	background-color: #F7F7F7;
+	color: #454545;
+	border: 1px solid #CCCCCC;
+	margin: 5px 0 0 0;
 }
-.form-level{padding-top:7px;}
-#divspecifystate,#divspecifyDistrict{display: none;}
-textarea{resize: none;}
-.ML20{margin-left:10px;}
+
+.form-level {
+	padding-top: 7px;
+}
+
+#divspecifystate, #divspecifyDistrict {
+	display: none;
+}
+
+textarea {
+	resize: none;
+}
+
+.ML20 {
+	margin-left: 10px;
+}

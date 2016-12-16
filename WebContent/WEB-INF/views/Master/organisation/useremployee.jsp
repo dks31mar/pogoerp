@@ -199,6 +199,7 @@ $( function() {
 				<th>Designation</th>
 				<th>Branch</th>
 				 <th>Joining Date</th>
+				 <th>Profile</th>
 				<th style="width: 60px;">Edit</th>
 				<th style="width: 60px;">Delete</th>
 			</tr>
@@ -220,6 +221,8 @@ $( function() {
 								<td>${user.designationName}</td>
 								 <td>${user.branchName}</td>
                                  <td>${user.dateofjoining}</td>
+                                 <td><img alt="" src="image/empProfile/${user.profile}"style="width: 60px; height: 60px;"></td>
+                                
 								<td><a href="editUser?id=${user.userempid}" title="Edit">
 										<span class="glyphicon glyphicon-pencil"></span>
 								</a></td>

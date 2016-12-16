@@ -188,7 +188,7 @@ public class CustomerSalesController {
 		HttpSession session=request.getSession();
 		try {
 			int userid=(int) session.getAttribute("userid");
-			System.out.println(userid);
+			//System.out.println(userid);
 			customerSalesService.addFollowup(addFollowUpBean,userid);
 			return "redirect:addFollowup";
 		} catch (Exception e) {

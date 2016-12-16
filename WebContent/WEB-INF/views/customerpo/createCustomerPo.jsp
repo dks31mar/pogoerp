@@ -114,21 +114,22 @@ System.out.println();
         	<div class="col-sm-3 form-level" >
 				Order Date:<font color="#FF0000">*</font>
 				</div>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 				<span> <input type="text" class="form-control" name="dateTodate" 	placeholder="Order Date"
-						id="datepicker" value="${date}" ReadOnly title="DD/MM/YYYY"></input>
+						id="datepicker1" value="${date}" ReadOnly title="DD/MM/YYYY"></input>
 					</span>
 					
 				</div>
 
-				<div class="col-sm-3 form-level">
-				Order Receive Date:<font color="#FF0000">*</font>
+				<div class="col-sm-2 form-level">
+				Receive Date:<font color="#FF0000">*</font>
 				</div>
 				<div class="col-sm-3">
-					<input type="text" name="OrderReceiveDate"
-						placeholder="Order Receive Date" value=""
-						class="form-control" style="display: inline-block;" id="receivedate">
-						</div>
+				<span> <input type="text" class="form-control" name="recivedate" 	placeholder="Order Receive Date"
+						id="datepicker2" value="${date}" ReadOnly title="DD/MM/YYYY"></input>
+					</span>
+					
+				</div>
 			</div>
 			
 			
@@ -324,4 +325,16 @@ System.out.println();
 	</div>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/messagebox.js"></script>
+<script type="text/javascript" src="resources/js/messagebox.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript"src="resources/js/jquery.autocomplete.min.js"></script>
+
+<script>
+$( function() {
+    $( "#datepicker1" ).datepicker({dateFormat: 'dd/mm/yy'});
+    $( "#datepicker2" ).datepicker({dateFormat: 'dd/mm/yy'});
+  } );
+</script>
 

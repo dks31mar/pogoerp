@@ -34,9 +34,11 @@
 <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
 	href="resources/dist/css/skins/_all-skins.min.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-<script src="http://maps.googleapis.com/maps/api/js?key=YOUR_APIKEY&sensor=false"></script>
+<script
+	src="http://maps.googleapis.com/maps/api/js?key=YOUR_APIKEY&sensor=false"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -156,6 +158,7 @@ $.ajax({
 		if(name==null || iduser==null || userImg==null){
 			response.sendRedirect("LoginPage.jsp");
 		}
+	
 	}catch(Exception e){
 		response.sendRedirect("LoginPage.jsp");
 		if(name==null || iduser==null || userImg==null){
@@ -354,8 +357,8 @@ $.ajax({
 				<!-- User Account: style can be found in dropdown.less -->
 				<li class="dropdown user user-menu"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"> <img
-						src="resources<%=userImg%>" class="user-image"
-						alt="User Image"> <span class="hidden-xs"><%=name %></span>
+						src="resources<%=userImg%>" class="user-image" alt="User Image">
+						<span class="hidden-xs"><%=name %></span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- User image -->
@@ -387,30 +390,28 @@ $.ajax({
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="homepage" class="btn btn-default btn-flat" style="color:  #3C8DBC;">Home</a>
+								<a href="homepage" class="btn btn-default btn-flat"
+									style="color: #3C8DBC;">Home</a>
 							</div>
 							<div class="pull-right">
-								<a href="logout" class="btn btn-default btn-flat" style="color:  #3C8DBC;">Sign out</a>
+								<a href="logout" class="btn btn-default btn-flat"
+									style="color: #3C8DBC;">Sign out</a>
 							</div>
 						</li>
 					</ul></li>
 				<!-- Control Sidebar Toggle Button -->
-				<li><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li>
+				<li><a href="#" data-toggle="control-sidebar"><i
+						class="fa fa-gears"></i></a></li>
 			</ul>
 		</div>
 
 		</nav> </header>
 		<!-- Left side column. contains the logo and sidebar -->
 		<aside class="main-sidebar"> <!-- sidebar: style can be found in sidebar.less -->
-		<section class="sidebar"> 
-		
-		
-		
-		<!-- Sidebar user panel -->
+		<section class="sidebar"> <!-- Sidebar user panel -->
 		<div class="user-panel">
 			<div class="pull-left image">
-				<img src="resources<%=userImg%>" class="img-circle"
-					alt="User Image">
+				<img src="resources<%=userImg%>" class="img-circle" alt="User Image">
 			</div>
 			<div class="pull-left info">
 				<p><%=name %></p>
@@ -466,9 +467,10 @@ $.ajax({
 									<i class="fa fa-angle-left pull-right"></i></a>
 
 						<ul class="treeview-menu">
-						<ul>
+							<ul>
 								<c:forEach var="listValue1" items="${contactMap.value}">
-									<li><a href="<%-- getsubmenu?select=${listValue1} --%>#" id="" onclick="getMenuOfMenu('${listValue1}');"> <i
+									<li><a href="<%-- getsubmenu?select=${listValue1} --%>#"
+										id="" onclick="getMenuOfMenu('${listValue1}');"> <i
 											class=""></i> ${listValue1}
 									</a></li>
 									</a>
@@ -725,31 +727,24 @@ $.ajax({
 							</div>
 						</div>
 						<!-- /.box-header -->
-						<div class="box-body no-padding" style="overflow: visible;overflow-x:hidden ">
+						<div class="box-body no-padding"
+							style="overflow: visible; overflow-x: hidden">
 							<div class="row">
 								<div class="col-md-9 col-sm-4">
 									<div class="pad">
 										<!-- Map will be created here -->
-										<div id="world-map-markers" style="height: 325px;">
-										
-										
-										</div>
+										<div id="world-map-markers" style="height: 325px;"></div>
 									</div>
 								</div>
-								
+
 								<div class=" col-sm-4">
 									<div class="pad">
 										<!-- Map will be created here -->
-										<div style="height: 0px;">
-										
-										
-										</div>
+										<div style="height: 0px;"></div>
 									</div>
 								</div>
 								<!-- /.col -->
-								<div class="col-md-3 col-sm-4">
-								
-								</div>
+								<div class="col-md-3 col-sm-4"></div>
 								<!-- /.col -->
 							</div>
 							<!-- /.row -->
@@ -1335,11 +1330,11 @@ $.ajax({
 
 		<footer class="main-footer">
 		<div class="pull-right hidden-xs">
-			
+
 			<!-- <b>Version</b> 2.3.3 -->
 		</div>
-		<strong>Copyright &copy; 2015-2016 <a
-			href="http://tb-il.com">Technobridge Innovations</a>.
+		<strong>Copyright &copy; 2015-2016 <a href="http://tb-il.com">Technobridge
+				Innovations</a>.
 		</strong> All rights reserved. </footer>
 
 		<!-- Control Sidebar -->
@@ -1512,11 +1507,11 @@ $.ajax({
 		<div class="control-sidebar-bg"></div>
 
 	</div>
-	
+
 	<!-- ./wrapper -->
 
-<!--popup window  -->
-<!-- <script src="resources/js/popupscript.js"></script> -->
+	<!--popup window  -->
+	<!-- <script src="resources/js/popupscript.js"></script> -->
 	<!-- jQuery 2.2.0 -->
 	<script src="resources/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 	<!-- Bootstrap 3.3.6 -->
@@ -1528,8 +1523,10 @@ $.ajax({
 	<!-- Sparkline -->
 	<script src="resources/plugins/sparkline/jquery.sparkline.min.js"></script>
 	<!-- jvectormap -->
-	<script src="resources/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-	<script src="resources/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+	<script
+		src="resources/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+	<script
+		src="resources/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<!-- SlimScroll 1.3.0 -->
 	<script src="resources/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 	<!-- ChartJS 1.0.1 -->
@@ -1538,7 +1535,7 @@ $.ajax({
 	<script src="resources/dist/js/pages/dashboard2.js"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="resources/dist/js/demo.js"></script>
-	
+
 	<script type="text/javascript">
 	window.onload = setupRefresh;
 

@@ -1,5 +1,9 @@
 package com.pogo.model;
 
+
+
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -29,7 +33,6 @@ public class AddFollowUp
 	@Column(name="followupTimeOut_min")
 	private String followupTimeOutMin;
 	@ManyToOne(fetch=FetchType.LAZY)
-
 	@JoinColumn(name="actionid")
 	private AddAction actionType;
 	@Column(name="contact_person")
@@ -40,9 +43,8 @@ public class AddFollowUp
 	private String cusOrganisation;
 	@Column(name="cus_address")
 	private String cusAddress;
-
-
-
+	@Column(name = "created_at")
+	private Date createdAt;
 	@Column(name="cusStatus")
 	private String cusStatus;
 	@Column(name="remarks")
@@ -137,5 +139,11 @@ public class AddFollowUp
 		public void setRemarks(String remarks) {
 			this.remarks = remarks;
 		}
-
+		public Date getCreatedAt() {
+			return createdAt;
+		}
+		public void setCreatedAt(Date createdAt) {
+			this.createdAt = createdAt;
+		}
+		
 }

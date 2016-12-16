@@ -2,13 +2,13 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
+<!-- <link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" /> -->
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <!-- calender jquery-->
-<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
 	<!-- calender Bootstrap -->
 <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
@@ -26,6 +26,83 @@
 
 
 
+<!-- <style>
+
+
+.box {
+  width: 19%;
+  margin: 0 auto;
+  margin-top:2%;
+  background: rgba(230,230,230,0.1);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 10px/10px;
+   background-color: blue;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 10px/30px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+@media screen and (max-width: 70px){
+  .box{
+    width: 20%;
+  }
+  .popup{
+    width: 20%;
+  }
+}
+</style>
+
+<div class="box">
+	<a class="button" href="#popup1">Create Customer</a>
+</div> -->
+
+
 <div class="row" style="margin-top: 15px">
 	<br>
 	<div align="center">
@@ -39,7 +116,7 @@
 		<span class="glyphicon glyphicon-user"></span> <span>Create Customer</span>
 		<label
 			style="margin-left: 540px;"><a 
-			href="getSalesList" style="margin-top: -3px;" class="btn btn-primary"> Sales List </a> </label>
+			href="getSalesList?id=all" style="margin-top: -3px;" class="btn btn-primary"> Sales List </a> </label>
 		
 	</div>
 	
@@ -49,7 +126,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Contact Person</h4>
+          <h6 class="modal-title">Contact Person</h6>
         </div>
         <div class="modal-body">
         <form:form action="savecontact" method="POST" commandName="contactBean">

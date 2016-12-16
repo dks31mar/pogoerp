@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.pogo.bean.ProductAcknowledgementBean;
+import com.pogo.bean.ProductMasterBean;
 import com.pogo.dao.PrinicipalDao;
 import com.pogo.model.CustomerLevels;
 import com.pogo.model.InvoiceDetail;
@@ -50,7 +51,7 @@ public class PrinicipalDaoImp implements PrinicipalDao{
 	}
 
 	@Override
-	public List<ProductMaster> getproductDetail(ProductMaster pm) {
+	public List<ProductMasterBean> getproductDetail(ProductMaster pm) {
 	
 		ProjectionList projList=Projections.projectionList();
 		projList.add(Projections.property("description"));
