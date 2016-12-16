@@ -146,8 +146,8 @@ ServletContext context;
 	            FileOutputStream outputStream = null;
 	            if (type.equalsIgnoreCase("image")) {
 	                inputStream = file.getInputStream();
-	                outputStream = new FileOutputStream(String.valueOf(request.getSession()
-	                		.getServletContext().getRealPath("/")) + "image/empProfile/" + fileName);
+	                outputStream = new FileOutputStream(request.getSession()
+	                		.getServletContext().getRealPath("/")+ "image/empProfile/" + fileName);
 	               /* System.out.println(String.valueOf(request.getSession().getServletContext().getRealPath("/")) + "image/empProfile/" + fileName);*/
 	                int readBytes = 0;
 	                byte[] buffer = new byte[8192];
@@ -187,10 +187,11 @@ ServletContext context;
 			BindingResult result,HttpServletRequest request) throws ParseException, IOException 
 	
 	{
-		if(userEmployeeBean.getUserProfile()==null)
+		/*if(userEmployeeBean.getUserProfile()==null)
 		{
 		
-		}else
+		}else*/
+		
 		if (userEmployeeBean.getUserProfile().getSize() > 0
 				&& userEmployeeBean.getUserProfile() != null) {
 			MultipartFile file = userEmployeeBean.getUserProfile();
@@ -213,7 +214,9 @@ ServletContext context;
 				inputStream.close();
 				userEmployeeservice.updateEmployee(userEmployeeBean);
 		}
-	}
+			
+	}else
+		userEmployeeservice.updateEmployee(userEmployeeBean);
 		return "redirect:/getuseremp";
 
 	}

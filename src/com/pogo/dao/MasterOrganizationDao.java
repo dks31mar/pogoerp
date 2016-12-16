@@ -160,6 +160,8 @@ void updateCompetitior(CompetitiorsProfile comp);
 
 	UserEmployee verifyEmail(String email);
 
+	String getProfilePic(Integer userempid);
+
 	
 
 

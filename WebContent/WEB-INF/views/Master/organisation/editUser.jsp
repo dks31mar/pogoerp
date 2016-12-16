@@ -106,7 +106,7 @@
  <div class="container">
 
     <form:form class="well form-horizontal" action="update-employee" name="forp" method="POST" commandName="employeebean"
-     id="">
+     enctype="multipart/form-data">
    
    <%--  <form:hidden path="userempid"/> --%>
    
@@ -376,13 +376,13 @@
     <div class="col-md-3 selectContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="gender" class="form-control selectpicker" >
-    <option value="${employee.gender}">${employee.gender}
-      <option value="Male" >Male</option>
+    <select name="gender" class="form-control selectpicker" value="${employee.gender}">
+      <option value="Male">Male</option>
       <option value="female">female</option>
     </select>
   </div>
   </div>
+  
    <label class="col-md-2 control-label" >Address<span
 					style="color: red;">*</span></label>  
     <div class="col-md-3 inputGroupContainer">
