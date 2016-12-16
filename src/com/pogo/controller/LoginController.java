@@ -66,6 +66,7 @@ public class LoginController {
 		model = new ModelAndView("MainPage");
 		 model.addObject("lists", getLeftMenuList);
 		}catch(Exception e){
+			e.printStackTrace();
 			return new ModelAndView("redirect:/LoginPage.jsp");
 		}
 		 System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&      "+getLeftMenuList);

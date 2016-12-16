@@ -259,13 +259,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDepartment(userDTO.getDepartment());
 		emp.setEmpCode(userDTO.getEmpCode());
 		emp.setMiddlename(userDTO.getMiddlename());
-
 		emp.setUserProfile(anem);
-
-		
-		
-		
-
 		emp.setActive(true);
 		emp.setEmpStatus(true);
 		userEmpdao.addUser(emp);

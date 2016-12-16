@@ -40,8 +40,6 @@ public interface MasterOrganizationService {
 
 	void adduserEmp(UserEmployeeBean userDTO, String fileName)throws ParseException;
 
-	
-
 	StatezoneBean getSatesById(int id);
 	void updateBranch(BranchBean branchBean,int id, int id2);
 

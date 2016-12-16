@@ -137,71 +137,32 @@ ServletContext context;
 	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO, 
 			HttpServletRequest request,HttpServletResponse response ,BindingResult result)
 			throws ParseException, IOException {
-
-		String fileName="emp.png";
-		if (userDTO.getUserProfile().getSize() > 0) {
-
-		
-	String loginame=userDTO.getLoginname();
-	String empcode=	userDTO.getEmpCode();
-		System.out.println(loginame+" "+empcode);
-		
-		String path=context.getRealPath("/");
-		System.out.println(path);
-		
-		/*if (userDTO.getUserProfile().getSize() > 0) {
-
-			MultipartFile file = userDTO.getUserProfile();
-
-			fileName=file.getOriginalFilename();
-
-			String fileext=FilenameUtils.getExtension("/path/to/file/"+file.getOriginalFilename());
-
-			String type = file.getContentType().split("/")[0];
-			InputStream inputStream = null;
-			OutputStream outputStream = null;
-			path=request.getSession().getServletContext().getRealPath("/")+"resources\\image\\empProfile\\abc."+fileext;
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                       "+path);
-			if (type.equalsIgnoreCase("image")) {
-				inputStream =file.getInputStream();
-
-				outputStream = new FileOutputStream(request.getSession()
-						.getServletContext().getRealPath("/")+"image/empProfile/" + fileName);
-				System.out.println(request.getSession()
-						.getServletContext().getRealPath("/")+"image/empProfile/" + fileName);
-
-				outputStream = new FileOutputStream(path);
-				//git\pogoerp/SpringHibernateApp
-				//[[https://github.com/username/repository/blob/master/img/octocat.png|alt=octocat]]
-
-				int readBytes = 0;
-				byte[] buffer = new byte[8192];
-				while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
-
-					outputStream.write(buffer, 0, readBytes);
-				}
-				outputStream.close();
-				inputStream.close();
-
-				userEmployeeservice.adduserEmp(userDTO,fileName);
-
-				//userEmployeeservice.adduserEmp(userDTO,path);
-
-			}
-
-		}else {
-			userEmployeeservice.adduserEmp(userDTO,fileName);
-		}
-
-			
-		}else{
-			//userEmployeeservice.adduserEmp(userDTO,path);
-		}*/
-		}
-		return "redirect:getuseremp";
-		// return new ModelAndView("getuseremp") ;
-
-	}
+		     String fileName = "emp.png";
+	        if (userDTO.getUserProfile().getSize() > 0) {
+	            MultipartFile file = userDTO.getUserProfile();
+	            fileName = file.getOriginalFilename();
+	            String type = file.getContentType().split("/")[0];
+	            InputStream inputStream = null;
+	            FileOutputStream outputStream = null;
+	            if (type.equalsIgnoreCase("image")) {
+	                inputStream = file.getInputStream();
+	                outputStream = new FileOutputStream(String.valueOf(request.getSession()
+	                		.getServletContext().getRealPath("/")) + "image/empProfile/" + fileName);
+	               /* System.out.println(String.valueOf(request.getSession().getServletContext().getRealPath("/")) + "image/empProfile/" + fileName);*/
+	                int readBytes = 0;
+	                byte[] buffer = new byte[8192];
+	                while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
+	                    outputStream.write(buffer, 0, readBytes);
+	                }
+	                outputStream.close();
+	                inputStream.close();
+	                userEmployeeservice.adduserEmp(userDTO, fileName);
+	            }
+	        } else {
+	            userEmployeeservice.adduserEmp(userDTO, fileName);
+	        }
+	        return "redirect:getuseremp";
+	    }
 	@ResponseBody
 	@RequestMapping(value="/verifyloginname",method=RequestMethod.POST)
 	public  String verifylogin(@RequestParam String login) throws JsonProcessingException
