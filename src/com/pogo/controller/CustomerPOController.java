@@ -11,7 +11,6 @@ public class CustomerPOController {
 	public String getcusPo(Model model)
 	{
 		
-		
 		return "getCustomerPo";
 	}
 
