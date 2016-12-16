@@ -1,23 +1,38 @@
 package com.pogo.model;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="customerSalesPo")
-public class CustomerSalesPo 
+public class CustomerSalesPo implements Serializable
 {
 
-	@Id
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
 private int customerPoId;
+@Column(name="custmerOderNo")
 private String custmerOderNo;
+@Column(name="customer_name")
 private String customerName;
+@Column(name="quation_no")
 private String quationNo;
+@Column(name="customer_address")
 private String customerAddress;
+@Column(name="cusOderdate")
 private  String cusOderdate;
+@Column(name="cusReceivedate")
 private String cusReceivedate;
+@Column(name="net_total")
 private double netTotal;
+@Column(name="taxes")
 private double taxes;
 public int getCustomerPoId() {
 	return customerPoId;
