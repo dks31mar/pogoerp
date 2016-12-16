@@ -53,7 +53,7 @@ public class QuotationDaoImp implements QuotationDao{
 	@Override
 	public void updateQPoItemDtail(PoQuotationItemDetail pqidd) {
 		
-		
+		sessionFactory.getCurrentSession().createSQLQuery("delete from poquotationitemdetail where qorefno="+pqidd.getPoquotationdetail().getQorefno()).executeUpdate();
 		System.out.println(pqidd.getPoquotationitemdetailid());
 		sessionFactory.getCurrentSession().flush();
 		if(pqidd.getPoquotationitemdetailid()==null){
