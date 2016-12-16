@@ -9,6 +9,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.pogo.bean.PoQuotationDetailBean;
+import com.pogo.bean.PoQuotationItemDetailBean;
 import com.pogo.dao.QuotationDao;
 import com.pogo.model.PoQuotationDetail;
 import com.pogo.model.PoQuotationItemDetail;
@@ -53,19 +55,8 @@ public class QuotationDaoImp implements QuotationDao{
 	@Override
 	public void updateQPoItemDtail(PoQuotationItemDetail pqidd) {
 		
-		sessionFactory.getCurrentSession().createSQLQuery("delete from poquotationitemdetail where qorefno="+pqidd.getPoquotationdetail().getQorefno()).executeUpdate();
-		System.out.println(pqidd.getPoquotationitemdetailid());
-		sessionFactory.getCurrentSession().flush();
-		if(pqidd.getPoquotationitemdetailid()==null){
-			sessionFactory.getCurrentSession().save(pqidd);
-		sessionFactory.getCurrentSession().flush();
-		}else {
-			sessionFactory.getCurrentSession().update(pqidd);
-			sessionFactory.getCurrentSession().flush();
-		}
-		
-		
-		sessionFactory.getCurrentSession().update(pqidd);
+	sessionFactory.getCurrentSession().save(pqidd);
+	sessionFactory.getCurrentSession().flush();
 		
 	}
 
@@ -79,6 +70,12 @@ public class QuotationDaoImp implements QuotationDao{
 	public Integer getqupodetailid(String qorefno) {
 		
 		return (Integer) sessionFactory.getCurrentSession().createCriteria(PoQuotationDetail.class).add(Restrictions.eq("qorefno", qorefno)).setProjection(Projections.property("poquotationdetailid")).uniqueResult();
+	}
+
+	@Override
+	public void deleteAllQPoItemDtail(PoQuotationDetailBean poqid) {
+		sessionFactory.getCurrentSession().createSQLQuery("delete from poquotationitemdetail where qorefno="+poqid.getQorefno()).executeUpdate();
+		
 	}
 
 }

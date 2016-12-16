@@ -2,6 +2,7 @@ package com.pogo.dao;
 
 import java.util.List;
 
+import com.pogo.bean.PoQuotationDetailBean;
 import com.pogo.bean.PoQuotationItemDetailBean;
 import com.pogo.model.PoQuotationDetail;
 import com.pogo.model.PoQuotationItemDetail;
@@ -23,5 +24,7 @@ public interface QuotationDao {
 	void updateQPoDtail(PoQuotationDetail pqd);
 
 	Integer getqupodetailid(String qorefno);
+
+	void deleteAllQPoItemDtail(PoQuotationDetailBean poqd);
 
 }

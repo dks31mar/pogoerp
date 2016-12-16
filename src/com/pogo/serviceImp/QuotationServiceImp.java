@@ -155,9 +155,15 @@ public class QuotationServiceImp implements QuotationService{
 		pqidd.setTotal(poqid.getTotal());
 		pqidd.setDelivery(poqid.getDelivery());
 		pqidd.setPoquotationdetail(pqd);
-		pqidd.setPoquotationitemdetailid(poqid.getPoquotationitemdetailid());
+		//pqidd.setPoquotationitemdetailid(poqid.getPoquotationitemdetailid());
 		
 		quotationdao.updateQPoItemDtail(pqidd);
+		
+	}
+
+	@Override
+	public void deleteAllQPoItemDtail(PoQuotationDetailBean poqd, PoQuotationItemDetailBean poqid) {
+		quotationdao.deleteAllQPoItemDtail(poqd);
 		
 	}
 
