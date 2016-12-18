@@ -17,48 +17,52 @@ public class ExpenseEntry {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int expentryid;
 	
-	@Column(name = "orgnisation")
-	private String orgnisation;
+	@Column(name="followupid")
+	private Integer followupid;
 	
 	@Column(name = "creation_date")
 	private String crdate;
 	
-	@Column(name = "orgAddress")
-	private String orgAddress;
-	
-	@Column(name = "date")
-	private String date;
-	
-	@Column(name = "expname")
-	private String expname;
-	
-	@Column(name= "description")
-	private String description;
-	
-	@Column(name = "unit")
-	private Integer unit;
-	
-	@Column(name="unit_expense")
-	private String unit_expense;
+	@Column(name = "orgnisationid")
+	private Integer orgnisationid;
 	
 	
-	@Column(name = "total")
-	private Integer total;
+	@Column(name = "orgnisation")
+	private String orgnisation;
+	
+	
 	
 	@Column(name = "grandtotal")
-	private Integer grandtotal;
+	private double grandtotal;
 	
-	@Column(name = "managerid")
-	private Integer managerid;
-	
-	public Integer getManagerid() {
-		return managerid;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name = "userid")
+	private UserEmployee  useremp;
+	public UserEmployee getUseremp() {
+		return useremp;
 	}
 
-	public void setManagerid(Integer managerid) {
-		this.managerid = managerid;
+	public void setUseremp(UserEmployee useremp) {
+		this.useremp = useremp;
+	}
+	
+	public Integer getFollowupid() {
+		return followupid;
 	}
 
+	public void setFollowupid(Integer followupid) {
+		this.followupid = followupid;
+	}
+
+	public Integer getOrgnisationid() {
+		return orgnisationid;
+	}
+
+	public void setOrgnisationid(Integer orgnisationid) {
+		this.orgnisationid = orgnisationid;
+	}
+
+	
 	public int getExpentryid() {
 		return expentryid;
 	}
@@ -83,21 +87,38 @@ public class ExpenseEntry {
 		this.crdate = crdate;
 	}
 
-	public String getOrgAddress() {
-		return orgAddress;
+	public double getGrandtotal() {
+		return grandtotal;
 	}
 
-	public void setOrgAddress(String orgAddress) {
-		this.orgAddress = orgAddress;
+	public void setGrandtotal(double grandtotal) {
+		this.grandtotal = grandtotal;
 	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
+	
+	/*
+	
+	
+	
+	@Column(name = "expname")
+	private String expname;
+	
+	@Column(name= "description")
+	private String description;
+	
+	@Column(name = "rates")
+	private double rates;
+	
+	@Column(name="qty")
+	private Integer qty;
+	
+	
+	@Column(name = "total")
+	private double total;
+	*/
+	
+	
+	
+	/*
 
 	public String getExpname() {
 		return expname;
@@ -115,41 +136,37 @@ public class ExpenseEntry {
 		this.description = description;
 	}
 
-	public Integer getUnit() {
-		return unit;
+	public double getRates() {
+		return rates;
 	}
 
-	public void setUnit(Integer unit) {
-		this.unit = unit;
+	public void setRates(double rates) {
+		this.rates = rates;
 	}
 
-	public String getUnit_expense() {
-		return unit_expense;
+	public Integer getQty() {
+		return qty;
 	}
 
-	public void setUnit_expense(String unit_expense) {
-		this.unit_expense = unit_expense;
+	public void setQty(Integer qty) {
+		this.qty = qty;
 	}
 
-	public Integer getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(Integer total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
-
-	public Integer getGrandtotal() {
-		return grandtotal;
-	}
-
-	public void setGrandtotal(Integer grandtotal) {
-		this.grandtotal = grandtotal;
-	}
+*/
+	
 
 	
 	
+
 	
+
 	
 
 	

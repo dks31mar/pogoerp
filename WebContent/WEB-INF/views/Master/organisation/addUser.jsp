@@ -20,9 +20,11 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" /> -->
 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 <!-- <link rel="stylesheet" type="text/css"
@@ -36,62 +38,65 @@
 #success_message {
 	display: Edited;
 }
-
-
-
 </style>
 
- 
+
 
 
 <div id="message" style="display: none;"></div>
 <div id="body">
 	<div class="container">
-		<form:form class="well form-horizontal" name="forp" enctype="multipart/form-data"
-			action="saveuserEmp" method="POST" commandName="userbean" id="myForm">
+		<form:form class="well form-horizontal" name="forp"
+			enctype="multipart/form-data" action="saveuserEmp" method="POST"
+			commandName="userbean" id="myForm">
 
 			<fieldset>
 
 				<!-- Form Name -->
 				<legend>Add Employee</legend>
-				
+
 				<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h6 class="modal-title">Upload Profile</h6>
-        </div>
-        <div class="modal-body">
-           <div><input type="file" name="userProfile"></div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default"  data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-				
-				 <div class="span6" style="margin-top: -5px; margin-left: 0px; width: 100px;">
-		<div class="block">
-			<div class="data-fluid">
-				<div class="row-form" style="float: right:;">
-					<div class="span3"></div>
-					<div class="span9" style="float: right:;">
-						<div class="span3" style="width: 100px; height: 50px;">
-							<img src="resources/image/empProfile/useremp.png" accept="image/*"
-								style="width: 44px; height: 44px;" id="uploadimg" title="Upload New Image">
-								
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h6 class="modal-title">Upload Profile</h6>
+							</div>
+							<div class="modal-body">
+								<div>
+									<input type="file" name="userProfile">
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
 						</div>
-						
 					</div>
 				</div>
 
-			</div>
+				<div class="span6"
+					style="margin-top: -5px; margin-left: 0px; width: 100px;">
+					<div class="block">
+						<div class="data-fluid">
+							<div class="row-form" style="float: right:;">
+								<div class="span3"></div>
+								<div class="span9" style="float: right:;">
+									<div class="span3" style="width: 100px; height: 50px;">
+										<img src="resources/image/empProfile/useremp.png"
+											accept="image/*" style="width: 44px; height: 44px;"
+											id="uploadimg" title="Upload New Image">
 
-		</div>
+									</div>
 
-	</div> 
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
 				<div class="form-group">
 					<label class="col-md-2 control-label">Employee Id</label>
 					<div class="col-md-3 inputGroupContainer">
@@ -121,8 +126,9 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="loginname"
-								placeholder="User Name" required="required" pattern="[a-zA-Z]+" id="username"
-								class="form-control" type="text" onblur="verifyLoginName();">
+								placeholder="User Name" required="required" pattern="[a-zA-Z]+"
+								id="username" class="form-control" type="text"
+								onblur="verifyLoginName();">
 						</div>
 					</div>
 					<label class="col-md-2 control-label">Joining Date<span
@@ -132,7 +138,8 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-calendar"></i></span> <input type="text"
 								class="form-control" name="dateofjoining" id="datepickerjoin"
-								readonly="readonly"  pattern="[a-zA-Z]+" placeholder="Select Date">
+								readonly="readonly" pattern="[a-zA-Z]+"
+								placeholder="Select Date">
 						</div>
 					</div>
 				</div>
@@ -143,7 +150,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="firstname"
-								placeholder="Letters Only" pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" id="firstname"
+								placeholder="Letters Only"
+								pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$" id="firstname"
 								required="required"
 								onkeyup="javascript:capitalize(this.id, this.value);"
 								class="form-control" type="text">
@@ -173,7 +181,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="middlename"
-								placeholder="Middle Name" id="firstUppermiddle" pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$"
+								placeholder="Middle Name" id="firstUppermiddle"
+								pattern="^[a-zA-Z](\s?[a-zA-Z]){2,20}$"
 								onkeyup="javascript:capitalizemiddle(this.id, this.value);"
 								class="form-control" type="text">
 						</div>
@@ -195,7 +204,8 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input name="lastname"
-								placeholder="Last Name" id="firstlastupper" pattern="^[a-zA-Z](\s?[a-zA-Z]){3,20}$"
+								placeholder="Last Name" id="firstlastupper"
+								pattern="^[a-zA-Z](\s?[a-zA-Z]){3,20}$"
 								onkeyup="javascript:capitalizelast(this.id, this.value);"
 								class="form-control" type="text">
 						</div>
@@ -264,7 +274,7 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input name="password"
-								class="form-control" id="Password1" placeholder="Password" 
+								class="form-control" id="Password1" placeholder="Password"
 								required="required" type="password">
 						</div>
 					</div>
@@ -316,7 +326,7 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-phone-alt"></i></span> <input name="phone"
 								class="form-control" placeholder="0845-555-1212" type="tel"
-								 required="required">
+								required="required">
 						</div>
 					</div>
 				</div>
@@ -329,9 +339,10 @@
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-list"></i></span> <select name="depId"
 								class="form-control selectpicker" required="required">
-								<option value="" selected="selected">---Select Department---</option>
-								<c:forEach  items="${depList}" var="data">
-								<option value="${data.depId}">${data.depName}</option>
+								<option value="" selected="selected">---Select
+									Department---</option>
+								<c:forEach items="${depList}" var="data">
+									<option value="${data.depId}">${data.depName}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -377,14 +388,15 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label"></label>
 					<div class="col-md-2" align="center">
-					<div id="submitbutton">
-						<button type="submit" class="btn btn-warning" onclick="message();">
-							Send <span class="glyphicon glyphicon-send"></span>
-						</button>
-						<button type="button" class="btn btn-warning"
-							onclick="history.back();">
-							Back <span class="glyphicon glyphicon-send"></span>
-						</button>
+						<div id="submitbutton">
+							<button type="submit" class="btn btn-warning"
+								onclick="message();">
+								Send <span class="glyphicon glyphicon-send"></span>
+							</button>
+							<button type="button" class="btn btn-warning"
+								onclick="history.back();">
+								Back <span class="glyphicon glyphicon-send"></span>
+							</button>
 						</div>
 					</div>
 				</div>

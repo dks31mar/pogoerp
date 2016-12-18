@@ -9,7 +9,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.itextpdf.text.log.SysoCounter;
 import com.pogo.bean.CustomerSalesBean;
+import com.pogo.bean.ExpenseDetailsBean;
 import com.pogo.bean.ExpenseEntryBean;
 import com.pogo.bean.JsonArraytoJson;
 import com.pogo.bean.PoRefEntryItemDetailBean;
@@ -131,19 +134,30 @@ System.out.println(getpart1);
 		masterservice.saveExpenseEntry(poref);
 	}*/
 	
-	@RequestMapping(value = "getexpensereport" , method = RequestMethod.GET )
-    public ModelAndView getExpenseReport(HttpServletRequest reuest ){
+	
+	
+@RequestMapping(value = "getexpensereport" , method = RequestMethod.GET )
+    public ModelAndView getExpenseReport( HttpServletRequest reuest, HttpServletRequest res){
 		
+	 HttpSession session=res.getSession();
+	Integer id=(int) session.getAttribute("userid");
+	String username=(String) session.getAttribute("username");
+	
+	//System.out.println("id is **************" +id);
+	System.out.println("username is **************" +username);
+	
 		List<ExpenseEntryBean> list = new ArrayList<ExpenseEntryBean>();
-		list = masterservice.getExpenseReportList();
+		list = masterservice.getExpenseReportList(id);
 		Map<String , Object > model = new HashMap<String , Object>();
+		//model.put("userempid",id);
 		model.put("listofexpensereport",list );
 		List<UserEmployeeBean> accountmanagerlist = new ArrayList<UserEmployeeBean>();
 		accountmanagerlist = masterservice.getAccountManagerList();
 		model.put("listofaccountmanager",accountmanagerlist );
+		
 		return new ModelAndView("expensereport",model);
 	}
-	
+
 	@RequestMapping(value = "/saveexpensereport", method = RequestMethod.POST,consumes="application/json",headers = "content-type=application/x-www-form-urlencoded")
 
 	public ModelAndView saveExpenseReport(@RequestParam("startdate") String sdate,@RequestParam("enddate") String edate ,@RequestParam ("selectmanager") String manager,@ModelAttribute("command")  ExpenseEntryBean expense, HttpServletRequest res,BindingResult result) {
@@ -169,12 +183,66 @@ System.out.println(getpart1);
 @RequestMapping(value = "/expensereportdetails",method = RequestMethod.GET)
 public ModelAndView getExpenseReportDetails(HttpServletRequest reuest){
 	List<ExpenseEntryBean> list = new ArrayList<ExpenseEntryBean>();
-	list = masterservice.getExpenseReportList();
+	//list = masterservice.getExpenseReportList();
 	Map<String , Object > model = new HashMap<String , Object>();
 	model.put("listofexpensereport",list );
 	return new ModelAndView("expensereportdetails",model);
 }
+@RequestMapping(value="saveexpenseentry",method=RequestMethod.POST)
+@ResponseBody
+public void saveExpense(@RequestBody String json,String id,Model model) throws IOException{
+	System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>                             "+json);
+	Gson gson=new Gson();
+	JsonArraytoJson [] js=gson.fromJson(json, JsonArraytoJson[].class);
+	System.out.println(js.length);
+	List<String> lst=new ArrayList<String>();
+		for(JsonArraytoJson e:js){
+			System.out.println(e.getName()+"\t\t\t\t<><><><><><><><>\t"+e.getValue());
+			lst.add(e.getValue());
+			}
+	System.out.println(lst.size());
+	String [] meth=lst.toArray(new String[lst.size()]);
 
+		for(int i=0;i<meth.length;i=i+10){
+			
+			ExpenseEntryBean expense=new ExpenseEntryBean();
+			ExpenseDetailsBean details = new ExpenseDetailsBean(); 
+			
+			expense.setOrgnisation(meth[i]);
+			expense.setCrdate(meth[i+1]);
+			
+			
+			details.setExpensedate(meth[i+2]);
+			details.setExphead(meth[i+3]);
+			details.setDiscription(meth[i+4]);
+			details.setRates(Double.parseDouble(meth[i+5]));
+			details.setQty(Integer.parseInt(meth[i+6]));
+			details.setTotal(Double.parseDouble(meth[i+7]));
+			expense.setUserempid(Integer.parseInt(meth[i+8]));
+			expense.setGrandtotal(Double.parseDouble(meth[9]));
+				
+			System.out.println();
+			System.out.println(i+"     <<<<<<<<<<<<<<<<<<<<<");
+			System.out.println("user id is *********************"+expense.getUserempid());
+			
+			if(i==0){
+				System.out.println("inside if    "+i);
+				masterservice.saveExpenseEntry(expense);
+				masterservice.saveExpenseDetails(details);
+				
+			}else{
+				masterservice.saveExpenseDetails(details);
+				}	
+			
+			
+			
+			
+				
+				
+			}
+			}
+		
 }
+
 
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -36,32 +36,40 @@
 <script
 	src="http://maps.googleapis.com/maps/api/js?key=YOUR_APIKEY&sensor=false">
 </script>
-<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="resources/bootstrap-3.3.6/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <script src="resources/bootstrap-3.3.6/js/jquery.min.js"></script>
-<script language="JavaScript" src="resources/script/dhtmlgoodies_calendar.js?random=20060118"></script>
-<link type="text/css" rel="stylesheet" href="resources/script/dhtmlgoodies_calendar.css?random=20051112" media="screen"></LINK>
+<script language="JavaScript"
+	src="resources/script/dhtmlgoodies_calendar.js?random=20060118"></script>
+<link type="text/css" rel="stylesheet"
+	href="resources/script/dhtmlgoodies_calendar.css?random=20051112"
+	media="screen"></LINK>
 
-  <script type="text/javascript" src="resources/js/ajaxtags-1.2-beta2_easytool.js"></script>
+<script type="text/javascript"
+	src="resources/js/ajaxtags-1.2-beta2_easytool.js"></script>
 
-  
-  <link rel="stylesheet" type="text/css" href="resources/css/ajaxtags_easytool.css" />
-  <link rel="stylesheet" type="text/css" href="resources/css/displaytag.css" />
+
+<link rel="stylesheet" type="text/css"
+	href="resources/css/ajaxtags_easytool.css" />
+<link rel="stylesheet" type="text/css"
+	href="resources/css/displaytag.css" />
 <title>Insert title here</title>
 <style>
-    hr {
-    display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 1px;
-}</style>
+hr {
+	display: block;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	margin-left: auto;
+	margin-right: auto;
+	border-style: inset;
+	border-width: 1px;
+}
+</style>
 </head>
 <body>
-<div class="container" >
-<header class="main-header"> <!-- Logo --> <a href="homepage"
+	<div class="container">
+		<header class="main-header"> <!-- Logo --> <a href="homepage"
 			class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span
 			class="logo-mini"><b>E</b>RP</span> <!-- logo for regular state and mobile devices -->
 			<span class="logo-lg"><b>POGO</b>ERP</span>
@@ -281,10 +289,12 @@
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="homepage" class="btn btn-default btn-flat" style="color:  #3C8DBC;">Home</a>
+								<a href="homepage" class="btn btn-default btn-flat"
+									style="color: #3C8DBC;">Home</a>
 							</div>
 							<div class="pull-right">
-								<a href="logout" class="btn btn-default btn-flat" style="color:  #3C8DBC;">Sign out</a>
+								<a href="logout" class="btn btn-default btn-flat"
+									style="color: #3C8DBC;">Sign out</a>
 							</div>
 						</li>
 					</ul></li>
@@ -295,189 +305,275 @@
 		</div>
 
 		</nav> </header>
-    <FORM NAME="ChallanEntryForm"  METHOD="post" >
-        <div class="row" style="margin-top: 15px"><div  class="page-heading col-sm-11"></div>
-         <br>               <div align="center">
-                         <i>  <h3></h3></i>
-                         <input type="hidden" name="profile" value="0"/>
-                    </div>
-        </div>
-              
-        
-                      <div class="row" >
-            <div class="page-heading col-sm-11"><span class="glyphicon glyphicon-copy"></span> Add Collection
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                
-                    
-            </div>
-        </div> 
-         
+		<FORM NAME="ChallanEntryForm" METHOD="post">
+			<div class="row" style="margin-top: 15px">
+				<div class="page-heading col-sm-11"></div>
+				<br>
+				<div align="center">
+					<i>
+						<h3></h3>
+					</i> <input type="hidden" name="profile" value="0" />
+				</div>
+			</div>
 
-             <div class="row" >
-            <div class="page-heading col-sm-11"><span class="glyphicon glyphicon-copy"></span> Edit PO </div>
-        </div> 
-             
-        
-        
-        
-        
-        
-        <div style="border:1px solid #CCCCCC;padding:7px;width:93%"  >
-            <div class="row form-group">
-           
-                <div class="col-sm-3 form-level">Invoice No:<font color="#FF0000">*</font></div>               
-                <div class="col-sm-4">
-                    <input type="text" name="porefno" placeholder="Invoice No."  onkeyup="myFunction()"  id="porefno" size="150" value="" class="form-control"    /> 
-                </div>
-                   <div class="col-sm-1 form-level">Date:<font color="#FF0000">*</font></div>               
-                <div class="col-sm-2">
-                 <span>
-                <input type ="text" class="form-control" name = "date" onClick="displayCalendar(document.getElementById('date'),'dd/mm/yyyy',this,0); return false;"  onchange="autoAdjustDate('start',this); return false;"  value=""style="height:35px;width:140px;color:#000;" id="date"  ReadOnly >
-                <img src='/images/icons/calender.gif' style="margin:-26px 0px 0px 118px"  onmouseover="displayCalendar(document.getElementById('date'),'dd/mm/yyyy',this,0); return false;" border='0' id='imgdate'>
-            </span>
-                        
-                </div>
-<!--              <div class="col-sm-1 form-level">ROE:<font color="#FF0000">*</font></div>               
+
+			<div class="row">
+				<div class="page-heading col-sm-11">
+					<span class="glyphicon glyphicon-copy"></span> Add Collection
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="page-heading col-sm-11">
+					<span class="glyphicon glyphicon-copy"></span> Edit PO
+				</div>
+			</div>
+
+
+
+
+
+
+			<div style="border: 1px solid #CCCCCC; padding: 7px; width: 93%">
+				<div class="row form-group">
+
+					<div class="col-sm-3 form-level">
+						Invoice No:<font color="#FF0000">*</font>
+					</div>
+					<div class="col-sm-4">
+						<input type="text" name="porefno" placeholder="Invoice No."
+							onkeyup="myFunction()" id="porefno" size="150" value=""
+							class="form-control" />
+					</div>
+					<div class="col-sm-1 form-level">
+						Date:<font color="#FF0000">*</font>
+					</div>
+					<div class="col-sm-2">
+						<span> <input type="text" class="form-control" name="date"
+							onClick="displayCalendar(document.getElementById('date'),'dd/mm/yyyy',this,0); return false;"
+							onchange="autoAdjustDate('start',this); return false;" value=""
+							style="height: 35px; width: 140px; color: #000;" id="date"
+							ReadOnly> <img src='/images/icons/calender.gif'
+							style="margin: -26px 0px 0px 118px"
+							onmouseover="displayCalendar(document.getElementById('date'),'dd/mm/yyyy',this,0); return false;"
+							border='0' id='imgdate'>
+						</span>
+
+					</div>
+					<!--              <div class="col-sm-1 form-level">ROE:<font color="#FF0000">*</font></div>               
                 <div class="col-sm-2">
                     <input type="text" id="roe" name="roe" placeholder="roe" value="" class="form-control" style="width:95%"> 
                 </div>-->
-            </div>
-            
-                
-               </div>
-                
-                <div>
-                <div >
-                   
-                   <div class="row form-group">
-<!--               <div class="col-sm-3 form-level">Select Product<font color="#FF0000">*</font></div>-->
-               <div class="col-sm-7">
-                   
+				</div>
 
-                                    <input type="hidden" id="pro" value=''/>
-                                    <input type="hidden" id="cost" value=''/>
-                                 
-<!--
+
+			</div>
+
+			<div>
+				<div>
+
+					<div class="row form-group">
+						<!--               <div class="col-sm-3 form-level">Select Product<font color="#FF0000">*</font></div>-->
+						<div class="col-sm-7">
+
+
+							<input type="hidden" id="pro" value='' /> <input type="hidden"
+								id="cost" value='' />
+
+							<!--
                          <SELECT NAME="particular" id='particular' CLASS="form-control">                            
                                    
                                     <OPTION VALUE="" ></OPTION> 
                                     
                                    
                           </SELECT>  -->
-               </div>  
-                          
+						</div>
 
-              
-        </div> 
-                          
-                 <table id ="quotprodtable" style="width:100%;bottom:15px;position:relative;" border="0"  >
-                <tr bgcolor="#145A32">
-                  
-               <td class="col-sm-1 form-level" style="width: 10px" >&nbsp;<font size="2" color="white">S.No.</font></td>     
-               <td class="col-sm-3 form-level" style="width: 80px" align="center">&nbsp;<font size="2" color="white">Part No</font></td>
-               <td align="center" class="col-sm-1 form-level" style="width: 80px"> &nbsp;&nbsp;&nbsp;<font size="2" color="white">Description</font></td>
-               <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white">TP In JPY</font></td>
-               <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white">QTY</font></td>  
-               <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white">Total JPY</font></td>
-                <td align="center"> &nbsp;<font size="2" style="width: 65px" color="white">Customer PO Reference</font>
-<!--               <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white">Total INR</font> -->
-               </tr>
-             
-                       
-                                 <tr onclick="getindex(this);">
-<!--                                     <td align="center">&nbsp;</td>-->
-                               <td style="right:5px;position:relative;">&nbsp;<input type="text" class="form-control"  id="" name="posrno"  style="width:65px;text-align:center;" value="" readonly="true"></td>
-                               <td style="left:2px;position:relative;width:150px">&nbsp;<input type="text" style="text-align:center;" name="particulee1"  id="particulee1" class="form-control" value="" onkeyup="getcustomer1(this,event);" autocomplete="off"></td>
 
-<!--                               <td><select  name="challannoarray" style="width:180px;top:9px;position:relative;"  onchange="getdescription1(this)" id="particular" class="form-control">
+
+					</div>
+
+					<table id="quotprodtable"
+						style="width: 100%; bottom: 15px; position: relative;" border="0">
+						<tr bgcolor="#145A32">
+
+							<td class="col-sm-1 form-level" style="width: 10px">&nbsp;<font
+								size="2" color="white">S.No.</font></td>
+							<td class="col-sm-3 form-level" style="width: 80px"
+								align="center">&nbsp;<font size="2" color="white">Part
+									No</font></td>
+							<td align="center" class="col-sm-1 form-level"
+								style="width: 80px">&nbsp;&nbsp;&nbsp;<font size="2"
+								color="white">Description</font></td>
+							<td align="center">&nbsp;<font size="2" style="width: 80px"
+								color="white">TP In JPY</font></td>
+							<td align="center">&nbsp;<font size="2" style="width: 80px"
+								color="white">QTY</font></td>
+							<td align="center">&nbsp;<font size="2" style="width: 80px"
+								color="white">Total JPY</font></td>
+							<td align="center">&nbsp;<font size="2" style="width: 65px"
+								color="white">Customer PO Reference</font> <!--               <td align="center"> &nbsp;<font size="2" style="width: 80px" color="white">Total INR</font> -->
+						</tr>
+
+
+						<tr onclick="getindex(this);">
+							<!--                                     <td align="center">&nbsp;</td>-->
+							<td style="right: 5px; position: relative;">&nbsp;<input
+								type="text" class="form-control" id="" name="posrno"
+								style="width: 65px; text-align: center;" value=""
+								readonly="true"></td>
+							<td style="left: 2px; position: relative; width: 150px">&nbsp;<input
+								type="text" style="text-align: center;" name="particulee1"
+								id="particulee1" class="form-control" value=""
+								onkeyup="getcustomer1(this,event);" autocomplete="off"></td>
+
+							<!--                               <td><select  name="challannoarray" style="width:180px;top:9px;position:relative;"  onchange="getdescription1(this)" id="particular" class="form-control">
                                    
                                     
                                    </select></td>-->
-                               <td style="width:250px">&nbsp;<textarea  rows="2" cols="35" style="top:14px;left:5px; position:relative;font-size:12px;border-radius:5px;background-color :#f2f2f2;" id="description" name="description"  readonly="true" onfocus='closeDiv();'></textarea></td>
-                               <td style="right:7px;position:relative;">&nbsp;<input type="text" style="text-align:center;" name="tpinjpy"  id="tpinjpy" class="form-control" value="" readonly="true"></td>
-                               <td align="center" style="right:4px;position:relative;">&nbsp;<input type="text"  style="text-align:center;" name="qty" id="qty" onblur="cal(this)"   onkeyup="cal(this)" onkeypress="return CheckIsNumeric(event)" class="form-control" value="" onfocus='closeDiv();' ></td>
-                               <td align="center">&nbsp;<input type="text" style="text-align:center;" name="totaljpy" id="totaljpy" class="form-control" value="" onfocus='closeDiv();' readonly="true"></td>
-<!--                               <td style="width: 150px" >&nbsp;<input type="text" id="totalinr" name="totalinr" class="form-control" value=""></td>-->
-                       <td  align="center">&nbsp;<input type="text" id="customerporefe"   name="customerporefe" class="form-control" onkeyup="this.value=value.toUpperCase();" value=""></td>
-                               <td> <input type="hidden" style="text-align:center;" name="particular"  id="particular" value="" class="form-control"  readonly="true"></td>
+							<td style="width: 250px">&nbsp;<textarea rows="2" cols="35"
+									style="top: 14px; left: 5px; position: relative; font-size: 12px; border-radius: 5px; background-color: #f2f2f2;"
+									id="description" name="description" readonly="true"
+									onfocus='closeDiv();'></textarea></td>
+							<td style="right: 7px; position: relative;">&nbsp;<input
+								type="text" style="text-align: center;" name="tpinjpy"
+								id="tpinjpy" class="form-control" value="" readonly="true"></td>
+							<td align="center" style="right: 4px; position: relative;">&nbsp;<input
+								type="text" style="text-align: center;" name="qty" id="qty"
+								onblur="cal(this)" onkeyup="cal(this)"
+								onkeypress="return CheckIsNumeric(event)" class="form-control"
+								value="" onfocus='closeDiv();'></td>
+							<td align="center">&nbsp;<input type="text"
+								style="text-align: center;" name="totaljpy" id="totaljpy"
+								class="form-control" value="" onfocus='closeDiv();'
+								readonly="true"></td>
+							<!--                               <td style="width: 150px" >&nbsp;<input type="text" id="totalinr" name="totalinr" class="form-control" value=""></td>-->
+							<td align="center">&nbsp;<input type="text"
+								id="customerporefe" name="customerporefe" class="form-control"
+								onkeyup="this.value=value.toUpperCase();" value=""></td>
+							<td><input type="hidden" style="text-align: center;"
+								name="particular" id="particular" value="" class="form-control"
+								readonly="true"></td>
 
-                                 </tr>
-                             
-                                                             
-                                                               <tr><td>	</td></tr>				
+						</tr>
 
-                    </table>
-                                                               
-                </div> 
-                                 <div class="row form-group" style="top:10px; position:relative;" onclick="closeDiv();">                                        
-                <div class="col-sm-10 form-level" align="right"><b>Total:</b><font color="#FF0000"></font></div>  
-                <div align="right"><input type="text" name="tjpy1"  id="tjpy1"  class="form-control" value=""style="width: 15%;" readonly="true"></div> 
-                   </div>
-        
-           <hr align="left" size="1" width="100%" style="background-color:#000000"/>
-                  
-        <div align="center" onclick="closeDiv();">  
-            
-          
-            
-                           <table>
-                                 
-                                 <tr><td colspan="3">
-                               <p align="center">
-                                <button type="button" style=" !important;margin-left:auto;margin-right:auto;display:block;margin-top:22%;margin-bottom:0%"><a href="#" onClick="window.close();return false">Close</a></button></p>
-                                   </td></tr>
-                               
-                               <tr>
-                                   <td align="center">
-                                       <button type="button" value="update" onClick="updatebutton('');" class="btn btn-success pull-center">Update</button>
-                                   </td>
-                                  <td>&nbsp;&nbsp;&nbsp;</td>
-                                   <td>
-                                  <button style="width:80px;height:34px"type="button" value="Print" onClick="printbutton('');" class="btn btn-success pull-center">Print</button>     
-                                   </td>
-                                   <td>&nbsp;&nbsp;&nbsp;</td>
-                                   <td>
-                                  <button style="width:80px;height:34px"type="button" value="PDF" onClick="pdfbutton('');" class="btn btn-success pull-center">PDF</button>     
-                                   </td>
-                                    <td>&nbsp;&nbsp;&nbsp;</td>
-                                   <td>
-                                  <button style="width:80px;height:34px"type="button" value="Back" onClick="window.close();return false" class="btn btn-success pull-center">Back</button>     
-                                   </td>
-                             
-                                                           
-                               </tr>
-                              
-                               
-                           </table>
-                       
 
-        <button type="button" value="Save" onClick="savebutton()" class="btn btn-success pull-center">Save</button> 
-        <button type="button" value="AddMore" onClick="productdetail();"  class="btn btn-success pull-right">Add More</button>  
-         
+						<tr>
+							<td></td>
+						</tr>
 
-        </div>
- 
-             </div>
-        <div><select name="pro" id="pro" style="width:150; position:absolute;left:180;top:350;height:200px;display: none;" multiple ondblclick="trackOnDoubleclick(this,event);" onclick="trackOnDoubleclick(this,event);" onkeypress="trackEnterKeyPress(this,event);">
-    </select></div>
-        <div style="display:none; font-size:12px;   margin-left:30px;margin-top: 0px; color:#000; background-color:#e3e3e3;position: absolute;width: 600; height: 450;border-radius:10px 10px 10px 10px; solid #000; padding: 5px;top:100px;left:350px" id="additinal" >
-            <center>PDF Inputs </center>
-        Kind Attn.:<input type="text" name="person" id="person" class="form-control" ><br>
-        Header :<input type="text" name="header1" id="header1" value="" class="form-control" ><br>
-        <textarea  name="inst1" id="inst1" class="form-control"></textarea>
-        <textarea  name="inst2" id="inst2" class="form-control"></textarea>  
-        <textarea  name="inst3" id="inst3" class="form-control"></textarea>
-        <textarea  name="inst4" id="inst4" class="form-control"></textarea>
-        <textarea  name="inst5" id="inst5" class="form-control"></textarea>
-        
-        <br>
-        <center><button type="button" value="Generate PDF" class="btn btn-success pull-center" onclick="pdfbutton1('');">Generate PDF</button>
-            <button  type="button" value="Close" class="btn btn-success pull-center" onclick="closeDivPDF();">Close</button></center>
-       </div>
-            
-    </FORM>
-    </div>
-   <!-- jQuery 2.2.0 -->
+					</table>
+
+				</div>
+				<div class="row form-group" style="top: 10px; position: relative;"
+					onclick="closeDiv();">
+					<div class="col-sm-10 form-level" align="right">
+						<b>Total:</b><font color="#FF0000"></font>
+					</div>
+					<div align="right">
+						<input type="text" name="tjpy1" id="tjpy1" class="form-control"
+							value="" style="width: 15%;" readonly="true">
+					</div>
+				</div>
+
+				<hr align="left" size="1" width="100%"
+					style="background-color: #000000" />
+
+				<div align="center" onclick="closeDiv();">
+
+
+
+					<table>
+
+						<tr>
+							<td colspan="3">
+								<p align="center">
+									<button type="button"
+										style="margin-left: auto; margin-right: auto; display: block; margin-top: 22%; margin-bottom: 0%">
+										<a href="#" onClick="window.close();return false">Close</a>
+									</button>
+								</p>
+							</td>
+						</tr>
+
+						<tr>
+							<td align="center">
+								<button type="button" value="update" onClick="updatebutton('');"
+									class="btn btn-success pull-center">Update</button>
+							</td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td>
+								<button style="width: 80px; height: 34px" type="button"
+									value="Print" onClick="printbutton('');"
+									class="btn btn-success pull-center">Print</button>
+							</td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td>
+								<button style="width: 80px; height: 34px" type="button"
+									value="PDF" onClick="pdfbutton('');"
+									class="btn btn-success pull-center">PDF</button>
+							</td>
+							<td>&nbsp;&nbsp;&nbsp;</td>
+							<td>
+								<button style="width: 80px; height: 34px" type="button"
+									value="Back" onClick="window.close();return false"
+									class="btn btn-success pull-center">Back</button>
+							</td>
+
+
+						</tr>
+
+
+					</table>
+
+
+					<button type="button" value="Save" onClick="savebutton()"
+						class="btn btn-success pull-center">Save</button>
+					<button type="button" value="AddMore" onClick="productdetail();"
+						class="btn btn-success pull-right">Add More</button>
+
+
+				</div>
+
+			</div>
+			<div>
+				<select name="pro" id="pro"
+					style="width: 150; position: absolute; left: 180; top: 350; height: 200px; display: none;"
+					multiple ondblclick="trackOnDoubleclick(this,event);"
+					onclick="trackOnDoubleclick(this,event);"
+					onkeypress="trackEnterKeyPress(this,event);">
+				</select>
+			</div>
+			<div
+				style="display: none; font-size: 12px; margin-left: 30px; margin-top: 0px; color: #000; background-color: #e3e3e3; position: absolute; width: 600; height: 450; border-radius: 10px 10px 10px 10px; solid #000; padding: 5px; top: 100px; left: 350px"
+				id="additinal">
+				<center>PDF Inputs</center>
+				Kind Attn.:<input type="text" name="person" id="person"
+					class="form-control"><br> Header :<input type="text"
+					name="header1" id="header1" value="" class="form-control"><br>
+				<textarea name="inst1" id="inst1" class="form-control"></textarea>
+				<textarea name="inst2" id="inst2" class="form-control"></textarea>
+				<textarea name="inst3" id="inst3" class="form-control"></textarea>
+				<textarea name="inst4" id="inst4" class="form-control"></textarea>
+				<textarea name="inst5" id="inst5" class="form-control"></textarea>
+
+				<br>
+				<center>
+					<button type="button" value="Generate PDF"
+						class="btn btn-success pull-center" onclick="pdfbutton1('');">Generate
+						PDF</button>
+					<button type="button" value="Close"
+						class="btn btn-success pull-center" onclick="closeDivPDF();">Close</button>
+				</center>
+			</div>
+
+		</FORM>
+	</div>
+	<!-- jQuery 2.2.0 -->
 	<script src="resources/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 	<!-- Bootstrap 3.3.6 -->
 	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
@@ -499,6 +595,6 @@
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script src="resources/dist/js/pages/dashboard2.js"></script>
 	<!-- AdminLTE for demo purposes -->
-	<script src="resources/dist/js/demo.js"></script>          
+	<script src="resources/dist/js/demo.js"></script>
 </body>
 </html>

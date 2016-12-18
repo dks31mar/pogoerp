@@ -231,10 +231,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 
 	public void adduserEmp(UserEmployeeBean userDTO,String anem) throws ParseException 
 
-
-
 	{
-		
 		SimpleDateFormat dateformat = new SimpleDateFormat("MM-dd-yyyy");
 		//SimpleDateFormat df=new SimpleDateFormat("MMM-dd-yyyy");
 		UserEmployee emp=new UserEmployee();
@@ -259,13 +256,7 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDepartment(userDTO.getDepartment());
 		emp.setEmpCode(userDTO.getEmpCode());
 		emp.setMiddlename(userDTO.getMiddlename());
-
 		emp.setUserProfile(anem);
-
-		
-		
-		
-
 		emp.setActive(true);
 		emp.setEmpStatus(true);
 		userEmpdao.addUser(emp);
@@ -351,7 +342,11 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		UserEmployeeBean empbean = new UserEmployeeBean();
 		empbean.setUserempid(empedit.getUserempid());
 		empbean.setLoginname(empedit.getLoginname());
-		empbean.setDesignationId(empedit.getDesignationName().getDesignationid());
+		if(empedit.getDesignationName()!=null)
+		{
+			empbean.setDesignationName(empedit.getDesignationName().getDesignation());
+			empbean.setDesignationId(empedit.getDesignationName().getDesignationid());
+		}
 		empbean.setBranchId(empedit.getBranchName().getBranchId());
 	    empbean.setSubcompanyId(empedit.getCompanyName().getCompanyinfoid());
 	    empbean.setDepId(empedit.getDepName().getDepartmentId());
@@ -393,6 +388,11 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDob(userEmployeeBean.getDob());
 		emp.setEamil(userEmployeeBean.getEamil());
 		emp.setDesignationName(userEmpdao.getData(userEmployeeBean.getDesignationId()));
+		if(userEmployeeBean.getDesignationId()>0)
+		{
+		emp.setDesignationName(userEmpdao.getData(userEmployeeBean.getDesignationId()));
+		}else
+			emp.setDesignationName(null);
 		emp.setBranchName(userEmpdao.getBranch(userEmployeeBean.getBranchId()));
 		emp.setCompanyName(userEmpdao.getCom(userEmployeeBean.getSubcompanyId()));
 		emp.setDepName(userEmpdao.getDep(userEmployeeBean.getDepId()));
@@ -404,15 +404,15 @@ public class MasterOrganizationServiceImp implements MasterOrganizationService{
 		emp.setDepartment(userEmployeeBean.getDepartment());
 		emp.setMiddlename(userEmployeeBean.getMiddlename());
 		emp.setEmpCode(userEmployeeBean.getEmpCode());
-		//if(userEmployeeBean.getUserProfile().getSize() > 0
-		//  && userEmployeeBean.getUserProfile() !=null)
-		  //{
+		if(userEmployeeBean.getUserProfile().getSize() > 0
+		 && userEmployeeBean.getUserProfile() !=null)
+		  {
 			emp.setUserProfile(userEmployeeBean.getUserProfile().getOriginalFilename());
-		 // }
-		// else 
-		// { 
-			// emp.setUserProfile(userEmployeeBean.getProfile()); 
-			// }
+		  }
+		 else 
+		   // emp.setUserProfile(userEmployeeBean.getProfile());
+			 emp.setUserProfile(userEmpdao.getProfilePic(userEmployeeBean.getUserempid())); 
+			
 		emp.setActive(true);
 		emp.setEmpStatus(true);
 		userEmpdao.updateEmp(emp);

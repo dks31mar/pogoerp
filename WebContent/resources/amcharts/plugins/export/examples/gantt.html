@@ -1,34 +1,36 @@
 <html>
-    <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		
-		<!-- AmCharts includes -->
-		<script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
-		<script src="http://www.amcharts.com/lib/3/serial.js"></script>
-		<script src="http://www.amcharts.com/lib/3/gantt.js"></script>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-		<!-- Export plugin includes and styles -->
-		<script src="../export.js"></script>
-		<link  type="text/css" href="../export.css" rel="stylesheet">
+<!-- AmCharts includes -->
+<script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="http://www.amcharts.com/lib/3/serial.js"></script>
+<script src="http://www.amcharts.com/lib/3/gantt.js"></script>
 
-		<style>
-		body, html {
-			height: 100%;
-			padding: 0;
-			margin: 0;
-			overflow: hidden;
-			font-size: 11px;
-			font-family: Verdana;
-		}
-		#chartdiv {
-			width: 100%;
-			height: 100%;
-		}
-		</style>
+<!-- Export plugin includes and styles -->
+<script src="../export.js"></script>
+<link type="text/css" href="../export.css" rel="stylesheet">
 
-		<script type="text/javascript">
+<style>
+body, html {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	font-size: 11px;
+	font-family: Verdana;
+}
+
+#chartdiv {
+	width: 100%;
+	height: 100%;
+}
+</style>
+
+<script type="text/javascript">
 			AmCharts.useUTC = true;
 			var chart = AmCharts.makeChart( "chartdiv", {
 				"type": "gantt",
@@ -304,8 +306,8 @@
 				}
 			} );
 		</script>
-	</head>
-	<body>
-		<div id="chartdiv"></div>
-	</body>
+</head>
+<body>
+	<div id="chartdiv"></div>
+</body>
 </html>

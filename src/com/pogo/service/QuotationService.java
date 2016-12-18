@@ -22,4 +22,6 @@ public interface QuotationService {
 
 	void updateQPoItemDtail(PoQuotationDetailBean poqd, PoQuotationItemDetailBean poqid);
 
+	void deleteAllQPoItemDtail(PoQuotationDetailBean poqd, PoQuotationItemDetailBean poqid);
+
 }

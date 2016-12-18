@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -133,75 +137,70 @@ ServletContext context;
 	}
 
 	// for add employee
-	@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST)
 	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO, 
 			HttpServletRequest request,HttpServletResponse response ,BindingResult result)
 			throws ParseException, IOException {
-
-		String fileName="emp.png";
-		if (userDTO.getUserProfile().getSize() > 0) {
-
-		
-	String loginame=userDTO.getLoginname();
-	String empcode=	userDTO.getEmpCode();
-		System.out.println(loginame+" "+empcode);
-		
-		String path=context.getRealPath("/");
-		System.out.println(path);
-		
-		/*if (userDTO.getUserProfile().getSize() > 0) {
-
-			MultipartFile file = userDTO.getUserProfile();
-
-			fileName=file.getOriginalFilename();
-
-			String fileext=FilenameUtils.getExtension("/path/to/file/"+file.getOriginalFilename());
-
-			String type = file.getContentType().split("/")[0];
-			InputStream inputStream = null;
-			OutputStream outputStream = null;
-			path=request.getSession().getServletContext().getRealPath("/")+"resources\\image\\empProfile\\abc."+fileext;
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                       "+path);
-			if (type.equalsIgnoreCase("image")) {
-				inputStream =file.getInputStream();
-
-				outputStream = new FileOutputStream(request.getSession()
-						.getServletContext().getRealPath("/")+"image/empProfile/" + fileName);
-				System.out.println(request.getSession()
-						.getServletContext().getRealPath("/")+"image/empProfile/" + fileName);
-
-				outputStream = new FileOutputStream(path);
-				//git\pogoerp/SpringHibernateApp
-				//[[https://github.com/username/repository/blob/master/img/octocat.png|alt=octocat]]
-
-				int readBytes = 0;
-				byte[] buffer = new byte[8192];
-				while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
-
-					outputStream.write(buffer, 0, readBytes);
-				}
-				outputStream.close();
-				inputStream.close();
-
-				userEmployeeservice.adduserEmp(userDTO,fileName);
-
-				//userEmployeeservice.adduserEmp(userDTO,path);
-
-			}
-
-		}else {
-			userEmployeeservice.adduserEmp(userDTO,fileName);
-		}
-
-			
-		}else{
-			//userEmployeeservice.adduserEmp(userDTO,path);
-		}*/
-		}
-		return "redirect:getuseremp";
-		// return new ModelAndView("getuseremp") ;
-
-	}
+		     String fileName = "emp.png";
+             int   scaleWidth=100;
+             int   scaleHeight=120;
+	        if (userDTO.getUserProfile().getSize() > 0) {
+	            MultipartFile file = userDTO.getUserProfile();
+	            fileName = file.getOriginalFilename();
+	            String type = file.getContentType().split("/")[0];
+	            InputStream inputStream = null;
+	            FileOutputStream outputStream = null;
+	            if (type.equalsIgnoreCase("image")) {
+	                inputStream = file.getInputStream();
+	                outputStream = new FileOutputStream(request.getSession()
+	                		.getServletContext().getRealPath("/")+ "image/empProfile/" + fileName);
+	                System.out.println(String.valueOf(request.getSession().getServletContext().getRealPath("/")) + "image/empProfile/" + fileName);
+	                int readBytes = 0;
+	                byte[] buffer = new byte[8192];
+	                while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
+	                    outputStream.write(buffer, 0, readBytes);
+	                }
+	                
+	                outputStream.close();
+	                inputStream.close();
+	                String inputpath=request.getSession().getServletContext().getRealPath("/")+ "image/empProfile/" + fileName;
+	                String outputpath=request.getSession().getServletContext().getRealPath("/")+ "image/empProfile/"+fileName;
+	               // System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                  "+inputpath);
+	                boolean isResize=resize(inputpath,outputpath,scaleWidth,scaleHeight);
+	               // System.out.println(isResize);
+	                userEmployeeservice.adduserEmp(userDTO, fileName);
+	            }
+	        } else {
+	            userEmployeeservice.adduserEmp(userDTO, fileName);
+	        }
+	        return "redirect:getuseremp";
+	    }
+	*/
+	public boolean resize(String inputImagepath, String outputImagepath, int scaleWidth, int scaleHeight)
+	  {
+	          
+	      boolean resizeValue= false;   
+	      try{
+	      File inputFile = new File(inputImagepath);
+	      BufferedImage inputImage = ImageIO.read(inputFile);
+	      BufferedImage outputImage = new BufferedImage(scaleWidth,scaleHeight,inputImage.getType());
+	      Graphics2D g2d = outputImage.createGraphics();
+	      g2d.drawImage(inputImage,0,0,scaleWidth,scaleHeight, null);
+	      g2d.dispose();
+	      String formatName = outputImagepath.substring(outputImagepath.lastIndexOf(".")+1);
+	     
+	      ImageIO.write(outputImage,formatName, new File(outputImagepath));
+	      resizeValue=true;
+	      
+	  }
+	      catch(IOException ex)
+	      {
+	          ex.printStackTrace();
+	      }
+	      return resizeValue;
+	  }
+	
+	
 	@ResponseBody
 	@RequestMapping(value="/verifyloginname",method=RequestMethod.POST)
 	public  String verifylogin(@RequestParam String login) throws JsonProcessingException
@@ -226,10 +225,9 @@ ServletContext context;
 			BindingResult result,HttpServletRequest request) throws ParseException, IOException 
 	
 	{
-		if(userEmployeeBean.getUserProfile()==null)
-		{
-		
-		}else
+		 String fileName = "emp.png";
+         int   scaleWidth=100;
+         int   scaleHeight=120;
 		if (userEmployeeBean.getUserProfile().getSize() > 0
 				&& userEmployeeBean.getUserProfile() != null) {
 			MultipartFile file = userEmployeeBean.getUserProfile();
@@ -241,7 +239,6 @@ ServletContext context;
 				outputStream = new FileOutputStream(request.getSession()
 						.getServletContext().getRealPath("/")
 						+ "/image/empProfile/" + file.getOriginalFilename());
-
 				int readBytes = 0;
 				byte[] buffer = new byte[8192];
 				while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
@@ -250,9 +247,14 @@ ServletContext context;
 				}
 				outputStream.close();
 				inputStream.close();
+				 String inputpath=request.getSession().getServletContext().getRealPath("/")+ "image/empProfile/" + fileName;
+	                String outputpath=request.getSession().getServletContext().getRealPath("/")+ "image/empProfile/"+fileName;
+	                boolean isResize=resize(inputpath,outputpath,scaleWidth,scaleHeight);
 				userEmployeeservice.updateEmployee(userEmployeeBean);
 		}
-	}
+			
+	}else
+		userEmployeeservice.updateEmployee(userEmployeeBean);
 		return "redirect:/getuseremp";
 
 	}

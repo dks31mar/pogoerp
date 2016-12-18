@@ -221,7 +221,7 @@ System.out.println();
 					</tbody>
 					</table>
 					
-					<table>
+					<table id="addmoretable">
 					
 				<%-- 	<thead id=hidethisthird>
 						<tr bgcolor="#3C8DBC">
@@ -273,7 +273,7 @@ System.out.println();
 									id='description' class='form-control'
 									style="text-align: center;width: 238px;" value="" ></input></td>
 							
-							<td style="right: 7px; position: relative;">&nbsp; <input
+							<td style="right: 7px; position: relative;">&nbsp; <input readonly
 								type='text' style='text-align: center;' name='stockqty' 
 								id='stockqty' value="" class='form-control' /></td>
 								
@@ -294,7 +294,7 @@ System.out.println();
 								id='qty' class='form-control' value=""/>
 							</td>
 							<td align="center">&nbsp; 
-							<input  type='text'
+							<input  type='text' readonly
 								style='text-align: center;' name='totaljpy' id='totaljpy' value=""
 								class='form-control'  /></td>
 
@@ -343,6 +343,12 @@ System.out.println();
 						class="btn btn-success pull-center" id="savedata445"
 						style="background-color: #3C8DBC;">Save</button>
 						</td>
+						<td>&nbsp;</td>
+						<td>
+						<button type="button" value="AddMore" id="addmoredatashowtable"
+						class="btn btn-success pull-right"
+						style="background-color: #3C8DBC;">Add More</button> 
+						</td>
 					<td align="right" style="width: 578px">
 						<a href="" 
 						class="btn btn-link" onclick="changeheading();" data-toggle="modal" data-target="#myModal"  title="Add Terms & Conditions">Show Terms</a>
@@ -352,20 +358,11 @@ System.out.println();
 
 
 					</table>
-
-
-
-					
-					<!-- <button type="button" value="AddMore" onClick="productdetail();"
-						class="btn btn-success pull-right"
-						style="background-color: #3C8DBC;">Add More</button> -->
-
-
 				</div>
 
-			</div>
+		
 	
-	</div>
+
 
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -403,6 +400,10 @@ System.out.println();
 
 
 <script>
+$('#addmoredatashowtable').click(function(){
+	$('#addmoretable').show('slow');
+});
+$('#addmoretable').hide();
 function changeheading(){
 	var term1=$('#terma').val();
 	var term2=$('#termb').val();
@@ -739,7 +740,7 @@ var company= suggestion.value;
 });
 }
 $( function() {
-    $("#datepicker" ).datepicker({dateFormat:'dd/mm/yy'}).datepicker("setDate", new Date());
+    $("#datepicker" ).datepicker({dateFormat:'dd/mm/yy'});
   });
   
  
@@ -760,10 +761,18 @@ function calculation(){
 
 function deletethisrow(id){
 	
-	 $("#"+id).parents("tr").remove();
-id=$('#addprolisttbody').children('tr').length;
-$('#sr').val(id+1);
-for (i=0;i<id ; i++){
+var	id1=$('#addprolisttbody').children('tr').length;
+	
+	if(id<id1){
+	alert("You Can't Remove This Data");
+	}else{
+		 $("#"+id).parents("tr").remove();
+		}	
+	
+	/*  $("#"+id).parents("tr").remove();
+id=$('#addprolisttbody').children('tr').length; */
+$('#sr').val(id1+1);
+for (i=0;i<id1 ; i++){
 	calculation();
 }
 calculation();
@@ -783,26 +792,33 @@ $("#savedata445").bind("click", function() {
 	 inputTrems();
 		  var AddressesDataJSON = $("#quotprodtable").find('input').serializeArray();
 		  console.log(AddressesDataJSON);
-
+		 var tableiddddd=$('#addprolisttbody').children('tr').length;
+		  alert(tableiddddd);
 		  
-		 
-	  $.ajax({
-				url: "updatequotation",
-				type: "POST",
-				
-				  data :JSON.stringify(AddressesDataJSON),
-				  cache:false,
-			        beforeSend: function(xhr) {  
-			            xhr.setRequestHeader("Accept", "application/json");  
-			            xhr.setRequestHeader("Content-Type", "application/json");  
-			        },
-				     success: function(resposeJsonObject){
-				    	 
-				    	 //location.reload();
-				    	 alert('saved!!!');
-				    	// window.location.href = "quotation";
-			    }
-			}); 
+		  if(tableiddddd>0){
+			  $.ajax({
+					url: "updatequotation",
+					type: "POST",
+					
+					  data :JSON.stringify(AddressesDataJSON),
+					  cache:false,
+				        beforeSend: function(xhr) {  
+				            xhr.setRequestHeader("Accept", "application/json");  
+				            xhr.setRequestHeader("Content-Type", "application/json");  
+				        },
+					     success: function(resposeJsonObject){
+					    	 
+					    	 //location.reload();
+					    	 alert('saved!!!');
+					    	 $('#addmoretable').hide();
+					    	// window.location.href = "quotation";
+				    }
+				}); 
+		  }else{
+			  alert("No Record Found. Please Enter atleast one record!!!");
+		  }
+		  
+		/*   */ 
 		});
 		
 		

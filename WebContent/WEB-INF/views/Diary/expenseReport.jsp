@@ -33,6 +33,7 @@ String name=(String)session.getAttribute("username");
 java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
 java.util.Date date = new java.util.Date();
 %>
+<%--  <input type="hidden" id="userid" value="${userid}"/>   --%>
 <div class="row" style="margin-top: 15px">
 	<br>
 	<div align="center">
@@ -56,19 +57,19 @@ java.util.Date date = new java.util.Date();
 				value="<%=dateFormat.format(date) %>" ReadOnly></span> <span
 				id="hide2">To: <input type="text" style="color: black"
 				id="datepicker2" name="enddate"
-				value="<%=dateFormat.format(date) %>" ReadOnly></span> A/c Manager
+				value="<%=dateFormat.format(date) %>" ReadOnly></span>
 </div>
 <div  class="col-sm-3" >
 			<select name="selectmanager" class="form-control selectpicker"><option
 					value="" style="color: black;">-----Select A/c Manager
 					-----</option>
-				<c:if test="${!empty listofaccountmanager}">
+			 <c:if test="${!empty listofaccountmanager}">
 					<c:forEach items="${listofaccountmanager}" var="cur"
 						varStatus="loop">
 						<option value="${cur.userempid}" style="color: black;">${cur.firstname}
 							${cur.lastname}</option>
 					</c:forEach>
-				</c:if>
+				</c:if> 
 			</select>
 			</div>
 			<input type="submit" value="Search" name="command"
@@ -87,14 +88,16 @@ java.util.Date date = new java.util.Date();
 					<th style="width: 60px;">Total</th>
 
 				</tr>
-				<c:if test="${!empty listofexpensereport}">
+				 <c:if test="${!empty listofexpensereport}">
 					<c:forEach items="${listofexpensereport}" var="expense"
 						varStatus="loop">
 
 						<tr>
 							<td>${loop.index+1}</td>
 
-							<td><%=name %></td>
+                           <td>${expense.empname}</td>   
+                            
+						<%-- <td><%=name %></td>  --%>
 
 							<td><a href="expensereportdetails">${expense.grandtotal}</a></td>
 
@@ -103,7 +106,7 @@ java.util.Date date = new java.util.Date();
 						</tr>
 
 					</c:forEach>
-				</c:if>
+				</c:if> 
 
 
 

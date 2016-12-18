@@ -6,44 +6,74 @@ public class ExpenseEntryBean {
 	
     private int expentryid;
     
+    private Integer orgnisationid;
+    
     private String orgnisation;
 	
 	private String crdate;
 	
-    private String orgAddress;
+	private Integer followupid;
 	
-    private String date;
+	private Double grandtotal;
+	    
+	private Integer userempid;
+	
+	private String empname;
+	
+    
+    public String getEmpname() {
+		return empname;
+	}
+
+	public void setEmpname(String empname) {
+		this.empname = empname;
+	}
+
+	public Integer getUserempid() {
+		return userempid;
+	}
+
+	public void setUserempid(Integer userempid) {
+		this.userempid = userempid;
+	}
+
+	public Integer getOrgnisationid() {
+		return orgnisationid;
+	}
+
+	public void setOrgnisationid(Integer orgnisationid) {
+		this.orgnisationid = orgnisationid;
+	}
+
+	public Integer getFollowupid() {
+		return followupid;
+	}
+
+	public void setFollowupid(Integer followupid) {
+		this.followupid = followupid;
+	}
+
+	
+	
+   /* private String orgAddress;
 	
     private String expname;
 	
     private String description;
 	
-    private Integer unit;
+    private double rates;
 	
-    private String unit_expense;
+    private Integer qty;
 	
-    private Integer total;
+    private Double total;*/
     
-    private Integer grandtotal;
-    
-    private Integer managerid;
-    
-    public int getManagerid() {
-		return managerid;
-	}
-
-	public void setManagerid(int managerid) {
-		this.managerid = managerid;
-	}
-
+   
 	
-    
-    
-    public Integer getExpentryid() {
+    public int getExpentryid() {
 		return expentryid;
 	}
 
-	public void setExpentryid(Integer expentryid) {
+	public void setExpentryid(int expentryid) {
 		this.expentryid = expentryid;
 	}
 
@@ -63,20 +93,21 @@ public class ExpenseEntryBean {
 		this.crdate = crdate;
 	}
 
-	public String getOrgAddress() {
+	public Double getGrandtotal() {
+		return grandtotal;
+	}
+
+	public void setGrandtotal(Double grandtotal) {
+		this.grandtotal = grandtotal;
+	}
+
+	
+	/*public String getOrgAddress() {
 		return orgAddress;
 	}
 
 	public void setOrgAddress(String orgAddress) {
 		this.orgAddress = orgAddress;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
 	}
 
 	public String getExpname() {
@@ -95,39 +126,41 @@ public class ExpenseEntryBean {
 		this.description = description;
 	}
 
-	public Integer getUnit() {
-		return unit;
+	public double getRates() {
+		return rates;
 	}
 
-	public void setUnit(Integer unit) {
-		this.unit = unit;
+	public void setRates(double rates) {
+		this.rates = rates;
 	}
 
-	public String getUnit_expense() {
-		return unit_expense;
+	public Integer getQty() {
+		return qty;
 	}
 
-	public void setUnit_expense(String unit_expense) {
-		this.unit_expense = unit_expense;
+	public void setQty(Integer qty) {
+		this.qty = qty;
 	}
 
-	public Integer getTotal() {
+	public Double getTotal() {
 		return total;
 	}
 
-	public void setTotal(Integer total) {
+	public void setTotal(Double total) {
 		this.total = total;
 	}
-
-	public Integer getGrandtotal() {
-		return grandtotal;
-	}
-
-	public void setGrandtotal(Integer grandtotal) {
-		this.grandtotal = grandtotal;
-	}
+*/
+	
 
 	
+    
+    
+    
+   
+
+	
+    
+    
     
     
    

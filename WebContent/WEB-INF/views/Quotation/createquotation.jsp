@@ -233,7 +233,7 @@ System.out.println();
 									id='description' class='form-control'
 									style="text-align: center;width: 238px;" value="" ></input></td>
 							
-							<td style="right: 7px; position: relative;">&nbsp; <input
+							<td style="right: 7px; position: relative;">&nbsp; <input readonly
 								type='text' style='text-align: center;' name='stockqty' 
 								id='stockqty' value="" class='form-control' /></td>
 								
@@ -254,7 +254,7 @@ System.out.println();
 								id='qty' class='form-control' value=""/>
 							</td>
 							<td align="center">&nbsp; 
-							<input  type='text'
+							<input  type='text' readonly
 								style='text-align: center;' name='totaljpy' id='totaljpy' value=""
 								class='form-control'  /></td>
 
@@ -385,8 +385,7 @@ $(document).ready(function(){
 	 var id=$('#addprolisttbody').children('tr').length;
 // 	 $('#sr').val(id+1);
        $("#addmorepro12").click(function(){
-		    	$('#hidethisthird1').show();
-		       	$('#hidethisthird').hide();
+		    	
 		        
 		       	
 		       	var id=$('#addprolisttbody').children('tr').length+1;
@@ -405,61 +404,72 @@ $(document).ready(function(){
 				var	 totjpy	=$('#totaljpy').val();
 		 		var	 custpo	=$('#customerporefe').val();
 
+		 		
+		 		
+		 		if(custname==''){
+		 			alert("Please choose customer name");
+		 		}else if(refnum==''){
+		 			alert("Please enter reference number");
+		 		}else{
+		 			$('#hidethisthird1').show();
+			       	$('#hidethisthird').hide();
+		 			  var markup = '<tr>'+
+		 	           '<td style="display: none;"><input type="hidden" value="" id="getid1"></input> </td>'+
+		 	           '<td style="right: 5px; position: relative;">&nbsp; <input readonly type="text" style="width: 60px" name="" id="sr'+id+'" value="'+id+'" class="form-control"/></td>'+
+		 	           '<td style="left: 2px; position: relative; width: 150px">&nbsp;<input readonly type="text" value="'+word+'" name="particulee1" style="overflow: auto; border-radius: 3px; width: 223px; "id="autocomplete'+id+'" class="form-control"/></td>'+
+		 	           '<td style="width: 250px">&nbsp; <input readonly name="" id="description'+id+'" class="form-control" style="text-align: center;width: 238px;" value="'+dis+'" ></input></td>'+
+		 	           '<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="" id="stockqty'+id+'" value="" class="form-control" /></td>'+
+		 	           '<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="unitprice" id="unitperit'+id+'" value="'+perit+'" class="form-control" /></td>'+
+		 	           '<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="disc" id="disc'+id+'" value="'+disco+'" class="form-control" /></td>'+
+		 	           '<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="netprice" id="netprc'+id+'" value="'+netprice+'" class="form-control" /></td>'+
+		 	           '<td align="center" style="right: 4px; position: relative;">&nbsp;<input readonly type="text" style="text-align: center;" name="qty" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="qty'+id+'" class="form-control" value="'+qtye+'"/></td>'+
+		 	           '<td align="center">&nbsp;<input readonly type="text" style="text-align: center;" name="totaljpy" id="totaljpy'+id+'" value="'+totjpy+'" class="form-control"  /></td>'+
+		 	           '<td align="center">&nbsp; <input readonly type="text" style="text-align: center;width: 132px;" onkeyup="this.value=value.toUpperCase();" name="customerporefe" id="customerporefe'+id+'" value="'+custpo+'" class="form-control"/></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="customername" id="customername'+id+'" value="'+custname+'" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="refnumber" id="refnum'+id+'" value="'+refnum+'" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="address" id="adress'+id+'" value="'+adress+'" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="email" id="eamil'+id+'" value="'+emailadd+'" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="date" id="date'+id+'" value="'+dateh+'" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="validays" id="valdays'+id+'" value="'+valdays+'" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="grandtotal" id="grandtotal'+id+'" value="'+valdays+'" class="form-control"  ></td>'+
+		 	           
+		 	           
+		 	           '<td><input type="hidden" style="text-align:center;" name="terma" id="terma'+id+'" value="" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="termb" id="termb'+id+'" value="" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="termc" id="termc'+id+'" value="" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="termd" id="termd'+id+'" value="" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="terme" id="terme'+id+'" value="" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="termf" id="termf'+id+'" value="" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="termg" id="termg'+id+'" value="" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="termh" id="termh'+id+'" value="" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="termi" id="termi'+id+'" value="" class="form-control"  ></td>'+
+		 	           '<td><input type="hidden" style="text-align:center;" name="termj" id="termj'+id+'" value="" class="form-control"  ></td>'+
+		 	           "<td><a class='glyphicon glyphicon-pencil' href='#' onclick='editfields("+(id)+");return false'></a><a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+");return false;' id="+(id)+"></a></td>"+
+		 	           '</tr>';
+		 	           $("#addprolisttbody").append(markup);
+		 	           calculation();
+		 	           //id++;
+		 	           $('#sr').val(id+1);
+		 	           
+		 	           	var d;
+		 				var d1;
+		 				var d2=0;
+		 				var id=$('#addprolisttbody').children('tr').length;
+		 				
+		 			var d=$('#tjpy1').val();
+		 			$('#grandtotal1').val(d);
+		 			$('#unitperit').val('');
+		 	      	$('#autocomplete').val('');
+		 	      	$('#disc').val('');
+		 	      	$('#netprc').val('');
+		 	    	$('#qty').val('');
+		 			$('#description').val('');
+		 			$('#totaljpy').val('');
+		 	 		$('#customerporefe').val('');
+		 	 		calculation();
+		 		}
 			
-           var markup = '<tr>'+
-           '<td style="display: none;"><input type="hidden" value="" id="getid1"></input> </td>'+
-           '<td style="right: 5px; position: relative;">&nbsp; <input readonly type="text" style="width: 60px" name="" id="sr'+id+'" value="'+id+'" class="form-control"/></td>'+
-           '<td style="left: 2px; position: relative; width: 150px">&nbsp;<input readonly type="text" value="'+word+'" name="particulee1" style="overflow: auto; border-radius: 3px; width: 223px; "id="autocomplete'+id+'" class="form-control"/></td>'+
-           '<td style="width: 250px">&nbsp; <input readonly name="" id="description'+id+'" class="form-control" style="text-align: center;width: 238px;" value="'+dis+'" ></input></td>'+
-           '<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="" id="stockqty'+id+'" value="" class="form-control" /></td>'+
-           '<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="unitprice" id="unitperit'+id+'" value="'+perit+'" class="form-control" /></td>'+
-           '<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="disc" id="disc'+id+'" value="'+disco+'" class="form-control" /></td>'+
-           '<td style="right: 7px; position: relative;">&nbsp; <input readonly type="text" style="text-align: center;" name="netprice" id="netprc'+id+'" value="'+netprice+'" class="form-control" /></td>'+
-           '<td align="center" style="right: 4px; position: relative;">&nbsp;<input readonly type="text" style="text-align: center;" name="qty" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="qty'+id+'" class="form-control" value="'+qtye+'"/></td>'+
-           '<td align="center">&nbsp;<input readonly type="text" style="text-align: center;" name="totaljpy" id="totaljpy'+id+'" value="'+totjpy+'" class="form-control"  /></td>'+
-           '<td align="center">&nbsp; <input readonly type="text" style="text-align: center;width: 132px;" onkeyup="this.value=value.toUpperCase();" name="customerporefe" id="customerporefe'+id+'" value="'+custpo+'" class="form-control"/></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="customername" id="customername'+id+'" value="'+custname+'" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="refnumber" id="refnum'+id+'" value="'+refnum+'" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="address" id="adress'+id+'" value="'+adress+'" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="email" id="eamil'+id+'" value="'+emailadd+'" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="date" id="date'+id+'" value="'+dateh+'" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="validays" id="valdays'+id+'" value="'+valdays+'" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="grandtotal" id="grandtotal'+id+'" value="'+valdays+'" class="form-control"  ></td>'+
-           
-           
-           '<td><input type="hidden" style="text-align:center;" name="terma" id="terma'+id+'" value="" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="termb" id="termb'+id+'" value="" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="termc" id="termc'+id+'" value="" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="termd" id="termd'+id+'" value="" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="terme" id="terme'+id+'" value="" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="termf" id="termf'+id+'" value="" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="termg" id="termg'+id+'" value="" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="termh" id="termh'+id+'" value="" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="termi" id="termi'+id+'" value="" class="form-control"  ></td>'+
-           '<td><input type="hidden" style="text-align:center;" name="termj" id="termj'+id+'" value="" class="form-control"  ></td>'+
-           "<td><a class='glyphicon glyphicon-pencil' href='#' onclick='editfields("+(id)+");return false'></a><a class='glyphicon glyphicon-remove' href='#' onclick='deletethisrow("+(id)+");return false;' id="+(id)+"></a></td>"+
-           '</tr>';
-           $("#addprolisttbody").append(markup);
-           calculation();
-           //id++;
-           $('#sr').val(id+1);
-           
-           	var d;
-			var d1;
-			var d2=0;
-			var id=$('#addprolisttbody').children('tr').length;
-			
-		var d=$('#tjpy1').val();
-		$('#grandtotal1').val(d);
-		$('#unitperit').val('');
-      	$('#autocomplete').val('');
-      	$('#disc').val('');
-      	$('#netprc').val('');
-    	$('#qty').val('');
-		$('#description').val('');
-		$('#totaljpy').val('');
- 		$('#customerporefe').val('');
- 		calculation();
+         
        });
 });
 
@@ -711,8 +721,10 @@ function calculation(){
 	var id=$('#addprolisttbody').children('tr').length;
 	var t1=0;
 	for(var i=1;i<=id ; i=i+1){
+		if(Number($('#totaljpy'+i).val())!='NaN'){
 		t1+= Number($('#totaljpy'+i).val());
-		
+		console.log(t1);
+		}
 	}
 	console.log(t1);
 	$('#tjpy1').val(t1);
@@ -721,11 +733,17 @@ function calculation(){
 
 
 function deletethisrow(id){
+var	id1=$('#addprolisttbody').children('tr').length;
 	
-	 $("#"+id).parents("tr").remove();
-id=$('#addprolisttbody').children('tr').length;
-$('#sr').val(id+1);
-for (i=0;i<id ; i++){
+	if(id<id1){
+	alert("You Can't Remove This Data");
+	}else{
+		 $("#"+id).parents("tr").remove();
+		}	
+	
+
+$('#sr').val(id1+1);
+for (i=0;i<id1 ; i++){
 	calculation();
 }
 calculation();
