@@ -24,4 +24,8 @@ public interface QuotationService {
 
 	void deleteAllQPoItemDtail(PoQuotationDetailBean poqd, PoQuotationItemDetailBean poqid);
 
+	String findAllDataOfQuation();
+
+	String getCustomerdatabyCompanyName(String qorefno);
+
 }

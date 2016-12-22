@@ -2,8 +2,11 @@ package com.pogo.daoImp;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.pogo.bean.PoQuotationDetailBean;
 import com.pogo.bean.PoQuotationItemDetailBean;
 import com.pogo.dao.QuotationDao;
+import com.pogo.model.CustomerSales;
 import com.pogo.model.PoQuotationDetail;
 import com.pogo.model.PoQuotationItemDetail;
 import com.pogo.model.ProductMaster;
@@ -77,5 +81,26 @@ public class QuotationDaoImp implements QuotationDao{
 		sessionFactory.getCurrentSession().createSQLQuery("delete from poquotationitemdetail where qorefno="+poqid.getQorefno()).executeUpdate();
 		
 	}
+
+	@Override
+	public List<PoQuotationDetail> getquationList() {
+		ProjectionList quatList=Projections.projectionList();
+		quatList.add(Projections.property("qorefno"));
+		Criteria r=sessionFactory.getCurrentSession().createCriteria(PoQuotationDetail.class)
+				.setProjection(Projections.property("qorefno"));
+		List<PoQuotationDetail> list=r.list();
+		return list;
+	}
+
+	@Override
+	public List<PoQuotationDetail> getQuationno(String qorefno) {
+		return (List<PoQuotationDetail>) sessionFactory.getCurrentSession().createCriteria(PoQuotationDetail.class)
+				.add(Restrictions.eq("qorefno", qorefno)).uniqueResult();
+		
+		
+	}
+	
+	
+	
 
 }

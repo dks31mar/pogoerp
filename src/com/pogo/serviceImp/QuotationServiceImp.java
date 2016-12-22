@@ -1,7 +1,9 @@
 package com.pogo.serviceImp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.hql.ast.tree.SelectClause;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.gson.Gson;
 import com.pogo.bean.PoQuotationDetailBean;
 import com.pogo.bean.PoQuotationItemDetailBean;
 import com.pogo.dao.QuotationDao;
+import com.pogo.model.CustomerSales;
 import com.pogo.model.PoQuotationDetail;
 import com.pogo.model.PoQuotationItemDetail;
 import com.pogo.service.QuotationService;
@@ -167,4 +171,26 @@ public class QuotationServiceImp implements QuotationService{
 		
 	}
 
+	@Override
+	public String findAllDataOfQuation() {
+		List<PoQuotationDetail> list=quotationdao.getquationList();
+		String json = new Gson().toJson(list);
+		
+		return json;
+		
+	}
+
+	@Override
+	public String getCustomerdatabyCompanyName(String qorefno) {
+		List<PoQuotationDetail> getQuotationList=new ArrayList<PoQuotationDetail>();
+		getQuotationList=quotationdao.getQuationno(qorefno);
+		Map<String, String> map=new HashMap<>();
+		for(PoQuotationDetail data:getQuotationList){
+			map.put("quotaId", data.getQorefno());
+		}
+	String json = new Gson().toJson(map);
+	return json;
+	}
+
+	
 }

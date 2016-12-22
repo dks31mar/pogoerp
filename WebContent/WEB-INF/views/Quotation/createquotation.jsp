@@ -525,6 +525,7 @@ function search(result){
 	}
 
 $('#disc').keyup(function(){
+	
 	var perit=$('#unitperit').val();
 	var disco=$('#disc').val();
 	var discount=Number(perit)-((Number(perit)*Number(disco))/Number(100));

@@ -389,12 +389,9 @@ public CustomerSalesBean getCustomerDetailsById(int id) {
 		List<CustomerSales> getdetail=new ArrayList<CustomerSales>();
 		getdetail=customerSalesDao.getCustomerdatabyCompanyName(organization);
 		Map<String, String> map=new HashMap<>();
-		for(CustomerSales s:getdetail){
-
-			
-
+		for(CustomerSales s:getdetail)
+		{
 			map.put("custid", ""+s.getCustomerId());
-
 			map.put("address", s.getAddress());
 			map.put("emailId", s.getEmailId());
 			map.put("mobileNo", s.getMobileNo());

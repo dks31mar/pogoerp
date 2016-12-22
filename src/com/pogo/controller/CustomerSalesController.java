@@ -272,10 +272,6 @@ public class CustomerSalesController {
 			HttpServletResponse res,ProductMasterBean productmasetr) {
 		
 		String getpart=customerSalesService.getCustomerdatabyCompanyName(organization);
-
-	    
-
-
 	    String getpart1=getpart.replaceAll("\\[", "");
 		getpart1=getpart1.replaceAll("\\]", "");
 	System.out.println(getpart1);

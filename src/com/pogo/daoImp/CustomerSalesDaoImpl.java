@@ -169,17 +169,12 @@ public class CustomerSalesDaoImpl implements CustomerSalesDao {
 
 	CustomerSales s=	(CustomerSales) sessionFactory.getCurrentSession().createCriteria(CustomerSales.class)
 			.add(Restrictions.eq("organisation", organization)).uniqueResult();
-	System.out.println("*********************************customer sales list ***************************"+s);
 	int statusid=s.getStatus().getId();	
 	
 	System.out.println(statusid);
 	
 	Criteria state=sessionFactory.getCurrentSession().createCriteria(CustomerSales.class);
 		Criteria country=state.createCriteria("status");
-
-		
-
-
 		country.add(Restrictions.eq("id", statusid));
 		
 		List list = state.list();

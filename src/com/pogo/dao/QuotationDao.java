@@ -27,4 +27,8 @@ public interface QuotationDao {
 
 	void deleteAllQPoItemDtail(PoQuotationDetailBean poqd);
 
+	List<PoQuotationDetail> getquationList();
+
+	List<PoQuotationDetail> getQuationno(String qorefno);
+
 }
