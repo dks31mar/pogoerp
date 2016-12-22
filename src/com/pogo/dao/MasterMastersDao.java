@@ -2,6 +2,7 @@ package com.pogo.dao;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddPlanBean;
@@ -153,7 +154,8 @@ public interface MasterMastersDao {
 	void deleteSuppilerMst(int id);
 	
 	void saveExpenseEntry(ExpenseEntry e);
-	List<ExpenseEntry> getExpenseReportList(int id);
+	
+	Map<String, Double> getExpenseReportList(int id);
 	
 	List<ExpenseEntry> getExpenseReportListByDate(String sdate , String edate);
 	
@@ -162,6 +164,8 @@ public interface MasterMastersDao {
 	List<UserEmployee> getAccountManagerList(String manager);
 	
 	void saveExpenseDetails(ExpenseDetails d);
+	
+	List<ExpenseDetails> getExpenseReportDetailList();
 	
 	
 

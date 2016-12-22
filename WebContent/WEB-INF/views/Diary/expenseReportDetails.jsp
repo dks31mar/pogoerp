@@ -59,11 +59,7 @@
 				    <th style="width: 60px;">Total</th>
 			    
 
-				<th style="width: 60px;">Customer</th>
-				<th style="width: 60px;">Description</th>
-				<th style="width: 60px;">Nature of Expense</th>
-				<th style="width: 60px;">Units/Expense</th>
-				<th style="width: 60px;">Total</th>
+				
 
 
 			</tr>
@@ -74,20 +70,20 @@
 					<tr>
 						<td>${loop.index+1}</td>
 
-						<td>${expense.crdate}</td>
+						<td>${expense.expensedate}</td>
 
-						<td>${expense.orgnisation}</td>
+						<%-- <td>${expense.orgnisation}</td> --%>
 
-						<td>${expense.description}</td>
+						<td>${expense.discription}</td>
 
-						<td>${expense.expname}</td>
+						<td>${expense.exphead}</td>
 
 						
 						<td>${expense.qty}</td>
 						
 
 
-						<td>${expense.unit_expense}</td>
+						<%-- <td>${expense.unit_expense}</td> --%>
 
 
 						<td>${expense.total}</td>

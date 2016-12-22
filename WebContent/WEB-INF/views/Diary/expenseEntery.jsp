@@ -185,7 +185,7 @@ text-align: center;
 
 							value="${total}" style="width: 15%;" readonly>
 
-							value="" style="width: 15%;" readonly>
+							
 
 					</div>
 				</div>

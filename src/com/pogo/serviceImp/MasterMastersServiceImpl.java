@@ -1101,10 +1101,10 @@ public void saveExpenseDetails(ExpenseDetailsBean details) {
 }
 
 @Override
-public List<ExpenseEntryBean> getExpenseReportList(int id) {
-	List<ExpenseEntry> list1 = masterMastersdao.getExpenseReportList(id);
+public Map<String, Double> getExpenseReportList(int id) {
+	Map<String, Double> list1 = masterMastersdao.getExpenseReportList(id);
 	List<ExpenseEntryBean> list2 = new ArrayList<ExpenseEntryBean>();
-	for(ExpenseEntry list : list1 ){
+	/*for(ExpenseEntry list : list1 ){
 		ExpenseEntryBean data = new ExpenseEntryBean();
 		data.setExpentryid(list.getExpentryid());
 		data.setCrdate(list.getCrdate());
@@ -1116,12 +1116,12 @@ public List<ExpenseEntryBean> getExpenseReportList(int id) {
 		data.setGrandtotal(list.getGrandtotal());
 		
 		data.setUserempid(list.getUseremp().getUserempid());
-		/*data.setUserid(list.getUseremp().getFirstname());
-		data.setUserid(list.getUseremp().getLastname());*/
+		data.setUserid(list.getUseremp().getFirstname());
+		data.setUserid(list.getUseremp().getLastname());
 		//System.out.println("userlist service impl *************************************"+list.getUserid());
 		list2.add(data);
-	}
-	return list2;
+	}*/
+	return list1;
 }
 
 @Override
@@ -1166,6 +1166,26 @@ public List<UserEmployeeBean> accountManagerListBySelect(String manager) {
 	}
 	
 	return aclist;
+}
+
+@Override
+public List<ExpenseDetailsBean> getExpenseReportDetailList() {
+	List<ExpenseDetails> list = masterMastersdao.getExpenseReportDetailList();
+	List<ExpenseDetailsBean> list1 = new ArrayList<ExpenseDetailsBean>();
+	for(ExpenseDetails l : list){
+		ExpenseDetailsBean data = new ExpenseDetailsBean();
+		data.setExpensedate(l.getExpensedate());
+		data.setDiscription(l.getDiscription());
+		data.setExphead(l.getExphead());
+		data.setQty(l.getQty());
+		data.setTotal(l.getTotal());
+		//data.s(masterMastersdao.getorgname);
+		list1.add(data);
+	}
+	
+	
+	return list1;
+	
 }
 
 

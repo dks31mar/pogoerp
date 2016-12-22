@@ -137,7 +137,7 @@ System.out.println(getpart1);
 	
 	
 @RequestMapping(value = "getexpensereport" , method = RequestMethod.GET )
-    public ModelAndView getExpenseReport( HttpServletRequest reuest, HttpServletRequest res){
+    public ModelAndView getExpenseReport( HttpServletRequest reuest, HttpServletRequest res,Model m){
 		
 	 HttpSession session=res.getSession();
 	Integer id=(int) session.getAttribute("userid");
@@ -146,11 +146,11 @@ System.out.println(getpart1);
 	//System.out.println("id is **************" +id);
 	System.out.println("username is **************" +username);
 	
-		List<ExpenseEntryBean> list = new ArrayList<ExpenseEntryBean>();
-		list = masterservice.getExpenseReportList(id);
+		//List<ExpenseEntryBean> list = new ArrayList<ExpenseEntryBean>();
+		Map<String, Double> map= masterservice.getExpenseReportList(id);
 		Map<String , Object > model = new HashMap<String , Object>();
 		//model.put("userempid",id);
-		model.put("listofexpensereport",list );
+		m.addAttribute("listofexpensereport",map );
 		List<UserEmployeeBean> accountmanagerlist = new ArrayList<UserEmployeeBean>();
 		accountmanagerlist = masterservice.getAccountManagerList();
 		model.put("listofaccountmanager",accountmanagerlist );
@@ -182,8 +182,8 @@ System.out.println(getpart1);
 	}
 @RequestMapping(value = "/expensereportdetails",method = RequestMethod.GET)
 public ModelAndView getExpenseReportDetails(HttpServletRequest reuest){
-	List<ExpenseEntryBean> list = new ArrayList<ExpenseEntryBean>();
-	//list = masterservice.getExpenseReportList();
+	List<ExpenseDetailsBean> list = new ArrayList<ExpenseDetailsBean>();
+	list = masterservice.getExpenseReportDetailList();
 	Map<String , Object > model = new HashMap<String , Object>();
 	model.put("listofexpensereport",list );
 	return new ModelAndView("expensereportdetails",model);

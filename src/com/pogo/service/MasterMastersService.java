@@ -2,6 +2,7 @@ package com.pogo.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.pogo.bean.AddActionBean;
 import com.pogo.bean.AddPlanBean;
@@ -145,7 +146,7 @@ public interface MasterMastersService {
 	
 	void saveExpenseDetails(ExpenseDetailsBean details);
 	
-	List<ExpenseEntryBean> getExpenseReportList(int id);
+	Map<String, Double> getExpenseReportList(int id);
 	
 	List<ExpenseEntryBean> getExpenseReportListByDate(String sdate , String edate);
 	
@@ -154,6 +155,8 @@ public interface MasterMastersService {
 	List<UserEmployeeBean> getAccountManagerList();
 	
 	List<UserEmployeeBean> accountManagerListBySelect(String manager);
+	
+	List<ExpenseDetailsBean> getExpenseReportDetailList();
 	
 	
 

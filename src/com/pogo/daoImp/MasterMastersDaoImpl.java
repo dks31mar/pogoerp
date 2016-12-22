@@ -1,7 +1,9 @@
 package com.pogo.daoImp;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -9,6 +11,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -631,8 +634,28 @@ public void deleteSuppilerMst(int id) {
 	sessionFactory.getCurrentSession().save(e);
 }
 @Override
-public List<ExpenseEntry> getExpenseReportList(int id) {
-	return (List<ExpenseEntry>)sessionFactory.getCurrentSession().createCriteria(ExpenseEntry.class).add(Restrictions.eq("useremp.userempid", id)).list();
+public Map<String, Double> getExpenseReportList(int id) {
+	// 
+	List<ExpenseEntry> entry=(List<ExpenseEntry>) sessionFactory.getCurrentSession().createCriteria(ExpenseEntry.class).add(Restrictions.eq("useremp.userempid", id)).list();
+
+ double total=(double)	sessionFactory.getCurrentSession().createCriteria(ExpenseEntry.class).setProjection(Projections.sum("grandtotal")).uniqueResult();
+	
+//   List<ExpenseEntry> results = sessionFactory.getCurrentSession().createCriteria(ExpenseEntry.class).setProjection(Projections.projectionList().add(Projections.groupProperty("useremp.userempid"), "useremp.userempid").add(Projections.rowCount(), "count"))  
+//            .setResultTransformer(Transformers.aliasToBean(ExpenseEntry.class))  
+//            .list(); 
+//   
+//   
+//
+ String name="";
+ for(ExpenseEntry e:entry){
+   name=e.getUseremp().getFirstname()+" "+e.getUseremp().getLastname();
+ }
+   Map<String, Double> map=new HashMap<>();
+   map.put(name, total);
+   
+   
+   
+   return map;
 }
 @Override
 public List<ExpenseEntry> getExpenseReportListByDate(String sdate , String edate) {
@@ -661,6 +684,11 @@ public void saveExpenseDetails(ExpenseDetails d) {
     
 	   sessionFactory.getCurrentSession().save(d);
 	
+}
+@Override
+public List<ExpenseDetails> getExpenseReportDetailList() {
+	
+	return sessionFactory.getCurrentSession().createCriteria(ExpenseDetails.class).list();
 }
 
 
