@@ -137,7 +137,7 @@ ServletContext context;
 	}
 
 	// for add employee
-	/*@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveuserEmp", method = RequestMethod.POST)
 	public String saveDetails(Model model, @ModelAttribute("userbean") UserEmployeeBean userDTO, 
 			HttpServletRequest request,HttpServletResponse response ,BindingResult result)
 			throws ParseException, IOException {
@@ -154,7 +154,7 @@ ServletContext context;
 	                inputStream = file.getInputStream();
 	                outputStream = new FileOutputStream(request.getSession()
 	                		.getServletContext().getRealPath("/")+ "image/empProfile/" + fileName);
-	                System.out.println(String.valueOf(request.getSession().getServletContext().getRealPath("/")) + "image/empProfile/" + fileName);
+	                System.out.println(request.getSession().getServletContext().getRealPath("/") + "image/empProfile/" + fileName);
 	                int readBytes = 0;
 	                byte[] buffer = new byte[8192];
 	                while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
@@ -165,7 +165,7 @@ ServletContext context;
 	                inputStream.close();
 	                String inputpath=request.getSession().getServletContext().getRealPath("/")+ "image/empProfile/" + fileName;
 	                String outputpath=request.getSession().getServletContext().getRealPath("/")+ "image/empProfile/"+fileName;
-	               // System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>                  "+inputpath);
+	              
 	                boolean isResize=resize(inputpath,outputpath,scaleWidth,scaleHeight);
 	               // System.out.println(isResize);
 	                userEmployeeservice.adduserEmp(userDTO, fileName);
@@ -175,7 +175,7 @@ ServletContext context;
 	        }
 	        return "redirect:getuseremp";
 	    }
-	*/
+	
 	public boolean resize(String inputImagepath, String outputImagepath, int scaleWidth, int scaleHeight)
 	  {
 	          
@@ -239,6 +239,7 @@ ServletContext context;
 				outputStream = new FileOutputStream(request.getSession()
 						.getServletContext().getRealPath("/")
 						+ "/image/empProfile/" + file.getOriginalFilename());
+				 System.out.println(request.getSession().getServletContext().getRealPath("/") + "image/empProfile/" + fileName);
 				int readBytes = 0;
 				byte[] buffer = new byte[8192];
 				while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
