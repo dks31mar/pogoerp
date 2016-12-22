@@ -95,11 +95,11 @@ java.util.Date date = new java.util.Date();
 						<tr>
 							<td>${loop.index+1}</td>
 
-                           <td>${expense.empname}</td>   
+                           <td>${expense.key}</td>   
                             
 						<%-- <td><%=name %></td>  --%>
 
-							<td><a href="expensereportdetails">${expense.grandtotal}</a></td>
+							<td><a href="expensereportdetails">${expense.value}</a></td>
 
 
 
